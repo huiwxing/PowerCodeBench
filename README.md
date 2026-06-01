@@ -134,8 +134,3 @@ If you use PowerCodeBench, please cite:
   doi           = {10.48550/arXiv.2605.31478}
 }
 ```
-
-## Contact
-
-Hui Wu (`hw865@exeter.ac.uk`) · Zhong Fan (`z.fan@exeter.ac.uk`) —
-Department of Engineering, University of Exeter.
