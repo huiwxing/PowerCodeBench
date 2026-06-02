@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use PowerCodeBench, please cite the accompanying paper (see preferred-citation)."
+title: "PowerCodeBench"
+abstract: "An execution-validated benchmark for LLM-based power-system code generation: 2,000 frozen tasks pairing natural-language operator queries with executable pandapower code and a numerical ground-truth scalar."
+type: dataset
+version: "1.0.0"
+date-released: "2026-06-01"
+license: CC-BY-4.0
+repository-code: "https://github.com/huiwxing/PowerCodeBench"
+url: "https://github.com/huiwxing/PowerCodeBench"
+authors:
+  - given-names: Hui
+    family-names: Wu
+    affiliation: "Department of Engineering, University of Exeter"
+  - given-names: Xiaoyang
+    family-names: Wang
+    affiliation: "Department of Computer Science, University of Exeter"
+  - given-names: Zhong
+    family-names: Fan
+    affiliation: "Department of Engineering, University of Exeter"
+preferred-citation:
+  type: article
+  title: "Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation"
+  year: 2026
+  authors:
+    - given-names: Hui
+      family-names: Wu
+    - given-names: Xiaoyang
+      family-names: Wang
+    - given-names: Zhong
+      family-names: Fan
+  doi: "10.48550/arXiv.2605.31478"
+  url: "https://arxiv.org/abs/2605.31478"
+  notes: "arXiv preprint arXiv:2605.31478"
