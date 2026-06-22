@@ -54,8 +54,9 @@ compound workflows (counts in parentheses):
   `sequential` (171), `parallel` (151), `pf_then_sc` (157),
   `contingency_fix` (118), `diagnose_and_fix` (130).
 
-**Grid networks (39).** Tasks are instantiated on 39 distinct `pandapower`
-test cases spanning roughly **5 to ~9,200 buses**: standard
+**Grid networks.** The generator draws from a pool of **39** distinct
+`pandapower` test cases spanning roughly **5 to ~9,200 buses**; this
+frozen release instantiates **23** of them. The pool covers standard
 MATPOWER/PYPOWER cases (`case5`, `case9`, `case14`, `case30`, `case57`,
 `case118`, `case300`, the PEGASE series up to `case9241pegase`, the RTE
 series), IEEE cases (`case24_ieee_rts`, `case_ieee30`), CIGRE networks
@@ -65,11 +66,11 @@ synthetic/regional grids (`GBnetwork`, `oberrhein`, `iceland`, …).
 **Composition figure.** The exact per-difficulty, per-task-family, and
 per-network distributions are shown below (reproduced from the paper):
 
-![Frozen-release composition statistics: items per difficulty, task-family frequency across 15 families, and grid network size across 39 cases](assets/benchmark_stats.png)
+![Frozen-release composition statistics: items per difficulty, task-family frequency across 15 families, and grid network size across the 23 instantiated networks](assets/benchmark_stats.png)
 
 *(a) Item count per difficulty level (D1–D4). (b) Task-family frequency across
 the 15 families sampled in this release. (c) Grid network size distribution
-(bus count) across the 39 test cases used.*
+(bus count) across the 23 networks instantiated in this release.*
 
 ## Record schema
 
