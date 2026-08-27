@@ -1,0 +1,113 @@
+{
+  "conditions": [
+    "A",
+    "C"
+  ],
+  "models": [
+    {
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "A": null,
+      "C": 0.3505
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "A": null,
+      "C": 0.432
+    },
+    {
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "A": null,
+      "C": 0.559
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "A": null,
+      "C": 0.384
+    },
+    {
+      "model": "openai_gpt-oss-120b",
+      "A": null,
+      "C": 0.4625
+    }
+  ],
+  "delta_pairs": [
+    "C-A"
+  ],
+  "per_task_exec_rate": [
+    {
+      "task": "comparison",
+      "A": null,
+      "C": 0.9452399999999999
+    },
+    {
+      "task": "comparison_opf",
+      "A": null,
+      "C": 0.74666
+    },
+    {
+      "task": "contingency",
+      "A": null,
+      "C": 0.44364
+    },
+    {
+      "task": "contingency_fix",
+      "A": null,
+      "C": 0.42542
+    },
+    {
+      "task": "dc_power_flow",
+      "A": null,
+      "C": 0.8627600000000001
+    },
+    {
+      "task": "diagnose_and_fix",
+      "A": null,
+      "C": 0.8430799999999999
+    },
+    {
+      "task": "opf",
+      "A": null,
+      "C": 0.7242799999999999
+    },
+    {
+      "task": "parallel",
+      "A": null,
+      "C": 0.49670000000000003
+    },
+    {
+      "task": "pf_then_sc",
+      "A": null,
+      "C": 0.44586
+    },
+    {
+      "task": "power_flow",
+      "A": null,
+      "C": 0.84856
+    },
+    {
+      "task": "sequential",
+      "A": null,
+      "C": 0.9110999999999999
+    },
+    {
+      "task": "short_circuit_2ph",
+      "A": null,
+      "C": 0.36936
+    },
+    {
+      "task": "short_circuit_3ph",
+      "A": null,
+      "C": 0.42114
+    },
+    {
+      "task": "state_estimation",
+      "A": null,
+      "C": 0.37648000000000004
+    },
+    {
+      "task": "time_series",
+      "A": null,
+      "C": 0.51338
+    }
+  ]
+}

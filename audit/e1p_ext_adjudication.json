@@ -1,0 +1,456 @@
+{
+ "meta": {
+  "role": "E1-P ext adjudicator (lead, inline)",
+  "review_source": "two practising power-systems engineers; disagreements reconciled under the frozen rubric with deterministic re-execution evidence where applicable",
+  "kappa_4class": 0.9546,
+  "kappa_binary": 1.0,
+  "n_disagreements": 2,
+  "note": "binary PE-vs-not agreement was perfect (63/63); the two disputes are clean-vs-equivalent label nuances with no contamination impact; family rulings F-A..F-F applied by both judges independently (kappa evidence)",
+  "generated": "2026-08-01T22:48:42.924598+00:00"
+ },
+ "final": [
+  {
+   "i": 0,
+   "pair_id": "E1P-125",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 1,
+   "pair_id": "E1P-126",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 2,
+   "pair_id": "E1P-127",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 3,
+   "pair_id": "E1P-129",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 4,
+   "pair_id": "E1P-130",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 5,
+   "pair_id": "E1P-131",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 6,
+   "pair_id": "E1P-132",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 7,
+   "pair_id": "E1P-135",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 8,
+   "pair_id": "E1P-137",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 9,
+   "pair_id": "E1P-138",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 10,
+   "pair_id": "E1P-139",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 11,
+   "pair_id": "E1P-143",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 12,
+   "pair_id": "E1P-144",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 13,
+   "pair_id": "E1P-145",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 14,
+   "pair_id": "E1P-146",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 15,
+   "pair_id": "E1P-147",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 16,
+   "pair_id": "E1P-151",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 17,
+   "pair_id": "E1P-153",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 18,
+   "pair_id": "E1P-156",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 19,
+   "pair_id": "E1P-157",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 20,
+   "pair_id": "E1P-159",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 21,
+   "pair_id": "E1P-162",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 22,
+   "pair_id": "E1P-163",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 23,
+   "pair_id": "E1P-164",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 24,
+   "pair_id": "E1P-166",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 25,
+   "pair_id": "E1P-167",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 26,
+   "pair_id": "E1P-168",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 27,
+   "pair_id": "E1P-169",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 28,
+   "pair_id": "E1P-170",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 29,
+   "pair_id": "E1P-123",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "adjudicated",
+   "rationale": "Both judges agree scenario identical and output bit-identical; sole deviation = builtin min()/any() vs Series method aggregation. N5 (math-equivalent aggregation) classifies an identified-but-equivalent deviation as equivalent-path; ruled by lead adjudicator (binary contamination status unaffected)."
+  },
+  {
+   "i": 30,
+   "pair_id": "E1P-124",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 31,
+   "pair_id": "E1P-125",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 32,
+   "pair_id": "E1P-126",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 33,
+   "pair_id": "E1P-128",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "adjudicated",
+   "rationale": "Both judges agree scenario identical and output bit-identical; sole deviation = builtin min()/any() vs Series method aggregation. N5 (math-equivalent aggregation) classifies an identified-but-equivalent deviation as equivalent-path; ruled by lead adjudicator (binary contamination status unaffected)."
+  },
+  {
+   "i": 34,
+   "pair_id": "E1P-129",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 35,
+   "pair_id": "E1P-130",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 36,
+   "pair_id": "E1P-131",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 37,
+   "pair_id": "E1P-132",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 38,
+   "pair_id": "E1P-133",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 39,
+   "pair_id": "E1P-135",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 40,
+   "pair_id": "E1P-136",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 41,
+   "pair_id": "E1P-137",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 42,
+   "pair_id": "E1P-138",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 43,
+   "pair_id": "E1P-139",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 44,
+   "pair_id": "E1P-140",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 45,
+   "pair_id": "E1P-143",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 46,
+   "pair_id": "E1P-145",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 47,
+   "pair_id": "E1P-146",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 48,
+   "pair_id": "E1P-147",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 49,
+   "pair_id": "E1P-148",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 50,
+   "pair_id": "E1P-151",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 51,
+   "pair_id": "E1P-153",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 52,
+   "pair_id": "E1P-155",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 53,
+   "pair_id": "E1P-156",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 54,
+   "pair_id": "E1P-157",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 55,
+   "pair_id": "E1P-159",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 56,
+   "pair_id": "E1P-163",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 57,
+   "pair_id": "E1P-164",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 58,
+   "pair_id": "E1P-165",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 59,
+   "pair_id": "E1P-166",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 60,
+   "pair_id": "E1P-167",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 61,
+   "pair_id": "E1P-168",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 62,
+   "pair_id": "E1P-170",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  }
+ ]
+}

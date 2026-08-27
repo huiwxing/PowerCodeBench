@@ -1,0 +1,1998 @@
+{
+  "meta": {
+    "role": "E1 A5-1 statistical upgrade: design-weighted FAR + stratified bootstrap CI + common-support analysis + gate operating characteristics",
+    "protocol": "E1_validity_audit.md s2.1/s4.2 (frozen sampling frame)",
+    "generated": "2026-07-31T22:54:54",
+    "inputs": {
+      "final_labels": "audit/t4_final_labels_v2.json (610 per-item rulings)",
+      "sampling_frame": "audit/e1_sample_manifest.json (seed 20260723)",
+      "automatic_layer": "audit/t4_auto_results.json (any_flag)",
+      "population_recount": "streamed from probe_eval_results/comparison/ and api_comparison_2000/ via audit.records (matched pools reproduce the manifest exactly)"
+    },
+    "estimator": {
+      "weights": "w_h = N_h / n_h with N_h = matched population of the sampling cell minus pilot draws in that cell; cells = (tier x task family) for main_P/contrast_S and (API model x task family) for api_T5 -- exactly the sampler's allocation units",
+      "point_estimate": "Hajek ratio (domain) estimator: sum(w_i * 1[contaminated]) / sum(w_i * 1[not item-defect])",
+      "ci": "stratified nonparametric bootstrap, B=2000, seed 20260731, resampling within sampling cells (primary) and within tier/model collapsed strata (conservative sensitivity, avoids singleton-cell variance degeneracy)",
+      "defect_handling": "item-defect rulings removed from numerator and denominator, as in the frozen unweighted table"
+    },
+    "note": "Read-only w.r.t. every adjudication artefact; no frozen number is altered. The unweighted column reproduces the frozen E1 s8 table (2026-07-26) exactly."
+  },
+  "design_diagnostics": {
+    "n_cells": 159,
+    "n_singleton_cells": 65,
+    "n_census_cells": 6,
+    "sample_in_census_cells": 7,
+    "sampling_fraction_by_frame": {
+      "main_P": {
+        "n": 400,
+        "N": 9833,
+        "f_pct": 4.07
+      },
+      "api_T5": {
+        "n": 60,
+        "N": 4677,
+        "f_pct": 1.28
+      },
+      "contrast_S": {
+        "n": 150,
+        "N": 2325,
+        "f_pct": 6.45
+      }
+    },
+    "fpc_note": "bootstrap CIs are with-replacement and ignore the finite-population correction; sampling fractions are 1.3-6.5% per frame (30% inside tier T1 of main_P), so the CIs are mildly conservative rather than anti-conservative",
+    "singleton_note": "65/159 cells hold a single drawn item (every api_T5 cell does), which makes a strictly within-cell bootstrap variance-degenerate; the reported primary CI uses the collapsed-stratum (hybrid) resampling"
+  },
+  "cells": {
+    "main_P|T4|comparison": {
+      "N_pop": 269,
+      "n_sample": 8,
+      "weight": 33.625,
+      "incl_prob": 0.02974
+    },
+    "main_P|T4|comparison_opf": {
+      "N_pop": 191,
+      "n_sample": 6,
+      "weight": 31.8333,
+      "incl_prob": 0.031414
+    },
+    "main_P|T4|contingency": {
+      "N_pop": 192,
+      "n_sample": 7,
+      "weight": 27.4286,
+      "incl_prob": 0.036458
+    },
+    "main_P|T4|contingency_fix": {
+      "N_pop": 150,
+      "n_sample": 6,
+      "weight": 25.0,
+      "incl_prob": 0.04
+    },
+    "main_P|T4|dc_power_flow": {
+      "N_pop": 334,
+      "n_sample": 10,
+      "weight": 33.4,
+      "incl_prob": 0.02994
+    },
+    "main_P|T4|diagnose_and_fix": {
+      "N_pop": 178,
+      "n_sample": 6,
+      "weight": 29.6667,
+      "incl_prob": 0.033708
+    },
+    "main_P|T4|opf": {
+      "N_pop": 239,
+      "n_sample": 8,
+      "weight": 29.875,
+      "incl_prob": 0.033473
+    },
+    "main_P|T4|parallel": {
+      "N_pop": 335,
+      "n_sample": 10,
+      "weight": 33.5,
+      "incl_prob": 0.029851
+    },
+    "main_P|T4|pf_then_sc": {
+      "N_pop": 276,
+      "n_sample": 8,
+      "weight": 34.5,
+      "incl_prob": 0.028986
+    },
+    "main_P|T4|power_flow": {
+      "N_pop": 318,
+      "n_sample": 9,
+      "weight": 35.3333,
+      "incl_prob": 0.028302
+    },
+    "main_P|T4|sequential": {
+      "N_pop": 442,
+      "n_sample": 12,
+      "weight": 36.8333,
+      "incl_prob": 0.027149
+    },
+    "main_P|T4|short_circuit_2ph": {
+      "N_pop": 239,
+      "n_sample": 8,
+      "weight": 29.875,
+      "incl_prob": 0.033473
+    },
+    "main_P|T4|short_circuit_3ph": {
+      "N_pop": 220,
+      "n_sample": 7,
+      "weight": 31.4286,
+      "incl_prob": 0.031818
+    },
+    "main_P|T4|state_estimation": {
+      "N_pop": 226,
+      "n_sample": 7,
+      "weight": 32.2857,
+      "incl_prob": 0.030973
+    },
+    "main_P|T4|time_series": {
+      "N_pop": 271,
+      "n_sample": 8,
+      "weight": 33.875,
+      "incl_prob": 0.02952
+    },
+    "main_P|T3|comparison": {
+      "N_pop": 169,
+      "n_sample": 8,
+      "weight": 21.125,
+      "incl_prob": 0.047337
+    },
+    "main_P|T3|comparison_opf": {
+      "N_pop": 115,
+      "n_sample": 6,
+      "weight": 19.1667,
+      "incl_prob": 0.052174
+    },
+    "main_P|T3|contingency": {
+      "N_pop": 136,
+      "n_sample": 7,
+      "weight": 19.4286,
+      "incl_prob": 0.051471
+    },
+    "main_P|T3|contingency_fix": {
+      "N_pop": 44,
+      "n_sample": 3,
+      "weight": 14.6667,
+      "incl_prob": 0.068182
+    },
+    "main_P|T3|dc_power_flow": {
+      "N_pop": 220,
+      "n_sample": 10,
+      "weight": 22.0,
+      "incl_prob": 0.045455
+    },
+    "main_P|T3|diagnose_and_fix": {
+      "N_pop": 140,
+      "n_sample": 7,
+      "weight": 20.0,
+      "incl_prob": 0.05
+    },
+    "main_P|T3|opf": {
+      "N_pop": 154,
+      "n_sample": 7,
+      "weight": 22.0,
+      "incl_prob": 0.045455
+    },
+    "main_P|T3|parallel": {
+      "N_pop": 204,
+      "n_sample": 9,
+      "weight": 22.6667,
+      "incl_prob": 0.044118
+    },
+    "main_P|T3|pf_then_sc": {
+      "N_pop": 153,
+      "n_sample": 7,
+      "weight": 21.8571,
+      "incl_prob": 0.045752
+    },
+    "main_P|T3|power_flow": {
+      "N_pop": 212,
+      "n_sample": 9,
+      "weight": 23.5556,
+      "incl_prob": 0.042453
+    },
+    "main_P|T3|sequential": {
+      "N_pop": 296,
+      "n_sample": 12,
+      "weight": 24.6667,
+      "incl_prob": 0.040541
+    },
+    "main_P|T3|short_circuit_2ph": {
+      "N_pop": 113,
+      "n_sample": 6,
+      "weight": 18.8333,
+      "incl_prob": 0.053097
+    },
+    "main_P|T3|short_circuit_3ph": {
+      "N_pop": 120,
+      "n_sample": 6,
+      "weight": 20.0,
+      "incl_prob": 0.05
+    },
+    "main_P|T3|state_estimation": {
+      "N_pop": 125,
+      "n_sample": 6,
+      "weight": 20.8333,
+      "incl_prob": 0.048
+    },
+    "main_P|T3|time_series": {
+      "N_pop": 150,
+      "n_sample": 7,
+      "weight": 21.4286,
+      "incl_prob": 0.046667
+    },
+    "main_P|T2|comparison": {
+      "N_pop": 277,
+      "n_sample": 8,
+      "weight": 34.625,
+      "incl_prob": 0.028881
+    },
+    "main_P|T2|comparison_opf": {
+      "N_pop": 178,
+      "n_sample": 6,
+      "weight": 29.6667,
+      "incl_prob": 0.033708
+    },
+    "main_P|T2|contingency": {
+      "N_pop": 104,
+      "n_sample": 4,
+      "weight": 26.0,
+      "incl_prob": 0.038462
+    },
+    "main_P|T2|contingency_fix": {
+      "N_pop": 33,
+      "n_sample": 3,
+      "weight": 11.0,
+      "incl_prob": 0.090909
+    },
+    "main_P|T2|dc_power_flow": {
+      "N_pop": 320,
+      "n_sample": 10,
+      "weight": 32.0,
+      "incl_prob": 0.03125
+    },
+    "main_P|T2|diagnose_and_fix": {
+      "N_pop": 261,
+      "n_sample": 8,
+      "weight": 32.625,
+      "incl_prob": 0.030651
+    },
+    "main_P|T2|opf": {
+      "N_pop": 239,
+      "n_sample": 8,
+      "weight": 29.875,
+      "incl_prob": 0.033473
+    },
+    "main_P|T2|parallel": {
+      "N_pop": 222,
+      "n_sample": 7,
+      "weight": 31.7143,
+      "incl_prob": 0.031532
+    },
+    "main_P|T2|pf_then_sc": {
+      "N_pop": 193,
+      "n_sample": 7,
+      "weight": 27.5714,
+      "incl_prob": 0.036269
+    },
+    "main_P|T2|power_flow": {
+      "N_pop": 365,
+      "n_sample": 11,
+      "weight": 33.1818,
+      "incl_prob": 0.030137
+    },
+    "main_P|T2|sequential": {
+      "N_pop": 530,
+      "n_sample": 14,
+      "weight": 37.8571,
+      "incl_prob": 0.026415
+    },
+    "main_P|T2|short_circuit_2ph": {
+      "N_pop": 174,
+      "n_sample": 6,
+      "weight": 29.0,
+      "incl_prob": 0.034483
+    },
+    "main_P|T2|short_circuit_3ph": {
+      "N_pop": 198,
+      "n_sample": 7,
+      "weight": 28.2857,
+      "incl_prob": 0.035354
+    },
+    "main_P|T2|state_estimation": {
+      "N_pop": 135,
+      "n_sample": 5,
+      "weight": 27.0,
+      "incl_prob": 0.037037
+    },
+    "main_P|T2|time_series": {
+      "N_pop": 177,
+      "n_sample": 6,
+      "weight": 29.5,
+      "incl_prob": 0.033898
+    },
+    "main_P|T1|comparison": {
+      "N_pop": 31,
+      "n_sample": 8,
+      "weight": 3.875,
+      "incl_prob": 0.258065
+    },
+    "main_P|T1|comparison_opf": {
+      "N_pop": 4,
+      "n_sample": 3,
+      "weight": 1.3333,
+      "incl_prob": 0.75
+    },
+    "main_P|T1|contingency": {
+      "N_pop": 1,
+      "n_sample": 1,
+      "weight": 1.0,
+      "incl_prob": 1.0
+    },
+    "main_P|T1|dc_power_flow": {
+      "N_pop": 18,
+      "n_sample": 5,
+      "weight": 3.6,
+      "incl_prob": 0.277778
+    },
+    "main_P|T1|diagnose_and_fix": {
+      "N_pop": 1,
+      "n_sample": 1,
+      "weight": 1.0,
+      "incl_prob": 1.0
+    },
+    "main_P|T1|opf": {
+      "N_pop": 28,
+      "n_sample": 8,
+      "weight": 3.5,
+      "incl_prob": 0.285714
+    },
+    "main_P|T1|pf_then_sc": {
+      "N_pop": 3,
+      "n_sample": 2,
+      "weight": 1.5,
+      "incl_prob": 0.666667
+    },
+    "main_P|T1|power_flow": {
+      "N_pop": 31,
+      "n_sample": 8,
+      "weight": 3.875,
+      "incl_prob": 0.258065
+    },
+    "main_P|T1|sequential": {
+      "N_pop": 59,
+      "n_sample": 14,
+      "weight": 4.2143,
+      "incl_prob": 0.237288
+    },
+    "main_P|T1|short_circuit_2ph": {
+      "N_pop": 4,
+      "n_sample": 3,
+      "weight": 1.3333,
+      "incl_prob": 0.75
+    },
+    "main_P|T1|short_circuit_3ph": {
+      "N_pop": 4,
+      "n_sample": 2,
+      "weight": 2.0,
+      "incl_prob": 0.5
+    },
+    "main_P|T1|state_estimation": {
+      "N_pop": 1,
+      "n_sample": 1,
+      "weight": 1.0,
+      "incl_prob": 1.0
+    },
+    "main_P|T1|time_series": {
+      "N_pop": 11,
+      "n_sample": 4,
+      "weight": 2.75,
+      "incl_prob": 0.363636
+    },
+    "api_T5|claude-haiku-4-5|comparison": {
+      "N_pop": 90,
+      "n_sample": 1,
+      "weight": 90.0,
+      "incl_prob": 0.011111
+    },
+    "api_T5|claude-haiku-4-5|comparison_opf": {
+      "N_pop": 67,
+      "n_sample": 1,
+      "weight": 67.0,
+      "incl_prob": 0.014925
+    },
+    "api_T5|claude-haiku-4-5|contingency": {
+      "N_pop": 79,
+      "n_sample": 1,
+      "weight": 79.0,
+      "incl_prob": 0.012658
+    },
+    "api_T5|claude-haiku-4-5|contingency_fix": {
+      "N_pop": 54,
+      "n_sample": 1,
+      "weight": 54.0,
+      "incl_prob": 0.018519
+    },
+    "api_T5|claude-haiku-4-5|dc_power_flow": {
+      "N_pop": 112,
+      "n_sample": 1,
+      "weight": 112.0,
+      "incl_prob": 0.008929
+    },
+    "api_T5|claude-haiku-4-5|diagnose_and_fix": {
+      "N_pop": 69,
+      "n_sample": 1,
+      "weight": 69.0,
+      "incl_prob": 0.014493
+    },
+    "api_T5|claude-haiku-4-5|opf": {
+      "N_pop": 80,
+      "n_sample": 1,
+      "weight": 80.0,
+      "incl_prob": 0.0125
+    },
+    "api_T5|claude-haiku-4-5|parallel": {
+      "N_pop": 75,
+      "n_sample": 1,
+      "weight": 75.0,
+      "incl_prob": 0.013333
+    },
+    "api_T5|claude-haiku-4-5|pf_then_sc": {
+      "N_pop": 93,
+      "n_sample": 1,
+      "weight": 93.0,
+      "incl_prob": 0.010753
+    },
+    "api_T5|claude-haiku-4-5|power_flow": {
+      "N_pop": 106,
+      "n_sample": 1,
+      "weight": 106.0,
+      "incl_prob": 0.009434
+    },
+    "api_T5|claude-haiku-4-5|sequential": {
+      "N_pop": 145,
+      "n_sample": 1,
+      "weight": 145.0,
+      "incl_prob": 0.006897
+    },
+    "api_T5|claude-haiku-4-5|short_circuit_2ph": {
+      "N_pop": 66,
+      "n_sample": 1,
+      "weight": 66.0,
+      "incl_prob": 0.015152
+    },
+    "api_T5|claude-haiku-4-5|short_circuit_3ph": {
+      "N_pop": 60,
+      "n_sample": 1,
+      "weight": 60.0,
+      "incl_prob": 0.016667
+    },
+    "api_T5|claude-haiku-4-5|state_estimation": {
+      "N_pop": 102,
+      "n_sample": 1,
+      "weight": 102.0,
+      "incl_prob": 0.009804
+    },
+    "api_T5|claude-haiku-4-5|time_series": {
+      "N_pop": 77,
+      "n_sample": 1,
+      "weight": 77.0,
+      "incl_prob": 0.012987
+    },
+    "api_T5|deepseek-v4-flash|comparison": {
+      "N_pop": 77,
+      "n_sample": 1,
+      "weight": 77.0,
+      "incl_prob": 0.012987
+    },
+    "api_T5|deepseek-v4-flash|comparison_opf": {
+      "N_pop": 63,
+      "n_sample": 1,
+      "weight": 63.0,
+      "incl_prob": 0.015873
+    },
+    "api_T5|deepseek-v4-flash|contingency": {
+      "N_pop": 74,
+      "n_sample": 1,
+      "weight": 74.0,
+      "incl_prob": 0.013514
+    },
+    "api_T5|deepseek-v4-flash|contingency_fix": {
+      "N_pop": 47,
+      "n_sample": 1,
+      "weight": 47.0,
+      "incl_prob": 0.021277
+    },
+    "api_T5|deepseek-v4-flash|dc_power_flow": {
+      "N_pop": 98,
+      "n_sample": 1,
+      "weight": 98.0,
+      "incl_prob": 0.010204
+    },
+    "api_T5|deepseek-v4-flash|diagnose_and_fix": {
+      "N_pop": 64,
+      "n_sample": 1,
+      "weight": 64.0,
+      "incl_prob": 0.015625
+    },
+    "api_T5|deepseek-v4-flash|opf": {
+      "N_pop": 66,
+      "n_sample": 1,
+      "weight": 66.0,
+      "incl_prob": 0.015152
+    },
+    "api_T5|deepseek-v4-flash|parallel": {
+      "N_pop": 80,
+      "n_sample": 1,
+      "weight": 80.0,
+      "incl_prob": 0.0125
+    },
+    "api_T5|deepseek-v4-flash|pf_then_sc": {
+      "N_pop": 62,
+      "n_sample": 1,
+      "weight": 62.0,
+      "incl_prob": 0.016129
+    },
+    "api_T5|deepseek-v4-flash|power_flow": {
+      "N_pop": 99,
+      "n_sample": 1,
+      "weight": 99.0,
+      "incl_prob": 0.010101
+    },
+    "api_T5|deepseek-v4-flash|sequential": {
+      "N_pop": 145,
+      "n_sample": 1,
+      "weight": 145.0,
+      "incl_prob": 0.006897
+    },
+    "api_T5|deepseek-v4-flash|short_circuit_2ph": {
+      "N_pop": 47,
+      "n_sample": 1,
+      "weight": 47.0,
+      "incl_prob": 0.021277
+    },
+    "api_T5|deepseek-v4-flash|short_circuit_3ph": {
+      "N_pop": 56,
+      "n_sample": 1,
+      "weight": 56.0,
+      "incl_prob": 0.017857
+    },
+    "api_T5|deepseek-v4-flash|state_estimation": {
+      "N_pop": 64,
+      "n_sample": 1,
+      "weight": 64.0,
+      "incl_prob": 0.015625
+    },
+    "api_T5|deepseek-v4-flash|time_series": {
+      "N_pop": 76,
+      "n_sample": 1,
+      "weight": 76.0,
+      "incl_prob": 0.013158
+    },
+    "api_T5|gemini-2.5-flash|comparison": {
+      "N_pop": 90,
+      "n_sample": 1,
+      "weight": 90.0,
+      "incl_prob": 0.011111
+    },
+    "api_T5|gemini-2.5-flash|comparison_opf": {
+      "N_pop": 63,
+      "n_sample": 1,
+      "weight": 63.0,
+      "incl_prob": 0.015873
+    },
+    "api_T5|gemini-2.5-flash|contingency": {
+      "N_pop": 53,
+      "n_sample": 1,
+      "weight": 53.0,
+      "incl_prob": 0.018868
+    },
+    "api_T5|gemini-2.5-flash|contingency_fix": {
+      "N_pop": 28,
+      "n_sample": 1,
+      "weight": 28.0,
+      "incl_prob": 0.035714
+    },
+    "api_T5|gemini-2.5-flash|dc_power_flow": {
+      "N_pop": 111,
+      "n_sample": 1,
+      "weight": 111.0,
+      "incl_prob": 0.009009
+    },
+    "api_T5|gemini-2.5-flash|diagnose_and_fix": {
+      "N_pop": 85,
+      "n_sample": 1,
+      "weight": 85.0,
+      "incl_prob": 0.011765
+    },
+    "api_T5|gemini-2.5-flash|opf": {
+      "N_pop": 75,
+      "n_sample": 1,
+      "weight": 75.0,
+      "incl_prob": 0.013333
+    },
+    "api_T5|gemini-2.5-flash|parallel": {
+      "N_pop": 28,
+      "n_sample": 1,
+      "weight": 28.0,
+      "incl_prob": 0.035714
+    },
+    "api_T5|gemini-2.5-flash|pf_then_sc": {
+      "N_pop": 43,
+      "n_sample": 1,
+      "weight": 43.0,
+      "incl_prob": 0.023256
+    },
+    "api_T5|gemini-2.5-flash|power_flow": {
+      "N_pop": 106,
+      "n_sample": 1,
+      "weight": 106.0,
+      "incl_prob": 0.009434
+    },
+    "api_T5|gemini-2.5-flash|sequential": {
+      "N_pop": 146,
+      "n_sample": 1,
+      "weight": 146.0,
+      "incl_prob": 0.006849
+    },
+    "api_T5|gemini-2.5-flash|short_circuit_2ph": {
+      "N_pop": 29,
+      "n_sample": 1,
+      "weight": 29.0,
+      "incl_prob": 0.034483
+    },
+    "api_T5|gemini-2.5-flash|short_circuit_3ph": {
+      "N_pop": 39,
+      "n_sample": 1,
+      "weight": 39.0,
+      "incl_prob": 0.025641
+    },
+    "api_T5|gemini-2.5-flash|state_estimation": {
+      "N_pop": 55,
+      "n_sample": 1,
+      "weight": 55.0,
+      "incl_prob": 0.018182
+    },
+    "api_T5|gemini-2.5-flash|time_series": {
+      "N_pop": 90,
+      "n_sample": 1,
+      "weight": 90.0,
+      "incl_prob": 0.011111
+    },
+    "api_T5|gpt-5.4-mini|comparison": {
+      "N_pop": 89,
+      "n_sample": 1,
+      "weight": 89.0,
+      "incl_prob": 0.011236
+    },
+    "api_T5|gpt-5.4-mini|comparison_opf": {
+      "N_pop": 69,
+      "n_sample": 1,
+      "weight": 69.0,
+      "incl_prob": 0.014493
+    },
+    "api_T5|gpt-5.4-mini|contingency": {
+      "N_pop": 88,
+      "n_sample": 1,
+      "weight": 88.0,
+      "incl_prob": 0.011364
+    },
+    "api_T5|gpt-5.4-mini|contingency_fix": {
+      "N_pop": 56,
+      "n_sample": 1,
+      "weight": 56.0,
+      "incl_prob": 0.017857
+    },
+    "api_T5|gpt-5.4-mini|dc_power_flow": {
+      "N_pop": 110,
+      "n_sample": 1,
+      "weight": 110.0,
+      "incl_prob": 0.009091
+    },
+    "api_T5|gpt-5.4-mini|diagnose_and_fix": {
+      "N_pop": 99,
+      "n_sample": 1,
+      "weight": 99.0,
+      "incl_prob": 0.010101
+    },
+    "api_T5|gpt-5.4-mini|opf": {
+      "N_pop": 61,
+      "n_sample": 1,
+      "weight": 61.0,
+      "incl_prob": 0.016393
+    },
+    "api_T5|gpt-5.4-mini|parallel": {
+      "N_pop": 60,
+      "n_sample": 1,
+      "weight": 60.0,
+      "incl_prob": 0.016667
+    },
+    "api_T5|gpt-5.4-mini|pf_then_sc": {
+      "N_pop": 93,
+      "n_sample": 1,
+      "weight": 93.0,
+      "incl_prob": 0.010753
+    },
+    "api_T5|gpt-5.4-mini|power_flow": {
+      "N_pop": 108,
+      "n_sample": 1,
+      "weight": 108.0,
+      "incl_prob": 0.009259
+    },
+    "api_T5|gpt-5.4-mini|sequential": {
+      "N_pop": 145,
+      "n_sample": 1,
+      "weight": 145.0,
+      "incl_prob": 0.006897
+    },
+    "api_T5|gpt-5.4-mini|short_circuit_2ph": {
+      "N_pop": 51,
+      "n_sample": 1,
+      "weight": 51.0,
+      "incl_prob": 0.019608
+    },
+    "api_T5|gpt-5.4-mini|short_circuit_3ph": {
+      "N_pop": 65,
+      "n_sample": 1,
+      "weight": 65.0,
+      "incl_prob": 0.015385
+    },
+    "api_T5|gpt-5.4-mini|state_estimation": {
+      "N_pop": 78,
+      "n_sample": 1,
+      "weight": 78.0,
+      "incl_prob": 0.012821
+    },
+    "api_T5|gpt-5.4-mini|time_series": {
+      "N_pop": 71,
+      "n_sample": 1,
+      "weight": 71.0,
+      "incl_prob": 0.014085
+    },
+    "contrast_S|T2|comparison": {
+      "N_pop": 48,
+      "n_sample": 6,
+      "weight": 8.0,
+      "incl_prob": 0.125
+    },
+    "contrast_S|T2|contingency": {
+      "N_pop": 4,
+      "n_sample": 2,
+      "weight": 2.0,
+      "incl_prob": 0.5
+    },
+    "contrast_S|T2|contingency_fix": {
+      "N_pop": 1,
+      "n_sample": 1,
+      "weight": 1.0,
+      "incl_prob": 1.0
+    },
+    "contrast_S|T2|dc_power_flow": {
+      "N_pop": 29,
+      "n_sample": 4,
+      "weight": 7.25,
+      "incl_prob": 0.137931
+    },
+    "contrast_S|T2|diagnose_and_fix": {
+      "N_pop": 79,
+      "n_sample": 9,
+      "weight": 8.7778,
+      "incl_prob": 0.113924
+    },
+    "contrast_S|T2|opf": {
+      "N_pop": 23,
+      "n_sample": 4,
+      "weight": 5.75,
+      "incl_prob": 0.173913
+    },
+    "contrast_S|T2|parallel": {
+      "N_pop": 3,
+      "n_sample": 2,
+      "weight": 1.5,
+      "incl_prob": 0.666667
+    },
+    "contrast_S|T2|power_flow": {
+      "N_pop": 66,
+      "n_sample": 8,
+      "weight": 8.25,
+      "incl_prob": 0.121212
+    },
+    "contrast_S|T2|sequential": {
+      "N_pop": 66,
+      "n_sample": 8,
+      "weight": 8.25,
+      "incl_prob": 0.121212
+    },
+    "contrast_S|T2|short_circuit_3ph": {
+      "N_pop": 6,
+      "n_sample": 2,
+      "weight": 3.0,
+      "incl_prob": 0.333333
+    },
+    "contrast_S|T2|state_estimation": {
+      "N_pop": 4,
+      "n_sample": 2,
+      "weight": 2.0,
+      "incl_prob": 0.5
+    },
+    "contrast_S|T2|time_series": {
+      "N_pop": 4,
+      "n_sample": 2,
+      "weight": 2.0,
+      "incl_prob": 0.5
+    },
+    "contrast_S|T3|comparison": {
+      "N_pop": 94,
+      "n_sample": 5,
+      "weight": 18.8,
+      "incl_prob": 0.053191
+    },
+    "contrast_S|T3|comparison_opf": {
+      "N_pop": 33,
+      "n_sample": 3,
+      "weight": 11.0,
+      "incl_prob": 0.090909
+    },
+    "contrast_S|T3|contingency": {
+      "N_pop": 54,
+      "n_sample": 4,
+      "weight": 13.5,
+      "incl_prob": 0.074074
+    },
+    "contrast_S|T3|contingency_fix": {
+      "N_pop": 14,
+      "n_sample": 2,
+      "weight": 7.0,
+      "incl_prob": 0.142857
+    },
+    "contrast_S|T3|dc_power_flow": {
+      "N_pop": 41,
+      "n_sample": 3,
+      "weight": 13.6667,
+      "incl_prob": 0.073171
+    },
+    "contrast_S|T3|diagnose_and_fix": {
+      "N_pop": 79,
+      "n_sample": 4,
+      "weight": 19.75,
+      "incl_prob": 0.050633
+    },
+    "contrast_S|T3|opf": {
+      "N_pop": 114,
+      "n_sample": 6,
+      "weight": 19.0,
+      "incl_prob": 0.052632
+    },
+    "contrast_S|T3|parallel": {
+      "N_pop": 1,
+      "n_sample": 1,
+      "weight": 1.0,
+      "incl_prob": 1.0
+    },
+    "contrast_S|T3|pf_then_sc": {
+      "N_pop": 3,
+      "n_sample": 2,
+      "weight": 1.5,
+      "incl_prob": 0.666667
+    },
+    "contrast_S|T3|power_flow": {
+      "N_pop": 118,
+      "n_sample": 6,
+      "weight": 19.6667,
+      "incl_prob": 0.050847
+    },
+    "contrast_S|T3|sequential": {
+      "N_pop": 159,
+      "n_sample": 7,
+      "weight": 22.7143,
+      "incl_prob": 0.044025
+    },
+    "contrast_S|T3|short_circuit_2ph": {
+      "N_pop": 2,
+      "n_sample": 2,
+      "weight": 1.0,
+      "incl_prob": 1.0
+    },
+    "contrast_S|T3|short_circuit_3ph": {
+      "N_pop": 4,
+      "n_sample": 2,
+      "weight": 2.0,
+      "incl_prob": 0.5
+    },
+    "contrast_S|T3|time_series": {
+      "N_pop": 39,
+      "n_sample": 3,
+      "weight": 13.0,
+      "incl_prob": 0.076923
+    },
+    "contrast_S|T4|comparison": {
+      "N_pop": 137,
+      "n_sample": 4,
+      "weight": 34.25,
+      "incl_prob": 0.029197
+    },
+    "contrast_S|T4|comparison_opf": {
+      "N_pop": 57,
+      "n_sample": 3,
+      "weight": 19.0,
+      "incl_prob": 0.052632
+    },
+    "contrast_S|T4|contingency": {
+      "N_pop": 91,
+      "n_sample": 4,
+      "weight": 22.75,
+      "incl_prob": 0.043956
+    },
+    "contrast_S|T4|contingency_fix": {
+      "N_pop": 16,
+      "n_sample": 2,
+      "weight": 8.0,
+      "incl_prob": 0.125
+    },
+    "contrast_S|T4|dc_power_flow": {
+      "N_pop": 143,
+      "n_sample": 4,
+      "weight": 35.75,
+      "incl_prob": 0.027972
+    },
+    "contrast_S|T4|diagnose_and_fix": {
+      "N_pop": 123,
+      "n_sample": 4,
+      "weight": 30.75,
+      "incl_prob": 0.03252
+    },
+    "contrast_S|T4|opf": {
+      "N_pop": 138,
+      "n_sample": 4,
+      "weight": 34.5,
+      "incl_prob": 0.028986
+    },
+    "contrast_S|T4|parallel": {
+      "N_pop": 16,
+      "n_sample": 2,
+      "weight": 8.0,
+      "incl_prob": 0.125
+    },
+    "contrast_S|T4|pf_then_sc": {
+      "N_pop": 11,
+      "n_sample": 2,
+      "weight": 5.5,
+      "incl_prob": 0.181818
+    },
+    "contrast_S|T4|power_flow": {
+      "N_pop": 156,
+      "n_sample": 5,
+      "weight": 31.2,
+      "incl_prob": 0.032051
+    },
+    "contrast_S|T4|sequential": {
+      "N_pop": 216,
+      "n_sample": 6,
+      "weight": 36.0,
+      "incl_prob": 0.027778
+    },
+    "contrast_S|T4|short_circuit_2ph": {
+      "N_pop": 10,
+      "n_sample": 2,
+      "weight": 5.0,
+      "incl_prob": 0.2
+    },
+    "contrast_S|T4|short_circuit_3ph": {
+      "N_pop": 9,
+      "n_sample": 2,
+      "weight": 4.5,
+      "incl_prob": 0.222222
+    },
+    "contrast_S|T4|state_estimation": {
+      "N_pop": 21,
+      "n_sample": 2,
+      "weight": 10.5,
+      "incl_prob": 0.095238
+    },
+    "contrast_S|T4|time_series": {
+      "N_pop": 93,
+      "n_sample": 4,
+      "weight": 23.25,
+      "incl_prob": 0.043011
+    }
+  },
+  "far_by_frame": {
+    "main_P": {
+      "n_sampled": 400,
+      "n_defect": 25,
+      "n_eff": 375,
+      "n_contaminated": 84,
+      "far_unweighted_pct": 22.4,
+      "wilson95_pct": [
+        18.47,
+        26.89
+      ],
+      "boot95_unweighted_pct": [
+        19.09,
+        25.72
+      ],
+      "far_weighted_pct": 18.51,
+      "boot95_weighted_pct": [
+        15.13,
+        21.95
+      ],
+      "boot95_weighted_cell_pct": [
+        15.11,
+        21.94
+      ],
+      "boot95_weighted_collapsed_pct": [
+        14.34,
+        22.91
+      ],
+      "delta_w_minus_u_pp": -3.89,
+      "est_population_nondefect": 9198.8,
+      "est_population_contaminated": 1702.7
+    },
+    "api_T5": {
+      "n_sampled": 60,
+      "n_defect": 7,
+      "n_eff": 53,
+      "n_contaminated": 7,
+      "far_unweighted_pct": 13.21,
+      "wilson95_pct": [
+        6.55,
+        24.84
+      ],
+      "boot95_unweighted_pct": [
+        5.36,
+        23.08
+      ],
+      "far_weighted_pct": 12.65,
+      "boot95_weighted_pct": [
+        4.72,
+        22.9
+      ],
+      "boot95_weighted_cell_pct": [
+        12.65,
+        12.65
+      ],
+      "boot95_weighted_collapsed_pct": [
+        4.72,
+        22.9
+      ],
+      "delta_w_minus_u_pp": -0.56,
+      "est_population_nondefect": 4127.0,
+      "est_population_contaminated": 522.0
+    },
+    "C_combined": {
+      "n_sampled": 460,
+      "n_defect": 32,
+      "n_eff": 428,
+      "n_contaminated": 91,
+      "far_unweighted_pct": 21.26,
+      "wilson95_pct": [
+        17.65,
+        25.38
+      ],
+      "boot95_unweighted_pct": [
+        18.12,
+        24.36
+      ],
+      "far_weighted_pct": 16.69,
+      "boot95_weighted_pct": [
+        13.2,
+        20.41
+      ],
+      "boot95_weighted_cell_pct": [
+        14.26,
+        19.13
+      ],
+      "boot95_weighted_collapsed_pct": [
+        12.93,
+        20.92
+      ],
+      "delta_w_minus_u_pp": -4.57,
+      "est_population_nondefect": 13325.8,
+      "est_population_contaminated": 2224.7
+    },
+    "contrast_S": {
+      "n_sampled": 150,
+      "n_defect": 6,
+      "n_eff": 144,
+      "n_contaminated": 52,
+      "far_unweighted_pct": 36.11,
+      "wilson95_pct": [
+        28.72,
+        44.22
+      ],
+      "boot95_unweighted_pct": [
+        30.14,
+        42.36
+      ],
+      "far_weighted_pct": 33.51,
+      "boot95_weighted_pct": [
+        25.86,
+        41.84
+      ],
+      "boot95_weighted_cell_pct": [
+        25.86,
+        41.84
+      ],
+      "boot95_weighted_collapsed_pct": [
+        24.5,
+        42.84
+      ],
+      "delta_w_minus_u_pp": -2.6,
+      "est_population_nondefect": 2252.7,
+      "est_population_contaminated": 755.0
+    },
+    "main_P_T2toT4": {
+      "n_sampled": 340,
+      "n_defect": 25,
+      "n_eff": 315,
+      "n_contaminated": 58,
+      "far_unweighted_pct": 18.41,
+      "wilson95_pct": [
+        14.52,
+        23.06
+      ],
+      "far_weighted_pct": 17.93,
+      "boot95_weighted_pct": [
+        14.62,
+        21.44
+      ],
+      "est_population_nondefect": 9002.8,
+      "note": "tier-aligned to the contrast frame: contrast_S covers T2-T4 only (condA_FX has zero matched T1 outputs), so the frozen headline S-vs-P difference compares frames with different tier support"
+    }
+  },
+  "far_by_tier": {
+    "api_T5|API": {
+      "n_sampled": 60,
+      "n_eff": 53,
+      "n_contaminated": 7,
+      "far_unweighted_pct": 13.21,
+      "wilson95_pct": [
+        6.55,
+        24.84
+      ],
+      "far_weighted_pct": 12.65,
+      "boot95_weighted_pct": [
+        12.65,
+        12.65
+      ],
+      "est_population_nondefect": 4127.0
+    },
+    "contrast_S|T2": {
+      "n_sampled": 50,
+      "n_eff": 48,
+      "n_contaminated": 26,
+      "far_unweighted_pct": 54.17,
+      "wilson95_pct": [
+        40.29,
+        67.42
+      ],
+      "far_weighted_pct": 56.08,
+      "boot95_weighted_pct": [
+        42.82,
+        69.05
+      ],
+      "est_population_nondefect": 318.5
+    },
+    "contrast_S|T3": {
+      "n_sampled": 50,
+      "n_eff": 47,
+      "n_contaminated": 15,
+      "far_unweighted_pct": 31.91,
+      "wilson95_pct": [
+        20.4,
+        46.17
+      ],
+      "far_weighted_pct": 35.33,
+      "boot95_weighted_pct": [
+        23.0,
+        49.3
+      ],
+      "est_population_nondefect": 720.0
+    },
+    "contrast_S|T4": {
+      "n_sampled": 50,
+      "n_eff": 49,
+      "n_contaminated": 11,
+      "far_unweighted_pct": 22.45,
+      "wilson95_pct": [
+        13.02,
+        35.88
+      ],
+      "far_weighted_pct": 26.51,
+      "boot95_weighted_pct": [
+        14.21,
+        39.07
+      ],
+      "est_population_nondefect": 1214.3
+    },
+    "main_P|T1": {
+      "n_sampled": 60,
+      "n_eff": 60,
+      "n_contaminated": 26,
+      "far_unweighted_pct": 43.33,
+      "wilson95_pct": [
+        31.57,
+        55.9
+      ],
+      "far_weighted_pct": 44.95,
+      "boot95_weighted_pct": [
+        34.21,
+        55.48
+      ],
+      "est_population_nondefect": 196.0
+    },
+    "main_P|T2": {
+      "n_sampled": 110,
+      "n_eff": 105,
+      "n_contaminated": 23,
+      "far_unweighted_pct": 21.9,
+      "wilson95_pct": [
+        15.06,
+        30.73
+      ],
+      "far_weighted_pct": 21.27,
+      "boot95_weighted_pct": [
+        15.15,
+        27.92
+      ],
+      "est_population_nondefect": 3251.6
+    },
+    "main_P|T3": {
+      "n_sampled": 110,
+      "n_eff": 96,
+      "n_contaminated": 18,
+      "far_unweighted_pct": 18.75,
+      "wilson95_pct": [
+        12.2,
+        27.7
+      ],
+      "far_weighted_pct": 18.54,
+      "boot95_weighted_pct": [
+        12.39,
+        24.96
+      ],
+      "est_population_nondefect": 2055.5
+    },
+    "main_P|T4": {
+      "n_sampled": 120,
+      "n_eff": 114,
+      "n_contaminated": 17,
+      "far_unweighted_pct": 14.91,
+      "wilson95_pct": [
+        9.52,
+        22.59
+      ],
+      "far_weighted_pct": 14.66,
+      "boot95_weighted_pct": [
+        9.31,
+        20.49
+      ],
+      "est_population_nondefect": 3695.7
+    }
+  },
+  "far_api_by_model": {
+    "claude-haiku-4-5": {
+      "n_eff": 15,
+      "n_contaminated": 2,
+      "far_unweighted_pct": 13.33,
+      "far_weighted_pct": 14.2
+    },
+    "deepseek-v4-flash": {
+      "n_eff": 13,
+      "n_contaminated": 1,
+      "far_unweighted_pct": 7.69,
+      "far_weighted_pct": 7.77
+    },
+    "gemini-2.5-flash": {
+      "n_eff": 13,
+      "n_contaminated": 3,
+      "far_unweighted_pct": 23.08,
+      "far_weighted_pct": 23.6
+    },
+    "gpt-5.4-mini": {
+      "n_eff": 12,
+      "n_contaminated": 1,
+      "far_unweighted_pct": 8.33,
+      "far_weighted_pct": 6.09
+    }
+  },
+  "separately_sampled_contrast": {
+    "S_minus_P": {
+      "delta_unweighted_pp": 13.71,
+      "boot95_unweighted_pp": [
+        6.47,
+        20.94
+      ],
+      "delta_weighted_pp": 15.0,
+      "boot95_weighted_pp": [
+        6.1,
+        24.34
+      ],
+      "design": "separately drawn frames (different item populations) -- not a paired/common-support contrast"
+    },
+    "S_minus_Ccombined": {
+      "delta_unweighted_pp": 14.85,
+      "boot95_unweighted_pp": [
+        7.74,
+        21.75
+      ],
+      "delta_weighted_pp": 16.82,
+      "boot95_weighted_pp": [
+        7.57,
+        25.98
+      ],
+      "design": "separately drawn frames (different item populations) -- not a paired/common-support contrast"
+    },
+    "S_minus_P_tier_aligned_T2toT4": {
+      "delta_unweighted_pp": 17.7,
+      "boot95_unweighted_pp": [
+        10.58,
+        25.13
+      ],
+      "delta_weighted_pp": 15.58,
+      "boot95_weighted_pp": [
+        6.9,
+        25.09
+      ],
+      "design": "separately drawn frames (different item populations) -- not a paired/common-support contrast"
+    }
+  },
+  "common_support": {
+    "population": {
+      "n_pairs_matched_both_conditions": 2106,
+      "by_tier": {
+        "T1": 0,
+        "T2": 288,
+        "T3": 696,
+        "T4": 1122
+      },
+      "by_model": {
+        "Qwen_Qwen2.5-Coder-0.5B-Instruct": 0,
+        "Qwen_Qwen2.5-Coder-1.5B-Instruct": 0,
+        "Qwen_Qwen2.5-Coder-7B-Instruct": 7,
+        "meta-llama_Llama-3.1-8B-Instruct": 23,
+        "Qwen_Qwen2.5-Coder-14B-Instruct": 71,
+        "Qwen_Qwen2.5-Coder-32B-Instruct": 187,
+        "meta-llama_Llama-3.1-70B-Instruct": 286,
+        "openai_gpt-oss-120b": 410,
+        "meta-llama_Llama-3.1-405B-Instruct": 540,
+        "Qwen_Qwen3-Coder-480B-A35B-Instruct": 469,
+        "Qwen_Qwen3-Coder-Next": 113
+      },
+      "A_FX_matched_pool_by_tier": {
+        "T1": 0,
+        "T2": 336,
+        "T3": 758,
+        "T4": 1240
+      },
+      "C_FDRS_matched_pool_by_tier": {
+        "T1": 198,
+        "T2": 3409,
+        "T3": 2354,
+        "T4": 3883
+      },
+      "share_of_A_FX_pool_pct": 90.23,
+      "share_of_C_FDRS_pool_pct": 21.39
+    },
+    "audit_sample_domain": {
+      "main_P_on_common_support": {
+        "n_sampled": 66,
+        "n_eff": 59,
+        "n_contaminated": 12,
+        "far_unweighted_pct": 20.34,
+        "wilson95_pct": [
+          12.04,
+          32.27
+        ],
+        "far_weighted_pct": 18.65,
+        "boot95_weighted_pct": [
+          10.55,
+          27.59
+        ],
+        "est_population_nondefect": 1671.1
+      },
+      "contrast_S_on_common_support": {
+        "n_sampled": 131,
+        "n_eff": 126,
+        "n_contaminated": 45,
+        "far_unweighted_pct": 35.71,
+        "wilson95_pct": [
+          27.88,
+          44.39
+        ],
+        "far_weighted_pct": 32.61,
+        "boot95_weighted_pct": [
+          24.62,
+          41.51
+        ],
+        "est_population_nondefect": 2099.2
+      },
+      "delta_S_minus_P": {
+        "delta_unweighted_pp": 15.38,
+        "boot95_unweighted_pp": [
+          3.78,
+          26.0
+        ],
+        "delta_weighted_pp": 13.95,
+        "boot95_weighted_pp": [
+          1.34,
+          26.01
+        ],
+        "design": "same (model, item) support in both conditions, but still two independent draws -- item-composition confound removed, item-identity pairing NOT enforced"
+      }
+    },
+    "tier_standardised": {
+      "T2_T3_T4|unweighted": {
+        "standardisation_weights": {
+          "T2": 0.1368,
+          "T3": 0.3305,
+          "T4": 0.5328
+        },
+        "far_contrast_S_pct": 29.5,
+        "boot95_contrast_S_pct": [
+          22.59,
+          36.82
+        ],
+        "far_main_P_pct": 20.23,
+        "boot95_main_P_pct": [
+          11.53,
+          29.88
+        ],
+        "delta_S_minus_P_pp": 9.28,
+        "boot95_delta_pp": [
+          -2.69,
+          20.61
+        ]
+      },
+      "T2_T3_T4|weighted": {
+        "standardisation_weights": {
+          "T2": 0.1368,
+          "T3": 0.3305,
+          "T4": 0.5328
+        },
+        "far_contrast_S_pct": 32.51,
+        "boot95_contrast_S_pct": [
+          24.16,
+          41.51
+        ],
+        "far_main_P_pct": 19.23,
+        "boot95_main_P_pct": [
+          10.58,
+          28.92
+        ],
+        "delta_S_minus_P_pp": 13.28,
+        "boot95_delta_pp": [
+          0.26,
+          25.37
+        ]
+      },
+      "T2_T3_T4|per_tier_cells": {
+        "contrast_S|T2": {
+          "n_eff": 41,
+          "n_contaminated": 22,
+          "far_pct": 53.66
+        },
+        "main_P|T2": {
+          "n_eff": 4,
+          "n_contaminated": 1,
+          "far_pct": 25.0
+        },
+        "contrast_S|T3": {
+          "n_eff": 42,
+          "n_contaminated": 14,
+          "far_pct": 33.33
+        },
+        "main_P|T3": {
+          "n_eff": 25,
+          "n_contaminated": 6,
+          "far_pct": 24.0
+        },
+        "contrast_S|T4": {
+          "n_eff": 43,
+          "n_contaminated": 9,
+          "far_pct": 20.93
+        },
+        "main_P|T4": {
+          "n_eff": 30,
+          "n_contaminated": 5,
+          "far_pct": 16.67
+        }
+      },
+      "T3_T4_only|unweighted": {
+        "standardisation_weights": {
+          "T3": 0.3828,
+          "T4": 0.6172
+        },
+        "far_contrast_S_pct": 25.68,
+        "boot95_contrast_S_pct": [
+          18.02,
+          33.63
+        ],
+        "far_main_P_pct": 19.47,
+        "boot95_main_P_pct": [
+          11.21,
+          28.76
+        ],
+        "delta_S_minus_P_pp": 6.2,
+        "boot95_delta_pp": [
+          -6.23,
+          18.03
+        ]
+      },
+      "T3_T4_only|weighted": {
+        "standardisation_weights": {
+          "T3": 0.3828,
+          "T4": 0.6172
+        },
+        "far_contrast_S_pct": 28.94,
+        "boot95_contrast_S_pct": [
+          19.73,
+          38.68
+        ],
+        "far_main_P_pct": 18.33,
+        "boot95_main_P_pct": [
+          10.36,
+          27.54
+        ],
+        "delta_S_minus_P_pp": 10.62,
+        "boot95_delta_pp": [
+          -2.72,
+          23.59
+        ]
+      },
+      "T3_T4_only|per_tier_cells": {
+        "contrast_S|T3": {
+          "n_eff": 42,
+          "n_contaminated": 14,
+          "far_pct": 33.33
+        },
+        "main_P|T3": {
+          "n_eff": 25,
+          "n_contaminated": 6,
+          "far_pct": 24.0
+        },
+        "contrast_S|T4": {
+          "n_eff": 43,
+          "n_contaminated": 9,
+          "far_pct": 20.93
+        },
+        "main_P|T4": {
+          "n_eff": 30,
+          "n_contaminated": 5,
+          "far_pct": 16.67
+        }
+      }
+    },
+    "paired_subset": {
+      "n_pairs_audited": 2,
+      "n_pairs_analysable": 2,
+      "table": {
+        "both_contaminated": 0,
+        "C_only_contaminated": 0,
+        "A_only_contaminated": 0,
+        "neither": 2
+      },
+      "n_discordant": 0,
+      "mcnemar_exact_p": null,
+      "far_C_side_pct": 0.0,
+      "far_A_side_pct": 0.0,
+      "pairs": [
+        {
+          "model": "meta-llama_Llama-3.1-70B-Instruct",
+          "bench_index": 1594,
+          "tier": "T3",
+          "task": "opf",
+          "C_FDRS_label": "clean-autopass",
+          "A_FX_label": "clean-autopass"
+        },
+        {
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+          "bench_index": 576,
+          "tier": "T2",
+          "task": "opf",
+          "C_FDRS_label": "clean-autopass",
+          "A_FX_label": "clean-autopass"
+        }
+      ]
+    }
+  },
+  "gate_operating_characteristics": {
+    "defect_excluded": {
+      "main_P": {
+        "n": 375,
+        "tp": 75,
+        "fp": 112,
+        "fn": 9,
+        "tn": 179,
+        "flag_rate_pct": 49.87,
+        "prevalence_pct": 22.4,
+        "sensitivity_pct": 89.29,
+        "specificity_pct": 61.51,
+        "precision_ppv_pct": 40.11,
+        "npv_pct": 95.21,
+        "sens_wilson95_pct": [
+          80.88,
+          94.26
+        ],
+        "spec_wilson95_pct": [
+          55.81,
+          66.92
+        ],
+        "ppv_wilson95_pct": [
+          33.35,
+          47.26
+        ],
+        "npv_wilson95_pct": [
+          91.15,
+          97.46
+        ],
+        "balanced_accuracy_pct": 75.4
+      },
+      "api_T5": {
+        "n": 53,
+        "tp": 6,
+        "fp": 18,
+        "fn": 1,
+        "tn": 28,
+        "flag_rate_pct": 45.28,
+        "prevalence_pct": 13.21,
+        "sensitivity_pct": 85.71,
+        "specificity_pct": 60.87,
+        "precision_ppv_pct": 25.0,
+        "npv_pct": 96.55,
+        "sens_wilson95_pct": [
+          48.69,
+          97.43
+        ],
+        "spec_wilson95_pct": [
+          46.46,
+          73.61
+        ],
+        "ppv_wilson95_pct": [
+          12.0,
+          44.9
+        ],
+        "npv_wilson95_pct": [
+          82.82,
+          99.39
+        ],
+        "balanced_accuracy_pct": 73.29
+      },
+      "C_combined": {
+        "n": 428,
+        "tp": 81,
+        "fp": 130,
+        "fn": 10,
+        "tn": 207,
+        "flag_rate_pct": 49.3,
+        "prevalence_pct": 21.26,
+        "sensitivity_pct": 89.01,
+        "specificity_pct": 61.42,
+        "precision_ppv_pct": 38.39,
+        "npv_pct": 95.39,
+        "sens_wilson95_pct": [
+          80.94,
+          93.92
+        ],
+        "spec_wilson95_pct": [
+          56.13,
+          66.46
+        ],
+        "ppv_wilson95_pct": [
+          32.09,
+          45.1
+        ],
+        "npv_wilson95_pct": [
+          91.73,
+          97.48
+        ],
+        "balanced_accuracy_pct": 75.22
+      },
+      "contrast_S": {
+        "n": 144,
+        "tp": 48,
+        "fp": 40,
+        "fn": 4,
+        "tn": 52,
+        "flag_rate_pct": 61.11,
+        "prevalence_pct": 36.11,
+        "sensitivity_pct": 92.31,
+        "specificity_pct": 56.52,
+        "precision_ppv_pct": 54.55,
+        "npv_pct": 92.86,
+        "sens_wilson95_pct": [
+          81.83,
+          96.97
+        ],
+        "spec_wilson95_pct": [
+          46.33,
+          66.19
+        ],
+        "ppv_wilson95_pct": [
+          44.17,
+          64.54
+        ],
+        "npv_wilson95_pct": [
+          83.02,
+          97.19
+        ],
+        "balanced_accuracy_pct": 74.41
+      },
+      "ALL_610": {
+        "n": 572,
+        "tp": 129,
+        "fp": 170,
+        "fn": 14,
+        "tn": 259,
+        "flag_rate_pct": 52.27,
+        "prevalence_pct": 25.0,
+        "sensitivity_pct": 90.21,
+        "specificity_pct": 60.37,
+        "precision_ppv_pct": 43.14,
+        "npv_pct": 94.87,
+        "sens_wilson95_pct": [
+          84.24,
+          94.08
+        ],
+        "spec_wilson95_pct": [
+          55.67,
+          64.89
+        ],
+        "ppv_wilson95_pct": [
+          37.65,
+          48.81
+        ],
+        "npv_wilson95_pct": [
+          91.58,
+          96.92
+        ],
+        "balanced_accuracy_pct": 75.29
+      }
+    },
+    "defect_as_negative": {
+      "main_P": {
+        "n": 400,
+        "tp": 75,
+        "fp": 135,
+        "fn": 9,
+        "tn": 181,
+        "flag_rate_pct": 52.5,
+        "prevalence_pct": 21.0,
+        "sensitivity_pct": 89.29,
+        "specificity_pct": 57.28,
+        "precision_ppv_pct": 35.71,
+        "npv_pct": 95.26,
+        "sens_wilson95_pct": [
+          80.88,
+          94.26
+        ],
+        "spec_wilson95_pct": [
+          51.77,
+          62.61
+        ],
+        "ppv_wilson95_pct": [
+          29.54,
+          42.4
+        ],
+        "npv_wilson95_pct": [
+          91.24,
+          97.49
+        ],
+        "balanced_accuracy_pct": 73.28
+      },
+      "api_T5": {
+        "n": 60,
+        "tp": 6,
+        "fp": 23,
+        "fn": 1,
+        "tn": 30,
+        "flag_rate_pct": 48.33,
+        "prevalence_pct": 11.67,
+        "sensitivity_pct": 85.71,
+        "specificity_pct": 56.6,
+        "precision_ppv_pct": 20.69,
+        "npv_pct": 96.77,
+        "sens_wilson95_pct": [
+          48.69,
+          97.43
+        ],
+        "spec_wilson95_pct": [
+          43.27,
+          69.05
+        ],
+        "ppv_wilson95_pct": [
+          9.85,
+          38.39
+        ],
+        "npv_wilson95_pct": [
+          83.81,
+          99.43
+        ],
+        "balanced_accuracy_pct": 71.16
+      },
+      "C_combined": {
+        "n": 460,
+        "tp": 81,
+        "fp": 158,
+        "fn": 10,
+        "tn": 211,
+        "flag_rate_pct": 51.96,
+        "prevalence_pct": 19.78,
+        "sensitivity_pct": 89.01,
+        "specificity_pct": 57.18,
+        "precision_ppv_pct": 33.89,
+        "npv_pct": 95.48,
+        "sens_wilson95_pct": [
+          80.94,
+          93.92
+        ],
+        "spec_wilson95_pct": [
+          52.08,
+          62.13
+        ],
+        "ppv_wilson95_pct": [
+          28.19,
+          40.1
+        ],
+        "npv_wilson95_pct": [
+          91.87,
+          97.52
+        ],
+        "balanced_accuracy_pct": 73.1
+      },
+      "contrast_S": {
+        "n": 150,
+        "tp": 48,
+        "fp": 45,
+        "fn": 4,
+        "tn": 53,
+        "flag_rate_pct": 62.0,
+        "prevalence_pct": 34.67,
+        "sensitivity_pct": 92.31,
+        "specificity_pct": 54.08,
+        "precision_ppv_pct": 51.61,
+        "npv_pct": 92.98,
+        "sens_wilson95_pct": [
+          81.83,
+          96.97
+        ],
+        "spec_wilson95_pct": [
+          44.25,
+          63.61
+        ],
+        "ppv_wilson95_pct": [
+          41.6,
+          61.5
+        ],
+        "npv_wilson95_pct": [
+          83.3,
+          97.24
+        ],
+        "balanced_accuracy_pct": 73.19
+      },
+      "ALL_610": {
+        "n": 610,
+        "tp": 129,
+        "fp": 203,
+        "fn": 14,
+        "tn": 264,
+        "flag_rate_pct": 54.43,
+        "prevalence_pct": 23.44,
+        "sensitivity_pct": 90.21,
+        "specificity_pct": 56.53,
+        "precision_ppv_pct": 38.86,
+        "npv_pct": 94.96,
+        "sens_wilson95_pct": [
+          84.24,
+          94.08
+        ],
+        "spec_wilson95_pct": [
+          52.0,
+          60.96
+        ],
+        "ppv_wilson95_pct": [
+          33.77,
+          44.2
+        ],
+        "npv_wilson95_pct": [
+          91.73,
+          96.98
+        ],
+        "balanced_accuracy_pct": 73.37
+      }
+    },
+    "weighted_defect_excluded": {
+      "main_P": {
+        "sensitivity_pct": 84.97,
+        "specificity_pct": 60.97,
+        "precision_ppv_pct": 33.09,
+        "npv_pct": 94.7,
+        "flag_rate_pct": 47.53
+      },
+      "api_T5": {
+        "sensitivity_pct": 83.72,
+        "specificity_pct": 62.0,
+        "precision_ppv_pct": 24.18,
+        "npv_pct": 96.34,
+        "flag_rate_pct": 43.78
+      },
+      "C_combined": {
+        "sensitivity_pct": 84.68,
+        "specificity_pct": 61.3,
+        "precision_ppv_pct": 30.48,
+        "npv_pct": 95.23,
+        "flag_rate_pct": 46.37
+      },
+      "contrast_S": {
+        "sensitivity_pct": 85.83,
+        "specificity_pct": 51.44,
+        "precision_ppv_pct": 47.11,
+        "npv_pct": 87.8,
+        "flag_rate_pct": 61.05
+      }
+    }
+  },
+  "tolerance_tightened_far": {
+    "definition": "matcher tolerance tightened from (rtol 1e-2, atol 1e-3) to (1e-3, 1e-4); items whose recorded errors would then fail leave the accept set. Recomputed here under the design weights so a weighted headline stays consistent with audit/t4_tolerance_sensitivity.json.",
+    "by_frame": {
+      "main_P": {
+        "n_eff_before": 375,
+        "n_eff_after": 336,
+        "contaminated_before": 84,
+        "contaminated_after": 50,
+        "contaminated_rejected_pct": 40.48,
+        "legitimate_rejected_pct": 1.72,
+        "far_unweighted_pct": 14.88,
+        "far_weighted_pct": 11.96,
+        "boot95_weighted_pct": [
+          9.02,
+          15.38
+        ]
+      },
+      "api_T5": {
+        "n_eff_before": 53,
+        "n_eff_after": 51,
+        "contaminated_before": 7,
+        "contaminated_after": 6,
+        "contaminated_rejected_pct": 14.29,
+        "legitimate_rejected_pct": 2.17,
+        "far_unweighted_pct": 11.76,
+        "far_weighted_pct": 11.74,
+        "boot95_weighted_pct": [
+          3.69,
+          22.02
+        ]
+      },
+      "C_combined": {
+        "n_eff_before": 428,
+        "n_eff_after": 387,
+        "contaminated_before": 91,
+        "contaminated_after": 56,
+        "contaminated_rejected_pct": 38.46,
+        "legitimate_rejected_pct": 1.78,
+        "far_unweighted_pct": 14.47,
+        "far_weighted_pct": 11.89,
+        "boot95_weighted_pct": [
+          8.38,
+          15.8
+        ]
+      },
+      "contrast_S": {
+        "n_eff_before": 144,
+        "n_eff_after": 126,
+        "contaminated_before": 52,
+        "contaminated_after": 35,
+        "contaminated_rejected_pct": 32.69,
+        "legitimate_rejected_pct": 1.09,
+        "far_unweighted_pct": 27.78,
+        "far_weighted_pct": 25.45,
+        "boot95_weighted_pct": [
+          17.53,
+          33.98
+        ]
+      }
+    }
+  }
+}

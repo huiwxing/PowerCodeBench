@@ -1,0 +1,335 @@
+==========================================
+Job ID:     5865037
+Job Name:   e2bCR_open_meta-llama_Llama-3.1
+Node:       <COMPUTE_NODE>
+Start Time: Sat Aug  1 06:45:51 PM UTC 2026
+Work Dir:   <SOURCE_REPO>
+==========================================
+--- GPU Info ---
+Sat Aug  1 18:45:56 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000009:01:00.0 Off |                    0 |
+| N/A   34C    P0             77W /  900W |       1MiB /  97871MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA GH200 120GB             On  |   00000029:01:00.0 Off |                    0 |
+| N/A   34C    P0             81W /  900W |       1MiB /  97871MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+--- Python & GPU Info ---
+<EXPERIMENT_VENV>/bin/python
+CUDA: True
+GPU: NVIDIA GH200 120GB
+-------------------------
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+  [env override] proactive_conditions = ['C']
+  [env override] proactive_demand_suite = task_demand/results/suites/e2_opendss
+  [env override] proactive_demand_model = zero_shot_tfidf
+  [env override] proactive_docs_path = dataset/opendss_docs.json
+  [env override] benchmark_path = benchmark/e2_opendss/e2_opendss_bench.json
+  [env override] output_dir = probe_eval_results/e2_opendss_bench_v2_crecal
+  [env override] profile_source_dir = probe_eval_results/e2_opendss_profiles
+  [env override] api_spec_path = dataset/opendss_docs.json
+  [env override] sbert_docs_path = dataset/opendss_docs.json
+  [env override] benchmark_library = opendssdirect
+  [env override] recal_name_layer_floor = 0.4
+  [env override] proactive_token_budget_C = 2000
+  [env override] proactive_token_budget_RsemB = 250
+CUDA available: True
+  GPU 0: NVIDIA GH200 120GB (102.0 GB)
+  GPU 1: NVIDIA GH200 120GB (102.0 GB)
+
+============================================================
+📊 Running Evaluation Pipeline
+============================================================
+
+🔧 LLMBackend: backend='vllm'
+  ✅ Registered: meta-llama_Llama-3.1-70B-Instruct  (backend=vllm, gpus=2)
+
+############################################################
+# Proactive rerun: meta-llama_Llama-3.1-70B-Instruct  conditions=['C']
+############################################################
+  📦 Loading vLLM engine: meta-llama/Llama-3.1-70B-Instruct
+     Local GPU count       = 2
+     tensor_parallel_size   = 2
+     pipeline_parallel_size = 1
+     max_model_len          = 16000
+     quantization           = None
+     enable_expert_parallel  = False
+INFO 08-01 18:46:57 [utils.py:261] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 16000, 'tensor_parallel_size': 2, 'enable_prefix_caching': True, 'max_num_seqs': 256, 'disable_log_stats': True, 'allow_deprecated_quantization': True, 'model': 'meta-llama/Llama-3.1-70B-Instruct'}
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+INFO 08-01 18:46:58 [model.py:541] Resolved architecture: LlamaForCausalLM
+INFO 08-01 18:46:58 [model.py:1561] Using max model len 16000
+INFO 08-01 18:46:59 [scheduler.py:226] Chunked prefill is enabled with max_num_batched_tokens=16384.
+INFO 08-01 18:46:59 [vllm.py:624] Asynchronous scheduling is enabled.
+WARNING 08-01 18:47:00 [system_utils.py:140] We must use the `spawn` multiprocessing start method. Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See https://docs.vllm.ai/en/latest/usage/troubleshooting.html#python-multiprocessing for more information. Reasons: CUDA is initialized
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:47:12 [core.py:96] Initializing a V1 LLM engine (v0.15.1) with config: model='meta-llama/Llama-3.1-70B-Instruct', speculative_config=None, tokenizer='meta-llama/Llama-3.1-70B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=16000, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=meta-llama/Llama-3.1-70B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'eliminate_noops': True, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': True}, 'local_cache_dir': None, 'static_all_moe_layers': []}
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 08-01 18:47:30 [parallel_state.py:1212] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://<LOOPBACK>:<PORT> backend=nccl
+INFO 08-01 18:47:30 [parallel_state.py:1212] world_size=2 rank=1 local_rank=1 distributed_init_method=tcp://<LOOPBACK>:<PORT> backend=nccl
+INFO 08-01 18:47:31 [pynccl.py:111] vLLM is using nccl==2.27.5
+WARNING 08-01 18:47:32 [symm_mem.py:107] SymmMemCommunicator: symmetric memory multicast operations are not supported.
+WARNING 08-01 18:47:32 [symm_mem.py:107] SymmMemCommunicator: symmetric memory multicast operations are not supported.
+INFO 08-01 18:47:32 [parallel_state.py:1423] rank 1 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 1, EP rank N/A
+INFO 08-01 18:47:32 [parallel_state.py:1423] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:47:33 [gpu_model_runner.py:4033] Starting to load model meta-llama/Llama-3.1-70B-Instruct...
+[0;36m(Worker_TP0 pid=<PID>)[0;0m <EXPERIMENT_VENV>/lib/python3.11/site-packages/tvm_ffi/_optional_torch_c_dlpack.py:181: UserWarning: Failed to JIT torch c dlpack extension, EnvTensorAllocator will not be enabled.
+[0;36m(Worker_TP0 pid=<PID>)[0;0m We recommend installing via `pip install torch-c-dlpack-ext`
+[0;36m(Worker_TP0 pid=<PID>)[0;0m   warnings.warn(
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:48:09 [cuda.py:364] Using FLASH_ATTN attention backend out of potential backends: ('FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION')
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/30 [00:00<?, ?it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:   3% Completed | 1/30 [00:01<00:33,  1.14s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:   7% Completed | 2/30 [00:02<00:28,  1.00s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  10% Completed | 3/30 [00:02<00:16,  1.64it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  13% Completed | 4/30 [00:02<00:16,  1.57it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  17% Completed | 5/30 [00:04<00:20,  1.21it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  20% Completed | 6/30 [00:05<00:22,  1.05it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  23% Completed | 7/30 [00:07<00:34,  1.51s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  27% Completed | 8/30 [00:08<00:29,  1.33s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  30% Completed | 9/30 [00:09<00:26,  1.26s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  33% Completed | 10/30 [00:11<00:25,  1.26s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  37% Completed | 11/30 [00:12<00:23,  1.23s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  40% Completed | 12/30 [00:13<00:20,  1.14s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  43% Completed | 13/30 [00:14<00:19,  1.17s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  47% Completed | 14/30 [00:15<00:19,  1.24s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  50% Completed | 15/30 [00:17<00:17,  1.20s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  53% Completed | 16/30 [00:18<00:16,  1.18s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  57% Completed | 17/30 [00:19<00:15,  1.18s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  60% Completed | 18/30 [00:21<00:16,  1.37s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  63% Completed | 19/30 [00:21<00:13,  1.20s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  67% Completed | 20/30 [00:23<00:11,  1.19s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  70% Completed | 21/30 [00:24<00:10,  1.13s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  73% Completed | 22/30 [00:25<00:09,  1.22s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  77% Completed | 23/30 [00:27<00:09,  1.30s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  80% Completed | 24/30 [00:28<00:07,  1.31s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  83% Completed | 25/30 [00:29<00:06,  1.30s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  87% Completed | 26/30 [00:30<00:05,  1.31s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  90% Completed | 27/30 [00:33<00:04,  1.61s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  93% Completed | 28/30 [00:34<00:03,  1.55s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  97% Completed | 29/30 [00:35<00:01,  1.37s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards: 100% Completed | 30/30 [00:37<00:00,  1.37s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards: 100% Completed | 30/30 [00:37<00:00,  1.23s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m 
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:48:49 [default_loader.py:291] Loading weights took 37.03 seconds
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:48:50 [gpu_model_runner.py:4130] Model loading took 65.74 GiB memory and 75.730843 seconds
+[0;36m(Worker_TP1 pid=<PID>)[0;0m <EXPERIMENT_VENV>/lib/python3.11/site-packages/tvm_ffi/_optional_torch_c_dlpack.py:181: UserWarning: Failed to JIT torch c dlpack extension, EnvTensorAllocator will not be enabled.
+[0;36m(Worker_TP1 pid=<PID>)[0;0m We recommend installing via `pip install torch-c-dlpack-ext`
+[0;36m(Worker_TP1 pid=<PID>)[0;0m   warnings.warn(
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:42 [backends.py:812] Using cache directory: <VLLM_CACHE>/torch_compile_cache/5c256021e7/rank_0_0/backbone for vLLM's torch.compile
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:42 [backends.py:872] Dynamo bytecode transform time: 24.50 s
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:50:01 [backends.py:267] Directly load the compiled graph(s) for compile range (1, 16384) from the cache, took 13.122 s
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:50:01 [monitor.py:34] torch.compile takes 37.63 s in total
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 18:50:01 [backends.py:267] Directly load the compiled graph(s) for compile range (1, 16384) from the cache, took 13.052 s
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:50:02 [gpu_worker.py:356] Available KV cache memory: 17.58 GiB
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:50:02 [kv_cache_utils.py:1307] GPU KV cache size: 115,184 tokens
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:50:02 [kv_cache_utils.py:1312] Maximum concurrency for 16,000 tokens per request: 7.20x
+[0;36m(Worker_TP1 pid=<PID>)[0;0m 2026-08-01 18:50:02,687 - INFO - autotuner.py:256 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+[0;36m(Worker_TP0 pid=<PID>)[0;0m 2026-08-01 18:50:02,687 - INFO - autotuner.py:256 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+[0;36m(Worker_TP0 pid=<PID>)[0;0m 2026-08-01 18:50:03,287 - INFO - autotuner.py:262 - flashinfer.jit: [Autotuner]: Autotuning process ends
+[0;36m(Worker_TP1 pid=<PID>)[0;0m 2026-08-01 18:50:03,287 - INFO - autotuner.py:262 - flashinfer.jit: [Autotuner]: Autotuning process ends
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   2%|▏         | 1/51 [00:01<01:15,  1.51s/it]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:01<00:33,  1.44it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/51 [00:01<00:20,  2.30it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/51 [00:01<00:14,  3.22it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:02<00:11,  4.01it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:02<00:09,  4.84it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  14%|█▎        | 7/51 [00:02<00:07,  5.60it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:02<00:06,  6.23it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 9/51 [00:02<00:06,  6.72it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|█▉        | 10/51 [00:02<00:05,  7.13it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:02<00:05,  7.42it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:02<00:05,  6.80it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  25%|██▌       | 13/51 [00:03<00:05,  7.15it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:03<00:04,  7.44it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:03<00:04,  7.62it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 16/51 [00:03<00:04,  7.75it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:03<00:04,  7.85it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:03<00:04,  7.90it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 19/51 [00:03<00:04,  7.87it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  39%|███▉      | 20/51 [00:03<00:03,  7.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:04<00:03,  7.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  43%|████▎     | 22/51 [00:04<00:03,  7.88it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 23/51 [00:04<00:03,  7.88it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  47%|████▋     | 24/51 [00:04<00:03,  7.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:04<00:03,  7.84it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  51%|█████     | 26/51 [00:04<00:03,  7.89it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:04<00:03,  7.82it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▍    | 28/51 [00:04<00:02,  7.80it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:05<00:02,  7.76it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 30/51 [00:05<00:02,  7.73it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 31/51 [00:05<00:02,  7.66it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  63%|██████▎   | 32/51 [00:05<00:02,  7.64it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:05<00:02,  7.56it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  67%|██████▋   | 34/51 [00:05<00:02,  7.54it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  69%|██████▊   | 35/51 [00:06<00:03,  4.38it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:06<00:03,  4.98it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  73%|███████▎  | 37/51 [00:06<00:02,  5.50it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  75%|███████▍  | 38/51 [00:06<00:02,  5.96it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:06<00:01,  6.33it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 40/51 [00:06<00:01,  6.59it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  80%|████████  | 41/51 [00:07<00:01,  6.79it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|████████▏ | 42/51 [00:07<00:01,  6.95it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:07<00:01,  7.06it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  86%|████████▋ | 44/51 [00:07<00:00,  7.10it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  88%|████████▊ | 45/51 [00:07<00:00,  7.19it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  90%|█████████ | 46/51 [00:07<00:00,  7.25it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:07<00:00,  7.29it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  94%|█████████▍| 48/51 [00:07<00:00,  7.30it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  96%|█████████▌| 49/51 [00:08<00:00,  7.39it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  98%|█████████▊| 50/51 [00:08<00:00,  7.47it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:08<00:00,  7.29it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:08<00:00,  6.10it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Capturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):   3%|▎         | 1/35 [00:00<00:04,  7.94it/s]Capturing CUDA graphs (decode, FULL):   6%|▌         | 2/35 [00:00<00:03,  8.32it/s]Capturing CUDA graphs (decode, FULL):   9%|▊         | 3/35 [00:00<00:03,  8.46it/s]Capturing CUDA graphs (decode, FULL):  11%|█▏        | 4/35 [00:00<00:03,  8.56it/s]Capturing CUDA graphs (decode, FULL):  14%|█▍        | 5/35 [00:00<00:03,  8.52it/s]Capturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:03,  8.53it/s]Capturing CUDA graphs (decode, FULL):  20%|██        | 7/35 [00:00<00:03,  8.54it/s]Capturing CUDA graphs (decode, FULL):  23%|██▎       | 8/35 [00:00<00:03,  8.51it/s]Capturing CUDA graphs (decode, FULL):  26%|██▌       | 9/35 [00:01<00:03,  8.51it/s]Capturing CUDA graphs (decode, FULL):  29%|██▊       | 10/35 [00:01<00:02,  8.50it/s]Capturing CUDA graphs (decode, FULL):  31%|███▏      | 11/35 [00:01<00:02,  8.53it/s]Capturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:01<00:02,  8.49it/s]Capturing CUDA graphs (decode, FULL):  37%|███▋      | 13/35 [00:01<00:02,  8.49it/s]Capturing CUDA graphs (decode, FULL):  40%|████      | 14/35 [00:01<00:02,  8.53it/s]Capturing CUDA graphs (decode, FULL):  43%|████▎     | 15/35 [00:01<00:02,  8.62it/s]Capturing CUDA graphs (decode, FULL):  46%|████▌     | 16/35 [00:01<00:02,  8.59it/s]Capturing CUDA graphs (decode, FULL):  49%|████▊     | 17/35 [00:01<00:02,  8.52it/s]Capturing CUDA graphs (decode, FULL):  51%|█████▏    | 18/35 [00:02<00:02,  8.46it/s]Capturing CUDA graphs (decode, FULL):  54%|█████▍    | 19/35 [00:02<00:01,  8.40it/s]Capturing CUDA graphs (decode, FULL):  57%|█████▋    | 20/35 [00:02<00:01,  8.39it/s]Capturing CUDA graphs (decode, FULL):  60%|██████    | 21/35 [00:02<00:01,  8.34it/s]Capturing CUDA graphs (decode, FULL):  63%|██████▎   | 22/35 [00:02<00:01,  8.35it/s]Capturing CUDA graphs (decode, FULL):  66%|██████▌   | 23/35 [00:02<00:01,  8.39it/s]Capturing CUDA graphs (decode, FULL):  69%|██████▊   | 24/35 [00:02<00:01,  8.37it/s]Capturing CUDA graphs (decode, FULL):  71%|███████▏  | 25/35 [00:02<00:01,  8.33it/s]Capturing CUDA graphs (decode, FULL):  74%|███████▍  | 26/35 [00:03<00:01,  8.32it/s]Capturing CUDA graphs (decode, FULL):  77%|███████▋  | 27/35 [00:03<00:00,  8.32it/s]Capturing CUDA graphs (decode, FULL):  80%|████████  | 28/35 [00:03<00:00,  8.33it/s]Capturing CUDA graphs (decode, FULL):  83%|████████▎ | 29/35 [00:03<00:00,  8.34it/s]Capturing CUDA graphs (decode, FULL):  86%|████████▌ | 30/35 [00:03<00:00,  8.34it/s]Capturing CUDA graphs (decode, FULL):  89%|████████▊ | 31/35 [00:03<00:00,  8.30it/s]Capturing CUDA graphs (decode, FULL):  91%|█████████▏| 32/35 [00:03<00:00,  8.30it/s]Capturing CUDA graphs (decode, FULL):  94%|█████████▍| 33/35 [00:03<00:00,  8.29it/s]Capturing CUDA graphs (decode, FULL):  97%|█████████▋| 34/35 [00:04<00:00,  8.34it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:04<00:00,  8.34it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:04<00:00,  8.41it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:50:16 [custom_all_reduce.py:216] Registering 13685 cuda graph addresses
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 18:50:16 [custom_all_reduce.py:216] Registering 13685 cuda graph addresses
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:50:16 [gpu_model_runner.py:5063] Graph capturing finished in 14 secs, took -1.61 GiB
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:50:17 [core.py:272] init engine (profile, create kv cache, warmup model) took 58.98 seconds
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:50:20 [vllm.py:624] Asynchronous scheduling is enabled.
+INFO 08-01 18:50:20 [llm.py:343] Supported tasks: ['generate']
+[2026-08-01 18:50:24] INFO SentenceTransformer.py:227: Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+     max_num_seqs           = 256
+  ✓ vLLM engine ready (tp=2, pp=1)
+  [ProactiveInjector] Loading demand export: task_demand/results/suites/e2_opendss/zero_shot_tfidf/exports/opendss_candidates.json
+  [ProactiveInjector] Loading knowledge profile: probe_eval_results/e2_opendss_profiles/meta-llama_Llama-3.1-70B-Instruct/knowledge_profile.json
+  [ProactiveInjector] Generating doc snippets: dataset/opendss_docs.json
+  [ProactiveInjector] Loading SBERT dense-RAG baseline corpus: dataset/opendss_docs.json
+    📊 Benchmark: 90 items  rtol=0.01 atol=0.001 fix_rounds=0 resume=False exec_timeout=60s hard_timeout=75s temp=0/0
+
+    ── Round 0: Generate (90 items) [condition=C] ──
+    🧩 Given network setup code attached to 90/90 prompts
+    📊 Prompt tokens: avg=1220, total=109844
+
+  🚀 vLLM generating 90 prompts...
+INFO 08-01 18:50:29 [hf.py:310] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+  ⏳ vLLM generation: 9/90 (10%) elapsed=16.9s eta=152.0s
+  ⏳ vLLM generation: 18/90 (20%) elapsed=35.0s eta=140.0s
+  ⏳ vLLM generation: 27/90 (30%) elapsed=50.4s eta=117.6s
+  ⏳ vLLM generation: 36/90 (40%) elapsed=74.2s eta=111.3s
+  ⏳ vLLM generation: 45/90 (50%) elapsed=91.2s eta=91.2s
+  ⏳ vLLM generation: 54/90 (60%) elapsed=111.2s eta=74.1s
+  ⏳ vLLM generation: 63/90 (70%) elapsed=126.3s eta=54.1s
+  ⏳ vLLM generation: 72/90 (80%) elapsed=142.1s eta=35.5s
+  ⏳ vLLM generation: 81/90 (90%) elapsed=159.5s eta=17.7s
+  ⏳ vLLM generation: 90/90 (100%) elapsed=180.6s eta=0.0s
+  ✓ 180.6s | 272 tok/s | 0.5 samples/s
+    ⏱  Inference: 180.6s
+    📊 Prompt tokens (actual backend count): avg=1220, total=109844
+    ▶ round-0 code execution: executing 90 item(s) with 16 worker(s)
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:53:32 [multiproc_executor.py:730] Parent process exited, terminating worker
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 18:53:32 [multiproc_executor.py:730] Parent process exited, terminating worker
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:53:32 [multiproc_executor.py:774] WorkerProc shutting down.
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 18:53:32 [multiproc_executor.py:774] WorkerProc shutting down.
+    ⏳ round-0 code execution: 1/90 (1.1%) elapsed=1.6s eta=144.1s
+    ⏳ round-0 code execution: 10/90 (11.1%) elapsed=2.1s eta=16.8s
+    ⏳ round-0 code execution: 20/90 (22.2%) elapsed=2.1s eta=7.4s
+    ⏳ round-0 code execution: 30/90 (33.3%) elapsed=2.2s eta=4.5s
+    ⏳ round-0 code execution: 40/90 (44.4%) elapsed=2.2s eta=2.8s
+    ⏳ round-0 code execution: 50/90 (55.6%) elapsed=2.2s eta=1.8s
+    ⏳ round-0 code execution: 60/90 (66.7%) elapsed=2.2s eta=1.1s
+    ⏳ round-0 code execution: 70/90 (77.8%) elapsed=2.2s eta=0.6s
+    ⏳ round-0 code execution: 80/90 (88.9%) elapsed=2.2s eta=0.3s
+    ⏳ round-0 code execution: 90/90 (100.0%) elapsed=2.2s eta=0.0s
+    ⏱  Code execution: 3.2s (16 worker(s))
+    📊 After round 0: exec=75/90 (83.3%)  match=40/90 (44.4%)
+
+    ============================================================
+    📐 BENCHMARK RESULTS (90 items)
+    ============================================================
+      Execution rate:        83.3%  (75/90)
+      Result accuracy:       44.4%  (40/90)
+      Accuracy | executed:   53.3%  (40/75)
+
+      Difficulty Levels:
+        D1_basic          :  n=  45  exec=91.1%  acc=48.9%  acc|ex=53.7%  ██████████░░░░░░░░░░
+        D3_semantic       :  n=  45  exec=75.6%  acc=40.0%  acc|ex=52.9%  ████████░░░░░░░░░░░░
+
+      GT Types:
+        float   :  n=  90  exec=83.3%  acc=44.4%  (40/90)
+
+      Tasks (5 types):
+        power_flow_3ph           :  n= 18  exec=83.3%  acc=50.0%  acc|ex=60.0%  ██████████░░░░░░░░░░
+        network_modification     :  n= 18  exec=77.8%  acc=55.6%  acc|ex=71.4%  ███████████░░░░░░░░░
+        result_extraction        :  n= 18  exec=88.9%  acc=27.8%  acc|ex=31.2%  ██████░░░░░░░░░░░░░░
+        control_device           :  n= 18  exec=83.3%  acc=61.1%  acc|ex=73.3%  ████████████░░░░░░░░
+        fault_analysis           :  n= 18  exec=83.3%  acc=27.8%  acc|ex=33.3%  ██████░░░░░░░░░░░░░░
+
+      Query Types (11):
+        min_node_v               :  n= 25  exec=92.0%  acc=72.0%
+        isc                      :  n= 13  exec=84.6%  acc=23.1%
+        bus_v                    :  n= 12  exec=83.3%  acc=75.0%
+        max_line_i               :  n=  9  exec=55.6%  acc= 0.0%
+        supplied_q               :  n=  7  exec=57.1%  acc=14.3%
+        line_i                   :  n=  5  exec=100.0%  acc= 0.0%
+        zsc1                     :  n=  5  exec=80.0%  acc=40.0%
+        supplied_p               :  n=  4  exec=75.0%  acc=25.0%
+        elem_p                   :  n=  4  exec=100.0%  acc=50.0%
+        tap                      :  n=  4  exec=100.0%  acc=100.0%
+        losses_p                 :  n=  2  exec=100.0%  acc= 0.0%
+
+      # Modifications → accuracy:
+        1 mods:  n=  90  exec=83.3%  acc=44.4%
+
+      Networks (12 unique):
+        self-built 4-bus 12.47 kV three-phase radial feeder (source + 3 loads, 3 line sections):  n= 14  exec=92.9%  acc=64.3%
+        self-built 12.47 kV three-phase looped feeder (source -> a -> b -> c with an a-c tie line, 2 loads) so line flows redistribute around the loop:  n= 13  exec=69.2%  acc=15.4%
+        self-built 5-bus 12.47 kV three-phase radial feeder (source + 4 loads, 4 line sections):  n= 12  exec=91.7%  acc=50.0%
+        self-built 12.47 kV three-phase feeder for fault study (source with defined short-circuit MVA, main line src->b1->b2->b3 plus a b1->lat lateral, 3 loads):  n=  9  exec=77.8%  acc=33.3%
+        self-built 12.47 kV three-phase radial feeder for fault study (source with defined short-circuit MVA, three series line sections of increasing length, 3 loads):  n=  9  exec=88.9%  acc=22.2%
+        self-built 3-bus 12.47 kV three-phase radial feeder (source + 2 loads, 2 line sections):  n=  7  exec=100.0%  acc=71.4%
+        self-built 12.47 kV three-phase feeder with a 3-step shunt capacitor bank and a voltage-mode CapControl at the remote bus (2 loads):  n=  6  exec=50.0%  acc=33.3%
+        self-built 12.47 kV three-phase feeder with unbalanced single-phase laterals (one load per phase, 400/800/1200 kW), yielding per-phase voltage asymmetry:  n=  5  exec=80.0%  acc=20.0%
+        self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl on a 12.47/12.47 kV regulator transformer, vreg=122) feeding 2 downstream loads:  n=  5  exec=100.0%  acc=100.0%
+        self-built 12.47 kV three-phase radial feeder with a 3-step shunt capacitor bank and a kvar-mode CapControl at the feeder end (3 loads):  n=  4  exec=100.0%  acc=25.0%
+        self-built two-voltage-level feeder (12.47 kV source, step-down 12.47/4.16 kV transformer, 4.16 kV load line, 2 loads):  n=  3  exec=33.3%  acc=33.3%
+        self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl, vreg=120, band=3) feeding a 3-load radial:  n=  3  exec=100.0%  acc=100.0%
+
+      Execution Errors (15 total):
+        AttributeError                :   13  (14.4%)
+        IndexError                    :    1  ( 1.1%)
+        TypeError                     :    1  ( 1.1%)
+
+      Match Failures (35 executed but wrong):
+        value_outside_tolerance                 :   35
+
+      Generated code: avg=24 lines  min=12  max=55
+
+      Prompt tokens:
+        round0 : avg= 1220  total=  109844
+        total  :   109844  avg/item=1220.5  fix/round0=0.0
+
+      Semantic rewrite quality (45 D3/D4 items):
+        phrase_present=0.0%  explicit_leak=0.0%  avg_phrase_hits=0.00
+        D3_semantic   :  n= 45  phrase=0.0%  leak=0.0%  avg_hits=0.00
+      Float error (matched): mean_rel=0.000071  median=0.000000  p95=0.000019  max=0.002455
+    ============================================================
+  🧹 Releasing GPU memory for meta-llama_Llama-3.1-70B-Instruct...
+  ✅ vLLM engine released
+
+==============================================================================================================
+  1. EXECUTION RATE  (code ran without runtime error)
+  ⚠ Cond A = round_0 (no fix rounds) — same evaluation setup as B/C/X
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Llama-3.1-70B            —     0.833         —
+==============================================================================================================
+
+==============================================================================================================
+  2. RESULT ACCURACY  (matched / total, A = round_0 — no fix rounds)
+  ⚠ After system-prompt fix, format-bug parse failures should be eliminated
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Llama-3.1-70B            —    0.4444         —
+==============================================================================================================
+
+==============================================================================================================
+  3. ACCURACY-OF-EXECUTED  (matched / executed — isolates parser format failures)
+  ⚠ Low values here mean the model computed correctly but output format was wrong
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Llama-3.1-70B            —    0.5333         —
+==============================================================================================================
+
+==============================================================================================================
+  4. FORMAT PARSE FAILURE RATE  (cannot_parse_float — computed correctly, wrong output format)
+  ⚠ Caused by missing 'print ONLY numeric value' instruction (fixed in SYSTEM_PROMPT)
+  Note: % of *executed* items that failed due to output format, not logic errors
+  Model              CondC pfail
+  ──────────────────────────────
+  Llama-3.1-70B     0/75 (0%)      0/75(0%)
+==============================================================================================================
+
+==============================================================================================================
+  5. PROMPT TOKEN USAGE (approx, 4 chars/token) — cost comparison across conditions
+  Note: Cond A uses standard benchmark prompt; B/C/X add function hints/docs
+  Model             CondA avg_tok  CondC avg_tok   ratio C/A   ratio X/A
+  ──────────────────────────────────────────────────────────────────
+  Llama-3.1-70B               —         1220           —           —
+==============================================================================================================
+
+==============================================================================================================
+  6. PER-TASK EXECUTION RATE  (avg across all models with data)
+  Sorted by ΔC-A descending — shows where Cond C injection helps most
+  Task                       CondA     CondC      ΔC-A      ΔC-X
+  ──────────────────────────────────────────────────────────────────────────────────
+  control_device                 —     0.833         —         —
+  fault_analysis                 —     0.833         —         —
+  network_modification           —     0.778         —         —
+  power_flow_3ph                 —     0.833         —         —
+  result_extraction              —     0.889         —         —
+==============================================================================================================
+
+  💾 Proactive comparison saved to probe_eval_results/e2_opendss_bench_v2_crecal/proactive_comparison.json
+==========================================
+Job finished at: Sat Aug  1 06:53:44 PM UTC 2026
+==========================================

@@ -1,0 +1,1179 @@
+{
+ "meta": {
+  "role": "E1-P all-pass census",
+  "review_source": "two practising power-systems engineers",
+  "n_target": 95,
+  "n_done": 95,
+  "protocol": "E1_validity_audit.md s2.2/s2.3 frozen 10 cases + N1-N7 + R2/R3/R5 + s P.8 F-A..F-F rulings; D-3 census form (full sweep of all 95 all-pass sides, no sampling)",
+  "inputs": "audit/e1p_auto_results.json any_flag==false sides (aligned with audit/e1p_pair_manifest.json); raw records streamed from probe_eval_results/comparison via audit/records.py pointers",
+  "info_firewall": "e1p_judge1/judge2/adjudication and t4_judge*/pilot per-item judgment bodies NOT read (independence for future challenge); only E1 doc rubric + auto evidence + raw records + manifest used",
+  "index_note": "i = census queue index 0..94 in audit-results order over the any_flag==false subset; pair_id/condition/bench_index/item_id fully identify each side",
+  "counts": {
+   "pair_C_62": {
+    "clean": 37,
+    "equivalent-path": 24,
+    "physical-error": 1,
+    "suspected-item-defect": 0
+   },
+   "pair_A_33": {
+    "clean": 21,
+    "equivalent-path": 12,
+    "physical-error": 0,
+    "suspected-item-defect": 0
+   }
+  },
+  "physical_errors_found": [
+   {
+    "i": 29,
+    "pair_id": "E1P-050",
+    "condition": "C_FDRS",
+    "bench_index": 576,
+    "channel": "OPF objective substitution (poly_cost table outside check-1 fingerprint; F-E tolerance-window coincidental hit)",
+    "note": "pair partner i=77 (A side, same item) is clean -> this pair flips to discordant AGAINST the headline direction"
+   }
+  ],
+  "instrument_observations_for_checker_backlog": [
+   "check-1 _MOD_COLUMNS/fingerprint does not cover the poly_cost table: OPF cost-model substitution is invisible to the auto layer (i=29 escaped as all-pass); recommend adding poly_cost/pwl_cost to the modification fingerprint for opf/comparison_opf families",
+   "12 all-pass sides (i=1,6,7,13,14,20,34,37,57,69,71,80) carry an UNEXECUTED conditional-shunt branch with q_mvar sign flipped (+q inductive where ref/intent is -q capacitive) -- invisible to executed-state checks by design; systematic F-A latent defect, W5 fragility material; all confirmed dead on this corpus (min_v above threshold, c1 diffs=[])",
+   "bound/setpoint-pinned GTs among all-pass sides (e.g. GT=1.05 OPF vm bound bi=1373; GT=1.0 slack bi=390/1096; GT=0.0 DC losses bi=556; GT~0 diff bi=1064) are weak discriminators (F-E/errata-type item notes), though no additional model pollution was hidden behind them in this batch"
+  ],
+  "oracle_ledger": [
+   {
+    "id": "O-CEN-1",
+    "side": "i=29 (E1P-050 C, bi=576)",
+    "question": "Does replacing case30's native poly_cost (heterogeneous quadratic: cp1=[2.0,1.75,1.0,3.25,3.0,3.0], cp2 nonzero) with uniform linear cp1=1.0 change the OPF optimum?",
+    "result": "YES: native-cost min_vm=0.9839161988 vs substituted-cost 0.9876485252 (abs diff 3.73e-3); res_cost 578.49 vs 191.16. Confirms physical-error: match survives only via benchmark tolerance.",
+    "env": "experiment venv pandapower 3.4.0, subprocess, single-thread"
+   },
+   {
+    "id": "O-CEN-2",
+    "side": "i=48/i=88 (E1P-097 C+A, bi=1986)",
+    "question": "Is the queried min_vm invariant to the underdetermined curtailment level, and is the largest iceland load index 21?",
+    "result": "YES both: largest load idx==21; min_vm bit-identical 0.8883679354191392 for curtail scaling 0.57/0.2/0.1 (conditional fires in all and overwrites load21 scaling to 0.8). R3 first branch -> equivalent.",
+    "env": "experiment venv pandapower 3.4.0"
+   },
+   {
+    "id": "O-CEN-3",
+    "side": "i=70 (E1P-032 A, bi=217)",
+    "question": "Are rundcpp(algorithm='nr', enforce_q_lims=False) no-op kwargs?",
+    "result": "YES: rundcpp signature has neither parameter (swallowed by **kwargs); res_line bit-equal to plain rundcpp; argmax 9 both. Solver remains dc_pf.",
+    "env": "experiment venv pandapower 3.4.0"
+   },
+   {
+    "id": "O-CEN-4",
+    "side": "i=3 (E1P-010 C, bi=487); cross-evidence for i=54/i=90",
+    "question": "Is s_sc_min_mva (500 vs 800) decorative under calc_sc(case='max') on case33bw with line 5 out?",
+    "result": "YES: ikss_ka columns identical (max_abs_diff 0.0, n_diff_buses 0; an initial bit_equal=False was a NaN==NaN artifact at isolated buses), argmax 0 in both. F-B decorative confirmed.",
+    "env": "experiment venv pandapower 3.4.0; two runs (detection + NaN-artifact quantification)"
+   }
+  ],
+  "status": "FINAL 95/95",
+  "generated": "2026-08-01T01:06:31"
+ },
+ "judgments": [
+  {
+   "i": 0,
+   "pair_id": "E1P-005",
+   "condition": "C_FDRS",
+   "bench_index": 1582,
+   "item_id": "1538724186ad",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1"
+   ],
+   "evidence": "Ref hardcodes line 0; gen runs an extra pre-PF and disconnects idxmax dynamically; c1 diffs=[] proves same target line 0 -> N1 first branch (dynamic==hardcoded). Extra initial runpp is a superset analysis (case 10)."
+  },
+  {
+   "i": 1,
+   "pair_id": "E1P-006",
+   "condition": "C_FDRS",
+   "bench_index": 1775,
+   "item_id": "cc79cb974900",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "F-A",
+    "case 3"
+   ],
+   "evidence": "Gen finds most-loaded line via pre-PF idxmax, parallel+=1 -> same line 5 / parallel=2 as ref (c1 diffs=[]). Latent F-A defect: dead branch `create_shunt(q_mvar=13)` vs ref -13.0, but min_v=0.98879>=0.98 so shunt branch never executed on either side (c2 3v3 PF calls); executed physics identical."
+  },
+  {
+   "i": 2,
+   "pair_id": "E1P-009",
+   "condition": "C_FDRS",
+   "bench_index": 44,
+   "item_id": "d78fdf903748",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Byte-equivalent workflow to ref (loader alias, runpp, res_bus.at[1433,'vm_pu']); value matches at 4.6e-7."
+  },
+  {
+   "i": 3,
+   "pair_id": "E1P-010",
+   "condition": "C_FDRS",
+   "bench_index": 487,
+   "item_id": "e73d38064f83",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-B",
+    "F-F",
+    "N1",
+    "case 8"
+   ],
+   "evidence": "Gen sets s_sc_min_mva=500 vs ref 800, but calc_sc(case='max') only reads s_sc_max_mva=1000 (identical) -> decorative parameter (F-B second branch). fault='3ph' omitted = pandapower default (F-F no-op omission). argmax both dynamic same rule (N1); c1 diffs=[], ikss identical."
+  },
+  {
+   "i": 4,
+   "pair_id": "E1P-013",
+   "condition": "C_FDRS",
+   "bench_index": 712,
+   "item_id": "14b3aa9b2f52",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref: (loading>2.2).any() vs max()>2.2 mathematically equivalent trigger; same shunt bus 62 q=-6.0; value 4.7e-7 off."
+  },
+  {
+   "i": 5,
+   "pair_id": "E1P-014",
+   "condition": "C_FDRS",
+   "bench_index": 720,
+   "item_id": "ca4a5888a7d7",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (max>15.4, shunt -19 at bus 108, re-run, min). GT 0.915 is a PV-setpoint-pinned min but workflow is byte-equivalent so the pin is irrelevant."
+  },
+  {
+   "i": 6,
+   "pair_id": "E1P-015",
+   "condition": "C_FDRS",
+   "bench_index": 913,
+   "item_id": "361802f7e514",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-F",
+    "F-A"
+   ],
+   "evidence": "Gen re-runs PF only inside the overload branch (fired: 20.4>18.5) and skips ref's unconditional stage-3 PF; with no shunt added (0.9956>=0.98) the skipped PF is a no-op on an unchanged net (F-F). Dead-branch shunt sign +11 vs ref -11 (F-A) never executed; c1 diffs=[]."
+  },
+  {
+   "i": 7,
+   "pair_id": "E1P-017",
+   "condition": "C_FDRS",
+   "bench_index": 1014,
+   "item_id": "5561ca64e5d3",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-F",
+    "F-A"
+   ],
+   "evidence": "Same pattern as i=6: disconnect branch fired (same worst line, c1 diffs=[]), shunt branch dead (min=1.0>=0.95) so sign flip +8 vs -8 unexecuted; gen 2 PFs vs ref 3, difference is ref's no-op stage-3 re-run (F-F)."
+  },
+  {
+   "i": 8,
+   "pair_id": "E1P-018",
+   "condition": "C_FDRS",
+   "bench_index": 1039,
+   "item_id": "452f11a8d8a8",
+   "label": "clean",
+   "cases_cited": [
+    "case 8"
+   ],
+   "evidence": "Gen passes create_cigre_network_hv(length_km_6a_6b=0.1) = library default and omits q_mvar=0 default on create_sgen -- explicit-default idiom (case 8); both ext_grid vm writes applied in order; conditional fired both sides."
+  },
+  {
+   "i": 9,
+   "pair_id": "E1P-019",
+   "condition": "C_FDRS",
+   "bench_index": 1055,
+   "item_id": "a2f1a60d869a",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref incl. decorative bus1 max_vm_pu=1.094 (applied on both sides); .loc vs .at idiom (case 9)."
+  },
+  {
+   "i": 10,
+   "pair_id": "E1P-020",
+   "condition": "C_FDRS",
+   "bench_index": 1065,
+   "item_id": "24c4dbdf7870",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref: max>55.9 fired (88.3), load 14 scaling 1.5, re-run, min; value 3.8e-7 off."
+  },
+  {
+   "i": 11,
+   "pair_id": "E1P-021",
+   "condition": "C_FDRS",
+   "bench_index": 1096,
+   "item_id": "04bf56471511",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (line 23 out, tap_pos=-1, any-vs-max trigger equivalent, load 12 scaling fired). Min pinned at slack 1.0 but workflow byte-equivalent."
+  },
+  {
+   "i": 12,
+   "pair_id": "E1P-023",
+   "condition": "C_FDRS",
+   "bench_index": 1407,
+   "item_id": "8668fd95ea6d",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Ref hardcodes line 6 parallel=2; gen pre-PF idxmax then parallel+=1 -> same line/value (c1 diffs=[]). N1 dynamic==hardcoded; extra initial PF = superset."
+  },
+  {
+   "i": 13,
+   "pair_id": "E1P-025",
+   "condition": "C_FDRS",
+   "bench_index": 1706,
+   "item_id": "4d819e188dfa",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "F-A",
+    "F-F"
+   ],
+   "evidence": "Gen finds most-loaded trafo dynamically and sets tap_pos=current+1 -> matches ref trafo0 tap=1 (c1 diffs=[]). Dead-branch shunt +19 vs ref -19 (min 0.9706>=0.95, never executed, F-A); extra 4th PF is a no-op re-run on unchanged state."
+  },
+  {
+   "i": 14,
+   "pair_id": "E1P-027",
+   "condition": "C_FDRS",
+   "bench_index": 954,
+   "item_id": "ad6e669318a8",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-A",
+    "F-F"
+   ],
+   "evidence": "Executed trace mirrors ref exactly (3 PFs, no branch fired: loading<43.4, min 0.99999>=0.94). Deviations confined to dead branch: create_shunt(q_mvar=13, vn_kv=20) vs ref -13.0 (F-A sign flip, unexecuted). c1 diffs=[], c4 same .min() extraction."
+  },
+  {
+   "i": 15,
+   "pair_id": "E1P-028",
+   "condition": "C_FDRS",
+   "bench_index": 34,
+   "item_id": "9b35b1acac13",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "case 2'",
+    "case 8"
+   ],
+   "evidence": "Gen adds runopp kwargs (calculate_voltage_angles=False, check_connectivity=False, verbose, suppress_warnings): same ac_opf physical model, numerics/bookkeeping options only; case_ieee30 shift degrees are 0 so angle option is inert -- value matches ref to 2.9e-7 and res_cost identical."
+  },
+  {
+   "i": 16,
+   "pair_id": "E1P-029",
+   "condition": "C_FDRS",
+   "bench_index": 217,
+   "item_id": "bedb694b01ea",
+   "label": "clean",
+   "cases_cited": [
+    "N1"
+   ],
+   "evidence": "Mirror of ref; argmax both dynamic same rule (idxmax on res_line.loading_percent)."
+  },
+  {
+   "i": 17,
+   "pair_id": "E1P-032",
+   "condition": "C_FDRS",
+   "bench_index": 217,
+   "item_id": "bedb694b01ea",
+   "label": "clean",
+   "cases_cited": [
+    "N1"
+   ],
+   "evidence": "Identical mirror of ref (same item as i=16, different model); both-dynamic argmax same rule."
+  },
+  {
+   "i": 18,
+   "pair_id": "E1P-033",
+   "condition": "C_FDRS",
+   "bench_index": 282,
+   "item_id": "b4af6b351eae",
+   "label": "clean",
+   "cases_cited": [
+    "case 8",
+    "case 9"
+   ],
+   "evidence": "Mirror: line1 out, sgen bus2 2.8 (q_mvar default 0 = ref explicit 0), runpp, res_bus.loc[3] vs .at[3]. GT=1.02 is the PV-pinned setpoint at bus 3 (stiff, c5 pert unchanged) but workflow is identical."
+  },
+  {
+   "i": 19,
+   "pair_id": "E1P-034",
+   "condition": "C_FDRS",
+   "bench_index": 801,
+   "item_id": "e18c9f14ef6f",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref for all 3 static mods + conditional (fired: 93.5>75.5, line 3558 parallel=2); .loc vs .at only."
+  },
+  {
+   "i": 20,
+   "pair_id": "E1P-035",
+   "condition": "C_FDRS",
+   "bench_index": 844,
+   "item_id": "db38a28cb654",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-F",
+    "F-A"
+   ],
+   "evidence": "Disconnect branch fired (2.51>0.9, same worst line, c1 diffs=[]); shunt branch dead (0.9935>=0.96) so +10 vs ref -10 sign flip unexecuted (F-A); gen 2 PFs vs ref 3 = ref's no-op stage-3 (F-F)."
+  },
+  {
+   "i": 21,
+   "pair_id": "E1P-036",
+   "condition": "C_FDRS",
+   "bench_index": 994,
+   "item_id": "f1f47fa6aa24",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (gen 9 out, 91.3>65.1 fired, load 68 scaling 0.65)."
+  },
+  {
+   "i": 22,
+   "pair_id": "E1P-037",
+   "condition": "C_FDRS",
+   "bench_index": 1015,
+   "item_id": "299095d44403",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (118.8>72.6 fired, gen2 p_mw=559.8, re-run)."
+  },
+  {
+   "i": 23,
+   "pair_id": "E1P-039",
+   "condition": "C_FDRS",
+   "bench_index": 1761,
+   "item_id": "0a345a04ae5b",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Ref hardcodes trafo473 tap_pos=0; gen pre-PF, idxmax over res_trafo loading, tap_pos+=1 -> same final state (c1 diffs=[]). N1 dynamic==hardcoded; extra initial PF superset; conditional fired both (98.5>65)."
+  },
+  {
+   "i": 24,
+   "pair_id": "E1P-044",
+   "condition": "C_FDRS",
+   "bench_index": 89,
+   "item_id": "cea83749a9ba",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (shift_degree -23.5, rundcpp, (loading>120).any()); c5 perturbation flips output False->True proving live extraction."
+  },
+  {
+   "i": 25,
+   "pair_id": "E1P-045",
+   "condition": "C_FDRS",
+   "bench_index": 188,
+   "item_id": "4c0694092f6b",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (decorative max_vm_pu both sides, runpp, res_trafo max)."
+  },
+  {
+   "i": 26,
+   "pair_id": "E1P-046",
+   "condition": "C_FDRS",
+   "bench_index": 206,
+   "item_id": "283343cb460f",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (unmodified pegase2869 PF, min vm)."
+  },
+  {
+   "i": 27,
+   "pair_id": "E1P-047",
+   "condition": "C_FDRS",
+   "bench_index": 315,
+   "item_id": "b24a64ac501f",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (line 4 out, runpp, res_trafo max)."
+  },
+  {
+   "i": 28,
+   "pair_id": "E1P-049",
+   "condition": "C_FDRS",
+   "bench_index": 488,
+   "item_id": "4672aa7ebcc6",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (scaling 1.08, tap 0, runopp with only verbose=False, res_gen sum); rel_error 0.0."
+  },
+  {
+   "i": 29,
+   "pair_id": "E1P-050",
+   "condition": "C_FDRS",
+   "bench_index": 576,
+   "item_id": "03e0ec200261",
+   "label": "physical-error",
+   "cases_cited": [
+    "F-E",
+    "meta-rule (b)"
+   ],
+   "evidence": "Gen DELETES case30's native generator polynomial costs and substitutes uniform linear cp1_eur_per_mw=1.0 for every gen ('to avoid duplicate-cost warnings'), changing the OPF objective and hence the optimum: output 0.9876485 vs GT 0.9839163 (abs_error 3.7e-3, ~4 orders above the 1e-7 of faithful sides) -- match survives only via the benchmark tolerance window. Query pins 'optimal power flow on the 30-bus test case' = the case's own cost data; deviation alters the optimization problem, not an unconstrained dimension. Auto layer blind: poly_cost is outside check-1 fingerprint columns and check-2 only sees ac_opf converged. res_cost=191.16 (=sum P x 1.0) confirms substituted objective was live."
+  },
+  {
+   "i": 30,
+   "pair_id": "E1P-051",
+   "condition": "C_FDRS",
+   "bench_index": 629,
+   "item_id": "cbb2d739d0bb",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (gen5 170.1, 338>276.9 fired, gen37 320, re-run)."
+  },
+  {
+   "i": 31,
+   "pair_id": "E1P-054",
+   "condition": "C_FDRS",
+   "bench_index": 1064,
+   "item_id": "55f8b98975de",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref incl. abs() difference; output 2.2e-16 float noise == GT 0.0. Degenerate-GT item (load 936 scaling does not move the stiff 0.848 min bus) but both sides executed identical workflow."
+  },
+  {
+   "i": 32,
+   "pair_id": "E1P-057",
+   "condition": "C_FDRS",
+   "bench_index": 1105,
+   "item_id": "61bf6b9b01f0",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (any-vs-max trigger equivalent; fired 95.1>77.9; line 10075 parallel=2)."
+  },
+  {
+   "i": 33,
+   "pair_id": "E1P-059",
+   "condition": "C_FDRS",
+   "bench_index": 1140,
+   "item_id": "59c7198f02a7",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref with defensive index guards that cannot fire (31 in line.index, 14 in load.index)."
+  },
+  {
+   "i": 34,
+   "pair_id": "E1P-060",
+   "condition": "C_FDRS",
+   "bench_index": 1174,
+   "item_id": "00919eaba836",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-A"
+   ],
+   "evidence": "All 3 static mods mirror ref (min_p_mw/parallel/max_vm_pu, two of them decorative for runpp but applied both sides); disconnect fired (70.2>28.7, same line, c1 diffs=[]); shunt branch dead (0.98550>=0.96) so q_mvar=+8.0 vs ref -8.0 sign flip unexecuted (F-A); 3v3 PF calls."
+  },
+  {
+   "i": 35,
+   "pair_id": "E1P-061",
+   "condition": "C_FDRS",
+   "bench_index": 1236,
+   "item_id": "8b6a4beb0c6e",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "N2",
+    "case 10"
+   ],
+   "evidence": "Ref hardcodes line2 parallel=2; gen pre-PF idxmax -> parallel+=1 same line (c1 diffs=[]). Both use canonical run_contingency over the full line index set (no handwritten loop, N2 moot); same envelope extraction; value 2.7e-7 off."
+  },
+  {
+   "i": 36,
+   "pair_id": "E1P-064",
+   "condition": "C_FDRS",
+   "bench_index": 1352,
+   "item_id": "5ab246c800a5",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Ref hardcodes line 222 out; gen pre-PF idxmax then disconnects -> same line (c1 diffs=[]); extraction identical (res_trafo max 302.97)."
+  },
+  {
+   "i": 37,
+   "pair_id": "E1P-070",
+   "condition": "C_FDRS",
+   "bench_index": 1889,
+   "item_id": "fb168bd26812",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "F-A",
+    "F-F"
+   ],
+   "evidence": "Gen pre-PF idxmax parallel+=1 -> ref's line21 parallel=2 (c1 diffs=[]); overload branch fired (105.9>36.7) same removal; shunt dead (0.982>=0.95) so +10 vs -10 unexecuted (F-A); PF counts 3v3."
+  },
+  {
+   "i": 38,
+   "pair_id": "E1P-071",
+   "condition": "C_FDRS",
+   "bench_index": 17,
+   "item_id": "81bec01e0da6",
+   "label": "clean",
+   "cases_cited": [
+    "case 9"
+   ],
+   "evidence": "Mirror (.loc vs .at); r change applied identically; DC PF; same point extraction."
+  },
+  {
+   "i": 39,
+   "pair_id": "E1P-073",
+   "condition": "C_FDRS",
+   "bench_index": 57,
+   "item_id": "5fc63663af48",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (unmodified case300, rundcpp, res_trafo max)."
+  },
+  {
+   "i": 40,
+   "pair_id": "E1P-074",
+   "condition": "C_FDRS",
+   "bench_index": 63,
+   "item_id": "5c1089fdc142",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (decorative max_vm_pu applied both sides)."
+  },
+  {
+   "i": 41,
+   "pair_id": "E1P-077",
+   "condition": "C_FDRS",
+   "bench_index": 390,
+   "item_id": "21b7868f2a83",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (trafo parallel=2, runpp, bus 0 vm). GT=1.0 is the slack setpoint (stiff N4) but workflow identical."
+  },
+  {
+   "i": 42,
+   "pair_id": "E1P-078",
+   "condition": "C_FDRS",
+   "bench_index": 430,
+   "item_id": "0983d093f6ff",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (3 mods incl. ext_grid vm 1.04; .loc idiom); value 5e-8 off."
+  },
+  {
+   "i": 43,
+   "pair_id": "E1P-079",
+   "condition": "C_FDRS",
+   "bench_index": 493,
+   "item_id": "c8b4861e5a50",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (both apply the same DC-inert mods: max_vm_pu and r_ohm_per_km under rundcpp); extraction identical."
+  },
+  {
+   "i": 44,
+   "pair_id": "E1P-082",
+   "condition": "C_FDRS",
+   "bench_index": 765,
+   "item_id": "57ed0c779e63",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (x=0.514, 90.9>51.4 fired, load14 scaling 0.8)."
+  },
+  {
+   "i": 45,
+   "pair_id": "E1P-083",
+   "condition": "C_FDRS",
+   "bench_index": 803,
+   "item_id": "cd2c10d7310b",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref; unused import pandapower.contingency.run_contingency_ls2g is dead code with no effect; both report min after conditional re-run."
+  },
+  {
+   "i": 46,
+   "pair_id": "E1P-085",
+   "condition": "C_FDRS",
+   "bench_index": 925,
+   "item_id": "3d3cd17e3c20",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (3 mods, 44.4>31.4 fired, load2 scaling 0.8)."
+  },
+  {
+   "i": 47,
+   "pair_id": "E1P-093",
+   "condition": "C_FDRS",
+   "bench_index": 1600,
+   "item_id": "df8134904403",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1"
+   ],
+   "evidence": "Ref hardcodes gen161 offline; gen computes idxmax of p_mw over in-service gens from the static dispatch table -> same unit (c1 diffs=[]). N1 dynamic==hardcoded; conditional fired both (167.8>110.1)."
+  },
+  {
+   "i": 48,
+   "pair_id": "E1P-097",
+   "condition": "C_FDRS",
+   "bench_index": 1986,
+   "item_id": "eba3bd990b39",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "R3",
+    "N1"
+   ],
+   "evidence": "Query leaves the curtailment level underdetermined ('a low-demand operating level'); ref uses 0.57, gen picks 0.2 -- but both then overwrite the SAME load's scaling to 0.8 in the fired conditional, so the extracted scalar is invariant to the curtail level. Oracle O-CEN-2: iceland largest load idx==21 (matches ref target, N1) and min_vm bit-identical 0.8883679354191392 for curtail levels 0.57/0.2/0.1 (condition fires in all). c1 diffs=[]."
+  },
+  {
+   "i": 49,
+   "pair_id": "E1P-098",
+   "condition": "C_FDRS",
+   "bench_index": 163,
+   "item_id": "a21695494daa",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-F",
+    "R2"
+   ],
+   "evidence": "Identical seed(1131) and identical uniform(0.6,1.4,(24,n_load)) draw shape -> same profile matrix (R2 satisfied); same ConstControl binding and extraction. Only deviation: ow.log_variable('res_bus','vm_pu') omitted -- passive logging with no effect on controller stepping (F-F no-op). Re-exec reproduces exec output to 1e-16; match_detail's rel 4.7e-4 is vs the 6-dp-rounded stored GT (0.000232), not a physical gap."
+  },
+  {
+   "i": 50,
+   "pair_id": "E1P-099",
+   "condition": "C_FDRS",
+   "bench_index": 400,
+   "item_id": "3420e138f4ac",
+   "label": "clean",
+   "cases_cited": [
+    "case 9"
+   ],
+   "evidence": "Mirror of ref (.loc vs .at); value 4.5e-7 off."
+  },
+  {
+   "i": 51,
+   "pair_id": "E1P-102",
+   "condition": "C_FDRS",
+   "bench_index": 440,
+   "item_id": "7b35ea9d23f7",
+   "label": "clean",
+   "cases_cited": [
+    "case 8"
+   ],
+   "evidence": "Mirror; create_sgen omits q_mvar=0 default (explicit-default idiom); same DC PF and max extraction."
+  },
+  {
+   "i": 52,
+   "pair_id": "E1P-103",
+   "condition": "C_FDRS",
+   "bench_index": 556,
+   "item_id": "17fccb81b2c8",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref; GT=0.0 is the DC-lossless identity (degenerate-GT item weakness, errata-type note) but both sides run the same rundcpp + pl_mw sum."
+  },
+  {
+   "i": 53,
+   "pair_id": "E1P-104",
+   "condition": "C_FDRS",
+   "bench_index": 765,
+   "item_id": "57ed0c779e63",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (same item as i=44; x=0.514, fired, load14 scaling 0.8)."
+  },
+  {
+   "i": 54,
+   "pair_id": "E1P-106",
+   "condition": "C_FDRS",
+   "bench_index": 891,
+   "item_id": "3db3a4482a33",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-B",
+    "F-F",
+    "N4"
+   ],
+   "evidence": "Gen omits s_sc_min_mva/rx_min (ref sets 800/0.1) and sets the max-side params before runpp instead of after -- calc_sc(case='max') reads only s_sc_max_mva/rx_max, runpp reads neither, so the omissions are decorative (F-B/F-F; cross-proved by O-CEN-4 and by i=90's bit-identical 45.6042866658472 with min params absent). gen/sgen in_service writes are no-ops (case33bw has none). Queried ikss max bit-matches ref oracle; stiff-exempt (N4)."
+  },
+  {
+   "i": 55,
+   "pair_id": "E1P-110",
+   "condition": "C_FDRS",
+   "bench_index": 971,
+   "item_id": "5b7e3112073e",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (71.99>54.8 fired, line 43 parallel=2)."
+  },
+  {
+   "i": 56,
+   "pair_id": "E1P-111",
+   "condition": "C_FDRS",
+   "bench_index": 1104,
+   "item_id": "ce9bf54d26ca",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (line 11 out, line 19 parallel=3, fired, line 8 parallel=2)."
+  },
+  {
+   "i": 57,
+   "pair_id": "E1P-112",
+   "condition": "C_FDRS",
+   "bench_index": 1152,
+   "item_id": "3e176df2f383",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-A",
+    "F-F"
+   ],
+   "evidence": "Gen uses a while-loop where ref uses a single if for the disconnect stage: executed exactly once (c2 gen 2 PFs = initial + one disconnect re-run; ref 3 incl. no-op stage-3; c1 diffs=[] same line removed), then loop exits (32.8<94.5) -- identical executed scenario. Shunt branch dead (0.9919>=0.96) so q_mvar=+18 vs ref -18 sign flip unexecuted (F-A)."
+  },
+  {
+   "i": 58,
+   "pair_id": "E1P-115",
+   "condition": "C_FDRS",
+   "bench_index": 1352,
+   "item_id": "5ab246c800a5",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Same item/pattern as i=36: ref hardcodes line 222 out, gen pre-PF idxmax lands on the same line (c1 diffs=[]); extra initial PF superset."
+  },
+  {
+   "i": 59,
+   "pair_id": "E1P-116",
+   "condition": "C_FDRS",
+   "bench_index": 1373,
+   "item_id": "80e75f3adae4",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10",
+    "F-E"
+   ],
+   "evidence": "Ref hardcodes trafo0 tap_pos=2; gen pre-PF idxmax then tap_pos+=1 -> identical final state (c1 diffs=[]). GT=1.05 equals the OPF max_vm_pu bound (bound-pinned scalar, F-E-type weak discriminator -- item note, not model error); workflow equivalent."
+  },
+  {
+   "i": 60,
+   "pair_id": "E1P-117",
+   "condition": "C_FDRS",
+   "bench_index": 1407,
+   "item_id": "8668fd95ea6d",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Same item as i=12 (405B): pre-PF idxmax -> parallel+=1 on ref's line 6 (c1 diffs=[])."
+  },
+  {
+   "i": 61,
+   "pair_id": "E1P-120",
+   "condition": "C_FDRS",
+   "bench_index": 1883,
+   "item_id": "4c4d70229058",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Ref hardcodes trafo574 tap_pos=2; gen pre-PF idxmax + tap_pos+=1 -> same trafo/value (c1 diffs=[]); conditional fired both (79.9>63.1)."
+  },
+  {
+   "i": 62,
+   "pair_id": "E1P-002",
+   "condition": "A_FX",
+   "bench_index": 313,
+   "item_id": "406fb2bb750f",
+   "label": "clean",
+   "cases_cited": [
+    "case 9"
+   ],
+   "evidence": "Mirror of ref; res_trafo.loading_percent.at[4] is the attribute-access idiom of ref's .at[4,'loading_percent']."
+  },
+  {
+   "i": 63,
+   "pair_id": "E1P-009",
+   "condition": "A_FX",
+   "bench_index": 44,
+   "item_id": "d78fdf903748",
+   "label": "clean",
+   "cases_cited": [
+    "case 9"
+   ],
+   "evidence": "Mirror of ref; attribute-access extraction idiom only."
+  },
+  {
+   "i": 64,
+   "pair_id": "E1P-013",
+   "condition": "A_FX",
+   "bench_index": 712,
+   "item_id": "14b3aa9b2f52",
+   "label": "clean",
+   "cases_cited": [
+    "case 8"
+   ],
+   "evidence": "Mirror; create_shunt omits p_mw (default 0 = ref explicit); any-vs-max trigger equivalent; unused topology import is dead code."
+  },
+  {
+   "i": 65,
+   "pair_id": "E1P-014",
+   "condition": "A_FX",
+   "bench_index": 720,
+   "item_id": "ca4a5888a7d7",
+   "label": "clean",
+   "cases_cited": [
+    "case 8"
+   ],
+   "evidence": "Mirror; same trivial default omission of p_mw=0; conditional fired (21.4>15.4)."
+  },
+  {
+   "i": 66,
+   "pair_id": "E1P-018",
+   "condition": "A_FX",
+   "bench_index": 1039,
+   "item_id": "452f11a8d8a8",
+   "label": "clean",
+   "cases_cited": [
+    "case 4",
+    "N5"
+   ],
+   "evidence": "Same mods and workflow as ref; the overload trigger is a hand-written existence scan with break over res_line -- read-side only (no solver in loop), mathematically identical to (loading>57.3).any(); fired both; final states equal (c1 diffs=[])."
+  },
+  {
+   "i": 67,
+   "pair_id": "E1P-020",
+   "condition": "A_FX",
+   "bench_index": 1065,
+   "item_id": "24c4dbdf7870",
+   "label": "clean",
+   "cases_cited": [
+    "case 4",
+    "N5"
+   ],
+   "evidence": "Mirror with read-side existence loop plus abs() on loading_percent (non-negative series, abs is identity); chained .at assignment applies (c1 diffs=[])."
+  },
+  {
+   "i": 68,
+   "pair_id": "E1P-023",
+   "condition": "A_FX",
+   "bench_index": 1407,
+   "item_id": "8668fd95ea6d",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Ref hardcodes line 6 parallel=2; gen pre-PF idxmax then net.line.parallel[idx]+=1 (chained assignment, effective per c1 diffs=[]) -> same state."
+  },
+  {
+   "i": 69,
+   "pair_id": "E1P-025",
+   "condition": "A_FX",
+   "bench_index": 1706,
+   "item_id": "4d819e188dfa",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "F-A",
+    "F-F"
+   ],
+   "evidence": "Same item as i=13: dynamic most-loaded trafo tap+1 == ref trafo0 tap=1 (c1 diffs=[]); disconnect fired same line; shunt branch dead (0.9706>=0.95) so +19 vs -19 unexecuted (F-A); 4th PF is a no-op re-run (F-F)."
+  },
+  {
+   "i": 70,
+   "pair_id": "E1P-032",
+   "condition": "A_FX",
+   "bench_index": 217,
+   "item_id": "bedb694b01ea",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-F",
+    "case 2'"
+   ],
+   "evidence": "Gen calls rundcpp(algorithm='nr', enforce_q_lims=False): neither is a rundcpp parameter -- both swallowed by **kwargs as no-ops (oracle O-CEN-3: signature has no such params; res_line bit-equal to plain rundcpp; argmax 9 both). Solver identity stays dc_pf as the query demands; D-1-type noop-kwarg, here without any physical effect."
+  },
+  {
+   "i": 71,
+   "pair_id": "E1P-035",
+   "condition": "A_FX",
+   "bench_index": 844,
+   "item_id": "db38a28cb654",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N5",
+    "F-A",
+    "F-F"
+   ],
+   "evidence": "Filtered-subset idxmax/idxmin == global argmax/argmin when the filter is nonempty (N5); disconnect fired (2.51>0.9, same line, c1 diffs=[]); shunt branch dead (0.9935>=0.96) so positional-bus create_shunt with q_mvar=+10 vs ref -10 unexecuted (F-A); gen skips ref's no-op stage-3 PF (F-F)."
+  },
+  {
+   "i": 72,
+   "pair_id": "E1P-036",
+   "condition": "A_FX",
+   "bench_index": 994,
+   "item_id": "f1f47fa6aa24",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (gen 9 out, fired, load 68 scaling 0.65)."
+  },
+  {
+   "i": 73,
+   "pair_id": "E1P-039",
+   "condition": "A_FX",
+   "bench_index": 1761,
+   "item_id": "0a345a04ae5b",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "N5",
+    "case 10"
+   ],
+   "evidence": "Ref hardcodes trafo473 tap_pos=0; gen pre-PF + hand-written max-scan over res_trafo (read-side, equivalent to idxmax for positive loadings) + tap_pos+1 -> same final state (c1 diffs=[]); conditional fired both."
+  },
+  {
+   "i": 74,
+   "pair_id": "E1P-046",
+   "condition": "A_FX",
+   "bench_index": 206,
+   "item_id": "283343cb460f",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (unmodified pegase2869, runpp, min vm)."
+  },
+  {
+   "i": 75,
+   "pair_id": "E1P-047",
+   "condition": "A_FX",
+   "bench_index": 315,
+   "item_id": "b24a64ac501f",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror; defensive fallback branch dead (4 in line.index)."
+  },
+  {
+   "i": 76,
+   "pair_id": "E1P-049",
+   "condition": "A_FX",
+   "bench_index": 488,
+   "item_id": "4672aa7ebcc6",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (same mods, runopp, res_gen sum; rel_error 0.0)."
+  },
+  {
+   "i": 77,
+   "pair_id": "E1P-050",
+   "condition": "A_FX",
+   "bench_index": 576,
+   "item_id": "03e0ec200261",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref: plain runopp on case30 with its native costs -> 0.9839162 == GT at 2e-7. (Contrast with the C-side partner i=29, which replaced the cost model and is ruled physical-error.)"
+  },
+  {
+   "i": 78,
+   "pair_id": "E1P-053",
+   "condition": "A_FX",
+   "bench_index": 917,
+   "item_id": "42566c56e76d",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror with dead defensive raises; conditional fired (79.5>43); GT=0.982 is a stiff PV-setpoint min (c5 pert unchanged) but workflow identical."
+  },
+  {
+   "i": 79,
+   "pair_id": "E1P-057",
+   "condition": "A_FX",
+   "bench_index": 1105,
+   "item_id": "61bf6b9b01f0",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (any-vs-max trigger; fired; line 10075 parallel=2)."
+  },
+  {
+   "i": 80,
+   "pair_id": "E1P-060",
+   "condition": "A_FX",
+   "bench_index": 1174,
+   "item_id": "00919eaba836",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "case 2'",
+    "F-A",
+    "F-F"
+   ],
+   "evidence": "Gen wraps runpp in non-default options (init='flat', calculate_voltage_angles=True, enforce_q_lims=True): query does not constrain solver options and no Q-limit binds here -- final value matches the C-side/ref solution to 5e-13, proving the formulations coincide on this instance. Disconnect fired (70.2>28.7, same line, c1 diffs=[]); shunt branch dead (0.98550>=0.96) so q_mvar=+8.0 vs ref -8.0 unexecuted (F-A); try/except never triggered."
+  },
+  {
+   "i": 81,
+   "pair_id": "E1P-074",
+   "condition": "A_FX",
+   "bench_index": 63,
+   "item_id": "5c1089fdc142",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (decorative max_vm_pu applied both sides)."
+  },
+  {
+   "i": 82,
+   "pair_id": "E1P-077",
+   "condition": "A_FX",
+   "bench_index": 390,
+   "item_id": "21b7868f2a83",
+   "label": "clean",
+   "cases_cited": [
+    "case 9"
+   ],
+   "evidence": "Mirror; chained assignments net.trafo.parallel[0]=2 and net.res_bus.vm_pu[0] are effective idioms (c1 diffs=[]); GT=1.0 slack-pinned (N4 stiff) but workflow identical."
+  },
+  {
+   "i": 83,
+   "pair_id": "E1P-078",
+   "condition": "A_FX",
+   "bench_index": 430,
+   "item_id": "0983d093f6ff",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (3 mods, .at idiom identical)."
+  },
+  {
+   "i": 84,
+   "pair_id": "E1P-079",
+   "condition": "A_FX",
+   "bench_index": 493,
+   "item_id": "c8b4861e5a50",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (same DC-inert mods applied on both sides; same extraction)."
+  },
+  {
+   "i": 85,
+   "pair_id": "E1P-083",
+   "condition": "A_FX",
+   "bench_index": 803,
+   "item_id": "cd2c10d7310b",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (line 44 out, any-vs-max, fired, load 21 scaling 1.25)."
+  },
+  {
+   "i": 86,
+   "pair_id": "E1P-085",
+   "condition": "A_FX",
+   "bench_index": 925,
+   "item_id": "3d3cd17e3c20",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (3 static mods, fired, load 2 scaling 0.8)."
+  },
+  {
+   "i": 87,
+   "pair_id": "E1P-093",
+   "condition": "A_FX",
+   "bench_index": 1600,
+   "item_id": "df8134904403",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1"
+   ],
+   "evidence": "Same item as i=47: dynamic idxmax of p_mw over in-service gens == ref's hardcoded gen161 (c1 diffs=[]); unused max_gen_bus lookup is read-only; conditional fired both."
+  },
+  {
+   "i": 88,
+   "pair_id": "E1P-097",
+   "condition": "A_FX",
+   "bench_index": 1986,
+   "item_id": "eba3bd990b39",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "R3",
+    "N1"
+   ],
+   "evidence": "Same item as i=48, curtail level 0.1: O-CEN-2 proves min_vm bit-invariant (0.8883679354191392) across curtail levels because the fired conditional overwrites load 21 scaling to 0.8; largest load == 21 == ref target; c1 diffs=[], value 6e-8 off."
+  },
+  {
+   "i": 89,
+   "pair_id": "E1P-099",
+   "condition": "A_FX",
+   "bench_index": 400,
+   "item_id": "3420e138f4ac",
+   "label": "clean",
+   "cases_cited": [
+    "case 9"
+   ],
+   "evidence": "Mirror of ref; .vm_pu.loc[12] attribute idiom."
+  },
+  {
+   "i": 90,
+   "pair_id": "E1P-106",
+   "condition": "A_FX",
+   "bench_index": 891,
+   "item_id": "3db3a4482a33",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-F",
+    "F-B",
+    "N4"
+   ],
+   "evidence": "Gen omits s_sc_min_mva/rx_min entirely, omits case= (calc_sc default case='max' = ref's explicit choice) and omits the gen/sgen in_service writes (case33bw has neither) -- every omission is a no-op on this net (F-F; O-CEN-4 + bit-identical 45.6042866658472 vs ref oracle). Queried max ikss identical; stiff-exempt."
+  },
+  {
+   "i": 91,
+   "pair_id": "E1P-110",
+   "condition": "A_FX",
+   "bench_index": 971,
+   "item_id": "5b7e3112073e",
+   "label": "clean",
+   "cases_cited": [],
+   "evidence": "Mirror of ref (71.99>54.8 fired, line 43 parallel=2)."
+  },
+  {
+   "i": 92,
+   "pair_id": "E1P-115",
+   "condition": "A_FX",
+   "bench_index": 1352,
+   "item_id": "5ab246c800a5",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Same item as i=36/58: pre-PF idxmax -> disconnect == ref's hardcoded line 222 (c1 diffs=[])."
+  },
+  {
+   "i": 93,
+   "pair_id": "E1P-116",
+   "condition": "A_FX",
+   "bench_index": 1373,
+   "item_id": "80e75f3adae4",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10",
+    "F-E"
+   ],
+   "evidence": "Same item as i=59: dynamic most-loaded trafo tap+=1 == ref trafo0 tap=2 (c1 diffs=[]); GT=1.05 is the OPF voltage bound (bound-pinned, item-level weak discriminator note); workflow equivalent."
+  },
+  {
+   "i": 94,
+   "pair_id": "E1P-120",
+   "condition": "A_FX",
+   "bench_index": 1883,
+   "item_id": "4c4d70229058",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1",
+    "case 10"
+   ],
+   "evidence": "Same item as i=61: dynamic idxmax trafo tap+=1 == ref trafo574 tap=2 (c1 diffs=[]); conditional fired both (79.9>63.1)."
+  }
+ ]
+}

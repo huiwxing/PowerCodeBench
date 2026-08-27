@@ -1,0 +1,3012 @@
+{
+ "meta": {
+  "role": "E1-P Reviewer B",
+  "review_criterion": "independent application of the same frozen engineering-validity rubric used by Reviewer A.",
+  "reviewer": "practising power-systems engineer B",
+  "n_target": 137,
+  "n_judged": 137,
+  "generated": "2026-08-01T00:30:42.292233+00:00",
+  "rubric": "E1_validity_audit.md s2.2/s2.3 frozen 10 cases + N1-N7 + R2/R3/R5 + s2.6; firewall: no access to e1p_judge1/t4_judge1/t4_judge2/pilot judgments",
+  "oracle_env": "experiment venv pandapower 3.4.0, serial single-thread subprocess",
+  "oracle_ledger": [
+   {
+    "id": "O1",
+    "items": [
+     10,
+     15,
+     18,
+     27
+    ],
+    "network": "case5",
+    "computation": "located ext_grid (bus 3) and load buses; re-ran runpp with load 2 p_mw in {400,384,332,280,0.1}",
+    "conclusion": "load 2 sits at the slack bus: min res_bus.vm_pu (0.9892612371179855) and max line loading (100.17316) are bit-identical across all values, so every queried scalar and the >69.5% conditional are provably invariant to the underdetermined curtail/raise magnitude"
+   },
+   {
+    "id": "O2",
+    "items": [
+     16
+    ],
+    "network": "case118",
+    "computation": "base runpp; lowest-vm bus among load buses; largest load at that bus",
+    "conclusion": "dynamic rule resolves to bus 75 whose only load is index 60 == ref's hard-coded target (68 MW); gen targeted the same element"
+   },
+   {
+    "id": "O3",
+    "items": [
+     17
+    ],
+    "network": "case1888rte",
+    "computation": "base runpp argmax of res_trafo.loading_percent; base tap_pos; |delta min vm| for tap states (404,2) and (argmax,base+1)",
+    "conclusion": "most-loaded trafo = 404 (209.05%) == ref target; base tap_pos=1.0 so gen '+=1' == ref '=2'; |delta|=0.0 exactly in both states"
+   },
+   {
+    "id": "O4",
+    "items": [
+     29
+    ],
+    "network": "case39",
+    "computation": "gen table at bus 38; bus-38 vm under 3 random load-scaling draws; dynamic lowest-vm-load-bus + largest-load target",
+    "conclusion": "bus 38 hosts gen 8 with vm setpoint 1.03; its voltage is PV-pinned at 1.03 (spread 2e-16) under arbitrary load profiles, so the queried scalar is invariant to the RNG-family and curtailment deviations; dynamic curtail target = load 19 == ref (at slack bus 30)"
+   },
+   {
+    "id": "O5",
+    "items": [
+     30,
+     100
+    ],
+    "network": "case2848rte",
+    "computation": "base runpp; argmax over online res_gen.p_mw; setpoint of gen 230",
+    "conclusion": "argmax-dispatch unit = gen 230 (1441.99 MW) == ref's hard-coded target; gen halved it (721.0) vs ref 824.3 -- same target, both legal magnitudes"
+   },
+   {
+    "id": "O6",
+    "items": [
+     101
+    ],
+    "network": "case39",
+    "computation": "base runpp argmax of res_line.loading_percent; its params; argmax after applying ref's parallel=2 on line 21",
+    "conclusion": "base-PF most loaded line = 21 (73.37%) == ref's hard-coded reinforcement target (gen duplicated exactly its parameters as a twin element); after reinforcement the most loaded line is 11 (67.19% > 36.7), matching the element both sides removed"
+   }
+  ]
+ },
+ "judgments": [
+  {
+   "i": 0,
+   "pair_id": "E1P-001",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 238,
+   "item_id": "a95b20cb2d89",
+   "task": "dc_power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:parser-limit-on-intermediate-variable"
+   ],
+   "cases_cited": [
+    "#9",
+    "N5"
+   ],
+   "evidence": "Gen assigns net.res_line['loading_percent'] to a variable then applies the identical predicate (line_loading > 80).any(); reference is (net.res_line['loading_percent'] > 80).any(). Same table, column, threshold and aggregation; the flag is purely the parser failing to trace through the intermediate variable. No deviation in physical scenario or queried quantity."
+  },
+  {
+   "i": 1,
+   "pair_id": "E1P-002",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 313,
+   "item_id": "406fb2bb750f",
+   "task": "power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:N1-false-positive-named-constant"
+   ],
+   "cases_cited": [
+    "#9",
+    "N1"
+   ],
+   "evidence": "Gen sets transformer_id = 4 as a named constant and reads net.res_trafo.loading_percent.at[transformer_id]; reference reads net.res_trafo.at[4, 'loading_percent']. The n1_target 'dynamic' conclusion is an instrument artifact: the index is a literal 4 held in a variable, not computed. Same table/column/index; attribute vs bracket access is indexing idiom (case 9)."
+  },
+  {
+   "i": 2,
+   "pair_id": "E1P-003",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 348,
+   "item_id": "bad21082bc87",
+   "task": "dc_power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:parser-limit-on-intermediate-variable"
+   ],
+   "cases_cited": [
+    "#9",
+    "N5"
+   ],
+   "evidence": "Identical pattern to i=0: intermediate variable holds res_line['loading_percent'], then (line_loading > 80).any() == reference expression exactly. Parser could not reduce one side; no actual deviation."
+  },
+  {
+   "i": 3,
+   "pair_id": "E1P-004",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 889,
+   "item_id": "d67ed438a903",
+   "task": "sequential",
+   "label": "clean",
+   "failed_checks": [
+    "check3_physical_sanity=fail:shared-by-reference-item-property"
+   ],
+   "cases_cited": [
+    "#4",
+    "#1"
+   ],
+   "evidence": "check3 fired on vm_min=0.1219 p.u., but the queried quantity IS the minimum bus voltage and the reference reproduces the identical implausible value (ref_out=0.12188482736155419 == gen_out); the extreme voltage is the true solution of the item's specified scenario (case300 + shunt at 281), not a model deviation. Gen's (loading>5.3).any() vs ref max()>5.3 is mathematically equivalent (case 4); create_shunt p_mw defaults to 0, matching ref. Workflow steps identical."
+  },
+  {
+   "i": 4,
+   "pair_id": "E1P-007",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1956,
+   "item_id": "9a02c37fddf8",
+   "task": "diagnose_and_fix",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229",
+    "bi=64"
+   ],
+   "evidence": "Query says only 'reduce that unit to a lower dispatch level' with no magnitude; ref sets gen0 p_mw=24.4, model dynamically finds the same target (idxmax -> gen 0, n1 same_target_all=true) and sets 50% of current = 20.0 -- a faithful legal reading of an underdetermined magnitude. Queried scalar is NOT invariant to the choice (ref 0.98652 vs gen 0.98426, rel 0.23%), both inside the 1% tolerance, so per frozen R3 (variable + faithful legal reading) this routes to the item-defect channel, not contamination."
+  },
+  {
+   "i": 5,
+   "pair_id": "E1P-008",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 38,
+   "item_id": "3c523716c00e",
+   "task": "power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487",
+    "pilot bi=2"
+   ],
+   "evidence": "Query: 'Disconnect line 11 ... set bus 22 minimum voltage limit'. Gen disconnects line index 10 and sets bus 21 (net.line.at[10], net.bus.at[21]) -- a 1-based reindex of both targets; fingerprints show line.in_service out=[10] vs ref [11] and min_vm_pu moved at bus 21 vs 22. Corpus dialect is 0-based ('line 11' = index 11, same source as MODIFICATION_DEFS), so this is a changed physical scenario (different line removed) whose ext-grid P scalar coincides within the 1% tolerance (26.107 vs 26.026, rel 0.31%). Positive evidence of scenario change; equivalence exception fails (b)."
+  },
+  {
+   "i": 6,
+   "pair_id": "E1P-011",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 551,
+   "item_id": "c436a4bd009f",
+   "task": "power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=fail:builtin-sum-vs-pandas-sum-parser-artifact"
+   ],
+   "cases_cited": [
+    "#4",
+    "N5"
+   ],
+   "evidence": "Gen: sum(net.res_bus.vm_pu < 0.97); ref: (net.res_bus['vm_pu'] < 0.97).sum(). Python builtin sum over the boolean Series is the same count as Series.sum(); same table/column/threshold. The check4 'aggregation None != sum' is a parse artifact, not a semantic difference. Output 2 == GT from real simulation."
+  },
+  {
+   "i": 7,
+   "pair_id": "E1P-012",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 606,
+   "item_id": "865011aeb40b",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Gen prints (final - initial) signed change; ref prints abs(baseline - modified). Both operands are res_line loading_percent .max() computed after identical mod sequences (load 30 scaling 1.85, bus 11 min_vm_pu, then load 22 scaling 1.5). Frozen N7: signed-vs-abs difference = equivalent; value matched with correct sign."
+  },
+  {
+   "i": 8,
+   "pair_id": "E1P-016",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 997,
+   "item_id": "46904b8554ef",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Same N7 pattern: gen prints first_run - second_run (signed), ref abs(baseline - modified); operands identical (res_bus vm_pu .min() before/after line 47 disconnect). Both evaluate to machine epsilon ~1e-16 vs GT 0.0. Degenerate zero-GT item noted for errata only; no model-side deviation."
+  },
+  {
+   "i": 9,
+   "pair_id": "E1P-022",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1339,
+   "item_id": "b2227276613c",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-shunt-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "#10",
+    "bi=1229"
+   ],
+   "evidence": "Query asks to 'install capacitive shunt support' at the lowest-voltage bus with no Mvar size. Gen dynamically finds the bus via an extra initial runpp (superset, case 10) and lands on the same shunt target as ref (fingerprint diff only shunt.q_mvar: -0.1 vs -20.0, same element/bus, both capacitive sign). Queried quantity (peak vm_pu after OPF) is pinned at the 1.05 cap: ref(-20)=1.04999995, gen(-0.1)=1.04999996, perturb delta 4.5e-9 -> demonstrated invariance across the underdetermined axis; R3 invariance branch = equivalent (bi=1229 template)."
+  },
+  {
+   "i": 10,
+   "pair_id": "E1P-024",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1423,
+   "item_id": "1c39a84d493d",
+   "task": "power_flow",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229",
+    "oracle O1"
+   ],
+   "evidence": "'Curtail the largest load to a low-demand operating level' is magnitude-underdetermined; gen dynamically finds idxmax = load 2 (== ref's hard-coded target) and sets p_mw=0.1 vs ref scaling 0.83. Oracle O1: load 2 sits at the ext_grid slack bus 3, and min vm_pu is bit-identical (0.9892612371179855) for p_mw in {400,384,332,280,0.1} -- the queried scalar is provably invariant on the underdetermined axis; ref_out == gen_out to all 16 digits. R3 invariance branch = equivalent (bi=1229 template)."
+  },
+  {
+   "i": 11,
+   "pair_id": "E1P-026",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1726,
+   "item_id": "9541905f37bf",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:pre-solve-snapshot-artifact-on-initial-PF-workflow",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N1",
+    "N7",
+    "#10",
+    "N6"
+   ],
+   "evidence": "Query itself demands an initial PF ('most heavily loaded line under the current operating point'); gen's first pre-solve snapshot is therefore the unmodified net, making the check1 line.parallel diff an instrument artifact (N6-type). Gen's dynamic idxmax reinforcement (+=1 -> parallel 2) resolved to the same physical state as ref's hard-coded line 10075: |gen_out| == ref_out bit-identically (2.9068681861588175e-07). Signed vs abs output = N7. No scenario or quantity change."
+  },
+  {
+   "i": 12,
+   "pair_id": "E1P-030",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "meta-llama_Llama-3.1-8B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 727,
+   "item_id": "81b1c909462b",
+   "task": "comparison",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-physical-parameter-r-instead-of-x",
+    "check4_extraction=ambiguous:signed-vs-abs-N7-not-at-issue"
+   ],
+   "cases_cited": [
+    "#3",
+    "N7"
+   ],
+   "evidence": "Query: 'set line 101 reactance to 0.608 Ohm/km'. Gen wrote net.line.loc[101,'r_ohm_per_km']=0.608 -- it modified RESISTANCE, not reactance; fingerprints prove gen diverges on line.r_ohm_per_km while ref diverges on line.x_ohm_per_km. The queried difference matched only because GT=0.0 is degenerate (the bus-75 shunt leaves min vm unchanged, ~1e-16 for any first mod). Frozen case 3 strict line: a query-specified modification not executed as specified with coincidental scalar match = contamination; r vs x is a changed physical scenario, not an idiom."
+  },
+  {
+   "i": 13,
+   "pair_id": "E1P-031",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 35,
+   "item_id": "82c39c57a085",
+   "task": "power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:builtin-any-vs-Series-any-parser-artifact"
+   ],
+   "cases_cited": [
+    "#4",
+    "N5"
+   ],
+   "evidence": "Gen computes the identical boolean Series (net.res_line.loading_percent > 100) and applies Python builtin any() instead of Series.any(); mathematically the same aggregation on the same table/column/threshold (case 4). Modification (create_gen at bus 6, 32.3 MW, vm 1.003) matches ref exactly; check1/2/3/5 all pass."
+  },
+  {
+   "i": 14,
+   "pair_id": "E1P-038",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1245,
+   "item_id": "8e435455b808",
+   "task": "power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:sign-flipped-shunt-inductive-not-capacitive"
+   ],
+   "cases_cited": [
+    "#7",
+    "R3",
+    "N1"
+   ],
+   "evidence": "Query pins the direction: 'install capacitive shunt support'. In pandapower's consumer convention capacitive = negative q_mvar (ref: -10.0); gen created q_mvar=+0.1 -- an inductive reactor. Target bus is right (dynamic idxmin == ref bus 4, fingerprint diff only shunt.q_mvar) and magnitude is free, but the sign is text-constrained and no legal reading of 'capacitive' yields +0.1 (R3 no-legal-reading branch, 1943 template). Queried min vm is sensitive (ref 0.99040 vs gen 0.98538); the match survives only via the 1% tolerance. Changed physical scenario (case 7 analog: different physical case)."
+  },
+  {
+   "i": 15,
+   "pair_id": "E1P-040",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1781,
+   "item_id": "de0a5ddb2655",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-magnitude",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "N7",
+    "bi=1229",
+    "oracle O1"
+   ],
+   "evidence": "Same case5 slack-bus invariance as i=10: gen curtails the dynamically-found largest load (load 2 == ref target) to p_mw=0.1 vs ref scaling 0.7; oracle O1 proves min vm bit-invariant to that choice, and |gen_out| == ref_out to 16 digits (8.147183911977329e-05). Second mod (gen 2 p_mw=559.8) identical to ref. Signed change vs abs = N7. R3 invariance branch = equivalent."
+  },
+  {
+   "i": 16,
+   "pair_id": "E1P-041",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1785,
+   "item_id": "fd350e54fe14",
+   "task": "comparison_opf",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "N7",
+    "bi=1229",
+    "bi=64",
+    "oracle O2"
+   ],
+   "evidence": "Oracle O2 verifies gen's dynamic rule ('lowest-voltage bus with load connected' -> bus 75; largest load there -> load 60) lands exactly on ref's hard-coded target load 60. 'Curtail ... to a low-demand level' is magnitude-underdetermined; gen p_mw=0.1 vs ref scaling 0.78 are both legal instantiations, and the queried cost change is NOT invariant (362.348 vs 362.849, rel 0.14%, both inside 1% tolerance). Per frozen R3 (variable + faithful legal reading) -> item-defect channel, not model contamination. Signed vs abs = N7; single-net vs net2 bookkeeping is equivalent state."
+  },
+  {
+   "i": 17,
+   "pair_id": "E1P-042",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1840,
+   "item_id": "21a7c185c345",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:pre-solve-snapshot-artifact-on-initial-PF-workflow",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N1",
+    "N7",
+    "#10",
+    "oracle O3"
+   ],
+   "evidence": "Oracle O3: under the base operating point the most heavily loaded trafo is 404 (209.05%), exactly ref's hard-coded target, and base tap_pos=1.0 so gen's '+= 1' produces tap 2 == ref's '= 2' -- same element, same value, same direction. The queried change is exactly 0.0 in both codes (line 1759 parallel does not move min vm; degenerate-GT item property, errata note only). check1 diff is the pre-solve-snapshot artifact caused by the query-required initial PF; defensive if-guards and signed output (N7) are idiomatic."
+  },
+  {
+   "i": 18,
+   "pair_id": "E1P-043",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1867,
+   "item_id": "d6a5b30580e7",
+   "task": "sequential",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229",
+    "oracle O1"
+   ],
+   "evidence": "'Raise the largest demand point to a peak-demand operating level' is magnitude-underdetermined: ref scaling 1.47 (588 MW) vs gen p_mw*1.2 (480 MW), same dynamically-found target load 2. Oracle O1: load 2 is at the slack bus, so bus voltages AND line loadings are bit-invariant to its value -- the >69.5% conditional fires identically in both codes (post-exec state confirms scaling 0.8 applied on both sides) and the reported min vm is bit-identical (0.9892612371179855). R3 invariance branch = equivalent."
+  },
+  {
+   "i": 19,
+   "pair_id": "E1P-048",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 470,
+   "item_id": "8f44f22e0391",
+   "task": "contingency",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check2_solver_identity=ambiguous:manual-N-1-loop-N2-verified",
+    "check4_extraction=ambiguous:loop-min-vs-envelope-min"
+   ],
+   "cases_cited": [
+    "N2",
+    "#4",
+    "bi=1229",
+    "bi=480"
+   ],
+   "evidence": "Canonical run_contingency replaced by a manual per-line runpp loop; all four frozen N2 criteria check out: (1) per-step AC runpp == engine's per-step physics, (2) full enumeration over net.line.index with no early break and restore in finally, (3) explicit LoadflowNotConverged skip that cannot alter the min over converged cases, (4) running min over cases == res_bus.min_vm_pu.min() envelope -- confirmed by a bit-identical output (0.9587800098472914). sgen creation matches ref (2.7 MW at bus 0); extra generator_type kwarg is PF-inert. Equivalent path."
+  },
+  {
+   "i": 20,
+   "pair_id": "E1P-052",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 827,
+   "item_id": "64c1b46a0be8",
+   "task": "comparison_opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Only deviations: signed (new - original) vs ref abs(), and same-net reuse vs ref's fresh net2 -- the physical state entering the second OPF (load 10 scaling 1.64, all else base) is identical either way since runopp does not mutate input state. Outputs bit-identical (22.375419545586055). N7 = equivalent; suppress_warnings kwarg is solver-inert."
+  },
+  {
+   "i": 21,
+   "pair_id": "E1P-055",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1087,
+   "item_id": "41a6b56a6175",
+   "task": "contingency_fix",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:explicit-gen-limits-vs-defaults",
+    "check2_solver_identity=ambiguous:base-case-argmax-instead-of-N-1-envelope"
+   ],
+   "cases_cited": [
+    "#8",
+    "N2",
+    "Family-B(case5-oracle)",
+    "#3"
+   ],
+   "evidence": "Gen identified the 'most loaded line' from a base-case PF instead of the run_contingency N-1 envelope -- the Family-B shortcut. The frozen 610-round oracle ruling established structural equivalence of base-argmax and envelope-argmax on case5, and here the final scalar is bit-identical (79.09199607475281), proving the same line was disconnected and the same final scenario evaluated. New-gen max_p_mw/min_p_mw/q-limit explicit args vs ref NaN defaults are runpp-inert bookkeeping (case 8). Equivalence exception (a)+(b) satisfied."
+  },
+  {
+   "i": 22,
+   "pair_id": "E1P-056",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1103,
+   "item_id": "eb3451e93737",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "All four modifications identical to reference (line 2 out, line 24 x=0.335, line 1 parallel=3, shunt bus 30 -18 Mvar with p_mw=0.0). Only deviation is signed change vs abs (N7 = equivalent). Both outputs exactly 0.0; degenerate zero-GT item noted for errata, not a model deviation."
+  },
+  {
+   "i": 23,
+   "pair_id": "E1P-058",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1112,
+   "item_id": "f18ac0bc4e40",
+   "task": "diagnose_and_fix",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-shunt-sign-literal-legal-reading"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "R5-dialect"
+   ],
+   "evidence": "Query text: 'add a 5 Mvar shunt where the bus voltage is the lowest' -- sign is NOT pinned (contrast items where 'capacitive' appears). Ref implements -5.0 (capacitive, remediation intent); gen implements the literal API reading q_mvar=+5.0 at the same dynamically-found bus (fingerprint: same shunt targets, only value sign differs). Queried min vm varies with the choice (0.96220 vs 0.95685, both inside 1% tolerance). Per R3: value varies + model executed a faithful legal reading of underdetermined text -> item-defect channel. Counterargument for adjudicator: fix-intent context pragmatically implies capacitive; if that is ruled text-pinning, this becomes physical-error."
+  },
+  {
+   "i": 24,
+   "pair_id": "E1P-062",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1273,
+   "item_id": "a00cd33ef123",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-raise-mechanism"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "'Raise that unit to a higher dispatch level' is mechanism/magnitude-underdetermined; gen raised the same unit's max_p_mw cap by 20% (target gen 0 == ref target; fingerprint same_target_all=true) while ref pre-set p_mw=51.6, which runopp re-optimizes anyway. Queried max vm is pinned at the 1.06 voltage cap: ref 1.0600000000374 vs gen 1.0600000000383, perturb delta 1e-12 (insensitive) -- provably invariant on the underdetermined axis. R3 invariance branch = equivalent. Poly-cost creation guarded to no-op (no fingerprint diff)."
+  },
+  {
+   "i": 25,
+   "pair_id": "E1P-063",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1298,
+   "item_id": "ca675a215d34",
+   "task": "opf",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229",
+    "bi=64"
+   ],
+   "evidence": "'Reduce that unit to a lower dispatch level' with no magnitude; gen capped the max-dispatch unit's max_p_mw at 50% of its OPF dispatch (a binding, faithful reduction under OPF semantics), ref pre-set p_mw=38.9 which runopp re-optimizes (likely inert). Same unit targeted (gen 0). Queried min vm varies (ref 0.98392 vs gen 0.97925, rel 0.47%, both in 1% tolerance) -> not invariant; model executed a faithful legal reading -> R3 middle branch = item-defect channel, not contamination."
+  },
+  {
+   "i": 26,
+   "pair_id": "E1P-065",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1414,
+   "item_id": "821fa33533de",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-shunt-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "#10",
+    "bi=1229"
+   ],
+   "evidence": "'Install capacitive shunt support' magnitude-underdetermined; gen found the same bus dynamically (fingerprint: same shunt element, ref bus 4), used capacitive sign (-0.1) as required, with step=0/max_step=10 making the effective support ~zero. Queried max vm after OPF sits at the case6ww 1.07 voltage cap: ref (-7 effective) prints exactly 1.07, gen (~0 effective) prints exactly 1.07 -- the two endpoints of the support axis coincide, demonstrating invariance of the queried scalar; meta-rule (b) holds (queried quantity provably unaffected). R3 invariance branch = equivalent; step=0 quirk noted honestly."
+  },
+  {
+   "i": 27,
+   "pair_id": "E1P-066",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1505,
+   "item_id": "b669cead1e94",
+   "task": "time_series",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-curtailment-via-profile",
+    "check4_extraction=ambiguous:parser-limit-on-intermediate-variable"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "oracle O1",
+    "bi=64",
+    "#9"
+   ],
+   "evidence": "Gen builds the identical RNG matrix (np.random.seed(4459) + uniform(0.6,1.4,(24,3)), same legacy generator and consumption shape as ref) then expresses the curtailment by overriding load 2's profile column to 0.1; ref pre-sets scaling 0.76 which its own ConstControl clobbers at step 0 (reference's mod is decorative -- errata note). Only trajectory difference is load 2, which oracle O1 proved sits on the slack bus: bus voltages bit-invariant to it, and outputs are bit-identical (0.984818819121631). Extraction min().min() identical modulo variable naming. R3 invariance = equivalent."
+  },
+  {
+   "i": 28,
+   "pair_id": "E1P-067",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1528,
+   "item_id": "ca3410bfaf6a",
+   "task": "opf",
+   "label": "physical-error",
+   "failed_checks": [
+    "check4_extraction=ambiguous:wrong-generator-extracted-1-based-misread",
+    "check1_network_mods=ambiguous:R3-magnitude-secondary"
+   ],
+   "cases_cited": [
+    "N1",
+    "#3",
+    "R5-dialect",
+    "pilot bi=2",
+    "pilot bi=487"
+   ],
+   "evidence": "Gen's own comment says 'Generator 2 corresponds to the second entry in the gen table' and reads net.gen.index[1] = label 1, while ref reads res_gen.at[2,'p_mw'] -- corpus dialect is 0-based, so the queried element itself was swapped (gen 1's output reported instead of gen 2's). Values 1.04e-05 vs 4.65e-04 agree only through the near-zero absolute-tolerance window (rel error 97.8%). Positive evidence the queried quantity changed -> contamination; the additional curtail-magnitude deviation (0.1 vs 0.72 on the same load 1) is moot given the extraction error."
+  },
+  {
+   "i": 29,
+   "pair_id": "E1P-068",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1588,
+   "item_id": "71628ace3943",
+   "task": "time_series",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-pv-pinned-query",
+    "check4_extraction=ambiguous:at-vs-iloc-same-cell"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "#9",
+    "oracle O4",
+    "bi=64"
+   ],
+   "evidence": "Oracle O4: bus 38 hosts gen 8 with vm setpoint 1.03, so the queried scalar (bus 38 vm at step 22) is PV-pinned at 1.03 under arbitrary load profiles (verified across random scalings, spread 2e-16); both codes print 1.03. Gen's default_rng(221) vs ref's legacy np.random.seed(221) yields different profiles and gen curtails via p_mw*0.1, but O4 also shows the dynamic target = load 19 == ref's hard-coded target, sitting on the slack bus 30 -- every deviation lies on axes the queried quantity is provably invariant to (R3 invariance branch; degenerate PV-setpoint query noted for errata). at[22,38] vs iloc[22,38] address the same cell (labels are positional here)."
+  },
+  {
+   "i": 30,
+   "pair_id": "E1P-069",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "C_FDRS",
+   "bench_index": 1747,
+   "item_id": "0334e4aa8352",
+   "task": "comparison",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "N7",
+    "bi=1229",
+    "oracle O5"
+   ],
+   "evidence": "Oracle O5: the argmax-dispatch online generator in case2848rte is gen 230 (1441.99 MW), exactly ref's hard-coded target; gen halved it (721.0) while ref set 824.3 -- both faithful legal readings of the magnitude-free 'reduce that unit to a lower dispatch level' (verbatim the bi=1229 phrase). The queried |delta min vm| is not invariant (8.1729e-5 vs 8.1890e-5, ~0.2% apart), both matching GT within tolerance. R3 middle branch (variable + faithful legal reading) -> item-defect channel. Signed vs abs = N7."
+  },
+  {
+   "i": 31,
+   "pair_id": "E1P-072",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 54,
+   "item_id": "8220ce64cfed",
+   "task": "contingency",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:dict-scan-with-break-vs-vectorized-any"
+   ],
+   "cases_cited": [
+    "N3",
+    "#4",
+    "N5"
+   ],
+   "evidence": "Same canonical run_contingency engine and identical modification (line 17 r=0.487). Gen scans the returned max_loading_percent array with an early-exit loop -- semantically identical to (col > 120).any(); the break is in result-scanning, not scenario enumeration. Prints int 1 for True: frozen N3 says int/bool coercion is equivalent when the value comes from real simulation and the 0/1 <-> False/True mapping is faithful (it is; GT True, count>=1)."
+  },
+  {
+   "i": 32,
+   "pair_id": "E1P-075",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 91,
+   "item_id": "511f839c946b",
+   "task": "dc_power_flow",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=fail:p_from-plus-p_to-vs-pl_mw"
+   ],
+   "cases_cited": [
+    "N5",
+    "#4"
+   ],
+   "evidence": "Gen computes (p_from_mw + p_to_mw).abs().sum(), ref pl_mw.sum() -- the frozen N5 equivalence pattern (pl_mw == p_from + p_to per line); the extra .abs() is inert since per-line losses are physically non-negative (and identically 0 in DC). Both print 0.0; the DC-lossless zero GT is a degenerate-item property (errata note), not a model deviation. Modification (trafo 1 shift -26.4 deg) identical; rundcpp used as queried."
+  },
+  {
+   "i": 33,
+   "pair_id": "E1P-076",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 146,
+   "item_id": "143bd5198353",
+   "task": "contingency",
+   "label": "physical-error",
+   "failed_checks": [
+    "check4_extraction=fail:vm_pu-single-case-instead-of-min_vm_pu-envelope"
+   ],
+   "cases_cited": [
+    "#5-analog",
+    "N1",
+    "t4-family:wrong-table/column"
+   ],
+   "evidence": "Query asks the lowest voltage 'across all the contingencies' = the N-1 envelope res_bus.min_vm_pu.min() (ref). Gen read net.res_bus.vm_pu.min() -- the voltage snapshot of a single (last-evaluated) case, a different queried quantity. The numbers prove it: gen 0.9922477566 != ref/GT 0.9920828802 (well beyond machine noise), matching only inside the 1% tolerance. Positive evidence the extracted quantity changed -> contamination (wrong-column family of the frozen round)."
+  },
+  {
+   "i": 34,
+   "pair_id": "E1P-080",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 591,
+   "item_id": "647720f888bc",
+   "task": "state_estimation",
+   "label": "physical-error",
+   "failed_checks": [
+    "check4_extraction=fail:res_bus-instead-of-res_bus_est"
+   ],
+   "cases_cited": [
+    "#5-analog",
+    "t4-family:SE-wrong-table"
+   ],
+   "evidence": "Query asks the maximum ESTIMATED bus voltage; ref reads res_bus_est.vm_pu.max() (1.00255). Gen ran estimate(net) but then read net.res_bus['vm_pu'].max() -- the true power-flow table -- printing exactly 1.003, i.e. the ext_grid setpoint it had itself configured, not any estimation output (perturb delta 0.0 confirms the value is setpoint-pinned). Matched GT only via tolerance (abs 4.5e-4). The state estimation result was computed and discarded; queried quantity changed -> contamination (the frozen round's SE wrong-table channel)."
+  },
+  {
+   "i": 35,
+   "pair_id": "E1P-081",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 605,
+   "item_id": "ba8e9d7d69a8",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Identical workflow and modification (line 1 parallel=2); only deviation is signed (modified - initial) vs ref abs(). Both outputs exactly 0.0 (parallel-circuit change does not move min vm here; degenerate zero GT noted for errata). N7 = equivalent."
+  },
+  {
+   "i": 36,
+   "pair_id": "E1P-084",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 864,
+   "item_id": "e09683d1281f",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Modifications identical (trafo 441 parallel=2 baseline, then line 3558 out of service); .loc vs .at is indexing idiom. Gen prints the signed change, ref abs(); magnitude bit-identical (3.4778111928740714). N7 = equivalent."
+  },
+  {
+   "i": 37,
+   "pair_id": "E1P-086",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1142,
+   "item_id": "5632099a8555",
+   "task": "diagnose_and_fix",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487",
+    "pilot bi=2",
+    "t4-census:1-based"
+   ],
+   "evidence": "Gen's own comment declares the misread: 'load indices are 0-based, so load 20 is at index 19' -- and it sets load 19 q_mvar=17.2 while ref (same source as the item's MODIFICATION_DEFS) sets load 20; fingerprint shows gen {19:17.2, 20:250.0(base)} vs ref {19:4.6(base), 20:17.2}. Corpus dialect is 0-based ('load 20' = index 20), so this is a wrong-element modification, not a legal reading. The scalar coincides bit-exactly (0.982) only because the queried min vm is pinned at a case39 PV setpoint (stiff/degenerate quantity -- errata note); frozen case 3 keeps insensitive wrong-target mods as contamination because query intent was not executed."
+  },
+  {
+   "i": 38,
+   "pair_id": "E1P-087",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1238,
+   "item_id": "f7afc3a8230b",
+   "task": "time_series",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:sign-flipped-shunt-plus-different-target-axes",
+    "check4_extraction=ambiguous:parser-limit-on-intermediate-variable"
+   ],
+   "cases_cited": [
+    "#7",
+    "R2",
+    "R3",
+    "bi=64",
+    "1943-template"
+   ],
+   "evidence": "Two independent unfaithful dimensions: (1) query pins 'capacitive shunt support' but gen created q_mvar=+0.1 -- inductive in pandapower's consumer convention (ref -11.0); (2) gen consumed the RNG as one 24-vector shared by all 4 loads while ref draws (24,4) per-load profiles -- and gen also burned RNG state ordering differently (seed consumed before network setup). R2's item-defect channel requires ALL text-pinned dimensions faithful; the sign flip breaks that precondition, and the queried min vm is sensitive (gen 0.95257 vs ref 0.95643, matched only via 1% tolerance). Changed physical scenario -> contamination."
+  },
+  {
+   "i": 39,
+   "pair_id": "E1P-088",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1249,
+   "item_id": "4e099c89dc61",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-opf-preset"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "Same target unit (gen 0, fingerprint same_target_all=true); gen halves the setpoint (40->20) vs ref 24.1 -- magnitude-underdetermined 'lower dispatch level'. Both are runopp pre-sets that the OPF re-optimizes: outputs are bit-identical (0.978956900670469), demonstrating the queried min vm is invariant on the underdetermined axis. R3 invariance branch = equivalent (bi=1229 template)."
+  },
+  {
+   "i": 40,
+   "pair_id": "E1P-089",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1343,
+   "item_id": "a73daced6d30",
+   "task": "time_series",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:query-specified-tap-modification-omitted"
+   ],
+   "cases_cited": [
+    "#3",
+    "R3",
+    "N1"
+   ],
+   "evidence": "Query (and ref) require 'find the most heavily loaded transformer and move its tap position by one step'; ref sets trafo 0 tap_pos -1->-2. Gen imports DiscreteTapControl but never touches any tap -- fingerprint shows gen at base tap {0:-1} vs ref {0:-2}; the semantic modification was omitted entirely, and doing nothing is not a legal reading of 'move by one step' (R3 no-legal-reading). The scalar coincides to 1 ulp (4.4750873243376725 vs ...72) because peak TS line loading is empirically insensitive to trafo-0 tap -- exactly frozen case 3's pattern (omitted mod + insensitive scalar = contamination by default). Downgrade note for adjudicator/refuter: the 1-ulp invariance would support the decorative-modification errata family if dual-judge consensus finds intent preserved; I do not find it preserved (no attempt at all)."
+  },
+  {
+   "i": 41,
+   "pair_id": "E1P-090",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1447,
+   "item_id": "ea9769343413",
+   "task": "opf",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "Gen's dynamic rule found the same target as ref (load 16: fingerprint gen p_mw 0.09->0.009 = 10% curtail vs ref scaling 0.62) -- same element, magnitude-free 'low-demand level'. Queried OPF min vm varies with the choice (gen 0.91794 vs ref 0.91679, rel 0.13%, both inside 1% tolerance) -> not invariant; model executed a faithful legal reading -> R3 middle branch = item-defect channel."
+  },
+  {
+   "i": 42,
+   "pair_id": "E1P-091",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1503,
+   "item_id": "31acb614b3f0",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "Gen dynamically identified load 3 (printed 'Largest load is at index: 3'), matching ref's hard-coded target, and curtailed via scaling 0.1 vs ref 0.68. Queried peak vm after OPF is pinned at the 1.06 voltage cap: ref 1.05999999998 vs gen 1.06000000003, perturbation delta 3e-12 (insensitive) -- invariant on the underdetermined magnitude axis. R3 invariance branch = equivalent."
+  },
+  {
+   "i": 43,
+   "pair_id": "E1P-092",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1570,
+   "item_id": "2a976ef45321",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:omitted-inert-opf-preset"
+   ],
+   "cases_cited": [
+    "R3",
+    "meta-rule(b)",
+    "bi=1229",
+    "errata:decorative-mod"
+   ],
+   "evidence": "Gen skipped the 'raise highest-dispatch unit' step and ran runopp on the base net; ref implements the instruction as a p_mw preset (95.5) which runopp treats as a mere initial guess -- the feasible set and objective of the solved OPF are identical, and outputs are bit-identical (1.099003164003908). Meta-rule (b) is literally satisfied: gen's physical problem == ref's physical problem and the extracted quantity is exactly the reference's. Sister item i=39 (case_ieee30) already showed bit-identity across different presets. Ruled equivalent per R3 invariance; the item's semantic mod is decorative under runopp -- flagged for the errata ledger (decorative-modification type). Case-3 tension noted honestly for the adjudicator: unlike i=40, here even the reference's modification has no physical content, so there is no scenario divergence to convict on."
+  },
+  {
+   "i": 44,
+   "pair_id": "E1P-094",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1693,
+   "item_id": "66bd234e8d95",
+   "task": "comparison_opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:pre-solve-snapshot-artifact-on-initial-solve-workflow",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N1",
+    "N7",
+    "#10",
+    "N6"
+   ],
+   "evidence": "Query requires finding the most loaded line 'under the current operating point', so gen legitimately ran an initial OPF before modifying -- making the first pre-solve snapshot modification-free (instrument artifact). Gen's dynamic idxmax reinforcement (+=1) resolved to ref's hard-coded line 9: outputs are bit-identical (70.22629512486742), which requires identical reinforced-line state in both OPF cost runs. Same-net third OPF == ref's net2 bookkeeping. Signed vs abs = N7."
+  },
+  {
+   "i": 45,
+   "pair_id": "E1P-095",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1828,
+   "item_id": "9a4b9a2cd7c0",
+   "task": "contingency_fix",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:contingency-engine-toggles-restored+scaling-choice",
+    "check4_extraction=fail:envelope-column-for-single-case"
+   ],
+   "cases_cited": [
+    "Family-B(case5-oracle)",
+    "N2",
+    "R3",
+    "oracle O1",
+    "#8"
+   ],
+   "evidence": "Gen: same largest-load target (load 2), 'peak-demand level' as scaling 1.5 vs ref 1.54 -- inert per oracle O1 (case5 slack-bus: loadings/voltages bit-invariant to load 2 scaling). Worst line via base-case argmax instead of N-1 envelope = Family-B shortcut with frozen case5 structural-equivalence precedent. The 'line out + new gen' re-run is expressed as a single-case run_contingency (in_service toggles restored internally -- explains the fingerprint out=[] vs ref [5]) and read from max_loading_percent: final scalar is bit-identical to ref (80.96533518289348), proving same disconnected line and same evaluated state. Extra gen-limit kwargs are runpp-inert (case 8)."
+  },
+  {
+   "i": 46,
+   "pair_id": "E1P-096",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1983,
+   "item_id": "db0dd33a281e",
+   "task": "diagnose_and_fix",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:no-op-raise-on-invariant-axis+R3-underdetermined-shunt-sign"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "oracle O1",
+    "errata:decorative-mod"
+   ],
+   "evidence": "Two deviations: (1) gen 'raised' the largest load by setting scaling to its existing 1.0 (no-op) vs ref 1.78 -- but oracle O1 proves case5 voltages AND loadings are bit-invariant to load 2's level (slack bus), so ref's raise is equally decorative and every cascade stage sees identical state (meta-rule (b) holds on this axis; errata note). (2) The decisive deviation: 'add a 12 Mvar shunt at the weakest bus' is sign-silent; gen implemented the literal API reading q_mvar=+12 vs ref -12 at the same dynamically-found bus. Queried min vm varies (0.98786 vs 0.98973, both in 1% tolerance) -> R3 middle branch (faithful legal reading of underdetermined sign) = item-defect channel, consistent with i=23."
+  },
+  {
+   "i": 47,
+   "pair_id": "E1P-100",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-Next",
+   "condition": "C_FDRS",
+   "bench_index": 927,
+   "item_id": "00757b17a75c",
+   "task": "comparison_opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Identical modification (load 0 scaling 1.69); same-net reuse vs ref's fresh net2 leaves the second OPF state identical; signed (modified - initial) vs abs = N7. Outputs bit-identical (55.36890578302098)."
+  },
+  {
+   "i": 48,
+   "pair_id": "E1P-101",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 382,
+   "item_id": "950c375b21c5",
+   "task": "time_series",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:at-vs-iloc-same-cell"
+   ],
+   "cases_cited": [
+    "#9"
+   ],
+   "evidence": "Profile construction identical to ref (np.random.seed(307), uniform(0.6,1.4,(24,n_load)), same consumption shape); no modifications in this item. Extraction .at[11,9] vs ref .iloc[11,9]: the output DataFrame's labels equal positions (index 0..23, columns = bus indices in order), so both address the same cell -- indexing idiom (case 9). Outputs bit-identical (0.9287287080784791)."
+  },
+  {
+   "i": 49,
+   "pair_id": "E1P-105",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 889,
+   "item_id": "d67ed438a903",
+   "task": "sequential",
+   "label": "clean",
+   "failed_checks": [
+    "check3_physical_sanity=fail:shared-by-reference-item-property"
+   ],
+   "cases_cited": [
+    "#4",
+    "#1"
+   ],
+   "evidence": "Same item as i=3 (bi=889, different model): check3 fires on vm_min=0.1219 p.u., but that IS the queried quantity and the reference reproduces the identical value (0.12188482736155419) -- an item-scenario property, not a model deviation. Gen's workflow matches ref step-for-step; (loading>5.3).any() vs max()>5.3 is case-4 equivalent; create_shunt args identical including p_mw=0."
+  },
+  {
+   "i": 50,
+   "pair_id": "E1P-107",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 906,
+   "item_id": "a8e0adeb68ef",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Identical modification (gen 25 p_mw=260.1, .loc vs .at idiom); gen prints signed (run2 - run1) vs ref abs(); outputs bit-identical (0.018188105210342087). N7 = equivalent."
+  },
+  {
+   "i": 51,
+   "pair_id": "E1P-108",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 916,
+   "item_id": "d0eed5a119c9",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "All three modifications identical (trafo 110 parallel=2, gen 295 vm_pu=1.002, line 3558 out); only deviation signed vs abs difference (N7). Outputs bit-identical (1.9467384038129865e-08); near-zero GT is an item property."
+  },
+  {
+   "i": 52,
+   "pair_id": "E1P-109",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 928,
+   "item_id": "fccb9e0b0994",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Identical shunt creation (bus 30, -6.0 Mvar, p_mw=0); signed vs abs difference only (N7); both outputs exactly 0.0 (degenerate zero-GT item, errata note)."
+  },
+  {
+   "i": 53,
+   "pair_id": "E1P-113",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1170,
+   "item_id": "13fc4d4108f8",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Identical modifications (load 523 q_mvar=14.7; load 1269 scaling 0.65); gen adds progress prints (matcher reads the final number) and reports the signed change vs ref abs(); outputs bit-identical (0.0026968957839841323). N7 = equivalent."
+  },
+  {
+   "i": 54,
+   "pair_id": "E1P-118",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1503,
+   "item_id": "31acb614b3f0",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "Same item as i=42, different model: gen dynamically found ref's target load 3 and curtailed via p_mw=0.01 vs ref scaling 0.68 -- magnitude-free 'low-demand level'. Queried peak OPF vm pinned at the 1.06 cap (gen 1.05999999997 vs ref 1.05999999998; perturb delta 6e-11 insensitive) -> invariant on the underdetermined axis. R3 invariance = equivalent."
+  },
+  {
+   "i": 55,
+   "pair_id": "E1P-119",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "C_FDRS",
+   "bench_index": 1820,
+   "item_id": "1e4e8063d160",
+   "task": "diagnose_and_fix",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude+underdetermined-shunt-sign"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "Same dynamic target as ref throughout: load 4 raised (gen p_mw*1.5=45.0 vs ref scaling 1.53=45.9 effective -- 'peak-demand level' magnitude-free, both legal) and the same conditional cascade fired identically (both end with 3 shunts, no line.in_service diff). Decisive deviation: 'add a 13 Mvar shunt' is sign-silent; gen used the literal +13 (inductive) vs ref -13 at the same dynamically-found weakest bus. Queried min vm varies (0.80320 vs 0.80557, rel 0.3%, inside 1% tolerance) -> R3 middle branch (faithful legal readings on underdetermined axes) = item-defect channel, consistent with i=23/i=46."
+  },
+  {
+   "i": 56,
+   "pair_id": "E1P-001",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 238,
+   "item_id": "a95b20cb2d89",
+   "task": "dc_power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-loaded"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network"
+   ],
+   "evidence": "Query and ref: RTE 2848-bus French grid (case2848rte). Gen loaded pn.create_cigre_network_mv() -- a 15-bus CIGRE MV network (gen_counts n_bus=15 vs ref 2848); the 'generator 231' modification was applied against an empty gen table and the DC PF ran on an entirely different grid. The boolean output True coincides by chance. Wrong network = wrong physical scenario; check-1's core criterion fails with no exemption."
+  },
+  {
+   "i": 57,
+   "pair_id": "E1P-003",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 348,
+   "item_id": "bad21082bc87",
+   "task": "dc_power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-loaded",
+    "check4_extraction=fail:builtin-any-parser-artifact-moot"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network",
+    "#4"
+   ],
+   "evidence": "Query: GB reduced 29-bus network. Gen loaded create_cigre_network_mv() (15-bus CIGRE MV) instead of pn.GBreducednetwork() (29-bus) -- gen_counts 15/15/2 vs ref 29/86/13. DC PF was run on the wrong grid and the True output coincides. The builtin-any() extraction idiom would be case-4 equivalent but is moot: the physical scenario itself is wrong -> contamination."
+  },
+  {
+   "i": 58,
+   "pair_id": "E1P-004",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 889,
+   "item_id": "d67ed438a903",
+   "task": "sequential",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-1-based-misread",
+    "check3_physical_sanity=fail:shared-item-property"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487",
+    "pilot bi=2"
+   ],
+   "evidence": "Query: 'Set transformer 59 to 2 parallel units'; gen wrote net.trafo.parallel.at[58]=2 -- a 1-based reindex to trafo 58 (fingerprint gen {58:2} vs ref {59:2}); corpus dialect is 0-based. The wrong trafo changed the scenario: queried min vm 0.121562 vs ref/GT 0.121885 (rel 0.26%), matching only inside the 1% tolerance. check3's implausible-voltage fire is the item's own scenario property (ref identical, cf. i=3/i=49) -- the conviction is the wrong-target modification. max_iteration=50 kwarg is solver-inert."
+  },
+  {
+   "i": 59,
+   "pair_id": "E1P-005",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1582,
+   "item_id": "1538724186ad",
+   "task": "power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-loaded"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network"
+   ],
+   "evidence": "Query: 'Load the 4-loads-with-branches network' (ref: pn.four_loads_with_branches_out(), 10 buses). Gen loaded create_cigre_network_mv() (15-bus CIGRE MV) and executed the remove-most-loaded-line workflow on that wrong grid. Output 0.99255 vs ref/GT 0.99999 matches only through the 1% tolerance (rel 0.74%). Wrong network = changed physical scenario -> contamination."
+  },
+  {
+   "i": 60,
+   "pair_id": "E1P-006",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1775,
+   "item_id": "cc79cb974900",
+   "task": "diagnose_and_fix",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-loaded"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network"
+   ],
+   "evidence": "Query: 5-bus PJM case; gen loaded create_cigre_network_mv() (15 buses, no gens vs ref 5-bus with 3 gens) and executed the reinforce/disconnect/shunt cascade on that wrong grid. Output 0.99255 vs ref/GT 0.98879 matches only inside the 1% tolerance (rel 0.38%). Wrong network = wrong physical scenario; no exemption applies."
+  },
+  {
+   "i": 61,
+   "pair_id": "E1P-007",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1956,
+   "item_id": "9a02c37fddf8",
+   "task": "diagnose_and_fix",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-loaded"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network"
+   ],
+   "evidence": "Query: IEEE 14-bus case; gen loaded create_cigre_network_mv() (15-bus CIGRE MV, zero gens -- its 'reduce the max-dispatch generator' block silently skipped on the empty gen table). The cascade ran on the wrong grid; output 0.99255 vs ref/GT 0.98652 (rel 0.61%) passes only via the 1% tolerance. Contamination (wrong-network family)."
+  },
+  {
+   "i": 62,
+   "pair_id": "E1P-008",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 38,
+   "item_id": "3c523716c00e",
+   "task": "power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487",
+    "pilot bi=2"
+   ],
+   "evidence": "A-side twin of i=5 with the same misread: gen disconnected line index 10 and set bus 21 min_vm_pu (query: 'line 11', 'bus 22'; corpus dialect 0-based; ref uses 11/22). Fingerprint: line.in_service out=[10] vs [11]; min_vm_pu moved at 21 vs 22. Different line removed = changed scenario; ext-grid P (26.107 vs 26.026) survives only through the 1% tolerance."
+  },
+  {
+   "i": 63,
+   "pair_id": "E1P-010",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 487,
+   "item_id": "e73d38064f83",
+   "task": "short_circuit_3ph",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487",
+    "N4"
+   ],
+   "evidence": "Fresh re-judge of the pilot-overlap item: query 'Disconnect line 5'; gen wrote net.line.in_service[4]=False (fingerprint out=[4,32..36] vs ref [5,32..36]) -- the same 1-based misread this very item exemplified in pilot, where the 1-based defense died on the corpus dialect. The argmax SC bus (0, the ext_grid bus) is stiff to which distribution line is out, so the coincidence carries no exculpatory weight (N4: insensitivity is not evidence of equivalence). SC setup differences (no s_sc_min/rx_min, ip=True) are inert for case='max'. Contamination."
+  },
+  {
+   "i": 64,
+   "pair_id": "E1P-011",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 551,
+   "item_id": "c436a4bd009f",
+   "task": "power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=fail:builtin-sum-vs-pandas-sum-parser-artifact"
+   ],
+   "cases_cited": [
+    "#4",
+    "N5"
+   ],
+   "evidence": "A-side twin of i=6: sum(net.res_bus.vm_pu < 0.97) is the same count as (Series < 0.97).sum(); same table/column/threshold; no modifications in the item. Output 2 == GT from real simulation; the check4 aggregation-parse fail is an instrument artifact."
+  },
+  {
+   "i": 65,
+   "pair_id": "E1P-012",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 606,
+   "item_id": "865011aeb40b",
+   "task": "comparison",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread-x3",
+    "check4_extraction=ambiguous:signed-vs-abs-moot"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487",
+    "N7"
+   ],
+   "evidence": "Gen shifted every hard-coded target down by one: load 29 scaling 1.85 (ref 30), bus 10 min_vm_pu (ref 11), load 21 scaling 1.5 (ref 22) -- systematic 1-based misread, confirmed by fingerprints. The queried change in max loading is genuinely different physics: gen 2.455e-06 vs ref 1.1248e-05 (4.6x apart, rel_error 0.78) and was accepted only through the near-zero absolute-tolerance window. Changed scenario + changed value -> contamination."
+  },
+  {
+   "i": 66,
+   "pair_id": "E1P-015",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 913,
+   "item_id": "361802f7e514",
+   "task": "diagnose_and_fix",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487"
+   ],
+   "evidence": "Query: 'disconnect line 23 ... set line 2 resistance to 0.046'; gen disconnected line 22 and set line 1's resistance (fingerprints: in_service out=[9,22] vs ref [9,23]; r_ohm_per_km moved at index 1 vs 2). Both specified modifications hit wrong elements (1-based misread). The conditional stage happened to disconnect the same line 9 on both sides and no shunt branch fired, so the final scalar (0.99543 vs ref 0.99558, rel 1.4e-4) coincides within tolerance -- case 3: wrong-target mods with insensitive scalar remain contamination."
+  },
+  {
+   "i": 67,
+   "pair_id": "E1P-016",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 997,
+   "item_id": "46904b8554ef",
+   "task": "comparison",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect"
+   ],
+   "evidence": "A-side of bi=997: gen set bus 117 max_vm_pu (ref 118) and disconnected line 46 (ref 47) -- both targets shifted by one (1-based misread; pre-solve fingerprint vhash differs on bus.max_vm_pu). The queried difference is degenerate (GT 0.0; both variants give ~1e-16, and max_vm_pu is runpp-inert), so the coincidence is guaranteed -- but the executed network genuinely differs (wrong line removed): case 3 keeps insensitive wrong-target mods as contamination. Degenerate-GT item noted for errata."
+  },
+  {
+   "i": 68,
+   "pair_id": "E1P-017",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1014,
+   "item_id": "5561ca64e5d3",
+   "task": "diagnose_and_fix",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:drop_lines-vs-in_service-false"
+   ],
+   "cases_cited": [
+    "#8",
+    "#4",
+    "meta-rule(a)(b)"
+   ],
+   "evidence": "Specified mods identical (sgen 13.7 MW at bus 5; gen 0 p_mw=71). In the overload stage gen used pp.drop_lines(net,[0]) while ref set line 0 in_service=False -- the check1 table-shape diffs (n_line 8 vs 9, missing row 0) are bookkeeping of deletion vs disabling; electrically both remove the same branch (same target line 0) and the PF solutions coincide bit-exactly (1.0 == 1.0, the gen-setpoint-pinned minimum). No shunt branch fired on either side. Implementation idiom, physical scenario identical."
+  },
+  {
+   "i": 69,
+   "pair_id": "E1P-019",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1055,
+   "item_id": "a2f1a60d869a",
+   "task": "sequential",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-quantity-vn_kv-corruption+1-based-misreads"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "#5-analog"
+   ],
+   "evidence": "Query: 'set bus 1 maximum voltage limit to 1.094 p.u.'. Gen instead multiplied bus 0's NOMINAL voltage: net.bus.at[0,'vn_kv'] = 1.094 * vn_kv -- wrong bus (1-based misread), wrong column (vn_kv vs max_vm_pu), and a physically drastic change (alters the per-unit base of connected elements); bus.max_vm_pu fingerprint confirms the intended limit was never touched (all 1.1). The conditional reinforcement also hit line 4 instead of 5 (fingerprint parallel {4:2} vs {5:2}). Final scalar 0.98992 vs ref 0.98939 passes only through the 1% tolerance. Multiple unexempted scenario changes -> contamination."
+  },
+  {
+   "i": 70,
+   "pair_id": "E1P-024",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1423,
+   "item_id": "1c39a84d493d",
+   "task": "power_flow",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229",
+    "oracle O1"
+   ],
+   "evidence": "A-side twin of i=10: gen aggregates loads by bus, finds bus 3 (the 400 MW load 2) and curtails it to 10% (fingerprint p_mw {2:40.0}) vs ref scaling 0.83 -- same target, magnitude-free 'low-demand level'. Oracle O1: load 2 sits on the slack bus, min vm bit-invariant across curtail levels; output bit-identical (0.9892612371179855). R3 invariance = equivalent."
+  },
+  {
+   "i": 71,
+   "pair_id": "E1P-026",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1726,
+   "item_id": "9541905f37bf",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:pre-solve-snapshot-artifact-on-initial-PF-workflow",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N1",
+    "N7",
+    "#10",
+    "N6"
+   ],
+   "evidence": "A-side twin of i=11: query requires an initial PF ('under the current operating point'), so the first pre-solve snapshot is unmodified (instrument artifact). Dynamic idxmax reinforcement (+=1) resolved to ref's line 10075: |gen_out| == ref_out bit-identically (2.9068681861588175e-07), proving identical physical states. Signed vs abs = N7."
+  },
+  {
+   "i": 72,
+   "pair_id": "E1P-027",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 954,
+   "item_id": "ad6e669318a8",
+   "task": "diagnose_and_fix",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-loaded"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network"
+   ],
+   "evidence": "Query: 4-loads-with-branches network (ref: four_loads_with_branches_out, 10 buses); gen loaded create_cigre_network_mv() (15 buses) and ran the cascade there (its net.shunt.add() call is additionally a pandas-arithmetic no-op, moot). Output 0.99255 vs ref/GT 0.99999 passes only via the 1% tolerance (rel 0.74%). Wrong network = contamination."
+  },
+  {
+   "i": 73,
+   "pair_id": "E1P-028",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "meta-llama_Llama-3.1-8B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 34,
+   "item_id": "9b35b1acac13",
+   "task": "opf",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-variant"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network-variant"
+   ],
+   "evidence": "Query: 'IEEE 30-bus case' = pn.case_ieee30() (34 lines, 7 trafos); gen loaded pn.case30() (41 lines, 0 trafos) -- a different network variant with different topology and voltage limits (fingerprints: max_vm_pu 1.06 uniform vs mixed 1.05/1.1). The corpus distinguishes the two ('30-bus test case' vs 'IEEE 30-bus case'). OPF min vm 0.98130 vs ref/GT 0.97964 matches only inside 1% (rel 0.17%). Wrong-variant family = contamination; the swallowed algorithm='ipopt' kwarg is inert."
+  },
+  {
+   "i": 74,
+   "pair_id": "E1P-029",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "meta-llama_Llama-3.1-8B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 217,
+   "item_id": "bedb694b01ea",
+   "task": "dc_power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check2_solver_identity=fail:AC-runpp-for-explicit-DC-query",
+    "check4_extraction=ambiguous:manual-max-loop-equivalent-moot"
+   ],
+   "cases_cited": [
+    "#2",
+    "bi=1263",
+    "#4"
+   ],
+   "evidence": "Query explicitly says 'run DC power flow'; ref uses rundcpp; gen called pp.runpp(net, algorithm='nr') -- a plain AC Newton-Raphson power flow (solver trace: ac_pf vs ref dc_pf). Frozen case 2 verbatim: the query constrains the solver physics and AC != DC; the argmax line index (9) coinciding between AC and DC loadings is exactly the 'scalar coincidence' case 2 names (bi=1263 precedent). The manual max-tracking loop is an equivalent aggregation but moot. Contamination."
+  },
+  {
+   "i": 75,
+   "pair_id": "E1P-030",
+   "frame": "judge2",
+   "tier": "T2",
+   "model": "meta-llama_Llama-3.1-8B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 727,
+   "item_id": "81b1c909462b",
+   "task": "comparison",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:phantom-column-mod-omitted+unauthorized-p_mw-injection",
+    "check4_extraction=ambiguous:signed-vs-abs-moot"
+   ],
+   "cases_cited": [
+    "#3",
+    "N7"
+   ],
+   "evidence": "Two unexempted deviations: (1) 'set line 101 reactance' landed in a phantom column -- net.line.loc[from_bus==101, 'x0_km']=0.608 creates a new inert column and selects by from_bus, not index; fingerprint shows gen's x_ohm_per_km = base (sum 4075.69) vs ref modified (4038.97) -> specified mod not executed (case 3). (2) create_shunt(bus=75, p_mw=-19, q_mvar=-19) injects an unrequested 19 MW of active power (ref p_mw=0). The match rides on the degenerate zero GT (both diffs ~1e-16). Contamination."
+  },
+  {
+   "i": 76,
+   "pair_id": "E1P-031",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 35,
+   "item_id": "82c39c57a085",
+   "task": "power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:builtin-any-vs-Series-any-parser-artifact"
+   ],
+   "cases_cited": [
+    "#4",
+    "N5"
+   ],
+   "evidence": "A-side twin of i=13: identical generator addition (bus 6, 32.3 MW, vm 1.003; positional bus arg is API-idiomatic); builtin any() over the same boolean Series equals Series.any(). No deviation in scenario or quantity."
+  },
+  {
+   "i": 77,
+   "pair_id": "E1P-033",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 282,
+   "item_id": "b4af6b351eae",
+   "task": "power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-internal-consistency",
+    "pilot bi=2",
+    "N4"
+   ],
+   "evidence": "Gen disconnected line 0 (query: line 1; ref out=[1]) and placed the sgen at bus 1 (query: bus 2; fingerprint sgen.bus 1 vs 2) -- both mod targets shifted by one, while its own extraction comment ('Bus indices start at 0, so bus 3 is at index 3') applies the 0-based convention -- the R5 internal-consistency check shows the misread is not a coherent alternative convention. The queried bus-3 voltage is PV-setpoint-pinned at 1.02 (perturb delta 0.0), so the coincidence has no exculpatory weight (N4). Contamination."
+  },
+  {
+   "i": 78,
+   "pair_id": "E1P-034",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 801,
+   "item_id": "e18c9f14ef6f",
+   "task": "sequential",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:phantom-column-conditional-fix-not-applied"
+   ],
+   "cases_cited": [
+    "#3"
+   ],
+   "evidence": "First three mods identical, but the conditional fix 'set line 3558 to 2 parallel circuits' was written to a nonexistent column: net.line.loc[3558,'num_parallel']=2 creates a phantom column while the real 'parallel' stays 1 (fingerprint gen {} vs ref {3558:2}); the condition fired on both sides, so ref's network is genuinely reinforced and gen's is not. The queried min vm is insensitive to that reinforcement (gen 0.963929086041252 vs ref 0.9639290860405888, delta 6.6e-13), which per frozen case 3 does not exempt an unexecuted specified modification. Downgrade note: the 1e-12-level invariance would support a decorative-modification errata review."
+  },
+  {
+   "i": 79,
+   "pair_id": "E1P-037",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1015,
+   "item_id": "299095d44403",
+   "task": "sequential",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487"
+   ],
+   "evidence": "Conditional step: 'set generator 2 active power to 559.8 MW'; gen wrote net.gen.loc[1,'p_mw']=559.8 -- generator 1, not 2 (fingerprint gen {1:559.8, 2:466.51(base)} vs ref {1:323.49(base), 2:559.8}). A different unit was re-dispatched = changed physical scenario; min vm 0.98959 vs ref/GT 0.98918 passes only through the 1% tolerance (rel 0.04%). 1-based misread family, contamination."
+  },
+  {
+   "i": 80,
+   "pair_id": "E1P-038",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1245,
+   "item_id": "8e435455b808",
+   "task": "power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:sign-flipped-shunt-inductive-not-capacitive"
+   ],
+   "cases_cited": [
+    "#7",
+    "R3",
+    "N1"
+   ],
+   "evidence": "A-side twin of i=14: query pins 'capacitive shunt support'; gen created q_mvar=+0.1 -- inductive in pandapower's consumer convention -- at the correct dynamically-found bus (same shunt element as ref's -10.0). The type='capacitor' string is cosmetic metadata and does not change the sign physics, underlining the convention confusion. Queried min vm is sensitive (gen 0.98538 vs ref 0.99040, matched only via 1% tolerance); no legal reading of 'capacitive' yields +0.1 (R3 no-legal-reading). Contamination."
+  },
+  {
+   "i": 81,
+   "pair_id": "E1P-041",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1785,
+   "item_id": "fd350e54fe14",
+   "task": "comparison_opf",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "N7",
+    "bi=1229",
+    "oracle O2"
+   ],
+   "evidence": "Gen's dynamic selection lands on load 60 (oracle O2: bus 75 is the lowest-vm load bus and load 60 is its only load, so even gen's index.max() quirk selects the correct target) and curtails scaling to 0.1 vs ref 0.78 -- magnitude-free 'low-demand level'. Queried cost change varies (362.448 vs 362.849, rel 0.11%, both in tolerance) -> R3 middle branch (faithful legal reading, non-invariant) = item-defect channel, matching the C-side twin i=16. Signed vs abs = N7."
+  },
+  {
+   "i": 82,
+   "pair_id": "E1P-042",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1840,
+   "item_id": "21a7c185c345",
+   "task": "comparison",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:phantom-column-second-mod-not-applied",
+    "check4_extraction=ambiguous:signed-vs-abs-moot",
+    "check5_provenance=ambiguous:zero-output-trivially-guaranteed"
+   ],
+   "cases_cited": [
+    "#3",
+    "N7",
+    "oracle O3"
+   ],
+   "evidence": "Gen's manual argmax tap move is fine (trafo 404, +1 -> 2, == ref per oracle O3), but the second specified modification 'set line 1759 to 2 parallel circuits' was written to a nonexistent column (net.line.loc[1759,'num_parallel']=2), so gen's run2 network == run1 network and its printed 0.0 is guaranteed by omission rather than measured from the specified physics. Ref applied the mod and measured 0.0 (O3 proves the true delta is exactly 0.0 -- fully degenerate item, errata note). Frozen case 3: unexecuted specified mod + insensitive scalar = contamination by default; downgrade possibility flagged for the adjudicator given the oracle-proven invariance."
+  },
+  {
+   "i": 83,
+   "pair_id": "E1P-043",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "meta-llama_Llama-3.1-70B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1867,
+   "item_id": "d6a5b30580e7",
+   "task": "sequential",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229",
+    "oracle O1"
+   ],
+   "evidence": "A-side twin of i=18: same dynamic target (load 2), 'peak-demand level' as p_mw*1.2=480 vs ref scaling 1.47; oracle O1 proves case5 voltages and loadings are bit-invariant to load 2's level (slack bus), the conditional fired identically (both sides end at scaling 0.8), and outputs are bit-identical (0.9892612371179855). R3 invariance = equivalent."
+  },
+  {
+   "i": 84,
+   "pair_id": "E1P-045",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 188,
+   "item_id": "4c0694092f6b",
+   "task": "power_flow",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:phantom-attribute-for-runpp-inert-limit"
+   ],
+   "cases_cited": [
+    "meta-rule(b)",
+    "R3",
+    "errata:decorative-mod"
+   ],
+   "evidence": "Gen wrote the voltage limit to a phantom attribute (net.bus_max_vm_pu Series) instead of net.bus['max_vm_pu'] (fingerprint: gen null vs ref {0:1.079}, base is NaN). However max_vm_pu is a constraint attribute that runpp never reads -- the reference's own modification has zero physical content for this power-flow query, and outputs are bit-identical (12.521761352589822). The solved physical problem is provably identical on both sides (meta-rule (b) satisfied), paralleling i=43's inert-preset ruling: equivalent, with the item flagged for the decorative-modification errata ledger (it cannot discriminate whether the limit was set). Tension with case 3 noted honestly for the adjudicator."
+  },
+  {
+   "i": 85,
+   "pair_id": "E1P-048",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 470,
+   "item_id": "8f44f22e0391",
+   "task": "contingency",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check2_solver_identity=ambiguous:manual-N-1-loop-N2-verified",
+    "check4_extraction=ambiguous:loop-min-vs-envelope-min"
+   ],
+   "cases_cited": [
+    "N2",
+    "#4",
+    "bi=1229"
+   ],
+   "evidence": "A-side twin of i=19 with an even cleaner loop: deepcopy-isolated per-line outages, full enumeration (no break), explicit LoadflowNotConverged skip, running min over cases == envelope min. All four N2 criteria verified; sgen addition identical (2.7 MW at bus 0); output bit-identical to ref (0.9587800098472914). Equivalent path."
+  },
+  {
+   "i": 86,
+   "pair_id": "E1P-052",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 827,
+   "item_id": "64c1b46a0be8",
+   "task": "comparison_opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Same modification (load 10 scaling 1.64; the defensive bus-10 fallback branch never triggers since index 10 exists); same-net reuse vs net2 leaves the second OPF state identical; signed vs abs = N7. Outputs bit-identical (22.375419545586055)."
+  },
+  {
+   "i": 87,
+   "pair_id": "E1P-054",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1064,
+   "item_id": "55f8b98975de",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Modifications identical (line 1500 r_ohm_per_km=0.132; load 936 scaling 0.8); only deviation signed (run2 - run1) vs ref abs() -- frozen N7 (this bi=1064 family is the very precedent that ratified N7). Outputs identical (3.3306690738754696e-16 ~ 0); zero-GT degeneracy is an item property."
+  },
+  {
+   "i": 88,
+   "pair_id": "E1P-055",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1087,
+   "item_id": "41a6b56a6175",
+   "task": "contingency_fix",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check2_solver_identity=ambiguous:base-case-argmax-instead-of-N-1-envelope"
+   ],
+   "cases_cited": [
+    "Family-B(case5-oracle)",
+    "N2",
+    "#3"
+   ],
+   "evidence": "A-side twin of i=21: 'most loaded line' identified from a base-case PF instead of the N-1 envelope (Family-B shortcut with the frozen case5 structural-equivalence oracle precedent); final scalar bit-identical to ref (79.09199607475281), proving the same line was disconnected and the same final state evaluated (gen creation identical, 20 MW at bus 1; skipna=True is default behavior). Equivalent path."
+  },
+  {
+   "i": 89,
+   "pair_id": "E1P-056",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1103,
+   "item_id": "eb3451e93737",
+   "task": "comparison",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread-x3",
+    "check4_extraction=ambiguous:signed-vs-abs-moot"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-internal-consistency",
+    "pilot bi=487",
+    "N7"
+   ],
+   "evidence": "Gen explicitly re-based every line target: 'line 2 (index 1)', 'line 24 (index 23)', 'line 1 (index 0)' -- all three line modifications hit wrong elements (fingerprints: in_service [1] vs [2], parallel {0:3} vs {1:3}, x at 23 vs 24), while its own shunt comment applies 0-based ('bus 30 corresponds to index 30') -- R5 internal-consistency shows no coherent alternative convention. The queried change (0.0) is degenerate (shunt does not move max loading in either baseline), so the match is guaranteed; case 3 keeps wrong-target mods with insensitive scalars as contamination."
+  },
+  {
+   "i": 90,
+   "pair_id": "E1P-058",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1112,
+   "item_id": "f18ac0bc4e40",
+   "task": "diagnose_and_fix",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-shunt-sign-literal-legal-reading"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1"
+   ],
+   "evidence": "A-side twin of i=23: first two mods exactly right (load 2 scaling 1.88, line 2 out -- correct 0-based reads), cascade logic identical; the only divergence is the sign-silent 'add a 5 Mvar shunt' implemented as literal q_mvar=+5.0 vs ref -5.0 at the same dynamically-found bus. Queried min vm varies (0.95685 vs 0.96220, inside 1% tolerance). R3 middle branch (faithful literal reading of underdetermined sign) = item-defect channel, consistent with i=23. init='flat'/calculate_voltage_angles kwargs are fixed-point-inert."
+  },
+  {
+   "i": 91,
+   "pair_id": "E1P-059",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1140,
+   "item_id": "59c7198f02a7",
+   "task": "sequential",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-bus-based-misresolution"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect"
+   ],
+   "evidence": "Query: 'set the scaling of load 14 to 0.65'. Gen resolved 'load 14' as 'the loads at bus 14' (net.load[net.load.bus==14]) and modified load 12 instead (fingerprint gen {12:0.65} vs ref {14:0.65}). The corpus dialect (same source as MODIFICATION_DEFS) addresses elements by table index, so this is a wrong-element modification, not a legal alternative reading. Scalar 0.94955 vs ref/GT 0.94977 passes only inside the 1% tolerance (rel 0.02%). Contamination."
+  },
+  {
+   "i": 92,
+   "pair_id": "E1P-061",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1236,
+   "item_id": "8b6a4beb0c6e",
+   "task": "contingency",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:new-line-element-vs-parallel-attribute",
+    "check2_solver_identity=ambiguous:manual-N-1-loop-scenario-set-differs",
+    "check4_extraction=ambiguous:loop-max-vs-envelope-max"
+   ],
+   "cases_cited": [
+    "R3",
+    "N2",
+    "#4"
+   ],
+   "evidence": "Gen reinforced the correct corridor (duplicated line 2's exact parameters as a new 12th line -- fingerprint confirms r/x/c/max_i copied) but represented 'adding one parallel circuit' as a separate element instead of ref's parallel=2 attribute. Base physics is identical, but the N-1 scenario set genuinely differs: ref outages element 2 removing BOTH circuits (11 cases), gen outages one circuit at a time (12 cases) -- N2 criterion 2 not satisfied and the envelope max differs (150.351 vs 150.377, rel 0.017%, both in tolerance). Both are faithful legal modeling readings of an underdetermined instruction, so per the R3 legal-reading logic this routes to the item-defect channel; if the adjudicator rules the parallel-attribute representation query-pinned, this becomes physical-error. Loop mechanics otherwise N2-clean (full enumeration, restore in finally, nanmax over cases)."
+  },
+  {
+   "i": 93,
+   "pair_id": "E1P-062",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1273,
+   "item_id": "a00cd33ef123",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-raise-mechanism"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "A-side twin of i=24: gen raised the same unit's max_p_mw by 10% (140->154, target gen 0 == ref) vs ref's inert p_mw preset 51.6. Queried max vm pinned at the 1.06 cap (1.0600000000379 vs 1.0600000000374; perturb delta 1.7e-12) -- provably invariant on the underdetermined axis. R3 invariance = equivalent."
+  },
+  {
+   "i": 94,
+   "pair_id": "E1P-063",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1298,
+   "item_id": "ca675a215d34",
+   "task": "opf",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229",
+    "bi=64"
+   ],
+   "evidence": "A-side twin of i=25: same target unit (gen 0, the max-dispatch setpoint 60.97), reduction implemented as a binding max_p_mw cap at 50% of current dispatch (30.485) vs ref's re-optimized-away preset 38.9. Queried min vm varies (0.98063 vs 0.98392, rel 0.33%, both inside 1% tolerance) -> R3 middle branch (faithful legal reading, non-invariant) = item-defect channel."
+  },
+  {
+   "i": 95,
+   "pair_id": "E1P-064",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1352,
+   "item_id": "5ab246c800a5",
+   "task": "power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:defensive-dead-else-branch-literal"
+   ],
+   "cases_cited": [
+    "#10",
+    "N1",
+    "#4"
+   ],
+   "evidence": "check1 passes: gen's dynamic idxmax take-out-of-service resolved to exactly ref's hard-coded line 222 (no fingerprint diff), via the query-required initial PF (case 10 superset). The check4 flag comes only from the defensive 'else: max_trafo_loading = 0.0' dead branch (res_trafo is non-empty); the executed extraction is res_trafo.loading_percent.max() == ref. Outputs bit-identical (302.9733864563679)."
+  },
+  {
+   "i": 96,
+   "pair_id": "E1P-065",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1414,
+   "item_id": "821fa33533de",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-underdetermined-shunt-magnitude"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "#10",
+    "bi=1229"
+   ],
+   "evidence": "A-side twin of i=26: shunt created at the same dynamically-found bus (same element as ref bus 4) with correct capacitive orientation declared (min_q_mvar=-0.5) but effective q=0 (controllable shunts are not dispatched by runopp). Queried max vm is pinned at the case6ww 1.07 cap: ref (-7 effective) and gen (0 effective) both print exactly 1.07 -- endpoint invariance across the whole underdetermined support axis. R3 invariance = equivalent; step/effectiveness quirk noted."
+  },
+  {
+   "i": 97,
+   "pair_id": "E1P-066",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1505,
+   "item_id": "b669cead1e94",
+   "task": "time_series",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:p_mw-only-scaling-Q-never-scaled",
+    "check2_solver_identity=ambiguous:manual-ts-loop-application-variable-differs",
+    "check4_extraction=ambiguous:loop-min-equivalent-moot"
+   ],
+   "cases_cited": [
+    "R2",
+    "N2",
+    "pilot bi=202",
+    "oracle O1"
+   ],
+   "evidence": "Gen's manual 24-step loop consumes the identical RNG stream (seed 4459, 24 draws of size 3 == ref's (24,3) row-major matrix) and correctly curtails the slack-bus load 2 (inert per O1), but it applies the draws to p_mw ONLY, leaving every load's q_mvar at base -- ref's ConstControl on 'scaling' scales P and Q together. The frozen R2 note states the 'load scaling 0.6x-1.4x' phrasing PINS the applied variable (the anti-202 clause); Q-trajectories therefore deviate from the pinned semantics and the queried min vm genuinely differs (0.98776 vs 0.98482, rel 0.30%, tolerance-saved). 202-template contamination."
+  },
+  {
+   "i": 98,
+   "pair_id": "E1P-067",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1528,
+   "item_id": "ca3410bfaf6a",
+   "task": "opf",
+   "label": "physical-error",
+   "failed_checks": [
+    "check4_extraction=ambiguous:wrong-generator-extracted-1-based-misread",
+    "check1_network_mods=ambiguous:R3-magnitude-secondary"
+   ],
+   "cases_cited": [
+    "N1",
+    "#3",
+    "R5-dialect",
+    "pilot bi=2",
+    "pilot bi=487"
+   ],
+   "evidence": "A-side twin of i=28: gen's comment 'generator 2 (index 1, since indexing starts at 0)' is a self-contradictory 1-based misread -- corpus dialect makes 'generator 2' = index 2 (ref res_gen.at[2]); gen printed generator 1's output. Values 6.38e-06 vs 4.65e-04 (rel error 98.6%) agree only through the near-zero absolute-tolerance window. The curtailment itself hit the right load (load 1, dynamic == ref) so the conviction is the extraction; gen's malformed poly_cost appends (wrong schema columns) are a secondary integrity concern. Contamination."
+  },
+  {
+   "i": 99,
+   "pair_id": "E1P-068",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1588,
+   "item_id": "71628ace3943",
+   "task": "time_series",
+   "label": "physical-error",
+   "failed_checks": [
+    "check4_extraction=ambiguous:step-21-extracted-for-time-step-22",
+    "check1_network_mods=ambiguous:per-step-re-curtailment-trajectory-deviation",
+    "check2_solver_identity=ambiguous:manual-ts-loop"
+   ],
+   "cases_cited": [
+    "pilot bi=207",
+    "R5-dialect",
+    "#3",
+    "N2",
+    "oracle O4"
+   ],
+   "evidence": "Two pinned-dimension violations: (1) gen printed bus_38_voltages[21] for 'time step 22' -- the corpus dialect is 0-based (the very ground on which pilot bi=207's step misread was convicted), so a different cell than queried was extracted; (2) the curtailment rule was re-applied dynamically inside every step (with an extra PF per step, enforce_q_lims=True) instead of the one-time semantic setup, deviating the load trajectory from the reference scenario. Both are masked only because the queried quantity is PV-setpoint-pinned at 1.03 (oracle O4: bus 38 vm invariant to any load profile) -- a degenerate item (errata) whose insensitivity does not exempt executed misreads (case 3 discipline, cf. i=37). Mitigation for refuter: under O4 invariance every legal reading yields 1.03, so the misread is value-inert."
+  },
+  {
+   "i": 100,
+   "pair_id": "E1P-069",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1747,
+   "item_id": "0334e4aa8352",
+   "task": "comparison",
+   "label": "physical-error",
+   "failed_checks": [
+    "check3_physical_sanity=fail:non-physical-solution-branch",
+    "check1_network_mods=ambiguous:R3-magnitude-secondary",
+    "check4_extraction=ambiguous:signed-vs-abs-moot"
+   ],
+   "cases_cited": [
+    "#2-adjacent",
+    "R3",
+    "N7",
+    "oracle O5"
+   ],
+   "evidence": "Gen picked the right unit (argmax = gen 230 per oracle O5) and halved it -- a legal R3 reading like its C-side twin i=30 -- but forced init='flat' on the 2848-bus RTE grid, driving Newton-Raphson to a non-physical solution branch: check3 shows vm_min=0.0217 p.u., vm_max=1.1999, line loading 361% in gen's own converged state (ref's state is sane). The queried delta from that bogus state is 2.788e-06 vs ref/GT 8.173e-05 -- 29x off (rel error 0.966) -- and 'matched' only through the near-zero absolute-tolerance window. The physically evaluated scenario is not the reference's; contamination."
+  },
+  {
+   "i": 101,
+   "pair_id": "E1P-070",
+   "frame": "judge2",
+   "tier": "T3",
+   "model": "openai_gpt-oss-120b",
+   "condition": "A_FX",
+   "bench_index": 1889,
+   "item_id": "fb168bd26812",
+   "task": "diagnose_and_fix",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=fail:new-line-element-vs-parallel-attribute+drop-vs-disable"
+   ],
+   "cases_cited": [
+    "#8",
+    "N1",
+    "#10",
+    "oracle O6",
+    "i=68-analog"
+   ],
+   "evidence": "Oracle O6: the base-PF most loaded line is 21 == ref's hard-coded reinforcement target; gen duplicated exactly its parameters as a new line (fingerprint: added element with max_i 1.004087, line 21's value) -- 'add one parallel circuit' as a twin element is electrically identical to ref's parallel=2. O6 also shows the post-reinforcement most-loaded line is 11 (67.2% > 36.7), and gen's table is missing line 11 (drop) while ref sets 11 out of service -- same element removed, deletion-vs-disable idiom (i=68). No shunt branch fired on either side; final networks physically identical. check1's fail is table-shape bookkeeping. The 0.982 output is PV-pinned, but equivalence here rests on the oracle-verified state identity, not the coincidence."
+  },
+  {
+   "i": 102,
+   "pair_id": "E1P-071",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 17,
+   "item_id": "81bec01e0da6",
+   "task": "dc_power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:N1-false-positive-named-constant"
+   ],
+   "cases_cited": [
+    "#9",
+    "N1"
+   ],
+   "evidence": "line7_idx = 7 is a literal held in a variable, not a computed index; same table/column/point extraction as ref. Modification identical (line 1 r_ohm_per_km=0.104; the length lookup is unused dead code). Outputs bit-identical (34.78695652173894)."
+  },
+  {
+   "i": 103,
+   "pair_id": "E1P-072",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 54,
+   "item_id": "8220ce64cfed",
+   "task": "contingency",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check2_solver_identity=ambiguous:manual-N-1-loop-N2-verified",
+    "check4_extraction=ambiguous:violation-count-vs-any-N3-coercion"
+   ],
+   "cases_cited": [
+    "N2",
+    "N3",
+    "#4"
+   ],
+   "evidence": "Same modification (line 17 r=0.487). Manual N-1: deepcopy-isolated cases, full enumeration with no early break, per-case drop of the outaged line (reset_index confined to the throwaway copy; the >120 check is label-agnostic), try/except skip of non-converged cases -- N2 criteria check out. Printing the count of violating contingencies (1) for a bool query is frozen N3 coercion: the count comes from real simulation, is an information superset of the predicate, and maps 0<->False / >=1<->True faithfully. Equivalent."
+  },
+  {
+   "i": 104,
+   "pair_id": "E1P-073",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 57,
+   "item_id": "5fc63663af48",
+   "task": "dc_power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=ambiguous:parser-limit-on-intermediate-variable"
+   ],
+   "cases_cited": [
+    "#9",
+    "N5"
+   ],
+   "evidence": "No modifications in the item; rundcpp as queried; extraction is res_trafo.loading_percent.max() through an intermediate variable -- identical semantics, parser artifact only. Outputs bit-identical (13.050505050505054)."
+  },
+  {
+   "i": 105,
+   "pair_id": "E1P-075",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 91,
+   "item_id": "511f839c946b",
+   "task": "dc_power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check2_solver_identity=fail:rundcopp-instead-of-rundcpp",
+    "check5_provenance=ambiguous:invariant-zero-output"
+   ],
+   "cases_cited": [
+    "#2",
+    "bi=1263",
+    "#10-not-applicable",
+    "errata:DC-identity-GT"
+   ],
+   "evidence": "Query pins 'Execute a DC power flow'; gen called pp.rundcopp -- a DC OPTIMAL power flow that re-dispatches all generation, i.e. it evaluated a different operating point than the specified one (case 2: query-constrained solver violated; frozen case 10's superset exemption requires the physical scenario to be preserved, which an OPF re-dispatch does not). The scalar coincides only because DC line losses are identically zero for ANY dispatch -- a structurally degenerate GT (recommend the '\u7b80\u5e76 GT/DC-identity' errata review for this item; the match is semantically necessary, not evidence of a faithful workflow). Modification itself (shift_degree at trafo 1 via iloc==label) is correct. Per frozen case 2 discipline (bi=1263: coincidental match does not exempt a pinned-solver violation) -> contamination."
+  },
+  {
+   "i": 106,
+   "pair_id": "E1P-076",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 146,
+   "item_id": "143bd5198353",
+   "task": "contingency",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check2_solver_identity=ambiguous:manual-N-1-loop-N2-verified",
+    "check4_extraction=ambiguous:loop-min-with-base-case"
+   ],
+   "cases_cited": [
+    "N2",
+    "#4"
+   ],
+   "evidence": "A-side of bi=146 done right (contrast the C-side wrong-column i=33): deepcopy-isolated per-line outages, full enumeration, explicit convergence guard, min over cases plus base case, matching the envelope semantics -- output bit-identical to ref's res_bus.min_vm_pu.min() (0.9920828801638053). All four N2 criteria verified; algorithm='nr' is the default solver. Equivalent."
+  },
+  {
+   "i": 107,
+   "pair_id": "E1P-080",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 591,
+   "item_id": "647720f888bc",
+   "task": "state_estimation",
+   "label": "physical-error",
+   "failed_checks": [
+    "check4_extraction=fail:builtin-max-parser-artifact-moot",
+    "check1_network_mods=pass:noise-omission-invisible-to-fingerprints"
+   ],
+   "cases_cited": [
+    "#3",
+    "R5-internal-consistency",
+    "#4"
+   ],
+   "evidence": "Gen read the correct table (res_bus_est; builtin max == Series.max, case 4) but built the state estimation on NOISE-FREE measurements: no np.random call anywhere, exact PF values fed as measurements, and the seed was passed to estimate() which explicitly warned 'seed is not allowed as parameter and will be ignored'. The query pins 'noisy measurements ... (voltage std_dev=0.01, power std_dev=1.0, seed=9368)'; a noiseless SE trivially reproduces the PF solution, so gen printed 1.0030 (the ext_grid setpoint it configured) vs ref's noisy-SE 1.00255 -- genuinely different quantity realization, matched only through the absolute-tolerance window (4.5e-4). Specified setup element omitted -> contamination (case 3 discipline)."
+  },
+  {
+   "i": 108,
+   "pair_id": "E1P-081",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 605,
+   "item_id": "ba8e9d7d69a8",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7",
+    "#4"
+   ],
+   "evidence": "Identical modification (line 1 parallel=2 via .loc idiom); builtin min == Series.min; signed (modified - original) vs ref abs = N7. Both outputs exactly 0.0 (degenerate zero-GT item, errata note)."
+  },
+  {
+   "i": 109,
+   "pair_id": "E1P-082",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 765,
+   "item_id": "57ed0c779e63",
+   "task": "sequential",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=fail:builtin-min-parser-artifact"
+   ],
+   "cases_cited": [
+    "#4",
+    "N5"
+   ],
+   "evidence": "Modifications identical and correctly 0-based (line 13 x_ohm_per_km=0.514; conditional load 14 scaling 0.8); builtin any()/min() over the same Series are case-4 equivalents of .any()/.min(). Outputs bit-identical (0.9477592363741985); check4's aggregation-parse fail is an instrument artifact."
+  },
+  {
+   "i": 110,
+   "pair_id": "E1P-084",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 864,
+   "item_id": "e09683d1281f",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "Identical modifications (trafo 441 parallel=2, line 3558 out; chained-indexing idiom); signed change vs ref abs = N7; outputs bit-identical (3.4778111928740714)."
+  },
+  {
+   "i": 111,
+   "pair_id": "E1P-086",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1142,
+   "item_id": "5632099a8555",
+   "task": "diagnose_and_fix",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-1-based-misread"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487",
+    "t4-census:1-based"
+   ],
+   "evidence": "A-side twin of i=37 with the same explicit misread ('load 20 would be index 19'): gen set load 19 q_mvar=17.2 while ref (corpus-source) sets load 20 (fingerprint gen {19:17.2, 20:250.0(base)} vs ref {19:4.6(base), 20:17.2}). Neither side's conditional branches fired, and the output 0.982 is a case39 PV-setpoint-pinned minimum -- a stiff coincidence that does not exempt a wrong-element modification (case 3). Contamination."
+  },
+  {
+   "i": 112,
+   "pair_id": "E1P-087",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1238,
+   "item_id": "f7afc3a8230b",
+   "task": "time_series",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:sign-flipped-shunt+RNG-shape",
+    "check2_solver_identity=ambiguous:manual-ts-loop",
+    "check4_extraction=ambiguous:loop-min-moot"
+   ],
+   "cases_cited": [
+    "#7",
+    "R2",
+    "bi=64",
+    "1943-template"
+   ],
+   "evidence": "A-side twin of i=38: (1) 'capacitive shunt support' is text-pinned but gen created q_mvar=+10.0 -- inductive (ref -11.0); (2) the RNG was consumed as ONE shared 24-vector applied to all 4 loads (ref draws a (24,4) per-load matrix), so the trajectories differ (bi=64 shape deviation), and R2's item-defect channel is unavailable because the sign flip breaks the all-pinned-dimensions-faithful precondition. Queried min vm is sensitive (0.95024 vs 0.95643, matched only via 1% tolerance); the except-branch appending 0.0 is an additional integrity hazard. Contamination."
+  },
+  {
+   "i": 113,
+   "pair_id": "E1P-088",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1249,
+   "item_id": "4e099c89dc61",
+   "task": "opf",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-variant"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network-variant",
+    "R3-moot"
+   ],
+   "evidence": "Query: 'IEEE 30-bus case' = case_ieee30 (34 lines/7 trafos, vm limits 1.06/0.94); gen loaded case30 (41 lines/0 trafos, limits 1.05-1.1/0.95). The dispatch-halving itself would be R3-legal, but it was performed on the wrong grid: output 0.98392 (case30's OPF minimum) vs ref/GT 0.97896 passes only inside the 1% tolerance (rel 0.5%). Wrong-variant family = contamination, matching i=73."
+  },
+  {
+   "i": 114,
+   "pair_id": "E1P-089",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1343,
+   "item_id": "a73daced6d30",
+   "task": "time_series",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:invented-per-step-tap-policy",
+    "check2_solver_identity=ambiguous:manual-ts-loop",
+    "check4_extraction=ambiguous:loop-max-moot"
+   ],
+   "cases_cited": [
+    "#3",
+    "R3",
+    "N2",
+    "i=40-twin"
+   ],
+   "evidence": "Gen's profile application is faithful (same seed-2713 (24,99) matrix; scaling both P and Q manually == ConstControl scaling), but the pinned one-time semantic step 'move the most heavily loaded transformer's tap by one step' was replaced with an invented per-step control policy (move up if loading>100% else down, within limits, re-decided every step) -- a trajectory matching no legal reading of the instruction (R3 no-legal-reading; ref: one-time -1 -> -2). The peak loading is empirically tap-insensitive (4.475087324337677 vs ...72, ~2 ulp -- same insensitivity as C-side twin i=40), which per case 3 does not exempt an unexecuted/mis-executed specified setup. Contamination; decorative-mod errata note as in i=40."
+  },
+  {
+   "i": 115,
+   "pair_id": "E1P-090",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1447,
+   "item_id": "ea9769343413",
+   "task": "opf",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude-faithful-legal-reading"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "A-side twin of i=41: gen's dynamic rule found the same target as ref (load 16; fingerprint p_mw 0.09 -> 0.009 = 10% curtail vs ref scaling 0.62); 'low-demand level' is magnitude-free. Queried OPF min vm varies (0.91794 vs 0.91679, rel 0.13%, both in tolerance) -> R3 middle branch (faithful legal reading, non-invariant) = item-defect channel."
+  },
+  {
+   "i": 116,
+   "pair_id": "E1P-091",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1503,
+   "item_id": "31acb614b3f0",
+   "task": "opf",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-variant"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network-variant"
+   ],
+   "evidence": "Query: 'IEEE 30-bus case' = case_ieee30; gen loaded case30 and curtailed that grid's largest load. The value betrays it: gen's peak OPF voltage 1.06500 exceeds case_ieee30's 1.06 voltage cap (case30 allows 1.1 at some buses) yet still matched GT 1.06 inside the 1% tolerance (rel 0.47%). Wrong network variant = changed physical scenario -> contamination."
+  },
+  {
+   "i": 117,
+   "pair_id": "E1P-092",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1570,
+   "item_id": "2a976ef45321",
+   "task": "opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-invariant-opf-preset",
+    "check5_provenance=ambiguous:v1-literal-false-positive"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "#10",
+    "bi=1229"
+   ],
+   "evidence": "Gen used an extra DC-OPF to identify the max-dispatch unit (gen 0 == ref target, fingerprint same_target) and raised its p_mw preset by 10% (67.067) vs ref 95.5 -- both runopp presets that the AC OPF re-optimizes away: outputs bit-identical (1.099003164003908), proving invariance on the underdetermined axis (R3 first branch; cf. i=39/i=43). The extra rundcopp only informed target selection (case 10 superset). check5's flag is the static scanner matching the '1.1' multiplier literal against GT 1.099 -- a v1 false positive; the output provably comes from the final runopp."
+  },
+  {
+   "i": 118,
+   "pair_id": "E1P-094",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1693,
+   "item_id": "66bd234e8d95",
+   "task": "comparison_opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:pre-solve-snapshot-artifact-on-initial-solve-workflow",
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N1",
+    "N7",
+    "#10",
+    "N6"
+   ],
+   "evidence": "A-side twin of i=44: query requires the 'current operating point', so gen's initial OPF precedes the modification (pre-solve snapshot artifact); dynamic idxmax reinforcement (+=1) resolved to ref's line 9 -- outputs bit-identical (70.22629512486742), which requires identical reinforced-line states across both cost runs. Same-net vs net2 bookkeeping equivalent; signed vs abs = N7."
+  },
+  {
+   "i": 119,
+   "pair_id": "E1P-095",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1828,
+   "item_id": "9a4b9a2cd7c0",
+   "task": "contingency_fix",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:slack-bus-inert-deviations-incl-dropped-remedy-gen",
+    "check2_solver_identity=ambiguous:base-case-argmax-shortcut"
+   ],
+   "cases_cited": [
+    "meta-rule(b)",
+    "oracle O1",
+    "Family-B(case5-oracle)",
+    "R3",
+    "errata:decorative-mod"
+   ],
+   "evidence": "Every deviation sits on the case5 slack-bus axis that oracle O1 proved solution-inert: (1) 'peak-demand level' as p_mw*2=800 vs ref scaling 1.54 -- load 2 is at the slack bus, voltages/loadings bit-invariant; (2) worst line from base-case argmax (Family-B case5 equivalence) -> same line 5 as ref's envelope argmax; (3) gen even dropped the newly added bus-3 generator for its final PF -- but bus 3 IS the ext_grid bus, so a 20 MW injection there never enters the power-flow equations: the solved final problem is mathematically identical to ref's, confirmed by the bit-identical result (80.96533518289348). Meta-rule (b) holds on every axis. Errata note: the item's 'remedy' generator at the slack bus is decorative -- the item cannot detect whether the remedy was applied; recommend degenerate-item review. The textual disobedience (removing the remedy gen) is flagged honestly but has provably zero physical content here."
+  },
+  {
+   "i": 120,
+   "pair_id": "E1P-096",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1983,
+   "item_id": "db0dd33a281e",
+   "task": "diagnose_and_fix",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:O1-inert-raise+R3-underdetermined-shunt-sign"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "oracle O1"
+   ],
+   "evidence": "A-side twin of i=46: same dynamic target (load 2) raised to a legal 'peak-demand level' (p_mw*2=800 vs ref scaling 1.78 -- oracle O1 proves the slack-bus load level is solution-inert, so the cascade fires identically); the decisive deviation is the sign-silent 'add a 12 Mvar shunt' implemented as literal +12 vs ref -12 at the same dynamically-found weakest bus. Queried min vm varies (0.98786 vs 0.98973, inside 1% tolerance) -> R3 middle branch = item-defect channel, consistent with i=23/i=46/i=90."
+  },
+  {
+   "i": 121,
+   "pair_id": "E1P-098",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-Next",
+   "condition": "A_FX",
+   "bench_index": 163,
+   "item_id": "a21695494daa",
+   "task": "time_series",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:manual-profile-application-snapshot",
+    "check2_solver_identity=ambiguous:manual-ts-loop-N2-verified",
+    "check4_extraction=ambiguous:running-max-vs-max-max"
+   ],
+   "cases_cited": [
+    "N2",
+    "#4",
+    "R2-satisfied"
+   ],
+   "evidence": "Both pinned mods correct (bus 13 max_vm_pu=1.052; line 4 parallel=2, both 0-based). Manual 24-step loop consumes the identical seed-1131 (24,32) matrix and applies each factor to p_mw AND q_mvar -- exactly what ConstControl 'scaling' does; running max over per-step maxima == ref's max().max(). Values agree to ~1.5e-12 (numerical association noise between scaling-multiplication and precomputed products), rel 6.7e-6 -- far inside tolerance. All four N2 criteria verified (full enumeration, no break, 24/24 converged). Equivalent."
+  },
+  {
+   "i": 122,
+   "pair_id": "E1P-100",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "Qwen_Qwen3-Coder-Next",
+   "condition": "A_FX",
+   "bench_index": 927,
+   "item_id": "00757b17a75c",
+   "task": "comparison_opf",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7",
+    "#8"
+   ],
+   "evidence": "A-side twin of i=47: same modification (load 0 scaling 1.69; same-net reuse == net2 state). Gen also wrote junk pseudo-cost columns into net.gen ('cost_per_kw', 'polynomial_cost') -- not pandapower cost structures; runopp reads net.poly_cost and ignores unknown gen columns, proven inert by the bit-identical output (55.36890578302098). Signed vs abs = N7."
+  },
+  {
+   "i": 123,
+   "pair_id": "E1P-101",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 382,
+   "item_id": "950c375b21c5",
+   "task": "time_series",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:per-step-scaling-assignment-snapshot",
+    "check2_solver_identity=ambiguous:manual-ts-loop-N2-verified",
+    "check4_extraction=ambiguous:in-loop-step-capture"
+   ],
+   "cases_cited": [
+    "N2",
+    "#9"
+   ],
+   "evidence": "A-side twin of i=48 as a manual loop: identical seed-307 (24,18) profile matrix, applied per step to load.scaling (the correct pinned variable), correct 0-based step capture (i==11) and bus 9 read. Output 0.9287287080781526 vs ref 0.9287287080784791 -- agreement to 3.3e-13 (solver-start noise between run_timeseries warm starts and cold runpp), far inside tolerance. N2 criteria all verified. Equivalent."
+  },
+  {
+   "i": 124,
+   "pair_id": "E1P-102",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 440,
+   "item_id": "7b35ea9d23f7",
+   "task": "dc_power_flow",
+   "label": "clean",
+   "failed_checks": [
+    "check4_extraction=fail:builtin-max-parser-artifact"
+   ],
+   "cases_cited": [
+    "#4",
+    "N5",
+    "#8"
+   ],
+   "evidence": "Modification identical (sgen 4.3 MW at bus 4; omitted q_mvar defaults to 0 == ref's explicit 0, case 8); rundcpp as queried; builtin max over the Series == .max(). Outputs bit-identical (41.14134934842178). check4's aggregation-parse fail is an instrument artifact."
+  },
+  {
+   "i": 125,
+   "pair_id": "E1P-103",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 556,
+   "item_id": "17fccb81b2c8",
+   "task": "dc_power_flow",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-loaded"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network",
+    "errata:DC-identity-GT"
+   ],
+   "evidence": "Query: 'simple MV open ring' (ref: simple_mv_open_ring_net, 7 buses); gen loaded mv_oberrhein (179 buses, 153 sgens) -- an entirely different distribution grid. The 0.0 match is guaranteed by the DC-lossless identity (degenerate GT; errata note), not by any correct workflow. Wrong network = contamination."
+  },
+  {
+   "i": 126,
+   "pair_id": "E1P-104",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 765,
+   "item_id": "57ed0c779e63",
+   "task": "sequential",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread-x2"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487"
+   ],
+   "evidence": "Gen set line 12's reactance (query: 'line 13'; ref moves x at index 13 -- fingerprint shows gen {12:0.514} vs ref {13:0.514}) and scaled load 13 (query: 'load 14'; fingerprint {13:0.8} vs {14:0.8}) -- both hard-coded targets shifted by one (1-based misread; its C-side twin i=109 got both right). Min vm 0.95430 vs ref/GT 0.94776 passes only inside the 1% tolerance (rel 0.69%). Contamination."
+  },
+  {
+   "i": 127,
+   "pair_id": "E1P-105",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 889,
+   "item_id": "d67ed438a903",
+   "task": "sequential",
+   "label": "clean",
+   "failed_checks": [
+    "check3_physical_sanity=fail:shared-by-reference-item-property"
+   ],
+   "cases_cited": [
+    "#4",
+    "#1",
+    "#8"
+   ],
+   "evidence": "Third sighting of bi=889 (cf. i=3, i=49): check3 fires on vm_min=0.1219 which IS the queried value and is bit-identically reproduced by the reference -- an item-scenario property. Gen's workflow matches ref exactly; create_shunt(net, 281, -12.0) uses positional (bus, q_mvar) args with p_mw defaulting to 0 (case 8 idiom). Outputs bit-identical."
+  },
+  {
+   "i": 128,
+   "pair_id": "E1P-107",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 906,
+   "item_id": "a8e0adeb68ef",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "A-side twin of i=50: identical modification (gen 25 p_mw=260.1); signed (run2 - run1) vs ref abs; outputs bit-identical (0.018188105210342087). N7 = equivalent."
+  },
+  {
+   "i": 129,
+   "pair_id": "E1P-108",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 916,
+   "item_id": "d0eed5a119c9",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "A-side twin of i=51: all three modifications identical (trafo 110 parallel=2, gen 295 vm_pu=1.002, line 3558 out; chained .loc idiom); signed vs abs = N7; outputs bit-identical (1.9467384038129865e-08); near-zero GT is an item property."
+  },
+  {
+   "i": 130,
+   "pair_id": "E1P-109",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 928,
+   "item_id": "fccb9e0b0994",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7",
+    "#4",
+    "#8"
+   ],
+   "evidence": "A-side twin of i=52: identical shunt creation (bus 30, -6.0 Mvar; omitted p_mw defaults to 0 == ref's explicit 0); builtin max == Series.max; signed vs abs = N7. Both outputs exactly 0.0 (degenerate zero-GT item, errata note)."
+  },
+  {
+   "i": 131,
+   "pair_id": "E1P-111",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1104,
+   "item_id": "ce9bf54d26ca",
+   "task": "sequential",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-element-targets-1-based-misread-x3"
+   ],
+   "cases_cited": [
+    "#3",
+    "N1",
+    "R5-dialect",
+    "pilot bi=487"
+   ],
+   "evidence": "Gen's comment 'Note: line index is 0-based' precedes a systematic off-by-one on every target: line 10 disconnected (ref 11), parallel=3 at line 18 (ref 19), conditional parallel=2 at line 7 (ref 8) -- fingerprints confirm all three shifts. Corpus dialect is 0-based ('line 11' = index 11), so three wrong elements were modified. Min vm 0.94998 vs ref/GT 0.95697 passes only inside the 1% tolerance (rel 0.73%). Contamination."
+  },
+  {
+   "i": 132,
+   "pair_id": "E1P-112",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1152,
+   "item_id": "3e176df2f383",
+   "task": "diagnose_and_fix",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:drop_lines-vs-in_service-false+while-vs-if"
+   ],
+   "cases_cited": [
+    "#8",
+    "i=68-analog",
+    "meta-rule(a)(b)"
+   ],
+   "evidence": "All three specified mods identical (load 1 p_mw=41.2, ext_grid vm 1.057, load 0 p_mw=25.5). The overload stage uses a while-loop with pp.drop_lines instead of ref's single if + in_service=False; on this data the loop executed exactly once and removed the same line 5 (gen table missing 5, ref out=[5]) -- deletion vs disabling is electrically identical (i=68) and the loop's extra re-check changed nothing on the executed path. No shunt branch fired on either side; outputs bit-identical (0.9919054986156861). check1's diffs are table-shape bookkeeping."
+  },
+  {
+   "i": 133,
+   "pair_id": "E1P-113",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1170,
+   "item_id": "13fc4d4108f8",
+   "task": "comparison",
+   "label": "equivalent-path",
+   "failed_checks": [
+    "check4_extraction=ambiguous:signed-vs-abs-difference"
+   ],
+   "cases_cited": [
+    "N7"
+   ],
+   "evidence": "A-side twin of i=53: identical modifications (load 523 q_mvar=14.7; load 1269 scaling 0.65); signed vs abs = N7; outputs bit-identical (0.0026968957839841323)."
+  },
+  {
+   "i": 134,
+   "pair_id": "E1P-114",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1250,
+   "item_id": "6eab749cf362",
+   "task": "contingency",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:sign-flipped-shunt-inductive-not-capacitive",
+    "check2_solver_identity=ambiguous:manual-N-1-loop-otherwise-clean",
+    "check4_extraction=ambiguous:loop-min-moot"
+   ],
+   "cases_cited": [
+    "#7",
+    "R3",
+    "N1",
+    "N2"
+   ],
+   "evidence": "Query pins 'install capacitive shunt support'; gen created q_mvar=+5 -- inductive in the consumer convention -- at the correctly-found lowest-vm bus (fingerprint: same new shunt element 44, same bus as ref's 61; only the value differs +5 vs -13). The N-1 loop itself is N2-clean (deepcopy isolation, full enumeration, convergence guard, min over cases), but the queried envelope minimum is sensitive to the shunt sign: 0.86511 vs ref/GT 0.86768 (rel 0.30%), matched only via the 1% tolerance. No legal reading of 'capacitive' yields an inductive shunt (R3 third branch) -> contamination, consistent with i=14/i=80."
+  },
+  {
+   "i": 135,
+   "pair_id": "E1P-118",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1503,
+   "item_id": "31acb614b3f0",
+   "task": "opf",
+   "label": "physical-error",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:wrong-network-variant"
+   ],
+   "cases_cited": [
+    "#1-violated",
+    "t4-family:wrong-network-variant"
+   ],
+   "evidence": "A-side of bi=1503 (its C-side twins i=42/i=54 are equivalent): gen loaded case30 instead of case_ieee30 and curtailed that grid's largest load to 1 MW. The value betrays the wrong grid: peak OPF voltage 1.06499 exceeds case_ieee30's 1.06 cap (case30 allows 1.1 at several buses) and matched GT 1.06 only inside the 1% tolerance (rel 0.47%). Wrong network variant = contamination."
+  },
+  {
+   "i": 136,
+   "pair_id": "E1P-119",
+   "frame": "judge2",
+   "tier": "T4",
+   "model": "meta-llama_Llama-3.1-405B-Instruct",
+   "condition": "A_FX",
+   "bench_index": 1820,
+   "item_id": "1e4e8063d160",
+   "task": "diagnose_and_fix",
+   "label": "suspected-item-defect",
+   "failed_checks": [
+    "check1_network_mods=ambiguous:R3-underdetermined-magnitude+underdetermined-shunt-sign"
+   ],
+   "cases_cited": [
+    "R3",
+    "N1",
+    "bi=1229"
+   ],
+   "evidence": "A-side twin of i=55: same dynamic target load 4 raised by a legal 'peak-demand' factor (p_mw*1.5=45.0 vs ref scaling 1.53=45.9); conditional cascade resolved identically (no line disconnect on either side; positional argmax == label on RangeIndex); decisive deviation is the sign-silent 'add a 13 Mvar shunt' implemented as literal +13 vs ref -13 at the same bus. Queried min vm varies (0.80320 vs 0.80557, rel 0.3%, both inside tolerance) -> R3 middle branch (faithful legal readings on underdetermined axes) = item-defect channel."
+  }
+ ]
+}

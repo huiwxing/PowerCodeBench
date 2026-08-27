@@ -1,0 +1,10 @@
+{
+  "run_name": "hybrid_tfidf_unadapted",
+  "artifacts": {
+    "metrics": "task_demand/results/suites/suite_unadapted/hybrid_tfidf/metrics.json",
+    "run_config": "task_demand/results/suites/suite_unadapted/hybrid_tfidf/run_config.json",
+    "summary": "task_demand/results/suites/suite_unadapted/hybrid_tfidf/summary.json",
+    "saved_model": "task_demand/results/suites/suite_unadapted/hybrid_tfidf/artifacts/model.pkl",
+    "prediction_export": "task_demand/results/suites/suite_unadapted/hybrid_tfidf/exports/qwen3_480b_candidates.json"
+  }
+}

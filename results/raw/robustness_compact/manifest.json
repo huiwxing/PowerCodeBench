@@ -1,0 +1,1241 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Index and integrity ledger for minimal per-item robustness/reasoning exports.",
+  "source_repository": "frozen experimental pipeline",
+  "source_commits": {
+    "generation_seed_sweep_and_reasoning": "3841e89ed03cef19d388134c6e2d76ebba4e425c",
+    "risk_weight_grid_and_e6_budget_scan": "6990ac025ad3b7eb26d9767c5cc470eaef02374f"
+  },
+  "scope_note": "The deployed comparison cells and vanilla reasoning baselines are excluded because the main-panel compact export is their canonical public copy.",
+  "shared_dependencies": {
+    "primary_outcomes": "results/raw/main_experiment/primary_outcomes_compact.json",
+    "reasoning_subset": "results/aggregates/api_comparison_reasoning_200/subset_items.json",
+    "probe_profiles_for_e6_auroc": "results/supplementary_evidence/probe_profiles.json"
+  },
+  "projection_note": "Each compact cell embeds its full-source path, byte count, SHA-256, commit, and only the per-item fields consumed by the frozen aggregation.",
+  "counts": {
+    "generation_seed_sweep": 100,
+    "risk_weight_grid_alternate_arms": 15,
+    "e6_budget_scan": 24,
+    "reasoning_200": 10,
+    "total": 149
+  },
+  "files": [
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "87e56eed97899ea1fe56e9e7baa5b5820e2e2bb3ba25739fa49e474c0b2e06f5",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16812,
+      "sha256": "f13ae8e9460fe061236c14737018dafc08e7fef3ef7c4b100ae38a08251663d7",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16792,
+      "sha256": "f05ce2f3cb80f6522bbe4641daf7a7b0ab27b254d4be1b17b3663fe0e19d894a",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16744,
+      "sha256": "4cee3e2e4d9cb49318a051e3d377e63dd6ca0c2b7fc9bd3789a13b2b57dd019b",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16739,
+      "sha256": "0565c03bd4a3eeaec3480e1804dda9e3ecd9425d8352104dec95099d9f62c44c",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16715,
+      "sha256": "10d8bb10b24c0a0e5ba7ae6a3f4aabdbb43a87b001035f26a1e1fcb690a6ab11",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16691,
+      "sha256": "1471acce49410104055d77960920ce9d5f964693320ac73bc0ca764e1a4b960c",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16693,
+      "sha256": "75ec16cb3bb279b079213e305cf95bbcc505632368b09ed479e9cf6a60cb366e",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16676,
+      "sha256": "904c2226405da2272b1aac49dcf2836f8c650f30dc31c63bfe14eb4aafd86874",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed22/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16684,
+      "sha256": "20be00099db690c9fea01cb57c95885cf5a1c84d1c451b4d71cfd04e804b92f5",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 22
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "04f33b3b38ae19009d83f9cc48dd25a78bdc10831a7efc98960c619fc53f46e8",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16812,
+      "sha256": "85998e3890457fa9ee469983edef5ac9491f58cc32c99c2eed3697a79c53ba64",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16792,
+      "sha256": "e48085ec436a23805c179f3776ee65d919c0715dcc93672a10016acc3b59198b",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16744,
+      "sha256": "fbdb0e8d8680bfee9e371cc86a012844e555472378470d5e0f446ab9bc5e2d16",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16739,
+      "sha256": "c4fe71a890ce8a3bcfc8eed08463610ed8ed93bad7818ac0f23526aa0ac3f8ea",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16717,
+      "sha256": "cb81ab317c6a265721d9d62eb429156b0955a03eacd0afdc3d7f230d606c30ff",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16693,
+      "sha256": "ac3a2f843d998ba0673e11a5360a861715d0ab5ec85c3e18cc6be943518cac86",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16695,
+      "sha256": "bc5cee7fee5da771fef4fbe5468f16e2a5bf8ab77b69620a5047e565adb2a9a8",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16674,
+      "sha256": "2562ba929a01122e331978c465dde2d9f8e396a7c4a3e36678c3a7d9d90ef650",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed33/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16679,
+      "sha256": "f41d14ae4e5666c38531ec06db43816d0c4ae75c5cae33296da2b3275ff53336",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 33
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "ae393ee29e1ac9eb534e2aabf5749c6f7c1b1e407c5c5df293735434a93ecd74",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16810,
+      "sha256": "069806db68666e8518229dabc013c77436fd5160160cff9e80041d61a9bee5d5",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16794,
+      "sha256": "c6c6cc114deac8a5cf52c61b41de6c09c5a06d342a78b497d0c4d8c4689b75cf",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16744,
+      "sha256": "8105767d2b931b3bc2fb162e44eb3a2102f8dbbd9906375115ff190c42dd53c0",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16735,
+      "sha256": "6d07d4fd30933abbc334e63c7995b5c9e4c923578f71d2880955b790ae35ee62",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16715,
+      "sha256": "a659d99943f6f74ca6f571956ab65dc7d22cc6bd5001b19ce98c1f748faa5d7d",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16693,
+      "sha256": "1994731c6fc2acd240f8585a135a060ed707de127fd544efd11949917a212c82",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16697,
+      "sha256": "57b89b4fb2ce9d0e04cb5ca35224b8c5eb63669b4403e626dc95152686a6657f",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16675,
+      "sha256": "ddc3fe7b5880671a3671d99eed2053ed63f7ff5e78224303a31b83053edc510c",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed44/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16685,
+      "sha256": "41226cefd2839511cb28ad27faf048170e667c7fda4ae4784c897a046339404d",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 44
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "f18bb3e2443c53dc5181732121bd413a612ab50479ee64cf1ff6b22edcd3d88c",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16812,
+      "sha256": "cf9636675d6a8a18799482aa42a91011d576c2acbd067fedd297aec4fb4cc1ad",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16792,
+      "sha256": "bb155a26960d32d5627fcca94d148782138dea4dbe01ba18a0255f88d529876b",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16745,
+      "sha256": "874931ba3f94dbed580dc0aab254f4bc8bd816bdbf045ed032e5cb9a376f43d9",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16735,
+      "sha256": "e18ef7299cf9db94ef4e637917979b451e061f273cb0baf5b72620c832d3a62d",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16717,
+      "sha256": "33971fd4c59f1209435518a6f22dbc43752351fbf5453d08d381fed675db8947",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16693,
+      "sha256": "5af88f04bcb09ce48c7cb3e003862fcb47c8557f47cc5dd87a86ed03bf81f457",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16693,
+      "sha256": "dc29cf11532dd5c405fd0bdb12bc0f250ed1ac94742a8f4ca3aa14a6306150a8",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16676,
+      "sha256": "d7d8e87d80bed850d058fe7e9b7dca02c2a8aeb8a3955b00a235f0f415ef3393",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed55/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16681,
+      "sha256": "63b581283c41f3d2ff967eae01c4bfc83088f0394a0ba0131124698b37a67754",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 55
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "84a236cda5253291311a77c5c1563e8b3bad9a24fa25a1d342a0cab3f307ccea",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16810,
+      "sha256": "b44dc5f96f0758e7ed3f5fe8c9af263521310b036b47d9cc2046edfa40b9cc07",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16789,
+      "sha256": "734861507c66a1ba1a06541cb6c478f49bbb99171a588154dc04e26ae24e40e2",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16745,
+      "sha256": "bb471442933bdef97c418cf38adad1290df4a69f732a0460f0650d30fde877af",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16739,
+      "sha256": "c07cb10a27310707fe9d0af1bb0e2c9e5cf62da75a4fb0b987d064ae4aa9bd0d",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16713,
+      "sha256": "c5a857ec2a844715ff55ddaed10af4ef7904f79e1a4fdc0f78c4c5a415a6a52a",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16691,
+      "sha256": "072c823dea0384b38979633e3f0317279c2ae7fcc5e67a91ea5e5e3306569eb9",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16691,
+      "sha256": "6f1d98c41b29c52e13ffa58eb2ea66e099d6f62e1d2c54a0ef1ce84e4fce2bf7",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16674,
+      "sha256": "c035cd73848b661baee3c1f17186ebee60f5eaf210d8762d85effaaa98966aae",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed66/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16680,
+      "sha256": "8ed02b5b8290d7281f07c307a6fc5ab669f1aa74daa649fb27354da8f4e0e064",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 66
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "cc7c4c93f03d6b48f8b15d1139635ad7a9665ff673a7f39634a33058b2cb9b29",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16812,
+      "sha256": "afe445e32703a0072be7d68bf5f5b9b85df7e6c9d116b14f1e6a1adb42f5db9b",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16790,
+      "sha256": "af14ca4ab32859427c7982b822544405a226722c337d1732f5387421289b813a",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16745,
+      "sha256": "e7b39cede6925f52138ae0fc90cd00a63415282e7f8968e62cfc068e48b51728",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16735,
+      "sha256": "7f49290a85d994320b5e80bd4351812f798d57252ec42ee2a3cd154ec7bb5733",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16715,
+      "sha256": "a79dd435ba7cb9cd80027aa253edce1e3c5c5128c0d802e5f4b38beb6c7fa707",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16691,
+      "sha256": "9dcea6da5b3a4c82f3d71d95cfd416df5fb2e062f1298c93b9c9d9fb33855cc4",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16699,
+      "sha256": "06c3c891cfe30da8c5220a7b0d776f84ca344426d39d80faf549d9258bffbd0f",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16675,
+      "sha256": "70b9f54f897572076657fe84eb05d7853786a150540f722d630378638130f2c0",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed77/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16681,
+      "sha256": "b1c38f984e09c2ee1c1f2ccd05a52f489865b1bbbe5200d7b655db8753acb8fe",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 77
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "8177ba7791c3f78bac48777cb333a535bc1861661b54e4d764b8dda6fa6739fa",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16812,
+      "sha256": "4486dd4f2d022d21863ec79be061b307d823bc242abbee1a93659c282ffcf3c6",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16789,
+      "sha256": "55e643a2125922a3cc445cb33f43682ebea114f20eae31b281017f11c8fe8e3d",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16744,
+      "sha256": "e4a4bb0ae8a3ad89e647ff45b09952843fa4ee5b7970ef7af257f5f3301f097e",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16739,
+      "sha256": "dffce237d8cffe00755803cb6b1956038aa404b364560f79f1ca81c00f62a8aa",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16717,
+      "sha256": "49fa5446c1e9093cdd92494b2d5b9b48665200234f188c5fa50d0935f1171bb3",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16693,
+      "sha256": "998d2e160ca7d5420a929ed7aa4d377559bbe0b80581861d09133d59e52ff243",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16689,
+      "sha256": "f77ae866277b97cd6a63e2e6fb88a0808816b8924e22f01f560755e2bf4957f8",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16676,
+      "sha256": "5983650980c284f9defc4f0f5821c90741a7fd3abcdfa431b0c889ebf1ae17de",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed88/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16681,
+      "sha256": "4655354bd021a846d7c8b38ca0fd7b4ce92a6587746151327b6034a9c8cfc4fa",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 88
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16895,
+      "sha256": "785e5c35374a6a660b86de7e8876ced2f1c21e91e9882ec91180b20652a11bde",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16810,
+      "sha256": "e367bb48c8b3b441f58d54c981563e1c3f44d5d0ffaa958c6cec6dabb6897d79",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16792,
+      "sha256": "cac1a9f1838155b0f0a20fe212ca61c91981f0f5144d478642a3266061c9440f",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16745,
+      "sha256": "30d2220eb2616a74cdf1c624ff694a6aa6e337810920c11044d24b4ae911b1f8",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16735,
+      "sha256": "5842d8a5738d52fde46bf3a511623beaf7dae6199b3cbd6f81cbdce0afbe0a3d",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16717,
+      "sha256": "6e4c54aa8e6473f2478af80200d6f1d45ef9a320d2227b7e7ff01bb4a3875375",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16693,
+      "sha256": "0d5bf168a3add2f3727dfd67a41d0ee87b1741bdc43199dc59fd5af49d4a2a9f",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16695,
+      "sha256": "4ceda0c59ca2bed7bef02b110944a9e05d9554a7d40dbd41bb04850f44a1df8c",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16676,
+      "sha256": "20a818e79f28dc1860ff5c3cf298d265e4ba461dca943c070fd63ac2b19d3d26",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed99/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16680,
+      "sha256": "f6133fd1c5ace394ccac6ad25dc96b8484256dfa93ab3c5f1354d778af3d554f",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 99
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16896,
+      "sha256": "c8c78c392b610ed0d085fd098514429fd97f45cb106f3ff51db4763ec113ea6d",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16813,
+      "sha256": "3e12492b916f46e6e85954e12ed89a2a6923a75ace6823b19104fdd82a4c4139",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16791,
+      "sha256": "de7bfc7b82fc0e55a985a080daf46aad3cc387c8662a3133b82551ac7cee5df5",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16745,
+      "sha256": "11f84896d6a270837ff1b40449eb2b9e8f557fc250e3d77f274f3e647d516cbb",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16740,
+      "sha256": "38a6f9226c58c78643864ca1ba24d2b88ff42c9ba0533586e7917ca8a0c51956",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16715,
+      "sha256": "bafd8135803a2970f8a8bd324dfa6b2460b4c343db7e81e5a7393e36ec04dfaa",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16694,
+      "sha256": "53ab6d6d4312e8ab9025f232555040dc8df5fd4e0d5c05eec1ddc7514cb6412e",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16695,
+      "sha256": "004d7271c9b76cdb47bfc1a80b36d667b79e6b2ec08bf9d48233efa4f9d02e91",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16677,
+      "sha256": "f6c32913e87ae56c05da5127a6fe061c6da764e5bc5c92a4c9f33322fad56984",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed111/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16688,
+      "sha256": "400b48e1fc0314f4fbf00c02dfc976f4963f2d7b254e43eaabe485c54ed44621",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 111
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16896,
+      "sha256": "b6d96bc76cfae9d438343329fa7dfa33cff967f9b339e84eb67bf877274a8e4c",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16813,
+      "sha256": "c23d4580c63662469062d67b007324f22114341423fe44ddba819bac79475c42",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16793,
+      "sha256": "ead73e29456f5c8bba7b4a0b46286d7206e6806d867bbb6445422e8525bfe91f",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16745,
+      "sha256": "632442f1516c63560ce95685ce68941d75b6f2e9b718b82f5d2c60e75d936275",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16740,
+      "sha256": "cd1a5d57d9b81df8bf9c61702246ea856fa8b6e36e41ca3b77abbdcf71db9ce8",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16715,
+      "sha256": "429742fe94de2093edc3ce2444da3171b92c50ac7b3ee878783218d0a62bd51e",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+      "bytes": 16694,
+      "sha256": "21c67ccf4183ee85db2b8680e181672ace936f02bedb9f29761c1622f2c0b187",
+      "experiment": "generation_seed_sweep",
+      "model": "openai_gpt-oss-120b",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+      "bytes": 16699,
+      "sha256": "87cb121c00ee4ec1560765f989a76fbbc13fe4f38816ef0ff125c84a89bc0c20",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16677,
+      "sha256": "57d0e6766c70a559f6f8dfbb35882152a71a20bc326c64b001a0f762a9226764",
+      "experiment": "generation_seed_sweep",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/seed_sweep_400/seed222/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+      "bytes": 16681,
+      "sha256": "7217f024d41e446a9f49c256c81534f600093a8c78b5edc9c77d9ad71438ffb3",
+      "experiment": "generation_seed_sweep",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "seed": 222
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_uniform/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 118742,
+      "sha256": "3bf7b0df3e881256098ad5ee506dd4dec32a069c71dcf8431eabccd0848ea9d3",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "weighting": "uniform"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_uniform/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+      "bytes": 118568,
+      "sha256": "c01d6887469dd0d64c73420db59d71543d635367ec6565434d36762c1816bd19",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "weighting": "uniform"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_uniform/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 118664,
+      "sha256": "79cf03449dfda70a35aa14afc8f82282c492ecc2f576c74792b8e63de1854120",
+      "experiment": "risk_weight_grid",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "weighting": "uniform"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_uniform/openai_gpt-oss-120b/benchmark_results_condC.json",
+      "bytes": 118482,
+      "sha256": "6b29f99ed08efab7f9a5cdf537777ecea21145d2eea8e39242276e348b0953f5",
+      "experiment": "risk_weight_grid",
+      "model": "openai_gpt-oss-120b",
+      "weighting": "uniform"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_uniform/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 118323,
+      "sha256": "0df11260f32025878cd9e59acffd1a016e58e1f3a73e427bee7f38bbbba74e58",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "weighting": "uniform"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l3heavy/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 118738,
+      "sha256": "2a1607d3e4a357a6ffe39ccb0eb4bf41695ec2df980aab8cb97ae3e820447bfb",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "weighting": "l3heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l3heavy/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+      "bytes": 118580,
+      "sha256": "fac0afae5645aecb74b4da73b149845938a534f39e9f4c95c0663223f8ac34a7",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "weighting": "l3heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l3heavy/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 118648,
+      "sha256": "3037f8eed8842437049a0dfb6b0dee61e932558f322cc0cd4bf9f17d077d3613",
+      "experiment": "risk_weight_grid",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "weighting": "l3heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l3heavy/openai_gpt-oss-120b/benchmark_results_condC.json",
+      "bytes": 118484,
+      "sha256": "92f13784cdf30ef96ff779da77a35cefd3256a7a6b57bb89222edaef9ed295dc",
+      "experiment": "risk_weight_grid",
+      "model": "openai_gpt-oss-120b",
+      "weighting": "l3heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l3heavy/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 118297,
+      "sha256": "e8e8fb3cad68f9c8bb1c55b9e80300b172c8bba6c2535296f817264684925a57",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "weighting": "l3heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l0heavy/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 118726,
+      "sha256": "ff8980366fde8fa347aaea2ca5dc59f9e255939bae50b2053cdd0334587acb18",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "weighting": "l0heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l0heavy/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+      "bytes": 118562,
+      "sha256": "d628edd2cfd40839a8d084ff9a5f174660b9c8ddde935b29a13e08cd6a595322",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "weighting": "l0heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l0heavy/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 118660,
+      "sha256": "7a7d0c389ffbe4c621685d716dff01fdb544dcc4700e934ac63ea3f692d51358",
+      "experiment": "risk_weight_grid",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "weighting": "l0heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l0heavy/openai_gpt-oss-120b/benchmark_results_condC.json",
+      "bytes": 118490,
+      "sha256": "5bfadbf15d9da3a2e1cdeaa566d44324e4ae78e84c1508bbae608b7b6fea019e",
+      "experiment": "risk_weight_grid",
+      "model": "openai_gpt-oss-120b",
+      "weighting": "l0heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/comparison_riskw_l0heavy/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 118313,
+      "sha256": "699e0a2271bd9b9495d8d77a2e4b936adb6795cb0423e1596a77ce589f1ed981",
+      "experiment": "risk_weight_grid",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "weighting": "l0heavy"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/600_gate-on/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34190,
+      "sha256": "3fe8b476da0c8aeddab97d23e6fa1d59a9bdd9f1fcc12a53253261920379094a",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 600,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/600_gate-on/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34150,
+      "sha256": "a99f2f5de5cd37fe1cf311456039256379499c8c62371db69ac58db00102048c",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 600,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/600_gate-on/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34112,
+      "sha256": "ac80f016daf3966b9038d3f38659188c19df636b12d70a6398be7bf7fba58966",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 600,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/600_gate-off/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34184,
+      "sha256": "66f1df15a37662c558b6e0a5ae8f4f06f425265343b1d367fbd52f15bc4c7b77",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 600,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/600_gate-off/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34182,
+      "sha256": "61a768651f96c9c7b48d9ff924c3e31f0a1749ba7413e8023930547110fcea5d",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 600,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/600_gate-off/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34121,
+      "sha256": "5f6f89e52dd5915e221ad67522e59757153dd8407ccc53db19623c4b99bc96a3",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 600,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/800_gate-on/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34235,
+      "sha256": "8fef8af64e232562158338557a05aa21f18ae656bbfb1a611a9695a05c946427",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 800,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/800_gate-on/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34219,
+      "sha256": "0c4263f3efabcd423bf90c34b42fecb34954cf47f027468907bc93f0bf8aab05",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 800,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/800_gate-on/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34147,
+      "sha256": "800cf6625e01f1da2171d5fbeb0b4a13d46381413de374e4df6b24fda8c3a488",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 800,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/800_gate-off/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34249,
+      "sha256": "20a327680967953d6762d2c17068571312abf7c708927e7076cf13cf27cd00de",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 800,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/800_gate-off/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34234,
+      "sha256": "f7d8b71027061ad209f1f311038af45c82877796710a4df56f18cd9f5c1cef0f",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 800,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/800_gate-off/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34183,
+      "sha256": "96f6dce65217aa2a5350c08216e670d2c2525f75a6f1914678411012e269169a",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 800,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/1000_gate-on/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34244,
+      "sha256": "ddb8985f6cc97c9823d26a35774390dfca94ffc75b2264fff872fc00d9eaba86",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 1000,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/1000_gate-on/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34220,
+      "sha256": "f97289490bf87c789fb0bf216ca67f9df1cde1c9bed6df667e76209e46eabe9d",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 1000,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/1000_gate-on/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34146,
+      "sha256": "23a0a65147a1659053a19791647086170ad6486c09b2dbe7bb08c8ca26082362",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 1000,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/1000_gate-off/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34254,
+      "sha256": "996f9f8f4c0dcc2e8a6a62c2e7da63d1911c979d6b79056740db2b4f2dfcf712",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 1000,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/1000_gate-off/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34237,
+      "sha256": "383c00a8bd67949c6137c577a956487f245d974c5e2393763ebc2e29c2933227",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 1000,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/1000_gate-off/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34175,
+      "sha256": "ed9d5d56e69bf86f19089e89ee0042fa716ba5393e402b147077b5b14fd5c206",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 1000,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/2000_gate-on/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34247,
+      "sha256": "967b897baedc59a930aa788de55958211b98428360113ed12bf77f5079ea76fa",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 2000,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/2000_gate-on/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34219,
+      "sha256": "f9a33798fc2a29ce91894ff545cc1b9f7656c9a28de485822f72c5eb91896077",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 2000,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/2000_gate-on/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34149,
+      "sha256": "2a707c179f99601a5530fac2c231bceef65533f567ec49087bf0a579cd876353",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 2000,
+      "arm": "on"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/2000_gate-off/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC.json",
+      "bytes": 34252,
+      "sha256": "907f13d27f0c6be1b885b6633d5cca379ad988c4ee1fcd4b5ced426419eb63f5",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "budget": 2000,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/2000_gate-off/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "bytes": 34241,
+      "sha256": "4bd150dddf1bbcd485fefc29d578b508c4a4671f071befff1562f7e3e6efceac",
+      "experiment": "e6_budget_scan",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "budget": 2000,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/e6_budget/2000_gate-off/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC.json",
+      "bytes": 34174,
+      "sha256": "08b245ff31c862244f97fd1f5cb75c72afb2e7e9ce4b1bcad218c894b9ccbb2a",
+      "experiment": "e6_budget_scan",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "budget": 2000,
+      "arm": "off"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/gpt-5.4-mini/benchmark_results_condA.json",
+      "bytes": 12127,
+      "sha256": "9194f69bd89556af9ebadc452b84ad8a999dddeb23ca522eded980a4930f99c7",
+      "experiment": "reasoning_200",
+      "model": "gpt-5.4-mini",
+      "condition": "A"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/gpt-5.4-mini/benchmark_results_condC.json",
+      "bytes": 12090,
+      "sha256": "b9f845f267a74bc134303193df4b0e6ec269dabc8b85350f21ab9a35319ade9c",
+      "experiment": "reasoning_200",
+      "model": "gpt-5.4-mini",
+      "condition": "C"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/gpt-5.4-mini/benchmark_results_condC_FX.json",
+      "bytes": 12077,
+      "sha256": "5232866fec9aab816e23414c7447b56c7b000a9a0f5f86a168dae0f4b17cf6fc",
+      "experiment": "reasoning_200",
+      "model": "gpt-5.4-mini",
+      "condition": "C_FX"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/gpt-5.4-mini/benchmark_results_condC_FDR.json",
+      "bytes": 12078,
+      "sha256": "d6b1dbe680d2539ada8c16e8f727782ed31edc08871312bbf323c0ca1fb14450",
+      "experiment": "reasoning_200",
+      "model": "gpt-5.4-mini",
+      "condition": "C_FDR"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/gpt-5.4-mini/benchmark_results_condC_FDRS.json",
+      "bytes": 12077,
+      "sha256": "85175a1a523130b9483dcb6c794e1fd7f79efc644f45f83048ddf035922cfce0",
+      "experiment": "reasoning_200",
+      "model": "gpt-5.4-mini",
+      "condition": "C_FDRS"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/deepseek-reasoner/benchmark_results_condA.json",
+      "bytes": 12188,
+      "sha256": "21c19b3dfa07b50defebf55465a538433e63832ba611f5fe7c2b83baa9dac12b",
+      "experiment": "reasoning_200",
+      "model": "deepseek-reasoner",
+      "condition": "A"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/deepseek-reasoner/benchmark_results_condC.json",
+      "bytes": 12131,
+      "sha256": "79ba40922972f75de65f0ae331605a2cc76f6e633f4746fe4051180addd1db0c",
+      "experiment": "reasoning_200",
+      "model": "deepseek-reasoner",
+      "condition": "C"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/deepseek-reasoner/benchmark_results_condC_FX.json",
+      "bytes": 12106,
+      "sha256": "15cf86805cf4a4e80d3709e5188371339762681150dfe6bec1e381422c851359",
+      "experiment": "reasoning_200",
+      "model": "deepseek-reasoner",
+      "condition": "C_FX"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/deepseek-reasoner/benchmark_results_condC_FDR.json",
+      "bytes": 12107,
+      "sha256": "f3a77c46f65d883828e63da64284f8d076999edbfb19176d212d43ad0ee86a8c",
+      "experiment": "reasoning_200",
+      "model": "deepseek-reasoner",
+      "condition": "C_FDR"
+    },
+    {
+      "path": "results/raw/robustness_compact/api_comparison_reasoning_200/deepseek-reasoner/benchmark_results_condC_FDRS.json",
+      "bytes": 12106,
+      "sha256": "f5c6dbcc5c781310e6c9a6e217b21f4b35fe6c1380b619b20197249d82e95bac",
+      "experiment": "reasoning_200",
+      "model": "deepseek-reasoner",
+      "condition": "C_FDRS"
+    }
+  ]
+}

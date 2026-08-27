@@ -1,0 +1,649 @@
+{
+  "prereg": "E4_external_queries.md §8 conditional adaptation prereg + selector S1 freeze (2026-08-02)",
+  "train_seed": 46,
+  "arms": {
+    "unadapted": {
+      "alpha": 0.6,
+      "role_reweight": false
+    },
+    "adapted": {
+      "alpha": 0.5,
+      "role_reweight": true,
+      "reweight_source": "benchmark/benchmark.json (frozen PCB)",
+      "role_weights": {
+        "network_loader": 0.552051868531036,
+        "plotting": 0.0,
+        "analysis_executor": 1.0,
+        "other": 0.08146704043886872,
+        "network_or_element_construction": 0.08427826461056794,
+        "controller_or_timeseries": 0.28596268311118583
+      }
+    }
+  },
+  "selector": {
+    "rule": "S1 (frozen)",
+    "patterns": [
+      "\\b(?:ieee|cigre|pegase|rte|wscc|pjm|kerber|baran|oberrhein|simbench|polish|illinois|gb|rts)\\b",
+      "\\bnew england\\b",
+      "\\bcase[_ ]?\\d+",
+      "\\b\\d+[\\s-]*bus\\s+(?:\\w+\\s+){0,2}(?:case|system|grid|feeder)\\b",
+      "\\bthe \\d+[\\s-]*bus\\b",
+      "\\bexample net(?:work)?\\b|\\bopen ring\\b|\\b4[\\s-]*loads\\b|\\bfour loads\\b|loads-with-branches|voltage[\\s-]*control lv|european (?:low-voltage|lv) test feeder"
+    ]
+  },
+  "sets": {
+    "layer1_holdout_n80": {
+      "n": 80,
+      "selector_distribution": {
+        "construction": 0,
+        "analysis": 80
+      },
+      "selector_decisions": {
+        "nh_001": "analysis",
+        "nh_002": "analysis",
+        "nh_003": "analysis",
+        "nh_004": "analysis",
+        "nh_005": "analysis",
+        "nh_006": "analysis",
+        "nh_007": "analysis",
+        "nh_008": "analysis",
+        "nh_009": "analysis",
+        "nh_010": "analysis",
+        "nh_011": "analysis",
+        "nh_012": "analysis",
+        "nh_013": "analysis",
+        "nh_014": "analysis",
+        "nh_015": "analysis",
+        "nh_016": "analysis",
+        "nh_017": "analysis",
+        "nh_018": "analysis",
+        "nh_019": "analysis",
+        "nh_020": "analysis",
+        "nh_021": "analysis",
+        "nh_022": "analysis",
+        "nh_023": "analysis",
+        "nh_024": "analysis",
+        "nh_025": "analysis",
+        "nh_026": "analysis",
+        "nh_027": "analysis",
+        "nh_028": "analysis",
+        "nh_029": "analysis",
+        "nh_030": "analysis",
+        "nh_031": "analysis",
+        "nh_032": "analysis",
+        "nh_033": "analysis",
+        "nh_034": "analysis",
+        "nh_035": "analysis",
+        "nh_036": "analysis",
+        "nh_037": "analysis",
+        "nh_038": "analysis",
+        "nh_039": "analysis",
+        "nh_040": "analysis",
+        "nh_041": "analysis",
+        "nh_042": "analysis",
+        "nh_043": "analysis",
+        "nh_044": "analysis",
+        "nh_045": "analysis",
+        "nh_046": "analysis",
+        "nh_047": "analysis",
+        "nh_048": "analysis",
+        "nh_049": "analysis",
+        "nh_050": "analysis",
+        "nh_051": "analysis",
+        "nh_052": "analysis",
+        "nh_053": "analysis",
+        "nh_054": "analysis",
+        "nh_055": "analysis",
+        "nh_056": "analysis",
+        "nh_057": "analysis",
+        "nh_058": "analysis",
+        "nh_059": "analysis",
+        "nh_060": "analysis",
+        "nh_061": "analysis",
+        "nh_062": "analysis",
+        "nh_063": "analysis",
+        "nh_064": "analysis",
+        "nh_065": "analysis",
+        "nh_066": "analysis",
+        "nh_067": "analysis",
+        "nh_068": "analysis",
+        "nh_069": "analysis",
+        "nh_070": "analysis",
+        "nh_071": "analysis",
+        "nh_072": "analysis",
+        "nh_073": "analysis",
+        "nh_074": "analysis",
+        "nh_075": "analysis",
+        "nh_076": "analysis",
+        "nh_077": "analysis",
+        "nh_078": "analysis",
+        "nh_079": "analysis",
+        "nh_080": "analysis"
+      },
+      "metrics": {
+        "unadapted": {
+          "1": {
+            "recall": 0.0833,
+            "precision": 0.2125,
+            "hit_rate": 0.2125
+          },
+          "3": {
+            "recall": 0.3485,
+            "precision": 0.325,
+            "hit_rate": 0.6875
+          },
+          "5": {
+            "recall": 0.4271,
+            "precision": 0.2375,
+            "hit_rate": 0.8125
+          },
+          "10": {
+            "recall": 0.5442,
+            "precision": 0.1537,
+            "hit_rate": 0.9125
+          },
+          "20": {
+            "recall": 0.7077,
+            "precision": 0.1,
+            "hit_rate": 0.95
+          }
+        },
+        "adapted": {
+          "1": {
+            "recall": 0.2062,
+            "precision": 0.55,
+            "hit_rate": 0.55
+          },
+          "3": {
+            "recall": 0.4558,
+            "precision": 0.4125,
+            "hit_rate": 0.8375
+          },
+          "5": {
+            "recall": 0.606,
+            "precision": 0.3275,
+            "hit_rate": 0.95
+          },
+          "10": {
+            "recall": 0.7217,
+            "precision": 0.1962,
+            "hit_rate": 1.0
+          },
+          "20": {
+            "recall": 0.7727,
+            "precision": 0.105,
+            "hit_rate": 1.0
+          }
+        },
+        "conditional": {
+          "1": {
+            "recall": 0.2062,
+            "precision": 0.55,
+            "hit_rate": 0.55
+          },
+          "3": {
+            "recall": 0.4558,
+            "precision": 0.4125,
+            "hit_rate": 0.8375
+          },
+          "5": {
+            "recall": 0.606,
+            "precision": 0.3275,
+            "hit_rate": 0.95
+          },
+          "10": {
+            "recall": 0.7217,
+            "precision": 0.1962,
+            "hit_rate": 1.0
+          },
+          "20": {
+            "recall": 0.7727,
+            "precision": 0.105,
+            "hit_rate": 1.0
+          }
+        }
+      }
+    },
+    "layer2a_n84": {
+      "n": 84,
+      "selector_distribution": {
+        "construction": 49,
+        "analysis": 35
+      },
+      "selector_decisions": {
+        "l2a_001": "construction",
+        "l2a_002": "analysis",
+        "l2a_003": "analysis",
+        "l2a_004": "analysis",
+        "l2a_005": "analysis",
+        "l2a_006": "analysis",
+        "l2a_007": "analysis",
+        "l2a_008": "analysis",
+        "l2a_009": "analysis",
+        "l2a_010": "construction",
+        "l2a_011": "construction",
+        "l2a_012": "construction",
+        "l2a_013": "analysis",
+        "l2a_014": "analysis",
+        "l2a_015": "analysis",
+        "l2a_016": "analysis",
+        "l2a_017": "construction",
+        "l2a_018": "construction",
+        "l2a_019": "construction",
+        "l2a_020": "construction",
+        "l2a_021": "construction",
+        "l2a_022": "construction",
+        "l2a_023": "construction",
+        "l2a_024": "construction",
+        "l2a_025": "construction",
+        "l2a_026": "analysis",
+        "l2a_027": "construction",
+        "l2a_028": "construction",
+        "l2a_029": "construction",
+        "l2a_030": "construction",
+        "l2a_031": "construction",
+        "l2a_032": "construction",
+        "l2a_033": "analysis",
+        "l2a_034": "construction",
+        "l2a_035": "construction",
+        "l2a_036": "construction",
+        "l2a_037": "construction",
+        "l2a_038": "analysis",
+        "l2a_039": "analysis",
+        "l2a_040": "analysis",
+        "l2a_041": "analysis",
+        "l2a_042": "construction",
+        "l2a_043": "construction",
+        "l2a_044": "analysis",
+        "l2a_045": "analysis",
+        "l2a_046": "construction",
+        "l2a_047": "analysis",
+        "l2a_048": "construction",
+        "l2a_049": "analysis",
+        "l2a_050": "analysis",
+        "l2a_051": "construction",
+        "l2a_052": "construction",
+        "l2a_053": "analysis",
+        "l2a_054": "construction",
+        "l2a_055": "analysis",
+        "l2a_056": "analysis",
+        "l2a_057": "construction",
+        "l2a_058": "construction",
+        "l2a_059": "construction",
+        "l2a_060": "analysis",
+        "l2a_061": "analysis",
+        "l2a_062": "construction",
+        "l2a_063": "construction",
+        "l2a_064": "analysis",
+        "l2a_065": "analysis",
+        "l2a_066": "analysis",
+        "l2a_067": "construction",
+        "l2a_068": "construction",
+        "l2a_069": "construction",
+        "l2a_070": "construction",
+        "l2a_071": "construction",
+        "l2a_072": "construction",
+        "l2a_073": "analysis",
+        "l2a_074": "analysis",
+        "l2a_075": "construction",
+        "l2a_076": "construction",
+        "l2a_077": "construction",
+        "l2a_078": "construction",
+        "l2a_079": "construction",
+        "l2a_080": "construction",
+        "l2a_081": "analysis",
+        "l2a_082": "construction",
+        "l2a_083": "construction",
+        "l2a_084": "analysis"
+      },
+      "metrics": {
+        "unadapted": {
+          "1": {
+            "recall": 0.1228,
+            "precision": 0.5833,
+            "hit_rate": 0.5833
+          },
+          "3": {
+            "recall": 0.2726,
+            "precision": 0.4722,
+            "hit_rate": 0.75
+          },
+          "5": {
+            "recall": 0.3634,
+            "precision": 0.3976,
+            "hit_rate": 0.7976
+          },
+          "10": {
+            "recall": 0.5706,
+            "precision": 0.325,
+            "hit_rate": 0.8571
+          },
+          "20": {
+            "recall": 0.6908,
+            "precision": 0.1929,
+            "hit_rate": 0.9405
+          }
+        },
+        "adapted": {
+          "1": {
+            "recall": 0.1288,
+            "precision": 0.5595,
+            "hit_rate": 0.5595
+          },
+          "3": {
+            "recall": 0.3032,
+            "precision": 0.4484,
+            "hit_rate": 0.869
+          },
+          "5": {
+            "recall": 0.3743,
+            "precision": 0.3548,
+            "hit_rate": 0.9167
+          },
+          "10": {
+            "recall": 0.551,
+            "precision": 0.2738,
+            "hit_rate": 0.9762
+          },
+          "20": {
+            "recall": 0.7603,
+            "precision": 0.1982,
+            "hit_rate": 0.9881
+          }
+        },
+        "conditional": {
+          "1": {
+            "recall": 0.1347,
+            "precision": 0.6071,
+            "hit_rate": 0.6071
+          },
+          "3": {
+            "recall": 0.3234,
+            "precision": 0.504,
+            "hit_rate": 0.8452
+          },
+          "5": {
+            "recall": 0.4209,
+            "precision": 0.4238,
+            "hit_rate": 0.9048
+          },
+          "10": {
+            "recall": 0.6444,
+            "precision": 0.3429,
+            "hit_rate": 0.9524
+          },
+          "20": {
+            "recall": 0.7618,
+            "precision": 0.2018,
+            "hit_rate": 0.9762
+          }
+        }
+      }
+    },
+    "layer2a_ext_n10": {
+      "n": 10,
+      "selector_distribution": {
+        "construction": 10,
+        "analysis": 0
+      },
+      "selector_decisions": {
+        "l2a_ext_001": "construction",
+        "l2a_ext_002": "construction",
+        "l2a_ext_003": "construction",
+        "l2a_ext_004": "construction",
+        "l2a_ext_005": "construction",
+        "l2a_ext_006": "construction",
+        "l2a_ext_007": "construction",
+        "l2a_ext_008": "construction",
+        "l2a_ext_009": "construction",
+        "l2a_ext_010": "construction"
+      },
+      "metrics": {
+        "unadapted": {
+          "1": {
+            "recall": 0.1178,
+            "precision": 0.6,
+            "hit_rate": 0.6
+          },
+          "3": {
+            "recall": 0.245,
+            "precision": 0.5333,
+            "hit_rate": 0.8
+          },
+          "5": {
+            "recall": 0.3806,
+            "precision": 0.48,
+            "hit_rate": 0.9
+          },
+          "10": {
+            "recall": 0.6181,
+            "precision": 0.4,
+            "hit_rate": 1.0
+          },
+          "20": {
+            "recall": 0.7697,
+            "precision": 0.25,
+            "hit_rate": 1.0
+          }
+        },
+        "adapted": {
+          "1": {
+            "recall": 0.1344,
+            "precision": 0.7,
+            "hit_rate": 0.7
+          },
+          "3": {
+            "recall": 0.2758,
+            "precision": 0.5667,
+            "hit_rate": 0.9
+          },
+          "5": {
+            "recall": 0.305,
+            "precision": 0.38,
+            "hit_rate": 0.9
+          },
+          "10": {
+            "recall": 0.5,
+            "precision": 0.32,
+            "hit_rate": 1.0
+          },
+          "20": {
+            "recall": 0.7531,
+            "precision": 0.245,
+            "hit_rate": 1.0
+          }
+        },
+        "conditional": {
+          "1": {
+            "recall": 0.1178,
+            "precision": 0.6,
+            "hit_rate": 0.6
+          },
+          "3": {
+            "recall": 0.245,
+            "precision": 0.5333,
+            "hit_rate": 0.8
+          },
+          "5": {
+            "recall": 0.3806,
+            "precision": 0.48,
+            "hit_rate": 0.9
+          },
+          "10": {
+            "recall": 0.6181,
+            "precision": 0.4,
+            "hit_rate": 1.0
+          },
+          "20": {
+            "recall": 0.7697,
+            "precision": 0.25,
+            "hit_rate": 1.0
+          }
+        }
+      }
+    },
+    "layer2b_n20": {
+      "n": 20,
+      "selector_distribution": {
+        "construction": 0,
+        "analysis": 20
+      },
+      "selector_decisions": {
+        "l2b_A01": "analysis",
+        "l2b_A02": "analysis",
+        "l2b_A03": "analysis",
+        "l2b_A04": "analysis",
+        "l2b_A05": "analysis",
+        "l2b_A06": "analysis",
+        "l2b_A07": "analysis",
+        "l2b_B01": "analysis",
+        "l2b_B02": "analysis",
+        "l2b_B03": "analysis",
+        "l2b_B04": "analysis",
+        "l2b_B05": "analysis",
+        "l2b_B06": "analysis",
+        "l2b_B07": "analysis",
+        "l2b_C01": "analysis",
+        "l2b_C02": "analysis",
+        "l2b_C03": "analysis",
+        "l2b_C04": "analysis",
+        "l2b_C05": "analysis",
+        "l2b_C06": "analysis"
+      },
+      "metrics": {
+        "unadapted": {
+          "1": {
+            "recall": 0.1,
+            "precision": 0.3,
+            "hit_rate": 0.3
+          },
+          "3": {
+            "recall": 0.3571,
+            "precision": 0.3167,
+            "hit_rate": 0.85
+          },
+          "5": {
+            "recall": 0.3893,
+            "precision": 0.21,
+            "hit_rate": 0.9
+          },
+          "10": {
+            "recall": 0.4702,
+            "precision": 0.13,
+            "hit_rate": 0.9
+          },
+          "20": {
+            "recall": 0.5845,
+            "precision": 0.0825,
+            "hit_rate": 0.95
+          }
+        },
+        "adapted": {
+          "1": {
+            "recall": 0.225,
+            "precision": 0.55,
+            "hit_rate": 0.55
+          },
+          "3": {
+            "recall": 0.425,
+            "precision": 0.35,
+            "hit_rate": 0.85
+          },
+          "5": {
+            "recall": 0.5238,
+            "precision": 0.26,
+            "hit_rate": 0.95
+          },
+          "10": {
+            "recall": 0.6452,
+            "precision": 0.175,
+            "hit_rate": 0.95
+          },
+          "20": {
+            "recall": 0.8429,
+            "precision": 0.115,
+            "hit_rate": 1.0
+          }
+        },
+        "conditional": {
+          "1": {
+            "recall": 0.225,
+            "precision": 0.55,
+            "hit_rate": 0.55
+          },
+          "3": {
+            "recall": 0.425,
+            "precision": 0.35,
+            "hit_rate": 0.85
+          },
+          "5": {
+            "recall": 0.5238,
+            "precision": 0.26,
+            "hit_rate": 0.95
+          },
+          "10": {
+            "recall": 0.6452,
+            "precision": 0.175,
+            "hit_rate": 0.95
+          },
+          "20": {
+            "recall": 0.8429,
+            "precision": 0.115,
+            "hit_rate": 1.0
+          }
+        }
+      }
+    }
+  },
+  "comparison_recall_at_10": {
+    "layer1_holdout_n80": {
+      "unadapted": 0.5442,
+      "adapted": 0.7217,
+      "conditional": 0.7217,
+      "hit@10_conditional": 1.0,
+      "hit@10_unadapted": 0.9125,
+      "hit@10_adapted": 1.0,
+      "max_arm": 0.7217,
+      "conditional_minus_max_pp": 0.0,
+      "meets_exit_a_margin": true
+    },
+    "layer2a_n84": {
+      "unadapted": 0.5706,
+      "adapted": 0.551,
+      "conditional": 0.6444,
+      "hit@10_conditional": 0.9524,
+      "hit@10_unadapted": 0.8571,
+      "hit@10_adapted": 0.9762,
+      "max_arm": 0.5706,
+      "conditional_minus_max_pp": 7.38,
+      "meets_exit_a_margin": true
+    },
+    "layer2a_ext_n10": {
+      "unadapted": 0.6181,
+      "adapted": 0.5,
+      "conditional": 0.6181,
+      "hit@10_conditional": 1.0,
+      "hit@10_unadapted": 1.0,
+      "hit@10_adapted": 1.0,
+      "max_arm": 0.6181,
+      "conditional_minus_max_pp": 0.0,
+      "meets_exit_a_margin": true
+    },
+    "layer2b_n20": {
+      "unadapted": 0.4702,
+      "adapted": 0.6452,
+      "conditional": 0.6452,
+      "hit@10_conditional": 0.95,
+      "hit@10_unadapted": 0.9,
+      "hit@10_adapted": 0.95,
+      "max_arm": 0.6452,
+      "conditional_minus_max_pp": 0.0,
+      "meets_exit_a_margin": true
+    }
+  },
+  "exit_reading": {
+    "sets_meeting_max_minus_1pp": 4,
+    "exit": "a",
+    "criterion": "exit a: all four sets conditional recall@10 >= max(adapted, unadapted) - 1pp"
+  }
+}

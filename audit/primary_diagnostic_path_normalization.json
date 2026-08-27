@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "target": "results/raw/main_experiment/primary_outcomes_compact.json",
+  "scope": "Only condition_a_diagnostics.error_msg_dictionary, its integrity hash, and attached normalization metadata.",
+  "scheme": {
+    "id": "python-env-site-packages-prefix-v2",
+    "replacement": "<PYTHON_ENV>/site-packages/",
+    "preserved": "the complete package-relative path after site-packages/",
+    "recovery": "Original messages are recoverable by maintainers from each content-pinned source run; pre-normalization hashes verify the recovery. The removed private prefix is not published."
+  },
+  "counts_this_run": {
+    "runs_changed": 0,
+    "dictionary_entries_changed": 0,
+    "item_occurrences_changed": 0,
+    "dictionary_prefix_substitutions": 0
+  },
+  "archive_recorded_totals": {
+    "runs_with_normalization": 8,
+    "dictionary_entries_changed": 215,
+    "item_occurrences_changed": 1662
+  },
+  "invariance": {
+    "nondiagnostic_projection_sha256_before": "058ecd8e47027f622c6926fe97430f33850b8519c579914b93f1138ba6286b57",
+    "nondiagnostic_projection_sha256_after": "058ecd8e47027f622c6926fe97430f33850b8519c579914b93f1138ba6286b57",
+    "all_nontext_evidence_exact": true,
+    "error_msg_index_unchanged": true,
+    "correct_task_fn_unchanged": true,
+    "remaining_absolute_site_packages_prefixes": 0
+  },
+  "pre_normalization_diagnostics_sha256_by_run": {
+    "comparison|Qwen_Qwen2.5-Coder-0.5B-Instruct|A": "e8ee7cd497781f03552a40df89bf263e505cc3f665e43664053b98a0df1e3f2c",
+    "comparison|Qwen_Qwen2.5-Coder-1.5B-Instruct|A": "7c168fa546928c6495f587f053abe4a269440ddd7fedc44939eecd404a7609e4",
+    "comparison|Qwen_Qwen2.5-Coder-7B-Instruct|A": "aeb2d034046f22d532a85f0531b79f6ce3bffcb07bb4f8971415356dfc554148",
+    "comparison|meta-llama_Llama-3.1-8B-Instruct|A": "503d63583c07a1d91d2459cc1d14d0b740c9087068018b5cbfe8a55df9868529",
+    "comparison|Qwen_Qwen2.5-Coder-14B-Instruct|A": "5d8a284d9110213d9a1ef5b7b47cf8780de2f1aac96453a2ed18a60f5e40055f",
+    "comparison|Qwen_Qwen2.5-Coder-32B-Instruct|A": "8e4026eaa4c5ff87b2709bf0be36386abd6d318404b84af388b473632d1d3ff1",
+    "comparison|meta-llama_Llama-3.1-70B-Instruct|A": "eec2d9fb98456d1e491a389bfa23c3075ec256e59aad280fcfd914ebce5842a2",
+    "comparison|openai_gpt-oss-120b|A": "183a4533abff715d878b9152aa8b066156400967304275a721d111aa221870f9",
+    "comparison|Qwen_Qwen3-Coder-Next|A": "3425099fb28d328059bea127da0e0eae1c38e90db89b7d0450d5e8f39b4bc76f",
+    "comparison|meta-llama_Llama-3.1-405B-Instruct|A": "da842b485537090b5f5f33be4c3d3c063bc66b9aee693927d5e62fa01e16336f",
+    "comparison|Qwen_Qwen3-Coder-480B-A35B-Instruct|A": "5121301be6f3b053dfb0ce244e1b14dc7fa89dd194214934100e785fd9cd543a"
+  },
+  "normalized_diagnostics_sha256_by_run": {
+    "comparison|Qwen_Qwen2.5-Coder-0.5B-Instruct|A": "33ae60d4eeb0212a3e8c2b8d9118d336b86b67b76063f998db4d7978bf67dd1d",
+    "comparison|Qwen_Qwen2.5-Coder-1.5B-Instruct|A": "7c168fa546928c6495f587f053abe4a269440ddd7fedc44939eecd404a7609e4",
+    "comparison|Qwen_Qwen2.5-Coder-7B-Instruct|A": "0e7c3daaee73a907a2646e025bd57953f792d66a5ce3a4b79795386ec0909906",
+    "comparison|meta-llama_Llama-3.1-8B-Instruct|A": "c9a7bda2134bc4786420a744b5ff8bdc8537d4d7d5308ccf825772c2022c91b5",
+    "comparison|Qwen_Qwen2.5-Coder-14B-Instruct|A": "0d0df3f6ad06332275d71b2d78345b49d79be68382c20e7b1f7db43c25d883e9",
+    "comparison|Qwen_Qwen2.5-Coder-32B-Instruct|A": "8e4026eaa4c5ff87b2709bf0be36386abd6d318404b84af388b473632d1d3ff1",
+    "comparison|meta-llama_Llama-3.1-70B-Instruct|A": "eec2d9fb98456d1e491a389bfa23c3075ec256e59aad280fcfd914ebce5842a2",
+    "comparison|openai_gpt-oss-120b|A": "88c6339b242497830570735fceaec6730bcaa59d1805f6d8930b090fac0aadfd",
+    "comparison|Qwen_Qwen3-Coder-Next|A": "e9860dc8bb5e9e60d4c486c201ce1e52a41647309cbf1f10a2e69572d01de26f",
+    "comparison|meta-llama_Llama-3.1-405B-Instruct|A": "c8e5aa41ef4d1b96f8b409c6eae73ac7fe9b3abc4adbf8a52a09431feabed87b",
+    "comparison|Qwen_Qwen3-Coder-480B-A35B-Instruct|A": "7e33208323416e55a2ac2335b75bba620f04399aab942bff32a590e0712aed9c"
+  }
+}

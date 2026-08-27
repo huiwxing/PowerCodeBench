@@ -1,0 +1,88 @@
+{
+  "model": "meta-llama/Llama-3.1-405B-Instruct",
+  "operating_point": "C",
+  "protocol": "E3 protocol A",
+  "reps": {
+    "cluster_avg_power_w": {
+      "max": 4720.05934082724,
+      "median": 4720.05934082724,
+      "min": 4720.05934082724,
+      "values": [
+        4720.05934082724
+      ]
+    },
+    "energy_methods": [
+      "nvml_total_energy_counter"
+    ],
+    "j_per_completion_token": {
+      "max": 48.724391430300926,
+      "median": 48.724391430300926,
+      "min": 48.724391430300926,
+      "values": [
+        48.724391430300926
+      ]
+    },
+    "j_per_request": {
+      "max": 11268.977249999998,
+      "median": 11268.977249999998,
+      "min": 11268.977249999998,
+      "values": [
+        11268.977249999998
+      ]
+    },
+    "j_per_successful_request": {
+      "max": 20489.04954545454,
+      "median": 20489.04954545454,
+      "min": 20489.04954545454,
+      "values": [
+        20489.04954545454
+      ]
+    },
+    "j_per_total_token": {
+      "max": 6.913610219819996,
+      "median": 6.913610219819996,
+      "min": 6.913610219819996,
+      "values": [
+        6.913610219819996
+      ]
+    },
+    "n_gpus": 16,
+    "n_nodes": 4,
+    "n_reps": 1,
+    "peak_memory_used_bytes_max_device": 100855382016,
+    "peak_memory_used_bytes_sum": 1612981534720,
+    "representative_window_s": {
+      "max": 240.11139767151326,
+      "median": 240.11139767151326,
+      "min": 240.11139767151326,
+      "values": [
+        240.11139767151326
+      ]
+    },
+    "requests_per_s": {
+      "max": 0.4164733576571237,
+      "median": 0.4164733576571237,
+      "min": 0.4164733576571237,
+      "values": [
+        0.4164733576571237
+      ]
+    },
+    "total_energy_j": {
+      "max": 1126897.7249999999,
+      "median": 1126897.7249999999,
+      "min": 1126897.7249999999,
+      "values": [
+        1126897.7249999999
+      ]
+    },
+    "total_tokens_per_s": {
+      "max": 678.8390787803819,
+      "median": 678.8390787803819,
+      "min": 678.8390787803819,
+      "values": [
+        678.8390787803819
+      ]
+    }
+  },
+  "schema_version": 1
+}

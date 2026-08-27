@@ -1,0 +1,3825 @@
+{
+  "schema_version": "1.0",
+  "source_manifest": "results/raw/e2_transfer/manifest.json",
+  "cold_start": {
+    "n_cells": 24,
+    "n_items_per_cell": 90,
+    "conditions": [
+      "A",
+      "Rsem",
+      "RsemB",
+      "C"
+    ],
+    "n_boot": 10000,
+    "seed": 20260727,
+    "backends": {
+      "opendss": {
+        "run_dir": "results/raw/e2_transfer/opendss/base",
+        "models": {
+          "Qwen_Qwen2.5-Coder-32B-Instruct": {
+            "conditions": {
+              "A": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 30,
+                  "n_match": 16,
+                  "exec_rate": 0.3333,
+                  "accuracy": 0.1778,
+                  "accuracy_wilson_ci95": [
+                    0.1125,
+                    0.2694
+                  ],
+                  "acc_given_exec": 0.5333
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 11,
+                    "n_match": 7,
+                    "exec_rate": 0.6111,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.6364
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 5,
+                    "n_match": 3,
+                    "exec_rate": 0.2778,
+                    "accuracy": 0.1667,
+                    "accuracy_wilson_ci95": [
+                      0.0584,
+                      0.3922
+                    ],
+                    "acc_given_exec": 0.6
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 11,
+                    "n_match": 6,
+                    "exec_rate": 0.6111,
+                    "accuracy": 0.3333,
+                    "accuracy_wilson_ci95": [
+                      0.1628,
+                      0.5625
+                    ],
+                    "acc_given_exec": 0.5455
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 3,
+                    "n_match": 0,
+                    "exec_rate": 0.1667,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": 0.0
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 0,
+                    "n_match": 0,
+                    "exec_rate": 0.0,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": null
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 19,
+                    "n_match": 8,
+                    "exec_rate": 0.4222,
+                    "accuracy": 0.1778,
+                    "accuracy_wilson_ci95": [
+                      0.0929,
+                      0.3133
+                    ],
+                    "acc_given_exec": 0.4211
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 11,
+                    "n_match": 8,
+                    "exec_rate": 0.2444,
+                    "accuracy": 0.1778,
+                    "accuracy_wilson_ci95": [
+                      0.0929,
+                      0.3133
+                    ],
+                    "acc_given_exec": 0.7273
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 35,
+                  "DSSException": 19,
+                  "TypeError": 5,
+                  "IndexError": 1
+                },
+                "timestamp": "2026-07-26T15:55:17.501055"
+              },
+              "C": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 31,
+                  "n_match": 14,
+                  "exec_rate": 0.3444,
+                  "accuracy": 0.1556,
+                  "accuracy_wilson_ci95": [
+                    0.095,
+                    0.2443
+                  ],
+                  "acc_given_exec": 0.4516
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 6,
+                    "n_match": 3,
+                    "exec_rate": 0.3333,
+                    "accuracy": 0.1667,
+                    "accuracy_wilson_ci95": [
+                      0.0584,
+                      0.3922
+                    ],
+                    "acc_given_exec": 0.5
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 6,
+                    "n_match": 5,
+                    "exec_rate": 0.3333,
+                    "accuracy": 0.2778,
+                    "accuracy_wilson_ci95": [
+                      0.125,
+                      0.5087
+                    ],
+                    "acc_given_exec": 0.8333
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 5,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.2778,
+                    "accuracy_wilson_ci95": [
+                      0.125,
+                      0.5087
+                    ],
+                    "acc_given_exec": 0.4167
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 1,
+                    "n_match": 0,
+                    "exec_rate": 0.0556,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": 0.0
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 6,
+                    "n_match": 1,
+                    "exec_rate": 0.3333,
+                    "accuracy": 0.0556,
+                    "accuracy_wilson_ci95": [
+                      0.0099,
+                      0.2576
+                    ],
+                    "acc_given_exec": 0.1667
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 17,
+                    "n_match": 8,
+                    "exec_rate": 0.3778,
+                    "accuracy": 0.1778,
+                    "accuracy_wilson_ci95": [
+                      0.0929,
+                      0.3133
+                    ],
+                    "acc_given_exec": 0.4706
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 14,
+                    "n_match": 6,
+                    "exec_rate": 0.3111,
+                    "accuracy": 0.1333,
+                    "accuracy_wilson_ci95": [
+                      0.0626,
+                      0.2618
+                    ],
+                    "acc_given_exec": 0.4286
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 44,
+                  "DSSException": 12,
+                  "TypeError": 2,
+                  "IndexError": 1
+                },
+                "timestamp": "2026-07-26T16:01:56.954555"
+              },
+              "Rsem": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 71,
+                  "n_match": 60,
+                  "exec_rate": 0.7889,
+                  "accuracy": 0.6667,
+                  "accuracy_wilson_ci95": [
+                    0.5642,
+                    0.7555
+                  ],
+                  "acc_given_exec": 0.8451
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 13,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.7222,
+                    "accuracy_wilson_ci95": [
+                      0.4913,
+                      0.875
+                    ],
+                    "acc_given_exec": 0.8667
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 13,
+                    "n_match": 12,
+                    "exec_rate": 0.7222,
+                    "accuracy": 0.6667,
+                    "accuracy_wilson_ci95": [
+                      0.4375,
+                      0.8372
+                    ],
+                    "acc_given_exec": 0.9231
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 14,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.9333
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 7,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5833
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 14,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.875
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 36,
+                    "n_match": 28,
+                    "exec_rate": 0.8,
+                    "accuracy": 0.6222,
+                    "accuracy_wilson_ci95": [
+                      0.4763,
+                      0.7489
+                    ],
+                    "acc_given_exec": 0.7778
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 35,
+                    "n_match": 32,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.7111,
+                    "accuracy_wilson_ci95": [
+                      0.5663,
+                      0.8227
+                    ],
+                    "acc_given_exec": 0.9143
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 13,
+                  "TypeError": 3,
+                  "IndexError": 2,
+                  "DSSException": 1
+                },
+                "timestamp": "2026-07-26T16:00:14.585622"
+              },
+              "RsemB": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 59,
+                  "n_match": 37,
+                  "exec_rate": 0.6556,
+                  "accuracy": 0.4111,
+                  "accuracy_wilson_ci95": [
+                    0.3151,
+                    0.5144
+                  ],
+                  "acc_given_exec": 0.6271
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 8,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.4444,
+                    "accuracy_wilson_ci95": [
+                      0.2456,
+                      0.6628
+                    ],
+                    "acc_given_exec": 0.5714
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 11,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.7857
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 10,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.5556,
+                    "accuracy_wilson_ci95": [
+                      0.3372,
+                      0.7544
+                    ],
+                    "acc_given_exec": 0.5882
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 9,
+                    "n_match": 6,
+                    "exec_rate": 0.5,
+                    "accuracy": 0.3333,
+                    "accuracy_wilson_ci95": [
+                      0.1628,
+                      0.5625
+                    ],
+                    "acc_given_exec": 0.6667
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 5,
+                    "n_match": 2,
+                    "exec_rate": 0.2778,
+                    "accuracy": 0.1111,
+                    "accuracy_wilson_ci95": [
+                      0.031,
+                      0.328
+                    ],
+                    "acc_given_exec": 0.4
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 28,
+                    "n_match": 13,
+                    "exec_rate": 0.6222,
+                    "accuracy": 0.2889,
+                    "accuracy_wilson_ci95": [
+                      0.1773,
+                      0.4337
+                    ],
+                    "acc_given_exec": 0.4643
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 31,
+                    "n_match": 24,
+                    "exec_rate": 0.6889,
+                    "accuracy": 0.5333,
+                    "accuracy_wilson_ci95": [
+                      0.3908,
+                      0.6706
+                    ],
+                    "acc_given_exec": 0.7742
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 14,
+                  "DSSException": 12,
+                  "TypeError": 3,
+                  "IndexError": 2
+                },
+                "timestamp": "2026-07-27T07:24:14.562219"
+              }
+            },
+            "paired": {
+              "C-A::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.0222,
+                "ci95": [
+                  -0.1,
+                  0.0556
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 6,
+                "n_discordant_neg": 8
+              },
+              "C-A::exec": {
+                "n_pairs": 90,
+                "delta": 0.0111,
+                "ci95": [
+                  -0.1,
+                  0.1333
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 15,
+                "n_discordant_neg": 14
+              },
+              "C-A::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.0,
+                "ci95": [
+                  -0.0889,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 2,
+                "n_discordant_neg": 2
+              },
+              "C-A::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.0444,
+                "ci95": [
+                  -0.1778,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 4,
+                "n_discordant_neg": 6
+              },
+              "C-Rsem::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.5111,
+                "ci95": [
+                  -0.6333,
+                  -0.3889
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 4,
+                "n_discordant_neg": 50
+              },
+              "C-Rsem::exec": {
+                "n_pairs": 90,
+                "delta": -0.4444,
+                "ci95": [
+                  -0.5778,
+                  -0.3111
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 6,
+                "n_discordant_neg": 46
+              },
+              "C-Rsem::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.4444,
+                "ci95": [
+                  -0.6222,
+                  -0.2667
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 3,
+                "n_discordant_neg": 23
+              },
+              "C-Rsem::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.5778,
+                "ci95": [
+                  -0.7333,
+                  -0.4222
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 1,
+                "n_discordant_neg": 27
+              },
+              "C-RsemB::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.2556,
+                "ci95": [
+                  -0.3667,
+                  -0.1444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 5,
+                "n_discordant_neg": 28
+              },
+              "C-RsemB::exec": {
+                "n_pairs": 90,
+                "delta": -0.3111,
+                "ci95": [
+                  -0.4333,
+                  -0.1778
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 7,
+                "n_discordant_neg": 35
+              },
+              "C-RsemB::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.1111,
+                "ci95": [
+                  -0.2667,
+                  0.0444
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 4,
+                "n_discordant_neg": 9
+              },
+              "C-RsemB::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.4,
+                "ci95": [
+                  -0.5556,
+                  -0.2444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 1,
+                "n_discordant_neg": 19
+              }
+            },
+            "prompt_tokens_avg": {
+              "A": 635,
+              "C": 1028,
+              "Rsem": 4604,
+              "RsemB": 1104
+            },
+            "injected_tokens_avg": {
+              "A": 0,
+              "C": 393,
+              "Rsem": 3969,
+              "RsemB": 469
+            }
+          },
+          "deepseek-v4-flash": {
+            "conditions": {
+              "A": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 26,
+                  "n_match": 6,
+                  "exec_rate": 0.2889,
+                  "accuracy": 0.0667,
+                  "accuracy_wilson_ci95": [
+                    0.0309,
+                    0.1379
+                  ],
+                  "acc_given_exec": 0.2308
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 4,
+                    "n_match": 0,
+                    "exec_rate": 0.2222,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": 0.0
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 5,
+                    "n_match": 0,
+                    "exec_rate": 0.2778,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": 0.0
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 10,
+                    "n_match": 4,
+                    "exec_rate": 0.5556,
+                    "accuracy": 0.2222,
+                    "accuracy_wilson_ci95": [
+                      0.09,
+                      0.4521
+                    ],
+                    "acc_given_exec": 0.4
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 5,
+                    "n_match": 1,
+                    "exec_rate": 0.2778,
+                    "accuracy": 0.0556,
+                    "accuracy_wilson_ci95": [
+                      0.0099,
+                      0.2576
+                    ],
+                    "acc_given_exec": 0.2
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 2,
+                    "n_match": 1,
+                    "exec_rate": 0.1111,
+                    "accuracy": 0.0556,
+                    "accuracy_wilson_ci95": [
+                      0.0099,
+                      0.2576
+                    ],
+                    "acc_given_exec": 0.5
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 17,
+                    "n_match": 4,
+                    "exec_rate": 0.3778,
+                    "accuracy": 0.0889,
+                    "accuracy_wilson_ci95": [
+                      0.0351,
+                      0.2073
+                    ],
+                    "acc_given_exec": 0.2353
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 9,
+                    "n_match": 2,
+                    "exec_rate": 0.2,
+                    "accuracy": 0.0444,
+                    "accuracy_wilson_ci95": [
+                      0.0123,
+                      0.1483
+                    ],
+                    "acc_given_exec": 0.2222
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 44,
+                  "DSSException": 6,
+                  "TypeError": 5,
+                  "TimeoutError": 5,
+                  "SyntaxError": 2,
+                  "ValueError": 1,
+                  "code_extraction_failed": 1
+                },
+                "timestamp": "2026-07-26T07:00:19.332055"
+              },
+              "C": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 46,
+                  "n_match": 34,
+                  "exec_rate": 0.5111,
+                  "accuracy": 0.3778,
+                  "accuracy_wilson_ci95": [
+                    0.2846,
+                    0.481
+                  ],
+                  "acc_given_exec": 0.7391
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 4,
+                    "n_match": 2,
+                    "exec_rate": 0.2222,
+                    "accuracy": 0.1111,
+                    "accuracy_wilson_ci95": [
+                      0.031,
+                      0.328
+                    ],
+                    "acc_given_exec": 0.5
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 5,
+                    "n_match": 4,
+                    "exec_rate": 0.2778,
+                    "accuracy": 0.2222,
+                    "accuracy_wilson_ci95": [
+                      0.09,
+                      0.4521
+                    ],
+                    "acc_given_exec": 0.8
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 9,
+                    "n_match": 5,
+                    "exec_rate": 0.5,
+                    "accuracy": 0.2778,
+                    "accuracy_wilson_ci95": [
+                      0.125,
+                      0.5087
+                    ],
+                    "acc_given_exec": 0.5556
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 9,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.75
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 14,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.875
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 30,
+                    "n_match": 23,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.5111,
+                    "accuracy_wilson_ci95": [
+                      0.37,
+                      0.6504
+                    ],
+                    "acc_given_exec": 0.7667
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 16,
+                    "n_match": 11,
+                    "exec_rate": 0.3556,
+                    "accuracy": 0.2444,
+                    "accuracy_wilson_ci95": [
+                      0.1424,
+                      0.3867
+                    ],
+                    "acc_given_exec": 0.6875
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 37,
+                  "TypeError": 3,
+                  "TimeoutError": 2,
+                  "SyntaxError": 1,
+                  "DSSException": 1
+                },
+                "timestamp": "2026-07-27T12:40:44.291210"
+              },
+              "Rsem": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 76,
+                  "n_match": 68,
+                  "exec_rate": 0.8444,
+                  "accuracy": 0.7556,
+                  "accuracy_wilson_ci95": [
+                    0.6575,
+                    0.8327
+                  ],
+                  "acc_given_exec": 0.8947
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 15,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.8333,
+                    "accuracy_wilson_ci95": [
+                      0.6078,
+                      0.9416
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 14,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 14,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.875
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 9,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.6429
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 16,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.8889,
+                    "accuracy_wilson_ci95": [
+                      0.672,
+                      0.969
+                    ],
+                    "acc_given_exec": 0.9412
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 42,
+                    "n_match": 37,
+                    "exec_rate": 0.9333,
+                    "accuracy": 0.8222,
+                    "accuracy_wilson_ci95": [
+                      0.6867,
+                      0.9071
+                    ],
+                    "acc_given_exec": 0.881
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 34,
+                    "n_match": 31,
+                    "exec_rate": 0.7556,
+                    "accuracy": 0.6889,
+                    "accuracy_wilson_ci95": [
+                      0.5434,
+                      0.8047
+                    ],
+                    "acc_given_exec": 0.9118
+                  }
+                },
+                "error_distribution": {
+                  "TimeoutError": 4,
+                  "AttributeError": 3,
+                  "SyntaxError": 3,
+                  "DSSException": 3,
+                  "TypeError": 1
+                },
+                "timestamp": "2026-07-27T13:26:24.562058"
+              },
+              "RsemB": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 70,
+                  "n_match": 54,
+                  "exec_rate": 0.7778,
+                  "accuracy": 0.6,
+                  "accuracy_wilson_ci95": [
+                    0.4967,
+                    0.6951
+                  ],
+                  "acc_given_exec": 0.7714
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 13,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.7222,
+                    "accuracy_wilson_ci95": [
+                      0.4913,
+                      0.875
+                    ],
+                    "acc_given_exec": 0.8125
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 12,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.6667,
+                    "accuracy_wilson_ci95": [
+                      0.4375,
+                      0.8372
+                    ],
+                    "acc_given_exec": 0.8571
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 14,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.9333
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 11,
+                    "n_match": 8,
+                    "exec_rate": 0.6111,
+                    "accuracy": 0.4444,
+                    "accuracy_wilson_ci95": [
+                      0.2456,
+                      0.6628
+                    ],
+                    "acc_given_exec": 0.7273
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 7,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 40,
+                    "n_match": 29,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.6444,
+                    "accuracy_wilson_ci95": [
+                      0.4984,
+                      0.7678
+                    ],
+                    "acc_given_exec": 0.725
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 30,
+                    "n_match": 25,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.5556,
+                    "accuracy_wilson_ci95": [
+                      0.4118,
+                      0.6906
+                    ],
+                    "acc_given_exec": 0.8333
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 8,
+                  "TypeError": 5,
+                  "DSSException": 4,
+                  "TimeoutError": 1,
+                  "ZeroDivisionError": 1,
+                  "NameError": 1
+                },
+                "timestamp": "2026-07-27T13:03:53.297751"
+              }
+            },
+            "paired": {
+              "C-A::accuracy": {
+                "n_pairs": 90,
+                "delta": 0.3111,
+                "ci95": [
+                  0.2111,
+                  0.4111
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 30,
+                "n_discordant_neg": 2
+              },
+              "C-A::exec": {
+                "n_pairs": 90,
+                "delta": 0.2222,
+                "ci95": [
+                  0.1111,
+                  0.3333
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 26,
+                "n_discordant_neg": 6
+              },
+              "C-A::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.4222,
+                "ci95": [
+                  0.2667,
+                  0.5556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 19,
+                "n_discordant_neg": 0
+              },
+              "C-A::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": 0.2,
+                "ci95": [
+                  0.0667,
+                  0.3556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 11,
+                "n_discordant_neg": 2
+              },
+              "C-Rsem::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.3778,
+                "ci95": [
+                  -0.5,
+                  -0.2444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 6,
+                "n_discordant_neg": 40
+              },
+              "C-Rsem::exec": {
+                "n_pairs": 90,
+                "delta": -0.3333,
+                "ci95": [
+                  -0.4444,
+                  -0.2111
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 4,
+                "n_discordant_neg": 34
+              },
+              "C-Rsem::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.3111,
+                "ci95": [
+                  -0.4889,
+                  -0.1333
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 4,
+                "n_discordant_neg": 18
+              },
+              "C-Rsem::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.4444,
+                "ci95": [
+                  -0.6222,
+                  -0.2667
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 2,
+                "n_discordant_neg": 22
+              },
+              "C-RsemB::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.2222,
+                "ci95": [
+                  -0.3778,
+                  -0.0667
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 17,
+                "n_discordant_neg": 37
+              },
+              "C-RsemB::exec": {
+                "n_pairs": 90,
+                "delta": -0.2667,
+                "ci95": [
+                  -0.3889,
+                  -0.1333
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 8,
+                "n_discordant_neg": 32
+              },
+              "C-RsemB::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.1333,
+                "ci95": [
+                  -0.3556,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 11,
+                "n_discordant_neg": 17
+              },
+              "C-RsemB::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.3111,
+                "ci95": [
+                  -0.5111,
+                  -0.1111
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 6,
+                "n_discordant_neg": 20
+              }
+            },
+            "prompt_tokens_avg": {
+              "A": 614,
+              "C": 927,
+              "Rsem": 4580,
+              "RsemB": 1106
+            },
+            "injected_tokens_avg": {
+              "A": 0,
+              "C": 313,
+              "Rsem": 3966,
+              "RsemB": 492
+            }
+          },
+          "meta-llama_Llama-3.1-70B-Instruct": {
+            "conditions": {
+              "A": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 12,
+                  "n_match": 3,
+                  "exec_rate": 0.1333,
+                  "accuracy": 0.0333,
+                  "accuracy_wilson_ci95": [
+                    0.0114,
+                    0.0935
+                  ],
+                  "acc_given_exec": 0.25
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 2,
+                    "n_match": 0,
+                    "exec_rate": 0.1111,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": 0.0
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 1,
+                    "n_match": 1,
+                    "exec_rate": 0.0556,
+                    "accuracy": 0.0556,
+                    "accuracy_wilson_ci95": [
+                      0.0099,
+                      0.2576
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 4,
+                    "n_match": 1,
+                    "exec_rate": 0.2222,
+                    "accuracy": 0.0556,
+                    "accuracy_wilson_ci95": [
+                      0.0099,
+                      0.2576
+                    ],
+                    "acc_given_exec": 0.25
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 5,
+                    "n_match": 1,
+                    "exec_rate": 0.2778,
+                    "accuracy": 0.0556,
+                    "accuracy_wilson_ci95": [
+                      0.0099,
+                      0.2576
+                    ],
+                    "acc_given_exec": 0.2
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 0,
+                    "n_match": 0,
+                    "exec_rate": 0.0,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": null
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 5,
+                    "n_match": 1,
+                    "exec_rate": 0.1111,
+                    "accuracy": 0.0222,
+                    "accuracy_wilson_ci95": [
+                      0.0039,
+                      0.1157
+                    ],
+                    "acc_given_exec": 0.2
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 7,
+                    "n_match": 2,
+                    "exec_rate": 0.1556,
+                    "accuracy": 0.0444,
+                    "accuracy_wilson_ci95": [
+                      0.0123,
+                      0.1483
+                    ],
+                    "acc_given_exec": 0.2857
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 39,
+                  "DSSException": 27,
+                  "TypeError": 8,
+                  "SyntaxError": 2,
+                  "IndexError": 1,
+                  "TimeoutError": 1
+                },
+                "timestamp": "2026-07-26T16:11:45.386727"
+              },
+              "C": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 71,
+                  "n_match": 33,
+                  "exec_rate": 0.7889,
+                  "accuracy": 0.3667,
+                  "accuracy_wilson_ci95": [
+                    0.2745,
+                    0.4698
+                  ],
+                  "acc_given_exec": 0.4648
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 6,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.3333,
+                    "accuracy_wilson_ci95": [
+                      0.1628,
+                      0.5625
+                    ],
+                    "acc_given_exec": 0.4286
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 7,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5833
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 4,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.2222,
+                    "accuracy_wilson_ci95": [
+                      0.09,
+                      0.4521
+                    ],
+                    "acc_given_exec": 0.2667
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 9,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.5625
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 7,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 41,
+                    "n_match": 20,
+                    "exec_rate": 0.9111,
+                    "accuracy": 0.4444,
+                    "accuracy_wilson_ci95": [
+                      0.3094,
+                      0.5882
+                    ],
+                    "acc_given_exec": 0.4878
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 30,
+                    "n_match": 13,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.2889,
+                    "accuracy_wilson_ci95": [
+                      0.1773,
+                      0.4337
+                    ],
+                    "acc_given_exec": 0.4333
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 12,
+                  "TypeError": 5,
+                  "IndexError": 2
+                },
+                "timestamp": "2026-07-26T16:13:18.718009"
+              },
+              "Rsem": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 76,
+                  "n_match": 57,
+                  "exec_rate": 0.8444,
+                  "accuracy": 0.6333,
+                  "accuracy_wilson_ci95": [
+                    0.5302,
+                    0.7255
+                  ],
+                  "acc_given_exec": 0.75
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 12,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.6667,
+                    "accuracy_wilson_ci95": [
+                      0.4375,
+                      0.8372
+                    ],
+                    "acc_given_exec": 0.8571
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 12,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.6667,
+                    "accuracy_wilson_ci95": [
+                      0.4375,
+                      0.8372
+                    ],
+                    "acc_given_exec": 0.8571
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 13,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.7222,
+                    "accuracy_wilson_ci95": [
+                      0.4913,
+                      0.875
+                    ],
+                    "acc_given_exec": 0.8125
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 7,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.4118
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 13,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.7222,
+                    "accuracy_wilson_ci95": [
+                      0.4913,
+                      0.875
+                    ],
+                    "acc_given_exec": 0.8667
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 39,
+                    "n_match": 30,
+                    "exec_rate": 0.8667,
+                    "accuracy": 0.6667,
+                    "accuracy_wilson_ci95": [
+                      0.5207,
+                      0.7864
+                    ],
+                    "acc_given_exec": 0.7692
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 37,
+                    "n_match": 27,
+                    "exec_rate": 0.8222,
+                    "accuracy": 0.6,
+                    "accuracy_wilson_ci95": [
+                      0.4545,
+                      0.7298
+                    ],
+                    "acc_given_exec": 0.7297
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 9,
+                  "IndexError": 3,
+                  "TypeError": 1,
+                  "DSSException": 1
+                },
+                "timestamp": "2026-07-26T16:10:22.481040"
+              },
+              "RsemB": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 58,
+                  "n_match": 35,
+                  "exec_rate": 0.6444,
+                  "accuracy": 0.3889,
+                  "accuracy_wilson_ci95": [
+                    0.2947,
+                    0.4922
+                  ],
+                  "acc_given_exec": 0.6034
+                },
+                "per_task": {
+                  "power_flow_3ph": {
+                    "n": 18,
+                    "n_exec": 13,
+                    "n_match": 5,
+                    "exec_rate": 0.7222,
+                    "accuracy": 0.2778,
+                    "accuracy_wilson_ci95": [
+                      0.125,
+                      0.5087
+                    ],
+                    "acc_given_exec": 0.3846
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 11,
+                    "n_match": 7,
+                    "exec_rate": 0.6111,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.6364
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 10,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.5556,
+                    "accuracy_wilson_ci95": [
+                      0.3372,
+                      0.7544
+                    ],
+                    "acc_given_exec": 0.6667
+                  },
+                  "control_device": {
+                    "n": 18,
+                    "n_exec": 10,
+                    "n_match": 7,
+                    "exec_rate": 0.5556,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.7
+                  },
+                  "fault_analysis": {
+                    "n": 18,
+                    "n_exec": 9,
+                    "n_match": 6,
+                    "exec_rate": 0.5,
+                    "accuracy": 0.3333,
+                    "accuracy_wilson_ci95": [
+                      0.1628,
+                      0.5625
+                    ],
+                    "acc_given_exec": 0.6667
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 31,
+                    "n_match": 16,
+                    "exec_rate": 0.6889,
+                    "accuracy": 0.3556,
+                    "accuracy_wilson_ci95": [
+                      0.2322,
+                      0.5016
+                    ],
+                    "acc_given_exec": 0.5161
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 27,
+                    "n_match": 19,
+                    "exec_rate": 0.6,
+                    "accuracy": 0.4222,
+                    "accuracy_wilson_ci95": [
+                      0.2897,
+                      0.567
+                    ],
+                    "acc_given_exec": 0.7037
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 12,
+                  "DSSException": 8,
+                  "TypeError": 6,
+                  "SyntaxError": 4,
+                  "IndexError": 2
+                },
+                "timestamp": "2026-07-27T07:43:39.955761"
+              }
+            },
+            "paired": {
+              "C-A::accuracy": {
+                "n_pairs": 90,
+                "delta": 0.3333,
+                "ci95": [
+                  0.2333,
+                  0.4333
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 31,
+                "n_discordant_neg": 1
+              },
+              "C-A::exec": {
+                "n_pairs": 90,
+                "delta": 0.6556,
+                "ci95": [
+                  0.5444,
+                  0.7556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 60,
+                "n_discordant_neg": 1
+              },
+              "C-A::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.4222,
+                "ci95": [
+                  0.2889,
+                  0.5778
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 19,
+                "n_discordant_neg": 0
+              },
+              "C-A::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": 0.2444,
+                "ci95": [
+                  0.1111,
+                  0.3778
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 12,
+                "n_discordant_neg": 1
+              },
+              "C-Rsem::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.2667,
+                "ci95": [
+                  -0.3778,
+                  -0.1556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 5,
+                "n_discordant_neg": 29
+              },
+              "C-Rsem::exec": {
+                "n_pairs": 90,
+                "delta": -0.0556,
+                "ci95": [
+                  -0.1444,
+                  0.0333
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 6,
+                "n_discordant_neg": 11
+              },
+              "C-Rsem::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.2222,
+                "ci95": [
+                  -0.4,
+                  -0.0444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 5,
+                "n_discordant_neg": 15
+              },
+              "C-Rsem::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.3111,
+                "ci95": [
+                  -0.4444,
+                  -0.1778
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 0,
+                "n_discordant_neg": 14
+              },
+              "C-RsemB::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.0222,
+                "ci95": [
+                  -0.1333,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 12,
+                "n_discordant_neg": 14
+              },
+              "C-RsemB::exec": {
+                "n_pairs": 90,
+                "delta": 0.1444,
+                "ci95": [
+                  0.0333,
+                  0.2556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 21,
+                "n_discordant_neg": 8
+              },
+              "C-RsemB::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.0889,
+                "ci95": [
+                  -0.0889,
+                  0.2667
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 10,
+                "n_discordant_neg": 6
+              },
+              "C-RsemB::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.1333,
+                "ci95": [
+                  -0.2667,
+                  0.0
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 2,
+                "n_discordant_neg": 8
+              }
+            },
+            "prompt_tokens_avg": {
+              "A": 635,
+              "C": 1161,
+              "Rsem": 4489,
+              "RsemB": 1097
+            },
+            "injected_tokens_avg": {
+              "A": 0,
+              "C": 526,
+              "Rsem": 3854,
+              "RsemB": 462
+            }
+          }
+        }
+      },
+      "pypsa": {
+        "run_dir": "results/raw/e2_transfer/pypsa/base",
+        "models": {
+          "Qwen_Qwen2.5-Coder-32B-Instruct": {
+            "conditions": {
+              "A": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 41,
+                  "n_match": 36,
+                  "exec_rate": 0.4556,
+                  "accuracy": 0.4,
+                  "accuracy_wilson_ci95": [
+                    0.3049,
+                    0.5033
+                  ],
+                  "acc_given_exec": 0.878
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 8,
+                    "n_match": 8,
+                    "exec_rate": 0.4444,
+                    "accuracy": 0.4444,
+                    "accuracy_wilson_ci95": [
+                      0.2456,
+                      0.6628
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 10,
+                    "n_match": 7,
+                    "exec_rate": 0.5556,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.7
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 0,
+                    "n_match": 0,
+                    "exec_rate": 0.0,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": null
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 11,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.9167
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 11,
+                    "n_match": 10,
+                    "exec_rate": 0.6111,
+                    "accuracy": 0.5556,
+                    "accuracy_wilson_ci95": [
+                      0.3372,
+                      0.7544
+                    ],
+                    "acc_given_exec": 0.9091
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 20,
+                    "n_match": 18,
+                    "exec_rate": 0.4444,
+                    "accuracy": 0.4,
+                    "accuracy_wilson_ci95": [
+                      0.2702,
+                      0.5455
+                    ],
+                    "acc_given_exec": 0.9
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 21,
+                    "n_match": 18,
+                    "exec_rate": 0.4667,
+                    "accuracy": 0.4,
+                    "accuracy_wilson_ci95": [
+                      0.2702,
+                      0.5455
+                    ],
+                    "acc_given_exec": 0.8571
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 29,
+                  "KeyError": 12,
+                  "ValueError": 5,
+                  "UFuncTypeError": 2,
+                  "IndexError": 1
+                },
+                "timestamp": "2026-07-26T16:09:15.402372"
+              },
+              "C": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 68,
+                  "n_match": 52,
+                  "exec_rate": 0.7556,
+                  "accuracy": 0.5778,
+                  "accuracy_wilson_ci95": [
+                    0.4746,
+                    0.6746
+                  ],
+                  "acc_given_exec": 0.7647
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 14,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 9,
+                    "n_match": 6,
+                    "exec_rate": 0.5,
+                    "accuracy": 0.3333,
+                    "accuracy_wilson_ci95": [
+                      0.1628,
+                      0.5625
+                    ],
+                    "acc_given_exec": 0.6667
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 17,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.9444,
+                    "accuracy_wilson_ci95": [
+                      0.7424,
+                      0.9901
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 7,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 8,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.4444,
+                    "accuracy_wilson_ci95": [
+                      0.2456,
+                      0.6628
+                    ],
+                    "acc_given_exec": 0.5714
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 38,
+                    "n_match": 30,
+                    "exec_rate": 0.8444,
+                    "accuracy": 0.6667,
+                    "accuracy_wilson_ci95": [
+                      0.5207,
+                      0.7864
+                    ],
+                    "acc_given_exec": 0.7895
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 30,
+                    "n_match": 22,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.4889,
+                    "accuracy_wilson_ci95": [
+                      0.3496,
+                      0.63
+                    ],
+                    "acc_given_exec": 0.7333
+                  }
+                },
+                "error_distribution": {
+                  "ValueError": 8,
+                  "KeyError": 7,
+                  "AttributeError": 5,
+                  "TypeError": 2
+                },
+                "timestamp": "2026-07-26T16:11:18.640663"
+              },
+              "Rsem": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 80,
+                  "n_match": 49,
+                  "exec_rate": 0.8889,
+                  "accuracy": 0.5444,
+                  "accuracy_wilson_ci95": [
+                    0.4418,
+                    0.6434
+                  ],
+                  "acc_given_exec": 0.6125
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 9,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.6
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 7,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 15,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.8333,
+                    "accuracy_wilson_ci95": [
+                      0.6078,
+                      0.9416
+                    ],
+                    "acc_given_exec": 0.9375
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 7,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.4118
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 11,
+                    "exec_rate": 1.0,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.6111
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 44,
+                    "n_match": 31,
+                    "exec_rate": 0.9778,
+                    "accuracy": 0.6889,
+                    "accuracy_wilson_ci95": [
+                      0.5434,
+                      0.8047
+                    ],
+                    "acc_given_exec": 0.7045
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 36,
+                    "n_match": 18,
+                    "exec_rate": 0.8,
+                    "accuracy": 0.4,
+                    "accuracy_wilson_ci95": [
+                      0.2702,
+                      0.5455
+                    ],
+                    "acc_given_exec": 0.5
+                  }
+                },
+                "error_distribution": {
+                  "ValueError": 6,
+                  "IndexError": 2,
+                  "KeyError": 1,
+                  "AttributeError": 1
+                },
+                "timestamp": "2026-07-26T16:09:47.644186"
+              },
+              "RsemB": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 67,
+                  "n_match": 48,
+                  "exec_rate": 0.7444,
+                  "accuracy": 0.5333,
+                  "accuracy_wilson_ci95": [
+                    0.431,
+                    0.6329
+                  ],
+                  "acc_given_exec": 0.7164
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 7,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 11,
+                    "n_match": 9,
+                    "exec_rate": 0.6111,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.8182
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 14,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 13,
+                    "n_match": 9,
+                    "exec_rate": 0.7222,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.6923
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 9,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.6
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 38,
+                    "n_match": 32,
+                    "exec_rate": 0.8444,
+                    "accuracy": 0.7111,
+                    "accuracy_wilson_ci95": [
+                      0.5663,
+                      0.8227
+                    ],
+                    "acc_given_exec": 0.8421
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 29,
+                    "n_match": 16,
+                    "exec_rate": 0.6444,
+                    "accuracy": 0.3556,
+                    "accuracy_wilson_ci95": [
+                      0.2322,
+                      0.5016
+                    ],
+                    "acc_given_exec": 0.5517
+                  }
+                },
+                "error_distribution": {
+                  "ValueError": 11,
+                  "KeyError": 6,
+                  "AttributeError": 4,
+                  "IndexError": 2
+                },
+                "timestamp": "2026-07-27T07:39:25.921128"
+              }
+            },
+            "paired": {
+              "C-A::accuracy": {
+                "n_pairs": 90,
+                "delta": 0.1778,
+                "ci95": [
+                  0.0333,
+                  0.3222
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 32,
+                "n_discordant_neg": 16
+              },
+              "C-A::exec": {
+                "n_pairs": 90,
+                "delta": 0.3,
+                "ci95": [
+                  0.1778,
+                  0.4222
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 34,
+                "n_discordant_neg": 7
+              },
+              "C-A::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.2667,
+                "ci95": [
+                  0.0667,
+                  0.4667
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 18,
+                "n_discordant_neg": 6
+              },
+              "C-A::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": 0.0889,
+                "ci95": [
+                  -0.1111,
+                  0.2889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 14,
+                "n_discordant_neg": 10
+              },
+              "C-Rsem::accuracy": {
+                "n_pairs": 90,
+                "delta": 0.0333,
+                "ci95": [
+                  -0.0778,
+                  0.1444
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 16,
+                "n_discordant_neg": 13
+              },
+              "C-Rsem::exec": {
+                "n_pairs": 90,
+                "delta": -0.1333,
+                "ci95": [
+                  -0.2222,
+                  -0.0444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 3,
+                "n_discordant_neg": 15
+              },
+              "C-Rsem::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.0222,
+                "ci95": [
+                  -0.1778,
+                  0.1333
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 6,
+                "n_discordant_neg": 7
+              },
+              "C-Rsem::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": 0.0889,
+                "ci95": [
+                  -0.0889,
+                  0.2667
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 10,
+                "n_discordant_neg": 6
+              },
+              "C-RsemB::accuracy": {
+                "n_pairs": 90,
+                "delta": 0.0444,
+                "ci95": [
+                  -0.0778,
+                  0.1667
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 17,
+                "n_discordant_neg": 13
+              },
+              "C-RsemB::exec": {
+                "n_pairs": 90,
+                "delta": 0.0111,
+                "ci95": [
+                  -0.0889,
+                  0.1111
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 11,
+                "n_discordant_neg": 10
+              },
+              "C-RsemB::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.0444,
+                "ci95": [
+                  -0.2,
+                  0.1111
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 5,
+                "n_discordant_neg": 7
+              },
+              "C-RsemB::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": 0.1333,
+                "ci95": [
+                  -0.0444,
+                  0.3111
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 12,
+                "n_discordant_neg": 6
+              }
+            },
+            "prompt_tokens_avg": {
+              "A": 620,
+              "C": 1079,
+              "Rsem": 4642,
+              "RsemB": 1117
+            },
+            "injected_tokens_avg": {
+              "A": 0,
+              "C": 459,
+              "Rsem": 4022,
+              "RsemB": 497
+            }
+          },
+          "deepseek-v4-flash": {
+            "conditions": {
+              "A": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 64,
+                  "n_match": 62,
+                  "exec_rate": 0.7111,
+                  "accuracy": 0.6889,
+                  "accuracy_wilson_ci95": [
+                    0.5872,
+                    0.7751
+                  ],
+                  "acc_given_exec": 0.9688
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 15,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.8333,
+                    "accuracy_wilson_ci95": [
+                      0.6078,
+                      0.9416
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 11,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.9167
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 7,
+                    "n_match": 7,
+                    "exec_rate": 0.3889,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 18,
+                    "exec_rate": 1.0,
+                    "accuracy": 1.0,
+                    "accuracy_wilson_ci95": [
+                      0.8241,
+                      1.0
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 11,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.9167
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 30,
+                    "n_match": 29,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.6444,
+                    "accuracy_wilson_ci95": [
+                      0.4984,
+                      0.7678
+                    ],
+                    "acc_given_exec": 0.9667
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 34,
+                    "n_match": 33,
+                    "exec_rate": 0.7556,
+                    "accuracy": 0.7333,
+                    "accuracy_wilson_ci95": [
+                      0.5896,
+                      0.8404
+                    ],
+                    "acc_given_exec": 0.9706
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 14,
+                  "KeyError": 8,
+                  "ValueError": 3,
+                  "AssertionError": 1
+                },
+                "timestamp": "2026-07-27T13:39:27.459378"
+              },
+              "C": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 88,
+                  "n_match": 73,
+                  "exec_rate": 0.9778,
+                  "accuracy": 0.8111,
+                  "accuracy_wilson_ci95": [
+                    0.7182,
+                    0.8786
+                  ],
+                  "acc_given_exec": 0.8295
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 18,
+                    "exec_rate": 1.0,
+                    "accuracy": 1.0,
+                    "accuracy_wilson_ci95": [
+                      0.8241,
+                      1.0
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 13,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.7222,
+                    "accuracy_wilson_ci95": [
+                      0.4913,
+                      0.875
+                    ],
+                    "acc_given_exec": 0.7647
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 10,
+                    "exec_rate": 1.0,
+                    "accuracy": 0.5556,
+                    "accuracy_wilson_ci95": [
+                      0.3372,
+                      0.7544
+                    ],
+                    "acc_given_exec": 0.5556
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 17,
+                    "exec_rate": 1.0,
+                    "accuracy": 0.9444,
+                    "accuracy_wilson_ci95": [
+                      0.7424,
+                      0.9901
+                    ],
+                    "acc_given_exec": 0.9444
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 15,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.8333,
+                    "accuracy_wilson_ci95": [
+                      0.6078,
+                      0.9416
+                    ],
+                    "acc_given_exec": 0.8824
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 45,
+                    "n_match": 39,
+                    "exec_rate": 1.0,
+                    "accuracy": 0.8667,
+                    "accuracy_wilson_ci95": [
+                      0.7382,
+                      0.9374
+                    ],
+                    "acc_given_exec": 0.8667
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 43,
+                    "n_match": 34,
+                    "exec_rate": 0.9556,
+                    "accuracy": 0.7556,
+                    "accuracy_wilson_ci95": [
+                      0.6133,
+                      0.8576
+                    ],
+                    "acc_given_exec": 0.7907
+                  }
+                },
+                "error_distribution": {
+                  "KeyError": 1,
+                  "ModuleNotFoundError": 1
+                },
+                "timestamp": "2026-07-27T13:54:24.622027"
+              },
+              "Rsem": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 88,
+                  "n_match": 85,
+                  "exec_rate": 0.9778,
+                  "accuracy": 0.9444,
+                  "accuracy_wilson_ci95": [
+                    0.8765,
+                    0.976
+                  ],
+                  "acc_given_exec": 0.9659
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 18,
+                    "exec_rate": 1.0,
+                    "accuracy": 1.0,
+                    "accuracy_wilson_ci95": [
+                      0.8241,
+                      1.0
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 17,
+                    "exec_rate": 1.0,
+                    "accuracy": 0.9444,
+                    "accuracy_wilson_ci95": [
+                      0.7424,
+                      0.9901
+                    ],
+                    "acc_given_exec": 0.9444
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 17,
+                    "exec_rate": 1.0,
+                    "accuracy": 0.9444,
+                    "accuracy_wilson_ci95": [
+                      0.7424,
+                      0.9901
+                    ],
+                    "acc_given_exec": 0.9444
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 17,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.9444,
+                    "accuracy_wilson_ci95": [
+                      0.7424,
+                      0.9901
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 16,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.8889,
+                    "accuracy_wilson_ci95": [
+                      0.672,
+                      0.969
+                    ],
+                    "acc_given_exec": 0.9412
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 44,
+                    "n_match": 43,
+                    "exec_rate": 0.9778,
+                    "accuracy": 0.9556,
+                    "accuracy_wilson_ci95": [
+                      0.8517,
+                      0.9877
+                    ],
+                    "acc_given_exec": 0.9773
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 44,
+                    "n_match": 42,
+                    "exec_rate": 0.9778,
+                    "accuracy": 0.9333,
+                    "accuracy_wilson_ci95": [
+                      0.8214,
+                      0.9771
+                    ],
+                    "acc_given_exec": 0.9545
+                  }
+                },
+                "error_distribution": {
+                  "NameError": 1,
+                  "AttributeError": 1
+                },
+                "timestamp": "2026-07-27T14:27:36.472957"
+              },
+              "RsemB": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 82,
+                  "n_match": 75,
+                  "exec_rate": 0.9111,
+                  "accuracy": 0.8333,
+                  "accuracy_wilson_ci95": [
+                    0.7431,
+                    0.8963
+                  ],
+                  "acc_given_exec": 0.9146
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 14,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.9333
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 17,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.9444,
+                    "accuracy_wilson_ci95": [
+                      0.7424,
+                      0.9901
+                    ],
+                    "acc_given_exec": 1.0
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 15,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.8333,
+                    "accuracy_wilson_ci95": [
+                      0.6078,
+                      0.9416
+                    ],
+                    "acc_given_exec": 0.8824
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 16,
+                    "n_match": 14,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.875
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 15,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.8333,
+                    "accuracy_wilson_ci95": [
+                      0.6078,
+                      0.9416
+                    ],
+                    "acc_given_exec": 0.8824
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 42,
+                    "n_match": 40,
+                    "exec_rate": 0.9333,
+                    "accuracy": 0.8889,
+                    "accuracy_wilson_ci95": [
+                      0.765,
+                      0.9516
+                    ],
+                    "acc_given_exec": 0.9524
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 40,
+                    "n_match": 35,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.6373,
+                      0.8746
+                    ],
+                    "acc_given_exec": 0.875
+                  }
+                },
+                "error_distribution": {
+                  "KeyError": 3,
+                  "ValueError": 3,
+                  "NameError": 1,
+                  "AttributeError": 1
+                },
+                "timestamp": "2026-07-27T14:11:46.398922"
+              }
+            },
+            "paired": {
+              "C-A::accuracy": {
+                "n_pairs": 90,
+                "delta": 0.1222,
+                "ci95": [
+                  0.0111,
+                  0.2333
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 20,
+                "n_discordant_neg": 9
+              },
+              "C-A::exec": {
+                "n_pairs": 90,
+                "delta": 0.2667,
+                "ci95": [
+                  0.1778,
+                  0.3667
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 25,
+                "n_discordant_neg": 1
+              },
+              "C-A::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.2222,
+                "ci95": [
+                  0.0667,
+                  0.3778
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 13,
+                "n_discordant_neg": 3
+              },
+              "C-A::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": 0.0222,
+                "ci95": [
+                  -0.1333,
+                  0.1778
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 7,
+                "n_discordant_neg": 6
+              },
+              "C-Rsem::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.1333,
+                "ci95": [
+                  -0.2222,
+                  -0.0556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 2,
+                "n_discordant_neg": 14
+              },
+              "C-Rsem::exec": {
+                "n_pairs": 90,
+                "delta": 0.0,
+                "ci95": [
+                  -0.0444,
+                  0.0444
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 2,
+                "n_discordant_neg": 2
+              },
+              "C-Rsem::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.0889,
+                "ci95": [
+                  -0.2,
+                  0.0222
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 1,
+                "n_discordant_neg": 5
+              },
+              "C-Rsem::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.1778,
+                "ci95": [
+                  -0.3111,
+                  -0.0444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 1,
+                "n_discordant_neg": 9
+              },
+              "C-RsemB::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.0222,
+                "ci95": [
+                  -0.1333,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 12,
+                "n_discordant_neg": 14
+              },
+              "C-RsemB::exec": {
+                "n_pairs": 90,
+                "delta": 0.0667,
+                "ci95": [
+                  0.0,
+                  0.1333
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 8,
+                "n_discordant_neg": 2
+              },
+              "C-RsemB::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.0222,
+                "ci95": [
+                  -0.1333,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 3,
+                "n_discordant_neg": 4
+              },
+              "C-RsemB::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.0222,
+                "ci95": [
+                  -0.2,
+                  0.1556
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 9,
+                "n_discordant_neg": 10
+              }
+            },
+            "prompt_tokens_avg": {
+              "A": 584,
+              "C": 1002,
+              "Rsem": 4738,
+              "RsemB": 1115
+            },
+            "injected_tokens_avg": {
+              "A": 0,
+              "C": 418,
+              "Rsem": 4154,
+              "RsemB": 531
+            }
+          },
+          "meta-llama_Llama-3.1-70B-Instruct": {
+            "conditions": {
+              "A": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 28,
+                  "n_match": 5,
+                  "exec_rate": 0.3111,
+                  "accuracy": 0.0556,
+                  "accuracy_wilson_ci95": [
+                    0.024,
+                    0.1235
+                  ],
+                  "acc_given_exec": 0.1786
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 8,
+                    "n_match": 0,
+                    "exec_rate": 0.4444,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": 0.0
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 8,
+                    "n_match": 0,
+                    "exec_rate": 0.4444,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": 0.0
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 0,
+                    "n_match": 0,
+                    "exec_rate": 0.0,
+                    "accuracy": 0.0,
+                    "accuracy_wilson_ci95": [
+                      0.0,
+                      0.1759
+                    ],
+                    "acc_given_exec": null
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 7,
+                    "n_match": 3,
+                    "exec_rate": 0.3889,
+                    "accuracy": 0.1667,
+                    "accuracy_wilson_ci95": [
+                      0.0584,
+                      0.3922
+                    ],
+                    "acc_given_exec": 0.4286
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 5,
+                    "n_match": 2,
+                    "exec_rate": 0.2778,
+                    "accuracy": 0.1111,
+                    "accuracy_wilson_ci95": [
+                      0.031,
+                      0.328
+                    ],
+                    "acc_given_exec": 0.4
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 9,
+                    "n_match": 4,
+                    "exec_rate": 0.2,
+                    "accuracy": 0.0889,
+                    "accuracy_wilson_ci95": [
+                      0.0351,
+                      0.2073
+                    ],
+                    "acc_given_exec": 0.4444
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 19,
+                    "n_match": 1,
+                    "exec_rate": 0.4222,
+                    "accuracy": 0.0222,
+                    "accuracy_wilson_ci95": [
+                      0.0039,
+                      0.1157
+                    ],
+                    "acc_given_exec": 0.0526
+                  }
+                },
+                "error_distribution": {
+                  "KeyError": 34,
+                  "AttributeError": 27,
+                  "TypeError": 1
+                },
+                "timestamp": "2026-07-26T16:18:08.731758"
+              },
+              "C": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 65,
+                  "n_match": 45,
+                  "exec_rate": 0.7222,
+                  "accuracy": 0.5,
+                  "accuracy_wilson_ci95": [
+                    0.3988,
+                    0.6012
+                  ],
+                  "acc_given_exec": 0.6923
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 9,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.6
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 9,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.75
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 7,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5833
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 13,
+                    "n_match": 11,
+                    "exec_rate": 0.7222,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.8462
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 13,
+                    "n_match": 9,
+                    "exec_rate": 0.7222,
+                    "accuracy": 0.5,
+                    "accuracy_wilson_ci95": [
+                      0.2903,
+                      0.7097
+                    ],
+                    "acc_given_exec": 0.6923
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 40,
+                    "n_match": 26,
+                    "exec_rate": 0.8889,
+                    "accuracy": 0.5778,
+                    "accuracy_wilson_ci95": [
+                      0.433,
+                      0.7103
+                    ],
+                    "acc_given_exec": 0.65
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 25,
+                    "n_match": 19,
+                    "exec_rate": 0.5556,
+                    "accuracy": 0.4222,
+                    "accuracy_wilson_ci95": [
+                      0.2897,
+                      0.567
+                    ],
+                    "acc_given_exec": 0.76
+                  }
+                },
+                "error_distribution": {
+                  "AttributeError": 13,
+                  "KeyError": 6,
+                  "ValueError": 5,
+                  "TypeError": 1
+                },
+                "timestamp": "2026-07-26T16:21:41.637246"
+              },
+              "Rsem": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 73,
+                  "n_match": 54,
+                  "exec_rate": 0.8111,
+                  "accuracy": 0.6,
+                  "accuracy_wilson_ci95": [
+                    0.4967,
+                    0.6951
+                  ],
+                  "acc_given_exec": 0.7397
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 10,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.5556,
+                    "accuracy_wilson_ci95": [
+                      0.3372,
+                      0.7544
+                    ],
+                    "acc_given_exec": 0.7143
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 7,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5833
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 11,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.7333
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 12,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.6667,
+                    "accuracy_wilson_ci95": [
+                      0.4375,
+                      0.8372
+                    ],
+                    "acc_given_exec": 0.8
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 17,
+                    "n_match": 14,
+                    "exec_rate": 0.9444,
+                    "accuracy": 0.7778,
+                    "accuracy_wilson_ci95": [
+                      0.5479,
+                      0.91
+                    ],
+                    "acc_given_exec": 0.8235
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 43,
+                    "n_match": 29,
+                    "exec_rate": 0.9556,
+                    "accuracy": 0.6444,
+                    "accuracy_wilson_ci95": [
+                      0.4984,
+                      0.7678
+                    ],
+                    "acc_given_exec": 0.6744
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 30,
+                    "n_match": 25,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.5556,
+                    "accuracy_wilson_ci95": [
+                      0.4118,
+                      0.6906
+                    ],
+                    "acc_given_exec": 0.8333
+                  }
+                },
+                "error_distribution": {
+                  "KeyError": 9,
+                  "AttributeError": 4,
+                  "InvalidIndexError": 3,
+                  "ValueError": 1
+                },
+                "timestamp": "2026-07-26T16:19:06.173998"
+              },
+              "RsemB": {
+                "overall": {
+                  "n": 90,
+                  "n_exec": 67,
+                  "n_match": 46,
+                  "exec_rate": 0.7444,
+                  "accuracy": 0.5111,
+                  "accuracy_wilson_ci95": [
+                    0.4095,
+                    0.6118
+                  ],
+                  "acc_given_exec": 0.6866
+                },
+                "per_task": {
+                  "power_flow": {
+                    "n": 18,
+                    "n_exec": 12,
+                    "n_match": 7,
+                    "exec_rate": 0.6667,
+                    "accuracy": 0.3889,
+                    "accuracy_wilson_ci95": [
+                      0.2031,
+                      0.6138
+                    ],
+                    "acc_given_exec": 0.5833
+                  },
+                  "linear_power_flow": {
+                    "n": 18,
+                    "n_exec": 14,
+                    "n_match": 11,
+                    "exec_rate": 0.7778,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.7857
+                  },
+                  "opf": {
+                    "n": 18,
+                    "n_exec": 15,
+                    "n_match": 11,
+                    "exec_rate": 0.8333,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.7333
+                  },
+                  "network_modification": {
+                    "n": 18,
+                    "n_exec": 8,
+                    "n_match": 6,
+                    "exec_rate": 0.4444,
+                    "accuracy": 0.3333,
+                    "accuracy_wilson_ci95": [
+                      0.1628,
+                      0.5625
+                    ],
+                    "acc_given_exec": 0.75
+                  },
+                  "result_extraction": {
+                    "n": 18,
+                    "n_exec": 18,
+                    "n_match": 11,
+                    "exec_rate": 1.0,
+                    "accuracy": 0.6111,
+                    "accuracy_wilson_ci95": [
+                      0.3862,
+                      0.7969
+                    ],
+                    "acc_given_exec": 0.6111
+                  }
+                },
+                "per_difficulty": {
+                  "D1_basic": {
+                    "n": 45,
+                    "n_exec": 34,
+                    "n_match": 20,
+                    "exec_rate": 0.7556,
+                    "accuracy": 0.4444,
+                    "accuracy_wilson_ci95": [
+                      0.3094,
+                      0.5882
+                    ],
+                    "acc_given_exec": 0.5882
+                  },
+                  "D3_semantic": {
+                    "n": 45,
+                    "n_exec": 33,
+                    "n_match": 26,
+                    "exec_rate": 0.7333,
+                    "accuracy": 0.5778,
+                    "accuracy_wilson_ci95": [
+                      0.433,
+                      0.7103
+                    ],
+                    "acc_given_exec": 0.7879
+                  }
+                },
+                "error_distribution": {
+                  "KeyError": 12,
+                  "AttributeError": 5,
+                  "ValueError": 4,
+                  "InvalidIndexError": 2
+                },
+                "timestamp": "2026-07-27T07:40:37.494842"
+              }
+            },
+            "paired": {
+              "C-A::accuracy": {
+                "n_pairs": 90,
+                "delta": 0.4444,
+                "ci95": [
+                  0.3333,
+                  0.5556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 42,
+                "n_discordant_neg": 2
+              },
+              "C-A::exec": {
+                "n_pairs": 90,
+                "delta": 0.4111,
+                "ci95": [
+                  0.2667,
+                  0.5444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 46,
+                "n_discordant_neg": 9
+              },
+              "C-A::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.4889,
+                "ci95": [
+                  0.3333,
+                  0.6444
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 23,
+                "n_discordant_neg": 1
+              },
+              "C-A::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": 0.4,
+                "ci95": [
+                  0.2444,
+                  0.5556
+                ],
+                "excludes_zero": true,
+                "n_discordant_pos": 19,
+                "n_discordant_neg": 1
+              },
+              "C-Rsem::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.1,
+                "ci95": [
+                  -0.2333,
+                  0.0222
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 13,
+                "n_discordant_neg": 22
+              },
+              "C-Rsem::exec": {
+                "n_pairs": 90,
+                "delta": -0.0889,
+                "ci95": [
+                  -0.1889,
+                  0.0111
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 8,
+                "n_discordant_neg": 16
+              },
+              "C-Rsem::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": -0.0667,
+                "ci95": [
+                  -0.2444,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 6,
+                "n_discordant_neg": 9
+              },
+              "C-Rsem::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.1333,
+                "ci95": [
+                  -0.3111,
+                  0.0667
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 7,
+                "n_discordant_neg": 13
+              },
+              "C-RsemB::accuracy": {
+                "n_pairs": 90,
+                "delta": -0.0111,
+                "ci95": [
+                  -0.1333,
+                  0.1
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 14,
+                "n_discordant_neg": 15
+              },
+              "C-RsemB::exec": {
+                "n_pairs": 90,
+                "delta": -0.0222,
+                "ci95": [
+                  -0.1333,
+                  0.0889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 12,
+                "n_discordant_neg": 14
+              },
+              "C-RsemB::accuracy@D1_basic": {
+                "n_pairs": 45,
+                "delta": 0.1333,
+                "ci95": [
+                  -0.0222,
+                  0.2889
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 9,
+                "n_discordant_neg": 3
+              },
+              "C-RsemB::accuracy@D3_semantic": {
+                "n_pairs": 45,
+                "delta": -0.1556,
+                "ci95": [
+                  -0.3333,
+                  0.0222
+                ],
+                "excludes_zero": false,
+                "n_discordant_pos": 5,
+                "n_discordant_neg": 12
+              }
+            },
+            "prompt_tokens_avg": {
+              "A": 600,
+              "C": 1156,
+              "Rsem": 4521,
+              "RsemB": 1089
+            },
+            "injected_tokens_avg": {
+              "A": 0,
+              "C": 556,
+              "Rsem": 3921,
+              "RsemB": 489
+            }
+          }
+        }
+      }
+    }
+  },
+  "crecal": {
+    "schema_version": "1.0",
+    "source_manifest": "results/raw/e2_transfer/manifest.json",
+    "method": {
+      "n_boot": 10000,
+      "seed": 20260727,
+      "rng": "Python random.Random (MT19937), reset for each contrast",
+      "pair_order": "C-recal item_results order",
+      "ci": "percentile order statistics at sorted indices 250 and 9749",
+      "mcnemar": "two-sided exact binomial test on discordant pairs",
+      "token_ratio": "C-recal total prompt tokens / Rsem total prompt tokens"
+    },
+    "recal_name_layer_floor": 0.4,
+    "models": {
+      "Qwen_Qwen2.5-Coder-32B-Instruct": {
+        "n": 90,
+        "accuracy": {
+          "C": 0.1556,
+          "Rsem": 0.6667,
+          "C-recal": 0.4111
+        },
+        "paired": {
+          "C-recal-C": {
+            "n_pairs": 90,
+            "delta": 0.2556,
+            "delta_pp": 25.56,
+            "ci95": [
+              0.1444,
+              0.3667
+            ],
+            "ci95_pp": [
+              14.44,
+              36.67
+            ],
+            "discordant_treatment_only": 29,
+            "discordant_reference_only": 6,
+            "mcnemar_exact_p": 0.0001168418675661087
+          },
+          "C-recal-Rsem": {
+            "n_pairs": 90,
+            "delta": -0.2556,
+            "delta_pp": -25.56,
+            "ci95": [
+              -0.3889,
+              -0.1222
+            ],
+            "ci95_pp": [
+              -38.89,
+              -12.22
+            ],
+            "discordant_treatment_only": 9,
+            "discordant_reference_only": 32,
+            "mcnemar_exact_p": 0.000430857042374555
+          }
+        },
+        "prompt_tokens": {
+          "C": {
+            "total": 92550,
+            "mean": 1028.3333
+          },
+          "Rsem": {
+            "total": 414378,
+            "mean": 4604.2
+          },
+          "C-recal": {
+            "total": 111907,
+            "mean": 1243.4111
+          }
+        },
+        "crecal_over_rsem_total_prompt_ratio": 0.270060186593,
+        "control_device": {
+          "C": {
+            "n": 18,
+            "executed": 1,
+            "non_executable": 17,
+            "matched": 0,
+            "non_executable_error_types": {
+              "AttributeError": 17
+            }
+          },
+          "Rsem": {
+            "n": 18,
+            "executed": 12,
+            "non_executable": 6,
+            "matched": 7,
+            "non_executable_error_types": {
+              "AttributeError": 6
+            }
+          },
+          "C-recal": {
+            "n": 18,
+            "executed": 18,
+            "non_executable": 0,
+            "matched": 9,
+            "non_executable_error_types": {}
+          }
+        }
+      },
+      "meta-llama_Llama-3.1-70B-Instruct": {
+        "n": 90,
+        "accuracy": {
+          "C": 0.3667,
+          "Rsem": 0.6333,
+          "C-recal": 0.4444
+        },
+        "paired": {
+          "C-recal-C": {
+            "n_pairs": 90,
+            "delta": 0.0778,
+            "delta_pp": 7.78,
+            "ci95": [
+              -0.0111,
+              0.1667
+            ],
+            "ci95_pp": [
+              -1.11,
+              16.67
+            ],
+            "discordant_treatment_only": 12,
+            "discordant_reference_only": 5,
+            "mcnemar_exact_p": 0.143463134765625
+          },
+          "C-recal-Rsem": {
+            "n_pairs": 90,
+            "delta": -0.1889,
+            "delta_pp": -18.89,
+            "ci95": [
+              -0.3111,
+              -0.0667
+            ],
+            "ci95_pp": [
+              -31.11,
+              -6.67
+            ],
+            "discordant_treatment_only": 10,
+            "discordant_reference_only": 27,
+            "mcnemar_exact_p": 0.007632078602910042
+          }
+        },
+        "prompt_tokens": {
+          "C": {
+            "total": 104551,
+            "mean": 1161.6778
+          },
+          "Rsem": {
+            "total": 404074,
+            "mean": 4489.7111
+          },
+          "C-recal": {
+            "total": 109844,
+            "mean": 1220.4889
+          }
+        },
+        "crecal_over_rsem_total_prompt_ratio": 0.271841296396,
+        "control_device": {
+          "C": {
+            "n": 18,
+            "executed": 16,
+            "non_executable": 2,
+            "matched": 9,
+            "non_executable_error_types": {
+              "AttributeError": 1,
+              "TypeError": 1
+            }
+          },
+          "Rsem": {
+            "n": 18,
+            "executed": 17,
+            "non_executable": 1,
+            "matched": 7,
+            "non_executable_error_types": {
+              "AttributeError": 1
+            }
+          },
+          "C-recal": {
+            "n": 18,
+            "executed": 15,
+            "non_executable": 3,
+            "matched": 11,
+            "non_executable_error_types": {
+              "AttributeError": 3
+            }
+          }
+        }
+      },
+      "deepseek-v4-flash": {
+        "n": 90,
+        "accuracy": {
+          "C": 0.3778,
+          "Rsem": 0.7556,
+          "C-recal": 0.6889
+        },
+        "paired": {
+          "C-recal-C": {
+            "n_pairs": 90,
+            "delta": 0.3111,
+            "delta_pp": 31.11,
+            "ci95": [
+              0.1778,
+              0.4444
+            ],
+            "ci95_pp": [
+              17.78,
+              44.44
+            ],
+            "discordant_treatment_only": 36,
+            "discordant_reference_only": 8,
+            "mcnemar_exact_p": 2.5448598648836196e-05
+          },
+          "C-recal-Rsem": {
+            "n_pairs": 90,
+            "delta": -0.0667,
+            "delta_pp": -6.67,
+            "ci95": [
+              -0.1556,
+              0.0222
+            ],
+            "ci95_pp": [
+              -15.56,
+              2.22
+            ],
+            "discordant_treatment_only": 5,
+            "discordant_reference_only": 11,
+            "mcnemar_exact_p": 0.210113525390625
+          }
+        },
+        "prompt_tokens": {
+          "C": {
+            "total": 83510,
+            "mean": 927.8889
+          },
+          "Rsem": {
+            "total": 412231,
+            "mean": 4580.3444
+          },
+          "C-recal": {
+            "total": 118380,
+            "mean": 1315.3333
+          }
+        },
+        "crecal_over_rsem_total_prompt_ratio": 0.287169087235,
+        "control_device": {
+          "C": {
+            "n": 18,
+            "executed": 12,
+            "non_executable": 6,
+            "matched": 9,
+            "non_executable_error_types": {
+              "AttributeError": 5,
+              "DSSException": 1
+            }
+          },
+          "Rsem": {
+            "n": 18,
+            "executed": 14,
+            "non_executable": 4,
+            "matched": 9,
+            "non_executable_error_types": {
+              "AttributeError": 1,
+              "DSSException": 3
+            }
+          },
+          "C-recal": {
+            "n": 18,
+            "executed": 11,
+            "non_executable": 7,
+            "matched": 10,
+            "non_executable_error_types": {
+              "DSSException": 1,
+              "code_extraction_failed": 6
+            }
+          }
+        }
+      }
+    }
+  }
+}

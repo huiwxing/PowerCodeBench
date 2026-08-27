@@ -1,0 +1,9 @@
+{
+  "method": "item-level paired bootstrap, B=1000, seed=22",
+  "n_items": 2000,
+  "llama_405b_fdrs_acc_pct": 68.7,
+  "claude_haiku_fdrs_acc_pct": 63.74999999999999,
+  "paired_delta_mean_pct": 4.946600000000001,
+  "paired_delta_ci_95_low_pct": 2.950000000000008,
+  "paired_delta_ci_95_high_pct": 6.950000000000001
+}

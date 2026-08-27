@@ -1,0 +1,210 @@
+{
+ "n_built": 84,
+ "n_dropped": 0,
+ "n_eval_loadable": 84,
+ "theme_counts": {
+  "opf": 15,
+  "network_build_modify": 22,
+  "power_flow": 10,
+  "timeseries": 7,
+  "other": 3,
+  "three_phase": 4,
+  "topology_matrix": 7,
+  "der_control": 7,
+  "plotting": 2,
+  "short_circuit": 3,
+  "state_estimation": 3,
+  "io_serialization": 1
+ },
+ "difficulty_counts": {
+  "D3": 39,
+  "D2": 39,
+  "D1": 6
+ },
+ "theme_x_difficulty": {
+  "opf": {
+   "D3": 9,
+   "D2": 6
+  },
+  "network_build_modify": {
+   "D2": 13,
+   "D3": 8,
+   "D1": 1
+  },
+  "power_flow": {
+   "D2": 7,
+   "D1": 2,
+   "D3": 1
+  },
+  "timeseries": {
+   "D3": 6,
+   "D2": 1
+  },
+  "other": {
+   "D2": 2,
+   "D1": 1
+  },
+  "three_phase": {
+   "D3": 3,
+   "D2": 1
+  },
+  "topology_matrix": {
+   "D3": 5,
+   "D2": 2
+  },
+  "der_control": {
+   "D3": 5,
+   "D2": 2
+  },
+  "plotting": {
+   "D1": 1,
+   "D2": 1
+  },
+  "short_circuit": {
+   "D2": 3
+  },
+  "state_estimation": {
+   "D3": 2,
+   "D2": 1
+  },
+  "io_serialization": {
+   "D1": 1
+  }
+ },
+ "ground_truth_type_counts": {
+  "float": 71,
+  "int": 10,
+  "bool": 1,
+  "none": 2
+ },
+ "distinct_oracle_functions": 50,
+ "oracle_functions_used": [
+  "ConstControl",
+  "ContinuousTapControl",
+  "DFData",
+  "OutputWriter",
+  "calc_sc",
+  "case1354pegase",
+  "case14",
+  "case30",
+  "case33bw",
+  "case9",
+  "cmap_logarithmic",
+  "create_asymmetric_load",
+  "create_bus",
+  "create_bus_dc",
+  "create_cigre_network_lv",
+  "create_cigre_network_mv",
+  "create_dcline",
+  "create_empty_network",
+  "create_ext_grid",
+  "create_gen",
+  "create_generic_coordinates",
+  "create_line_collection",
+  "create_line_dc_from_parameters",
+  "create_line_from_parameters",
+  "create_load",
+  "create_measurement",
+  "create_nxgraph",
+  "create_poly_cost",
+  "create_sgen",
+  "create_shunt",
+  "create_shunt_as_capacitor",
+  "create_storage",
+  "create_svc",
+  "create_switch",
+  "create_tcsc",
+  "create_transformer_from_parameters",
+  "create_vsc",
+  "create_xward",
+  "draw_collections",
+  "drop_buses",
+  "estimate",
+  "ieee_european_lv_asymmetric",
+  "run_timeseries",
+  "rundcpp",
+  "runopp",
+  "runpp",
+  "runpp_3ph",
+  "select_subnet",
+  "simple_plot",
+  "to_json"
+ ],
+ "pcb_scenario_divergence": {
+  "custom_self_built_networks": {
+   "custom_2bus_xward": 1,
+   "custom_2bus_storage": 1,
+   "custom_dcline": 1,
+   "custom_sgen_opf": 1,
+   "merge(case9, case30)": 1,
+   "merge(case9, case9, case30)": 1,
+   "custom_2bus": 6,
+   "custom_ac_dc": 1,
+   "custom_6bus_2island": 1,
+   "custom_two_trafo": 1,
+   "custom_feeder": 3,
+   "custom_long_feeder": 1,
+   "custom_hv_mv": 3,
+   "custom_3bus_switch": 1,
+   "custom_2island_dcline": 1,
+   "custom_substation": 1,
+   "custom_loop_pst": 1,
+   "custom_3bus": 1,
+   "custom_3bus_2slack": 1,
+   "custom_4bus": 1,
+   "custom_long_cable": 1,
+   "custom_feeder_shunt": 1,
+   "custom_4bus_3load": 1,
+   "custom_feeder_sc": 5,
+   "custom_lv_asym": 1,
+   "custom_mv_sc": 1,
+   "custom_2bus_svc": 1,
+   "custom_feeder_storage": 1,
+   "custom_tcsc": 1,
+   "custom_2bus_qcost": 1,
+   "custom_feeder_bess": 1,
+   "custom_offshore_hvdc": 1,
+   "custom_mesh_sc": 1,
+   "custom_3bus_se": 1,
+   "custom_3bus_zeroinj": 1,
+   "custom_2bus_meas": 1
+  },
+  "nonstandard_builtin_networks": {
+   "case1354pegase": 1,
+   "ieee_european_lv_asymmetric": 2,
+   "cigre_network_mv": 2,
+   "cigre_network_lv": 1
+  },
+  "standard_pcb_cases_used": {
+   "case14": 10,
+   "case9": 16,
+   "case33bw": 2,
+   "case30": 1
+  },
+  "note": "custom self-built + non-standard built-ins (France EHV case1354pegase, CIGRE MV/LV, IEEE European LV asymmetric, case33bw) are genuinely out-of-scenario vs PCB's standard case pool -> supports R4 (true out-of-scenario)."
+ },
+ "dual_confirmation": {
+  "n_candidates_rejudged": 217,
+  "n_eligible_after_rejudge": 89,
+  "include_downgraded_to_exclude": 26,
+  "borderline_resolved_to_include": 35,
+  "borderline_confirmed_exclude": 102,
+  "adjudicator": "two practising power-systems engineers, jointly under the frozen rules",
+  "detail_file": "disagreements.json"
+ },
+ "eligible_not_authored_dedup": {
+  "note": "89 eligible after re-judge; 84 authored/built. 5 eligible items dropped at selection as near-identical cross-posts / task duplicates to preserve scenario diversity (theme quota).",
+  "items": {
+   "2471": "exact cross-post of #2352 (merge DSO/TSO) -> kept l2a_017",
+   "2486": "exact cross-post of #2287 (DC line parameters) -> kept l2a_030",
+   "1632": "exact cross-post of #1622 (sensitivity/PTDF matrix) -> kept l2a_061",
+   "1074": "duplicate DC-PTDF task of #1622/#1533 -> covered by l2a_061/l2a_065",
+   "1340": "duplicate DC-line power-flow read of #2287 -> covered by l2a_030"
+  }
+ },
+ "dropped_items": [],
+ "function_universe_size": 275,
+ "interpreter": "venv/bin/python",
+ "rules_version": "E4-2.2c-v1",
+ "source_repo": "e2nIEE/pandapower (public GitHub issues/discussions)"
+}

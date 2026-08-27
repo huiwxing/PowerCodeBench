@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "reviewer_type": "practising power-systems engineer, adversarial rubric-constrained review",
+  "reviewer_identity": "one of the same two power-systems engineers",
+  "review_pass": "adversarial challenge pass",
+  "rubric": {
+    "name": "matcher_false_negative_adversarial_refutation",
+    "version": "1.0",
+    "review_scope": "Independent review of the nine specified sample_records.json entries only; no prior judgments or aggregate labels consulted.",
+    "decision_rule": {
+      "uphold_false_negative": "The executed program reports the requested target with the correct meaning, sign or absolute-value convention, unit, and reasonable reporting precision; matcher rejection is therefore spurious.",
+      "genuine_error": "The program reports a different target, a wrong sign/unit/transformation, or only an intermediate quantity from which the requested answer would still have to be derived.",
+      "ambiguous": "The observable prompt and frozen reference do not determine a unique validity judgment, or exact numerical agreement may mask a material semantic mismatch."
+    },
+    "confidence_scale": "0.0 to 1.0"
+  },
+  "records": [
+    {
+      "sample_id": "fn020",
+      "verdict": "uphold_false_negative",
+      "confidence": 0.99,
+      "ground_truth_vs_output": {
+        "ground_truth": 55.368906,
+        "observed_output": "Change in total generation cost: 55.36890578302098",
+        "comparison": "Absolute difference is approximately 2.17e-7; because the cost increased, the signed and absolute changes coincide."
+      },
+      "rationale": "The program performs the baseline and modified OPFs, applies load-0 scaling 1.69, and explicitly reports the requested cost change. The label text caused parsing failure, but the target quantity, sign, and precision are correct."
+    },
+    {
+      "sample_id": "fn034",
+      "verdict": "genuine_error",
+      "confidence": 0.99,
+      "ground_truth_vs_output": {
+        "ground_truth": 0.494952,
+        "observed_output": "Initial 7228.73%, final 7228.23%, reported change -0.01%",
+        "comparison": "The requested/reference target is an absolute change of about 0.495 percentage points; the program instead reports the signed relative change, (final-initial)/initial*100, rounded to -0.01%."
+      },
+      "rationale": "Although the two printed endpoint loadings permit a reader to derive the correct magnitude, the program's explicit answer uses the wrong transformation and sign convention. This is not merely a parser miss."
+    },
+    {
+      "sample_id": "fn035",
+      "verdict": "uphold_false_negative",
+      "confidence": 0.98,
+      "ground_truth_vs_output": {
+        "ground_truth": 1.673479,
+        "observed_output": "Maximum short circuit current: 1.673479041129347 kA",
+        "comparison": "Absolute difference is approximately 4.11e-8 kA."
+      },
+      "rationale": "The requested final quantity is the maximum three-phase short-circuit current. The program reports that quantity explicitly, in kA, at essentially full precision. The extra line-loading output does not change the final target."
+    },
+    {
+      "sample_id": "fn037",
+      "verdict": "uphold_false_negative",
+      "confidence": 0.99,
+      "ground_truth_vs_output": {
+        "ground_truth": 55.368906,
+        "observed_output": "Change in total generation cost: 55.36890578302098",
+        "comparison": "Absolute difference is approximately 2.17e-7; the positive signed change equals the reference absolute change."
+      },
+      "rationale": "The program applies the specified scaling, reruns OPF, and explicitly prints the correct cost change. Only the surrounding label prevents the matcher from extracting the float."
+    },
+    {
+      "sample_id": "fn063",
+      "verdict": "genuine_error",
+      "confidence": 0.84,
+      "ground_truth_vs_output": {
+        "ground_truth": true,
+        "observed_output": "150.64411641053772",
+        "comparison": "The output is maximum line loading in percent, not the requested Boolean answer; true can be inferred only by comparing 150.644116 to the 120% threshold in the question."
+      },
+      "rationale": "The code comments say it will check whether any line exceeds 120%, but it computes and prints only the maximum loading without applying the Boolean comparison. Under the strict output contract, this is a derivable intermediate rather than the answer itself."
+    },
+    {
+      "sample_id": "fn077",
+      "verdict": "uphold_false_negative",
+      "confidence": 0.99,
+      "ground_truth_vs_output": {
+        "ground_truth": true,
+        "observed_output": "Yes, there are overloaded lines; line 4 loading_percent = 150.644116",
+        "comparison": "The explicit affirmative answer matches true, and the listed loading exceeds 120%."
+      },
+      "rationale": "The program directly answers the Boolean question and supplies supporting evidence. The matcher appears to have inspected the trailing table row instead of recognizing the preceding affirmative sentence."
+    },
+    {
+      "sample_id": "fn081",
+      "verdict": "uphold_false_negative",
+      "confidence": 0.98,
+      "ground_truth_vs_output": {
+        "ground_truth": 55.368906,
+        "observed_output": "Change in cost: 55.37",
+        "comparison": "55.37 is the ground truth rounded to two decimal places; absolute rounding difference is 0.001094."
+      },
+      "rationale": "The program explicitly reports the requested cost change and its two-decimal presentation is reasonable for an unqualified reporting request. The failure is extraction from labeled output, not a wrong target, unit, or sign."
+    },
+    {
+      "sample_id": "fn083",
+      "verdict": "uphold_false_negative",
+      "confidence": 0.94,
+      "ground_truth_vs_output": {
+        "ground_truth": 57.735027,
+        "observed_output": "Maximum short circuit current (ikss in kA): 57.7350",
+        "comparison": "Absolute difference is 0.000027 kA, fully explained by four-decimal rounding."
+      },
+      "rationale": "The code identifies and removes the currently most-loaded line and explicitly reports the requested final short-circuit maximum with the correct unit. The post-outage line-loading diagnostic is NaN, but the frozen scalar target and the prompt's final requested report are the short-circuit value, which is correct."
+    },
+    {
+      "sample_id": "fn084",
+      "verdict": "ambiguous",
+      "confidence": 0.76,
+      "ground_truth_vs_output": {
+        "ground_truth": 1512.14161,
+        "observed_output": "Change in cost: 1512.1416099298303",
+        "comparison": "The scalar agrees within approximately 7.02e-8, but the program raises generator 0 from 163.0 to 183.0 MW whereas the reference sets it to 211.9 MW."
+      },
+      "rationale": "The natural-language prompt specifies only a 'higher dispatch level,' so a 20 MW increase is facially compliant, yet it differs materially from the frozen reference intervention. OPF re-optimization can make the final cost change insensitive to the pre-OPF p_mw setting, so exact numerical agreement alone cannot resolve whether the intended intervention was fulfilled."
+    }
+  ]
+}

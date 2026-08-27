@@ -1,0 +1,100 @@
+{
+  "source": "real tokenizer counts from round0_prompt_token_stats.avg",
+  "x_budget": 4000,
+  "c_budget": 2000,
+  "panel_mean_c_over_x": 0.41289449696000796,
+  "panel_mean_savings": 2062.3,
+  "x_cap_binding_rate": 0.0,
+  "rows": [
+    {
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "A_avg_prompt_tokens": 170,
+      "B_avg_prompt_tokens": 236,
+      "C_avg_prompt_tokens": 1455,
+      "X_avg_prompt_tokens": 3518,
+      "c_over_x": 0.4135872654917567,
+      "x_minus_c_savings": 2063
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "A_avg_prompt_tokens": 170,
+      "B_avg_prompt_tokens": 236,
+      "C_avg_prompt_tokens": 1415,
+      "X_avg_prompt_tokens": 3518,
+      "c_over_x": 0.40221716884593517,
+      "x_minus_c_savings": 2103
+    },
+    {
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "A_avg_prompt_tokens": 189,
+      "B_avg_prompt_tokens": 254,
+      "C_avg_prompt_tokens": 1475,
+      "X_avg_prompt_tokens": 3493,
+      "c_over_x": 0.42227311766389924,
+      "x_minus_c_savings": 2018
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "A_avg_prompt_tokens": 170,
+      "B_avg_prompt_tokens": 236,
+      "C_avg_prompt_tokens": 1475,
+      "X_avg_prompt_tokens": 3518,
+      "c_over_x": 0.41927231381466745,
+      "x_minus_c_savings": 2043
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "A_avg_prompt_tokens": 170,
+      "B_avg_prompt_tokens": 236,
+      "C_avg_prompt_tokens": 1464,
+      "X_avg_prompt_tokens": 3518,
+      "c_over_x": 0.4161455372370665,
+      "x_minus_c_savings": 2054
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "A_avg_prompt_tokens": 189,
+      "B_avg_prompt_tokens": 254,
+      "C_avg_prompt_tokens": 1417,
+      "X_avg_prompt_tokens": 3493,
+      "c_over_x": 0.4056684798167764,
+      "x_minus_c_savings": 2076
+    },
+    {
+      "model": "openai_gpt-oss-120b",
+      "A_avg_prompt_tokens": 228,
+      "B_avg_prompt_tokens": 292,
+      "C_avg_prompt_tokens": 1503,
+      "X_avg_prompt_tokens": 3540,
+      "c_over_x": 0.4245762711864407,
+      "x_minus_c_savings": 2037
+    },
+    {
+      "model": "Qwen_Qwen3-Coder-Next",
+      "A_avg_prompt_tokens": 170,
+      "B_avg_prompt_tokens": 236,
+      "C_avg_prompt_tokens": 1422,
+      "X_avg_prompt_tokens": 3518,
+      "c_over_x": 0.40420693575895394,
+      "x_minus_c_savings": 2096
+    },
+    {
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "A_avg_prompt_tokens": 189,
+      "B_avg_prompt_tokens": 254,
+      "C_avg_prompt_tokens": 1435,
+      "X_avg_prompt_tokens": 3493,
+      "c_over_x": 0.41082164328657317,
+      "x_minus_c_savings": 2058
+    },
+    {
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "A_avg_prompt_tokens": 170,
+      "B_avg_prompt_tokens": 236,
+      "C_avg_prompt_tokens": 1443,
+      "X_avg_prompt_tokens": 3518,
+      "c_over_x": 0.4101762364980102,
+      "x_minus_c_savings": 2075
+    }
+  ]
+}

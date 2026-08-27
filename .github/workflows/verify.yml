@@ -1,0 +1,100 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pin the interpreter of the frozen experimental environment (SM S6.4).
+      # CPython >= 3.12 switched built-in sum() to compensated (Neumaier)
+      # summation, which shifts five recomputed statistics by one ulp and
+      # breaks their field-for-field equality against the frozen artifacts.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Recompute headline number groups (reproduce.py)
+        run: python3 reproduce.py
+
+      - name: Parse every tracked JSON artifact
+        run: |
+          python3 - <<'EOF'
+          import json, subprocess, sys
+          files = subprocess.run(["git", "ls-files", "*.json"],
+                                 capture_output=True, text=True).stdout.split()
+          bad = []
+          for f in files:
+              try:
+                  json.load(open(f, encoding="utf-8"))
+              except Exception as e:
+                  bad.append((f, str(e)[:120]))
+          for f, err in bad:
+              print(f"BAD JSON: {f}: {err}")
+          print(f"parsed {len(files) - len(bad)}/{len(files)} tracked JSON files")
+          sys.exit(1 if bad else 0)
+          EOF
+
+      - name: Verify checksums.sha256 (every tracked file)
+        run: |
+          sha256sum -c --quiet checksums.sha256
+          python3 - <<'EOF'
+          import subprocess, sys
+          tracked = set(subprocess.run(["git", "ls-files"],
+                                       capture_output=True, text=True).stdout.splitlines())
+          tracked.discard("checksums.sha256")
+          listed = set(line.rstrip("\n").split("  ", 1)[1]
+                       for line in open("checksums.sha256") if line.strip())
+          missing, extra = sorted(tracked - listed), sorted(listed - tracked)
+          for f in missing:
+              print("NOT IN MANIFEST:", f)
+          for f in extra:
+              print("NOT TRACKED:", f)
+          print(f"checksums.sha256 covers {len(listed)} files; "
+                f"{len(tracked)} tracked (manifest itself excluded)")
+          sys.exit(1 if missing or extra else 0)
+          EOF
+
+      - name: Verify the per-claim SHA-256 rows of ARTIFACT_INDEX.md
+        run: |
+          python3 - <<'EOF'
+          import hashlib, re, sys
+          from pathlib import Path
+          # Main-table rows carry the artifact path in the second cell and a
+          # 64-hex SHA-256 in the last cell.
+          sha_cell = re.compile(r"`([0-9a-f]{64})`")
+          path_cell = re.compile(r"`([^`]+)`")
+          pairs = []
+          for line in Path("ARTIFACT_INDEX.md").read_text().splitlines():
+              if not line.startswith("|"):
+                  continue
+              m = sha_cell.search(line)
+              if not m:
+                  continue
+              cells = [c.strip() for c in line.strip().strip("|").split("|")]
+              pm = path_cell.search(cells[1] if len(cells) > 1 else "")
+              if not pm:
+                  continue
+              pairs.append((pm.group(1), m.group(1)))
+          bad = []
+          for path, sha in pairs:
+              p = Path(path)
+              if not p.exists():
+                  bad.append((path, "MISSING"))
+              elif hashlib.sha256(p.read_bytes()).hexdigest() != sha:
+                  bad.append((path, "sha mismatch"))
+          for b in bad:
+              print("BAD:", b)
+          print(f"verified {len(pairs) - len(bad)}/{len(pairs)} per-claim hashes")
+          sys.exit(1 if bad or not pairs else 0)
+          EOF
+
+      - name: Check the benchmark text-normalization boundary (exactly 105 items)
+        run: python3 .github/scripts/check_text_normalization.py
+
+      - name: Byte-compile all tracked Python
+        run: python3 -m py_compile $(git ls-files '*.py')

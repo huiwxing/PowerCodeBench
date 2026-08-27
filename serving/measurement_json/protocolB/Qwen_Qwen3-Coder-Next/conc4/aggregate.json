@@ -1,0 +1,39 @@
+{
+  "cluster_avg_power_w": 578.1343154488889,
+  "completion_tokens": 102400,
+  "duration_s_by_node": {
+    "nid011280": 220.56804896797985
+  },
+  "energy_methods": [
+    "nvml_total_energy_counter"
+  ],
+  "energy_scope": [
+    "gross_device_energy"
+  ],
+  "hostnames": [
+    "nid011280"
+  ],
+  "j_per_completion_token": 1.2452925585937502,
+  "j_per_request": 637.5897900000001,
+  "j_per_successful_request": 637.5897900000001,
+  "j_per_total_token": 0.3317022591595459,
+  "n_gpus": 2,
+  "n_nodes": 1,
+  "peak_memory_used_bytes_max_device": 99276881920,
+  "peak_memory_used_bytes_sum": 198553501696,
+  "prompt_tokens": 282035,
+  "representative_window_s": 220.56804896797985,
+  "requests": 200,
+  "requests_per_s": 0.9067496445463606,
+  "schema_version": 1,
+  "source_files": [
+    "probe_eval_results/e3_protocolB/Qwen_Qwen3-Coder-Next/conc4/energy_5879735_nid011280.json"
+  ],
+  "start_skew_s": 0.0,
+  "stop_skew_s": 0.0,
+  "successful_requests": 200,
+  "total_energy_j": 127517.95800000001,
+  "total_tokens": 384435.0,
+  "total_tokens_per_s": 1742.9314980059007,
+  "wall_span_s": 220.5680491924286
+}

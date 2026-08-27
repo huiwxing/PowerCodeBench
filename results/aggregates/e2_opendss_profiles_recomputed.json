@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "source_profile_manifest": "results/raw/e2_transfer/opendss/profiles/manifest.json",
+  "source_transfer_manifest": "results/raw/e2_transfer/manifest.json",
+  "profile_definition": {
+    "L0": "mean per-function recognition accuracy",
+    "L1": "mean per-function (0.5 * path_correct + 0.5 * required_params_jaccard)",
+    "L2": "mean per-function comprehension accuracy",
+    "L3": "mean per-function (execution_success * target_function_used)"
+  },
+  "profiles": {
+    "Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "directory": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "n_functions": 76,
+      "n_probe_records": {
+        "L0": 152,
+        "L1": 76,
+        "L2": 199,
+        "L3": 76
+      },
+      "profile_means": {
+        "L0": 0.618421052631579,
+        "L1": 0.7368421052631579,
+        "L2": 0.9692986842105263,
+        "L3": 0.40789473684210525
+      },
+      "profile_means_3dp": {
+        "L0": 0.618,
+        "L1": 0.737,
+        "L2": 0.969,
+        "L3": 0.408
+      },
+      "frozen_profile_exact_match": true,
+      "frozen_summary_metrics_match": true
+    },
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "directory": "meta-llama_Llama-3.1-70B-Instruct",
+      "n_functions": 76,
+      "n_probe_records": {
+        "L0": 152,
+        "L1": 76,
+        "L2": 199,
+        "L3": 76
+      },
+      "profile_means": {
+        "L0": 0.4473684210526316,
+        "L1": 0.17105263157894737,
+        "L2": 0.9780710526315789,
+        "L3": 0.07894736842105263
+      },
+      "profile_means_3dp": {
+        "L0": 0.447,
+        "L1": 0.171,
+        "L2": 0.978,
+        "L3": 0.079
+      },
+      "frozen_profile_exact_match": true,
+      "frozen_summary_metrics_match": true
+    },
+    "deepseek-v4-flash": {
+      "directory": "deepseek-v4-flash",
+      "n_functions": 76,
+      "n_probe_records": {
+        "L0": 152,
+        "L1": 76,
+        "L2": 199,
+        "L3": 76
+      },
+      "profile_means": {
+        "L0": 0.7828947368421053,
+        "L1": 0.5526315789473685,
+        "L2": 0.9890355263157894,
+        "L3": 0.19736842105263158
+      },
+      "profile_means_3dp": {
+        "L0": 0.783,
+        "L1": 0.553,
+        "L2": 0.989,
+        "L3": 0.197
+      },
+      "frozen_profile_exact_match": true,
+      "frozen_summary_metrics_match": true
+    }
+  },
+  "control_device_benchmark": {
+    "Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "conditions": {
+        "A": {
+          "prompt_tokens_total": 57195,
+          "prompt_tokens_mean": 635.5,
+          "control_items": 18,
+          "non_executable": 15,
+          "attribute_error": 14
+        },
+        "C": {
+          "prompt_tokens_total": 92550,
+          "prompt_tokens_mean": 1028.3333333333333,
+          "control_items": 18,
+          "non_executable": 17,
+          "attribute_error": 17
+        },
+        "Rsem": {
+          "prompt_tokens_total": 414378,
+          "prompt_tokens_mean": 4604.2,
+          "control_items": 18,
+          "non_executable": 6,
+          "attribute_error": 6
+        }
+      },
+      "injected_tokens_mean_exact": {
+        "C": 392.83333333333326,
+        "Rsem": 3968.7
+      },
+      "injected_tokens_mean_rounded": {
+        "C": 393,
+        "Rsem": 3969
+      }
+    },
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "conditions": {
+        "A": {
+          "prompt_tokens_total": 57203,
+          "prompt_tokens_mean": 635.5888888888888,
+          "control_items": 18,
+          "non_executable": 13,
+          "attribute_error": 4
+        },
+        "C": {
+          "prompt_tokens_total": 104551,
+          "prompt_tokens_mean": 1161.6777777777777,
+          "control_items": 18,
+          "non_executable": 2,
+          "attribute_error": 1
+        },
+        "Rsem": {
+          "prompt_tokens_total": 404074,
+          "prompt_tokens_mean": 4489.711111111111,
+          "control_items": 18,
+          "non_executable": 1,
+          "attribute_error": 1
+        }
+      },
+      "injected_tokens_mean_exact": {
+        "C": 526.0888888888888,
+        "Rsem": 3854.122222222222
+      },
+      "injected_tokens_mean_rounded": {
+        "C": 526,
+        "Rsem": 3854
+      }
+    }
+  },
+  "supplementary_table_s19_checks": {
+    "Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "profile_rows_match": true,
+      "injected_token_rows_match": true,
+      "non_executable_rows_match": true
+    },
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "profile_rows_match": true,
+      "injected_token_rows_match": true,
+      "non_executable_rows_match": true
+    },
+    "Qwen name-level caption counts": {
+      "A_attribute_error": 14,
+      "C_attribute_error": 17,
+      "Rsem_attribute_error": 6,
+      "matches_caption": true
+    }
+  },
+  "all_checks_passed": true
+}

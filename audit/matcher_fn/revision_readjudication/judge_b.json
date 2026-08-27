@@ -1,0 +1,721 @@
+{
+  "schema_version": 1,
+  "adjudication_id": "matcher_fn_revision_readjudication_b",
+  "reviewer_type": "practising power-systems engineer, rubric-constrained record review",
+  "reviewer_identity": "power_systems_engineer_2",
+  "review_pass": "independent primary pass B",
+  "rubric_version": "matcher-fn-revision-v1",
+  "rubric": {
+    "false_negative": "Execution output or code evidence shows that an engineering-equivalent correct answer was produced and only parser/matcher extraction failed.",
+    "genuine_error": "The executed program, numeric result, or semantics are genuinely incorrect or fail to produce the requested answer.",
+    "ambiguous": "The available source record is insufficient or the boundary between a derivable intermediate and a produced answer cannot be decided reliably."
+  },
+  "review_constraints": {
+    "records_examined": 100,
+    "generated_code_executed": false,
+    "historical_item_labels_used": false,
+    "historical_tally_used_for_assignment": false
+  },
+  "records": [
+    {
+      "sample_id": "fn001",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 0.964434; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Series([], Name: vm_pu, dtype: float64)'; observed output excerpt: 'Series([], Name: vm_pu, dtype: float64)'."
+    },
+    {
+      "sample_id": "fn002",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 0.985498; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Series([], Name: vm_pu, dtype: float64)'; observed output excerpt: 'Series([], Name: vm_pu, dtype: float64)'."
+    },
+    {
+      "sample_id": "fn003",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 12.17746; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Name: loading_percent, dtype: int64'; observed output excerpt: '0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100 12 100 13 100 14 100 15 100 16 100 17 100 18 100 19 100'."
+    },
+    {
+      "sample_id": "fn004",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 24.134167; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Series([], Name: vm_pu, dtype: float64)'; observed output excerpt: 'Series([], Name: vm_pu, dtype: float64)'."
+    },
+    {
+      "sample_id": "fn005",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 67.70708; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:The maximum line loading (%) is: Series([], Name: '; observed output excerpt: 'The maximum line loading (%) is: Series([], Name: loading_percent, dtype: float64)'."
+    },
+    {
+      "sample_id": "fn006",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 1.0; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Name: vm_pu, Length: 179, dtype: float64'; observed output excerpt: '0 1.009473 1 1.009354 2 1.010306 3 1.008611 4 1.010021 ... 315 1.001721 316 0.983367 317 0.999822 318 1.000000 319 1.028804 Name: vm_pu, Length: 179'."
+    },
+    {
+      "sample_id": "fn007",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 1.155903; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:The most heavily loaded line under the current ope'; observed output excerpt: 'The most heavily loaded line under the current operating point is bus 5.'."
+    },
+    {
+      "sample_id": "fn008",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 6420; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_int:Series([], Name: vm_pu, dtype: float64)'; observed output excerpt: 'Series([], Name: vm_pu, dtype: float64)'."
+    },
+    {
+      "sample_id": "fn009",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 0.813215; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Minimum bus voltage (p.u.) across all contingency '; observed output excerpt: 'Minimum bus voltage (p.u.) across all contingency scenarios: nan'."
+    },
+    {
+      "sample_id": "fn010",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 14.0, not the reference 1028.20259; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 14.0 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn011",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 633.8551564852804, not the reference 55.368906; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 633.8551564852804 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn012",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was -1.8286295061939661, not the reference 3.905249; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed -1.8286295061939661 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn013",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9885354999706817, not the reference 0.805256; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9885354999706817 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn014",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.4151221609634699, not the reference 1.225532; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.4151221609634699 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn015",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 0.673284; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:None'; observed output excerpt: 'None'."
+    },
+    {
+      "sample_id": "fn016",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 2.0, not the reference 16.934411; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 2.0 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn017",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 4846.310669035614, not the reference 5047.58355; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 4846.310669035614 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn018",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 133.53827234984988, not the reference 82.583352; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 133.53827234984988 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn019",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9925528877520444, not the reference 0.960233; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9925528877520444 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn020",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The code computed the requested OPF cost change, and the final reported 55.36890578302098 is equal to the 55.368906 reference to displayed precision; only the labelled multi-line output defeated scalar extraction.",
+      "parser_evidence": "The matcher returned cannot_parse_float even though the last line is \"Change in total generation cost: 55.36890578302098\"."
+    },
+    {
+      "sample_id": "fn021",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9301040690154037, not the reference 0.989261; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9301040690154037 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn022",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.8740202770725827, not the reference 2.196942; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.8740202770725827 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn023",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 18.679260291218693, not the reference 12.17746; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 18.679260291218693 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn024",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1053.1064588663894, not the reference 1028.20259; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1053.1064588663894 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn025",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 2.734829949489472, not the reference 2.46584; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 2.734829949489472 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn026",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9983725099546179, not the reference 0.988455; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9983725099546179 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn027",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 4301.5849303150135, not the reference 690.653432; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 4301.5849303150135 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn028",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.922979775347019, not the reference 0.983916; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.922979775347019 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn029",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.0145916121455303, not the reference 1.225532; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.0145916121455303 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn030",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.0, not the reference 0.97428; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.0 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn031",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.06946206455161462, not the reference 0.954526; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.06946206455161462 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn032",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was nan, not the reference 0.673284; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed nan (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn033",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.7903673402054429, not the reference 0.742128; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.7903673402054429 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn034",
+      "label": "ambiguous",
+      "confidence": 0.58,
+      "rationale": "The output reports correct-looking before/after maxima (7228.73% and 7228.23%), whose rounded absolute separation is about 0.50 and is compatible with the 0.494952 reference, but the program explicitly labels its final answer as a relative percent change (-0.01%). Whether derivable rounded intermediates count as having produced the requested answer is a boundary call.",
+      "parser_evidence": "Scalar extraction failed on the labelled final line. The final reported metric is -0.01%, while two earlier rounded values permit reconstruction of an approximately 0.50-point absolute change."
+    },
+    {
+      "sample_id": "fn035",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The requested maximum short-circuit current was actually reported as 1.673479041129347 kA, numerically equal to the 1.673479 reference; the miss is purely output extraction.",
+      "parser_evidence": "The matcher returned cannot_parse_float on a labelled two-line report whose last numeric result is 1.673479041129347 kA."
+    },
+    {
+      "sample_id": "fn036",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference True; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_bool:111.79992418535278'; observed output excerpt: '111.79992418535278'."
+    },
+    {
+      "sample_id": "fn037",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The generated program correctly computed and reported the requested cost change as 55.36890578302098, equal to the 55.368906 reference to displayed precision.",
+      "parser_evidence": "The matcher returned cannot_parse_float because the correct result appeared after the label \"Change in total generation cost\" in multi-line output."
+    },
+    {
+      "sample_id": "fn038",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9348357762272261, not the reference 0.960233; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9348357762272261 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn039",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9755597456496125, not the reference 1.0; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9755597456496125 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn040",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 16.282328349029086, not the reference 82.583352; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 16.282328349029086 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn041",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 3637.7994837062374, not the reference 3767.588176; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 3637.7994837062374 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn042",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 2.5868019967446916, not the reference 12.17746; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 2.5868019967446916 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn043",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9583957579242796, not the reference 0.673284; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9583957579242796 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn044",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 40.14698244632839, not the reference 42.829866; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 40.14698244632839 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn045",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9424101714597828, not the reference 0.964434; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9424101714597828 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn046",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.999985600414708, not the reference 0.948404; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.999985600414708 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn047",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 96.39244726811008, not the reference 67.70708; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 96.39244726811008 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn048",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.8263801286836555, not the reference 1.005479; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.8263801286836555 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn049",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1053.1135700872348, not the reference 1028.20259; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1053.1135700872348 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn050",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 3601.794291777267, not the reference 47.058971; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 3601.794291777267 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn051",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.1399535260408982, not the reference 2.196942; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.1399535260408982 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn052",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 57.735027; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Maximum short‑circuit current (ikss) after outage:'; observed output excerpt: 'Maximum line loading before outage: 79.11 % Maximum short‑circuit current (ikss) after outage: 1348.004 kA'."
+    },
+    {
+      "sample_id": "fn053",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.5078406327774547, not the reference 1.225532; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.5078406327774547 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn054",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 4.15194856599532, not the reference 6.3172; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 4.15194856599532 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn055",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 57.42962443370777, not the reference 55.368906; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 57.42962443370777 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn056",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 3637.7999782771026, not the reference 3767.588176; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 3637.7999782771026 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn057",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 96.3924472732534, not the reference 67.70708; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 96.3924472732534 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn058",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.02, not the reference 1.0; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.02 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn059",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 18.679260291218693, not the reference 12.17746; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 18.679260291218693 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn060",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.5702564981255334, not the reference 0.618124; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.5702564981255334 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn061",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The generated code produced no answer for the requested result (reference 1.673479); empty execution output is not engineering-equivalent evidence.",
+      "parser_evidence": "The execution output is empty and the matcher reports empty_output."
+    },
+    {
+      "sample_id": "fn062",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9833137005405034, not the reference 0.894782; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9833137005405034 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn063",
+      "label": "false_negative",
+      "confidence": 0.98,
+      "rationale": "The output maximum loading is 150.64411641053772%, which unambiguously establishes the requested Boolean answer True for a 120% threshold; the program supplied engineering-equivalent evidence.",
+      "parser_evidence": "The matcher required a Boolean literal and returned cannot_parse_bool for numeric output 150.64411641053772, despite that value being above 120."
+    },
+    {
+      "sample_id": "fn064",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 283.60189823521756, not the reference 127.046353; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 283.60189823521756 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn065",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 3980.793820828191, not the reference 690.653432; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 3980.793820828191 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn066",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9892584789511666, not the reference 0.95878; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9892584789511666 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn067",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1100.4975095806954, not the reference 1028.20259; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1100.4975095806954 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn068",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9313697077097078, not the reference 0.909328; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9313697077097078 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn069",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.0500000000000003, not the reference 1.08717; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.0500000000000003 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn070",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 12, not the reference 0; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 12 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn071",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.0, not the reference 127.331427; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.0 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn072",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 2.1967704030501083, not the reference 2.46584; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 2.1967704030501083 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn073",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9348357762272261, not the reference 0.960233; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9348357762272261 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn074",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9755597456496125, not the reference 1.0; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9755597456496125 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn075",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 3861.0, not the reference 3767.588176; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 3861.0 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn076",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 18.67926029121869, not the reference 12.17746; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 18.67926029121869 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn077",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The output explicitly says that overloaded lines exist and shows line 4 at 150.644116%, which is the requested True answer in natural-language/tabular form.",
+      "parser_evidence": "The matcher returned cannot_parse_bool on output beginning \"Yes, there are overloaded lines\" and containing 150.644116%."
+    },
+    {
+      "sample_id": "fn078",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 77.41221934763557, not the reference 67.70708; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 77.41221934763557 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn079",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 262.4319405407291, not the reference 26.243194; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 262.4319405407291 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn080",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9489892990035629, not the reference 0.964434; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9489892990035629 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn081",
+      "label": "false_negative",
+      "confidence": 0.96,
+      "rationale": "The program computed the requested OPF cost change and reported 55.37, the ordinary two-decimal rendering of the 55.368906 reference; this is engineering-equivalent rounded output.",
+      "parser_evidence": "The matcher returned cannot_parse_float on the labelled multi-line output ending \"Change in cost: 55.37\"."
+    },
+    {
+      "sample_id": "fn082",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 1.673479; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:Report: Maximum short circuit current (ikss) = 16.'; observed output excerpt: 'Maximum line loading: 73.37% Maximum short circuit current (ikss): 16.735 kA Report: Maximum short circuit current (ikss) = 16.735 kA'."
+    },
+    {
+      "sample_id": "fn083",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The requested maximum short-circuit current was reported as 57.7350 kA, equal to the 57.735027 reference at the output precision; only extraction failed.",
+      "parser_evidence": "The matcher returned cannot_parse_float on a labelled report ending with 57.7350."
+    },
+    {
+      "sample_id": "fn084",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The program computed and printed the requested cost change as 1512.1416099298303, equal to the 1512.14161 reference to displayed precision.",
+      "parser_evidence": "The matcher returned cannot_parse_float because the correct value appeared in a labelled multi-line report."
+    },
+    {
+      "sample_id": "fn085",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 2.2345610156238243, not the reference 2.46584; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 2.2345610156238243 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn086",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.19033142345312007, not the reference 0.265446; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.19033142345312007 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn087",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 31.79978752694329, not the reference 24.134167; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 31.79978752694329 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn088",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference True; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_bool:0.0'; observed output excerpt: '0.0'."
+    },
+    {
+      "sample_id": "fn089",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.508024698832602, not the reference 0.805574; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.508024698832602 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn090",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.1553747432056412, not the reference 32.446049; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.1553747432056412 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn091",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The generated code produced no answer for the requested result (reference 2.641079); empty execution output is not engineering-equivalent evidence.",
+      "parser_evidence": "The execution output is empty and the matcher reports empty_output."
+    },
+    {
+      "sample_id": "fn092",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The output does not contain engineering-equivalent evidence for the requested reference 149.79165; the generated program returned an empty/incorrect object, wrong value, or wrong answer type.",
+      "parser_evidence": "The matcher reports 'cannot_parse_float:New maximum line loading after mitigation: 95.25%'; observed output excerpt: 'No worst-case line found, cannot disconnect. No worst-case line found or parsed, cannot disconnect. New maximum line loading after mitigation: 95.25%'."
+    },
+    {
+      "sample_id": "fn093",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 73.50086133900541, not the reference 23.588415; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 73.50086133900541 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn094",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was inf, not the reference 0.948404; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed inf (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn095",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was nan, not the reference 48.0; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed nan (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn096",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 67.17739104858809, not the reference 0.001413; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 67.17739104858809 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn097",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 1.2010717223528526, not the reference 1.181696; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 1.2010717223528526 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn098",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was -5.823238983480029, not the reference -0.029471; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed -5.823238983480029 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn099",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 639, not the reference 106; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 639 (error is null), so extraction was not the cause of the mismatch."
+    },
+    {
+      "sample_id": "fn100",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The executed answer was 0.9755597456496125, not the reference 1.0; the source record therefore shows a numeric/semantic computation error rather than a parser-only miss.",
+      "parser_evidence": "The matcher successfully parsed 0.9755597456496125 (error is null), so extraction was not the cause of the mismatch."
+    }
+  ]
+}

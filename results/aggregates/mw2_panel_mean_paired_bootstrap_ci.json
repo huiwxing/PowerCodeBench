@@ -1,0 +1,73 @@
+{
+  "rows": [
+    {
+      "delta_label": "C+FDRS \u2212 C+FDR",
+      "file_a": "benchmark_results_condC_FDRS.json",
+      "file_b": "benchmark_results_condC_FDR.json",
+      "point_pp": 2.1600000000000024,
+      "boot_median_pp": 2.1599999999999984,
+      "ci_low_pp": 1.8150000000000008,
+      "ci_high_pp": 2.5150000000000023,
+      "strict_positive": true,
+      "strict_negative": false,
+      "n_bootstrap": 2000,
+      "n_items": 2000
+    },
+    {
+      "delta_label": "C+FDR \u2212 C+FD",
+      "file_a": "benchmark_results_condC_FDR.json",
+      "file_b": "benchmark_results_condC_FD.json",
+      "point_pp": -0.0650000000000018,
+      "boot_median_pp": -0.05000000000000195,
+      "ci_low_pp": -0.44499999999999995,
+      "ci_high_pp": 0.31500000000000183,
+      "strict_positive": false,
+      "strict_negative": false,
+      "n_bootstrap": 2000,
+      "n_items": 2000
+    },
+    {
+      "delta_label": "C+FX \u2212 A+FX",
+      "file_a": "benchmark_results_condC_FX.json",
+      "file_b": "benchmark_results_condA_FX.json",
+      "point_pp": 33.595,
+      "boot_median_pp": 33.6,
+      "ci_low_pp": 32.385,
+      "ci_high_pp": 34.82,
+      "strict_positive": true,
+      "strict_negative": false,
+      "n_bootstrap": 2000,
+      "n_items": 2000
+    },
+    {
+      "delta_label": "C \u2212 A",
+      "file_a": "benchmark_results_condC.json",
+      "file_b": "benchmark_results_condA.json",
+      "point_pp": 30.95,
+      "boot_median_pp": 30.935,
+      "ci_low_pp": 29.745,
+      "ci_high_pp": 32.129999999999995,
+      "strict_positive": true,
+      "strict_negative": false,
+      "n_bootstrap": 2000,
+      "n_items": 2000
+    },
+    {
+      "delta_label": "C+FDRS \u2212 C+FX",
+      "file_a": "benchmark_results_condC_FDRS.json",
+      "file_b": "benchmark_results_condC_FX.json",
+      "point_pp": 3.925000000000002,
+      "boot_median_pp": 3.924999999999999,
+      "ci_low_pp": 3.515000000000001,
+      "ci_high_pp": 4.335,
+      "strict_positive": true,
+      "strict_negative": false,
+      "n_bootstrap": 2000,
+      "n_items": 2000
+    }
+  ],
+  "n_items": 2000,
+  "n_panel": 10,
+  "n_bootstrap": 2000,
+  "seed": 22
+}

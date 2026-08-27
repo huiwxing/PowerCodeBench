@@ -1,0 +1,1092 @@
+{
+ "meta": {
+  "role": "E1-P adjudicator",
+  "review_source": "two practising power-systems engineers; disagreements reconciled under the frozen rubric with deterministic re-execution evidence where applicable",
+  "kappa_4class": 0.8678,
+  "kappa_binary": 0.8604,
+  "family_rulings": [
+   "F-A",
+   "F-B",
+   "F-C",
+   "F-D",
+   "F-E",
+   "F-F"
+  ],
+  "protocol": "E1_validity_audit.md s2.3 frozen 10 cases + N1-N7 + R2/R3/R5 + lead family rulings F-A..F-F; both judge files read jointly; judges' opinions treated as input, not authority",
+  "oracle_env": "experiment venv (pandapower 3.4.0), login node, serial single-thread subprocess",
+  "oracle_ledger": [
+   {
+    "id": "O-ADJ-1",
+    "items": [
+     119
+    ],
+    "network": "case5",
+    "computation": "replicated ref final (scaling 1.54, run_contingency envelope worst line out, 20 MW gen at bus 3) vs gen final (p_mw*2=800, idxmax line dropped, remedy gen dropped); diffed full res_bus.vm_pu / res_line.loading_percent",
+    "conclusion": "ext_grid bus = 3 = remedy-gen bus = load-2 bus; both sides select line 5; full-state bit-identity (max |dvm| = 0.0, max |dloading| = 0.0, both print 80.96533518289348) -- the dropped slack-bus generator and the raise magnitude are provably solution-inert"
+   },
+   {
+    "id": "O-ADJ-2",
+    "items": [
+     46,
+     120
+    ],
+    "network": "case5",
+    "computation": "replicated bi=1983 ref and gen cascades verbatim plus a gen variant with q_mvar=-12; recorded branch firing, disconnected line, shunt bus, final min vm; checked base scaling of the target load",
+    "conclusion": "both sides fire the overload branch and disconnect the same line 5 with the shunt at bus 1 (refutes J1's i=46 claim that gen never disconnected; gen's scaling=1.0 no-op raise is slack-inert); the sign is the sole live deviation: +12 -> 0.98785686183537, -12 variant -> 0.9897264717036113 == ref exactly -> queried quantity changes with the sign (F-A third branch)"
+   },
+   {
+    "id": "O-ADJ-3",
+    "items": [
+     43
+    ],
+    "network": "case30",
+    "computation": "runopp on unmodified case30 vs gen.at[0,'p_mw']=95.5 preset; compared res_bus.vm_pu tables and res_gen dispatch",
+    "conclusion": "bit-identical (vmax 1.099003164003908 both, vm-table diff 0.0, dispatch diff 0.0) -- the reference's preset is provably inert under OPF and gen's omission is a no-op omission (F-F first branch)"
+   }
+  ],
+  "disagreement_resolution": {
+   "n_disagreements": 12,
+   "j1_prevails": [
+    23,
+    46,
+    55,
+    90,
+    92,
+    95,
+    120,
+    136
+   ],
+   "j2_prevails": [
+    43,
+    84,
+    114,
+    119
+   ],
+   "third_label": [],
+   "counts": {
+    "j1_prevails": 8,
+    "j2_prevails": 4,
+    "third_label": 0
+   }
+  },
+  "agreed_walkthrough": {
+   "n_agreed": 125,
+   "n_corrected": 0,
+   "notes": [
+    "i=40 (E1P-089-C PE) consistent with F-F second branch / F-E: omitted tap move is not a no-op write and the ulp-insensitive scalar does not exempt; anchors the i=114 conviction.",
+    "i=75/78/82 phantom-write PEs upheld under the F-B first-branch computation-active reading: parallel/x0_km/reactance are admittance-bearing parameters whose writes silently failed; scenario-specific scalar insensitivity (incl. i=82's oracle-proven exact-0 delta) does not demote. This is what distinguishes them from i=84, where runpp never reads max_vm_pu at all (parameter-level decorativeness -> F-B second branch).",
+    "i=25/94 (E1P-063 SID, R3 middle branch: real binding max_p_mw cap, value varies) consistent with i=43/i=117 EQ (inert preset / no-op omission, bit-identical).",
+    "i=29 (E1P-068-C EQ) upheld: structurally clamped scalar identical across the whole legal-reading family = bi=1229 determinacy principle, not R2.",
+    "i=91 (dialect wrong-element), i=100 (1943-template collapsed state), i=105 (case-2 solver-pinning violation with degenerate-GT errata note) upheld.",
+    "Factual correction without label change: J1's i=46 claim that gen's overload branch never fired is refuted by O-ADJ-2 (both sides disconnected line 5); the conviction basis is the shunt sign alone."
+   ]
+  },
+  "final_counts": {
+   "total": {
+    "clean": 15,
+    "suspected-item-defect": 8,
+    "physical-error": 55,
+    "equivalent-path": 59
+   },
+   "pair_C": {
+    "clean": 8,
+    "suspected-item-defect": 5,
+    "physical-error": 12,
+    "equivalent-path": 31
+   },
+   "pair_A": {
+    "physical-error": 43,
+    "clean": 7,
+    "equivalent-path": 28,
+    "suspected-item-defect": 3
+   },
+   "binary_contamination_candidates_for_refute": {
+    "C_FDRS": {
+     "n_physical_error": 12,
+     "n_sides": 56,
+     "rate_pct": 21.43
+    },
+    "A_FX": {
+     "n_physical_error": 43,
+     "n_sides": 81,
+     "rate_pct": 53.09
+    }
+   }
+  },
+  "checkpoint": "137/137 FINAL",
+  "generated": "2026-08-01T00:50:42+00:00"
+ },
+ "final": [
+  {
+   "i": 0,
+   "pair_id": "E1P-001",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 1,
+   "pair_id": "E1P-002",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 2,
+   "pair_id": "E1P-003",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 3,
+   "pair_id": "E1P-004",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 4,
+   "pair_id": "E1P-007",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 5,
+   "pair_id": "E1P-008",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 6,
+   "pair_id": "E1P-011",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 7,
+   "pair_id": "E1P-012",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 8,
+   "pair_id": "E1P-016",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 9,
+   "pair_id": "E1P-022",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 10,
+   "pair_id": "E1P-024",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 11,
+   "pair_id": "E1P-026",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 12,
+   "pair_id": "E1P-030",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 13,
+   "pair_id": "E1P-031",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 14,
+   "pair_id": "E1P-038",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 15,
+   "pair_id": "E1P-040",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 16,
+   "pair_id": "E1P-041",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 17,
+   "pair_id": "E1P-042",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 18,
+   "pair_id": "E1P-043",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 19,
+   "pair_id": "E1P-048",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 20,
+   "pair_id": "E1P-052",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 21,
+   "pair_id": "E1P-055",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 22,
+   "pair_id": "E1P-056",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 23,
+   "pair_id": "E1P-058",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "F-A applied: the query ('add a 5 Mvar shunt where the bus voltage is the lowest') does not literally pin 'capacitive', but the queried min vm changes with the sign reading (gen +5 -> 0.956851 vs ref -5 -> 0.962203, matched only via 1% rtol), so the third F-A branch convicts. The diagnose-and-fix context additionally makes capacitive the only coherent remedial direction (R5 internal consistency). J2's R3-middle-branch route is foreclosed by the frozen F-A family ruling."
+  },
+  {
+   "i": 24,
+   "pair_id": "E1P-062",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 25,
+   "pair_id": "E1P-063",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 26,
+   "pair_id": "E1P-065",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 27,
+   "pair_id": "E1P-066",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 28,
+   "pair_id": "E1P-067",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 29,
+   "pair_id": "E1P-068",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 30,
+   "pair_id": "E1P-069",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 31,
+   "pair_id": "E1P-072",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 32,
+   "pair_id": "E1P-075",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 33,
+   "pair_id": "E1P-076",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 34,
+   "pair_id": "E1P-080",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 35,
+   "pair_id": "E1P-081",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 36,
+   "pair_id": "E1P-084",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 37,
+   "pair_id": "E1P-086",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 38,
+   "pair_id": "E1P-087",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 39,
+   "pair_id": "E1P-088",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 40,
+   "pair_id": "E1P-089",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 41,
+   "pair_id": "E1P-090",
+   "condition": "C_FDRS",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 42,
+   "pair_id": "E1P-091",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 43,
+   "pair_id": "E1P-092",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "adjudicated",
+   "rationale": "F-F first branch (omission vs lazy preset): ref implements 'raise to a higher dispatch level' as a gen.p_mw preset that runopp provably ignores -- oracle O-ADJ-3 shows unmodified vs preset-95.5 OPF are bit-identical on every bus (vmax 1.099003164003908, state diff 0.0, dispatch diff 0.0). Gen's omission is therefore a no-op omission, oracle-certified: solved problem and extracted quantity identical (meta-rule (b)). Equivalent-path with decorative-modification errata note; the item-defect channel is reserved by F-B for phantom-referencing items."
+  },
+  {
+   "i": 44,
+   "pair_id": "E1P-094",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 45,
+   "pair_id": "E1P-095",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 46,
+   "pair_id": "E1P-096",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "F-A third branch: the 12 Mvar shunt sign is text-unpinned and oracle O-ADJ-2 proves the sign is the sole deviation moving the queried scalar -- gen-as-written (+12) gives 0.987857 while the -12 variant reproduces ref exactly (0.989726). O-ADJ-2 also refutes J1's factual basis: gen's overload branch DID fire and disconnected the same line 5 as ref (the scaling=1.0 no-op raise is slack-load-inert, cascade identical). Conviction stands on the shunt sign alone -> physical-error."
+  },
+  {
+   "i": 47,
+   "pair_id": "E1P-100",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 48,
+   "pair_id": "E1P-101",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 49,
+   "pair_id": "E1P-105",
+   "condition": "C_FDRS",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 50,
+   "pair_id": "E1P-107",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 51,
+   "pair_id": "E1P-108",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 52,
+   "pair_id": "E1P-109",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 53,
+   "pair_id": "E1P-113",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 54,
+   "pair_id": "E1P-118",
+   "condition": "C_FDRS",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 55,
+   "pair_id": "E1P-119",
+   "condition": "C_FDRS",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "F-A third branch: sign-silent 13 Mvar shunt text; gen +13 vs ref -13 at the same weakest bus, and the queried min vm changes with the reading (0.803195 vs 0.805574, matched only via 1% rtol). The raise magnitude (x1.5 vs 1.53) is R3-legal and the cascade resolved identically, so the sign is the deciding deviation; under F-A an unpinned sign with a changed queried quantity is physical-error, not item-defect."
+  },
+  {
+   "i": 56,
+   "pair_id": "E1P-001",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 57,
+   "pair_id": "E1P-003",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 58,
+   "pair_id": "E1P-004",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 59,
+   "pair_id": "E1P-005",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 60,
+   "pair_id": "E1P-006",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 61,
+   "pair_id": "E1P-007",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 62,
+   "pair_id": "E1P-008",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 63,
+   "pair_id": "E1P-010",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 64,
+   "pair_id": "E1P-011",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 65,
+   "pair_id": "E1P-012",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 66,
+   "pair_id": "E1P-015",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 67,
+   "pair_id": "E1P-016",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 68,
+   "pair_id": "E1P-017",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 69,
+   "pair_id": "E1P-019",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 70,
+   "pair_id": "E1P-024",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 71,
+   "pair_id": "E1P-026",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 72,
+   "pair_id": "E1P-027",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 73,
+   "pair_id": "E1P-028",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 74,
+   "pair_id": "E1P-029",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 75,
+   "pair_id": "E1P-030",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 76,
+   "pair_id": "E1P-031",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 77,
+   "pair_id": "E1P-033",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 78,
+   "pair_id": "E1P-034",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 79,
+   "pair_id": "E1P-037",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 80,
+   "pair_id": "E1P-038",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 81,
+   "pair_id": "E1P-041",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 82,
+   "pair_id": "E1P-042",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 83,
+   "pair_id": "E1P-043",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 84,
+   "pair_id": "E1P-045",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "adjudicated",
+   "rationale": "F-B second branch: the mis-written parameter (bus max voltage limit) is decorative for the queried computation -- runpp never reads max_vm_pu (code-read; OPF-only constraint) and outputs equal the unmodified PF. The phantom-attribute write (net.bus_max_vm_pu Series) therefore has no bearing on the queried quantity -> equivalent-path with decorative-modification errata note. F-B reserves suspected-item-defect for query/ref referencing a phantom column, which is not the case here (max_vm_pu is a real column)."
+  },
+  {
+   "i": 85,
+   "pair_id": "E1P-048",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 86,
+   "pair_id": "E1P-052",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 87,
+   "pair_id": "E1P-054",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 88,
+   "pair_id": "E1P-055",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 89,
+   "pair_id": "E1P-056",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 90,
+   "pair_id": "E1P-058",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "A-side twin of i=23; F-A third branch applies identically: sign-silent 5 Mvar shunt, gen +5 vs ref -5 at the same dynamically-found bus, queried min vm changes with the reading (0.956851 vs 0.962203, matched only via 1% rtol). Physical-error."
+  },
+  {
+   "i": 91,
+   "pair_id": "E1P-059",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 92,
+   "pair_id": "E1P-061",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "F-C first branch: the task is N-1 enumeration and the two representations (duplicated row vs parallel=2) provably change the contingency scenario set (12 single-circuit outages vs 11 incl. a both-circuits outage) AND the queried envelope max differs (150.351 vs 150.377, tolerance-matched), so the oracle-equality exception fails. Physical-error; the reference's both-circuits-at-once outage semantics is recorded as a benchmark item note per F-C without changing the label."
+  },
+  {
+   "i": 93,
+   "pair_id": "E1P-062",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 94,
+   "pair_id": "E1P-063",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 95,
+   "pair_id": "E1P-064",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "adjudicated",
+   "rationale": "Both judges' labels are non-contamination; equivalent-path is retained for 4-class consistency: gen's runtime idxmax resolution of the target line (== ref's hard-coded 222) plus the superset initial PF is a real exempted deviation under N1/case-10 -- the same shape labeled equivalent-path on agreed sides i=9/i=44/i=101. J2's clean is reserved for pure-idiom/parser-artifact sides."
+  },
+  {
+   "i": 96,
+   "pair_id": "E1P-065",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 97,
+   "pair_id": "E1P-066",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 98,
+   "pair_id": "E1P-067",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 99,
+   "pair_id": "E1P-068",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 100,
+   "pair_id": "E1P-069",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 101,
+   "pair_id": "E1P-070",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 102,
+   "pair_id": "E1P-071",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 103,
+   "pair_id": "E1P-072",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 104,
+   "pair_id": "E1P-073",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 105,
+   "pair_id": "E1P-075",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 106,
+   "pair_id": "E1P-076",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 107,
+   "pair_id": "E1P-080",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 108,
+   "pair_id": "E1P-081",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 109,
+   "pair_id": "E1P-082",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 110,
+   "pair_id": "E1P-084",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 111,
+   "pair_id": "E1P-086",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 112,
+   "pair_id": "E1P-087",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 113,
+   "pair_id": "E1P-088",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 114,
+   "pair_id": "E1P-089",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "F-E + frozen case 3: the query pins a one-time semantic step ('find the most heavily loaded transformer and move its tap position by one step'; ref: tap -1 -> -2 before the series), but gen replaced it with an invented per-step conditional policy (re-decided at every one of 24 steps, direction by loading>100%, cumulative walk toward tap_min, first step solved at the unmoved tap) -- a trajectory matching no legal reading. The queried peak loading's ulp-level tap-insensitivity is exactly the clamped-scalar coincidence F-E convicts and case 3 refuses to exempt, consistent with the agreed conviction of the C-side twin i=40. J1's R3-invariance route fails because the deviation lies on a query-pinned dimension, not an underdetermined one."
+  },
+  {
+   "i": 115,
+   "pair_id": "E1P-090",
+   "condition": "A_FX",
+   "label": "suspected-item-defect",
+   "source": "agreed"
+  },
+  {
+   "i": 116,
+   "pair_id": "E1P-091",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 117,
+   "pair_id": "E1P-092",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 118,
+   "pair_id": "E1P-094",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 119,
+   "pair_id": "E1P-095",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "adjudicated",
+   "rationale": "F-F first branch, oracle-certified: O-ADJ-1 shows the dropped remedy generator sits at the ext_grid slack bus (bus 3), the raise-target load 2 is also at bus 3, and gen's final problem (load 800, remedy gen dropped) vs ref's (load 616, gen in service) solve to bit-identical full states (max |dvm| = 0.0 on all buses, |dloading| = 0.0 on all common lines, same disconnected line 5, identical 80.96533518289348). The textual disobedience has provably zero physical content, so meta-rule (b) holds on every axis -> equivalent-path, with an errata note that the item's slack-bus remedy is undetectable (degenerate remedy)."
+  },
+  {
+   "i": 120,
+   "pair_id": "E1P-096",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "A-side twin of i=46; F-A third branch: sign-silent 12 Mvar shunt, gen +12 vs ref -12 at the same dynamically-found bus, and the queried min vm changes with the reading (0.987857 vs 0.989726; O-ADJ-2 sign-flip check). The raise (p_mw*2) is slack-load-inert and the cascade fired identically, leaving the sign as the deciding deviation -> physical-error."
+  },
+  {
+   "i": 121,
+   "pair_id": "E1P-098",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 122,
+   "pair_id": "E1P-100",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 123,
+   "pair_id": "E1P-101",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 124,
+   "pair_id": "E1P-102",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 125,
+   "pair_id": "E1P-103",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 126,
+   "pair_id": "E1P-104",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 127,
+   "pair_id": "E1P-105",
+   "condition": "A_FX",
+   "label": "clean",
+   "source": "agreed"
+  },
+  {
+   "i": 128,
+   "pair_id": "E1P-107",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 129,
+   "pair_id": "E1P-108",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 130,
+   "pair_id": "E1P-109",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 131,
+   "pair_id": "E1P-111",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 132,
+   "pair_id": "E1P-112",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 133,
+   "pair_id": "E1P-113",
+   "condition": "A_FX",
+   "label": "equivalent-path",
+   "source": "agreed"
+  },
+  {
+   "i": 134,
+   "pair_id": "E1P-114",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 135,
+   "pair_id": "E1P-118",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "agreed"
+  },
+  {
+   "i": 136,
+   "pair_id": "E1P-119",
+   "condition": "A_FX",
+   "label": "physical-error",
+   "source": "adjudicated",
+   "rationale": "A-side twin of i=55; F-A third branch: sign-silent 13 Mvar shunt implemented +13 vs ref -13 at the same bus, queried min vm changes with the reading (0.803195 vs 0.805574, matched only via 1% rtol). Same-target raise (R3-legal magnitude) and identical cascade resolution leave the sign as the sole deciding deviation -> physical-error."
+  }
+ ]
+}

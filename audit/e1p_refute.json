@@ -1,0 +1,485 @@
+{
+ "meta": {
+  "role": "E1-P adversarial refuter",
+  "review_source": "two practising power-systems engineers, with deterministic re-execution evidence for checkable physical disputes",
+  "n_target": 56,
+  "protocol": "E1_validity_audit.md s2.3 frozen 10 cases + N1-N7 + R2/R3/R5 + s P.8 family rulings F-A..F-F (family-ruling branch application treated as attack surface per brief); queue = 55 physical-error sides from e1p_adjudication.json (C 12 / A 43) + 1 from e1p_census.json (E1P-050 C); identity key (pair_id, condition); the 8 overlap sides carrying frozen-610 final labels are outside this queue",
+  "inputs": "adjudication/census verdict bodies + e1p_judge1/2 prosecution arguments + e1p_auto_results five-check evidence + raw records streamed via audit.records from e1p_pair_manifest pointers; t4_judge*/pilot judgment bodies NOT read",
+  "attack_direction": "toward equivalence/item-defect per s2.3 governance bias (refute pass protects against FAR overestimation); every side received the strongest available attack from the priority ladder (R3-invariance oracle > family-branch misapplication > precedent boundary > item-defect transfer)",
+  "oracle_env": "experiment venv (pandapower 3.4.0, pandas 2.3.3, numpy 2.2.6), login node, serial single-thread subprocess (OMP/MKL/OPENBLAS_NUM_THREADS=1), 9 subprocess runs in 6 ledger entries",
+  "oracle_ledger": [
+   {
+    "id": "O-REF-1",
+    "sides": [
+     "E1P-050/C_FDRS"
+    ],
+    "network": "case30",
+    "computation": "virgin pn.case30() + runopp with warnings captured; min vm and res_cost recorded",
+    "conclusion": "6 native poly_cost rows, ZERO warnings, min_vm 0.9839161988322189 == GT bit-exact, res_cost 578.49 (gen's substituted objective gave 191.16) -- the 'duplicate-cost warning workaround' item-defect defense is refuted: the native cost data is well-posed and reproduces GT exactly; the objective substitution alone moved the optimum by 3.7e-3"
+   },
+   {
+    "id": "O-REF-2",
+    "sides": [
+     "E1P-058/C_FDRS",
+     "E1P-058/A_FX"
+    ],
+    "network": "case14",
+    "computation": "gen C-side code executed verbatim (+5 Mvar shunt) vs single-token sign flip (-5); queried min vm compared",
+    "conclusion": "+5 -> 0.9568507129275472 (== in-record exec), -5 -> 0.9622030812690276 == ref/GT exactly -- the sign is the SOLE live deviation and moves the queried scalar by 0.56%; R3-invariance attack oracle-refuted; F-A third-branch predicate independently confirmed"
+   },
+   {
+    "id": "O-REF-3",
+    "sides": [
+     "E1P-119/C_FDRS",
+     "E1P-119/A_FX"
+    ],
+    "network": "case30",
+    "computation": "gen C-side code verbatim (+13) vs sign flip (-13); queried min vm compared",
+    "conclusion": "+13 -> 0.8031952394211671 (== in-record), -13 -> 0.8782532531143027 (not even ref's 0.805574: under the capacitive reading gen's remediation loop resolves differently) -- queried quantity strongly sign-dependent, invariance refuted a fortiori; the +13 tolerance hit is pure coincidence"
+   },
+   {
+    "id": "O-REF-4",
+    "sides": [
+     "E1P-034/A_FX"
+    ],
+    "network": "case2869pegase",
+    "computation": "reference workflow with vs without the conditional net.line.at[3558,'parallel']=2 reinforcement; queried min vm compared",
+    "conclusion": "0.9639290860405888 vs 0.963929086041252, delta 6.6e-13 (solver noise) -- the dead num_parallel write is provably effect-inert for the queried scalar; conviction nevertheless maintained by case-3 strict line + ratified F-B load-bearing walkthrough (i=78); recorded as top near-miss"
+   },
+   {
+    "id": "O-REF-5",
+    "sides": [
+     "E1P-075/A_FX"
+    ],
+    "network": "case24_ieee_rts",
+    "computation": "trafo 1 shift -26.4 deg applied; rundcpp vs rundcopp, res_line.pl_mw.sum() and res_gen dispatch compared",
+    "conclusion": "both losses identically 0.0 (DC lossless identity -- extracted quantity mathematically equal), BUT res_gen dispatch differs -> the DCOPF evaluated a different operating point; meta-rule (b) physical-scenario prong fails and case-10 superset exemption is inapplicable; near-miss documented"
+   },
+   {
+    "id": "O-REF-6",
+    "sides": [
+     "E1P-033/A_FX"
+    ],
+    "network": "case4gs",
+    "computation": "faithful mods (line 1 out, sgen at bus 2) vs gen's misreads (line 0 out, sgen at bus 1); bus-3 vm compared; gen table inspected",
+    "conclusion": "single PV gen at bus 3 with vm_pu=1.02; faithful 1.0199999999999996 vs misread 1.0199999999999998 (delta 2e-16) -- queried quantity setpoint-clamped bit-invariant to both wrong targets; conviction maintained by case-3/N1 pinned-target strict line + N4 (stiffness never exculpates); near-miss documented"
+   }
+  ],
+  "summary": {
+   "UPHELD": 56,
+   "OVERTURNED_EQUIVALENT": 0,
+   "OVERTURNED_DEFECT": 0,
+   "by_condition": {
+    "C_FDRS": {
+     "UPHELD": 13
+    },
+    "A_FX": {
+     "UPHELD": 43
+    }
+   },
+   "near_misses_for_SM": [
+    "E1P-089/A_FX (tap-dimension ulp invariance vs F-E+case3, ratified i=114)",
+    "E1P-034/A_FX (oracle delta 6.6e-13 reinforcement inertness vs ratified F-B load-bearing i=78)",
+    "E1P-033/A_FX (bit-level setpoint clamp, delta 2e-16, vs case3/N1/N4 pinned-target strict line)",
+    "E1P-075/A_FX (DC-loss mathematical identity 0.0==0.0 vs conjunctive meta-rule prong (b): dispatch provably re-optimized)",
+    "E1P-061/A_FX (per-circuit N-1 arguably more standard than ref's both-circuits row outage; F-C first branch + ratified benchmark item note)"
+   ]
+  },
+  "checkpoint": "56/56 FINAL",
+  "generated": "2026-08-01T01:29:24"
+ },
+ "verdicts": [
+  {
+   "pair_id": "E1P-001",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: argue the query's network name is ambiguous enough that loading a different grid is a legal reading; alternatively R3-invariance of the queried scalar to the substrate.",
+   "evidence": "Record verified: query pins 'RTE 2848-bus French grid' and reference loads case2848rte, while gen executes pn.create_cigre_network_mv() -- a wholesale different grid, so meta-rule (b) (physical scenario preserved) fails on its face and no equivalence-exception prong is reachable; benchmark_config.py display-name map is one-to-one and same-source as the reference loader, so no ambiguity exists. The scalar hit is a tolerance/boolean coincidence (bool GT True==True). No invariance claim is even formulable: the deviation replaces the entire physical object of the query."
+  },
+  {
+   "pair_id": "E1P-003",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: argue the query's network name is ambiguous enough that loading a different grid is a legal reading; alternatively R3-invariance of the queried scalar to the substrate.",
+   "evidence": "Record verified: query pins 'GB reduced 29-bus network' and reference loads GBreducednetwork, while gen executes create_cigre_network_mv() -- a wholesale different grid, so meta-rule (b) (physical scenario preserved) fails on its face and no equivalence-exception prong is reachable; benchmark_config.py display-name map is one-to-one and same-source as the reference loader, so no ambiguity exists. The scalar hit is a tolerance/boolean coincidence (bool GT True==True). No invariance claim is even formulable: the deviation replaces the entire physical object of the query."
+  },
+  {
+   "pair_id": "E1P-004",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via alternative indexing convention (1-based reading as a coherent dialect), plus R3-invariance of the queried scalar to the shifted target.",
+   "evidence": "Record verified: 'transformer 59' -> net.trafo.parallel.at[58]=2, while the reference (same source as MODIFICATION_DEFS) uses the pinned 0-based index -- the corpus dialect is settled, so no coherent alternative convention exists (the 1-based defense died at source level on pilot bi=487/bi=2/bi=207 and stays dead). The executed scenario genuinely differs and the queried value moved (0.121562 vs GT 0.121885, rel 0.26%), so no invariance claim survives; frozen case 3 + N1 strict line blocks any insensitivity exemption. UPHELD."
+  },
+  {
+   "pair_id": "E1P-005",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: argue the query's network name is ambiguous enough that loading a different grid is a legal reading; alternatively R3-invariance of the queried scalar to the substrate.",
+   "evidence": "Record verified: query pins '4-loads-with-branches network' and reference loads four_loads_branches, while gen executes create_cigre_network_mv() -- a wholesale different grid, so meta-rule (b) (physical scenario preserved) fails on its face and no equivalence-exception prong is reachable; benchmark_config.py display-name map is one-to-one and same-source as the reference loader, so no ambiguity exists. The scalar hit is a tolerance/boolean coincidence (0.99255 vs GT 0.99999, rel 0.74% inside 1% rtol). No invariance claim is even formulable: the deviation replaces the entire physical object of the query."
+  },
+  {
+   "pair_id": "E1P-006",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: argue the query's network name is ambiguous enough that loading a different grid is a legal reading; alternatively R3-invariance of the queried scalar to the substrate.",
+   "evidence": "Record verified: query pins '5-bus PJM case' and reference loads case5, while gen executes create_cigre_network_mv() -- a wholesale different grid, so meta-rule (b) (physical scenario preserved) fails on its face and no equivalence-exception prong is reachable; benchmark_config.py display-name map is one-to-one and same-source as the reference loader, so no ambiguity exists. The scalar hit is a tolerance/boolean coincidence (0.99255 vs GT 0.98879, rel 0.38% inside 1% rtol). No invariance claim is even formulable: the deviation replaces the entire physical object of the query."
+  },
+  {
+   "pair_id": "E1P-007",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: argue the query's network name is ambiguous enough that loading a different grid is a legal reading; alternatively R3-invariance of the queried scalar to the substrate.",
+   "evidence": "Record verified: query pins 'IEEE 14-bus case' and reference loads case14, while gen executes create_cigre_network_mv() -- a wholesale different grid, so meta-rule (b) (physical scenario preserved) fails on its face and no equivalence-exception prong is reachable; benchmark_config.py display-name map is one-to-one and same-source as the reference loader, so no ambiguity exists. The scalar hit is a tolerance/boolean coincidence (0.99255 vs GT 0.98652, rel 0.61% inside 1% rtol). No invariance claim is even formulable: the deviation replaces the entire physical object of the query."
+  },
+  {
+   "pair_id": "E1P-008",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via alternative indexing convention (1-based reading as a coherent dialect), plus R3-invariance of the queried scalar to the shifted target.",
+   "evidence": "Record verified: 'line 11'/'bus 22' -> in_service[10]=False, min_vm_pu[21], while the reference (same source as MODIFICATION_DEFS) uses the pinned 0-based index -- the corpus dialect is settled, so no coherent alternative convention exists (the 1-based defense died at source level on pilot bi=487/bi=2/bi=207 and stays dead). The executed scenario genuinely differs and the queried value moved (26.1069 vs GT 26.0264, rel 0.31%), so no invariance claim survives; frozen case 3 + N1 strict line blocks any insensitivity exemption. UPHELD."
+  },
+  {
+   "pair_id": "E1P-008",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via alternative indexing convention (1-based reading as a coherent dialect), plus R3-invariance of the queried scalar to the shifted target.",
+   "evidence": "Record verified: 'line 11'/'bus 22' -> at[10,'in_service']=False, at[21,'min_vm_pu'], while the reference (same source as MODIFICATION_DEFS) uses the pinned 0-based index -- the corpus dialect is settled, so no coherent alternative convention exists (the 1-based defense died at source level on pilot bi=487/bi=2/bi=207 and stays dead). The executed scenario genuinely differs and the queried value moved (26.1069 vs GT 26.0264, rel 0.31%), so no invariance claim survives; frozen case 3 + N1 strict line blocks any insensitivity exemption. UPHELD."
+  },
+  {
+   "pair_id": "E1P-010",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance: the argmax SC bus (0, the ext-grid bus) is stiff to which distribution line is out, so argue the queried quantity is unchanged; plus the 1-based dialect defense.",
+   "evidence": "Record verified: 'Disconnect line 5' executed as net.line.in_service[4]=False -- the exact pilot bi=487 pattern whose 1-based defense was refuted at corpus-dialect level and UPHELD; this side replaces the pilot judgment per manifest s P.3 but the same source-level facts govern. N4 is frozen doctrine that stiffness of the queried scalar never exculpates a wrong-element modification (case 3 strict line, both judges convicted so no downgrade path). UPHELD."
+  },
+  {
+   "pair_id": "E1P-012",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via alternative indexing convention (1-based reading as a coherent dialect), plus R3-invariance of the queried scalar to the shifted target.",
+   "evidence": "Record verified: 'load 30'/'bus 11'/'load 22' -> at[29]/at[10]/at[21], while the reference (same source as MODIFICATION_DEFS) uses the pinned 0-based index -- the corpus dialect is settled, so no coherent alternative convention exists (the 1-based defense died at source level on pilot bi=487/bi=2/bi=207 and stays dead). The executed scenario genuinely differs and the queried value moved (2.455e-06 vs GT 1.125e-05 (4.6x apart), accepted only through atol=1e-3 on a near-zero scalar), so no invariance claim survives; frozen case 3 + N1 strict line blocks any insensitivity exemption. The near-zero-atol item weakness is errata material but the executed physics genuinely differs, so defect transfer fails the faithful-model prong. UPHELD."
+  },
+  {
+   "pair_id": "E1P-015",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via alternative indexing convention (1-based reading as a coherent dialect), plus R3-invariance of the queried scalar to the shifted target.",
+   "evidence": "Record verified: 'line 23'/'line 2' -> in_service[22]=False, r_ohm_per_km[1]=0.046, while the reference (same source as MODIFICATION_DEFS) uses the pinned 0-based index -- the corpus dialect is settled, so no coherent alternative convention exists (the 1-based defense died at source level on pilot bi=487/bi=2/bi=207 and stays dead). The executed scenario genuinely differs and the queried value moved (0.995432 vs GT 0.995575, rel 0.014% -- a real (if small) state difference; the conditional coincidentally hit the same line 9 on both sides), so no invariance claim survives; frozen case 3 + N1 strict line blocks any insensitivity exemption. UPHELD."
+  },
+  {
+   "pair_id": "E1P-016",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance + item-defect: GT is degenerate (0.0; both line-46 and line-47 variants give a ~1e-16 difference, and max_vm_pu is runpp-inert), so the item cannot discriminate -- push to defect.",
+   "evidence": "Both pinned targets were shifted ('bus 118'->117, 'line 47'->46; fingerprints confirm). The degenerate-GT weakness is errata-ledger material, but R3's defect channel requires the model's reading to be legal -- a 1-based shift of pinned indices is not (corpus dialect settled), and case 3 explicitly blocks the insensitive-scalar exemption; a genuinely different network was executed (wrong line removed). UPHELD."
+  },
+  {
+   "pair_id": "E1P-019",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via alternative indexing convention (1-based reading as a coherent dialect), plus R3-invariance of the queried scalar to the shifted target.",
+   "evidence": "Record verified: 'bus 1 maximum voltage limit' -> net.bus.at[0,'vn_kv'] *= 1.094 and 'line 5' -> at[4,'parallel']=2, while the reference (same source as MODIFICATION_DEFS) uses the pinned 0-based index -- the corpus dialect is settled, so no coherent alternative convention exists (the 1-based defense died at source level on pilot bi=487/bi=2/bi=207 and stays dead). The executed scenario genuinely differs and the queried value moved (0.98992 vs GT 0.98939, rel 0.05%), so no invariance claim survives; frozen case 3 + N1 strict line blocks any insensitivity exemption. The vn_kv write is additionally a wrong physical parameter that rescales the slack bus per-unit base -- no reading of 'maximum voltage limit' reaches the rated-voltage column. UPHELD."
+  },
+  {
+   "pair_id": "E1P-027",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: argue the query's network name is ambiguous enough that loading a different grid is a legal reading; alternatively R3-invariance of the queried scalar to the substrate.",
+   "evidence": "Record verified: query pins '4-loads-with-branches network' and reference loads four_loads_branches, while gen executes pn.create_cigre_network_mv() -- a wholesale different grid, so meta-rule (b) (physical scenario preserved) fails on its face and no equivalence-exception prong is reachable; benchmark_config.py display-name map is one-to-one and same-source as the reference loader, so no ambiguity exists. The scalar hit is a tolerance/boolean coincidence (0.99255 vs GT 0.99999, rel 0.74% inside 1% rtol). No invariance claim is even formulable: the deviation replaces the entire physical object of the query."
+  },
+  {
+   "pair_id": "E1P-028",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: 'IEEE 30-bus case' is, in the wider world, a fair description of MATPOWER case30 as well -- argue the query underdetermines the variant, making case30 a faithful legal reading.",
+   "evidence": "The attack dies at the corpus-dialect level (R5, the same ground where the 1-based defense died): benchmark_config.py maps 'IEEE 30-bus case'->pn.case_ieee30() and '30-bus test case'->pn.case30() one-to-one, and the query display name is generated from the same source as the reference loader, so within this corpus the phrase is unambiguous. The two variants differ physically (7 trafos vs 0, different vm limits) and the outputs differ accordingly (0.98130 vs GT 0.97964, rel 0.17%), matched only through the 1% window. Established wrong-variant family; UPHELD."
+  },
+  {
+   "pair_id": "E1P-029",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: the argmax line index is the queried quantity and it coincides between AC and DC (9==9) -- argue index-level invariance; or read 'DC power flow' loosely as method-unconstrained.",
+   "evidence": "Frozen case 2 verbatim: the query literally says 'run DC power flow', ref runs rundcpp, gen ran pp.runpp(algorithm='nr') -- a full AC Newton-Raphson: the query-constrained solver physics was changed, and case 2 names the argmax/scalar coincidence as exactly the convicted pattern (bi=1263 precedent: AC/DC argmax agreement is a coincidence, not an equivalence). The manual max-tracking loop is aggregation-equivalent (N5) but moot. No invariance defense exists for a pinned-solver substitution. UPHELD."
+  },
+  {
+   "pair_id": "E1P-030",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: the phantom x0_km column is inert (decorative-write reading) and the GT is degenerate 0.0 -- push either to F-B-decorative or to item defect.",
+   "evidence": "Two independent unexempted deviations verified in code: (1) net.line.loc[from_bus==101,'x0_km']=0.608 creates a phantom column selected by from_bus rather than index -- the pinned reactance change was never executed (fingerprint: gen x_ohm_per_km sum = base); (2) pp.create_shunt(net, bus=75, p_mw=-19, q_mvar=-19) injects an unrequested 19 MW of active power (query and ref: -19 Mvar only, p_mw=0). Deviation (2) alone is a live physical-scenario change no equivalence prong covers; (1) is the ratified F-B load-bearing pattern. UPHELD."
+  },
+  {
+   "pair_id": "E1P-030",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: argue writing r_ohm_per_km is a decorative slip because the queried before/after difference is degenerate (0.0 for any first modification) -- F-B second-branch (decorative) misapplication attack.",
+   "evidence": "The query pins 'set line 101 reactance to 0.608 Ohm/km'; gen wrote net.line.loc[101,'r_ohm_per_km']=0.608 -- resistance, a live admittance-bearing write to the wrong physical parameter, while the pinned reactance modification never entered the model (fingerprints: gen diverges on r, ref on x). F-B's decorative branch covers solver-ignored parameters (i=84 max_vm_pu), not silently-wrong load-bearing ones (ratified i=75/78/82 walkthrough); the degenerate 0.0 GT is errata material but case 3's strict line blocks the insensitivity exemption. UPHELD."
+  },
+  {
+   "pair_id": "E1P-033",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance, oracle-substantiated: the queried bus-3 voltage is the single PV gen's setpoint and provably clamp-invariant to both misread targets.",
+   "evidence": "Oracle O-REF-6: faithful mods (line 1 out, sgen bus 2) give 1.0199999999999996 and gen's misreads (line 0 out, sgen bus 1) give 1.0199999999999998 -- bit-level invariance (2e-16). The attack still fails on frozen law: 'line 1'/'bus 2' are text-pinned indices (not underdetermined dimensions), so R3's equivalence branch is out of scope; case 3 + N1 + N4 make stiffness non-exculpatory for pinned-target misreads, and the two-judge downgrade clause was not met. UPHELD -- recorded as a near-miss for SM robustness."
+  },
+  {
+   "pair_id": "E1P-034",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance, oracle-substantiated: prove the failed num_parallel reinforcement is effect-inert for the queried min vm, then argue the dead write is decorative-in-effect (F-B second branch).",
+   "evidence": "Oracle O-REF-4: reference workflow with vs without the conditional parallel=2 at line 3558 differs by 6.6e-13 -- the reinforcement is provably inert for the queried scalar, and gen's output matches GT to rel 9e-08 accordingly. The attack still loses on frozen law: this side IS ratified walkthrough item i=78, where the lead confirmed silently-failed admittance-bearing writes are 'load-bearing, not decorative' (distinguishing i=84), and case 3's strict line plus its unmet two-judge downgrade clause block any insensitivity exemption for a query-pinned modification that fired on both sides. UPHELD -- the queue's top rule-vs-physics near-miss; SM robustness material."
+  },
+  {
+   "pair_id": "E1P-037",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via alternative indexing convention (1-based reading as a coherent dialect), plus R3-invariance of the queried scalar to the shifted target.",
+   "evidence": "Record verified: 'generator 2' -> net.gen.loc[1,'p_mw']=559.8, while the reference (same source as MODIFICATION_DEFS) uses the pinned 0-based index -- the corpus dialect is settled, so no coherent alternative convention exists (the 1-based defense died at source level on pilot bi=487/bi=2/bi=207 and stays dead). The executed scenario genuinely differs and the queried value moved (0.98959 vs GT 0.98918, rel 0.04%), so no invariance claim survives; frozen case 3 + N1 strict line blocks any insensitivity exemption. UPHELD."
+  },
+  {
+   "pair_id": "E1P-038",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-A branch misapplication: argue the sign is not truly pinned, or that in pandapower a positive-q 'capacitor-typed' shunt is a legal rendering of 'capacitive support'; R3-invariance as fallback.",
+   "evidence": "Record verified: the query text literally pins 'install capacitive shunt support', and in pandapower's consumer sign convention capacitive = negative q_mvar; gen wrote q_mvar=+0.1 with type='capacitor' cosmetic string (magnitude also collapsed 0.1 vs ref 10); 0.985376 vs GT 0.990396, rel 0.51% -- an inductive reactor, the physically opposite device (a type string is metadata and changes no physics). F-A first branch (text-pinned + reversed -> phys) is squarely applicable, and the queried scalar demonstrably moved, so invariance fails on the executed numbers. UPHELD."
+  },
+  {
+   "pair_id": "E1P-038",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-A branch misapplication: argue the sign is not truly pinned, or that in pandapower a positive-q 'capacitor-typed' shunt is a legal rendering of 'capacitive support'; R3-invariance as fallback.",
+   "evidence": "Record verified: the query text literally pins 'install capacitive shunt support', and in pandapower's consumer sign convention capacitive = negative q_mvar; gen wrote q_mvar=+0.1 vs ref -10.0; 0.985376 vs GT 0.990396, rel 0.51% -- an inductive reactor, the physically opposite device (a type string is metadata and changes no physics). F-A first branch (text-pinned + reversed -> phys) is squarely applicable, and the queried scalar demonstrably moved, so invariance fails on the executed numbers. UPHELD."
+  },
+  {
+   "pair_id": "E1P-042",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance + tautology-as-truth: the true change IS 0.0 (ref measured 0.0 with the mod applied; the tap step is O3-verified identical), so gen's printed 0.0 is numerically correct -- argue mathematical equivalence of the extracted value.",
+   "evidence": "The queried quantity is the CHANGE caused by the line-1759 reinforcement; gen's num_parallel write is a dead column, so its run2 network == run1 network and the printed 0.0 is guaranteed by omission -- the queried perturbation was never simulated, which meta-rule (b)/frozen case 3 treat as contamination regardless of the value being right (right-scalar-without-the-simulation is the audit's core target). Ratified F-B load-bearing walkthrough item i=82; degenerate-GT weakness already on the errata ledger. UPHELD."
+  },
+  {
+   "pair_id": "E1P-050",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer, oracle-tested: if case30's native cost data were ill-posed (the 'duplicate-cost warnings' gen cites), deleting and rebuilding costs would be a necessary workaround -> defect in the item, not the model.",
+   "evidence": "Oracle O-REF-1 closes the route: virgin pn.case30() has 6 native poly_cost rows and pp.runopp(net) runs with ZERO warnings, min vm 0.9839161988322189 == GT bit-exact (res_cost 578.49). Gen deleted those rows and substituted uniform cp1_eur_per_mw=1.0 (res_cost 191.16 = sum P confirms the substituted objective was live), changing the optimization problem the query pins ('optimal power flow on the 30-bus test case' = the case's own cost data); its 0.9876485 differs from GT by 3.7e-3, ~4 orders above faithful sides' 1e-7, surviving only through the tolerance window -- F-E's core phenomenon. Equivalence and defect prongs both dead. UPHELD."
+  },
+  {
+   "pair_id": "E1P-056",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via coherent 1-based convention, plus degenerate-GT defect transfer (queried change is 0.0 either way).",
+   "evidence": "Gen's own comments convert every line target ('line 2 (index 1)', 'line 24 (index 23)', 'line 1 (index 0)') while leaving 'bus 30' unconverted -- internally incoherent, so no coherent alternative convention exists (R5); three wrong lines were modified (fingerprints confirm). Degenerate GT guarantees the hit but case 3/N1 block the insensitivity exemption and the defect channel requires a legal model reading. UPHELD."
+  },
+  {
+   "pair_id": "E1P-058",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via R3 middle branch (J2's route): the query never writes 'capacitive', so q_mvar=+N is the faithful literal API reading of 'add a N Mvar shunt' -> defect, not contamination; R3-invariance as the alternative prong.",
+   "evidence": "A-side twin executing the same +5.0 literal at the same dynamically-found bus (first two mods correctly 0-based, cascade identical); O-REF-2's sign flip on the shared workflow shows -5 reproduces ref exactly while +5 lands 0.56% away, matched only through the 1% window. Same double foreclosure as the C side: ratified F-A third branch + no-legal-reading of an anti-remedial device in a diagnose-and-fix recipe. UPHELD."
+  },
+  {
+   "pair_id": "E1P-058",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via R3 middle branch (J2's route): the query never writes 'capacitive', so q_mvar=+N is the faithful literal API reading of 'add a N Mvar shunt' -> defect, not contamination; R3-invariance as the alternative prong.",
+   "evidence": "Oracle O-REF-2 kills the invariance prong: flipping only the sign turns 0.9568507129275472 into 0.9622030812690276 == ref/GT exactly -- the queried min vm is decisively sign-dependent, so F-A's second branch (unpinned + invariant -> equiv) is unavailable. The defect prong fails on two independent grounds: the ratified F-A third branch (s P.9: unpinned sign + queried quantity really moves -> phys) forecloses R3's middle branch, and the instruction sits inside a fix-low-voltage conditional where an inductive reactor that further depresses the weakest bus is no legal reading of the remedial intent (R5 internal consistency; corpus refs uniformly use negative q here). UPHELD."
+  },
+  {
+   "pair_id": "E1P-059",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect: 'the scaling of load 14' is ambiguous between load table index 14 and the loads at bus 14 -- argue gen's bus-based resolution is a faithful legal reading.",
+   "evidence": "Corpus dialect (same source as MODIFICATION_DEFS) addresses elements by table index -- ref writes net.load.at[14,'scaling'] -- and this element-identity ruling is the settled 1-based-family cousin; gen's net.load[net.load.bus==14] resolved to load 12. The executed scenario differs and the queried min vm moved (0.949554 vs GT 0.949772, rel 0.02%, inside 1% only): no invariance, no legal alternative reading. UPHELD."
+  },
+  {
+   "pair_id": "E1P-061",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-C branch misapplication + item-defect: gen's per-circuit N-1 (separate row per circuit, outage one at a time) is arguably the MORE physically standard N-1 than ref's parallel=2 row-outage that drops both circuits at once -- push to defect (underdetermined contingency-set semantics).",
+   "evidence": "F-C's first branch is correctly applied on the frozen facts: the two representations provably change the contingency scenario set (12 single-circuit outages vs 11 including a both-circuits outage) AND the queried envelope max differs (150.351460 vs GT 150.377227, rel 0.017%, tolerance-matched), so the oracle-equality exception the ruling itself provides is factually unavailable. The both-circuits-at-once critique of the reference was already weighed by the lead and routed to a benchmark item note WITHOUT label change (ratified i=92) -- re-raising it is re-litigating a frozen ruling, not showing misapplication. UPHELD -- near-miss recorded for SM."
+  },
+  {
+   "pair_id": "E1P-066",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: p-only scaling equals 'load scaling' if load q is zero or the queried trajectory is insensitive; R2 RNG-shape defect transfer as fallback.",
+   "evidence": "The executed values refute equivalence directly: gen 0.987760 vs GT 0.984819 (rel 0.30%) -- case5 loads carry reactive power, so scaling p_mw only (leaving q_mvar at base) yields a genuinely different voltage trajectory; the RNG stream itself was verified identical (J2's O1 series), isolating the q-omission as the live deviation. R2 is frozen the other way: the corpus phrase 'random load scaling 0.6x-1.4x' PINS the applied variable (ConstControl 'scaling', scaling P and Q), the very note written to defeat pilot-202-type p_mw-basis deviations. UPHELD."
+  },
+  {
+   "pair_id": "E1P-067",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: argue 'generator 2' admits the ordinal reading 'second entry of the gen table' so net.gen.index[1] is legal; near-zero-atol defect transfer as fallback.",
+   "evidence": "case14 net.gen.index=[0,1,2,3] (adjudication oracle O-ADJ-3 series), so index[1]=generator 1, not the pinned generator 2; corpus dialect is 0-based positional-by-label, the same ground on which pilot bi=2/bi=487 defenses died, and gen's own comment betrays a conversion, not a convention. The queried element itself was swapped and the values are ~45x apart (6.377e-06 vs GT 4.652e-04 (rel error 98.6%)), surviving only through atol=1e-3 on near-zero scalars -- that window is errata material (near-zero-atol family) but the model-side deviation is real and unexempted. UPHELD."
+  },
+  {
+   "pair_id": "E1P-067",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: argue 'generator 2' admits the ordinal reading 'second entry of the gen table' so net.gen.index[1] is legal; near-zero-atol defect transfer as fallback.",
+   "evidence": "case14 net.gen.index=[0,1,2,3] (adjudication oracle O-ADJ-3 series), so index[1]=generator 1, not the pinned generator 2; corpus dialect is 0-based positional-by-label, the same ground on which pilot bi=2/bi=487 defenses died, and gen's own comment betrays a conversion, not a convention. The queried element itself was swapped and the values are ~45x apart (1.040e-05 vs GT 4.652e-04 (rel error 97.8%)), surviving only through atol=1e-3 on near-zero scalars -- that window is errata material (near-zero-atol family) but the model-side deviation is real and unexempted. UPHELD."
+  },
+  {
+   "pair_id": "E1P-068",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance: bus 38 is PV-clamped at 1.03 at every step, so both the step-22/step-21 cell and the per-step re-curtailment are provably output-inert.",
+   "evidence": "In-record: gen printed 1.0299999999999998, GT 1.03, rel 0.0 -- the clamp is real. But 'time step 22' is pinned text misread to [21] (0-based dialect settled by the pilot bi=207 conviction), and the curtailment was re-executed inside every step (workflow inversion vs the one-time semantic setup), so two pinned dimensions were violated; case 3/N1 + F-E (clamped-scalar coincidences stay phys) foreclose the invariance route for pinned-dimension misreads. UPHELD -- near-miss quality noted (setpoint-clamped item already on the errata ledger)."
+  },
+  {
+   "pair_id": "E1P-069",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via unconstrained method choice: init='flat' is a legal runpp option (case 2' territory), so the solved state is a valid AC solution and the extraction faithful.",
+   "evidence": "The choice is legal; the outcome is not: gen's own converged final state has min vm 0.0217 pu / vm_max 1.1999 / line loading 361% (check-3 fail) -- Newton-Raphson landed on a non-physical low-voltage solution branch, so the queried before/after delta (2.788e-06 vs GT 8.173e-05, 30x apart, saved only by near-zero atol) was measured on an operating point that corresponds to no legal reading of the task (1943 template: no faithful execution produces this output). Meta-rule (b) fails at the physical-scenario level regardless of the init kwarg's legality. UPHELD."
+  },
+  {
+   "pair_id": "E1P-075",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Mathematical-identity equivalence, oracle-substantiated: total DC line losses are identically zero for ANY DC-family solution, so gen's rundcopp extraction is provably the same number as the pinned rundcpp's -- case 10 superset reading; degenerate-GT defect transfer as fallback.",
+   "evidence": "Oracle O-REF-5: on the modified network rundcpp and rundcopp both give res_line.pl_mw.sum() == 0.0 exactly -- the extracted quantity is mathematically identical -- BUT res_gen dispatch differs, so the DCOPF evaluated a re-dispatched operating point, and the meta-rule's exemption is conjunctive: prong (b) requires the physical scenario itself to match reference intent, which case 10 also presupposes ('superset' must contain the pinned scenario; an OPF replaces it). Query pins 'Execute a DC power flow simulation', so prong (a)'s unconstrained-method route is closed too. Degenerate DC-zero GT is errata material, but the model side is not a faithful legal reading. UPHELD -- near-miss documented."
+  },
+  {
+   "pair_id": "E1P-076",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: argue res_bus.vm_pu after run_contingency(write_to_net=True) is itself an envelope representation, or that the retained case coincides with the envelope minimizer.",
+   "evidence": "The numbers refute it: gen's net.res_bus.vm_pu.min() = 0.992248 vs ref's envelope res_bus['min_vm_pu'].min() = 0.992083 = GT (abs 1.6e-4, beyond machine noise, inside 1% only) -- vm_pu after the sweep is a single retained state's snapshot, not the min-over-contingencies the query pins ('lowest observed bus voltage across all the contingencies'). A different queried quantity was extracted; wrong-table/column family (main-audit channel), no equivalence prong reaches it. UPHELD."
+  },
+  {
+   "pair_id": "E1P-080",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: the GT depends on ref's exact RNG consumption structure that no query text pins, so argue an R2-style underdetermination; equivalence via 'noise-free SE is the correct estimator limit' as fallback.",
+   "evidence": "R2's defect channel requires the RNG consumption SHAPE to be the only deviation with every pinned dimension faithful -- gen violated the pinned noise dimension itself: it fed exact power-flow values as measurements (no np.random call anywhere; 'seed=9368' passed as an estimate() kwarg that pandapower explicitly warns is ignored), so the SE degenerates to reproducing the PF and the printed 1.0030000000000003 is the ext-grid setpoint, not an estimate under the pinned noise model (GT 1.00255, abs 4.5e-4, 0.045% window hit). F-D first branch (query pins noise -> phys) is squarely applicable. UPHELD."
+  },
+  {
+   "pair_id": "E1P-080",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path: gen did build noisy measurements with seed 9368 and did run estimate(net) -- argue the printed maximum is the estimation answer up to idiom.",
+   "evidence": "Code tail verified: after estimate(net), gen prints net.res_bus['vm_pu'].max() -- the true power-flow table, never res_bus_est -- and the printed 1.003 is literally the ext-grid setpoint it configured (perturb delta 0.0 in the auto evidence confirms setpoint-pinning), while the estimated table's max is 1.00255 = GT (abs 4.5e-4). The queried quantity is 'maximum ESTIMATED bus voltage'; reading the wrong table changes the queried object (established SE wrong-table family, 18 main-audit convictions), and gen's noise consumption differs from ref's structure anyway so no exact-reproduction reading exists. UPHELD."
+  },
+  {
+   "pair_id": "E1P-086",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance: neither side's conditional branches fired and the final min vm is case39 PV-setpoint-pinned (0.982 identical), so the load-19-vs-20 misread is provably output-inert.",
+   "evidence": "Gen's own comment declares the misread ('load 20 would be index 19') and the fingerprint shows q_mvar=17.2 written to load 19 vs ref's load 20 -- a wrong-element modification of a pinned target. Output equality (0.982==0.982, rel 0.0) is a stiff coincidence; N4 makes stiffness non-exculpatory and case 3's downgrade clause requires two-judge agreement that was never given (both convicted). Corpus dialect settled; no legal alternative reading. UPHELD."
+  },
+  {
+   "pair_id": "E1P-086",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Same invariance attack as the A side: setpoint-clamped output, misread provably inert.",
+   "evidence": "Identical decisive facts on the C side (net.load.at[19,'q_mvar']=17.2 vs ref load 20; output 0.982 clamped): the corpus-dialect conviction of the declared 1-based misread is untouched by output insensitivity under case 3/N1/N4 and F-E. The dead-branch shunt sign (+8 vs ref -8) never executed and plays no role. UPHELD."
+  },
+  {
+   "pair_id": "E1P-087",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-A branch misapplication: argue the sign is not truly pinned, or that in pandapower a positive-q 'capacitor-typed' shunt is a legal rendering of 'capacitive support'; R3-invariance as fallback.",
+   "evidence": "Record verified: the query text literally pins 'install capacitive shunt support', and in pandapower's consumer sign convention capacitive = negative q_mvar; gen wrote q_mvar=+10.0 vs ref -11.0, PLUS the (24,4) per-load profile collapsed to one shared 24-vector; 0.950237 vs GT 0.956428, rel 0.65% -- an inductive reactor, the physically opposite device (a type string is metadata and changes no physics). F-A first branch (text-pinned + reversed -> phys) is squarely applicable, and the queried scalar demonstrably moved, so invariance fails on the executed numbers. R2's RNG-shape defect channel is unavailable because it requires every text-pinned dimension faithful and the sign is not. UPHELD."
+  },
+  {
+   "pair_id": "E1P-087",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-A branch misapplication: argue the sign is not truly pinned, or that in pandapower a positive-q 'capacitor-typed' shunt is a legal rendering of 'capacitive support'; R3-invariance as fallback.",
+   "evidence": "Record verified: the query text literally pins 'install capacitive shunt support', and in pandapower's consumer sign convention capacitive = negative q_mvar; gen wrote q_mvar=+0.1 vs ref -11.0, PLUS per-load profile collapsed to a shared 24-vector and RNG burned in a different order; 0.952569 vs GT 0.956428, rel 0.40% -- an inductive reactor, the physically opposite device (a type string is metadata and changes no physics). F-A first branch (text-pinned + reversed -> phys) is squarely applicable, and the queried scalar demonstrably moved, so invariance fails on the executed numbers. R2's RNG-shape defect channel is unavailable because it requires every text-pinned dimension faithful and the sign is not. UPHELD."
+  },
+  {
+   "pair_id": "E1P-088",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: 'IEEE 30-bus case' is, in the wider world, a fair description of MATPOWER case30 as well -- argue the query underdetermines the variant, making case30 a faithful legal reading.",
+   "evidence": "The attack dies at the corpus-dialect level (R5, the same ground where the 1-based defense died): benchmark_config.py maps 'IEEE 30-bus case'->pn.case_ieee30() and '30-bus test case'->pn.case30() one-to-one, and the query display name is generated from the same source as the reference loader, so within this corpus the phrase is unambiguous. The two variants differ physically (7 trafos vs 0, different vm limits) and the outputs differ accordingly (0.9839161988 (== virgin case30 OPF optimum) vs GT 0.978957, rel 0.5%), matched only through the 1% window. Established wrong-variant family; UPHELD."
+  },
+  {
+   "pair_id": "E1P-089",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance (the queue's strongest overturn candidate): the extracted peak loading is invariant to the entire tap dimension at the ulp level, and the tap instruction's direction is text-underdetermined -- J1 voted equivalent on exactly this ground.",
+   "evidence": "In-record gen output 4.4750873243376805 vs GT 4.475087 (rel 7e-08) despite a completely different tap trajectory corroborates J1's 5-ulp oracle. The attack fails on the ratified law, not the physics: R3's equivalence branch covers deviations WITHIN a query-underdetermined dimension (1229 template), whereas gen replaced the pinned one-time semantic step with an invented per-step conditional policy (direction by loading>100%, cumulative walk toward tap_min, first step solved at the unmoved tap -- code verified) -- a trajectory matching no legal reading of 'move by one step' however the direction is read; the adjudicator applied F-E + case 3 to precisely this side (ratified i=114) and the F-E ruling exists to stop insensitivity from laundering unfaithful workflows. UPHELD -- top near-miss for the SM robustness narrative."
+  },
+  {
+   "pair_id": "E1P-089",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance: the peak line loading is provably tap-insensitive (in-record rel 7e-08 despite the omitted move; J1's oracle: no-move/single-move/per-step variants differ by 5 ulp) -- argue the omission is output-inert.",
+   "evidence": "The invariance is real but non-exculpatory: the query pins a semantic modification ('find the most heavily loaded transformer and move its tap position by one step'; ref: tap 0 -1->-2) and gen never writes any tap (DiscreteTapControl imported, unused; fingerprint at base) -- doing nothing is no legal reading of 'move by one step', which is frozen case 3's omission pattern, and F-E is the ratified doctrine that clamp/pinned-scalar coincidental hits remain physical-error precisely because insensitive items are where omissions hide. The two-judge downgrade clause was not met (both convicted). UPHELD."
+  },
+  {
+   "pair_id": "E1P-091",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: 'IEEE 30-bus case' is, in the wider world, a fair description of MATPOWER case30 as well -- argue the query underdetermines the variant, making case30 a faithful legal reading.",
+   "evidence": "The attack dies at the corpus-dialect level (R5, the same ground where the 1-based defense died): benchmark_config.py maps 'IEEE 30-bus case'->pn.case_ieee30() and '30-bus test case'->pn.case30() one-to-one, and the query display name is generated from the same source as the reference loader, so within this corpus the phrase is unambiguous. The two variants differ physically (7 trafos vs 0, different vm limits) and the outputs differ accordingly (1.06500 vs GT 1.06, rel 0.47% -- gen's value even exceeds case_ieee30's 1.06 vm cap), matched only through the 1% window. Established wrong-variant family; UPHELD."
+  },
+  {
+   "pair_id": "E1P-096",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via R3 middle branch (J2's route): the query never writes 'capacitive', so q_mvar=+N is the faithful literal API reading of 'add a N Mvar shunt' -> defect, not contamination; R3-invariance as the alternative prong.",
+   "evidence": "Adjudication oracle O-ADJ-2 (independently consistent with my O-REF-2/3 methodology) proves the sign is the sole deviation moving the queried scalar on this item: gen-as-written (+12) gives 0.987857 while the -12 variant reproduces ref's 0.989726 exactly, and the overload cascade fires identically on both sides (the scaling=1.0 no-op raise is slack-load-inert). Invariance therefore fails, F-A second branch is out, and the ratified third branch plus the remedial-context no-legal-reading argument forecloses the R3-middle-branch defect transfer. UPHELD."
+  },
+  {
+   "pair_id": "E1P-096",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via R3 middle branch (J2's route): the query never writes 'capacitive', so q_mvar=+N is the faithful literal API reading of 'add a N Mvar shunt' -> defect, not contamination; R3-invariance as the alternative prong.",
+   "evidence": "Adjudication oracle O-ADJ-2 (independently consistent with my O-REF-2/3 methodology) proves the sign is the sole deviation moving the queried scalar on this item: gen-as-written (+12) gives 0.987857 while the -12 variant reproduces ref's 0.989726 exactly, and the overload cascade fires identically on both sides (the scaling=1.0 no-op raise is slack-load-inert). Invariance therefore fails, F-A second branch is out, and the ratified third branch plus the remedial-context no-legal-reading argument forecloses the R3-middle-branch defect transfer. UPHELD."
+  },
+  {
+   "pair_id": "E1P-103",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via degenerate GT: total DC losses are identically 0.0 for ANY network, so the item cannot discriminate -- push the defect onto the item rather than the model.",
+   "evidence": "Record verified: query pins 'simple MV open ring' (ref simple_mv_open_ring_net, 7 buses); gen loaded pp.networks.mv_oberrhein() (179 buses). The degenerate-GT weakness is already on the errata ledger, but defect transfer under R2/R3 requires the model side to be a faithful legal reading of the query -- loading a different grid is not, so the wrong-network conviction survives independently of the item's weakness. Meta-rule (b) fails wholesale; UPHELD."
+  },
+  {
+   "pair_id": "E1P-104",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via 1-based convention on both targets; no invariance available.",
+   "evidence": "Fingerprints and code lines confirm both shifts ('line 13'->loc[12,'x_ohm_per_km'], 'load 14'->loc[13,'scaling']); the C-side twin of this very item got both indices right, underscoring that the corpus dialect is learnable and settled. Queried min vm moved (0.954298 vs GT 0.947759, rel 0.69%) -- a real scenario change inside the 1% window. Case 3 + N1; UPHELD."
+  },
+  {
+   "pair_id": "E1P-111",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Equivalent-path via coherent alternative convention (gen comments '0-based' while shifting down by one).",
+   "evidence": "Three pinned line targets all shifted (10 for 11, 18 for 19, 7 for 8; fingerprints confirm), with gen's own '0-based' comment contradicting its arithmetic -- R5 internal incoherence, so no coherent convention defense exists. Queried min vm moved 0.73% (0.949978 vs GT 0.956966), matched only through the 1% window. UPHELD."
+  },
+  {
+   "pair_id": "E1P-114",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-A branch misapplication: argue the sign is not truly pinned, or that in pandapower a positive-q 'capacitor-typed' shunt is a legal rendering of 'capacitive support'; R3-invariance as fallback.",
+   "evidence": "Record verified: the query text literally pins 'install capacitive shunt support', and in pandapower's consumer sign convention capacitive = negative q_mvar; gen wrote q_mvar=+5 vs ref -13.0 at the same argmin bus; N-1 envelope min 0.865113 vs GT 0.867684, rel 0.30% -- an inductive reactor, the physically opposite device (a type string is metadata and changes no physics). F-A first branch (text-pinned + reversed -> phys) is squarely applicable, and the queried scalar demonstrably moved, so invariance fails on the executed numbers. UPHELD."
+  },
+  {
+   "pair_id": "E1P-118",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer: 'IEEE 30-bus case' is, in the wider world, a fair description of MATPOWER case30 as well -- argue the query underdetermines the variant, making case30 a faithful legal reading.",
+   "evidence": "The attack dies at the corpus-dialect level (R5, the same ground where the 1-based defense died): benchmark_config.py maps 'IEEE 30-bus case'->pn.case_ieee30() and '30-bus test case'->pn.case30() one-to-one, and the query display name is generated from the same source as the reference loader, so within this corpus the phrase is unambiguous. The two variants differ physically (7 trafos vs 0, different vm limits) and the outputs differ accordingly (1.064986 vs GT 1.06, rel 0.47% -- exceeds case_ieee30's 1.06 vm cap), matched only through the 1% window. Established wrong-variant family; UPHELD."
+  },
+  {
+   "pair_id": "E1P-119",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via R3 middle branch (J2's route): the query never writes 'capacitive', so q_mvar=+N is the faithful literal API reading of 'add a N Mvar shunt' -> defect, not contamination; R3-invariance as the alternative prong.",
+   "evidence": "Oracle O-REF-3: gen-as-written (+13) gives 0.8031952394211671; the single-token -13 flip gives 0.8782532531143027 -- not merely different from the +13 value but far from ref's 0.805574 too, i.e. under the capacitive reading gen's own remediation loop resolves differently, so the +13 tolerance hit (rel 0.30%) is doubly coincidental. Queried quantity strongly sign-dependent -> invariance dead; ratified F-A third branch + anti-remedial no-legal-reading forecloses the defect route (J2's bi=1229 analogy fails: 1229's dimension was oracle-invariant, this one demonstrably is not). UPHELD."
+  },
+  {
+   "pair_id": "E1P-119",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via R3 middle branch (J2's route): the query never writes 'capacitive', so q_mvar=+N is the faithful literal API reading of 'add a N Mvar shunt' -> defect, not contamination; R3-invariance as the alternative prong.",
+   "evidence": "Oracle O-REF-3: gen-as-written (+13) gives 0.8031952394211671; the single-token -13 flip gives 0.8782532531143027 -- not merely different from the +13 value but far from ref's 0.805574 too, i.e. under the capacitive reading gen's own remediation loop resolves differently, so the +13 tolerance hit (rel 0.30%) is doubly coincidental. Queried quantity strongly sign-dependent -> invariance dead; ratified F-A third branch + anti-remedial no-legal-reading forecloses the defect route (J2's bi=1229 analogy fails: 1229's dimension was oracle-invariant, this one demonstrably is not). UPHELD."
+  }
+ ]
+}

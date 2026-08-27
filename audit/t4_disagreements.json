@@ -1,0 +1,344 @@
+[
+ {
+  "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1139",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "元规则-改变被查量 (idxmin 差值; 176 同族)",
+   "rationale": "Assigned idxmin() (a bus INDEX) to both 'voltage' variables and printed their difference (0) instead of the min-voltage change. Matched GT 0.0 by construction — wrong quantity extracted."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "N7",
+   "reason": "Signed vs abs only; output 0.0.",
+   "errata_note": null
+  },
+  "task": "comparison",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1849",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, row-copy; 195 同族)",
+   "rationale": "The semantic reduce was assigned to a row COPY and never landed (fingerprint = baseline 163 MW vs ref 123.2). Exact Δcost equality arises only because runopp ignores initial p_mw — ref's mod is equally inert (provable irrelevance, strong refuter note + errata: OPF-blind mod item). 案3 default: the pinned setup was not executed."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "R3/1229-invariance",
+   "reason": "The reduce-dispatch write landed on a pandas copy (never applied), but runopp structurally ignores gen.p_mw setpoints - the reference's own mod is a no-op and the queried cost delta is invariant across every reading (bit-identical 1364.1751418292724). Same invariance ruling as seq 24/26/83; copy-bug noted.",
+   "errata_note": "dispatch-invariant OPF item (1229 class)"
+  },
+  "task": "comparison_opf",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|384",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1-属性分歧/案3 (137/196 同族)",
+   "rationale": "Pinned 'generator 1 voltage setpoint 0.954' executed as gen.p_mw=0.954 (attribute swap; vm left at 1.0). Exact output equality arises only because runopp ignores BOTH gen vm setpoints and initial p_mw (double inertness — strong refuter note; ref's own mod equally inert, errata-worthy). 案3 default pollution."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "R3-invariance",
+   "reason": "'Gen 1 voltage setpoint' written to p_mw (wrong attribute) but under runopp BOTH p_mw and vm_pu gen setpoints are decision variables - the reference's own vm mod is bit-null (identical outputs); line-6 disconnect faithful.",
+   "errata_note": "OPF setpoint-blind item (R4)"
+  },
+  "task": "opf",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|417",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列)",
+   "rationale": "Pinned ext_grid voltage written to junk column 'vn_pu' — never landed. Output bit-equal to ref only because DC power flow ignores ext_grid vm entirely (provable inertness — strong refuter note; ref's own mod is equally inert, errata-worthy). 案3 default pollution stands (258/322 同族)."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "R3-invariance",
+   "reason": "'ext_grid voltage' written to phantom 'vn_pu' (silent no-op) but DC power flow provably never consumes ext_grid vm_pu - the reference's own 1.019 write is bit-null for the queried DC angle (outputs identical). Structural analysis-type invariance, load mods faithful.",
+   "errata_note": "DC + vm-setpoint mod = mod-blind item (R4)"
+  },
+  "task": "dc_power_flow",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|587",
+  "j1": {
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R2/R3-类推 (文本自缺陷 + 简并不变查询)",
+   "rationale": "The query itself assigns load 1 TWICE (construction bug — errata); ref reads it as sequential overwrite (final 98.4 on load 1), gen as a typo-corrected pair (load 1=59.4, load 2=98.4) — a defensible de-duplication reading of defective text. Queried DC min vm ≡ 1.0 structurally for the whole reading family (GT degenerate) → item-defect channel, not model pollution."
+  },
+  "j2": {
+   "label": "physical-error",
+   "check": "check1",
+   "case": "case3/N1",
+   "reason": "Query (defectively) pins 'load 1' twice; gen rewrote the second mod to load 2 - a fabrication, not a legal reading of the text (ref final state: load1=98.4, load2 untouched). Hit = DC min-vm == 1.0 degeneracy (any state matches).",
+   "errata_note": "duplicated-mod item + constant-GT DC voltage query (R4)"
+  },
+  "task": "dc_power_flow",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1828",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行; 1263 巧合不豁免)",
+   "rationale": "Query pins N-1 contingency selection; gen used baseline argmax with no contingency engine or loop (② expected 'contingency' never invoked). Exact output equality (worst line coincides and the queried post-fix loading is empirically insensitive to the raise magnitude) is precisely the 案2-named scalar coincidence — the pinned analysis was not executed. Raise ×2 alone would be R3-legal."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "N1/R3-invariance",
+   "reason": "Identification shortcut (base-pf argmax with raised load) landed on the reference worst line; final scalar bit-identical (80.96533518289348) - and demonstrably invariant across raise readings and fix sizes (same value for 20/29/40 MW fixes across three different items).",
+   "errata_note": "contingency_fix/case5 final max-loading constant across items - loud family degeneracy (R4)"
+  },
+  "task": "contingency_fix",
+  "frame": "contrast_S"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|188",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改)",
+   "rationale": "Typo column 'vn_max_pu' creates a junk column; the pinned max_vm_pu=1.079 was never applied. Scalar identical because voltage LIMITS are inert to runpp — precisely 案3's coincidental-match shape. Judge-1 view: deviation is confined to a PF-inert constraint column (provable irrelevance), which the refuter/dual-judge downgrade channel may act on; default strict line = pollution."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "R3-invariance",
+   "reason": "'Max voltage limit' written to phantom 'vn_max_pu', but bus voltage limits are provably inert in runpp - the reference's own max_vm_pu write is bit-null (identical outputs); no physical content in the deviation.",
+   "errata_note": "pf + limit-mod = mod-blind item (R4)"
+  },
+  "task": "power_flow",
+  "frame": "contrast_S"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|936",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "4,2",
+   "applied_rule": "案2-analog (N-1 未用于选线; 130/313 同族)",
+   "rationale": "The pinned N-1-based worst-line selection was replaced by the BASELINE argmax; run_contingency was only called at the END and its base-case column read back — semantically a no-op tail. Selection coincides on case5 (line 5) and the base-case read reproduces ref's final PF value exactly — the 案2-named coincidence; the pinned workflow was not executed."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "N1",
+   "reason": "Same-target shortcut as seq 130; extraction via run_contingency dict 'loading_percent' equals the modified net's base-state loading = exactly ref's final runpp quantity here (bit-identical 80.965335...).",
+   "errata_note": null
+  },
+  "task": "contingency_fix",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1137",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行; 79/247 同族)",
+   "rationale": "No contingency analysis at all — worst line chosen as the BASELINE argmax, and even that selection was made after the new generator was already added (order deviation). Exact scalar match is the 案2-named coincidence (selection happens to agree on case5); the pinned N-1 workflow was not executed."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "N1",
+   "reason": "Identification shortcut (base-case argmax on the fix-augmented net instead of N-1 envelope) landed on the identical target line: final state bit-identical to reference (80.96533518289348). N1 same-target => equivalent (1263 template); contrast bi=792 where targets differed.",
+   "errata_note": null
+  },
+  "task": "contingency_fix",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1082",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行) + 精度丢失",
+   "rationale": "Same missing N-1 (baseline argmax, printed 'line 5'); output printed as a 2-decimal f-string (80.97) — extraction precision loss; matched GT only through the 1% tolerance."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "N1",
+   "reason": "Same pattern as seq 313 (11 MW fix; in_service=False on the same argmax line); .2f rounding idiom.",
+   "errata_note": null
+  },
+  "task": "contingency_fix",
+  "frame": "contrast_S"
+ },
+ {
+  "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|936",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行; 247/283/79 同族)",
+   "rationale": "Pinned N-1 contingency selection replaced by the baseline argmax (no contingency engine or loop; ② expected 'contingency' never invoked); selection coincided with ref's worst line by luck. Also printed a 2-decimal rounded string (80.97) — precision-lossy extraction flagged. Tolerance luck completes the false acceptance."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "N1",
+   "reason": "Same-target shortcut (base-pf argmax == ref's worst line 5; line dropped vs in_service equivalent); final state matches ref's; printed with :.2f rounding (formatting idiom within matcher tolerance).",
+   "errata_note": null
+  },
+  "task": "contingency_fix",
+  "frame": "contrast_S"
+ },
+ {
+  "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1302",
+  "j1": {
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (幅度欠定; 方向 ✓)",
+   "rationale": "'Capacitive shunt support' with correct sign (−100 vs ref −10 — magnitude query-silent) at the runtime idxmin bus (= ref 30); canonical N-1 with the correct envelope column. Worst-case loading equals ref at 1e-12 — the magnitude dimension provably doesn't move the scalar."
+  },
+  "j2": {
+   "label": "physical-error",
+   "check": "check1",
+   "case": "case3/N1",
+   "reason": "Query pins 'capacitive shunt support'; gen installed q_mvar=+100 (inductive absorption, sign inverted; ref -10). Bit-level identical hit only because a shunt at the gen-regulated bus is flow-invariant (PV bus absorbs any Q) - coincidence, not necessity; sign violation breaks the case-3 exemption.",
+   "errata_note": "mod is flow-invariant at PV bus: weak-discriminating item (R4)"
+  },
+  "task": "contingency",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1391",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3-方向 (实际行为=降低)",
+   "rationale": "Same item: p_mw := max_p_mw = 7832 < baseline 8730 — an actual reduction under a pinned raise (canonical run_contingency otherwise correct). Same tolerance-luck output as i=74."
+  },
+  "j2": {
+   "label": "suspected-item-defect",
+   "check": null,
+   "case": "R3",
+   "reason": "'Raise that unit to a higher dispatch level' magnitude underdetermined; same unit as ref (gen 35); gen raised to max_p_mw vs ref x1.1. Scalar varies across legal readings (0.95493 vs 0.95187, rel 3.2e-3) and only matcher tolerance absorbs it; model faithful to a legal reading -> item-underdetermined (bi=64/R3 middle branch).",
+   "errata_note": null
+  },
+  "task": "contingency",
+  "frame": "main_P"
+ },
+ {
+  "key": "Qwen_Qwen3-Coder-Next|A_FX|599",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned 'bus 110 maximum voltage limit' executed on bus 109 (1-based misread); scalar unaffected only because max_vm_pu is inert to power flow — 案3-shape coincidence. Manual N-1 with early break is exact for the existential bool, but divergence-skip (except: continue) could silently drop a witness — noted; the wrong pinned target decides."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "R3-invariance",
+   "reason": "'Bus 110' limit written at index 109 (1-based shift) but on a pf-inert attribute: the reference's own max_vm_pu write is structurally null for the contingency bool - both scenarios are the identical base network; loop is exists-equivalent; identical False.",
+   "errata_note": null
+  },
+  "task": "contingency",
+  "frame": "contrast_S"
+ },
+ {
+  "key": "Qwen_Qwen3-Coder-Next|C_FDRS|980",
+  "j1": {
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (oracle) + 元规则(b)",
+   "rationale": "Gen loaded create_cigre_network_mv(with_der='pv_wind') — same named benchmark with 9 small DER sgens (1.71 MW), a variant flag the query text does not pin. All pinned mods faithful (load @14, ext_grid 1.007, conditional drop line 10, shunt -7 @11 — oracle shows identical branch path). Oracle: final min V bit-identical 0.9778812906159088 in both variants (argmin bus 12 on the DER-free feeder, electrically decoupled). Deviation provably irrelevant to the extracted quantity; fragile-variant flag recorded."
+  },
+  "j2": {
+   "label": "physical-error",
+   "check": "check1",
+   "case": "case3",
+   "reason": "Loaded wrong network variant create_cigre_network_mv(with_der='pv_wind') (9 DER sgens, 1.71 MW injecting) where query says the CIGRE MV benchmark (plain). Oracle rerun: feeder-1 voltages differ up to 0.0305 pu between variants; the reported min-vm bus 12 sits on the slack-decoupled feeder-2 stub after the line-10 disconnect, so the bit-identical hit is a structural coincidence, not necessity.",
+   "errata_note": null
+  },
+  "task": "diagnose_and_fix",
+  "frame": "main_P"
+ },
+ {
+  "key": "gemini-2.5-flash|C_FDRS|487",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3-工作流 + 非法步长",
+   "rationale": "cost_before computed from the UN-tapped state (ref: with tap applied), and 'move tap by one step' executed as tap_pos += tap_step_percent/100 — a fractional ~0.015 shift, not one discrete step (no legal reading). 2258.046 vs GT 2258.036 = tolerance luck."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "R3-quasi-invariance",
+   "reason": "Tap 'step' implemented as a fractional +tap_step/100 (bug, effectively no move) and baseline OPF ran pre-mod, but the tap dimension shifts the cost delta by only 4.7e-6 rel (ref's own integer move included) - scalar-null deviation; N7 signed diff.",
+   "errata_note": "tap-move quasi-null for OPF cost on this item (R4)"
+  },
+  "task": "comparison_opf",
+  "frame": "api_T5"
+ },
+ {
+  "key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|852",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列; 258/172 同族)",
+   "rationale": "Pinned 'bus 1 minimum voltage limit 0.921' written to junk column 'vn_mmin' — the modification never landed. Scalar identical only because min_vm_pu is inert to runpp/calc_sc (provable irrelevance noted for the refuter; 案3 default line). ext_grid column assignment and missing sgen-disable are output-neutral here (bit-identical result; cigre_mv carries native s_sc data)."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "R3-invariance",
+   "reason": "'Bus 1 min voltage limit' written to a phantom column, but the attribute is pf/SC-inert (ref's own write is null); whole-column ext_grid voltage write equals the single-row write; SC defaults match (3ph/max, superposition); bit-identical.",
+   "errata_note": null
+  },
+  "task": "pf_then_sc",
+  "frame": "contrast_S"
+ },
+ {
+  "key": "openai_gpt-oss-120b|A_FX|1828",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行)",
+   "rationale": "Same as i=247 (×1.5 raise legal; no N-1 — baseline argmax; coincidental selection match). 80.965335181 vs ref at 1.5e-9 = tolerance luck."
+  },
+  "j2": {
+   "label": "equivalent-path",
+   "check": null,
+   "case": "N1",
+   "reason": "Same-target shortcut as seq 247 (base-pf argmax with raised load landed on the reference worst line; final value agrees to 2e-11 rel); raise x1.5 vs ref 1.54 scalar-null on this family-degenerate scalar.",
+   "errata_note": "contingency_fix/case5 constant answer (R4)"
+  },
+  "task": "contingency_fix",
+  "frame": "contrast_S"
+ },
+ {
+  "key": "openai_gpt-oss-120b|C_FDRS|1391",
+  "j1": {
+   "label": "physical-error",
+   "violated_check": "1,2",
+   "applied_rule": "R3-方向 (实际行为=降低) + N2(2) 场景集超集",
+   "rationale": "'Raise' executed as p_mw := max_p_mw = 7832 — BELOW the 8730-MW baseline (GB data has max_p < p): the actual behavior is a dispatch CUT where the query pins a raise (N3 actual-behavior; no legal reading). The manual loop also adds trafo outages to the pinned line-only N-1 set. 0.95493 vs GT 0.95187 (0.32%) = tolerance luck."
+  },
+  "j2": {
+   "label": "suspected-item-defect",
+   "check": null,
+   "case": "R3",
+   "reason": "Same item/reading as seq 15 (raise to max_p_mw, magnitude underdetermined; scalar varies 0.32% across legal readings within tolerance). Manual runpp loop is N2-equivalent: full enumeration incl. trafo superset, per-case restore, envelope min; its output equals the canonical-engine result for the same reading (seq 15's 480B) to 1e-13. Wrong-column concern (vm_pu) does not arise: per-case running min IS the envelope min.",
+   "errata_note": null
+  },
+  "task": "contingency",
+  "frame": "main_P"
+ }
+]

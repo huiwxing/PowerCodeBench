@@ -1,0 +1,4065 @@
+{
+  "meta": {
+    "round": "E1-P T4 power extension (preregistered continuation of the E1-P paired round, not a new experiment)",
+    "protocol": "E1_validity_audit.md sP.13 (frozen 2026-08-02, prior to data) via the sP.7-5 pre-declared extension path",
+    "seed": 20260802,
+    "created": "2026-08-01T18:50:38",
+    "condition_headline": "condC_FDRS",
+    "condition_contrast": "condA_FX",
+    "pair_definition": "(model, bench_index) with match=True in BOTH conditions; open-source panel only (the API layer has no condA_FX counterpart)",
+    "allocation_rule": "single-tier extension budget T4=50, split across task families proportionally (largest remainder, no min-per-cell floor) over the residual pool after excluding the base draw; per-cell RNG seeded '20260802|E1P|<tier>|<family>'",
+    "extension_of": {
+      "manifest": "e1p_pair_manifest.json",
+      "seed": 20260730,
+      "n_pairs": 120,
+      "pair_ids": "E1P-001..E1P-120 (this file continues at E1P-121)"
+    },
+    "frozen_round_untouched": "reads e1p_pair_manifest.json, t4_final_labels_v2.json and e1_sample_manifest.json read-only; no number of the frozen 610 or of the base 120-pair round is altered",
+    "note": "Lightweight pointers only. samples.pair_C / samples.pair_A are the sides still needing the automatic layer and are in audit.run_t4 pointer shape; overlapping sides are listed in skipped_overlap_sides with their frozen final label."
+  },
+  "population": {
+    "n_pairs": 2106,
+    "by_tier": {
+      "T1": 0,
+      "T2": 288,
+      "T3": 696,
+      "T4": 1122
+    },
+    "by_model": {
+      "Qwen_Qwen2.5-Coder-0.5B-Instruct": 0,
+      "Qwen_Qwen2.5-Coder-1.5B-Instruct": 0,
+      "Qwen_Qwen2.5-Coder-7B-Instruct": 7,
+      "meta-llama_Llama-3.1-8B-Instruct": 23,
+      "Qwen_Qwen2.5-Coder-14B-Instruct": 71,
+      "Qwen_Qwen2.5-Coder-32B-Instruct": 187,
+      "meta-llama_Llama-3.1-70B-Instruct": 286,
+      "openai_gpt-oss-120b": 410,
+      "meta-llama_Llama-3.1-405B-Instruct": 540,
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct": 469,
+      "Qwen_Qwen3-Coder-Next": 113
+    },
+    "by_tier_family": {
+      "T1": {},
+      "T2": {
+        "comparison": 40,
+        "contingency": 3,
+        "contingency_fix": 1,
+        "dc_power_flow": 30,
+        "diagnose_and_fix": 58,
+        "opf": 22,
+        "power_flow": 61,
+        "sequential": 66,
+        "short_circuit_3ph": 4,
+        "state_estimation": 1,
+        "time_series": 2
+      },
+      "T3": {
+        "comparison": 85,
+        "comparison_opf": 33,
+        "contingency": 44,
+        "contingency_fix": 11,
+        "dc_power_flow": 41,
+        "diagnose_and_fix": 67,
+        "opf": 104,
+        "pf_then_sc": 1,
+        "power_flow": 114,
+        "sequential": 157,
+        "short_circuit_2ph": 2,
+        "short_circuit_3ph": 2,
+        "time_series": 35
+      },
+      "T4": {
+        "comparison": 130,
+        "comparison_opf": 54,
+        "contingency": 70,
+        "contingency_fix": 11,
+        "dc_power_flow": 141,
+        "diagnose_and_fix": 93,
+        "opf": 128,
+        "parallel": 12,
+        "pf_then_sc": 10,
+        "power_flow": 143,
+        "sequential": 214,
+        "short_circuit_2ph": 8,
+        "short_circuit_3ph": 4,
+        "state_estimation": 16,
+        "time_series": 88
+      }
+    },
+    "A_FX_matched_by_tier": {
+      "T1": 0,
+      "T2": 336,
+      "T3": 758,
+      "T4": 1240
+    },
+    "C_FDRS_matched_by_tier": {
+      "T1": 198,
+      "T2": 3409,
+      "T3": 2354,
+      "T4": 3883
+    },
+    "A_FX_matched_by_model": {
+      "Qwen_Qwen2.5-Coder-0.5B-Instruct": 0,
+      "Qwen_Qwen2.5-Coder-1.5B-Instruct": 0,
+      "Qwen_Qwen2.5-Coder-7B-Instruct": 11,
+      "meta-llama_Llama-3.1-8B-Instruct": 25,
+      "Qwen_Qwen2.5-Coder-14B-Instruct": 77,
+      "Qwen_Qwen2.5-Coder-32B-Instruct": 223,
+      "meta-llama_Llama-3.1-70B-Instruct": 300,
+      "openai_gpt-oss-120b": 458,
+      "meta-llama_Llama-3.1-405B-Instruct": 571,
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct": 530,
+      "Qwen_Qwen3-Coder-Next": 139
+    },
+    "C_FDRS_matched_by_model": {
+      "Qwen_Qwen2.5-Coder-0.5B-Instruct": 6,
+      "Qwen_Qwen2.5-Coder-1.5B-Instruct": 192,
+      "Qwen_Qwen2.5-Coder-7B-Instruct": 656,
+      "meta-llama_Llama-3.1-8B-Instruct": 726,
+      "Qwen_Qwen2.5-Coder-14B-Instruct": 972,
+      "Qwen_Qwen2.5-Coder-32B-Instruct": 1055,
+      "meta-llama_Llama-3.1-70B-Instruct": 1149,
+      "openai_gpt-oss-120b": 1205,
+      "meta-llama_Llama-3.1-405B-Instruct": 1374,
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct": 1318,
+      "Qwen_Qwen3-Coder-Next": 1191
+    },
+    "duplicate_bench_index_by_model": {},
+    "share_of_A_FX_pool_pct": 90.23,
+    "share_of_C_FDRS_pool_pct": 21.39,
+    "note_T1": "T1 is streamed, not assumed: its condA_FX matched pool is re-derived here, so the frozen round's 'contrast frame has no T1' fact and the resulting zero T1 pairs are reproduced rather than inherited; pool shares therefore use the full four-tier pools, matching the A5-1 figures",
+    "recount_vs_A5_1": {
+      "expected": {
+        "total": 2106,
+        "T1": 0,
+        "T2": 288,
+        "T3": 696,
+        "T4": 1122
+      },
+      "observed": {
+        "total": 2106,
+        "T1": 0,
+        "T2": 288,
+        "T3": 696,
+        "T4": 1122
+      },
+      "reproduced": true
+    },
+    "task_family_mismatch_across_sides": [],
+    "recount_vs_frozen_manifest": {
+      "source": "e1_sample_manifest.json",
+      "mismatches": [],
+      "reproduced": true
+    },
+    "recount_vs_base_manifest": {
+      "source": "e1p_pair_manifest.json",
+      "base": {
+        "n_pairs": 2106,
+        "by_tier": {
+          "T1": 0,
+          "T2": 288,
+          "T3": 696,
+          "T4": 1122
+        }
+      },
+      "observed": {
+        "n_pairs": 2106,
+        "by_tier": {
+          "T1": 0,
+          "T2": 288,
+          "T3": 696,
+          "T4": 1122
+        }
+      },
+      "reproduced": true
+    }
+  },
+  "allocation": {
+    "T4": {
+      "comparison": 6,
+      "comparison_opf": 2,
+      "contingency": 3,
+      "contingency_fix": 1,
+      "dc_power_flow": 6,
+      "diagnose_and_fix": 4,
+      "opf": 6,
+      "parallel": 1,
+      "power_flow": 6,
+      "sequential": 10,
+      "state_estimation": 1,
+      "time_series": 4
+    }
+  },
+  "exclusion": {
+    "source_manifest": "e1p_pair_manifest.json",
+    "n_excluded_pairs": 120,
+    "n_excluded_sides": 240,
+    "n_excluded_pairs_in_extend_tier": 50,
+    "excluded_pair_keys": [
+      "Qwen_Qwen2.5-Coder-14B-Instruct|1582",
+      "Qwen_Qwen2.5-Coder-14B-Instruct|1775",
+      "Qwen_Qwen2.5-Coder-14B-Instruct|1956",
+      "Qwen_Qwen2.5-Coder-14B-Instruct|238",
+      "Qwen_Qwen2.5-Coder-14B-Instruct|313",
+      "Qwen_Qwen2.5-Coder-14B-Instruct|348",
+      "Qwen_Qwen2.5-Coder-14B-Instruct|889",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1014",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1039",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1055",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1065",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1096",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1339",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1407",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1423",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1706",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|1726",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|38",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|44",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|487",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|551",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|606",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|712",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|720",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|913",
+      "Qwen_Qwen2.5-Coder-32B-Instruct|997",
+      "Qwen_Qwen2.5-Coder-7B-Instruct|954",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1142",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1238",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1249",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1343",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1447",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|146",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1503",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1570",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1600",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1693",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|17",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1828",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1983",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|1986",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|390",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|430",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|493",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|54",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|57",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|591",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|605",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|63",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|765",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|803",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|864",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|91",
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|925",
+      "Qwen_Qwen3-Coder-Next|163",
+      "Qwen_Qwen3-Coder-Next|400",
+      "Qwen_Qwen3-Coder-Next|927",
+      "meta-llama_Llama-3.1-405B-Instruct|1104",
+      "meta-llama_Llama-3.1-405B-Instruct|1152",
+      "meta-llama_Llama-3.1-405B-Instruct|1170",
+      "meta-llama_Llama-3.1-405B-Instruct|1250",
+      "meta-llama_Llama-3.1-405B-Instruct|1352",
+      "meta-llama_Llama-3.1-405B-Instruct|1373",
+      "meta-llama_Llama-3.1-405B-Instruct|1407",
+      "meta-llama_Llama-3.1-405B-Instruct|1503",
+      "meta-llama_Llama-3.1-405B-Instruct|1820",
+      "meta-llama_Llama-3.1-405B-Instruct|1883",
+      "meta-llama_Llama-3.1-405B-Instruct|382",
+      "meta-llama_Llama-3.1-405B-Instruct|440",
+      "meta-llama_Llama-3.1-405B-Instruct|556",
+      "meta-llama_Llama-3.1-405B-Instruct|765",
+      "meta-llama_Llama-3.1-405B-Instruct|889",
+      "meta-llama_Llama-3.1-405B-Instruct|891",
+      "meta-llama_Llama-3.1-405B-Instruct|906",
+      "meta-llama_Llama-3.1-405B-Instruct|916",
+      "meta-llama_Llama-3.1-405B-Instruct|928",
+      "meta-llama_Llama-3.1-405B-Instruct|971",
+      "meta-llama_Llama-3.1-70B-Instruct|1015",
+      "meta-llama_Llama-3.1-70B-Instruct|1245",
+      "meta-llama_Llama-3.1-70B-Instruct|1761",
+      "meta-llama_Llama-3.1-70B-Instruct|1781",
+      "meta-llama_Llama-3.1-70B-Instruct|1785",
+      "meta-llama_Llama-3.1-70B-Instruct|1840",
+      "meta-llama_Llama-3.1-70B-Instruct|1867",
+      "meta-llama_Llama-3.1-70B-Instruct|217",
+      "meta-llama_Llama-3.1-70B-Instruct|282",
+      "meta-llama_Llama-3.1-70B-Instruct|35",
+      "meta-llama_Llama-3.1-70B-Instruct|801",
+      "meta-llama_Llama-3.1-70B-Instruct|844",
+      "meta-llama_Llama-3.1-70B-Instruct|994",
+      "meta-llama_Llama-3.1-8B-Instruct|217",
+      "meta-llama_Llama-3.1-8B-Instruct|34",
+      "meta-llama_Llama-3.1-8B-Instruct|727",
+      "openai_gpt-oss-120b|1064",
+      "openai_gpt-oss-120b|1087",
+      "openai_gpt-oss-120b|1103",
+      "openai_gpt-oss-120b|1105",
+      "openai_gpt-oss-120b|1112",
+      "openai_gpt-oss-120b|1140",
+      "openai_gpt-oss-120b|1174",
+      "openai_gpt-oss-120b|1236",
+      "openai_gpt-oss-120b|1273",
+      "openai_gpt-oss-120b|1298",
+      "openai_gpt-oss-120b|1352",
+      "openai_gpt-oss-120b|1414",
+      "openai_gpt-oss-120b|1505",
+      "openai_gpt-oss-120b|1528",
+      "openai_gpt-oss-120b|1588",
+      "openai_gpt-oss-120b|1747",
+      "openai_gpt-oss-120b|188",
+      "openai_gpt-oss-120b|1889",
+      "openai_gpt-oss-120b|206",
+      "openai_gpt-oss-120b|315",
+      "openai_gpt-oss-120b|470",
+      "openai_gpt-oss-120b|488",
+      "openai_gpt-oss-120b|576",
+      "openai_gpt-oss-120b|629",
+      "openai_gpt-oss-120b|827",
+      "openai_gpt-oss-120b|89",
+      "openai_gpt-oss-120b|917"
+    ]
+  },
+  "extension_checks": {
+    "n_drawn": 50,
+    "all_in_extend_tier": true,
+    "n_pair_overlap_with_base": 0,
+    "n_side_overlap_with_base_sides": 0,
+    "population_reproduced_vs_base": true,
+    "population_reproduced_vs_A5_1": true,
+    "population_reproduced_vs_frozen_manifest": true,
+    "tier_pool": 1122,
+    "tier_pool_after_exclusion": 1072
+  },
+  "overlap": {
+    "n_pairs": 50,
+    "n_sides_total": 100,
+    "n_sides_in_frozen_610": 2,
+    "n_sides_in_frozen_610_by_condition": {
+      "condC_FDRS": 0,
+      "condA_FX": 2
+    },
+    "n_pairs_with_any_overlapping_side": 2,
+    "n_pairs_with_both_sides_overlapping": 0,
+    "overlap_rate_sides_pct": 2.0,
+    "overlap_rate_pairs_pct": 4.0,
+    "n_sides_in_pilot_20": 0,
+    "reused_rulings": [
+      {
+        "pair_id": "E1P-162",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1103,
+        "frozen_frame": "contrast_S",
+        "final_label": "contaminated"
+      },
+      {
+        "pair_id": "E1P-169",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1794,
+        "frozen_frame": "contrast_S",
+        "final_label": "equivalent"
+      }
+    ],
+    "policy": "overlapping sides are NOT excluded from the pair draw (pair completeness first); they skip the automatic layer and reuse their frozen final ruling from t4_final_labels_v2.json, so the supplement round stays consistent with the frozen round and spends judge budget only on unruled sides"
+  },
+  "pairs": [
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 116,
+      "task": "power_flow",
+      "network": "case1354pegase",
+      "query_type": "total",
+      "n_modifications": 2,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "f5b7e9d1e861",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case1354pegase",
+          "query_type": "total",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "f5b7e9d1e861",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case1354pegase",
+          "query_type": "total",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-121",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|116"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|116"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 384,
+      "task": "opf",
+      "network": "case30",
+      "query_type": "min_value",
+      "n_modifications": 2,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "b9466a4b8211",
+          "task": "opf",
+          "difficulty_level": "D1_basic",
+          "network": "case30",
+          "query_type": "min_value",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "b9466a4b8211",
+          "task": "opf",
+          "difficulty_level": "D1_basic",
+          "network": "case30",
+          "query_type": "min_value",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-122",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|384"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|384"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 461,
+      "task": "dc_power_flow",
+      "network": "case4gs",
+      "query_type": "min_value",
+      "n_modifications": 1,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "c0487aacecac",
+          "task": "dc_power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case4gs",
+          "query_type": "min_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "c0487aacecac",
+          "task": "dc_power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case4gs",
+          "query_type": "min_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-123",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|461"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|461"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 475,
+      "task": "time_series",
+      "network": "case24_ieee_rts",
+      "query_type": "ts_max_value",
+      "n_modifications": 2,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "1c45d9d4ac36",
+          "task": "time_series",
+          "difficulty_level": "D1_basic",
+          "network": "case24_ieee_rts",
+          "query_type": "ts_max_value",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "1c45d9d4ac36",
+          "task": "time_series",
+          "difficulty_level": "D1_basic",
+          "network": "case24_ieee_rts",
+          "query_type": "ts_max_value",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-124",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|475"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|475"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 476,
+      "task": "power_flow",
+      "network": "case4gs",
+      "query_type": "point_value",
+      "n_modifications": 0,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "588429f0b2f8",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case4gs",
+          "query_type": "point_value",
+          "n_modifications": 0
+        },
+        "A_FX": {
+          "item_id": "588429f0b2f8",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case4gs",
+          "query_type": "point_value",
+          "n_modifications": 0
+        }
+      },
+      "pair_id": "E1P-125",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|476"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|476"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 503,
+      "task": "dc_power_flow",
+      "network": "case145",
+      "query_type": "max_value",
+      "n_modifications": 2,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "666569527800",
+          "task": "dc_power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case145",
+          "query_type": "max_value",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "666569527800",
+          "task": "dc_power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case145",
+          "query_type": "max_value",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-126",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|503"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|503"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 598,
+      "task": "state_estimation",
+      "network": "iceland",
+      "query_type": "max_value",
+      "n_modifications": 2,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "d830ef3a5d59",
+          "task": "state_estimation",
+          "difficulty_level": "D1_basic",
+          "network": "iceland",
+          "query_type": "max_value",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "d830ef3a5d59",
+          "task": "state_estimation",
+          "difficulty_level": "D1_basic",
+          "network": "iceland",
+          "query_type": "max_value",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-127",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|598"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|598"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 614,
+      "task": "sequential",
+      "network": "case14",
+      "query_type": "sequential",
+      "n_modifications": 3,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "fd85af169a5c",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case14",
+          "query_type": "sequential",
+          "n_modifications": 3
+        },
+        "A_FX": {
+          "item_id": "fd85af169a5c",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case14",
+          "query_type": "sequential",
+          "n_modifications": 3
+        }
+      },
+      "pair_id": "E1P-128",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|614"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|614"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 741,
+      "task": "diagnose_and_fix",
+      "network": "case5",
+      "query_type": "diagnose_and_fix",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "817d79fdcf4c",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "case5",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "817d79fdcf4c",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "case5",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-129",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|741"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|741"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 849,
+      "task": "comparison_opf",
+      "network": "case33bw",
+      "query_type": "comparison_opf",
+      "n_modifications": 1,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "f6efece25ed3",
+          "task": "comparison_opf",
+          "difficulty_level": "D2_multi_step",
+          "network": "case33bw",
+          "query_type": "comparison_opf",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "f6efece25ed3",
+          "task": "comparison_opf",
+          "difficulty_level": "D2_multi_step",
+          "network": "case33bw",
+          "query_type": "comparison_opf",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-130",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|849"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|849"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 861,
+      "task": "comparison",
+      "network": "case_ieee30",
+      "query_type": "comparison",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "970a8610a844",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "case_ieee30",
+          "query_type": "comparison",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "970a8610a844",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "case_ieee30",
+          "query_type": "comparison",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-131",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|861"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|861"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 889,
+      "task": "sequential",
+      "network": "case300",
+      "query_type": "sequential",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "d67ed438a903",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case300",
+          "query_type": "sequential",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "d67ed438a903",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case300",
+          "query_type": "sequential",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-132",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|889"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|889"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 891,
+      "task": "parallel",
+      "network": "case33bw",
+      "query_type": "parallel",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "3db3a4482a33",
+          "task": "parallel",
+          "difficulty_level": "D2_multi_step",
+          "network": "case33bw",
+          "query_type": "parallel",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "3db3a4482a33",
+          "task": "parallel",
+          "difficulty_level": "D2_multi_step",
+          "network": "case33bw",
+          "query_type": "parallel",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-133",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|891"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|891"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 1181,
+      "task": "sequential",
+      "network": "case2869pegase",
+      "query_type": "sequential",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "10bb207afc28",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case2869pegase",
+          "query_type": "sequential",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "10bb207afc28",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case2869pegase",
+          "query_type": "sequential",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-134",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1181"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1181"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 1268,
+      "task": "dc_power_flow",
+      "network": "case9",
+      "query_type": "point_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "33257aecb86a",
+          "task": "dc_power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "case9",
+          "query_type": "point_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "33257aecb86a",
+          "task": "dc_power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "case9",
+          "query_type": "point_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-135",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1268"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1268"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 1417,
+      "task": "dc_power_flow",
+      "network": "simple_mv_open_ring",
+      "query_type": "max_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "8593b5256d5e",
+          "task": "dc_power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "simple_mv_open_ring",
+          "query_type": "max_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "8593b5256d5e",
+          "task": "dc_power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "simple_mv_open_ring",
+          "query_type": "max_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-136",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1417"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1417"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 1491,
+      "task": "contingency",
+      "network": "case6ww",
+      "query_type": "max_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "45f64c77cac1",
+          "task": "contingency",
+          "difficulty_level": "D3_semantic",
+          "network": "case6ww",
+          "query_type": "max_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "45f64c77cac1",
+          "task": "contingency",
+          "difficulty_level": "D3_semantic",
+          "network": "case6ww",
+          "query_type": "max_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-137",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1491"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1491"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 1575,
+      "task": "contingency",
+      "network": "case24_ieee_rts",
+      "query_type": "min_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "aaad410cbb83",
+          "task": "contingency",
+          "difficulty_level": "D3_semantic",
+          "network": "case24_ieee_rts",
+          "query_type": "min_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "aaad410cbb83",
+          "task": "contingency",
+          "difficulty_level": "D3_semantic",
+          "network": "case24_ieee_rts",
+          "query_type": "min_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-138",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1575"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1575"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "bench_index": 1593,
+      "task": "dc_power_flow",
+      "network": "case24_ieee_rts",
+      "query_type": "point_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "f98304466a21",
+          "task": "dc_power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "case24_ieee_rts",
+          "query_type": "point_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "f98304466a21",
+          "task": "dc_power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "case24_ieee_rts",
+          "query_type": "point_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-139",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1593"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1593"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 347,
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "query_type": "ts_min_value",
+      "n_modifications": 1,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "000868a577ec",
+          "task": "time_series",
+          "difficulty_level": "D1_basic",
+          "network": "simple_four_bus",
+          "query_type": "ts_min_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "000868a577ec",
+          "task": "time_series",
+          "difficulty_level": "D1_basic",
+          "network": "simple_four_bus",
+          "query_type": "ts_min_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-140",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|347"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|347"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 374,
+      "task": "power_flow",
+      "network": "synth_volt_ctrl_lv",
+      "query_type": "point_value",
+      "n_modifications": 0,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "b0d4d7739432",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "synth_volt_ctrl_lv",
+          "query_type": "point_value",
+          "n_modifications": 0
+        },
+        "A_FX": {
+          "item_id": "b0d4d7739432",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "synth_volt_ctrl_lv",
+          "query_type": "point_value",
+          "n_modifications": 0
+        }
+      },
+      "pair_id": "E1P-141",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|374"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|374"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 812,
+      "task": "comparison",
+      "network": "synth_volt_ctrl_lv",
+      "query_type": "comparison",
+      "n_modifications": 3,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "4b2b98e3f337",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "synth_volt_ctrl_lv",
+          "query_type": "comparison",
+          "n_modifications": 3
+        },
+        "A_FX": {
+          "item_id": "4b2b98e3f337",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "synth_volt_ctrl_lv",
+          "query_type": "comparison",
+          "n_modifications": 3
+        }
+      },
+      "pair_id": "E1P-142",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|812"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|812"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 1151,
+      "task": "comparison",
+      "network": "case145",
+      "query_type": "comparison",
+      "n_modifications": 3,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "0e9c06e9d359",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "case145",
+          "query_type": "comparison",
+          "n_modifications": 3
+        },
+        "A_FX": {
+          "item_id": "0e9c06e9d359",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "case145",
+          "query_type": "comparison",
+          "n_modifications": 3
+        }
+      },
+      "pair_id": "E1P-143",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1151"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|1151"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 1166,
+      "task": "diagnose_and_fix",
+      "network": "synth_volt_ctrl_lv",
+      "query_type": "diagnose_and_fix",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "204725c20b63",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "synth_volt_ctrl_lv",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "204725c20b63",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "synth_volt_ctrl_lv",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-144",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1166"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|1166"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 1315,
+      "task": "opf",
+      "network": "case30",
+      "query_type": "max_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "839d5a76272c",
+          "task": "opf",
+          "difficulty_level": "D3_semantic",
+          "network": "case30",
+          "query_type": "max_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "839d5a76272c",
+          "task": "opf",
+          "difficulty_level": "D3_semantic",
+          "network": "case30",
+          "query_type": "max_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-145",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1315"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|1315"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 1455,
+      "task": "opf",
+      "network": "case30",
+      "query_type": "total",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "4ffb5e279e9c",
+          "task": "opf",
+          "difficulty_level": "D3_semantic",
+          "network": "case30",
+          "query_type": "total",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "4ffb5e279e9c",
+          "task": "opf",
+          "difficulty_level": "D3_semantic",
+          "network": "case30",
+          "query_type": "total",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-146",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1455"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|1455"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 1505,
+      "task": "time_series",
+      "network": "case5",
+      "query_type": "ts_min_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "b669cead1e94",
+          "task": "time_series",
+          "difficulty_level": "D3_semantic",
+          "network": "case5",
+          "query_type": "ts_min_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "b669cead1e94",
+          "task": "time_series",
+          "difficulty_level": "D3_semantic",
+          "network": "case5",
+          "query_type": "ts_min_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-147",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1505"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|1505"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "bench_index": 1582,
+      "task": "power_flow",
+      "network": "four_loads_branches",
+      "query_type": "min_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "1538724186ad",
+          "task": "power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "four_loads_branches",
+          "query_type": "min_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "1538724186ad",
+          "task": "power_flow",
+          "difficulty_level": "D3_semantic",
+          "network": "four_loads_branches",
+          "query_type": "min_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-148",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1582"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "Qwen_Qwen3-Coder-Next|A_FX|1582"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 33,
+      "task": "power_flow",
+      "network": "case1888rte",
+      "query_type": "max_value",
+      "n_modifications": 3,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "b4d309a6aea8",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case1888rte",
+          "query_type": "max_value",
+          "n_modifications": 3
+        },
+        "A_FX": {
+          "item_id": "b4d309a6aea8",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case1888rte",
+          "query_type": "max_value",
+          "n_modifications": 3
+        }
+      },
+      "pair_id": "E1P-149",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|33"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|33"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 66,
+      "task": "opf",
+      "network": "GBreducednetwork",
+      "query_type": "min_value",
+      "n_modifications": 3,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "78596b4a503e",
+          "task": "opf",
+          "difficulty_level": "D1_basic",
+          "network": "GBreducednetwork",
+          "query_type": "min_value",
+          "n_modifications": 3
+        },
+        "A_FX": {
+          "item_id": "78596b4a503e",
+          "task": "opf",
+          "difficulty_level": "D1_basic",
+          "network": "GBreducednetwork",
+          "query_type": "min_value",
+          "n_modifications": 3
+        }
+      },
+      "pair_id": "E1P-150",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|66"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|66"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 82,
+      "task": "contingency",
+      "network": "case9",
+      "query_type": "max_value",
+      "n_modifications": 2,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "17daa22e9902",
+          "task": "contingency",
+          "difficulty_level": "D1_basic",
+          "network": "case9",
+          "query_type": "max_value",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "17daa22e9902",
+          "task": "contingency",
+          "difficulty_level": "D1_basic",
+          "network": "case9",
+          "query_type": "max_value",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-151",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|82"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|82"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 105,
+      "task": "dc_power_flow",
+      "network": "case1354pegase",
+      "query_type": "max_value",
+      "n_modifications": 1,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "940b6cc994dd",
+          "task": "dc_power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case1354pegase",
+          "query_type": "max_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "940b6cc994dd",
+          "task": "dc_power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "case1354pegase",
+          "query_type": "max_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-152",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|105"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|105"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 158,
+      "task": "power_flow",
+      "network": "GBreducednetwork",
+      "query_type": "point_value",
+      "n_modifications": 0,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "e95815f119e3",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "GBreducednetwork",
+          "query_type": "point_value",
+          "n_modifications": 0
+        },
+        "A_FX": {
+          "item_id": "e95815f119e3",
+          "task": "power_flow",
+          "difficulty_level": "D1_basic",
+          "network": "GBreducednetwork",
+          "query_type": "point_value",
+          "n_modifications": 0
+        }
+      },
+      "pair_id": "E1P-153",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|158"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|158"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 563,
+      "task": "opf",
+      "network": "case24_ieee_rts",
+      "query_type": "max_value",
+      "n_modifications": 2,
+      "difficulty_level": "D1_basic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "712a35914b48",
+          "task": "opf",
+          "difficulty_level": "D1_basic",
+          "network": "case24_ieee_rts",
+          "query_type": "max_value",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "712a35914b48",
+          "task": "opf",
+          "difficulty_level": "D1_basic",
+          "network": "case24_ieee_rts",
+          "query_type": "max_value",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-154",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|563"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|563"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 657,
+      "task": "sequential",
+      "network": "case14",
+      "query_type": "sequential",
+      "n_modifications": 3,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "e908d811a091",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case14",
+          "query_type": "sequential",
+          "n_modifications": 3
+        },
+        "A_FX": {
+          "item_id": "e908d811a091",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case14",
+          "query_type": "sequential",
+          "n_modifications": 3
+        }
+      },
+      "pair_id": "E1P-155",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|657"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|657"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 705,
+      "task": "diagnose_and_fix",
+      "network": "case5",
+      "query_type": "diagnose_and_fix",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "c233c60ae752",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "case5",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "c233c60ae752",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "case5",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-156",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|705"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|705"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 815,
+      "task": "sequential",
+      "network": "case57",
+      "query_type": "sequential",
+      "n_modifications": 4,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "3899d482ee46",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case57",
+          "query_type": "sequential",
+          "n_modifications": 4
+        },
+        "A_FX": {
+          "item_id": "3899d482ee46",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case57",
+          "query_type": "sequential",
+          "n_modifications": 4
+        }
+      },
+      "pair_id": "E1P-157",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|815"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|815"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 922,
+      "task": "sequential",
+      "network": "GBnetwork",
+      "query_type": "sequential",
+      "n_modifications": 3,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "573bfad9a101",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "GBnetwork",
+          "query_type": "sequential",
+          "n_modifications": 3
+        },
+        "A_FX": {
+          "item_id": "573bfad9a101",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "GBnetwork",
+          "query_type": "sequential",
+          "n_modifications": 3
+        }
+      },
+      "pair_id": "E1P-158",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|922"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|922"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 951,
+      "task": "contingency_fix",
+      "network": "case5",
+      "query_type": "contingency_fix",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "07eee3a83c81",
+          "task": "contingency_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "case5",
+          "query_type": "contingency_fix",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "07eee3a83c81",
+          "task": "contingency_fix",
+          "difficulty_level": "D2_multi_step",
+          "network": "case5",
+          "query_type": "contingency_fix",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-159",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|951"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|951"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1032,
+      "task": "sequential",
+      "network": "case39",
+      "query_type": "sequential",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "f6bb4bcdfdb7",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case39",
+          "query_type": "sequential",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "f6bb4bcdfdb7",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "case39",
+          "query_type": "sequential",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-160",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1032"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1032"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1069,
+      "task": "sequential",
+      "network": "cigre_hv",
+      "query_type": "sequential",
+      "n_modifications": 2,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "f1e2fbce18b4",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "cigre_hv",
+          "query_type": "sequential",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "f1e2fbce18b4",
+          "task": "sequential",
+          "difficulty_level": "D2_multi_step",
+          "network": "cigre_hv",
+          "query_type": "sequential",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-161",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1069"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1069"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1103,
+      "task": "comparison",
+      "network": "case39",
+      "query_type": "comparison",
+      "n_modifications": 4,
+      "difficulty_level": "D2_multi_step",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "eb3451e93737",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "case39",
+          "query_type": "comparison",
+          "n_modifications": 4
+        },
+        "A_FX": {
+          "item_id": "eb3451e93737",
+          "task": "comparison",
+          "difficulty_level": "D2_multi_step",
+          "network": "case39",
+          "query_type": "comparison",
+          "n_modifications": 4
+        }
+      },
+      "pair_id": "E1P-162",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1103"
+        },
+        "A_FX": {
+          "in_frozen_610": true,
+          "frozen_frame": "contrast_S",
+          "final_label": "contaminated",
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1103"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1378,
+      "task": "time_series",
+      "network": "case5",
+      "query_type": "ts_point_at_step",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "5e8288ab01e4",
+          "task": "time_series",
+          "difficulty_level": "D3_semantic",
+          "network": "case5",
+          "query_type": "ts_point_at_step",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "5e8288ab01e4",
+          "task": "time_series",
+          "difficulty_level": "D3_semantic",
+          "network": "case5",
+          "query_type": "ts_point_at_step",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-163",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1378"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1378"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1528,
+      "task": "opf",
+      "network": "case14",
+      "query_type": "point_value",
+      "n_modifications": 1,
+      "difficulty_level": "D3_semantic",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "ca3410bfaf6a",
+          "task": "opf",
+          "difficulty_level": "D3_semantic",
+          "network": "case14",
+          "query_type": "point_value",
+          "n_modifications": 1
+        },
+        "A_FX": {
+          "item_id": "ca3410bfaf6a",
+          "task": "opf",
+          "difficulty_level": "D3_semantic",
+          "network": "case14",
+          "query_type": "point_value",
+          "n_modifications": 1
+        }
+      },
+      "pair_id": "E1P-164",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1528"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1528"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1600,
+      "task": "sequential",
+      "network": "case1354pegase",
+      "query_type": "sequential",
+      "n_modifications": 2,
+      "difficulty_level": "D4_compound",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "df8134904403",
+          "task": "sequential",
+          "difficulty_level": "D4_compound",
+          "network": "case1354pegase",
+          "query_type": "sequential",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "df8134904403",
+          "task": "sequential",
+          "difficulty_level": "D4_compound",
+          "network": "case1354pegase",
+          "query_type": "sequential",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-165",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1600"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1600"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1677,
+      "task": "comparison",
+      "network": "case2869pegase",
+      "query_type": "comparison",
+      "n_modifications": 2,
+      "difficulty_level": "D4_compound",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "77800375f8ed",
+          "task": "comparison",
+          "difficulty_level": "D4_compound",
+          "network": "case2869pegase",
+          "query_type": "comparison",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "77800375f8ed",
+          "task": "comparison",
+          "difficulty_level": "D4_compound",
+          "network": "case2869pegase",
+          "query_type": "comparison",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-166",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1677"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1677"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1700,
+      "task": "sequential",
+      "network": "case200_illinois",
+      "query_type": "sequential",
+      "n_modifications": 2,
+      "difficulty_level": "D4_compound",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "510f9560f4ec",
+          "task": "sequential",
+          "difficulty_level": "D4_compound",
+          "network": "case200_illinois",
+          "query_type": "sequential",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "510f9560f4ec",
+          "task": "sequential",
+          "difficulty_level": "D4_compound",
+          "network": "case200_illinois",
+          "query_type": "sequential",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-167",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1700"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1700"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1755,
+      "task": "comparison",
+      "network": "GBnetwork",
+      "query_type": "comparison",
+      "n_modifications": 2,
+      "difficulty_level": "D4_compound",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "b1d62f35ddcc",
+          "task": "comparison",
+          "difficulty_level": "D4_compound",
+          "network": "GBnetwork",
+          "query_type": "comparison",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "b1d62f35ddcc",
+          "task": "comparison",
+          "difficulty_level": "D4_compound",
+          "network": "GBnetwork",
+          "query_type": "comparison",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-168",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1755"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1755"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1794,
+      "task": "comparison_opf",
+      "network": "case118",
+      "query_type": "comparison_opf",
+      "n_modifications": 2,
+      "difficulty_level": "D4_compound",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "bd91d78e78b3",
+          "task": "comparison_opf",
+          "difficulty_level": "D4_compound",
+          "network": "case118",
+          "query_type": "comparison_opf",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "bd91d78e78b3",
+          "task": "comparison_opf",
+          "difficulty_level": "D4_compound",
+          "network": "case118",
+          "query_type": "comparison_opf",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-169",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1794"
+        },
+        "A_FX": {
+          "in_frozen_610": true,
+          "frozen_frame": "contrast_S",
+          "final_label": "equivalent",
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1794"
+        }
+      }
+    },
+    {
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "bench_index": 1997,
+      "task": "diagnose_and_fix",
+      "network": "case5",
+      "query_type": "diagnose_and_fix",
+      "n_modifications": 2,
+      "difficulty_level": "D4_compound",
+      "sides": {
+        "C_FDRS": {
+          "item_id": "11923ffeff05",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D4_compound",
+          "network": "case5",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        },
+        "A_FX": {
+          "item_id": "11923ffeff05",
+          "task": "diagnose_and_fix",
+          "difficulty_level": "D4_compound",
+          "network": "case5",
+          "query_type": "diagnose_and_fix",
+          "n_modifications": 2
+        }
+      },
+      "pair_id": "E1P-170",
+      "overlap": {
+        "C_FDRS": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1997"
+        },
+        "A_FX": {
+          "in_frozen_610": false,
+          "frozen_frame": null,
+          "final_label": null,
+          "in_pilot_20": false,
+          "label_key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1997"
+        }
+      }
+    }
+  ],
+  "samples": {
+    "pair_C": [
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-121",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 116,
+        "item_id": "f5b7e9d1e861",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case1354pegase",
+        "query_type": "total",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-122",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 384,
+        "item_id": "b9466a4b8211",
+        "task": "opf",
+        "difficulty_level": "D1_basic",
+        "network": "case30",
+        "query_type": "min_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-123",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 461,
+        "item_id": "c0487aacecac",
+        "task": "dc_power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case4gs",
+        "query_type": "min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-124",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 475,
+        "item_id": "1c45d9d4ac36",
+        "task": "time_series",
+        "difficulty_level": "D1_basic",
+        "network": "case24_ieee_rts",
+        "query_type": "ts_max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-125",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 476,
+        "item_id": "588429f0b2f8",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case4gs",
+        "query_type": "point_value",
+        "n_modifications": 0
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-126",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 503,
+        "item_id": "666569527800",
+        "task": "dc_power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case145",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-127",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 598,
+        "item_id": "d830ef3a5d59",
+        "task": "state_estimation",
+        "difficulty_level": "D1_basic",
+        "network": "iceland",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-128",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 614,
+        "item_id": "fd85af169a5c",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case14",
+        "query_type": "sequential",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-129",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 741,
+        "item_id": "817d79fdcf4c",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "case5",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-130",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 849,
+        "item_id": "f6efece25ed3",
+        "task": "comparison_opf",
+        "difficulty_level": "D2_multi_step",
+        "network": "case33bw",
+        "query_type": "comparison_opf",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-131",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 861,
+        "item_id": "970a8610a844",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "case_ieee30",
+        "query_type": "comparison",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-132",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 889,
+        "item_id": "d67ed438a903",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case300",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-133",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 891,
+        "item_id": "3db3a4482a33",
+        "task": "parallel",
+        "difficulty_level": "D2_multi_step",
+        "network": "case33bw",
+        "query_type": "parallel",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-134",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1181,
+        "item_id": "10bb207afc28",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case2869pegase",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-135",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1268,
+        "item_id": "33257aecb86a",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "case9",
+        "query_type": "point_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-136",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1417,
+        "item_id": "8593b5256d5e",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "simple_mv_open_ring",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-137",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1491,
+        "item_id": "45f64c77cac1",
+        "task": "contingency",
+        "difficulty_level": "D3_semantic",
+        "network": "case6ww",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-138",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1575,
+        "item_id": "aaad410cbb83",
+        "task": "contingency",
+        "difficulty_level": "D3_semantic",
+        "network": "case24_ieee_rts",
+        "query_type": "min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-139",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1593,
+        "item_id": "f98304466a21",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "case24_ieee_rts",
+        "query_type": "point_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-140",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 347,
+        "item_id": "000868a577ec",
+        "task": "time_series",
+        "difficulty_level": "D1_basic",
+        "network": "simple_four_bus",
+        "query_type": "ts_min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-141",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 374,
+        "item_id": "b0d4d7739432",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "synth_volt_ctrl_lv",
+        "query_type": "point_value",
+        "n_modifications": 0
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-142",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 812,
+        "item_id": "4b2b98e3f337",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "synth_volt_ctrl_lv",
+        "query_type": "comparison",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-143",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 1151,
+        "item_id": "0e9c06e9d359",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "case145",
+        "query_type": "comparison",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-144",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 1166,
+        "item_id": "204725c20b63",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "synth_volt_ctrl_lv",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-145",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 1315,
+        "item_id": "839d5a76272c",
+        "task": "opf",
+        "difficulty_level": "D3_semantic",
+        "network": "case30",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-146",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 1455,
+        "item_id": "4ffb5e279e9c",
+        "task": "opf",
+        "difficulty_level": "D3_semantic",
+        "network": "case30",
+        "query_type": "total",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-147",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 1505,
+        "item_id": "b669cead1e94",
+        "task": "time_series",
+        "difficulty_level": "D3_semantic",
+        "network": "case5",
+        "query_type": "ts_min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-148",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 1582,
+        "item_id": "1538724186ad",
+        "task": "power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "four_loads_branches",
+        "query_type": "min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-149",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 33,
+        "item_id": "b4d309a6aea8",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case1888rte",
+        "query_type": "max_value",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-150",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 66,
+        "item_id": "78596b4a503e",
+        "task": "opf",
+        "difficulty_level": "D1_basic",
+        "network": "GBreducednetwork",
+        "query_type": "min_value",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-151",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 82,
+        "item_id": "17daa22e9902",
+        "task": "contingency",
+        "difficulty_level": "D1_basic",
+        "network": "case9",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-152",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 105,
+        "item_id": "940b6cc994dd",
+        "task": "dc_power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case1354pegase",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-153",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 158,
+        "item_id": "e95815f119e3",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "GBreducednetwork",
+        "query_type": "point_value",
+        "n_modifications": 0
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-154",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 563,
+        "item_id": "712a35914b48",
+        "task": "opf",
+        "difficulty_level": "D1_basic",
+        "network": "case24_ieee_rts",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-155",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 657,
+        "item_id": "e908d811a091",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case14",
+        "query_type": "sequential",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-156",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 705,
+        "item_id": "c233c60ae752",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "case5",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-157",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 815,
+        "item_id": "3899d482ee46",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case57",
+        "query_type": "sequential",
+        "n_modifications": 4
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-158",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 922,
+        "item_id": "573bfad9a101",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "GBnetwork",
+        "query_type": "sequential",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-159",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 951,
+        "item_id": "07eee3a83c81",
+        "task": "contingency_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "case5",
+        "query_type": "contingency_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-160",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1032,
+        "item_id": "f6bb4bcdfdb7",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case39",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-161",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1069,
+        "item_id": "f1e2fbce18b4",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "cigre_hv",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-162",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1103,
+        "item_id": "eb3451e93737",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "case39",
+        "query_type": "comparison",
+        "n_modifications": 4
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-163",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1378,
+        "item_id": "5e8288ab01e4",
+        "task": "time_series",
+        "difficulty_level": "D3_semantic",
+        "network": "case5",
+        "query_type": "ts_point_at_step",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-164",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1528,
+        "item_id": "ca3410bfaf6a",
+        "task": "opf",
+        "difficulty_level": "D3_semantic",
+        "network": "case14",
+        "query_type": "point_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-165",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1600,
+        "item_id": "df8134904403",
+        "task": "sequential",
+        "difficulty_level": "D4_compound",
+        "network": "case1354pegase",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-166",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1677,
+        "item_id": "77800375f8ed",
+        "task": "comparison",
+        "difficulty_level": "D4_compound",
+        "network": "case2869pegase",
+        "query_type": "comparison",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-167",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1700,
+        "item_id": "510f9560f4ec",
+        "task": "sequential",
+        "difficulty_level": "D4_compound",
+        "network": "case200_illinois",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-168",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1755,
+        "item_id": "b1d62f35ddcc",
+        "task": "comparison",
+        "difficulty_level": "D4_compound",
+        "network": "GBnetwork",
+        "query_type": "comparison",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-169",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1794,
+        "item_id": "bd91d78e78b3",
+        "task": "comparison_opf",
+        "difficulty_level": "D4_compound",
+        "network": "case118",
+        "query_type": "comparison_opf",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_C",
+        "pair_id": "E1P-170",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1997,
+        "item_id": "11923ffeff05",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D4_compound",
+        "network": "case5",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      }
+    ],
+    "pair_A": [
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-121",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 116,
+        "item_id": "f5b7e9d1e861",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case1354pegase",
+        "query_type": "total",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-122",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 384,
+        "item_id": "b9466a4b8211",
+        "task": "opf",
+        "difficulty_level": "D1_basic",
+        "network": "case30",
+        "query_type": "min_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-123",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 461,
+        "item_id": "c0487aacecac",
+        "task": "dc_power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case4gs",
+        "query_type": "min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-124",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 475,
+        "item_id": "1c45d9d4ac36",
+        "task": "time_series",
+        "difficulty_level": "D1_basic",
+        "network": "case24_ieee_rts",
+        "query_type": "ts_max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-125",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 476,
+        "item_id": "588429f0b2f8",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case4gs",
+        "query_type": "point_value",
+        "n_modifications": 0
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-126",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 503,
+        "item_id": "666569527800",
+        "task": "dc_power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case145",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-127",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 598,
+        "item_id": "d830ef3a5d59",
+        "task": "state_estimation",
+        "difficulty_level": "D1_basic",
+        "network": "iceland",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-128",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 614,
+        "item_id": "fd85af169a5c",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case14",
+        "query_type": "sequential",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-129",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 741,
+        "item_id": "817d79fdcf4c",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "case5",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-130",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 849,
+        "item_id": "f6efece25ed3",
+        "task": "comparison_opf",
+        "difficulty_level": "D2_multi_step",
+        "network": "case33bw",
+        "query_type": "comparison_opf",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-131",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 861,
+        "item_id": "970a8610a844",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "case_ieee30",
+        "query_type": "comparison",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-132",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 889,
+        "item_id": "d67ed438a903",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case300",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-133",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 891,
+        "item_id": "3db3a4482a33",
+        "task": "parallel",
+        "difficulty_level": "D2_multi_step",
+        "network": "case33bw",
+        "query_type": "parallel",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-134",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1181,
+        "item_id": "10bb207afc28",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case2869pegase",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-135",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1268,
+        "item_id": "33257aecb86a",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "case9",
+        "query_type": "point_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-136",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1417,
+        "item_id": "8593b5256d5e",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "simple_mv_open_ring",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-137",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1491,
+        "item_id": "45f64c77cac1",
+        "task": "contingency",
+        "difficulty_level": "D3_semantic",
+        "network": "case6ww",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-138",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1575,
+        "item_id": "aaad410cbb83",
+        "task": "contingency",
+        "difficulty_level": "D3_semantic",
+        "network": "case24_ieee_rts",
+        "query_type": "min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-139",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1593,
+        "item_id": "f98304466a21",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "case24_ieee_rts",
+        "query_type": "point_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-140",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 347,
+        "item_id": "000868a577ec",
+        "task": "time_series",
+        "difficulty_level": "D1_basic",
+        "network": "simple_four_bus",
+        "query_type": "ts_min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-141",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 374,
+        "item_id": "b0d4d7739432",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "synth_volt_ctrl_lv",
+        "query_type": "point_value",
+        "n_modifications": 0
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-142",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 812,
+        "item_id": "4b2b98e3f337",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "synth_volt_ctrl_lv",
+        "query_type": "comparison",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-143",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 1151,
+        "item_id": "0e9c06e9d359",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "case145",
+        "query_type": "comparison",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-144",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 1166,
+        "item_id": "204725c20b63",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "synth_volt_ctrl_lv",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-145",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 1315,
+        "item_id": "839d5a76272c",
+        "task": "opf",
+        "difficulty_level": "D3_semantic",
+        "network": "case30",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-146",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 1455,
+        "item_id": "4ffb5e279e9c",
+        "task": "opf",
+        "difficulty_level": "D3_semantic",
+        "network": "case30",
+        "query_type": "total",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-147",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 1505,
+        "item_id": "b669cead1e94",
+        "task": "time_series",
+        "difficulty_level": "D3_semantic",
+        "network": "case5",
+        "query_type": "ts_min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-148",
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "A_FX",
+        "bench_index": 1582,
+        "item_id": "1538724186ad",
+        "task": "power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "four_loads_branches",
+        "query_type": "min_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-149",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 33,
+        "item_id": "b4d309a6aea8",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case1888rte",
+        "query_type": "max_value",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-150",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 66,
+        "item_id": "78596b4a503e",
+        "task": "opf",
+        "difficulty_level": "D1_basic",
+        "network": "GBreducednetwork",
+        "query_type": "min_value",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-151",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 82,
+        "item_id": "17daa22e9902",
+        "task": "contingency",
+        "difficulty_level": "D1_basic",
+        "network": "case9",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-152",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 105,
+        "item_id": "940b6cc994dd",
+        "task": "dc_power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case1354pegase",
+        "query_type": "max_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-153",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 158,
+        "item_id": "e95815f119e3",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "GBreducednetwork",
+        "query_type": "point_value",
+        "n_modifications": 0
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-154",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 563,
+        "item_id": "712a35914b48",
+        "task": "opf",
+        "difficulty_level": "D1_basic",
+        "network": "case24_ieee_rts",
+        "query_type": "max_value",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-155",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 657,
+        "item_id": "e908d811a091",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case14",
+        "query_type": "sequential",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-156",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 705,
+        "item_id": "c233c60ae752",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "case5",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-157",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 815,
+        "item_id": "3899d482ee46",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case57",
+        "query_type": "sequential",
+        "n_modifications": 4
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-158",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 922,
+        "item_id": "573bfad9a101",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "GBnetwork",
+        "query_type": "sequential",
+        "n_modifications": 3
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-159",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 951,
+        "item_id": "07eee3a83c81",
+        "task": "contingency_fix",
+        "difficulty_level": "D2_multi_step",
+        "network": "case5",
+        "query_type": "contingency_fix",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-160",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1032,
+        "item_id": "f6bb4bcdfdb7",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case39",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-161",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1069,
+        "item_id": "f1e2fbce18b4",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "cigre_hv",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-163",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1378,
+        "item_id": "5e8288ab01e4",
+        "task": "time_series",
+        "difficulty_level": "D3_semantic",
+        "network": "case5",
+        "query_type": "ts_point_at_step",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-164",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1528,
+        "item_id": "ca3410bfaf6a",
+        "task": "opf",
+        "difficulty_level": "D3_semantic",
+        "network": "case14",
+        "query_type": "point_value",
+        "n_modifications": 1
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-165",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1600,
+        "item_id": "df8134904403",
+        "task": "sequential",
+        "difficulty_level": "D4_compound",
+        "network": "case1354pegase",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-166",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1677,
+        "item_id": "77800375f8ed",
+        "task": "comparison",
+        "difficulty_level": "D4_compound",
+        "network": "case2869pegase",
+        "query_type": "comparison",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-167",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1700,
+        "item_id": "510f9560f4ec",
+        "task": "sequential",
+        "difficulty_level": "D4_compound",
+        "network": "case200_illinois",
+        "query_type": "sequential",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-168",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1755,
+        "item_id": "b1d62f35ddcc",
+        "task": "comparison",
+        "difficulty_level": "D4_compound",
+        "network": "GBnetwork",
+        "query_type": "comparison",
+        "n_modifications": 2
+      },
+      {
+        "frame": "pair_A",
+        "pair_id": "E1P-170",
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1997,
+        "item_id": "11923ffeff05",
+        "task": "diagnose_and_fix",
+        "difficulty_level": "D4_compound",
+        "network": "case5",
+        "query_type": "diagnose_and_fix",
+        "n_modifications": 2
+      }
+    ]
+  },
+  "skipped_overlap_sides": [
+    {
+      "frame": "pair_A",
+      "pair_id": "E1P-162",
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "condition": "A_FX",
+      "bench_index": 1103,
+      "item_id": "eb3451e93737",
+      "task": "comparison",
+      "difficulty_level": "D2_multi_step",
+      "network": "case39",
+      "query_type": "comparison",
+      "n_modifications": 4,
+      "reason": "ruled in frozen 610",
+      "final_label": "contaminated",
+      "frozen_frame": "contrast_S"
+    },
+    {
+      "frame": "pair_A",
+      "pair_id": "E1P-169",
+      "tier": "T4",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "condition": "A_FX",
+      "bench_index": 1794,
+      "item_id": "bd91d78e78b3",
+      "task": "comparison_opf",
+      "difficulty_level": "D4_compound",
+      "network": "case118",
+      "query_type": "comparison_opf",
+      "n_modifications": 2,
+      "reason": "ruled in frozen 610",
+      "final_label": "equivalent",
+      "frozen_frame": "contrast_S"
+    }
+  ],
+  "summary": {
+    "n_pairs_drawn": 50,
+    "by_tier": {
+      "T4": 50
+    },
+    "by_model": {
+      "meta-llama_Llama-3.1-405B-Instruct": 22,
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct": 19,
+      "Qwen_Qwen3-Coder-Next": 9
+    },
+    "by_tier_family": {
+      "T4": {
+        "comparison": 6,
+        "comparison_opf": 2,
+        "contingency": 3,
+        "contingency_fix": 1,
+        "dc_power_flow": 6,
+        "diagnose_and_fix": 4,
+        "opf": 6,
+        "parallel": 1,
+        "power_flow": 6,
+        "sequential": 10,
+        "state_estimation": 1,
+        "time_series": 4
+      }
+    },
+    "n_sides_total": 100,
+    "n_sides_to_audit": 98,
+    "n_sides_to_audit_by_frame": {
+      "pair_C": 50,
+      "pair_A": 48
+    },
+    "n_sides_reusing_frozen_ruling": 2
+  }
+}

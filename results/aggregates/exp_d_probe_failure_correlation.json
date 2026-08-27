@@ -1,0 +1,177 @@
+{
+  "per_model": {
+    "Qwen_Qwen2.5-Coder-1.5B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 18.62,
+        "mid": 7.05,
+        "high": 3.15,
+        "all_A_failures_flipped_under_C_FDRS_pct": 9.6,
+        "n_flip_candidate_items": 2000
+      }
+    },
+    "Qwen_Qwen2.5-Coder-7B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        99.6,
+        100.0,
+        100.0,
+        98.8
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 42.32,
+        "mid": 22.14,
+        "high": 33.58,
+        "all_A_failures_flipped_under_C_FDRS_pct": 32.68,
+        "n_flip_candidate_items": 1992
+      }
+    },
+    "meta-llama_Llama-3.1-8B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        99.2,
+        99.0,
+        99.8,
+        100.0
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 44.04,
+        "mid": 39.06,
+        "high": 24.85,
+        "all_A_failures_flipped_under_C_FDRS_pct": 35.98,
+        "n_flip_candidate_items": 1990
+      }
+    },
+    "Qwen_Qwen2.5-Coder-14B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        96.0,
+        97.6,
+        100.0,
+        100.0
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 58.69,
+        "mid": 32.32,
+        "high": 52.9,
+        "all_A_failures_flipped_under_C_FDRS_pct": 47.97,
+        "n_flip_candidate_items": 1968
+      }
+    },
+    "Qwen_Qwen2.5-Coder-32B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        91.2,
+        96.2,
+        98.6,
+        98.8
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 58.35,
+        "mid": 49.77,
+        "high": 46.26,
+        "all_A_failures_flipped_under_C_FDRS_pct": 51.46,
+        "n_flip_candidate_items": 1924
+      }
+    },
+    "meta-llama_Llama-3.1-70B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        92.2,
+        96.6,
+        95.2,
+        96.0
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 59.4,
+        "mid": 49.45,
+        "high": 57.41,
+        "all_A_failures_flipped_under_C_FDRS_pct": 55.42,
+        "n_flip_candidate_items": 1900
+      }
+    },
+    "openai_gpt-oss-120b": {
+      "stat1_quartile_failure_pct": [
+        69.4,
+        97.4,
+        86.0,
+        91.0
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 50.79,
+        "mid": 55.32,
+        "high": 58.99,
+        "all_A_failures_flipped_under_C_FDRS_pct": 55.03,
+        "n_flip_candidate_items": 1719
+      }
+    },
+    "Qwen_Qwen3-Coder-Next": {
+      "stat1_quartile_failure_pct": [
+        92.6,
+        97.2,
+        97.0,
+        97.2
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 64.38,
+        "mid": 54.84,
+        "high": 56.41,
+        "all_A_failures_flipped_under_C_FDRS_pct": 58.54,
+        "n_flip_candidate_items": 1920
+      }
+    },
+    "meta-llama_Llama-3.1-405B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        72.8,
+        92.2,
+        92.0,
+        89.2
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 65.16,
+        "mid": 62.74,
+        "high": 64.64,
+        "all_A_failures_flipped_under_C_FDRS_pct": 64.18,
+        "n_flip_candidate_items": 1731
+      }
+    },
+    "Qwen_Qwen3-Coder-480B-A35B-Instruct": {
+      "stat1_quartile_failure_pct": [
+        83.2,
+        82.8,
+        85.4,
+        88.4
+      ],
+      "stat1_n_items": 2000,
+      "stat2_repair_by_inj_rho_pct": {
+        "low": 68.2,
+        "mid": 54.59,
+        "high": 59.44,
+        "all_A_failures_flipped_under_C_FDRS_pct": 60.74,
+        "n_flip_candidate_items": 1699
+      }
+    }
+  },
+  "panel_aggregate": {
+    "stat1_quartile_failure_pct": [
+      89.62,
+      95.9,
+      95.4,
+      95.94
+    ],
+    "stat2_repair_by_inj_rho_pct": {
+      "low": 52.99,
+      "mid": 42.73,
+      "high": 45.76
+    }
+  }
+}

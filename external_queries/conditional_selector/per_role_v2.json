@@ -1,0 +1,472 @@
+{
+  "provenance": {
+    "pipeline": "v2 deterministic (task_demand_model.py sorted-iteration fix; PYTHONHASHSEED-independent per tests/test_demand_determinism.py)",
+    "seed": 22,
+    "arm_reproduction": "e4_conditional_eval.make_args/train_arm_and_score (frozen run_config replicas; adapted arm pins reweight to frozen PCB benchmark/benchmark.json)",
+    "cross_check": "results/<set>/{unadapted,adapted}_v2/metrics.json benchmark_reference_eval_only (per-role @10 and aggregates, 4-dp)",
+    "alphas": {
+      "unadapted": 0.6,
+      "adapted": 0.5
+    },
+    "role_weights_adapted": {
+      "network_loader": 0.5639279011873923,
+      "plotting": 0.0,
+      "analysis_executor": 1.0,
+      "other": 0.08224026595556261,
+      "network_or_element_construction": 0.08253457637724586,
+      "controller_or_timeseries": 0.2933843841029486
+    },
+    "role_column_map": {
+      "analysis_executor": "Analysis executor",
+      "network_loader": "Network loader",
+      "network_or_element_construction": "Construction",
+      "controller_or_timeseries": "Controller/time-series",
+      "other": "Other"
+    },
+    "definition": "per-role recall@10 = pooled hits/total over (query, gold function) occurrences of that role (evaluate_ranker semantics)"
+  },
+  "sets": {
+    "layer1_holdout_n80": {
+      "label": "Internal holdout (n=80)",
+      "n_eval": 80,
+      "arms": {
+        "unadapted": {
+          "aggregate_recall@10": 0.5546,
+          "aggregate_hit@10": 0.925,
+          "per_role@10": {
+            "network_loader": 0.1818,
+            "analysis_executor": 0.8333,
+            "network_or_element_construction": 0.3846,
+            "other": 0.4,
+            "controller_or_timeseries": 1.0
+          },
+          "role_counts": {
+            "network_loader": {
+              "hits": 12,
+              "total": 66
+            },
+            "analysis_executor": {
+              "hits": 85,
+              "total": 102
+            },
+            "network_or_element_construction": {
+              "hits": 10,
+              "total": 26
+            },
+            "other": {
+              "hits": 4,
+              "total": 10
+            },
+            "controller_or_timeseries": {
+              "hits": 15,
+              "total": 15
+            }
+          }
+        },
+        "adapted": {
+          "aggregate_recall@10": 0.6894,
+          "aggregate_hit@10": 0.9875,
+          "per_role@10": {
+            "network_loader": 0.4848,
+            "analysis_executor": 0.9608,
+            "network_or_element_construction": 0.0385,
+            "other": 0.5,
+            "controller_or_timeseries": 1.0
+          },
+          "role_counts": {
+            "network_loader": {
+              "hits": 32,
+              "total": 66
+            },
+            "analysis_executor": {
+              "hits": 98,
+              "total": 102
+            },
+            "network_or_element_construction": {
+              "hits": 1,
+              "total": 26
+            },
+            "other": {
+              "hits": 5,
+              "total": 10
+            },
+            "controller_or_timeseries": {
+              "hits": 15,
+              "total": 15
+            }
+          }
+        }
+      },
+      "table_row": {
+        "Analysis executor": "83.3 -> 96.1",
+        "Analysis executor (delta_pp)": 12.7,
+        "Network loader": "18.2 -> 48.5",
+        "Network loader (delta_pp)": 30.3,
+        "Construction": "38.5 -> 3.8",
+        "Construction (delta_pp)": -34.6,
+        "Controller/time-series": "100.0 -> 100.0",
+        "Controller/time-series (delta_pp)": 0.0,
+        "Other": "40.0 -> 50.0",
+        "Other (delta_pp)": 10.0
+      },
+      "checks": {
+        "unadapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.5546,
+          "frozen_per_role@10": {
+            "network_loader": 0.1818,
+            "analysis_executor": 0.8333,
+            "network_or_element_construction": 0.3846,
+            "other": 0.4,
+            "controller_or_timeseries": 1.0
+          }
+        },
+        "adapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.6894,
+          "frozen_per_role@10": {
+            "network_loader": 0.4848,
+            "analysis_executor": 0.9608,
+            "network_or_element_construction": 0.0385,
+            "other": 0.5,
+            "controller_or_timeseries": 1.0
+          }
+        }
+      }
+    },
+    "layer2a_n84": {
+      "label": "Naturally occurring (n=84)",
+      "n_eval": 84,
+      "arms": {
+        "unadapted": {
+          "aggregate_recall@10": 0.5507,
+          "aggregate_hit@10": 0.8333,
+          "per_role@10": {
+            "network_or_element_construction": 0.6608,
+            "network_loader": 0.4405,
+            "analysis_executor": 0.7722,
+            "other": 0.0,
+            "controller_or_timeseries": 0.7917,
+            "plotting": 0.0
+          },
+          "role_counts": {
+            "network_or_element_construction": {
+              "hits": 150,
+              "total": 227
+            },
+            "network_loader": {
+              "hits": 37,
+              "total": 84
+            },
+            "analysis_executor": {
+              "hits": 61,
+              "total": 79
+            },
+            "other": {
+              "hits": 0,
+              "total": 7
+            },
+            "controller_or_timeseries": {
+              "hits": 19,
+              "total": 24
+            },
+            "plotting": {
+              "hits": 0,
+              "total": 2
+            }
+          }
+        },
+        "adapted": {
+          "aggregate_recall@10": 0.5343,
+          "aggregate_hit@10": 0.9762,
+          "per_role@10": {
+            "network_or_element_construction": 0.3921,
+            "network_loader": 0.4643,
+            "analysis_executor": 1.0,
+            "other": 0.1429,
+            "controller_or_timeseries": 0.8333,
+            "plotting": 0.0
+          },
+          "role_counts": {
+            "network_or_element_construction": {
+              "hits": 89,
+              "total": 227
+            },
+            "network_loader": {
+              "hits": 39,
+              "total": 84
+            },
+            "analysis_executor": {
+              "hits": 79,
+              "total": 79
+            },
+            "other": {
+              "hits": 1,
+              "total": 7
+            },
+            "controller_or_timeseries": {
+              "hits": 20,
+              "total": 24
+            },
+            "plotting": {
+              "hits": 0,
+              "total": 2
+            }
+          }
+        }
+      },
+      "table_row": {
+        "Analysis executor": "77.2 -> 100.0",
+        "Analysis executor (delta_pp)": 22.8,
+        "Network loader": "44.0 -> 46.4",
+        "Network loader (delta_pp)": 2.4,
+        "Construction": "66.1 -> 39.2",
+        "Construction (delta_pp)": -26.9,
+        "Controller/time-series": "79.2 -> 83.3",
+        "Controller/time-series (delta_pp)": 4.2,
+        "Other": "0.0 -> 14.3",
+        "Other (delta_pp)": 14.3
+      },
+      "checks": {
+        "unadapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.5507,
+          "frozen_per_role@10": {
+            "network_or_element_construction": 0.6608,
+            "network_loader": 0.4405,
+            "analysis_executor": 0.7722,
+            "other": 0.0,
+            "controller_or_timeseries": 0.7917,
+            "plotting": 0.0
+          }
+        },
+        "adapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.5343,
+          "frozen_per_role@10": {
+            "network_or_element_construction": 0.3921,
+            "network_loader": 0.4643,
+            "analysis_executor": 1.0,
+            "other": 0.1429,
+            "controller_or_timeseries": 0.8333,
+            "plotting": 0.0
+          }
+        }
+      },
+      "plotting_excluded_from_table": {
+        "unadapted": 0.0,
+        "adapted": 0.0
+      }
+    },
+    "layer2a_ext_n10": {
+      "label": "Cross-platform (n=10)",
+      "n_eval": 10,
+      "arms": {
+        "unadapted": {
+          "aggregate_recall@10": 0.6472,
+          "aggregate_hit@10": 1.0,
+          "per_role@10": {
+            "network_loader": 0.5,
+            "analysis_executor": 0.9,
+            "network_or_element_construction": 0.6875,
+            "controller_or_timeseries": 0.6667
+          },
+          "role_counts": {
+            "network_loader": {
+              "hits": 5,
+              "total": 10
+            },
+            "analysis_executor": {
+              "hits": 9,
+              "total": 10
+            },
+            "network_or_element_construction": {
+              "hits": 22,
+              "total": 32
+            },
+            "controller_or_timeseries": {
+              "hits": 6,
+              "total": 9
+            }
+          }
+        },
+        "adapted": {
+          "aggregate_recall@10": 0.5,
+          "aggregate_hit@10": 1.0,
+          "per_role@10": {
+            "network_loader": 0.5,
+            "analysis_executor": 1.0,
+            "network_or_element_construction": 0.3125,
+            "controller_or_timeseries": 0.7778
+          },
+          "role_counts": {
+            "network_loader": {
+              "hits": 5,
+              "total": 10
+            },
+            "analysis_executor": {
+              "hits": 10,
+              "total": 10
+            },
+            "network_or_element_construction": {
+              "hits": 10,
+              "total": 32
+            },
+            "controller_or_timeseries": {
+              "hits": 7,
+              "total": 9
+            }
+          }
+        }
+      },
+      "table_row": {
+        "Analysis executor": "90.0 -> 100.0",
+        "Analysis executor (delta_pp)": 10.0,
+        "Network loader": "50.0 -> 50.0",
+        "Network loader (delta_pp)": 0.0,
+        "Construction": "68.8 -> 31.3",
+        "Construction (delta_pp)": -37.5,
+        "Controller/time-series": "66.7 -> 77.8",
+        "Controller/time-series (delta_pp)": 11.1,
+        "Other": "---"
+      },
+      "checks": {
+        "unadapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.6472,
+          "frozen_per_role@10": {
+            "network_loader": 0.5,
+            "analysis_executor": 0.9,
+            "network_or_element_construction": 0.6875,
+            "controller_or_timeseries": 0.6667
+          }
+        },
+        "adapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.5,
+          "frozen_per_role@10": {
+            "network_loader": 0.5,
+            "analysis_executor": 1.0,
+            "network_or_element_construction": 0.3125,
+            "controller_or_timeseries": 0.7778
+          }
+        }
+      }
+    },
+    "layer2b_n20": {
+      "label": "Engineer-written (n=20)",
+      "n_eval": 20,
+      "arms": {
+        "unadapted": {
+          "aggregate_recall@10": 0.4869,
+          "aggregate_hit@10": 0.9,
+          "per_role@10": {
+            "analysis_executor": 0.8182,
+            "network_loader": 0.1,
+            "network_or_element_construction": 0.5385
+          },
+          "role_counts": {
+            "analysis_executor": {
+              "hits": 18,
+              "total": 22
+            },
+            "network_loader": {
+              "hits": 2,
+              "total": 20
+            },
+            "network_or_element_construction": {
+              "hits": 7,
+              "total": 13
+            }
+          }
+        },
+        "adapted": {
+          "aggregate_recall@10": 0.6452,
+          "aggregate_hit@10": 0.95,
+          "per_role@10": {
+            "analysis_executor": 0.9545,
+            "network_loader": 0.45,
+            "network_or_element_construction": 0.3846
+          },
+          "role_counts": {
+            "analysis_executor": {
+              "hits": 21,
+              "total": 22
+            },
+            "network_loader": {
+              "hits": 9,
+              "total": 20
+            },
+            "network_or_element_construction": {
+              "hits": 5,
+              "total": 13
+            }
+          }
+        }
+      },
+      "table_row": {
+        "Analysis executor": "81.8 -> 95.5",
+        "Analysis executor (delta_pp)": 13.6,
+        "Network loader": "10.0 -> 45.0",
+        "Network loader (delta_pp)": 35.0,
+        "Construction": "53.8 -> 38.5",
+        "Construction (delta_pp)": -15.4,
+        "Controller/time-series": "---",
+        "Other": "---"
+      },
+      "checks": {
+        "unadapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.4869,
+          "frozen_per_role@10": {
+            "analysis_executor": 0.8182,
+            "network_loader": 0.1,
+            "network_or_element_construction": 0.5385
+          }
+        },
+        "adapted": {
+          "matches_frozen_v2": true,
+          "frozen_aggregate_recall@10": 0.6452,
+          "frozen_per_role@10": {
+            "analysis_executor": 0.9545,
+            "network_loader": 0.45,
+            "network_or_element_construction": 0.3846
+          }
+        }
+      }
+    }
+  },
+  "prose_ranges_pp": {
+    "analysis_executor_lift": {
+      "min": 10.0,
+      "max": 22.8,
+      "per_set": {
+        "layer1_holdout_n80": 12.7,
+        "layer2a_n84": 22.8,
+        "layer2a_ext_n10": 10.0,
+        "layer2b_n20": 13.6
+      }
+    },
+    "network_loader_lift": {
+      "min": 0.0,
+      "max": 35.0,
+      "per_set": {
+        "layer1_holdout_n80": 30.3,
+        "layer2a_n84": 2.4,
+        "layer2a_ext_n10": 0.0,
+        "layer2b_n20": 35.0
+      }
+    },
+    "construction_penalty": {
+      "min": -37.5,
+      "max": -15.4,
+      "per_set": {
+        "layer1_holdout_n80": -34.6,
+        "layer2a_n84": -26.9,
+        "layer2a_ext_n10": -37.5,
+        "layer2b_n20": -15.4
+      }
+    }
+  },
+  "all_checks_pass": true
+}

@@ -1,0 +1,213 @@
+E2 DeepSeek-V4-Flash mini-bench plan (API tier, conditions A / Rsem / C / RsemB):
+  opendss : BENCHMARK_PATH=benchmark/e2_opendss/e2_opendss_bench.json (90 items)
+            PROACTIVE_DEMAND_SUITE=task_demand/results/suites/e2_opendss (zero_shot_tfidf)
+            PROFILE_SOURCE_DIR=probe_eval_results/e2_opendss_profiles/deepseek-v4-flash
+            SBERT_DOCS_PATH=dataset/opendss_docs.json  (Rsem / RsemB)
+            PROACTIVE_TOKEN_BUDGET_RSEMB=250  (B*)
+            BENCHMARK_LIBRARY=opendssdirect
+            OUTPUT_DIR=probe_eval_results/e2_opendss_bench_v2
+  pypsa : BENCHMARK_PATH=benchmark/e2_pypsa/e2_pypsa_bench.json (90 items)
+            PROACTIVE_DEMAND_SUITE=task_demand/results/suites/e2_pypsa (zero_shot_tfidf)
+            PROFILE_SOURCE_DIR=probe_eval_results/e2_pypsa_profiles/deepseek-v4-flash
+            SBERT_DOCS_PATH=dataset/pypsa_docs.json  (Rsem / RsemB)
+            PROACTIVE_TOKEN_BUDGET_RSEMB=270  (B*)
+            BENCHMARK_LIBRARY=pypsa
+            OUTPUT_DIR=probe_eval_results/e2_pypsa_bench_v2
+Cells: 8 (2 backends × 4 conditions), 90 calls each — ONE cell per invocation.
+Estimated spend: ~$0.05–0.25 for all 8 cells (confirm live DeepSeek rates); << $2.
+E2-R arm: RECAL_NAME_LAYER_FLOOR=0.40 → probe_eval_results/e2_opendss_bench_v2_crecal
+=== DeepSeek bench: opendss — condition Crecal ===
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+  [env override] proactive_conditions = ['C']
+  [env override] proactive_demand_suite = task_demand/results/suites/e2_opendss
+  [env override] proactive_demand_model = zero_shot_tfidf
+  [env override] proactive_docs_path = dataset/opendss_docs.json
+  [env override] benchmark_path = benchmark/e2_opendss/e2_opendss_bench.json
+  [env override] output_dir = probe_eval_results/e2_opendss_bench_v2_crecal
+  [env override] profile_source_dir = probe_eval_results/e2_opendss_profiles
+  [env override] api_spec_path = dataset/opendss_docs.json
+  [env override] sbert_docs_path = dataset/opendss_docs.json
+  [env override] benchmark_library = opendssdirect
+  [env override] recal_name_layer_floor = 0.4
+  [env override] proactive_token_budget_C = 2000
+  [env override] proactive_token_budget_RsemB = 250
+CUDA available: False
+
+============================================================
+📊 Running Evaluation Pipeline
+============================================================
+
+🔧 LLMBackend: backend='gpt'
+  ✅ Registered: deepseek-v4-flash  (backend=vllm, gpus=1)
+
+############################################################
+# Proactive rerun: deepseek-v4-flash  conditions=['C']
+############################################################
+  ✓ OpenAI-compatible client ready, model=deepseek-v4-flash, base_url=https://api.deepseek.com
+  [ProactiveInjector] Loading demand export: task_demand/results/suites/e2_opendss/zero_shot_tfidf/exports/opendss_candidates.json
+  [ProactiveInjector] Loading knowledge profile: probe_eval_results/e2_opendss_profiles/deepseek-v4-flash/knowledge_profile.json
+  [ProactiveInjector] Generating doc snippets: dataset/opendss_docs.json
+  [ProactiveInjector] Loading SBERT dense-RAG baseline corpus: dataset/opendss_docs.json
+    📊 Benchmark: 90 items  rtol=0.01 atol=0.001 fix_rounds=0 resume=False exec_timeout=60s hard_timeout=75s temp=0/0
+
+    ── Round 0: Generate (90 items) [condition=C] ──
+    🧩 Given network setup code attached to 90/90 prompts
+    ℹ️  Round-0 prompt tokens will be read after generation (Exact gpt chat prompt token counts are obtained from API usage after generation, not by pre-generation local estimation.)
+  🔮 GPT Generating:   0%|                                                   | 0/90 [00:00<?, ?it/s]  🔮 GPT Generating:   1%|▍                                          | 1/90 [00:25<37:05, 25.01s/it]  🔮 GPT Generating:   2%|▉                                          | 2/90 [00:44<32:03, 21.86s/it]  🔮 GPT Generating:   3%|█▍                                         | 3/90 [00:59<26:48, 18.49s/it]  🔮 GPT Generating:   4%|█▉                                         | 4/90 [01:07<20:38, 14.40s/it]  🔮 GPT Generating:   6%|██▍                                        | 5/90 [01:19<19:22, 13.68s/it]  🔮 GPT Generating:   7%|██▊                                        | 6/90 [01:39<22:09, 15.83s/it]  🔮 GPT Generating:   8%|███▎                                       | 7/90 [01:57<22:41, 16.41s/it]  🔮 GPT Generating:   9%|███▊                                       | 8/90 [02:26<27:52, 20.39s/it]  🔮 GPT Generating:  10%|████▎                                      | 9/90 [02:50<29:06, 21.56s/it]  🔮 GPT Generating:  11%|████▋                                     | 10/90 [03:06<26:36, 19.96s/it]  🔮 GPT Generating:  12%|█████▏                                    | 11/90 [03:19<23:26, 17.80s/it]  🔮 GPT Generating:  13%|█████▌                                    | 12/90 [03:30<20:19, 15.64s/it]  🔮 GPT Generating:  14%|██████                                    | 13/90 [03:39<17:31, 13.66s/it]  🔮 GPT Generating:  16%|██████▌                                   | 14/90 [04:15<26:02, 20.56s/it]  🔮 GPT Generating:  17%|███████                                   | 15/90 [04:23<20:59, 16.80s/it]  🔮 GPT Generating:  18%|███████▍                                  | 16/90 [04:59<27:30, 22.31s/it]  🔮 GPT Generating:  19%|███████▉                                  | 17/90 [05:28<29:46, 24.47s/it]  🔮 GPT Generating:  20%|████████▍                                 | 18/90 [05:41<25:11, 20.99s/it]  🔮 GPT Generating:  21%|████████▊                                 | 19/90 [06:03<25:18, 21.39s/it]  🔮 GPT Generating:  22%|█████████▎                                | 20/90 [06:20<23:22, 20.03s/it]  🔮 GPT Generating:  23%|█████████▊                                | 21/90 [06:31<19:41, 17.13s/it]  🔮 GPT Generating:  24%|██████████▎                               | 22/90 [06:38<16:14, 14.33s/it]  🔮 GPT Generating:  26%|██████████▋                               | 23/90 [06:49<14:39, 13.12s/it]  🔮 GPT Generating:  27%|███████████▏                              | 24/90 [06:59<13:26, 12.21s/it]  🔮 GPT Generating:  28%|███████████▋                              | 25/90 [07:20<16:18, 15.05s/it]  🔮 GPT Generating:  29%|████████████▏                             | 26/90 [07:34<15:25, 14.47s/it]  🔮 GPT Generating:  30%|████████████▌                             | 27/90 [07:48<15:17, 14.56s/it]  🔮 GPT Generating:  31%|█████████████                             | 28/90 [08:26<22:22, 21.66s/it]  🔮 GPT Generating:  32%|█████████████▌                            | 29/90 [08:54<23:41, 23.31s/it]  🔮 GPT Generating:  33%|██████████████                            | 30/90 [09:38<29:33, 29.56s/it]  🔮 GPT Generating:  34%|██████████████▍                           | 31/90 [10:07<28:55, 29.42s/it]  🔮 GPT Generating:  36%|██████████████▉                           | 32/90 [10:25<25:13, 26.09s/it]  🔮 GPT Generating:  37%|███████████████▍                          | 33/90 [10:56<26:02, 27.42s/it]  🔮 GPT Generating:  38%|███████████████▊                          | 34/90 [11:35<28:58, 31.04s/it]  🔮 GPT Generating:  39%|████████████████▎                         | 35/90 [12:05<28:06, 30.65s/it]  🔮 GPT Generating:  40%|████████████████▊                         | 36/90 [12:40<28:47, 32.00s/it]  🔮 GPT Generating:  41%|█████████████████▎                        | 37/90 [12:49<22:01, 24.94s/it]  🔮 GPT Generating:  42%|█████████████████▋                        | 38/90 [12:59<17:43, 20.46s/it]  🔮 GPT Generating:  43%|██████████████████▏                       | 39/90 [13:23<18:17, 21.52s/it]  🔮 GPT Generating:  44%|██████████████████▋                       | 40/90 [13:35<15:42, 18.85s/it]  🔮 GPT Generating:  46%|███████████████████▏                      | 41/90 [14:01<17:12, 21.06s/it]  🔮 GPT Generating:  47%|███████████████████▌                      | 42/90 [14:20<16:10, 20.22s/it]  🔮 GPT Generating:  48%|████████████████████                      | 43/90 [14:39<15:32, 19.83s/it]  🔮 GPT Generating:  49%|████████████████████▌                     | 44/90 [15:13<18:33, 24.21s/it]  🔮 GPT Generating:  50%|█████████████████████                     | 45/90 [15:22<14:48, 19.75s/it]  🔮 GPT Generating:  51%|█████████████████████▍                    | 46/90 [15:33<12:26, 16.97s/it]  🔮 GPT Generating:  52%|█████████████████████▉                    | 47/90 [15:47<11:30, 16.05s/it]  🔮 GPT Generating:  53%|██████████████████████▍                   | 48/90 [16:25<15:57, 22.81s/it]  🔮 GPT Generating:  54%|██████████████████████▊                   | 49/90 [17:04<18:45, 27.46s/it]  🔮 GPT Generating:  56%|███████████████████████▎                  | 50/90 [17:43<20:38, 30.97s/it]  🔮 GPT Generating:  57%|███████████████████████▊                  | 51/90 [18:04<18:10, 27.95s/it]  🔮 GPT Generating:  58%|████████████████████████▎                 | 52/90 [18:31<17:31, 27.67s/it]  🔮 GPT Generating:  59%|████████████████████████▋                 | 53/90 [19:09<19:05, 30.95s/it]  🔮 GPT Generating:  60%|█████████████████████████▏                | 54/90 [19:24<15:38, 26.06s/it]  🔮 GPT Generating:  61%|█████████████████████████▋                | 55/90 [19:43<14:01, 24.05s/it]  🔮 GPT Generating:  62%|██████████████████████████▏               | 56/90 [20:26<16:43, 29.50s/it]  🔮 GPT Generating:  63%|██████████████████████████▌               | 57/90 [20:41<13:58, 25.40s/it]  🔮 GPT Generating:  64%|███████████████████████████               | 58/90 [21:10<13:59, 26.24s/it]  🔮 GPT Generating:  66%|███████████████████████████▌              | 59/90 [21:24<11:44, 22.72s/it]  🔮 GPT Generating:  67%|████████████████████████████              | 60/90 [21:44<10:58, 21.96s/it]  🔮 GPT Generating:  68%|████████████████████████████▍             | 61/90 [22:12<11:22, 23.55s/it]  🔮 GPT Generating:  69%|████████████████████████████▉             | 62/90 [22:32<10:37, 22.76s/it]  🔮 GPT Generating:  70%|█████████████████████████████▍            | 63/90 [23:10<12:13, 27.16s/it]  🔮 GPT Generating:  71%|█████████████████████████████▊            | 64/90 [23:50<13:29, 31.12s/it]  🔮 GPT Generating:  72%|██████████████████████████████▎           | 65/90 [24:11<11:40, 28.03s/it]  🔮 GPT Generating:  73%|██████████████████████████████▊           | 66/90 [24:29<09:56, 24.85s/it]  🔮 GPT Generating:  74%|███████████████████████████████▎          | 67/90 [24:54<09:34, 24.97s/it]  🔮 GPT Generating:  76%|███████████████████████████████▋          | 68/90 [25:25<09:50, 26.82s/it]  🔮 GPT Generating:  77%|████████████████████████████████▏         | 69/90 [25:37<07:52, 22.52s/it]  🔮 GPT Generating:  78%|████████████████████████████████▋         | 70/90 [26:13<08:46, 26.34s/it]  🔮 GPT Generating:  79%|█████████████████████████████████▏        | 71/90 [26:45<08:54, 28.13s/it]  🔮 GPT Generating:  80%|█████████████████████████████████▌        | 72/90 [27:25<09:28, 31.58s/it]  🔮 GPT Generating:  81%|██████████████████████████████████        | 73/90 [27:59<09:09, 32.30s/it]  🔮 GPT Generating:  82%|██████████████████████████████████▌       | 74/90 [28:07<06:44, 25.28s/it]  🔮 GPT Generating:  83%|███████████████████████████████████       | 75/90 [28:21<05:24, 21.65s/it]  🔮 GPT Generating:  84%|███████████████████████████████████▍      | 76/90 [28:42<05:00, 21.48s/it]  🔮 GPT Generating:  86%|███████████████████████████████████▉      | 77/90 [29:08<04:59, 23.07s/it]  🔮 GPT Generating:  87%|████████████████████████████████████▍     | 78/90 [29:24<04:10, 20.86s/it]  🔮 GPT Generating:  88%|████████████████████████████████████▊     | 79/90 [29:40<03:33, 19.43s/it]  🔮 GPT Generating:  89%|█████████████████████████████████████▎    | 80/90 [29:55<03:00, 18.01s/it]  🔮 GPT Generating:  90%|█████████████████████████████████████▊    | 81/90 [30:09<02:30, 16.77s/it]  🔮 GPT Generating:  91%|██████████████████████████████████████▎   | 82/90 [30:24<02:10, 16.30s/it]  🔮 GPT Generating:  92%|██████████████████████████████████████▋   | 83/90 [30:59<02:32, 21.81s/it]  🔮 GPT Generating:  93%|███████████████████████████████████████▏  | 84/90 [31:41<02:47, 27.86s/it]  🔮 GPT Generating:  94%|███████████████████████████████████████▋  | 85/90 [32:04<02:12, 26.45s/it]  🔮 GPT Generating:  96%|████████████████████████████████████████▏ | 86/90 [32:43<02:00, 30.24s/it]  🔮 GPT Generating:  97%|████████████████████████████████████████▌ | 87/90 [33:01<01:19, 26.51s/it]  🔮 GPT Generating:  98%|█████████████████████████████████████████ | 88/90 [33:35<00:57, 28.73s/it]  🔮 GPT Generating:  99%|█████████████████████████████████████████▌| 89/90 [34:15<00:32, 32.26s/it]  🔮 GPT Generating: 100%|██████████████████████████████████████████| 90/90 [34:54<00:00, 34.17s/it]  🔮 GPT Generating: 100%|██████████████████████████████████████████| 90/90 [34:54<00:00, 23.27s/it]
+    ⏱  Inference: 2094.3s
+    📊 Prompt tokens (actual backend count): avg=1315, total=118380
+    ▶ round-0 code execution: executing 90 item(s) with 16 worker(s)
+    ⏳ round-0 code execution: 1/90 (1.1%) elapsed=1.6s eta=144.3s
+    ⏳ round-0 code execution: 10/90 (11.1%) elapsed=3.0s eta=23.9s
+    ⏳ round-0 code execution: 20/90 (22.2%) elapsed=3.8s eta=13.3s
+    ⏳ round-0 code execution: 30/90 (33.3%) elapsed=3.8s eta=7.6s
+    ⏳ round-0 code execution: 40/90 (44.4%) elapsed=3.8s eta=4.8s
+    ⏳ round-0 code execution: 50/90 (55.6%) elapsed=3.8s eta=3.0s
+    ⏳ round-0 code execution: 60/90 (66.7%) elapsed=3.8s eta=1.9s
+    ⏳ round-0 code execution: 70/90 (77.8%) elapsed=3.8s eta=1.1s
+    ⏳ round-0 code execution: 80/90 (88.9%) elapsed=3.8s eta=0.5s
+    ⏳ round-0 code execution: 90/90 (100.0%) elapsed=3.8s eta=0.0s
+    ⏱  Code execution: 3.8s (16 worker(s))
+    📊 After round 0: exec=66/90 (73.3%)  match=62/90 (68.9%)
+
+    ============================================================
+    📐 BENCHMARK RESULTS (90 items)
+    ============================================================
+      Execution rate:        73.3%  (66/90)
+      Result accuracy:       68.9%  (62/90)
+      Accuracy | executed:   93.9%  (62/66)
+
+      Difficulty Levels:
+        D1_basic          :  n=  45  exec=88.9%  acc=84.4%  acc|ex=95.0%  █████████████████░░░
+        D3_semantic       :  n=  45  exec=57.8%  acc=53.3%  acc|ex=92.3%  ███████████░░░░░░░░░
+
+      GT Types:
+        float   :  n=  90  exec=73.3%  acc=68.9%  (62/90)
+
+      Tasks (5 types):
+        power_flow_3ph           :  n= 18  exec=88.9%  acc=88.9%  acc|ex=100.0%  ██████████████████░░
+        network_modification     :  n= 18  exec=77.8%  acc=66.7%  acc|ex=85.7%  █████████████░░░░░░░
+        result_extraction        :  n= 18  exec=77.8%  acc=72.2%  acc|ex=92.9%  ██████████████░░░░░░
+        control_device           :  n= 18  exec=61.1%  acc=55.6%  acc|ex=90.9%  ███████████░░░░░░░░░
+        fault_analysis           :  n= 18  exec=61.1%  acc=61.1%  acc|ex=100.0%  ████████████░░░░░░░░
+
+      Query Types (11):
+        min_node_v               :  n= 25  exec=84.0%  acc=80.0%
+        isc                      :  n= 13  exec=61.5%  acc=61.5%
+        bus_v                    :  n= 12  exec=100.0%  acc=100.0%
+        max_line_i               :  n=  9  exec=11.1%  acc= 0.0%
+        supplied_q               :  n=  7  exec=42.9%  acc=28.6%
+        line_i                   :  n=  5  exec=80.0%  acc=60.0%
+        zsc1                     :  n=  5  exec=60.0%  acc=60.0%
+        supplied_p               :  n=  4  exec=100.0%  acc=100.0%
+        elem_p                   :  n=  4  exec=100.0%  acc=100.0%
+        tap                      :  n=  4  exec=100.0%  acc=100.0%
+        losses_p                 :  n=  2  exec=100.0%  acc=100.0%
+
+      # Modifications → accuracy:
+        1 mods:  n=  90  exec=73.3%  acc=68.9%
+
+      Networks (12 unique):
+        self-built 4-bus 12.47 kV three-phase radial feeder (source + 3 loads, 3 line sections):  n= 14  exec=92.9%  acc=78.6%
+        self-built 12.47 kV three-phase looped feeder (source -> a -> b -> c with an a-c tie line, 2 loads) so line flows redistribute around the loop:  n= 13  exec=53.8%  acc=46.2%
+        self-built 5-bus 12.47 kV three-phase radial feeder (source + 4 loads, 4 line sections):  n= 12  exec=83.3%  acc=83.3%
+        self-built 12.47 kV three-phase feeder for fault study (source with defined short-circuit MVA, main line src->b1->b2->b3 plus a b1->lat lateral, 3 loads):  n=  9  exec=44.4%  acc=44.4%
+        self-built 12.47 kV three-phase radial feeder for fault study (source with defined short-circuit MVA, three series line sections of increasing length, 3 loads):  n=  9  exec=77.8%  acc=77.8%
+        self-built 3-bus 12.47 kV three-phase radial feeder (source + 2 loads, 2 line sections):  n=  7  exec=85.7%  acc=85.7%
+        self-built 12.47 kV three-phase feeder with a 3-step shunt capacitor bank and a voltage-mode CapControl at the remote bus (2 loads):  n=  6  exec=50.0%  acc=33.3%
+        self-built 12.47 kV three-phase feeder with unbalanced single-phase laterals (one load per phase, 400/800/1200 kW), yielding per-phase voltage asymmetry:  n=  5  exec=100.0%  acc=100.0%
+        self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl on a 12.47/12.47 kV regulator transformer, vreg=122) feeding 2 downstream loads:  n=  5  exec=100.0%  acc=100.0%
+        self-built 12.47 kV three-phase radial feeder with a 3-step shunt capacitor bank and a kvar-mode CapControl at the feeder end (3 loads):  n=  4  exec= 0.0%  acc= 0.0%
+        self-built two-voltage-level feeder (12.47 kV source, step-down 12.47/4.16 kV transformer, 4.16 kV load line, 2 loads):  n=  3  exec=100.0%  acc=100.0%
+        self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl, vreg=120, band=3) feeding a 3-load radial:  n=  3  exec=100.0%  acc=100.0%
+
+      Execution Errors (24 total):
+        code_extraction_failed        :   20  (22.2%)
+        SyntaxError                   :    2  ( 2.2%)
+        DSSException                  :    2  ( 2.2%)
+
+      Match Failures (4 executed but wrong):
+        value_outside_tolerance                 :    3
+        empty_output                            :    1
+
+      Generated code: avg=23 lines  min=5  max=39
+
+      Prompt tokens:
+        round0 : avg= 1315  total=  118380
+        total  :   118380  avg/item=1315.3  fix/round0=0.0
+
+      Semantic rewrite quality (45 D3/D4 items):
+        phrase_present=0.0%  explicit_leak=0.0%  avg_phrase_hits=0.00
+        D3_semantic   :  n= 45  phrase=0.0%  leak=0.0%  avg_hits=0.00
+      Float error (matched): mean_rel=0.000006  median=0.000000  p95=0.000000  max=0.000376
+    ============================================================
+  🧹 Releasing GPU memory for deepseek-v4-flash...
+
+==============================================================================================================
+  1. EXECUTION RATE  (code ran without runtime error)
+  ⚠ Cond A = round_0 (no fix rounds) — same evaluation setup as B/C/X
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Qwen2.5-Coder-32         —     0.700         —
+  deepseek-v4-flas         —     0.733         —
+  Llama-3.1-70B            —     0.833         —
+==============================================================================================================
+
+==============================================================================================================
+  2. RESULT ACCURACY  (matched / total, A = round_0 — no fix rounds)
+  ⚠ After system-prompt fix, format-bug parse failures should be eliminated
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Qwen2.5-Coder-32         —    0.4111         —
+  deepseek-v4-flas         —    0.6889         —
+  Llama-3.1-70B            —    0.4444         —
+==============================================================================================================
+
+==============================================================================================================
+  3. ACCURACY-OF-EXECUTED  (matched / executed — isolates parser format failures)
+  ⚠ Low values here mean the model computed correctly but output format was wrong
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Qwen2.5-Coder-32         —    0.5873         —
+  deepseek-v4-flas         —    0.9394         —
+  Llama-3.1-70B            —    0.5333         —
+==============================================================================================================
+
+==============================================================================================================
+  4. FORMAT PARSE FAILURE RATE  (cannot_parse_float — computed correctly, wrong output format)
+  ⚠ Caused by missing 'print ONLY numeric value' instruction (fixed in SYSTEM_PROMPT)
+  Note: % of *executed* items that failed due to output format, not logic errors
+  Model              CondC pfail
+  ──────────────────────────────
+  Qwen2.5-Coder-32  0/63 (0%)      0/63(0%)
+  deepseek-v4-flas  0/66 (0%)      0/66(0%)
+  Llama-3.1-70B     0/75 (0%)      0/75(0%)
+==============================================================================================================
+
+==============================================================================================================
+  5. PROMPT TOKEN USAGE (approx, 4 chars/token) — cost comparison across conditions
+  Note: Cond A uses standard benchmark prompt; B/C/X add function hints/docs
+  Model             CondA avg_tok  CondC avg_tok   ratio C/A   ratio X/A
+  ──────────────────────────────────────────────────────────────────
+  Qwen2.5-Coder-32            —         1243           —           —
+  deepseek-v4-flas            —         1315           —           —
+  Llama-3.1-70B               —         1220           —           —
+==============================================================================================================
+
+==============================================================================================================
+  6. PER-TASK EXECUTION RATE  (avg across all models with data)
+  Sorted by ΔC-A descending — shows where Cond C injection helps most
+  Task                       CondA     CondC      ΔC-A      ΔC-X
+  ──────────────────────────────────────────────────────────────────────────────────
+  control_device                 —     0.815         —         —
+  fault_analysis                 —     0.537         —         —
+  network_modification           —     0.815         —         —
+  power_flow_3ph                 —     0.796         —         —
+  result_extraction              —     0.815         —         —
+==============================================================================================================
+
+  💾 Proactive comparison saved to probe_eval_results/e2_opendss_bench_v2_crecal/proactive_comparison.json
+DeepSeek E2 bench cell complete: opendss / Crecal
+  → probe_eval_results/e2_opendss_bench_v2_crecal/deepseek-v4-flash/benchmark_results_condC.json

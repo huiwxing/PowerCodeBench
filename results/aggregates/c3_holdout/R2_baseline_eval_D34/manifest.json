@@ -1,0 +1,10 @@
+{
+  "run_name": "R2_baseline_eval_D34",
+  "artifacts": {
+    "metrics": "task_demand/results/c3_holdout/R2_baseline_eval_D34/metrics.json",
+    "run_config": "task_demand/results/c3_holdout/R2_baseline_eval_D34/run_config.json",
+    "summary": "task_demand/results/c3_holdout/R2_baseline_eval_D34/summary.json",
+    "saved_model": null,
+    "prediction_export": null
+  }
+}

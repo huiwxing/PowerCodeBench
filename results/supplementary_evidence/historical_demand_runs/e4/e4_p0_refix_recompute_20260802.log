@@ -1,0 +1,3143 @@
+=== [00:42:41] static e4_layer1_holdout/unadapted -> task_demand/results/e4_layer1_holdout/unadapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives)
+  Auto-selected hybrid alpha=0.6 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer1_holdout/unadapted_v2
+{
+  "metrics": "task_demand/results/e4_layer1_holdout/unadapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer1_holdout/unadapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer1_holdout/unadapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1359,
+      "precision": 0.5344,
+      "hit_rate": 0.5344
+    },
+    "3": {
+      "recall": 0.2842,
+      "precision": 0.4022,
+      "hit_rate": 0.7917
+    },
+    "5": {
+      "recall": 0.3614,
+      "precision": 0.321,
+      "hit_rate": 0.8659
+    },
+    "10": {
+      "recall": 0.5362,
+      "precision": 0.2542,
+      "hit_rate": 0.9257
+    },
+    "20": {
+      "recall": 0.6969,
+      "precision": 0.1685,
+      "hit_rate": 0.9764
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.1094,
+      "precision": 0.5789,
+      "hit_rate": 0.5789
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3269,
+      "precision": 0.3474,
+      "hit_rate": 0.7895
+    },
+    "10": {
+      "recall": 0.5157,
+      "precision": 0.2947,
+      "hit_rate": 0.7895
+    },
+    "20": {
+      "recall": 0.6251,
+      "precision": 0.1737,
+      "hit_rate": 0.8947
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1368,
+      "precision": 0.5328,
+      "hit_rate": 0.5328
+    },
+    "3": {
+      "recall": 0.286,
+      "precision": 0.4015,
+      "hit_rate": 0.7936
+    },
+    "5": {
+      "recall": 0.3626,
+      "precision": 0.3201,
+      "hit_rate": 0.8687
+    },
+    "10": {
+      "recall": 0.5369,
+      "precision": 0.2527,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6995,
+      "precision": 0.1683,
+      "hit_rate": 0.9794
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1252,
+      "precision": 0.4692,
+      "hit_rate": 0.4692
+    },
+    "3": {
+      "recall": 0.2745,
+      "precision": 0.3633,
+      "hit_rate": 0.7599
+    },
+    "5": {
+      "recall": 0.3696,
+      "precision": 0.31,
+      "hit_rate": 0.8294
+    },
+    "10": {
+      "recall": 0.5668,
+      "precision": 0.2488,
+      "hit_rate": 0.9305
+    },
+    "20": {
+      "recall": 0.7614,
+      "precision": 0.1728,
+      "hit_rate": 0.9858
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.1022,
+      "precision": 0.5217,
+      "hit_rate": 0.5217
+    },
+    "3": {
+      "recall": 0.2399,
+      "precision": 0.4203,
+      "hit_rate": 0.7826
+    },
+    "5": {
+      "recall": 0.3478,
+      "precision": 0.3826,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5957,
+      "precision": 0.3261,
+      "hit_rate": 0.913
+    },
+    "20": {
+      "recall": 0.8202,
+      "precision": 0.2217,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.126,
+      "precision": 0.4672,
+      "hit_rate": 0.4672
+    },
+    "3": {
+      "recall": 0.2758,
+      "precision": 0.3612,
+      "hit_rate": 0.759
+    },
+    "5": {
+      "recall": 0.3704,
+      "precision": 0.3072,
+      "hit_rate": 0.8295
+    },
+    "10": {
+      "recall": 0.5658,
+      "precision": 0.2459,
+      "hit_rate": 0.9311
+    },
+    "20": {
+      "recall": 0.7592,
+      "precision": 0.171,
+      "hit_rate": 0.9852
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.0969,
+      "precision": 0.25,
+      "hit_rate": 0.25
+    },
+    "3": {
+      "recall": 0.3423,
+      "precision": 0.3208,
+      "hit_rate": 0.675
+    },
+    "5": {
+      "recall": 0.4437,
+      "precision": 0.2475,
+      "hit_rate": 0.825
+    },
+    "10": {
+      "recall": 0.5546,
+      "precision": 0.1575,
+      "hit_rate": 0.925
+    },
+    "20": {
+      "recall": 0.7046,
+      "precision": 0.1,
+      "hit_rate": 0.95
+    }
+  }
+}
+=== [00:45:25] static e4_layer1_holdout/adapted -> task_demand/results/e4_layer1_holdout/adapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+Role-aware reweighting enabled.
+  Reweight source    : benchmark/benchmark.json
+  Training role dist : {'network_loader': 0.18742206334691164, 'controller_or_timeseries': 0.0784770138831158, 'network_or_element_construction': 0.4942222961177155, 'analysis_executor': 0.1063263779200266, 'other': 0.10948541025854186, 'plotting': 0.024066838473688585}
+  Target role dist   : {'network_loader': 0.31707759245830314, 'analysis_executor': 0.46446700507614214, 'network_or_element_construction': 0.12237128353879623, 'controller_or_timeseries': 0.06907179115300943, 'other': 0.027012327773749095}
+  Computed weights   : {'network_loader': 0.5639279011873923, 'plotting': 0.0, 'analysis_executor': 1.0, 'other': 0.08224026595556261, 'network_or_element_construction': 0.08253457637724586, 'controller_or_timeseries': 0.2933843841029486}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives) [role-reweighted]
+  Auto-selected hybrid alpha=0.5 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer1_holdout/adapted_v2
+{
+  "metrics": "task_demand/results/e4_layer1_holdout/adapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer1_holdout/adapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer1_holdout/adapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1142,
+      "precision": 0.4475,
+      "hit_rate": 0.4475
+    },
+    "3": {
+      "recall": 0.2436,
+      "precision": 0.3436,
+      "hit_rate": 0.7591
+    },
+    "5": {
+      "recall": 0.32,
+      "precision": 0.271,
+      "hit_rate": 0.8478
+    },
+    "10": {
+      "recall": 0.4479,
+      "precision": 0.1918,
+      "hit_rate": 0.9312
+    },
+    "20": {
+      "recall": 0.6261,
+      "precision": 0.1418,
+      "hit_rate": 0.9674
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.0624,
+      "precision": 0.3684,
+      "hit_rate": 0.3684
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3357,
+      "precision": 0.3053,
+      "hit_rate": 0.8947
+    },
+    "10": {
+      "recall": 0.4328,
+      "precision": 0.2,
+      "hit_rate": 0.9474
+    },
+    "20": {
+      "recall": 0.645,
+      "precision": 0.1526,
+      "hit_rate": 0.9474
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1161,
+      "precision": 0.4503,
+      "hit_rate": 0.4503
+    },
+    "3": {
+      "recall": 0.244,
+      "precision": 0.3408,
+      "hit_rate": 0.7598
+    },
+    "5": {
+      "recall": 0.3194,
+      "precision": 0.2698,
+      "hit_rate": 0.8462
+    },
+    "10": {
+      "recall": 0.4484,
+      "precision": 0.1916,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6254,
+      "precision": 0.1414,
+      "hit_rate": 0.9681
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1146,
+      "precision": 0.4218,
+      "hit_rate": 0.4218
+    },
+    "3": {
+      "recall": 0.2498,
+      "precision": 0.3149,
+      "hit_rate": 0.7141
+    },
+    "5": {
+      "recall": 0.33,
+      "precision": 0.249,
+      "hit_rate": 0.8215
+    },
+    "10": {
+      "recall": 0.4889,
+      "precision": 0.1983,
+      "hit_rate": 0.94
+    },
+    "20": {
+      "recall": 0.7238,
+      "precision": 0.1551,
+      "hit_rate": 0.9889
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.104,
+      "precision": 0.4783,
+      "hit_rate": 0.4783
+    },
+    "3": {
+      "recall": 0.1969,
+      "precision": 0.3333,
+      "hit_rate": 0.6957
+    },
+    "5": {
+      "recall": 0.2807,
+      "precision": 0.2957,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5041,
+      "precision": 0.2391,
+      "hit_rate": 1.0
+    },
+    "20": {
+      "recall": 0.7318,
+      "precision": 0.187,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.115,
+      "precision": 0.4197,
+      "hit_rate": 0.4197
+    },
+    "3": {
+      "recall": 0.2518,
+      "precision": 0.3142,
+      "hit_rate": 0.7148
+    },
+    "5": {
+      "recall": 0.3319,
+      "precision": 0.2472,
+      "hit_rate": 0.8213
+    },
+    "10": {
+      "recall": 0.4884,
+      "precision": 0.1967,
+      "hit_rate": 0.9377
+    },
+    "20": {
+      "recall": 0.7235,
+      "precision": 0.1539,
+      "hit_rate": 0.9885
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.2,
+      "precision": 0.5375,
+      "hit_rate": 0.5375
+    },
+    "3": {
+      "recall": 0.4485,
+      "precision": 0.4042,
+      "hit_rate": 0.8375
+    },
+    "5": {
+      "recall": 0.6092,
+      "precision": 0.33,
+      "hit_rate": 0.9375
+    },
+    "10": {
+      "recall": 0.6894,
+      "precision": 0.1887,
+      "hit_rate": 0.9875
+    },
+    "20": {
+      "recall": 0.7727,
+      "precision": 0.105,
+      "hit_rate": 1.0
+    }
+  }
+}
+=== [00:48:00] static e4_layer2a_eval/unadapted -> task_demand/results/e4_layer2a_eval/unadapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives)
+  Auto-selected hybrid alpha=0.6 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer2a_eval/unadapted_v2
+{
+  "metrics": "task_demand/results/e4_layer2a_eval/unadapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer2a_eval/unadapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer2a_eval/unadapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1359,
+      "precision": 0.5344,
+      "hit_rate": 0.5344
+    },
+    "3": {
+      "recall": 0.2842,
+      "precision": 0.4022,
+      "hit_rate": 0.7917
+    },
+    "5": {
+      "recall": 0.3614,
+      "precision": 0.321,
+      "hit_rate": 0.8659
+    },
+    "10": {
+      "recall": 0.5362,
+      "precision": 0.2542,
+      "hit_rate": 0.9257
+    },
+    "20": {
+      "recall": 0.6969,
+      "precision": 0.1685,
+      "hit_rate": 0.9764
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.1094,
+      "precision": 0.5789,
+      "hit_rate": 0.5789
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3269,
+      "precision": 0.3474,
+      "hit_rate": 0.7895
+    },
+    "10": {
+      "recall": 0.5157,
+      "precision": 0.2947,
+      "hit_rate": 0.7895
+    },
+    "20": {
+      "recall": 0.6251,
+      "precision": 0.1737,
+      "hit_rate": 0.8947
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1368,
+      "precision": 0.5328,
+      "hit_rate": 0.5328
+    },
+    "3": {
+      "recall": 0.286,
+      "precision": 0.4015,
+      "hit_rate": 0.7936
+    },
+    "5": {
+      "recall": 0.3626,
+      "precision": 0.3201,
+      "hit_rate": 0.8687
+    },
+    "10": {
+      "recall": 0.5369,
+      "precision": 0.2527,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6995,
+      "precision": 0.1683,
+      "hit_rate": 0.9794
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1252,
+      "precision": 0.4692,
+      "hit_rate": 0.4692
+    },
+    "3": {
+      "recall": 0.2745,
+      "precision": 0.3633,
+      "hit_rate": 0.7599
+    },
+    "5": {
+      "recall": 0.3696,
+      "precision": 0.31,
+      "hit_rate": 0.8294
+    },
+    "10": {
+      "recall": 0.5668,
+      "precision": 0.2488,
+      "hit_rate": 0.9305
+    },
+    "20": {
+      "recall": 0.7614,
+      "precision": 0.1728,
+      "hit_rate": 0.9858
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.1022,
+      "precision": 0.5217,
+      "hit_rate": 0.5217
+    },
+    "3": {
+      "recall": 0.2399,
+      "precision": 0.4203,
+      "hit_rate": 0.7826
+    },
+    "5": {
+      "recall": 0.3478,
+      "precision": 0.3826,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5957,
+      "precision": 0.3261,
+      "hit_rate": 0.913
+    },
+    "20": {
+      "recall": 0.8202,
+      "precision": 0.2217,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.126,
+      "precision": 0.4672,
+      "hit_rate": 0.4672
+    },
+    "3": {
+      "recall": 0.2758,
+      "precision": 0.3612,
+      "hit_rate": 0.759
+    },
+    "5": {
+      "recall": 0.3704,
+      "precision": 0.3072,
+      "hit_rate": 0.8295
+    },
+    "10": {
+      "recall": 0.5658,
+      "precision": 0.2459,
+      "hit_rate": 0.9311
+    },
+    "20": {
+      "recall": 0.7592,
+      "precision": 0.171,
+      "hit_rate": 0.9852
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.1228,
+      "precision": 0.5833,
+      "hit_rate": 0.5833
+    },
+    "3": {
+      "recall": 0.2633,
+      "precision": 0.4603,
+      "hit_rate": 0.7381
+    },
+    "5": {
+      "recall": 0.3686,
+      "precision": 0.4048,
+      "hit_rate": 0.7857
+    },
+    "10": {
+      "recall": 0.5507,
+      "precision": 0.3179,
+      "hit_rate": 0.8333
+    },
+    "20": {
+      "recall": 0.6897,
+      "precision": 0.1923,
+      "hit_rate": 0.9286
+    }
+  }
+}
+=== [00:50:43] static e4_layer2a_eval/adapted -> task_demand/results/e4_layer2a_eval/adapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+Role-aware reweighting enabled.
+  Reweight source    : benchmark/benchmark.json
+  Training role dist : {'network_loader': 0.18742206334691164, 'controller_or_timeseries': 0.0784770138831158, 'network_or_element_construction': 0.4942222961177155, 'analysis_executor': 0.1063263779200266, 'other': 0.10948541025854186, 'plotting': 0.024066838473688585}
+  Target role dist   : {'network_loader': 0.31707759245830314, 'analysis_executor': 0.46446700507614214, 'network_or_element_construction': 0.12237128353879623, 'controller_or_timeseries': 0.06907179115300943, 'other': 0.027012327773749095}
+  Computed weights   : {'network_loader': 0.5639279011873923, 'plotting': 0.0, 'analysis_executor': 1.0, 'other': 0.08224026595556261, 'network_or_element_construction': 0.08253457637724586, 'controller_or_timeseries': 0.2933843841029486}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives) [role-reweighted]
+  Auto-selected hybrid alpha=0.5 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer2a_eval/adapted_v2
+{
+  "metrics": "task_demand/results/e4_layer2a_eval/adapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer2a_eval/adapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer2a_eval/adapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1142,
+      "precision": 0.4475,
+      "hit_rate": 0.4475
+    },
+    "3": {
+      "recall": 0.2436,
+      "precision": 0.3436,
+      "hit_rate": 0.7591
+    },
+    "5": {
+      "recall": 0.32,
+      "precision": 0.271,
+      "hit_rate": 0.8478
+    },
+    "10": {
+      "recall": 0.4479,
+      "precision": 0.1918,
+      "hit_rate": 0.9312
+    },
+    "20": {
+      "recall": 0.6261,
+      "precision": 0.1418,
+      "hit_rate": 0.9674
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.0624,
+      "precision": 0.3684,
+      "hit_rate": 0.3684
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3357,
+      "precision": 0.3053,
+      "hit_rate": 0.8947
+    },
+    "10": {
+      "recall": 0.4328,
+      "precision": 0.2,
+      "hit_rate": 0.9474
+    },
+    "20": {
+      "recall": 0.645,
+      "precision": 0.1526,
+      "hit_rate": 0.9474
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1161,
+      "precision": 0.4503,
+      "hit_rate": 0.4503
+    },
+    "3": {
+      "recall": 0.244,
+      "precision": 0.3408,
+      "hit_rate": 0.7598
+    },
+    "5": {
+      "recall": 0.3194,
+      "precision": 0.2698,
+      "hit_rate": 0.8462
+    },
+    "10": {
+      "recall": 0.4484,
+      "precision": 0.1916,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6254,
+      "precision": 0.1414,
+      "hit_rate": 0.9681
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1146,
+      "precision": 0.4218,
+      "hit_rate": 0.4218
+    },
+    "3": {
+      "recall": 0.2498,
+      "precision": 0.3149,
+      "hit_rate": 0.7141
+    },
+    "5": {
+      "recall": 0.33,
+      "precision": 0.249,
+      "hit_rate": 0.8215
+    },
+    "10": {
+      "recall": 0.4889,
+      "precision": 0.1983,
+      "hit_rate": 0.94
+    },
+    "20": {
+      "recall": 0.7238,
+      "precision": 0.1551,
+      "hit_rate": 0.9889
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.104,
+      "precision": 0.4783,
+      "hit_rate": 0.4783
+    },
+    "3": {
+      "recall": 0.1969,
+      "precision": 0.3333,
+      "hit_rate": 0.6957
+    },
+    "5": {
+      "recall": 0.2807,
+      "precision": 0.2957,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5041,
+      "precision": 0.2391,
+      "hit_rate": 1.0
+    },
+    "20": {
+      "recall": 0.7318,
+      "precision": 0.187,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.115,
+      "precision": 0.4197,
+      "hit_rate": 0.4197
+    },
+    "3": {
+      "recall": 0.2518,
+      "precision": 0.3142,
+      "hit_rate": 0.7148
+    },
+    "5": {
+      "recall": 0.3319,
+      "precision": 0.2472,
+      "hit_rate": 0.8213
+    },
+    "10": {
+      "recall": 0.4884,
+      "precision": 0.1967,
+      "hit_rate": 0.9377
+    },
+    "20": {
+      "recall": 0.7235,
+      "precision": 0.1539,
+      "hit_rate": 0.9885
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.1348,
+      "precision": 0.5714,
+      "hit_rate": 0.5714
+    },
+    "3": {
+      "recall": 0.2947,
+      "precision": 0.4365,
+      "hit_rate": 0.8452
+    },
+    "5": {
+      "recall": 0.3737,
+      "precision": 0.3548,
+      "hit_rate": 0.9167
+    },
+    "10": {
+      "recall": 0.5343,
+      "precision": 0.2714,
+      "hit_rate": 0.9762
+    },
+    "20": {
+      "recall": 0.7591,
+      "precision": 0.1976,
+      "hit_rate": 0.9881
+    }
+  }
+}
+=== [00:53:13] static e4_layer2a_ext_eval/unadapted -> task_demand/results/e4_layer2a_ext_eval/unadapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives)
+  Auto-selected hybrid alpha=0.6 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer2a_ext_eval/unadapted_v2
+{
+  "metrics": "task_demand/results/e4_layer2a_ext_eval/unadapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer2a_ext_eval/unadapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer2a_ext_eval/unadapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1359,
+      "precision": 0.5344,
+      "hit_rate": 0.5344
+    },
+    "3": {
+      "recall": 0.2842,
+      "precision": 0.4022,
+      "hit_rate": 0.7917
+    },
+    "5": {
+      "recall": 0.3614,
+      "precision": 0.321,
+      "hit_rate": 0.8659
+    },
+    "10": {
+      "recall": 0.5362,
+      "precision": 0.2542,
+      "hit_rate": 0.9257
+    },
+    "20": {
+      "recall": 0.6969,
+      "precision": 0.1685,
+      "hit_rate": 0.9764
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.1094,
+      "precision": 0.5789,
+      "hit_rate": 0.5789
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3269,
+      "precision": 0.3474,
+      "hit_rate": 0.7895
+    },
+    "10": {
+      "recall": 0.5157,
+      "precision": 0.2947,
+      "hit_rate": 0.7895
+    },
+    "20": {
+      "recall": 0.6251,
+      "precision": 0.1737,
+      "hit_rate": 0.8947
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1368,
+      "precision": 0.5328,
+      "hit_rate": 0.5328
+    },
+    "3": {
+      "recall": 0.286,
+      "precision": 0.4015,
+      "hit_rate": 0.7936
+    },
+    "5": {
+      "recall": 0.3626,
+      "precision": 0.3201,
+      "hit_rate": 0.8687
+    },
+    "10": {
+      "recall": 0.5369,
+      "precision": 0.2527,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6995,
+      "precision": 0.1683,
+      "hit_rate": 0.9794
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1252,
+      "precision": 0.4692,
+      "hit_rate": 0.4692
+    },
+    "3": {
+      "recall": 0.2745,
+      "precision": 0.3633,
+      "hit_rate": 0.7599
+    },
+    "5": {
+      "recall": 0.3696,
+      "precision": 0.31,
+      "hit_rate": 0.8294
+    },
+    "10": {
+      "recall": 0.5668,
+      "precision": 0.2488,
+      "hit_rate": 0.9305
+    },
+    "20": {
+      "recall": 0.7614,
+      "precision": 0.1728,
+      "hit_rate": 0.9858
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.1022,
+      "precision": 0.5217,
+      "hit_rate": 0.5217
+    },
+    "3": {
+      "recall": 0.2399,
+      "precision": 0.4203,
+      "hit_rate": 0.7826
+    },
+    "5": {
+      "recall": 0.3478,
+      "precision": 0.3826,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5957,
+      "precision": 0.3261,
+      "hit_rate": 0.913
+    },
+    "20": {
+      "recall": 0.8202,
+      "precision": 0.2217,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.126,
+      "precision": 0.4672,
+      "hit_rate": 0.4672
+    },
+    "3": {
+      "recall": 0.2758,
+      "precision": 0.3612,
+      "hit_rate": 0.759
+    },
+    "5": {
+      "recall": 0.3704,
+      "precision": 0.3072,
+      "hit_rate": 0.8295
+    },
+    "10": {
+      "recall": 0.5658,
+      "precision": 0.2459,
+      "hit_rate": 0.9311
+    },
+    "20": {
+      "recall": 0.7592,
+      "precision": 0.171,
+      "hit_rate": 0.9852
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.1178,
+      "precision": 0.6,
+      "hit_rate": 0.6
+    },
+    "3": {
+      "recall": 0.245,
+      "precision": 0.5333,
+      "hit_rate": 0.8
+    },
+    "5": {
+      "recall": 0.3906,
+      "precision": 0.5,
+      "hit_rate": 0.9
+    },
+    "10": {
+      "recall": 0.6472,
+      "precision": 0.42,
+      "hit_rate": 1.0
+    },
+    "20": {
+      "recall": 0.7797,
+      "precision": 0.255,
+      "hit_rate": 1.0
+    }
+  }
+}
+=== [00:55:51] static e4_layer2a_ext_eval/adapted -> task_demand/results/e4_layer2a_ext_eval/adapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+Role-aware reweighting enabled.
+  Reweight source    : benchmark/benchmark.json
+  Training role dist : {'network_loader': 0.18742206334691164, 'controller_or_timeseries': 0.0784770138831158, 'network_or_element_construction': 0.4942222961177155, 'analysis_executor': 0.1063263779200266, 'other': 0.10948541025854186, 'plotting': 0.024066838473688585}
+  Target role dist   : {'network_loader': 0.31707759245830314, 'analysis_executor': 0.46446700507614214, 'network_or_element_construction': 0.12237128353879623, 'controller_or_timeseries': 0.06907179115300943, 'other': 0.027012327773749095}
+  Computed weights   : {'network_loader': 0.5639279011873923, 'plotting': 0.0, 'analysis_executor': 1.0, 'other': 0.08224026595556261, 'network_or_element_construction': 0.08253457637724586, 'controller_or_timeseries': 0.2933843841029486}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives) [role-reweighted]
+  Auto-selected hybrid alpha=0.5 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer2a_ext_eval/adapted_v2
+{
+  "metrics": "task_demand/results/e4_layer2a_ext_eval/adapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer2a_ext_eval/adapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer2a_ext_eval/adapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1142,
+      "precision": 0.4475,
+      "hit_rate": 0.4475
+    },
+    "3": {
+      "recall": 0.2436,
+      "precision": 0.3436,
+      "hit_rate": 0.7591
+    },
+    "5": {
+      "recall": 0.32,
+      "precision": 0.271,
+      "hit_rate": 0.8478
+    },
+    "10": {
+      "recall": 0.4479,
+      "precision": 0.1918,
+      "hit_rate": 0.9312
+    },
+    "20": {
+      "recall": 0.6261,
+      "precision": 0.1418,
+      "hit_rate": 0.9674
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.0624,
+      "precision": 0.3684,
+      "hit_rate": 0.3684
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3357,
+      "precision": 0.3053,
+      "hit_rate": 0.8947
+    },
+    "10": {
+      "recall": 0.4328,
+      "precision": 0.2,
+      "hit_rate": 0.9474
+    },
+    "20": {
+      "recall": 0.645,
+      "precision": 0.1526,
+      "hit_rate": 0.9474
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1161,
+      "precision": 0.4503,
+      "hit_rate": 0.4503
+    },
+    "3": {
+      "recall": 0.244,
+      "precision": 0.3408,
+      "hit_rate": 0.7598
+    },
+    "5": {
+      "recall": 0.3194,
+      "precision": 0.2698,
+      "hit_rate": 0.8462
+    },
+    "10": {
+      "recall": 0.4484,
+      "precision": 0.1916,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6254,
+      "precision": 0.1414,
+      "hit_rate": 0.9681
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1146,
+      "precision": 0.4218,
+      "hit_rate": 0.4218
+    },
+    "3": {
+      "recall": 0.2498,
+      "precision": 0.3149,
+      "hit_rate": 0.7141
+    },
+    "5": {
+      "recall": 0.33,
+      "precision": 0.249,
+      "hit_rate": 0.8215
+    },
+    "10": {
+      "recall": 0.4889,
+      "precision": 0.1983,
+      "hit_rate": 0.94
+    },
+    "20": {
+      "recall": 0.7238,
+      "precision": 0.1551,
+      "hit_rate": 0.9889
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.104,
+      "precision": 0.4783,
+      "hit_rate": 0.4783
+    },
+    "3": {
+      "recall": 0.1969,
+      "precision": 0.3333,
+      "hit_rate": 0.6957
+    },
+    "5": {
+      "recall": 0.2807,
+      "precision": 0.2957,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5041,
+      "precision": 0.2391,
+      "hit_rate": 1.0
+    },
+    "20": {
+      "recall": 0.7318,
+      "precision": 0.187,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.115,
+      "precision": 0.4197,
+      "hit_rate": 0.4197
+    },
+    "3": {
+      "recall": 0.2518,
+      "precision": 0.3142,
+      "hit_rate": 0.7148
+    },
+    "5": {
+      "recall": 0.3319,
+      "precision": 0.2472,
+      "hit_rate": 0.8213
+    },
+    "10": {
+      "recall": 0.4884,
+      "precision": 0.1967,
+      "hit_rate": 0.9377
+    },
+    "20": {
+      "recall": 0.7235,
+      "precision": 0.1539,
+      "hit_rate": 0.9885
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.1344,
+      "precision": 0.7,
+      "hit_rate": 0.7
+    },
+    "3": {
+      "recall": 0.2758,
+      "precision": 0.5667,
+      "hit_rate": 0.9
+    },
+    "5": {
+      "recall": 0.305,
+      "precision": 0.38,
+      "hit_rate": 0.9
+    },
+    "10": {
+      "recall": 0.5,
+      "precision": 0.32,
+      "hit_rate": 1.0
+    },
+    "20": {
+      "recall": 0.7797,
+      "precision": 0.255,
+      "hit_rate": 1.0
+    }
+  }
+}
+=== [00:58:21] static e4_layer2b_eval/unadapted -> task_demand/results/e4_layer2b_eval/unadapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives)
+  Auto-selected hybrid alpha=0.6 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer2b_eval/unadapted_v2
+{
+  "metrics": "task_demand/results/e4_layer2b_eval/unadapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer2b_eval/unadapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer2b_eval/unadapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1359,
+      "precision": 0.5344,
+      "hit_rate": 0.5344
+    },
+    "3": {
+      "recall": 0.2842,
+      "precision": 0.4022,
+      "hit_rate": 0.7917
+    },
+    "5": {
+      "recall": 0.3614,
+      "precision": 0.321,
+      "hit_rate": 0.8659
+    },
+    "10": {
+      "recall": 0.5362,
+      "precision": 0.2542,
+      "hit_rate": 0.9257
+    },
+    "20": {
+      "recall": 0.6969,
+      "precision": 0.1685,
+      "hit_rate": 0.9764
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.1094,
+      "precision": 0.5789,
+      "hit_rate": 0.5789
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3269,
+      "precision": 0.3474,
+      "hit_rate": 0.7895
+    },
+    "10": {
+      "recall": 0.5157,
+      "precision": 0.2947,
+      "hit_rate": 0.7895
+    },
+    "20": {
+      "recall": 0.6251,
+      "precision": 0.1737,
+      "hit_rate": 0.8947
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1368,
+      "precision": 0.5328,
+      "hit_rate": 0.5328
+    },
+    "3": {
+      "recall": 0.286,
+      "precision": 0.4015,
+      "hit_rate": 0.7936
+    },
+    "5": {
+      "recall": 0.3626,
+      "precision": 0.3201,
+      "hit_rate": 0.8687
+    },
+    "10": {
+      "recall": 0.5369,
+      "precision": 0.2527,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6995,
+      "precision": 0.1683,
+      "hit_rate": 0.9794
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1252,
+      "precision": 0.4692,
+      "hit_rate": 0.4692
+    },
+    "3": {
+      "recall": 0.2745,
+      "precision": 0.3633,
+      "hit_rate": 0.7599
+    },
+    "5": {
+      "recall": 0.3696,
+      "precision": 0.31,
+      "hit_rate": 0.8294
+    },
+    "10": {
+      "recall": 0.5668,
+      "precision": 0.2488,
+      "hit_rate": 0.9305
+    },
+    "20": {
+      "recall": 0.7614,
+      "precision": 0.1728,
+      "hit_rate": 0.9858
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.1022,
+      "precision": 0.5217,
+      "hit_rate": 0.5217
+    },
+    "3": {
+      "recall": 0.2399,
+      "precision": 0.4203,
+      "hit_rate": 0.7826
+    },
+    "5": {
+      "recall": 0.3478,
+      "precision": 0.3826,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5957,
+      "precision": 0.3261,
+      "hit_rate": 0.913
+    },
+    "20": {
+      "recall": 0.8202,
+      "precision": 0.2217,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.126,
+      "precision": 0.4672,
+      "hit_rate": 0.4672
+    },
+    "3": {
+      "recall": 0.2758,
+      "precision": 0.3612,
+      "hit_rate": 0.759
+    },
+    "5": {
+      "recall": 0.3704,
+      "precision": 0.3072,
+      "hit_rate": 0.8295
+    },
+    "10": {
+      "recall": 0.5658,
+      "precision": 0.2459,
+      "hit_rate": 0.9311
+    },
+    "20": {
+      "recall": 0.7592,
+      "precision": 0.171,
+      "hit_rate": 0.9852
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.1083,
+      "precision": 0.3,
+      "hit_rate": 0.3
+    },
+    "3": {
+      "recall": 0.3476,
+      "precision": 0.3167,
+      "hit_rate": 0.8
+    },
+    "5": {
+      "recall": 0.3893,
+      "precision": 0.21,
+      "hit_rate": 0.9
+    },
+    "10": {
+      "recall": 0.4869,
+      "precision": 0.135,
+      "hit_rate": 0.9
+    },
+    "20": {
+      "recall": 0.5929,
+      "precision": 0.0825,
+      "hit_rate": 0.95
+    }
+  }
+}
+=== [01:01:00] static e4_layer2b_eval/adapted -> task_demand/results/e4_layer2b_eval/adapted_v2
+Loaded 275 function cards from <SOURCE_REPOSITORY>/dataset/pandapower_docs.json
+  Dropped 113 augmented samples with no usable labels/question
+Augmented data summary:
+{
+  "all": {
+    "n_examples": 6312,
+    "n_groups": 511,
+    "n_variants": 6068,
+    "n_non_variants": 244,
+    "n_unique_functions": 125,
+    "avg_labels_per_example": 4.653,
+    "top_functions": {
+      "create_empty_network": 2326,
+      "create_bus": 2076,
+      "create_ext_grid": 1673,
+      "create_line": 1203,
+      "runpp": 1195,
+      "create_load": 1143,
+      "ConstControl": 1093,
+      "mv_oberrhein": 1032,
+      "create_transformer": 877,
+      "create_switch": 729,
+      "create_poly_cost": 713,
+      "DFData": 632,
+      "OutputWriter": 584,
+      "log_variable": 582,
+      "create_measurement": 555,
+      "run_timeseries": 492,
+      "create_gen": 415,
+      "draw_collections": 403,
+      "create_sgen": 400,
+      "create_nxgraph": 399,
+      "runopp": 395,
+      "example_simple": 394,
+      "create_bus_collection": 376,
+      "create_dcline": 367,
+      "calc_sc": 357,
+      "create_line_collection": 332,
+      "case9": 301,
+      "case14": 288,
+      "simple_mv_open_ring_net": 274,
+      "create_buses": 273
+    }
+  },
+  "train": {
+    "n_examples": 5127,
+    "n_groups": 409,
+    "n_variants": 4925,
+    "n_non_variants": 202,
+    "n_unique_functions": 124,
+    "avg_labels_per_example": 4.692,
+    "top_functions": {
+      "create_empty_network": 1935,
+      "create_bus": 1710,
+      "create_ext_grid": 1467,
+      "create_line": 1022,
+      "runpp": 973,
+      "create_load": 958,
+      "ConstControl": 830,
+      "mv_oberrhein": 805,
+      "create_transformer": 740,
+      "create_switch": 629,
+      "create_poly_cost": 556,
+      "DFData": 478,
+      "create_measurement": 463,
+      "OutputWriter": 461,
+      "log_variable": 460,
+      "run_timeseries": 370,
+      "create_sgen": 355,
+      "example_simple": 317,
+      "create_nxgraph": 316,
+      "create_gen": 314,
+      "draw_collections": 311,
+      "create_dcline": 296,
+      "calc_sc": 292,
+      "create_bus_collection": 284,
+      "create_line_collection": 274,
+      "runopp": 254,
+      "create_buses": 249,
+      "case9": 237,
+      "simple_mv_open_ring_net": 221,
+      "run_contingency": 216
+    }
+  },
+  "dev": {
+    "n_examples": 552,
+    "n_groups": 51,
+    "n_variants": 533,
+    "n_non_variants": 19,
+    "n_unique_functions": 85,
+    "avg_labels_per_example": 4.6,
+    "top_functions": {
+      "create_empty_network": 189,
+      "create_bus": 159,
+      "ConstControl": 155,
+      "create_line": 115,
+      "mv_oberrhein": 112,
+      "create_ext_grid": 104,
+      "DFData": 90,
+      "runpp": 77,
+      "create_load": 73,
+      "create_std_type": 71,
+      "create_nxgraph": 66,
+      "create_switch": 63,
+      "OutputWriter": 61,
+      "log_variable": 61,
+      "run_timeseries": 60,
+      "create_poly_cost": 56,
+      "create_measurement": 50,
+      "simple_mv_open_ring_net": 50,
+      "calc_sc": 45,
+      "create_transformer": 39,
+      "runopp": 37,
+      "create_dcline": 34,
+      "example_simple": 33,
+      "case14": 31,
+      "create_bus_collection": 31,
+      "get_collection_sizes": 31,
+      "draw_collections": 31,
+      "parameter_from_std_type": 28,
+      "create_sgen": 27,
+      "create_gen": 26
+    }
+  },
+  "test": {
+    "n_examples": 633,
+    "n_groups": 51,
+    "n_variants": 610,
+    "n_non_variants": 23,
+    "n_unique_functions": 83,
+    "avg_labels_per_example": 4.384,
+    "top_functions": {
+      "create_bus": 207,
+      "create_empty_network": 202,
+      "runpp": 145,
+      "mv_oberrhein": 115,
+      "create_load": 112,
+      "ConstControl": 108,
+      "runopp": 104,
+      "create_ext_grid": 102,
+      "create_poly_cost": 101,
+      "create_transformer": 98,
+      "create_gen": 75,
+      "create_line": 66,
+      "DFData": 64,
+      "OutputWriter": 62,
+      "run_timeseries": 62,
+      "create_bus_collection": 61,
+      "draw_collections": 61,
+      "log_variable": 61,
+      "case14": 51,
+      "example_simple": 44,
+      "case9": 44,
+      "get_collection_sizes": 43,
+      "create_measurement": 42,
+      "create_line_collection": 40,
+      "create_dcline": 37,
+      "create_switch": 37,
+      "create_svc": 29,
+      "Controller": 28,
+      "set_user_pf_options": 25,
+      "create_transformer3w": 22
+    }
+  }
+}
+Role-aware reweighting enabled.
+  Reweight source    : benchmark/benchmark.json
+  Training role dist : {'network_loader': 0.18742206334691164, 'controller_or_timeseries': 0.0784770138831158, 'network_or_element_construction': 0.4942222961177155, 'analysis_executor': 0.1063263779200266, 'other': 0.10948541025854186, 'plotting': 0.024066838473688585}
+  Target role dist   : {'network_loader': 0.31707759245830314, 'analysis_executor': 0.46446700507614214, 'network_or_element_construction': 0.12237128353879623, 'controller_or_timeseries': 0.06907179115300943, 'other': 0.027012327773749095}
+  Computed weights   : {'network_loader': 0.5639279011873923, 'plotting': 0.0, 'analysis_executor': 1.0, 'other': 0.08224026595556261, 'network_or_element_construction': 0.08253457637724586, 'controller_or_timeseries': 0.2933843841029486}
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives) [role-reweighted]
+  Auto-selected hybrid alpha=0.5 using dev recall@10
+
+Evaluating on augmented dev split...
+Evaluating on augmented dev original-only slice...
+Evaluating on augmented dev variant-only slice...
+Evaluating on augmented test split...
+Evaluating on augmented test original-only slice...
+Evaluating on augmented test variant-only slice...
+
+Evaluating on benchmark reference labels (eval-only, not trained)...
+
+Saved normalized outputs under task_demand/results/e4_layer2b_eval/adapted_v2
+{
+  "metrics": "task_demand/results/e4_layer2b_eval/adapted_v2/metrics.json",
+  "run_config": "task_demand/results/e4_layer2b_eval/adapted_v2/run_config.json",
+  "summary": "task_demand/results/e4_layer2b_eval/adapted_v2/summary.json",
+  "saved_model": null,
+  "prediction_export": null
+}
+
+Metrics summary:
+{
+  "augmented_dev": {
+    "1": {
+      "recall": 0.1142,
+      "precision": 0.4475,
+      "hit_rate": 0.4475
+    },
+    "3": {
+      "recall": 0.2436,
+      "precision": 0.3436,
+      "hit_rate": 0.7591
+    },
+    "5": {
+      "recall": 0.32,
+      "precision": 0.271,
+      "hit_rate": 0.8478
+    },
+    "10": {
+      "recall": 0.4479,
+      "precision": 0.1918,
+      "hit_rate": 0.9312
+    },
+    "20": {
+      "recall": 0.6261,
+      "precision": 0.1418,
+      "hit_rate": 0.9674
+    }
+  },
+  "augmented_dev_original_only": {
+    "1": {
+      "recall": 0.0624,
+      "precision": 0.3684,
+      "hit_rate": 0.3684
+    },
+    "3": {
+      "recall": 0.2335,
+      "precision": 0.4211,
+      "hit_rate": 0.7368
+    },
+    "5": {
+      "recall": 0.3357,
+      "precision": 0.3053,
+      "hit_rate": 0.8947
+    },
+    "10": {
+      "recall": 0.4328,
+      "precision": 0.2,
+      "hit_rate": 0.9474
+    },
+    "20": {
+      "recall": 0.645,
+      "precision": 0.1526,
+      "hit_rate": 0.9474
+    }
+  },
+  "augmented_dev_variant_only": {
+    "1": {
+      "recall": 0.1161,
+      "precision": 0.4503,
+      "hit_rate": 0.4503
+    },
+    "3": {
+      "recall": 0.244,
+      "precision": 0.3408,
+      "hit_rate": 0.7598
+    },
+    "5": {
+      "recall": 0.3194,
+      "precision": 0.2698,
+      "hit_rate": 0.8462
+    },
+    "10": {
+      "recall": 0.4484,
+      "precision": 0.1916,
+      "hit_rate": 0.9306
+    },
+    "20": {
+      "recall": 0.6254,
+      "precision": 0.1414,
+      "hit_rate": 0.9681
+    }
+  },
+  "augmented_test": {
+    "1": {
+      "recall": 0.1146,
+      "precision": 0.4218,
+      "hit_rate": 0.4218
+    },
+    "3": {
+      "recall": 0.2498,
+      "precision": 0.3149,
+      "hit_rate": 0.7141
+    },
+    "5": {
+      "recall": 0.33,
+      "precision": 0.249,
+      "hit_rate": 0.8215
+    },
+    "10": {
+      "recall": 0.4889,
+      "precision": 0.1983,
+      "hit_rate": 0.94
+    },
+    "20": {
+      "recall": 0.7238,
+      "precision": 0.1551,
+      "hit_rate": 0.9889
+    }
+  },
+  "augmented_test_original_only": {
+    "1": {
+      "recall": 0.104,
+      "precision": 0.4783,
+      "hit_rate": 0.4783
+    },
+    "3": {
+      "recall": 0.1969,
+      "precision": 0.3333,
+      "hit_rate": 0.6957
+    },
+    "5": {
+      "recall": 0.2807,
+      "precision": 0.2957,
+      "hit_rate": 0.8261
+    },
+    "10": {
+      "recall": 0.5041,
+      "precision": 0.2391,
+      "hit_rate": 1.0
+    },
+    "20": {
+      "recall": 0.7318,
+      "precision": 0.187,
+      "hit_rate": 1.0
+    }
+  },
+  "augmented_test_variant_only": {
+    "1": {
+      "recall": 0.115,
+      "precision": 0.4197,
+      "hit_rate": 0.4197
+    },
+    "3": {
+      "recall": 0.2518,
+      "precision": 0.3142,
+      "hit_rate": 0.7148
+    },
+    "5": {
+      "recall": 0.3319,
+      "precision": 0.2472,
+      "hit_rate": 0.8213
+    },
+    "10": {
+      "recall": 0.4884,
+      "precision": 0.1967,
+      "hit_rate": 0.9377
+    },
+    "20": {
+      "recall": 0.7235,
+      "precision": 0.1539,
+      "hit_rate": 0.9885
+    }
+  },
+  "benchmark_reference_eval_only": {
+    "1": {
+      "recall": 0.225,
+      "precision": 0.55,
+      "hit_rate": 0.55
+    },
+    "3": {
+      "recall": 0.425,
+      "precision": 0.35,
+      "hit_rate": 0.85
+    },
+    "5": {
+      "recall": 0.5238,
+      "precision": 0.26,
+      "hit_rate": 0.9
+    },
+    "10": {
+      "recall": 0.6452,
+      "precision": 0.175,
+      "hit_rate": 0.95
+    },
+    "20": {
+      "recall": 0.7804,
+      "precision": 0.1075,
+      "hit_rate": 0.95
+    }
+  }
+}
+=== [01:03:29] conditional v2 (seed 22)
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives)
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives) [role-reweighted]
+Reproduced arms: unadapted alpha=0.6, adapted alpha=0.5
+Wrote <SOURCE_REPOSITORY>/task_demand/results/e4_conditional/metrics_by_set_v2.json
+
+recall@10 comparison (conditional / adapted / unadapted / max):
+  layer1_holdout_n80: cond=0.6894 adapt=0.6894 unadapt=0.5546 max=0.6894 delta=+0.00pp repro_ok=False
+  layer2a_n84: cond=0.6206 adapt=0.5343 unadapt=0.5507 max=0.5507 delta=+6.99pp repro_ok=False
+  layer2a_ext_n10: cond=0.6472 adapt=0.5000 unadapt=0.6472 max=0.6472 delta=+0.00pp repro_ok=False
+  layer2b_n20: cond=0.6452 adapt=0.6452 unadapt=0.4869 max=0.6452 delta=+0.00pp repro_ok=True
+
+Exit reading: a (4/4 sets within max-1pp)
+=== [01:06:00] seed sensitivity seed=42
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 210897 pairs (23433 positives, 187464 negatives)
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 210897 pairs (23433 positives, 187464 negatives) [role-reweighted]
+Reproduced arms: unadapted alpha=0.5, adapted alpha=0.4
+Wrote <SOURCE_REPOSITORY>/task_demand/results/e4_conditional/seed_sensitivity/metrics_by_set_seed42.json
+
+recall@10 comparison (conditional / adapted / unadapted / max):
+  layer1_holdout_n80: cond=0.7196 adapt=0.7196 unadapt=0.6300 max=0.7196 delta=+0.00pp repro_ok=n/a
+  layer2a_n84: cond=0.5707 adapt=0.5049 unadapt=0.5310 max=0.5310 delta=+3.97pp repro_ok=n/a
+  layer2a_ext_n10: cond=0.5981 adapt=0.5433 unadapt=0.5981 max=0.5981 delta=+0.00pp repro_ok=n/a
+  layer2b_n20: cond=0.6476 adapt=0.6476 unadapt=0.5536 max=0.6476 delta=+0.00pp repro_ok=n/a
+
+Exit reading: a (4/4 sets within max-1pp)
+=== [01:08:33] seed sensitivity seed=43
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 219627 pairs (24403 positives, 195224 negatives)
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 219627 pairs (24403 positives, 195224 negatives) [role-reweighted]
+Reproduced arms: unadapted alpha=0.6, adapted alpha=0.5
+Wrote <SOURCE_REPOSITORY>/task_demand/results/e4_conditional/seed_sensitivity/metrics_by_set_seed43.json
+
+recall@10 comparison (conditional / adapted / unadapted / max):
+  layer1_holdout_n80: cond=0.7165 adapt=0.7165 unadapt=0.5379 max=0.7165 delta=+0.00pp repro_ok=n/a
+  layer2a_n84: cond=0.6507 adapt=0.5670 unadapt=0.5670 max=0.5670 delta=+8.37pp repro_ok=n/a
+  layer2a_ext_n10: cond=0.6306 adapt=0.4900 unadapt=0.6306 max=0.6306 delta=+0.00pp repro_ok=n/a
+  layer2b_n20: cond=0.6452 adapt=0.6452 unadapt=0.4940 max=0.6452 delta=+0.00pp repro_ok=n/a
+
+Exit reading: a (4/4 sets within max-1pp)
+=== [01:11:21] seed sensitivity seed=44
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 206757 pairs (22973 positives, 183784 negatives)
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 206757 pairs (22973 positives, 183784 negatives) [role-reweighted]
+Reproduced arms: unadapted alpha=0.6, adapted alpha=0.4
+Wrote <SOURCE_REPOSITORY>/task_demand/results/e4_conditional/seed_sensitivity/metrics_by_set_seed44.json
+
+recall@10 comparison (conditional / adapted / unadapted / max):
+  layer1_holdout_n80: cond=0.7202 adapt=0.7202 unadapt=0.5587 max=0.7202 delta=+0.00pp repro_ok=n/a
+  layer2a_n84: cond=0.6441 adapt=0.5245 unadapt=0.5802 max=0.5802 delta=+6.39pp repro_ok=n/a
+  layer2a_ext_n10: cond=0.6472 adapt=0.5267 unadapt=0.6472 max=0.6472 delta=+0.00pp repro_ok=n/a
+  layer2b_n20: cond=0.6726 adapt=0.6726 unadapt=0.4702 max=0.6726 delta=+0.00pp repro_ok=n/a
+
+Exit reading: a (4/4 sets within max-1pp)
+=== [01:13:46] seed sensitivity seed=45
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 211131 pairs (23459 positives, 187672 negatives)
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 211131 pairs (23459 positives, 187672 negatives) [role-reweighted]
+Reproduced arms: unadapted alpha=0.5, adapted alpha=0.5
+Wrote <SOURCE_REPOSITORY>/task_demand/results/e4_conditional/seed_sensitivity/metrics_by_set_seed45.json
+
+recall@10 comparison (conditional / adapted / unadapted / max):
+  layer1_holdout_n80: cond=0.7092 adapt=0.7092 unadapt=0.6394 max=0.7092 delta=+0.00pp repro_ok=n/a
+  layer2a_n84: cond=0.6094 adapt=0.5574 unadapt=0.5518 max=0.5574 delta=+5.20pp repro_ok=n/a
+  layer2a_ext_n10: cond=0.5814 adapt=0.4900 unadapt=0.5814 max=0.5814 delta=+0.00pp repro_ok=n/a
+  layer2b_n20: cond=0.6619 adapt=0.6619 unadapt=0.5536 max=0.6619 delta=+0.00pp repro_ok=n/a
+
+Exit reading: a (4/4 sets within max-1pp)
+=== [01:16:19] seed sensitivity seed=46
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives)
+  Dropped 113 augmented samples with no usable labels/question
+  Training pairwise TF-IDF+LogReg on 216522 pairs (24058 positives, 192464 negatives) [role-reweighted]
+Reproduced arms: unadapted alpha=0.6, adapted alpha=0.5
+Wrote <SOURCE_REPOSITORY>/task_demand/results/e4_conditional/seed_sensitivity/metrics_by_set_seed46.json
+
+recall@10 comparison (conditional / adapted / unadapted / max):
+  layer1_holdout_n80: cond=0.7217 adapt=0.7217 unadapt=0.5442 max=0.7217 delta=+0.00pp repro_ok=n/a
+  layer2a_n84: cond=0.6444 adapt=0.5510 unadapt=0.5706 max=0.5706 delta=+7.38pp repro_ok=n/a
+  layer2a_ext_n10: cond=0.6181 adapt=0.5000 unadapt=0.6181 max=0.6181 delta=+0.00pp repro_ok=n/a
+  layer2b_n20: cond=0.6452 adapt=0.6452 unadapt=0.4702 max=0.6452 delta=+0.00pp repro_ok=n/a
+
+Exit reading: a (4/4 sets within max-1pp)
+=== [01:18:43] ALL DONE

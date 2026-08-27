@@ -1,0 +1,15 @@
+# PowerCodeBench — runtime for executing the reference solutions in benchmark.json
+# Pinned to the paper's frozen experimental environment (Supplementary, Section S6).
+# Tested with Python 3.11.
+#
+# IMPORTANT: pandas must stay < 3.0.
+#   pandapower 3.4.0 is INCOMPATIBLE with pandas 3.0, whose copy-on-write
+#   read-only Series.values buffers trigger
+#       ValueError: assignment destination is read-only
+#   during result extraction — this happens even for a plain pp.runpp() on a
+#   built-in case, before any benchmark code runs. The pins below are the exact
+#   versions used to generate and validate the ground-truth scalars.
+
+pandapower==3.4.0
+numpy==2.2.6
+pandas==2.3.3

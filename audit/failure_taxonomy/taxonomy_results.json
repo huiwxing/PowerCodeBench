@@ -1,0 +1,1306 @@
+{
+  "metadata": {
+    "n_total": 100,
+    "n_categories": 5,
+    "category_definitions": {
+      "C1_api_contract": "API contract / hallucinated callable",
+      "C2_param_misuse": "Parameter or result-table misuse",
+      "C3_workflow_logic": "Workflow / domain-logic sequencing",
+      "C4_numerical_extraction": "Numerical value or scalar extraction",
+      "C5_format_env": "Formatting / execution environment"
+    },
+    "sampling": {
+      "tiers": 4,
+      "conditions": 5,
+      "per_cell": 5,
+      "design": "Stratified 4 tiers x 5 conditions x 5 samples = 100 (deterministic round-robin)"
+    }
+  },
+  "tally": {
+    "summary": {
+      "C1_api_contract": 53,
+      "C2_param_misuse": 21,
+      "C3_workflow_logic": 19,
+      "C4_numerical_extraction": 1,
+      "C5_format_env": 6
+    },
+    "total": 100,
+    "tier_x_category": {
+      "tier1": {
+        "C1_api_contract": 21,
+        "C2_param_misuse": 1,
+        "C3_workflow_logic": 3,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "tier2": {
+        "C1_api_contract": 13,
+        "C2_param_misuse": 6,
+        "C3_workflow_logic": 6,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "tier3": {
+        "C1_api_contract": 9,
+        "C2_param_misuse": 10,
+        "C3_workflow_logic": 6,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "tier4": {
+        "C1_api_contract": 10,
+        "C2_param_misuse": 4,
+        "C3_workflow_logic": 4,
+        "C4_numerical_extraction": 1,
+        "C5_format_env": 6
+      }
+    },
+    "condition_x_category": {
+      "condA_FD": {
+        "C1_api_contract": 11,
+        "C2_param_misuse": 4,
+        "C3_workflow_logic": 2,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 3
+      },
+      "condA_FDR": {
+        "C1_api_contract": 12,
+        "C2_param_misuse": 4,
+        "C3_workflow_logic": 3,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 1
+      },
+      "condA_FDRS": {
+        "C1_api_contract": 12,
+        "C2_param_misuse": 3,
+        "C3_workflow_logic": 3,
+        "C4_numerical_extraction": 1,
+        "C5_format_env": 1
+      },
+      "condA_FX": {
+        "C1_api_contract": 15,
+        "C2_param_misuse": 4,
+        "C3_workflow_logic": 1,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "condC_FDRS": {
+        "C1_api_contract": 3,
+        "C2_param_misuse": 6,
+        "C3_workflow_logic": 10,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 1
+      }
+    },
+    "task_x_category": {
+      "comparison": {
+        "C1_api_contract": 12,
+        "C2_param_misuse": 0,
+        "C3_workflow_logic": 0,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 1
+      },
+      "comparison_opf": {
+        "C1_api_contract": 0,
+        "C2_param_misuse": 0,
+        "C3_workflow_logic": 1,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "contingency": {
+        "C1_api_contract": 1,
+        "C2_param_misuse": 0,
+        "C3_workflow_logic": 0,
+        "C4_numerical_extraction": 1,
+        "C5_format_env": 0
+      },
+      "dc_power_flow": {
+        "C1_api_contract": 0,
+        "C2_param_misuse": 2,
+        "C3_workflow_logic": 0,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "parallel": {
+        "C1_api_contract": 6,
+        "C2_param_misuse": 1,
+        "C3_workflow_logic": 3,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "pf_then_sc": {
+        "C1_api_contract": 4,
+        "C2_param_misuse": 1,
+        "C3_workflow_logic": 2,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 1
+      },
+      "power_flow": {
+        "C1_api_contract": 2,
+        "C2_param_misuse": 0,
+        "C3_workflow_logic": 1,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "sequential": {
+        "C1_api_contract": 1,
+        "C2_param_misuse": 0,
+        "C3_workflow_logic": 0,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "short_circuit_2ph": {
+        "C1_api_contract": 0,
+        "C2_param_misuse": 2,
+        "C3_workflow_logic": 1,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "short_circuit_3ph": {
+        "C1_api_contract": 3,
+        "C2_param_misuse": 2,
+        "C3_workflow_logic": 2,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 0
+      },
+      "state_estimation": {
+        "C1_api_contract": 4,
+        "C2_param_misuse": 1,
+        "C3_workflow_logic": 2,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 3
+      },
+      "time_series": {
+        "C1_api_contract": 20,
+        "C2_param_misuse": 12,
+        "C3_workflow_logic": 7,
+        "C4_numerical_extraction": 0,
+        "C5_format_env": 1
+      }
+    },
+    "dominant_tier_per_category": {
+      "C1_api_contract": [
+        "tier1",
+        21
+      ],
+      "C2_param_misuse": [
+        "tier3",
+        10
+      ],
+      "C3_workflow_logic": [
+        "tier3",
+        6
+      ],
+      "C4_numerical_extraction": [
+        "tier4",
+        1
+      ],
+      "C5_format_env": [
+        "tier4",
+        6
+      ]
+    }
+  },
+  "classifications": [
+    {
+      "sample_id": "s001",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Calls pp.read_power_system and network.load_from_csv/update/min_bus_voltage \u2014 all hallucinated APIs; real API is pn.simple_four_bus_system + run_timeseries."
+    },
+    {
+      "sample_id": "s011",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Same hallucinated pp.read_power_system and network.update/min_bus_voltage methods that don't exist in pandapower."
+    },
+    {
+      "sample_id": "s021",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condC_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.78,
+      "justification": "Executed but built wrong 2-bus network instead of loading simple_four_bus_system, used 3 steps not 24, no line disconnect \u2014 wrong workflow setup yields off ground truth."
+    },
+    {
+      "sample_id": "s031",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.9,
+      "justification": "Uses non-existent pts.ContinuousController and pts.TimeSeriesManager; DFData called with mis-shaped dict causes ValueError but the deeper defect is hallucinated API surface."
+    },
+    {
+      "sample_id": "s041",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.9,
+      "justification": "Identical to s031: pts.ContinuousController/TimeSeriesManager don't exist; DFData also misused. Proximate cause is hallucinated timeseries API."
+    },
+    {
+      "sample_id": "s051",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "ts.run_timeseries called with time_steps=integer (24) instead of an iterable/range \u2014 wrong arg type triggers KeyError: 0 inside output writer."
+    },
+    {
+      "sample_id": "s061",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.8,
+      "justification": "Passed unknown std_type string '284-AL1/30-ST1A 20.0' to pp.create_line \u2014 wrong parameter value for an existing API call."
+    },
+    {
+      "sample_id": "s071",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condC_FDRS",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.82,
+      "justification": "Executed but installed shunt AFTER state estimation and used wrong sign/value (+10 vs ref -6 at bus 8); workflow ordering and target-bus logic wrong, not API misuse."
+    },
+    {
+      "sample_id": "s081",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FDR",
+      "task": "short_circuit_3ph",
+      "network": "cigre_hv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls nw.cigre_network_hv which doesn't exist; correct API is pn.create_cigre_network_hv \u2014 hallucinated module attribute."
+    },
+    {
+      "sample_id": "s091",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FX",
+      "task": "short_circuit_2ph",
+      "network": "case33bw",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.92,
+      "justification": "Indexes net.res_bus_sc['ikss_2ph'] \u2014 column does not exist; pandapower returns 'ikss_ka' regardless of fault type. Wrong column name on a valid result table."
+    },
+    {
+      "sample_id": "s002",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.9,
+      "justification": "Calls pp.from_json('simple_4_bus.json') (nonexistent file) instead of pn.simple_four_bus_system(); wrong API path for loading built-in network."
+    },
+    {
+      "sample_id": "s012",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.9,
+      "justification": "Same as s002: uses pp.from_json with hallucinated file path instead of pandapower.networks.simple_four_bus_system() loader."
+    },
+    {
+      "sample_id": "s022",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condC_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls pp.disconnect (nonexistent attribute); pandapower has no module-level disconnect function. Correct API is net.line.at[idx,'in_service']=False."
+    },
+    {
+      "sample_id": "s032",
+      "model": "Qwen2.5-Coder-32B",
+      "model_tier": "tier2",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.8,
+      "justification": "DataFrame shape mismatch in DFData: passes 1D (24,) array with columns=net.load.index (2 loads); wrong-arg ValueError on valid API call."
+    },
+    {
+      "sample_id": "s042",
+      "model": "Qwen2.5-Coder-32B",
+      "model_tier": "tier2",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.72,
+      "justification": "Proximate cause of the KeyError: None at ts.run_timeseries is upstream ConstControl misuse: profile_name kwarg was omitted."
+    },
+    {
+      "sample_id": "s052",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FD",
+      "task": "dc_power_flow",
+      "network": "case145",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.85,
+      "justification": "Filters net.load by bus==35 (returns empty), then indexes [0]; misuses load DataFrame (load index vs bus index)."
+    },
+    {
+      "sample_id": "s062",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.7,
+      "justification": "Executes but result NaN: tiles a single scaling vector across loads instead of independent draws per load; logic produces divergent PF yielding nan_or_inf."
+    },
+    {
+      "sample_id": "s072",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condC_FDRS",
+      "task": "short_circuit_3ph",
+      "network": "kerber_dorfnetz",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls pn.create_kerber_dorf (nonexistent); correct API is pn.create_kerber_dorfnetz."
+    },
+    {
+      "sample_id": "s082",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FDR",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C5_format_env",
+      "confidence": 0.9,
+      "justification": "SyntaxError: unclosed '{' at line 122 \u2014 generated code truncated/template artifact."
+    },
+    {
+      "sample_id": "s092",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FX",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls pp.create_measurements_from_data (nonexistent module attribute); real API is pp.create_measurement per-measurement."
+    },
+    {
+      "sample_id": "s003",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FD",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Calls pp.load_network() which doesn't exist on pandapower module."
+    },
+    {
+      "sample_id": "s013",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDRS",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Identical to s003: pp.load_network is a hallucinated module attribute."
+    },
+    {
+      "sample_id": "s023",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condC_FDRS",
+      "task": "power_flow",
+      "network": "cigre_lv",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.85,
+      "justification": "Skipped required pp.runpp(net) before reading net.res_bus['vm_pu']; result table empty."
+    },
+    {
+      "sample_id": "s033",
+      "model": "Qwen2.5-Coder-7B",
+      "model_tier": "tier2",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.96,
+      "justification": "pts.DataSequence is hallucinated; real timeseries API uses DFData from pandapower.timeseries."
+    },
+    {
+      "sample_id": "s043",
+      "model": "Qwen2.5-Coder-7B",
+      "model_tier": "tier2",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.96,
+      "justification": "Wrong import path: pp.create_cigre_network_mv doesn't exist on top-level pandapower."
+    },
+    {
+      "sample_id": "s053",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FD",
+      "task": "parallel",
+      "network": "case9",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.82,
+      "justification": "Missing required setup before calc_sc: ext_grid s_sc_max_mva, rx_max etc. not configured."
+    },
+    {
+      "sample_id": "s063",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FDRS",
+      "task": "parallel",
+      "network": "case3120sp",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Hallucinated function name pn.case_3120bw; correct is pn.case3120sp."
+    },
+    {
+      "sample_id": "s073",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condC_FDRS",
+      "task": "short_circuit_3ph",
+      "network": "case89pegase",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.7,
+      "justification": "Calls calc_sc with case='min' while reference expects case='max'."
+    },
+    {
+      "sample_id": "s083",
+      "model": "Llama-3.1-405B",
+      "model_tier": "tier4",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.75,
+      "justification": "Loaded wrong network (example_simple vs simple_four_bus_system), disconnected line idx 0 not 1."
+    },
+    {
+      "sample_id": "s093",
+      "model": "Llama-3.1-405B",
+      "model_tier": "tier4",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.75,
+      "justification": "Same as s083: wrong network (example_simple), wrong line index disconnected, ad-hoc loop."
+    },
+    {
+      "sample_id": "s004",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FD",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls pp.read_pandapower which doesn't exist; also pp.run_powerflow/pp.shunt/pp.get_bus hallucinated."
+    },
+    {
+      "sample_id": "s014",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDRS",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Identical to s004: pp.read_pandapower doesn't exist."
+    },
+    {
+      "sample_id": "s024",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condC_FDRS",
+      "task": "dc_power_flow",
+      "network": "case145",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.9,
+      "justification": "APIs (case145, rundcpp) correct; KeyError 'bus' because net.res_bus has no 'bus' column."
+    },
+    {
+      "sample_id": "s034",
+      "model": "Llama-3.1-8B",
+      "model_tier": "tier2",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pp.create_ppc doesn't exist."
+    },
+    {
+      "sample_id": "s044",
+      "model": "Llama-3.1-8B",
+      "model_tier": "tier2",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.9,
+      "justification": "KeyError 'p0_mw' \u2014 net.load has column 'p_mw', not 'p0_mw'."
+    },
+    {
+      "sample_id": "s054",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FD",
+      "task": "comparison",
+      "network": "simple_mv_open_ring",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "ImportError: cannot import 'simple_mv_open_ring' from pandapower.networks."
+    },
+    {
+      "sample_id": "s064",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FDRS",
+      "task": "parallel",
+      "network": "case9",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.7,
+      "justification": "calc_sc fails AttributeError 'vn_kv' on gen DataFrame \u2014 missing required SC setup."
+    },
+    {
+      "sample_id": "s074",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condC_FDRS",
+      "task": "pf_then_sc",
+      "network": "case14",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "IndexError because filter net.bus['name']=='6' returns empty."
+    },
+    {
+      "sample_id": "s084",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FDR",
+      "task": "power_flow",
+      "network": "cigre_lv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "TypeError 'module' object is not callable: nw.cigre_networks()."
+    },
+    {
+      "sample_id": "s094",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FX",
+      "task": "power_flow",
+      "network": "cigre_lv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: module pandapower.networks has no attribute cigre_lv_network."
+    },
+    {
+      "sample_id": "s005",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FD",
+      "task": "pf_then_sc",
+      "network": "synth_volt_ctrl_lv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Calls pp.load_network() which doesn't exist."
+    },
+    {
+      "sample_id": "s015",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDRS",
+      "task": "pf_then_sc",
+      "network": "synth_volt_ctrl_lv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Same defect as s005: pp.load_network hallucinated."
+    },
+    {
+      "sample_id": "s025",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condC_FDRS",
+      "task": "pf_then_sc",
+      "network": "synth_volt_ctrl_lv",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.9,
+      "justification": "Loaded net correctly but skipped pp.runpp and the entire short-circuit calc_sc step."
+    },
+    {
+      "sample_id": "s035",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FDR",
+      "task": "parallel",
+      "network": "case2848rte",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.85,
+      "justification": "Executed but loaded wrong network (cigre_mv instead of case2848rte)."
+    },
+    {
+      "sample_id": "s045",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FX",
+      "task": "parallel",
+      "network": "case9",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "ImportError: 'shortcircuit' is not importable from pandapower.shortcircuit; real is calc_sc."
+    },
+    {
+      "sample_id": "s055",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FD",
+      "task": "sequential",
+      "network": "case6470rte",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pn.case6470_rte() doesn't exist; correct API is pn.case6470rte()."
+    },
+    {
+      "sample_id": "s065",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "case5",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "AttributeError on '.iloc' applied to numpy float64 \u2014 wrong indexing/result-shape misuse."
+    },
+    {
+      "sample_id": "s075",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condC_FDRS",
+      "task": "pf_then_sc",
+      "network": "case6ww",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.8,
+      "justification": "Code ran but omitted use_pre_fault_voltage=True (superposition) and tripped wrong gen."
+    },
+    {
+      "sample_id": "s085",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "GBreducednetwork",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pn.create_gb_reduced_network() doesn't exist."
+    },
+    {
+      "sample_id": "s095",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FX",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: nw.kerber_rural_overhead_lv_10kv() doesn't exist."
+    },
+    {
+      "sample_id": "s006",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Calls pp.read_power_system which doesn't exist."
+    },
+    {
+      "sample_id": "s016",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Same as s006: pp.read_power_system nonexistent."
+    },
+    {
+      "sample_id": "s026",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.8,
+      "justification": "Hallucinates pts.ContinuousController and pts.TimeSeriesManager."
+    },
+    {
+      "sample_id": "s036",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.8,
+      "justification": "Identical to s026: pts.ContinuousController/TimeSeriesManager don't exist."
+    },
+    {
+      "sample_id": "s046",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condC_FDRS",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.85,
+      "justification": "Skips creating capacitive shunt at lowest-V bus and omits power-injection measurements."
+    },
+    {
+      "sample_id": "s056",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "Passes invalid std_type string '184.00 MVA 380 kV' to pp.create_line."
+    },
+    {
+      "sample_id": "s066",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "Same: pp.create_line called with invalid std_type '184.00 MVA'."
+    },
+    {
+      "sample_id": "s076",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FD",
+      "task": "short_circuit_2ph",
+      "network": "case33bw",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.9,
+      "justification": "KeyError 'ikss_2ph': wrong result-table column."
+    },
+    {
+      "sample_id": "s086",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FDRS",
+      "task": "short_circuit_3ph",
+      "network": "cigre_hv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "nw.cigre_hv doesn't exist; correct API is pn.create_cigre_network_hv."
+    },
+    {
+      "sample_id": "s096",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condC_FDRS",
+      "task": "short_circuit_2ph",
+      "network": "case33bw",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.8,
+      "justification": "Executed but match=False because s_sc_max_mva=100 (vs reference 1000)."
+    },
+    {
+      "sample_id": "s007",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.85,
+      "justification": "Calls pp.from_json on nonexistent file and uses pp.disconnect (no such API)."
+    },
+    {
+      "sample_id": "s017",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FX",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.85,
+      "justification": "Same as s007: pp.from_json with nonexistent path plus pp.disconnect."
+    },
+    {
+      "sample_id": "s027",
+      "model": "Qwen2.5-Coder-32B",
+      "model_tier": "tier2",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "KeyError None in run_timeseries: ConstControl element_index mismatch."
+    },
+    {
+      "sample_id": "s037",
+      "model": "Qwen2.5-Coder-32B",
+      "model_tier": "tier2",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.85,
+      "justification": "DataFrame shape mismatch: passed 1-column array but columns=net.load.index (2 loads)."
+    },
+    {
+      "sample_id": "s047",
+      "model": "Qwen2.5-Coder-32B",
+      "model_tier": "tier2",
+      "condition": "condC_FDRS",
+      "task": "short_circuit_3ph",
+      "network": "cigre_hv",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.7,
+      "justification": "Doubled the largest load causing LoadflowNotConverged."
+    },
+    {
+      "sample_id": "s057",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FDR",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.7,
+      "justification": "Wrong element index passed to API: 'line 1' interpreted as 1-indexed (line 0 disabled)."
+    },
+    {
+      "sample_id": "s067",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FX",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pp.create_measurements does not exist; real is pp.create_measurement."
+    },
+    {
+      "sample_id": "s077",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FD",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C5_format_env",
+      "confidence": 0.9,
+      "justification": "SyntaxError: unterminated string literal at line 132."
+    },
+    {
+      "sample_id": "s087",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FDRS",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C5_format_env",
+      "confidence": 0.9,
+      "justification": "SyntaxError: unterminated string literal at line 137."
+    },
+    {
+      "sample_id": "s097",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condC_FDRS",
+      "task": "state_estimation",
+      "network": "case9",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.85,
+      "justification": "pp.create_measurement positional args wrong."
+    },
+    {
+      "sample_id": "s008",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDR",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "AttributeError: pp.load_network does not exist."
+    },
+    {
+      "sample_id": "s018",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FX",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Same as s008: AttributeError on pp.load_network."
+    },
+    {
+      "sample_id": "s028",
+      "model": "Qwen2.5-Coder-7B",
+      "model_tier": "tier2",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pandapower.timeseries has no attribute DataSequence."
+    },
+    {
+      "sample_id": "s038",
+      "model": "Qwen2.5-Coder-7B",
+      "model_tier": "tier2",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pts.DataSequence does not exist."
+    },
+    {
+      "sample_id": "s048",
+      "model": "Qwen2.5-Coder-7B",
+      "model_tier": "tier2",
+      "condition": "condC_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.8,
+      "justification": "Executed but used wrong load profile: deterministic linear ramp instead of np.random.uniform with seed=7518."
+    },
+    {
+      "sample_id": "s058",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FDR",
+      "task": "comparison_opf",
+      "network": "case24_ieee_rts",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.78,
+      "justification": "Modified p_mw by *1.2 instead of setting scaling=1.74 for peak-demand."
+    },
+    {
+      "sample_id": "s068",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FX",
+      "task": "parallel",
+      "network": "cigre_hv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pandapower.networks has no attribute case_ieee_european."
+    },
+    {
+      "sample_id": "s078",
+      "model": "Llama-3.1-405B",
+      "model_tier": "tier4",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C5_format_env",
+      "confidence": 0.85,
+      "justification": "Parser error cannot_parse_float: printed 'Minimum bus voltage (p.u.): 1.02' with prefix text."
+    },
+    {
+      "sample_id": "s088",
+      "model": "Llama-3.1-405B",
+      "model_tier": "tier4",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.72,
+      "justification": "Wrong network loaded (example_simple) + wrong line disconnected \u2192 topology fails ts.run_timeseries with KeyError 'baseMVA'."
+    },
+    {
+      "sample_id": "s098",
+      "model": "Llama-3.1-405B",
+      "model_tier": "tier4",
+      "condition": "condC_FDRS",
+      "task": "short_circuit_3ph",
+      "network": "cigre_hv",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "ValueError on pp.runpp: passed unsupported kwarg length_km_6a_6b to create_cigre_network_hv."
+    },
+    {
+      "sample_id": "s009",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDR",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pp.read_pandapower does not exist."
+    },
+    {
+      "sample_id": "s019",
+      "model": "Qwen2.5-Coder-1.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FX",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Identical defect to s009: pp.read_pandapower nonexistent."
+    },
+    {
+      "sample_id": "s029",
+      "model": "Llama-3.1-8B",
+      "model_tier": "tier2",
+      "condition": "condA_FD",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.8,
+      "justification": "Executed but wrong workflow: creates new loads instead of scaling existing."
+    },
+    {
+      "sample_id": "s039",
+      "model": "Llama-3.1-8B",
+      "model_tier": "tier2",
+      "condition": "condA_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pp.create_ppc does not exist."
+    },
+    {
+      "sample_id": "s049",
+      "model": "Llama-3.1-8B",
+      "model_tier": "tier2",
+      "condition": "condC_FDRS",
+      "task": "time_series",
+      "network": "simple_four_bus",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.8,
+      "justification": "KeyError on net.line[1]['in_service']: wrong DataFrame indexing pattern."
+    },
+    {
+      "sample_id": "s059",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FDR",
+      "task": "parallel",
+      "network": "case2848rte",
+      "category_id": "C2_param_misuse",
+      "confidence": 0.75,
+      "justification": "calc_sc fails AttributeError on DataFrame.vn_kv because gen/sgen lacked required SC parameters."
+    },
+    {
+      "sample_id": "s069",
+      "model": "gpt-oss-120b",
+      "model_tier": "tier3",
+      "condition": "condA_FX",
+      "task": "comparison",
+      "network": "simple_mv_open_ring",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pn.simple_mv does not exist."
+    },
+    {
+      "sample_id": "s079",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FD",
+      "task": "comparison",
+      "network": "simple_mv_open_ring",
+      "category_id": "C5_format_env",
+      "confidence": 0.9,
+      "justification": "Executed correctly but printed formatted string parser cannot extract as float."
+    },
+    {
+      "sample_id": "s089",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condA_FDRS",
+      "task": "contingency",
+      "network": "case145",
+      "category_id": "C4_numerical_extraction",
+      "confidence": 0.7,
+      "justification": "APIs (case145, run_contingency) correct; code iterates contingency_results dict for vm_pu instead of reading net.res_bus['min_vm_pu'].min() per reference \u2014 wrong aggregation/extraction field yields 0.915 vs 0.0 ground truth."
+    },
+    {
+      "sample_id": "s099",
+      "model": "Qwen3-Coder-480B",
+      "model_tier": "tier4",
+      "condition": "condC_FDRS",
+      "task": "parallel",
+      "network": "kerber_vorstadtnetz_k1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "AttributeError: pp.networks.kerber_suburban_cable_10 does not exist."
+    },
+    {
+      "sample_id": "s010",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FDR",
+      "task": "pf_then_sc",
+      "network": "synth_volt_ctrl_lv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.98,
+      "justification": "Calls nonexistent pp.load_network and fictitious .apply_modifications/.run_analysis methods."
+    },
+    {
+      "sample_id": "s020",
+      "model": "Qwen2.5-Coder-0.5B",
+      "model_tier": "tier1",
+      "condition": "condA_FX",
+      "task": "pf_then_sc",
+      "network": "synth_volt_ctrl_lv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.98,
+      "justification": "Identical to s010: hallucinated pp.load_network and chained methods."
+    },
+    {
+      "sample_id": "s030",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FD",
+      "task": "parallel",
+      "network": "cigre_hv",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls pn.cigre_mv() which doesn't exist; real is pn.create_cigre_network_hv."
+    },
+    {
+      "sample_id": "s040",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condA_FDRS",
+      "task": "state_estimation",
+      "network": "case30",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls hallucinated pe.add_noise_to_measurements."
+    },
+    {
+      "sample_id": "s050",
+      "model": "Qwen2.5-Coder-14B",
+      "model_tier": "tier2",
+      "condition": "condC_FDRS",
+      "task": "short_circuit_3ph",
+      "network": "case24_ieee_rts",
+      "category_id": "C3_workflow_logic",
+      "confidence": 0.75,
+      "justification": "Disables all generators BEFORE runpp, causing LoadflowNotConverged."
+    },
+    {
+      "sample_id": "s060",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FDR",
+      "task": "state_estimation",
+      "network": "GBreducednetwork",
+      "category_id": "C1_api_contract",
+      "confidence": 0.95,
+      "justification": "Calls hallucinated pn.create_synthetic_voltage_controlled_network."
+    },
+    {
+      "sample_id": "s070",
+      "model": "Llama-3.1-70B",
+      "model_tier": "tier3",
+      "condition": "condA_FX",
+      "task": "contingency",
+      "network": "kerber_dorfnetz",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Calls nonexistent pp.contingency_analysis; correct is pandapower.contingency.run_contingency."
+    },
+    {
+      "sample_id": "s080",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FD",
+      "task": "comparison",
+      "network": "kerber_landnetz_f1",
+      "category_id": "C1_api_contract",
+      "confidence": 0.9,
+      "justification": "Calls hallucinated nw.create_kerber_rural_overhead_lv_network."
+    },
+    {
+      "sample_id": "s090",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condA_FDRS",
+      "task": "parallel",
+      "network": "case3120sp",
+      "category_id": "C1_api_contract",
+      "confidence": 0.97,
+      "justification": "Calls nonexistent pn.create_cigre_3120 for Polish 3120-bus grid."
+    },
+    {
+      "sample_id": "s100",
+      "model": "Qwen3-Coder-Next",
+      "model_tier": "tier4",
+      "condition": "condC_FDRS",
+      "task": "pf_then_sc",
+      "network": "case300",
+      "category_id": "C5_format_env",
+      "confidence": 0.7,
+      "justification": "Hard 75s execution timeout on case300 SC calc; runtime/environment limit hit."
+    }
+  ]
+}

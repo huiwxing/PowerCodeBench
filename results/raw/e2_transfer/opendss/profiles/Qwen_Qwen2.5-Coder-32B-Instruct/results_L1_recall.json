@@ -1,0 +1,1910 @@
+[
+  {
+    "probe_id": "L1_5d58fd63",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Solve\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Solution.Solve",
+      "gt_path": "opendssdirect.Solution.Solve",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Solution_Solve"
+    }
+  },
+  {
+    "probe_id": "L1_30d85a56",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Converged\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Solution.Converged",
+      "gt_path": "opendssdirect.Solution.Converged",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Solution_Converged"
+    }
+  },
+  {
+    "probe_id": "L1_3daa9126",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Mode\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Solution.Mode",
+      "gt_path": "opendssdirect.Solution.Mode",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_Mode"
+    }
+  },
+  {
+    "probe_id": "L1_da243a45",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.MaxIterations\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Solution.MaxIterations",
+      "gt_path": "opendssdirect.Solution.MaxIterations",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_MaxIterations"
+    }
+  },
+  {
+    "probe_id": "L1_8c8042aa",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Algorithm\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Solution.Algorithm",
+      "gt_path": "opendssdirect.Solution.Algorithm",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_Algorithm"
+    }
+  },
+  {
+    "probe_id": "L1_609f4644",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.TotalPower\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Circuit.TotalPower",
+      "gt_path": "opendssdirect.Circuit.TotalPower",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Circuit_TotalPower"
+    }
+  },
+  {
+    "probe_id": "L1_3fda0e91",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.AllBusMagPu\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Circuit.AllBusMagPu",
+      "gt_path": "opendssdirect.Circuit.AllBusMagPu",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Circuit_AllBusMagPu"
+    }
+  },
+  {
+    "probe_id": "L1_0a7b486d",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.AllBusNames\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Circuit.AllBusNames",
+      "gt_path": "opendssdirect.Circuit.AllBusNames",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Circuit_AllBusNames"
+    }
+  },
+  {
+    "probe_id": "L1_e4477a29",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.Losses\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Circuit.Losses",
+      "gt_path": "opendssdirect.Circuit.Losses",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Circuit_Losses"
+    }
+  },
+  {
+    "probe_id": "L1_5144c52f",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.SetActiveElement\", \"required_parameters\": [{\"name\": \"FullName\", \"type\": \"str\"}]}",
+      "predicted_path": "opendssdirect.Circuit.SetActiveElement",
+      "gt_path": "opendssdirect.Circuit.SetActiveElement",
+      "gt_required_params": [
+        "FullName"
+      ],
+      "predicted_required_params": [
+        "FullName"
+      ],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Circuit_SetActiveElement"
+    }
+  },
+  {
+    "probe_id": "L1_6563d1e0",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 0.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.SetActiveBus\", \"required_parameters\": [{\"name\": \"Bus\", \"type\": \"str\"}]}",
+      "predicted_path": "opendssdirect.Circuit.SetActiveBus",
+      "gt_path": "opendssdirect.Circuit.SetActiveBus",
+      "gt_required_params": [
+        "BusName"
+      ],
+      "predicted_required_params": [
+        "Bus"
+      ],
+      "hallucinated_params": [
+        "Bus"
+      ],
+      "missed_params": [
+        "BusName"
+      ],
+      "function_name": "Circuit_SetActiveBus"
+    }
+  },
+  {
+    "probe_id": "L1_f351334e",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.Voltages\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Bus.Voltages",
+      "gt_path": "opendssdirect.Bus.Voltages",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Bus_Voltages"
+    }
+  },
+  {
+    "probe_id": "L1_b66585c9",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.puVmagAngle\", \"required_parameters\": [{\"name\": \"Idx\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Bus.puVmagAngle",
+      "gt_path": "opendssdirect.Bus.puVmagAngle",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Idx"
+      ],
+      "hallucinated_params": [
+        "Idx"
+      ],
+      "missed_params": [],
+      "function_name": "Bus_puVmagAngle"
+    }
+  },
+  {
+    "probe_id": "L1_f8c3e5b1",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.kVBase\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Bus.kVBase",
+      "gt_path": "opendssdirect.Bus.kVBase",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Bus_kVBase"
+    }
+  },
+  {
+    "probe_id": "L1_bf32337f",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.Isc\", \"required_parameters\": [{\"name\": \"BusIndex\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Bus.Isc",
+      "gt_path": "opendssdirect.Bus.Isc",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "BusIndex"
+      ],
+      "hallucinated_params": [
+        "BusIndex"
+      ],
+      "missed_params": [],
+      "function_name": "Bus_Isc"
+    }
+  },
+  {
+    "probe_id": "L1_06b85ad9",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CktElement.Powers\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.CktElement.Powers",
+      "gt_path": "opendssdirect.CktElement.Powers",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "CktElement_Powers"
+    }
+  },
+  {
+    "probe_id": "L1_3ad423da",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CktElement.Currents\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.CktElement.Currents",
+      "gt_path": "opendssdirect.CktElement.Currents",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "CktElement_Currents"
+    }
+  },
+  {
+    "probe_id": "L1_409eb67f",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 0.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Text.Command\", \"required_parameters\": [{\"name\": \"cmd\", \"type\": \"str\"}]}",
+      "predicted_path": "opendssdirect.Text.Command",
+      "gt_path": "opendssdirect.Text.Command",
+      "gt_required_params": [
+        "value"
+      ],
+      "predicted_required_params": [
+        "cmd"
+      ],
+      "hallucinated_params": [
+        "cmd"
+      ],
+      "missed_params": [
+        "value"
+      ],
+      "function_name": "Text_Command"
+    }
+  },
+  {
+    "probe_id": "L1_63ceb86e",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Text.Result\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Text.Result",
+      "gt_path": "opendssdirect.Text.Result",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Text_Result"
+    }
+  },
+  {
+    "probe_id": "L1_8173b5a7",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Loads.kW\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Loads.kW",
+      "gt_path": "opendssdirect.Loads.kW",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Loads_kW"
+    }
+  },
+  {
+    "probe_id": "L1_265980aa",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Lines.Length\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Lines.Length",
+      "gt_path": "opendssdirect.Lines.Length",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Lines_Length"
+    }
+  },
+  {
+    "probe_id": "L1_f64ae32a",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Generators.kW\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Generators.kW",
+      "gt_path": "opendssdirect.Generators.kW",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Generators_kW"
+    }
+  },
+  {
+    "probe_id": "L1_c3656f3b",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Capacitors.AddStep\", \"required_parameters\": [{\"name\": \"Step\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Capacitors.AddStep",
+      "gt_path": "opendssdirect.Capacitors.AddStep",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Step"
+      ],
+      "hallucinated_params": [
+        "Step"
+      ],
+      "missed_params": [],
+      "function_name": "Capacitors_AddStep"
+    }
+  },
+  {
+    "probe_id": "L1_3e8cbb7c",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CapControls.Mode\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.CapControls.Mode",
+      "gt_path": "opendssdirect.CapControls.Mode",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "CapControls_Mode"
+    }
+  },
+  {
+    "probe_id": "L1_37d537d2",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.RegControls.TapNumber\", \"required_parameters\": [{\"name\": \"Argument\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.RegControls.TapNumber",
+      "gt_path": "opendssdirect.RegControls.TapNumber",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Argument"
+      ],
+      "hallucinated_params": [
+        "Argument"
+      ],
+      "missed_params": [],
+      "function_name": "RegControls_TapNumber"
+    }
+  },
+  {
+    "probe_id": "L1_8320d849",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Iterations\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Solution.Iterations",
+      "gt_path": "opendssdirect.Solution.Iterations",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Solution_Iterations"
+    }
+  },
+  {
+    "probe_id": "L1_ef38ef14",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Number\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Solution.Number",
+      "gt_path": "opendssdirect.Solution.Number",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Solution_Number"
+    }
+  },
+  {
+    "probe_id": "L1_570c8adc",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.LoadMult\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Solution.LoadMult",
+      "gt_path": "opendssdirect.Solution.LoadMult",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_LoadMult"
+    }
+  },
+  {
+    "probe_id": "L1_f2bd2eb4",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.ControlMode\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Solution.ControlMode",
+      "gt_path": "opendssdirect.Solution.ControlMode",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_ControlMode"
+    }
+  },
+  {
+    "probe_id": "L1_1ceba710",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Convergence\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Solution.Convergence",
+      "gt_path": "opendssdirect.Solution.Convergence",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Solution_Convergence"
+    }
+  },
+  {
+    "probe_id": "L1_d314f7a4",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.Frequency\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Solution.Frequency",
+      "gt_path": "opendssdirect.Solution.Frequency",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Solution_Frequency"
+    }
+  },
+  {
+    "probe_id": "L1_6528c951",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.StepSize\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Solution.StepSize",
+      "gt_path": "opendssdirect.Solution.StepSize",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_StepSize"
+    }
+  },
+  {
+    "probe_id": "L1_253f09b7",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.TotalIterations\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Solution.TotalIterations",
+      "gt_path": "opendssdirect.Solution.TotalIterations",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Solution_TotalIterations"
+    }
+  },
+  {
+    "probe_id": "L1_1eb035a0",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.MaxControlIterations\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Solution.MaxControlIterations",
+      "gt_path": "opendssdirect.Solution.MaxControlIterations",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_MaxControlIterations"
+    }
+  },
+  {
+    "probe_id": "L1_b5ed6b05",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Solution.LoadModel\", \"required_parameters\": [{\"name\": \"Model\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Solution.LoadModel",
+      "gt_path": "opendssdirect.Solution.LoadModel",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Model"
+      ],
+      "hallucinated_params": [
+        "Model"
+      ],
+      "missed_params": [],
+      "function_name": "Solution_LoadModel"
+    }
+  },
+  {
+    "probe_id": "L1_06c72ff6",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.AllNodeNames\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Circuit.AllNodeNames",
+      "gt_path": "opendssdirect.Circuit.AllNodeNames",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Circuit_AllNodeNames"
+    }
+  },
+  {
+    "probe_id": "L1_a0c96979",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Circuit.LineLosses\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Circuit.LineLosses",
+      "gt_path": "opendssdirect.Circuit.LineLosses",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Circuit_LineLosses"
+    }
+  },
+  {
+    "probe_id": "L1_28161356",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CktElement.Losses\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.CktElement.Losses",
+      "gt_path": "opendssdirect.CktElement.Losses",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "CktElement_Losses"
+    }
+  },
+  {
+    "probe_id": "L1_b772658e",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 0.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 0.0,
+      "overall": 0.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Meters.Monitors_Channel\", \"required_parameters\": [{\"name\": \"Channel\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Meters.Monitors_Channel",
+      "gt_path": "opendssdirect.Monitors.Channel",
+      "gt_required_params": [
+        "index"
+      ],
+      "predicted_required_params": [
+        "Channel"
+      ],
+      "hallucinated_params": [
+        "Channel"
+      ],
+      "missed_params": [
+        "index"
+      ],
+      "function_name": "Monitors_Channel"
+    }
+  },
+  {
+    "probe_id": "L1_9d6b5e99",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Meters.RegisterValues\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Meters.RegisterValues",
+      "gt_path": "opendssdirect.Meters.RegisterValues",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Meters_RegisterValues"
+    }
+  },
+  {
+    "probe_id": "L1_35f1b7d9",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Loads.kvar\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Loads.kvar",
+      "gt_path": "opendssdirect.Loads.kvar",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Loads_kvar"
+    }
+  },
+  {
+    "probe_id": "L1_cadbda57",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Loads.PF\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Loads.PF",
+      "gt_path": "opendssdirect.Loads.PF",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Loads_PF"
+    }
+  },
+  {
+    "probe_id": "L1_b2bb6eff",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Loads.Name\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Loads.Name",
+      "gt_path": "opendssdirect.Loads.Name",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Loads_Name"
+    }
+  },
+  {
+    "probe_id": "L1_f29224e9",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Lines.R1\", \"required_parameters\": [{\"name\": \"Argument\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Lines.R1",
+      "gt_path": "opendssdirect.Lines.R1",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Argument"
+      ],
+      "hallucinated_params": [
+        "Argument"
+      ],
+      "missed_params": [],
+      "function_name": "Lines_R1"
+    }
+  },
+  {
+    "probe_id": "L1_03097ace",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Lines.Bus1\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Lines.Bus1",
+      "gt_path": "opendssdirect.Lines.Bus1",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Lines_Bus1"
+    }
+  },
+  {
+    "probe_id": "L1_a0b636fc",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Transformers.Tap\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Transformers.Tap",
+      "gt_path": "opendssdirect.Transformers.Tap",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Transformers_Tap"
+    }
+  },
+  {
+    "probe_id": "L1_54ad038d",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Transformers.kVA\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Transformers.kVA",
+      "gt_path": "opendssdirect.Transformers.kVA",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Transformers_kVA"
+    }
+  },
+  {
+    "probe_id": "L1_3e433925",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Transformers.NumWindings\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Transformers.NumWindings",
+      "gt_path": "opendssdirect.Transformers.NumWindings",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Transformers_NumWindings"
+    }
+  },
+  {
+    "probe_id": "L1_5a31bb09",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Transformers.Wdg\", \"required_parameters\": [{\"name\": \"Idx\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Transformers.Wdg",
+      "gt_path": "opendssdirect.Transformers.Wdg",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Idx"
+      ],
+      "hallucinated_params": [
+        "Idx"
+      ],
+      "missed_params": [],
+      "function_name": "Transformers_Wdg"
+    }
+  },
+  {
+    "probe_id": "L1_b21b2718",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Vsources.PU\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.Vsources.PU",
+      "gt_path": "opendssdirect.Vsources.PU",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Vsources_PU"
+    }
+  },
+  {
+    "probe_id": "L1_9c026cdc",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Vsources.BasekV\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Vsources.BasekV",
+      "gt_path": "opendssdirect.Vsources.BasekV",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Vsources_BasekV"
+    }
+  },
+  {
+    "probe_id": "L1_21fd705e",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Capacitors.States\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Capacitors.States",
+      "gt_path": "opendssdirect.Capacitors.States",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Capacitors_States"
+    }
+  },
+  {
+    "probe_id": "L1_e0a5baca",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Capacitors.NumSteps\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Capacitors.NumSteps",
+      "gt_path": "opendssdirect.Capacitors.NumSteps",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Capacitors_NumSteps"
+    }
+  },
+  {
+    "probe_id": "L1_178db169",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Capacitors.AvailableSteps\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Capacitors.AvailableSteps",
+      "gt_path": "opendssdirect.Capacitors.AvailableSteps",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Capacitors_AvailableSteps"
+    }
+  },
+  {
+    "probe_id": "L1_c2469db1",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Capacitors.SubtractStep\", \"required_parameters\": [{\"name\": \"CapacitorName\", \"type\": \"str\"}]}",
+      "predicted_path": "opendssdirect.Capacitors.SubtractStep",
+      "gt_path": "opendssdirect.Capacitors.SubtractStep",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "CapacitorName"
+      ],
+      "hallucinated_params": [
+        "CapacitorName"
+      ],
+      "missed_params": [],
+      "function_name": "Capacitors_SubtractStep"
+    }
+  },
+  {
+    "probe_id": "L1_785b0dd8",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CapControls.Capacitor\", \"required_parameters\": [{\"name\": \"Capacitor\", \"type\": \"str\"}]}",
+      "predicted_path": "opendssdirect.CapControls.Capacitor",
+      "gt_path": "opendssdirect.CapControls.Capacitor",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Capacitor"
+      ],
+      "hallucinated_params": [
+        "Capacitor"
+      ],
+      "missed_params": [],
+      "function_name": "CapControls_Capacitor"
+    }
+  },
+  {
+    "probe_id": "L1_e0b830ec",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CapControls.ONSetting\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.CapControls.ONSetting",
+      "gt_path": "opendssdirect.CapControls.ONSetting",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "CapControls_ONSetting"
+    }
+  },
+  {
+    "probe_id": "L1_a1b1c877",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CapControls.OFFSetting\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.CapControls.OFFSetting",
+      "gt_path": "opendssdirect.CapControls.OFFSetting",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "CapControls_OFFSetting"
+    }
+  },
+  {
+    "probe_id": "L1_fc21b3bc",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CapControls.Name\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.CapControls.Name",
+      "gt_path": "opendssdirect.CapControls.Name",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "CapControls_Name"
+    }
+  },
+  {
+    "probe_id": "L1_c877ba29",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.RegControls.ForwardVreg\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.RegControls.ForwardVreg",
+      "gt_path": "opendssdirect.RegControls.ForwardVreg",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "RegControls_ForwardVreg"
+    }
+  },
+  {
+    "probe_id": "L1_a01509c4",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.RegControls.ForwardBand\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"float\"}]}",
+      "predicted_path": "opendssdirect.RegControls.ForwardBand",
+      "gt_path": "opendssdirect.RegControls.ForwardBand",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "RegControls_ForwardBand"
+    }
+  },
+  {
+    "probe_id": "L1_d4d0729e",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.RegControls.MaxTapChange\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.RegControls.MaxTapChange",
+      "gt_path": "opendssdirect.RegControls.MaxTapChange",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "RegControls_MaxTapChange"
+    }
+  },
+  {
+    "probe_id": "L1_b862c624",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.RegControls.Winding\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.RegControls.Winding",
+      "gt_path": "opendssdirect.RegControls.Winding",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "RegControls_Winding"
+    }
+  },
+  {
+    "probe_id": "L1_6733a3fd",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 0.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Zsc1.Bus_Zsc1\", \"required_parameters\": [{\"name\": \"Bus\", \"type\": \"str\"}]}",
+      "predicted_path": "opendssdirect.Zsc1.Bus_Zsc1",
+      "gt_path": "opendssdirect.Bus.Zsc1",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Bus"
+      ],
+      "hallucinated_params": [
+        "Bus"
+      ],
+      "missed_params": [],
+      "function_name": "Bus_Zsc1"
+    }
+  },
+  {
+    "probe_id": "L1_812846a0",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.Zsc0\", \"required_parameters\": [{\"name\": \"iBus\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Bus.Zsc0",
+      "gt_path": "opendssdirect.Bus.Zsc0",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "iBus"
+      ],
+      "hallucinated_params": [
+        "iBus"
+      ],
+      "missed_params": [],
+      "function_name": "Bus_Zsc0"
+    }
+  },
+  {
+    "probe_id": "L1_aaaaf944",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 0.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.ZscMatrix.Bus_ZscMatrix\", \"required_parameters\": [{\"name\": \"Bus\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.ZscMatrix.Bus_ZscMatrix",
+      "gt_path": "opendssdirect.Bus.ZscMatrix",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Bus"
+      ],
+      "hallucinated_params": [
+        "Bus"
+      ],
+      "missed_params": [],
+      "function_name": "Bus_ZscMatrix"
+    }
+  },
+  {
+    "probe_id": "L1_5ec38489",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.Voc\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Bus.Voc",
+      "gt_path": "opendssdirect.Bus.Voc",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Bus_Voc"
+    }
+  },
+  {
+    "probe_id": "L1_16287967",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.SeqVoltages\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Bus.SeqVoltages",
+      "gt_path": "opendssdirect.Bus.SeqVoltages",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Bus_SeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L1_dffe98b3",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Bus.CplxSeqVoltages\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Bus.CplxSeqVoltages",
+      "gt_path": "opendssdirect.Bus.CplxSeqVoltages",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Bus_CplxSeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L1_1b5f646d",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 0.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.CktElement.BusYscMatrix\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.CktElement.BusYscMatrix",
+      "gt_path": "opendssdirect.Bus.YscMatrix",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Bus_YscMatrix"
+    }
+  },
+  {
+    "probe_id": "L1_f5f7fd32",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Fuses.State\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Fuses.State",
+      "gt_path": "opendssdirect.Fuses.State",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Fuses_State"
+    }
+  },
+  {
+    "probe_id": "L1_2742b14a",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Fuses.IsBlown\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Fuses.IsBlown",
+      "gt_path": "opendssdirect.Fuses.IsBlown",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Fuses_IsBlown"
+    }
+  },
+  {
+    "probe_id": "L1_d2a40ac6",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 1.0,
+      "required_params_precision": 1.0,
+      "required_params_recall": 1.0,
+      "overall": 1.0
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Fuses.RatedCurrent\", \"required_parameters\": []}",
+      "predicted_path": "opendssdirect.Fuses.RatedCurrent",
+      "gt_path": "opendssdirect.Fuses.RatedCurrent",
+      "gt_required_params": [],
+      "predicted_required_params": [],
+      "hallucinated_params": [],
+      "missed_params": [],
+      "function_name": "Fuses_RatedCurrent"
+    }
+  },
+  {
+    "probe_id": "L1_eaf9d01b",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Reclosers.Shots\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Reclosers.Shots",
+      "gt_path": "opendssdirect.Reclosers.Shots",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Reclosers_Shots"
+    }
+  },
+  {
+    "probe_id": "L1_af07ffe3",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Reclosers.PhaseTrip\", \"required_parameters\": [{\"name\": \"Phase\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Reclosers.PhaseTrip",
+      "gt_path": "opendssdirect.Reclosers.PhaseTrip",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Phase"
+      ],
+      "hallucinated_params": [
+        "Phase"
+      ],
+      "missed_params": [],
+      "function_name": "Reclosers_PhaseTrip"
+    }
+  },
+  {
+    "probe_id": "L1_83b8b28a",
+    "layer": "L1",
+    "probe_type": "recall",
+    "scores": {
+      "parseable": 1.0,
+      "path_correct": 1.0,
+      "required_params_jaccard": 0.0,
+      "required_params_precision": 0.0,
+      "required_params_recall": 1.0,
+      "overall": 0.5
+    },
+    "details": {
+      "raw_response": "{\"full_path\": \"opendssdirect.Reclosers.State\", \"required_parameters\": [{\"name\": \"Value\", \"type\": \"int\"}]}",
+      "predicted_path": "opendssdirect.Reclosers.State",
+      "gt_path": "opendssdirect.Reclosers.State",
+      "gt_required_params": [],
+      "predicted_required_params": [
+        "Value"
+      ],
+      "hallucinated_params": [
+        "Value"
+      ],
+      "missed_params": [],
+      "function_name": "Reclosers_State"
+    }
+  }
+]

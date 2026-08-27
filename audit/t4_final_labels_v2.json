@@ -1,0 +1,2442 @@
+{
+"Qwen_Qwen3-Coder-Next|C_FDRS|606": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1712": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1703": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|727": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|727": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1053": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|631": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|884": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1645": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1116": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1198": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1922": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|927": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1922": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1302": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|137": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1391": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1250": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|231": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1329": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|139": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1063": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1615": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1137": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|792": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1163": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1146": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|144": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|84": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1531": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1490": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1217": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|580": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|291": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|455": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1557": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|233": {
+"frame": "main_P",
+"label": "clean"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|992": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|932": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|840": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|679": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|980": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1142": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|353": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|75": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1455": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|292": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1339": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1528": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1323": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1447": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1710": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1724": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1670": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1990": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1691": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1616": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1044": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1876": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1189": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|750": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|921": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|822": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1943": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1086": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|603": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|875": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|757": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1098": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|170": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1489": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|352": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1526": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|302": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|195": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|315": {
+"frame": "main_P",
+"label": "clean"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|317": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|394": {
+"frame": "main_P",
+"label": "clean"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1953": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|657": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1073": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|653": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1939": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1188": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|613": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|917": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|720": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|862": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|649": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|613": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|25": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|236": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|385": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1559": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|579": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1462": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1251": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1464": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1308": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1506": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|389": {
+"frame": "main_P",
+"label": "clean"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1564": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1353": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|1344": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|167": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|415": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|439": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|198": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1301": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1301": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|55": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|354": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|107": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|538": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|4": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|C_FDRS|519": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1343": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1556": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|40": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|C_FDRS|392": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1824": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|918": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1041": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1977": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1926": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|640": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|809": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|1143": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|1823": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|645": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1671": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"openai_gpt-oss-120b|C_FDRS|781": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|1145": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1695": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|1391": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|436": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|220": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1369": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|146": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1388": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|161": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|792": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|907": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1657": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|334": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|233": {
+"frame": "main_P",
+"label": "clean"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|73": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|433": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|319": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|199": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|564": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|187": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1585": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1585": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|608": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|725": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1005": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|706": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1675": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|1049": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1889": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1594": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1249": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1290": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1422": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|379": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1447": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|425": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1954": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|870": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|944": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1626": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|904": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|978": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|655": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|782": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1868": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1779": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|1715": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1974": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|977": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1190": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1121": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1943": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"openai_gpt-oss-120b|C_FDRS|1489": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|400": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1445": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|1377": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"openai_gpt-oss-120b|C_FDRS|1526": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1407": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|131": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|158": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|582": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|1897": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1639": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1802": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1767": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|917": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|805": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1827": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1076": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1072": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|611": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1619": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|1037": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|413": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|285": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1332": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1511": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1237": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|88": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|523": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1308": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1325": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|1506": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1529": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|C_FDRS|1253": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|83": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|69": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|1554": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|252": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|1516": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|474": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|C_FDRS|347": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|467": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1326": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|138": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|560": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|C_FDRS|182": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1425": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|983": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|727": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1025": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1071": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1019": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|640": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1926": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1053": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|730": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1199": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|686": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1750": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|729": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|819": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|110": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|490": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|184": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|210": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1995": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1137": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|936": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|429": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|256": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|346": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|587": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|387": {
+"frame": "main_P",
+"label": "clean"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1395": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|144": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|387": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1": {
+"frame": "main_P",
+"label": "clean"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|587": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|799": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|705": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|705": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1789": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|868": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|601": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1014": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1661": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|197": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|292": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1381": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|576": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1290": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1208": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1274": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1273": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|701": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|723": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1853": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1633": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1011": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|641": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1791": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|678": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|708": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1086": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|628": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|850": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|668": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1061": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|206": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1352": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1284": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|63": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1269": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|492": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|307": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|513": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|362": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|466": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|456": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|765": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1891": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|625": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|831": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|880": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|760": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1188": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|835": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1030": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1928": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1725": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|838": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|867": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|796": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|442": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1486": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|535": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|385": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|372": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|193": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1428": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1384": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1457": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1410": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-8B-Instruct|C_FDRS|288": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|229": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1428": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|525": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1375": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|542": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1277": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|50": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|182": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1556": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1276": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|395": {
+"frame": "main_P",
+"label": "item-defect"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|182": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1505": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1143": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|918": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1071": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1989": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1122": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1747": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|673": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1139": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|827": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1800": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1849": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|449": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|36": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|81": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|429": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|0": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|417": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1174": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|75": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|11": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|13": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|67": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|384": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|176": {
+"frame": "main_P",
+"label": "clean"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|405": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|292": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|668": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|985": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|513": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|551": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|63": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|307": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|390": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|400": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|253": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|508": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|879": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|787": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|902": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1991": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1867": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|971": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|911": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|942": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1032": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1827": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|649": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1833": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|831": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|805": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1332": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|565": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1289": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|159": {
+"frame": "main_P",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|331": {
+"frame": "main_P",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|354": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1355": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-0.5B-Instruct|C_FDRS|1598": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-0.5B-Instruct|C_FDRS|263": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-0.5B-Instruct|C_FDRS|1519": {
+"frame": "main_P",
+"label": "contaminated"
+},
+"claude-haiku-4-5|C_FDRS|156": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"claude-haiku-4-5|C_FDRS|1217": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"claude-haiku-4-5|C_FDRS|1541": {
+"frame": "api_T5",
+"label": "contaminated"
+},
+"claude-haiku-4-5|C_FDRS|1163": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"claude-haiku-4-5|C_FDRS|347": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"claude-haiku-4-5|C_FDRS|236": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"claude-haiku-4-5|C_FDRS|373": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"claude-haiku-4-5|C_FDRS|1234": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"claude-haiku-4-5|C_FDRS|1002": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"claude-haiku-4-5|C_FDRS|1548": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"claude-haiku-4-5|C_FDRS|1911": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"claude-haiku-4-5|C_FDRS|124": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"claude-haiku-4-5|C_FDRS|109": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"claude-haiku-4-5|C_FDRS|603": {
+"frame": "api_T5",
+"label": "contaminated"
+},
+"claude-haiku-4-5|C_FDRS|707": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"deepseek-v4-flash|C_FDRS|1891": {
+"frame": "api_T5",
+"label": "contaminated"
+},
+"deepseek-v4-flash|C_FDRS|1853": {
+"frame": "api_T5",
+"label": "item-defect"
+},
+"deepseek-v4-flash|C_FDRS|910": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"deepseek-v4-flash|C_FDRS|470": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"deepseek-v4-flash|C_FDRS|949": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|1763": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|1636": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|1206": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|1260": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|929": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|1253": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|1681": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"deepseek-v4-flash|C_FDRS|37": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"deepseek-v4-flash|C_FDRS|361": {
+"frame": "api_T5",
+"label": "item-defect"
+},
+"deepseek-v4-flash|C_FDRS|77": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gemini-2.5-flash|C_FDRS|1860": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gemini-2.5-flash|C_FDRS|487": {
+"frame": "api_T5",
+"label": "contaminated"
+},
+"gemini-2.5-flash|C_FDRS|598": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gemini-2.5-flash|C_FDRS|1286": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gemini-2.5-flash|C_FDRS|892": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gemini-2.5-flash|C_FDRS|1756": {
+"frame": "api_T5",
+"label": "contaminated"
+},
+"gemini-2.5-flash|C_FDRS|302": {
+"frame": "api_T5",
+"label": "item-defect"
+},
+"gemini-2.5-flash|C_FDRS|1284": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gemini-2.5-flash|C_FDRS|225": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gemini-2.5-flash|C_FDRS|1533": {
+"frame": "api_T5",
+"label": "item-defect"
+},
+"gemini-2.5-flash|C_FDRS|1944": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gemini-2.5-flash|C_FDRS|928": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gemini-2.5-flash|C_FDRS|1592": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gemini-2.5-flash|C_FDRS|852": {
+"frame": "api_T5",
+"label": "contaminated"
+},
+"gemini-2.5-flash|C_FDRS|921": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gpt-5.4-mini|C_FDRS|1067": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gpt-5.4-mini|C_FDRS|1072": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gpt-5.4-mini|C_FDRS|607": {
+"frame": "api_T5",
+"label": "clean"
+},
+"gpt-5.4-mini|C_FDRS|964": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gpt-5.4-mini|C_FDRS|101": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gpt-5.4-mini|C_FDRS|1951": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gpt-5.4-mini|C_FDRS|814": {
+"frame": "api_T5",
+"label": "contaminated"
+},
+"gpt-5.4-mini|C_FDRS|1205": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gpt-5.4-mini|C_FDRS|461": {
+"frame": "api_T5",
+"label": "item-defect"
+},
+"gpt-5.4-mini|C_FDRS|580": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gpt-5.4-mini|C_FDRS|1028": {
+"frame": "api_T5",
+"label": "clean-autopass"
+},
+"gpt-5.4-mini|C_FDRS|304": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gpt-5.4-mini|C_FDRS|909": {
+"frame": "api_T5",
+"label": "equivalent"
+},
+"gpt-5.4-mini|C_FDRS|1576": {
+"frame": "api_T5",
+"label": "item-defect"
+},
+"gpt-5.4-mini|C_FDRS|810": {
+"frame": "api_T5",
+"label": "item-defect"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|884": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1180": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|788": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|861": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|A_FX|1774": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1797": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|A_FX|480": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1474": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1828": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|310": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1577": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1585": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1335": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|877": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|608": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1684": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|877": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1741": {
+"frame": "contrast_S",
+"label": "item-defect"
+},
+"Qwen_Qwen2.5-Coder-7B-Instruct|A_FX|932": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1727": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|627": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|672": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1569": {
+"frame": "contrast_S",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-8B-Instruct|A_FX|201": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|576": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1339": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|683": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1192": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|188": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|260": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|307": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|427": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1259": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|92": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|332": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|362": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|765": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1096": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|879": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|919": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1975": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1196": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|838": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|995": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1488": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|175": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|104": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|514": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|1343": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|1355": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|916": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|724": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|606": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1781": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|605": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|1829": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1814": {
+"frame": "contrast_S",
+"label": "item-defect"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1800": {
+"frame": "contrast_S",
+"label": "item-defect"
+},
+"openai_gpt-oss-120b|A_FX|90": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1210": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|1591": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|1523": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|1138": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|1828": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|89": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|290": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|433": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|989": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|877": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|901": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|1789": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|201": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|292": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|1570": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1594": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1503": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|235": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|891": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|933": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|668": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|98": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|427": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|44": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|92": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|548": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1489": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|917": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1073": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|1059": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|760": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|975": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-70B-Instruct|A_FX|1106": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|629": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|209": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|205": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|159": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"openai_gpt-oss-120b|A_FX|472": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"openai_gpt-oss-120b|A_FX|163": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"openai_gpt-oss-120b|A_FX|1425": {
+"frame": "contrast_S",
+"label": "item-defect"
+},
+"openai_gpt-oss-120b|A_FX|435": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|604": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1103": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-Next|A_FX|900": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|854": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|761": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1794": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1695": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|A_FX|48": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|299": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|94": {
+"frame": "contrast_S",
+"label": "item-defect"
+},
+"Qwen_Qwen3-Coder-Next|A_FX|599": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|936": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1082": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|105": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1476": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|148": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|334": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1844": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1154": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|955": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|661": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1306": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1569": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1339": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1298": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1896": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|798": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|852": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1061": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|116": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|131": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|300": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|1407": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-Next|A_FX|253": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|942": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|613": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|975": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|610": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|975": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1032": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1318": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|127": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|248": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|472": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|590": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"Qwen_Qwen3-Coder-Next|A_FX|134": {
+"frame": "contrast_S",
+"label": "clean-autopass"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|467": {
+"frame": "contrast_S",
+"label": "contaminated"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|138": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|304": {
+"frame": "contrast_S",
+"label": "equivalent"
+},
+"meta-llama_Llama-3.1-405B-Instruct|A_FX|207": {
+"frame": "contrast_S",
+"label": "equivalent"
+}
+}

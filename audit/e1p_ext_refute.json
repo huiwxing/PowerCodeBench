@@ -1,0 +1,297 @@
+{
+ "meta": {
+  "role": "E1-P T4 power-extension adversarial refuter (defense counsel; attack-toward-equivalence)",
+  "review_source": "two practising power-systems engineers, with deterministic re-execution evidence for checkable physical disputes",
+  "n_target": 19,
+  "protocol": "E1_validity_audit.md s2.3 meta-rule + frozen 10 cases + N1-N7 + R2/R3/R5 + sP.8 F-A..F-F ratified family rulings; attack ladder = R3-invariance oracle -> family-branch misapplication -> precedent boundary (N1-N7 equivalence window) -> item-defect transfer; verdicts: UPHELD / OVERTURNED_EQUIVALENT / OVERTURNED_DEFECT",
+  "inputs": "audit/e1p_ext_adjudication.json 18 physical-error sides (C 7 / A 11) + audit/e1p_ext_census.json 1 physical-error side (E1P-127 A) = 19; identity key (pair_id, condition); evidence from audit/e1p_ext_auto_results.json + audit/e1p_ext_manifest.json + raw records streamed via audit/records.py; info firewall: e1p_ext_judge1/judge2, main-round judge/adjudication/census per-item bodies, t4_judge*, pilot NOT read (only this round's final labels + census judgment bodies + rule docs)",
+  "attack_direction": "toward equivalence (E1 doc s2.3 bias: only PE labels surviving the strongest equivalence attack count into FAR)",
+  "oracle_env": "experiment venv (pandapower 3.4.0 / pandas 2.3.3 / numpy 2.2.6 / py3.11.15), login node, serial single-threaded (OMP/MKL/OPENBLAS_NUM_THREADS=1), subprocess per script",
+  "oracle_ledger": [
+   {
+    "id": "O-EXTR-1",
+    "sides": [
+     "E1P-129 C_FDRS",
+     "E1P-129 A_FX"
+    ],
+    "what": "case5 3-stage workflow with shunt q_mvar=+9 vs -9",
+    "result": "+9 -> 0.9880901829 (bit-equal gen), -9 -> 0.9894923898 (bit-equal ref/GT); branch fired both; sign alone explains delta; non-invariant"
+   },
+   {
+    "id": "O-EXTR-2",
+    "sides": [
+     "E1P-138 C_FDRS",
+     "E1P-138 A_FX"
+    ],
+    "what": "case24_ieee_rts: runtime lowest-voltage bus vs ref hardcode; N-1 min sensitivity to shunt variants (-19@2 / +100@2 / none)",
+    "result": "idxmin bus = 2 (ref hardcode CORRECT, N1-defect closed); min-over-contingency 0.6732843106 identical in all three variants (at bus 5) -> total insensitivity; conviction rests on text-pinned 'capacitive' reversed (F-A first branch), case-3 strict line"
+   },
+   {
+    "id": "O-EXTR-3",
+    "sides": [
+     "E1P-127 C_FDRS"
+    ],
+    "what": "re-exec gen SE code 2x: res_bus vs res_bus_est maxima, determinism",
+    "result": "deterministic (seed before draws on C side); res_bus.max=1.0600000000000003 (bit-equal on-record; PF/setpoint quantity) vs own res_bus_est.max=1.0668501094 (+0.61%, would also have matched) -> wrong-quantity extraction proven; counterfactual match cannot exempt a changed queried quantity"
+   },
+   {
+    "id": "O-EXTR-4",
+    "sides": [
+     "E1P-127 A_FX"
+    ],
+    "what": "3 fresh serial re-execs of gen code (seed no-op)",
+    "result": "1.0670956930 / 1.0632346310 / 1.0661367134 - 3 distinct values, nondeterminism confirmed; pooled with on-record+census observations: 5/8 in-window; R3 third branch conviction independent of hit rate"
+   },
+   {
+    "id": "O-EXTR-5",
+    "sides": [
+     "E1P-144 C_FDRS"
+    ],
+    "what": "synth_volt_ctrl_lv: while-loop vs single-if disconnect recipe",
+    "result": "loop iterated line 9 @24.50% then line 21 @20.40% (extra unauthorized disconnect); single-if reproduces ref/GT 0.9954386460 bit-for-bit; loop reproduces gen 0.9920308929 bit-for-bit; value-changing, F-F closed"
+   },
+   {
+    "id": "O-EXTR-6",
+    "sides": [
+     "E1P-156 C_FDRS",
+     "E1P-156 A_FX"
+    ],
+    "what": "case5: while-loop vs single-if; min_vm_pu bus3-vs-bus4 decorativeness",
+    "result": "loop iterations line 5 @100.17% then line 0 @80.97%; single-if reproduces ref/GT 0.9887907973; loop reproduces gen 0.9854983499 (both sides bit-equal); bus3-vs-bus4 min_vm_pu variants identical under runpp -> that deviation equivalent (F-B-2) but non-flipping"
+   },
+   {
+    "id": "O-EXTR-7",
+    "sides": [
+     "E1P-157 C_FDRS",
+     "E1P-157 A_FX"
+    ],
+    "what": "case57: threshold misread (>100 vs pinned 1.0%); delta attribution",
+    "result": "stage-1 max loading 1.787% (fires @1.0, silent @100); skipped line-7 parallel=2 alone explains gen-ref delta (0.7248438365 vs 0.7248117254, both bit-equal on-record); value-changing omission, case-3 default"
+   },
+   {
+    "id": "O-EXTR-8",
+    "sides": [
+     "E1P-167 C_FDRS"
+    ],
+    "what": "case_illinois200: true lowest-vm_pu load bus vs ref hardcode; vn_kv reading tie structure",
+    "result": "argmin vm_pu load bus = 147 (ref load 81 = its only load -> hardcode faithful, N1-defect closed); gen's min-vn_kv reading = 108-way tie at 115 kV arbitrarily resolved to bus 1 -> not a faithful reading of a unique target"
+   },
+   {
+    "id": "O-EXTR-9",
+    "sides": [
+     "E1P-143 A_FX"
+    ],
+    "what": "phantom 'parallel_units' void check + delta attribution + faithful delta",
+    "result": "phantom cols created, solver-read parallel stayed 1 (trafo25/line46) -> both pinned mods void; gen delta -2.2e-16 = sgen@82 effect vs virgin baseline (wrong experiment); faithful line-47 delta 3.3e-16 = GT 0.0; intervention physically real (max |dV| 8.8e-5 network-wide)"
+   },
+   {
+    "id": "O-EXTR-10",
+    "sides": [
+     "E1P-148 A_FX"
+    ],
+    "what": "four_loads_with_branches_out: most-loaded-line hardcode check; cross-network bit-identity",
+    "result": "line 0 is the most-loaded at base OP (78.04%) -> ref faithful; simple_four_bus_system (gen's wrong net) and the pinned net BOTH give exactly 0.999985600414708 (min at each net's bus 1) -> bit-level F-E coincidence across different networks"
+   },
+   {
+    "id": "O-EXTR-11",
+    "sides": [
+     "E1P-155 A_FX"
+    ],
+    "what": "case14: threshold fire check (0.8 vs 80) + scalar-vs-state invariance of the omitted line-0 doubling",
+    "result": "stage-1 max loading 1.562% (fires @0.8, silent @gen's 80); min vm bit-identical 1.01 both ways (clamped at bus-2 gen setpoint) BUT state not invariant: 9 buses move (max |dV| 1.1e-4), line-0 loading 1.56%->0.83% -> F-F-1 inapplicable, E1P-033 clamp precedent applies"
+   },
+   {
+    "id": "O-EXTR-12",
+    "sides": [
+     "E1P-163 A_FX"
+    ],
+    "what": "case5: bus-2 clamp check; compounded profile multiplier at step 17; ConstControl overwrite of ref's peak-raise",
+    "result": "bus 2 voltage-controlled at 1.0 (clamped GT); gen's compounding gives per-load multipliers [1.33, 3.07, 0.88] at step 17 (pinned range [0.6,1.4] violated; loads [399,921,527] vs faithful [286,189,429] MW); ref's scaling-1.6 confirmed overwritten by controller (item texture, GT still well-defined)"
+   },
+   {
+    "id": "O-EXTR-13",
+    "sides": [
+     "E1P-164 A_FX"
+    ],
+    "what": "case14 OPF counterfactuals: correct-index extraction under gen's curtailment; ref res_gen values",
+    "result": "gen curtailed the same load 1; gen printed res_gen[1]=6.37e-6 (reproduced); correct-index res_gen[2]=6.96e-6 (also in atol -> acceptance is an atol artifact on near-zero GT); ref's res_gen[1]=10.44 MW (the extracted element is genuinely a different physical quantity)"
+   },
+   {
+    "id": "O-EXTR-14",
+    "sides": [
+     "E1P-165 A_FX"
+    ],
+    "what": "case1354pegase: gen.type contents; argmax dispatch vs ref hardcode; faithful sequence",
+    "result": "gen.type=None x259 -> 'sync' filter empty -> trip silently skipped (zero mods executed; virgin PF bit-equal to gen output); ref hardcode 161 = true argmax (3424.8 MW); post-trip loading 131.87% fires threshold; faithful sequence reproduces GT bit-for-bit"
+   }
+  ],
+  "summary": {
+   "counts": {
+    "UPHELD": 19,
+    "OVERTURNED_EQUIVALENT": 0,
+    "OVERTURNED_DEFECT": 0
+   },
+   "by_condition": {
+    "C_FDRS": {
+     "n": 7,
+     "UPHELD": 7
+    },
+    "A_FX": {
+     "n": 12,
+     "UPHELD": 12
+    }
+   },
+   "closest_to_overturn": [
+    "E1P-155 A_FX: queried scalar BITWISE invariant to the deviation (1.01 PV-setpoint clamp at bus 2); F-F-1 no-op attack blocked only because the omitted action changes the network state (9 buses move, line-0 loading halves) — the ratified E1P-033 line ('clamped-scalar inertness does not exempt scenario non-realization') is the sole barrier.",
+    "E1P-131 A_FX: 'IEEE 30-bus case' -> case30 is a genuinely defensible reading at the library level (both pandapower docstrings claim IEEE ancestry); killed only by perfect 159/159 corpus-dialect separation ('IEEE 30-bus case' <-> case_ieee30 70/70; '30-bus test case' <-> case30 89/89)."
+   ],
+   "partial_defense_wins_non_flipping": [
+    "E1P-156 A_FX: bus-3-vs-4 min_vm_pu mistarget proven decorative under runpp (F-B-2 equivalent; O-EXTR-6)",
+    "E1P-138 A_FX: handwritten N-1 deepcopy loop passes all four N2 criteria (equivalent on its own)",
+    "E1P-164 A_FX: p_mw=1 curtailment is an arguably legal reading of 'low-demand level' (R3 dim); convicted on wrong-element extraction instead"
+   ],
+   "note": "All 19 fresh physical-error finals survive the strongest equivalence attack. Recurring conviction anatomy: text-pinned dimension violated (sign/threshold/seed/network/element) + queried scalar insensitive or clamped + tolerance-window (or atol-near-zero) coincidental acceptance = F-E core phenomenon. Frozen case 3 / ratified 'effect inertness does not exempt scenario non-realization' did decisive work in 8 of 19 sides."
+  },
+  "checkpoint": {
+   "n_done": 19,
+   "n_target": 19,
+   "complete": true
+  },
+  "generated": "2026-08-01T23:32:51.826663+00:00"
+ },
+ "verdicts": [
+  {
+   "pair_id": "E1P-129",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance + F-A branch transfer: argue sign of 'add a 9 Mvar shunt' is textually unpinned and the queried scalar insensitive, routing to F-A second branch (R3 equiv).",
+   "evidence": "Attack fails on both prongs. (1) Non-invariance is on-record and oracle-confirmed: O-EXTR-1 re-ran the full 3-stage workflow with q_mvar=+9 vs -9; +9 gives 0.9880901829 (bit-equal to gen exec_output) and -9 gives 0.9894923898 (bit-equal to ref/GT) — the sign alone explains the whole gen-ref delta, branch live (min_v<0.99 fired in both variants). F-A third branch (sign unpinned but queried quantity actually changes, dual-proof) applies exactly; additionally the remedial context ('If any bus voltage falls under 0.99 ... add a 9 Mvar shunt at the bus that shows the lowest voltage') pins capacitive intent, so even the first branch reads against gen (+9 = inductive reactor in pandapower convention, lowers voltage further). Match was a 1%-window coincidence (rel_err 0.14%), F-E adjacent. All other workflow steps line-verified equivalent (same disconnect target, same PF count on executed path)."
+  },
+  {
+   "pair_id": "E1P-129",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Same F-A transfer as the C side, plus idiom audit of the A-side variant (chained assignment net.line.in_service[idx]=False; no inner PF re-run after shunt).",
+   "evidence": "Identical deviation, identical fate: q_mvar=+9 on the same runtime-computed weakest bus, exec_output 0.9880901829182339 bit-equal to O-EXTR-1's +9 arm; -9 arm reproduces GT. Idiom differences are all equivalence-window: chained in_service assignment took effect (output proves line disconnected), and the PF-run count on the executed path is 3 in both gen and ref (gen's final unconditional runpp plays the ref's stage-3 role). No legal reading makes +9 Mvar capacitive in pandapower; queried quantity provably sign-sensitive. F-A third branch correctly applied."
+  },
+  {
+   "pair_id": "E1P-138",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via N1: prove ref's hardcoded bus=2 is NOT the lowest-voltage bus at the current operating point (which would make the reference unfaithful to its own query) and gen's runtime idxmin correct; secondarily, total-invariance of the queried scalar to the shunt (O-EXTR-2: no-shunt == ref bit-for-bit) to push F-A second branch.",
+   "evidence": "Both prongs fail. O-EXTR-2: virgin case24_ieee_rts PF gives idxmin bus = 2 (vm 0.951676) — ref's hardcode is provably correct, N1 defect channel closed; gen targeted the same bus. Sign: query text literally pins 'install capacitive shunt support'; gen created q_mvar=+100 (a reactor, same sign as the network's existing bus-5 reactor) — F-A FIRST branch (text-pinned capacitive + reversed) → phys, and the ratified branch structure reserves the R3-equiv escape for the unpinned case only. The oracle-proven total insensitivity (min over N-1 min_vm_pu = 0.6732843106 at bus 5, identical with -19@2, +100@2, or no shunt) makes this a textbook frozen-case-3 coincidental hit — insensitivity is explicitly no exemption ('效应惰性不豁免场景未实现', held 3x in the main round). Magnitude (100 vs 19) is unpinned and irrelevant given the sign conviction."
+  },
+  {
+   "pair_id": "E1P-138",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "N2 equivalence certification of the handwritten N-1 loop (to strip that deviation) + the same defect/invariance transfer as the C side.",
+   "evidence": "The N2 attack on the loop SUCCEEDS but cannot flip the label: gen's per-line deepcopy loop satisfies all four N2 criteria (runpp per step like run_contingency; scenario set = all lines, no early break; except-branch appends 0.0 but never fired — output 0.6732843106080254 proves all outages converged; min-over-scenarios-of-min-over-buses aggregation mathematically identical), so the loop alone would be equivalent-path. What convicts is the same text-pinned-sign violation as the C side: comment says 'capacitor bank' but code writes q_mvar=+100.0 (inductive) at the runtime bus 2 — F-A first branch. O-EXTR-2 covers this side too (queried scalar insensitive to the shunt entirely; coincidental hit under an unrealized pinned scenario, frozen case 3 strict line). Defect transfer closed: ref bus 2 correct, ref_reproduces_gt=true."
+  },
+  {
+   "pair_id": "E1P-127",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Superset/case-10 + counterfactual-match: gen DID run estimate(); argue res_bus extraction is an implementation slip whose corrected form would also have matched, i.e. the deviation is acceptance-inert; secondarily attack ref's own noise-draw stds (0.003/0.5/0.3 vs the query's 0.01/1.0) as an item defect.",
+   "evidence": "O-EXTR-3 (deterministic, 2x bit-identical): gen's code re-executed gives res_bus.vm_pu.max()=1.0600000000000003 (bit-equal to on-record exec_output — it is the PF/setpoint value, not any estimate) while gen's own res_bus_est.vm_pu.max()=1.0668501094 (+0.61% vs GT, in-window). The counterfactual match is real but irrelevant under the frozen meta-rule: the executed extraction returned a DIFFERENT physical quantity than queried ('maximum estimated bus voltage'), and '改变了被查询的量' is a hard contamination clause; case 10's superset exemption requires extracting the required quantity, which never happened — check-4 fail (res_bus != res_bus_est) stands unexempted. F-E channel: the 1.06 generator-setpoint value hit GT 1.06038 only through the 1% window. Item-defect transfer fails: ref registers the pinned stds 0.01/1.0 as measurement std_dev (a legal reading), is deterministic, and reproduces GT (ref_reproduces_gt=true); whichever std reading one takes, gen's wrong-table extraction convicts independently."
+  },
+  {
+   "pair_id": "E1P-127",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R2/R3 legal-reading transfer: argue seed placement is an RNG-consumption-shape choice (R2 defect channel) or that some legal reading leaves the noise realization unpinned; empirically, argue most realizations land in-window so the acceptance was not luck.",
+   "evidence": "Row-level verification confirms the census's core fact: np.random.seed(9496) sits AFTER every np.random.normal draw (immediately before the deterministic WLS estimate call, under a 'for reproducibility' comment) — the query-pinned seed is a no-op and every noise draw comes from unseeded global RNG. O-EXTR-4 (3 fresh serial runs): 1.0670956930/1.0632346310/1.0661367134 — three distinct values, nondeterminism independently reproduced. R2 is unavailable twice over: its precondition is that ALL text-pinned dimensions are faithful (the seed pin itself is violated), and not all observed realizations are in-tolerance (on-record auto re-exec +1.15%, census runs +1.48%/+1.05% out of window). R3 third branch: every legal reading of '(voltage std_dev=0.01, power std_dev=1.0, seed=9496)' pins the noise realization; no legal reading yields a nondeterministic scalar, so the accepted 1.0653635156 (+0.47%) is an unpinned draw that happened to land in-window. Honest nuance: pooled over 8 observed executions 5 were in-window, so acceptance probability is closer to a biased coin than 50/50 — but the conviction rests on the violated pin, not the hit rate. Extraction (res_bus_est) is correct on this side; the seed no-op alone convicts."
+  },
+  {
+   "pair_id": "E1P-144",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Legal-reading transfer: read 'If any line exceeds 17.7% loading, disconnect the most loaded line' as an implicit fixed-point loop (repeat until no overload) — a common operational idiom — making the extra disconnection faithful; fallback F-F no-op check on line 21.",
+   "evidence": "O-EXTR-5: gen's while-loop iterated twice — line 9 @24.50%, then line 21 @20.40% — and the single-conditional (ref) recipe stops after line 9; final values 0.9920308929 (gen, bit-equal on-record) vs 0.9954386460 (ref/GT, bit-equal). The iterative reading fails as a legal reading: the query is a numbered linear recipe with an explicitly counted PF sequence ('run power flow' → 'Run power flow again' → 'Run power flow a final time'), and R3's legal-reading channel covers underdetermined magnitude/direction of a specified modification, not rewriting a single conditional into unbounded iteration that disconnects elements the query never authorized. F-F fails: the line-21 disconnection is value-changing (0.34% shift), not a no-op. Physical scenario changed (extra branch out) → meta-rule hard clause; in-window hit coincidental (F-E adjacent). No defect: ref faithful, reproduces GT."
+  },
+  {
+   "pair_id": "E1P-156",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "Same iterative-reading transfer as E1P-144 C ('disconnect the worst-loaded line and re-run' as repeat-until-clear), plus F-F no-op check on the extra line-0 disconnection.",
+   "evidence": "O-EXTR-6: loop iterations (line 5 @100.17%, then line 0 @80.97% > 79.4) — the second disconnection is unauthorized by the single 'If ... disconnect ... and re-run' instruction; single-if recipe reproduces ref/GT 0.9887907973 bit-for-bit, loop reproduces gen 0.9854983499 bit-for-bit. Value-changing (0.33%), so F-F's no-op escape is closed; in-window hit coincidental. Same rejection of the iterative legal reading as E1P-144 C (fixed 3-stage PF recipe, 'run power flow again' singular). Shunt branch fired in neither variant (post-loop min ≥0.96), so no sign question arises; extraction and remaining steps line-equivalent."
+  },
+  {
+   "pair_id": "E1P-156",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Split the two deviations and kill each: (1) F-B second branch (decorative write) for min_vm_pu set on bus 3 instead of the pinned bus 4; (2) iterative-reading/F-F transfer for the extra line-0 disconnection.",
+   "evidence": "Attack (1) SUCCEEDS: min_vm_pu is an OPF-only constraint column that runpp never reads; O-EXTR-6's bus3-vs-bus4 single-if variants are numerically identical (0.9887907973 == ref/GT), so the mistargeted limit write is parameter-level decoration (F-B second branch, equivalent on its own — same class as main-round i=84 runpp/max_vm_pu). But attack (2) fails exactly as on the C side: the while-loop's second iteration disconnected line 0 (@80.97% > 79.4), value-changing (gen 0.9854983499 bit-equal on-record vs ref 0.9887907973), unauthorized by the single conditional — physical scenario changed, coincidental in-window hit. One surviving unexempted deviation suffices; PE stands."
+  },
+  {
+   "pair_id": "E1P-157",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-F no-op + legal-reading transfer: argue the skipped branch ('loading exceeds 1.0%' misread as >100) was acceptance-inert, or that '1.0%' could legitimately be read as 100% (loading expressed as fraction 1.0 = 100%).",
+   "evidence": "O-EXTR-7: after stage 1 the max line loading is 1.787% — the pinned 1.0% threshold fires (ref sets line 7 parallel=2 and re-runs; reproduces GT 0.7248117254 bit-for-bit) while gen's '>100' never fires (reproduces gen 0.7248438365 bit-for-bit); the line-7 doubling alone explains the divergence (3.2e-5, rel 0.0044%). F-F fails: outputs differ, not a no-op — frozen case 3 default (omitted query-specified modification, scalar-insensitive, coincidental in-window match; insensitivity explicitly no exemption). The 100% reading is not legal: the query says '1.0%' and pandapower loading_percent is already in percent; gen's own comment ('Check if any line's loading exceeds 1.0%') shows the target was understood and the code contradicts it — a unit misread, not an underdetermined dimension, so R3 has no purchase. No defect: threshold nearly-degenerate but well-defined; ref faithful."
+  },
+  {
+   "pair_id": "E1P-157",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Identical to the C side (the two sides' codes are line-identical in the convicting region: '(net.res_line.loading_percent > 100).any()').",
+   "evidence": "Same omission, same on-record values (gen 0.7248438365276907, ref 0.7248117253993415), same O-EXTR-7 attribution: branch should fire at 1.787% > 1.0% but gen's >100 skips it; omitted line-7 parallel=2 modification is value-changing (no F-F no-op), match is a tolerance-window coincidence. Frozen case 3 default conviction; no legal reading, no item defect (ref_reproduces_gt=true). UPHELD."
+  },
+  {
+   "pair_id": "E1P-167",
+   "condition": "C_FDRS",
+   "verdict": "UPHELD",
+   "strongest_attack": "N1 item-defect transfer (prove ref's hardcoded load 81 is not the largest load at the true lowest-voltage load bus) + R3 legal-reading defense of the vn_kv interpretation of 'lowest-voltage bus'.",
+   "evidence": "O-EXTR-8 closes both. (1) Virgin case_illinois200 PF: argmin vm_pu over load buses = bus 147 (0.985523); ref's load 81 sits at bus 147 and is the only (hence largest) load there — ref hardcode provably faithful, N1 exception dead. (2) Gen selected by net.bus.vn_kv (nominal kV, no PF run at selection time): min vn_kv = 115 kV is a 108-way tie over load buses, resolved by iteration order to bus 1 — a reading with a 108-way tie cannot implement 'THE lowest-voltage bus' (definite unique target), so it is not a faithful legal reading; R3 has no purchase. Gen curtailed load 0 @bus 1 to scaling 0.1 vs ref load 81 @bus 147 to 0.67: different physical scenario, on-record outputs differ (0.9939987 vs GT 0.9946019, 0.06%), in-window coincidence (F-E adjacent). N1 default (runtime target != reference target -> contamination) stands."
+  },
+  {
+   "pair_id": "E1P-131",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "Item-defect transfer via genuine library-level name ambiguity: pandapower's OWN docstrings describe BOTH case30 (PYPOWER/Washington dyn-30) AND case_ieee30 (MATPOWER/Washington IEEE-30) as 'the required ieee network case30', so 'Load the IEEE 30-bus case' arguably admits case30 as a legal reading -> R3/F-F-defect route.",
+   "evidence": "The library-level ambiguity is real (docstrings verified in pandapower 3.4.0) but the corpus dialect kills it (R5 heuristic, ratified): scanning all 2000 benchmark items — every one of the 89 case30-based items phrases the network as 'the 30-bus test case' (0 mention IEEE) and every one of the 70 case_ieee30-based items says 'the IEEE 30-bus case' (0 say 'test case'). 159/159 perfect separation makes the phrase corpus-determinate; the item is not underdetermined and GT is well-defined (ref_reproduces_gt=true). Gen loaded case30: 41 lines/0 trafos vs case_ieee30's 34 lines/7 trafos — a wholly different physical model (wrong-network channel, the canonical A-side API-convention error). Gen's output -3.33e-16 has rel_error 1.0 (measures nothing of GT 0.000264) and was accepted only through the matcher's absolute tolerance on a near-zero delta GT — textbook F-E weak-discriminator coincidence. Signed-vs-abs extraction is N7-equivalent and irrelevant. Closest-to-overturn candidate #2 of this round: survives only on the corpus-dialect evidence."
+  },
+  {
+   "pair_id": "E1P-143",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "All-variants-zero invariance: the true answer (line-47 doubling effect on min vm) is 0.0 and gen's answer is also ~0, so argue every deviation is acceptance-inert; secondarily F-B-decorative for the 'parallel_units' writes and R3 legal-reading for the 0-based index shifts.",
+   "evidence": "O-EXTR-9: gen wrote trafo/line changes into a nonexistent 'parallel_units' column — phantom columns created, solver-read 'parallel' stayed 1 for both trafo 25 and line 46 — so BOTH the pinned baseline mod (trafo 26 x2) and the QUERIED intervention itself (line 47 x2) were void; gen's printed delta (-2.2e-16) actually measures the sgen@bus-82 addition against a virgin baseline (mods applied after the first PF, contrary to the pinned 'To begin' order) — a different experiment entirely. F-B is first-branch here, not decorative: the phantom-written instruction is the load-bearing queried intervention. The zero-invariance defense is frozen-case-3's exact target (insensitive omitted modification + coincidental match -> contamination default; GT=0.0 is an F-E weak discriminator — faithful delta 3.3e-16, and the intervention is physically real network-wide, max |dV| 8.8e-5). Index shifts 26->25/83->82/47->46 contradict the corpus's uniform literal-index dialect. Multiple independent unexempted deviations; no defect (ref faithful, GT reproduced)."
+  },
+  {
+   "pair_id": "E1P-148",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "N1 defect transfer (ref hardcodes line 0 as 'most heavily loaded' — prove it wrong) + argue the bit-identical output proves physical equivalence of the loaded scenario.",
+   "evidence": "Gen loaded simple_four_bus_system() where the query pins 'the 4-loads-with-branches network' (= four_loads_with_branches_out(), a near-verbatim name): 4 buses/2 lines/2 loads/2 sgens vs 10 buses/8 lines/4 loads — no lexical or semantic reading connects the names; wrong-network channel, physical scenario wholly different. O-EXTR-10: ref's hardcoded line 0 IS the most-loaded line at base OP (78.04%) — defect transfer dead; and the bit-identity (both nets give min vm exactly 0.999985600414708, both at their trafo-adjacent bus 1 in a near-no-load state) is a spectacular F-E coincidence, not equivalence — the meta-rule convicts on scenario identity, not scalar identity (equivalence exception (b) requires the SAME physical scenario, definitionally impossible across different networks). Gen's dynamic most-loaded-line selection was executed on the wrong network and cannot repair it. UPHELD."
+  },
+  {
+   "pair_id": "E1P-155",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-F first branch (no-op omission): the queried scalar is BITWISE invariant (1.01 == 1.01) to the omitted conditional (gen misread 'loading exceeds 0.8%' as >80, skipping the line-0 parallel=2 + re-run), so argue the omission is an oracle-proven no-op -> equivalent. This is the strongest attack anywhere in this round.",
+   "evidence": "O-EXTR-11: stage-1 max loading 1.562% -> the pinned 0.8% threshold fires (ref doubles line 0 and re-runs; gen's >80 skips). Queried min vm is bit-identical either way (1.01), but ONLY because the minimum sits at bus 2, clamped to that generator's vm_pu=1.01 setpoint — while the STATE is not invariant: 9 of 14 bus voltages move (max |dV| 1.1e-4) and line-0 loading halves (1.56%->0.83%). F-F-1 therefore does not apply: its no-op branch covers omitted ACTIONS that change nothing (lazy preset), not actions whose real state change is masked by a clamped extraction. That is precisely the main-round E1P-033 structure ('bit-level clamp invariance') which the ratified rulings held as phys 3x: F-E maintains clamped-scalar coincidental hits as the FAR core phenomenon, and effect inertness does not exempt scenario non-realization. The threshold misread has no legal reading (loading_percent is already in percent; gen's own comment restates the query's 0.8% while the code tests >80 — a unit misread the code itself contradicts). Verdict survives only by the ratified precedent line — closest-to-overturn candidate #1 of this round."
+  },
+  {
+   "pair_id": "E1P-163",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3-invariance via voltage clamp (bus 2 is a PV bus at vm=1.0 — the queried scalar is stiff to ANY load profile, so argue all profile-application deviations are inert) + R2 item-defect transfer (ref's own scaling-1.6 peak-raise is overwritten by its ConstControl from step 0, i.e. dead in the reference itself).",
+   "evidence": "O-EXTR-12: bus 2 is voltage-controlled (gen setpoint 1.0) — GT 1.0 is a clamped weak discriminator; ref's peak-raise is indeed dead under its controller (scaling ends at profile values; recorded as item texture). Neither rescues gen: the loop applies profiles MULTIPLICATIVELY to current p_mw so multipliers COMPOUND across steps — by the queried step 17 the effective per-load multipliers are [1.33, 3.07, 0.88], with load 1 at 3.07x, far outside the text-pinned '(ranging from 0.6 to 1.4)' band; effective step-17 loads [399, 921, 527] MW vs faithful [286, 189, 429] MW — a wholly different scenario at the queried step. The ratified R2 note anticipates exactly this ('scaling 0.6-1.4 pins the applied variable and range, defeats 202-type p_mw base compounding'); N2 criterion (2) (profile application) fails; R2's defect channel requires all pinned dims faithful (violated) and gen's compounded reading is no legal reading of the pinned range. Scalar hit = pure PV-clamp F-E coincidence; effect inertness does not exempt (E1P-033 precedent). Persistent x1.5 peak-raise vs ref's dead 1.6 is moot given the compounding conviction."
+  },
+  {
+   "pair_id": "E1P-164",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "R3 item-defect transfer: 'curtail ... to a low-demand level' is textually underdetermined (gen's p_mw=1 MW is a plausible legal reading vs ref's canonical scaling=0.72), and the GT is sensitive to that choice — argue the item can only be answered by luck; secondarily defend the extraction as an ordinal reading ('generator 2' = 2nd generator = index 1).",
+   "evidence": "The extraction deviation forecloses the defect route: gen printed net.res_gen.loc[1] where the query pins 'generator 2' — corpus dialect is overwhelmingly literal (38 'generator N'->res_gen[N] vs 0 ordinal; 191 vs 2 on gen-table mods), so index 1 is a different physical element, and R3's defect branch requires the model faithfully execute a legal reading in ALL pinned dimensions — a changed queried element is an independent hard meta-rule violation ('改变了被查询的量'). O-EXTR-13: gen curtailed the same load 1 (target correct), and under ref's scenario generator 1 actually outputs 10.44 MW — gen's printed 6.37e-6 is ~0 only because his deeper curtailment collapses all marginal units; both his printed value and his correct-index counterfactual (6.96e-6) sit 98.6% away from GT 0.000465 in relative terms and were 'acceptable' only through the absolute-tolerance window on a near-zero GT — the F-E weak-discriminator phenomenon itself. Honest note: had the extraction been faithful, this side would have been a serious R3-defect candidate (level-sensitive underdetermined GT); it is convicted on the wrong-element extraction, which no attack removes."
+  },
+  {
+   "pair_id": "E1P-165",
+   "condition": "A_FX",
+   "verdict": "UPHELD",
+   "strongest_attack": "F-F no-op + N1 defect transfer: prove the omissions inert and/or ref's hardcoded gen 161 not the true argmax dispatch.",
+   "evidence": "O-EXTR-14: (a) case1354pegase net.gen.type is None for all 259 generators, so gen's filter (in_service & type=='sync') matched 0 rows and the mandated trip was SILENTLY SKIPPED — with no trip, loading never exceeded 110.1 and the conditional line-1066 outage was skipped too: gen executed ZERO of the item's modifications and printed the virgin-network min vm (0.981906908977575, bit-equal on-record). (b) Ref's hardcode is provably faithful: argmax in-service dispatch = gen 161 (3424.8 MW); faithful sequence fires the threshold (post-trip loading 131.87% > 110.1) and reproduces GT bit-for-bit (0.981967516713173). No legal reading skips the trip ('the online generator with the highest active power dispatch' exists; a filter that empties the candidate set is a silent failure, not a reading). F-F fails: outputs differ (6.1e-5) — a 3.4 GW trip + line outage that moves min vm by 0.006% is the insensitive-scalar coincidence frozen case 3 refuses to exempt. Double omission, in-window hit, F-E adjacent. UPHELD."
+  }
+ ]
+}

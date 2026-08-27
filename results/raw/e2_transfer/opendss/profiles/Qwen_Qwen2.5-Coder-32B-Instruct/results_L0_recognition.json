@@ -1,0 +1,3650 @@
+[
+  {
+    "probe_id": "L0_892ba9c2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Lines_Length_data",
+        "B": "Solution_ForwardVreg",
+        "C": "Bus_CplxSeqVoltages",
+        "D": "Bus_Convergence"
+      },
+      "function_name": "Bus_CplxSeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_e09134e2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_NumWindings is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Transformers_NumWindings is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Transformers_NumWindings",
+        "B": "Bus_CplxSeqVoltages",
+        "C": "CapControls_OFFSetting",
+        "D": "Transformers_LoadMult"
+      },
+      "function_name": "Bus_CplxSeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_32d44e34",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"RegControls_ForwardBand_set is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "RegControls_ForwardBand_set is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "RegControls_ForwardBand_set",
+        "B": "Text_Solve",
+        "C": "Bus_ZscMatrix_info",
+        "D": "Bus_Isc"
+      },
+      "function_name": "Bus_Isc"
+    }
+  },
+  {
+    "probe_id": "L0_ac73ae0f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Transformers_NumWindings",
+        "B": "Solution_ControlMode",
+        "C": "Bus_Isc",
+        "D": "Bus_puVmagAngle_config"
+      },
+      "function_name": "Bus_Isc"
+    }
+  },
+  {
+    "probe_id": "L0_8ca27ba2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Reclosers_NumSteps_Mode",
+        "B": "Bus_SeqVoltages",
+        "C": "Fuses_Shots",
+        "D": "Loads_kW_element"
+      },
+      "function_name": "Bus_SeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_f872f22a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_SeqVoltages",
+        "B": "Loads_Algorithm",
+        "C": "Monitors_Channel",
+        "D": "Circuit_TotalPower"
+      },
+      "function_name": "Bus_SeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_e1a662d4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "C",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_State_ForwardBand",
+        "B": "Solution_Frequency_table",
+        "C": "Circuit_MaxIterations",
+        "D": "Bus_Voc"
+      },
+      "function_name": "Bus_Voc"
+    }
+  },
+  {
+    "probe_id": "L0_605ee874",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_Convergence_table is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Solution_Convergence_table is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_Convergence_table",
+        "B": "Capacitors_AddStep",
+        "C": "Bus_Voc",
+        "D": "Text_Result"
+      },
+      "function_name": "Bus_Voc"
+    }
+  },
+  {
+    "probe_id": "L0_7442024f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CktElement_kvar_Zsc0",
+        "B": "CktElement_Losses_set",
+        "C": "CktElement_PU",
+        "D": "Bus_Voltages"
+      },
+      "function_name": "Bus_Voltages"
+    }
+  },
+  {
+    "probe_id": "L0_c844c1ee",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Text_Solve does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function Text_Solve does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Text_Solve",
+        "B": "Bus_Voltages",
+        "C": "CapControls_Capacitor",
+        "D": "Lines_R1"
+      },
+      "function_name": "Bus_Voltages"
+    }
+  },
+  {
+    "probe_id": "L0_0beb8322",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_Powers is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Vsources_Powers is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Vsources_Powers",
+        "B": "Bus_YscMatrix",
+        "C": "Capacitors_MaxIterations_StepSize",
+        "D": "Generators_kW_table"
+      },
+      "function_name": "Bus_YscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_0700b690",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Bus_YscMatrix does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function Bus_YscMatrix does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Bus_YscMatrix",
+        "B": "Solution_Algorithm_table",
+        "C": "Generators_kW",
+        "D": "Bus_puVmagAngle"
+      },
+      "function_name": "Bus_YscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_83c8735b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_Zsc0",
+        "B": "Bus_kVBase_data",
+        "C": "Solution_Converged_set",
+        "D": "Solution_ControlMode_set"
+      },
+      "function_name": "Bus_Zsc0"
+    }
+  },
+  {
+    "probe_id": "L0_6a622ed7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Bus_ZscMatrix does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function Bus_ZscMatrix does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Bus_ZscMatrix",
+        "B": "Solution_Channel",
+        "C": "CktElement_Losses",
+        "D": "Bus_Zsc0"
+      },
+      "function_name": "Bus_Zsc0"
+    }
+  },
+  {
+    "probe_id": "L0_2b263493",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"CktElement_MaxTapChange is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "CktElement_MaxTapChange is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "CktElement_MaxTapChange",
+        "B": "Capacitors_AddStep_config",
+        "C": "Bus_Zsc1",
+        "D": "Bus_TapNumber"
+      },
+      "function_name": "Bus_Zsc1"
+    }
+  },
+  {
+    "probe_id": "L0_872c4982",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_LoadModel is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Solution_LoadModel is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_LoadModel",
+        "B": "Bus_AllNodeNames_Bus1",
+        "C": "RegControls_TapNumber",
+        "D": "Bus_Zsc1"
+      },
+      "function_name": "Bus_Zsc1"
+    }
+  },
+  {
+    "probe_id": "L0_6a0f7d2b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Bus_ZscMatrix is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Bus_ZscMatrix is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Bus_ZscMatrix",
+        "B": "Solution_Frequency_info",
+        "C": "Vsources_MaxTapChange",
+        "D": "Capacitors_Wdg"
+      },
+      "function_name": "Bus_ZscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_0e8e8f73",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CktElement_Currents",
+        "B": "Bus_ZscMatrix",
+        "C": "Reclosers_State",
+        "D": "Lines_ForwardBand"
+      },
+      "function_name": "Bus_ZscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_676d935d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Vsources_Losses",
+        "B": "Bus_kVBase",
+        "C": "Loads_TotalIterations",
+        "D": "Loads_kW_element"
+      },
+      "function_name": "Bus_kVBase"
+    }
+  },
+  {
+    "probe_id": "L0_569323c3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function RegControls_ForwardVreg does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "The function RegControls_ForwardVreg does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "RegControls_ForwardVreg",
+        "B": "RegControls_MaxTapChange",
+        "C": "Lines_SeqVoltages",
+        "D": "Bus_kVBase"
+      },
+      "function_name": "Bus_kVBase"
+    }
+  },
+  {
+    "probe_id": "L0_7d244f17",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CktElement_Losses_config",
+        "B": "Solution_SubtractStep",
+        "C": "Bus_puVmagAngle",
+        "D": "Solution_LoadMult_element"
+      },
+      "function_name": "Bus_puVmagAngle"
+    }
+  },
+  {
+    "probe_id": "L0_d3cae72b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Capacitors_MaxIterations_StepSize does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function Capacitors_MaxIterations_StepSize does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Capacitors_MaxIterations_StepSize",
+        "B": "Circuit_AllBusMagPu",
+        "C": "Bus_puVmagAngle",
+        "D": "Solution_Convergence"
+      },
+      "function_name": "Bus_puVmagAngle"
+    }
+  },
+  {
+    "probe_id": "L0_b3a3693b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Bus_SeqVoltages_set is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Bus_SeqVoltages_set is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Bus_SeqVoltages_set",
+        "B": "Text_Frequency",
+        "C": "Text_Result_list",
+        "D": "CapControls_Capacitor"
+      },
+      "function_name": "CapControls_Capacitor"
+    }
+  },
+  {
+    "probe_id": "L0_719c6984",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Circuit_SetActiveBus",
+        "B": "Loads_TotalIterations",
+        "C": "Solution_Solve",
+        "D": "CapControls_Capacitor"
+      },
+      "function_name": "CapControls_Capacitor"
+    }
+  },
+  {
+    "probe_id": "L0_da5d5ceb",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_StepSize_data",
+        "B": "CktElement_Command_kvar",
+        "C": "Circuit_LoadModel",
+        "D": "CapControls_Mode"
+      },
+      "function_name": "CapControls_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_a5885a63",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CapControls_Mode",
+        "B": "Bus_Zsc1",
+        "C": "Loads_ForwardBand",
+        "D": "CktElement_Powers"
+      },
+      "function_name": "CapControls_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_f8cac251",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CapControls_Name",
+        "B": "Circuit_SetActiveBus_set",
+        "C": "RegControls_ForwardBand_element",
+        "D": "Loads_R1"
+      },
+      "function_name": "CapControls_Name"
+    }
+  },
+  {
+    "probe_id": "L0_735f5645",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Circuit_AllBusNames",
+        "B": "CapControls_Name",
+        "C": "Transformers_Tap",
+        "D": "Solution_State_ForwardBand"
+      },
+      "function_name": "CapControls_Name"
+    }
+  },
+  {
+    "probe_id": "L0_3b4335b9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"CapControls_OFFSetting is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "CapControls_OFFSetting is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "CapControls_OFFSetting",
+        "B": "Circuit_ForwardBand_SeqVoltages",
+        "C": "Capacitors_StepSize_NumSteps",
+        "D": "Bus_Solve_IsBlown"
+      },
+      "function_name": "CapControls_OFFSetting"
+    }
+  },
+  {
+    "probe_id": "L0_8f7834ff",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CapControls_OFFSetting",
+        "B": "Transformers_SubtractStep",
+        "C": "Fuses_IsBlown",
+        "D": "Capacitors_AddStep"
+      },
+      "function_name": "CapControls_OFFSetting"
+    }
+  },
+  {
+    "probe_id": "L0_6eb789e1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Text_Result_config",
+        "B": "Bus_RegisterValues_AllNodeNames",
+        "C": "CapControls_ONSetting",
+        "D": "Text_Losses"
+      },
+      "function_name": "CapControls_ONSetting"
+    }
+  },
+  {
+    "probe_id": "L0_c599c766",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"CapControls_ONSetting is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "CapControls_ONSetting is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "CapControls_ONSetting",
+        "B": "Loads_kW_table",
+        "C": "CktElement_Losses",
+        "D": "Bus_Zsc1"
+      },
+      "function_name": "CapControls_ONSetting"
+    }
+  },
+  {
+    "probe_id": "L0_2fa5d22d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Vsources_Command",
+        "B": "CapControls_State",
+        "C": "Capacitors_AddStep",
+        "D": "Lines_R1_info"
+      },
+      "function_name": "Capacitors_AddStep"
+    }
+  },
+  {
+    "probe_id": "L0_93198ade",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Capacitors_AddStep",
+        "B": "Vsources_BasekV",
+        "C": "Solution_MaxControlIterations",
+        "D": "Reclosers_NumSteps_Length"
+      },
+      "function_name": "Capacitors_AddStep"
+    }
+  },
+  {
+    "probe_id": "L0_1901cec5",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "C",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Capacitors_AvailableSteps",
+        "B": "Reclosers_LineLosses",
+        "C": "Bus_Voltages_element",
+        "D": "Fuses_Number"
+      },
+      "function_name": "Capacitors_AvailableSteps"
+    }
+  },
+  {
+    "probe_id": "L0_f878cb4c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Fuses_MaxIterations does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function Fuses_MaxIterations does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Fuses_MaxIterations",
+        "B": "Capacitors_AvailableSteps",
+        "C": "Bus_Zsc0",
+        "D": "Solution_LoadMult"
+      },
+      "function_name": "Capacitors_AvailableSteps"
+    }
+  },
+  {
+    "probe_id": "L0_82d23585",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Capacitors_NumSteps is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Capacitors_NumSteps is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Capacitors_NumSteps",
+        "B": "CktElement_PU",
+        "C": "Vsources_Result",
+        "D": "Reclosers_OFFSetting"
+      },
+      "function_name": "Capacitors_NumSteps"
+    }
+  },
+  {
+    "probe_id": "L0_8adf00d3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_Length_Mode is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Reclosers_Length_Mode is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Reclosers_Length_Mode",
+        "B": "Capacitors_AvailableSteps",
+        "C": "Solution_Converged",
+        "D": "Capacitors_NumSteps"
+      },
+      "function_name": "Capacitors_NumSteps"
+    }
+  },
+  {
+    "probe_id": "L0_cce98d8a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_SeqVoltages_Solve",
+        "B": "Circuit_LineLosses_list",
+        "C": "Reclosers_TotalPower",
+        "D": "Capacitors_States"
+      },
+      "function_name": "Capacitors_States"
+    }
+  },
+  {
+    "probe_id": "L0_3185890f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'CapControls_Capacitor' does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "The function 'CapControls_Capacitor' does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "CapControls_Capacitor",
+        "B": "Capacitors_States",
+        "C": "CktElement_Powers",
+        "D": "CktElement_CplxSeqVoltages"
+      },
+      "function_name": "Capacitors_States"
+    }
+  },
+  {
+    "probe_id": "L0_c92ed507",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Reclosers_Isc",
+        "B": "Capacitors_SubtractStep",
+        "C": "Fuses_Result_kvar",
+        "D": "Circuit_Losses_list"
+      },
+      "function_name": "Capacitors_SubtractStep"
+    }
+  },
+  {
+    "probe_id": "L0_8532362f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "RegControls_MaxTapChange",
+        "B": "Capacitors_MaxIterations_StepSize",
+        "C": "Fuses_State",
+        "D": "Capacitors_SubtractStep"
+      },
+      "function_name": "Capacitors_SubtractStep"
+    }
+  },
+  {
+    "probe_id": "L0_653c75e7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Circuit_AllBusMagPu is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Circuit_AllBusMagPu is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Circuit_ForwardBand_kW",
+        "B": "RegControls_ForwardVreg_info",
+        "C": "Circuit_AllBusMagPu",
+        "D": "Text_Result_info"
+      },
+      "function_name": "Circuit_AllBusMagPu"
+    }
+  },
+  {
+    "probe_id": "L0_21580792",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_Zsc1",
+        "B": "Loads_kW",
+        "C": "Circuit_AllBusMagPu",
+        "D": "Circuit_SeqVoltages_Length"
+      },
+      "function_name": "Circuit_AllBusMagPu"
+    }
+  },
+  {
+    "probe_id": "L0_303d82b1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Circuit_AllBusNames is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Circuit_AllBusNames is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Capacitors_Channel_kW",
+        "B": "Reclosers_kVBase",
+        "C": "Circuit_AllBusNames",
+        "D": "Reclosers_kVA"
+      },
+      "function_name": "Circuit_AllBusNames"
+    }
+  },
+  {
+    "probe_id": "L0_7f526a81",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Vsources_puVmagAngle does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function Vsources_puVmagAngle does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Vsources_puVmagAngle",
+        "B": "CktElement_Powers",
+        "C": "Circuit_AllBusNames",
+        "D": "RegControls_Winding"
+      },
+      "function_name": "Circuit_AllBusNames"
+    }
+  },
+  {
+    "probe_id": "L0_7f8c7fc6",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_ControlMode_info",
+        "B": "Circuit_AllNodeNames",
+        "C": "Capacitors_Channel_kW",
+        "D": "Transformers_Result"
+      },
+      "function_name": "Circuit_AllNodeNames"
+    }
+  },
+  {
+    "probe_id": "L0_34a151e4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Circuit_AllNodeNames",
+        "B": "CktElement_Powers",
+        "C": "Loads_kW",
+        "D": "Solution_State_ForwardBand"
+      },
+      "function_name": "Circuit_AllNodeNames"
+    }
+  },
+  {
+    "probe_id": "L0_3a5146c4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_ONSetting",
+        "B": "Text_Number",
+        "C": "Bus_AllNodeNames",
+        "D": "Circuit_LineLosses"
+      },
+      "function_name": "Circuit_LineLosses"
+    }
+  },
+  {
+    "probe_id": "L0_2e2c3918",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'Circuit_Losses_list' does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function 'Circuit_Losses_list' does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Circuit_Losses_list",
+        "B": "Text_Result",
+        "C": "Bus_kVBase",
+        "D": "Circuit_LineLosses"
+      },
+      "function_name": "Circuit_LineLosses"
+    }
+  },
+  {
+    "probe_id": "L0_430b184b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Vsources_NumWindings",
+        "B": "Loads_R1",
+        "C": "Circuit_Losses",
+        "D": "Capacitors_MaxIterations_TotalIterations"
+      },
+      "function_name": "Circuit_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_ae7b2c6d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Capacitors_Shots is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Capacitors_Shots is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Capacitors_Shots",
+        "B": "Loads_Name",
+        "C": "Circuit_Losses",
+        "D": "Transformers_NumWindings"
+      },
+      "function_name": "Circuit_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_5d90b555",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Reclosers_Command",
+        "B": "CapControls_Name_info",
+        "C": "Solution_State_ForwardBand",
+        "D": "Circuit_SetActiveBus"
+      },
+      "function_name": "Circuit_SetActiveBus"
+    }
+  },
+  {
+    "probe_id": "L0_8de6918a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'Circuit_Losses_data' does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function 'Circuit_Losses_data' does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Circuit_Losses_data",
+        "B": "Lines_Length",
+        "C": "Generators_kW",
+        "D": "Circuit_SetActiveBus"
+      },
+      "function_name": "Circuit_SetActiveBus"
+    }
+  },
+  {
+    "probe_id": "L0_d88390ee",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CktElement_Command_kvar",
+        "B": "Bus_Tap",
+        "C": "RegControls_MaxTapChange_data",
+        "D": "Circuit_SetActiveElement"
+      },
+      "function_name": "Circuit_SetActiveElement"
+    }
+  },
+  {
+    "probe_id": "L0_750fbf2f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_PU is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Transformers_PU is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Transformers_PU",
+        "B": "Bus_YscMatrix",
+        "C": "Lines_Bus1",
+        "D": "Circuit_SetActiveElement"
+      },
+      "function_name": "Circuit_SetActiveElement"
+    }
+  },
+  {
+    "probe_id": "L0_34e3d366",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CapControls_MaxTapChange",
+        "B": "Circuit_TotalPower",
+        "C": "Circuit_LineLosses_list",
+        "D": "RegControls_ForwardBand_data"
+      },
+      "function_name": "Circuit_TotalPower"
+    }
+  },
+  {
+    "probe_id": "L0_0cc244f8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Circuit_TotalPower",
+        "B": "Solution_StepSize_list",
+        "C": "Bus_kVBase",
+        "D": "CapControls_OFFSetting"
+      },
+      "function_name": "Circuit_TotalPower"
+    }
+  },
+  {
+    "probe_id": "L0_1da5ab9f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Circuit_Number_Length",
+        "B": "CktElement_Currents",
+        "C": "Reclosers_LineLosses",
+        "D": "Text_TapNumber"
+      },
+      "function_name": "CktElement_Currents"
+    }
+  },
+  {
+    "probe_id": "L0_05a47c2b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_Result is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Vsources_Result is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Vsources_Result",
+        "B": "CktElement_Currents",
+        "C": "Circuit_SetActiveBus",
+        "D": "Reclosers_Shots"
+      },
+      "function_name": "CktElement_Currents"
+    }
+  },
+  {
+    "probe_id": "L0_68a422a2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CapControls_State",
+        "B": "CktElement_Losses",
+        "C": "Vsources_Powers",
+        "D": "Text_Result_info"
+      },
+      "function_name": "CktElement_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_00c6437d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CktElement_Losses",
+        "B": "Circuit_AllBusNames",
+        "C": "Circuit_ONSetting",
+        "D": "Meters_RegisterValues"
+      },
+      "function_name": "CktElement_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_9a6bd982",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"CktElement_Powers is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "CktElement_Powers is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Reclosers_OFFSetting",
+        "B": "CapControls_Convergence",
+        "C": "CktElement_Powers",
+        "D": "Circuit_SetActiveBus_data"
+      },
+      "function_name": "CktElement_Powers"
+    }
+  },
+  {
+    "probe_id": "L0_7d00bee4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_SetActiveBus is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Solution_SetActiveBus is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_SetActiveBus",
+        "B": "CktElement_Powers",
+        "C": "Solution_LoadModel",
+        "D": "Reclosers_PhaseTrip"
+      },
+      "function_name": "CktElement_Powers"
+    }
+  },
+  {
+    "probe_id": "L0_70b0ccb3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Loads_Name_table",
+        "B": "CktElement_PU",
+        "C": "Fuses_IsBlown",
+        "D": "Capacitors_StepSize_NumSteps"
+      },
+      "function_name": "Fuses_IsBlown"
+    }
+  },
+  {
+    "probe_id": "L0_49278b13",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_StepSize is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Solution_StepSize is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_StepSize",
+        "B": "Capacitors_StepSize_NumSteps",
+        "C": "Reclosers_PhaseTrip",
+        "D": "Fuses_IsBlown"
+      },
+      "function_name": "Fuses_IsBlown"
+    }
+  },
+  {
+    "probe_id": "L0_0336c928",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_NumWindings",
+        "B": "CapControls_TotalIterations",
+        "C": "Fuses_RatedCurrent",
+        "D": "Text_Result_list"
+      },
+      "function_name": "Fuses_RatedCurrent"
+    }
+  },
+  {
+    "probe_id": "L0_d0d016fe",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_PhaseTrip is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Reclosers_PhaseTrip is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Reclosers_PhaseTrip",
+        "B": "Solution_Convergence",
+        "C": "Fuses_RatedCurrent",
+        "D": "Bus_YscMatrix_data"
+      },
+      "function_name": "Fuses_RatedCurrent"
+    }
+  },
+  {
+    "probe_id": "L0_a6228d1e",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "RegControls_ForwardVreg_info",
+        "B": "Fuses_State_data",
+        "C": "Fuses_State",
+        "D": "CktElement_Losses_set"
+      },
+      "function_name": "Fuses_State"
+    }
+  },
+  {
+    "probe_id": "L0_af4595bf",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_CplxSeqVoltages",
+        "B": "Fuses_State",
+        "C": "Vsources_MaxTapChange",
+        "D": "Solution_TotalIterations"
+      },
+      "function_name": "Fuses_State"
+    }
+  },
+  {
+    "probe_id": "L0_d4285377",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Bus_YscMatrix_data is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Bus_YscMatrix_data is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Bus_YscMatrix_data",
+        "B": "Loads_R1",
+        "C": "Circuit_AllBusNames_config",
+        "D": "Generators_kW"
+      },
+      "function_name": "Generators_kW"
+    }
+  },
+  {
+    "probe_id": "L0_84220bcc",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_Solve",
+        "B": "Lines_Winding",
+        "C": "Loads_PF",
+        "D": "Generators_kW"
+      },
+      "function_name": "Generators_kW"
+    }
+  },
+  {
+    "probe_id": "L0_2bb4814a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Lines_Bus1",
+        "B": "Bus_RegisterValues_AllNodeNames",
+        "C": "Text_TapNumber",
+        "D": "CktElement_PU"
+      },
+      "function_name": "Lines_Bus1"
+    }
+  },
+  {
+    "probe_id": "L0_b77c3c5b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_kVA is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Transformers_kVA is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Transformers_kVA",
+        "B": "Circuit_AllBusNames",
+        "C": "Lines_Bus1",
+        "D": "Bus_AvailableSteps_LoadMult"
+      },
+      "function_name": "Lines_Bus1"
+    }
+  },
+  {
+    "probe_id": "L0_3c44f2a9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Lines_Length",
+        "B": "Bus_Zsc0_data",
+        "C": "Bus_Voltages_info",
+        "D": "Circuit_Losses_data"
+      },
+      "function_name": "Lines_Length"
+    }
+  },
+  {
+    "probe_id": "L0_35f1e7df",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_LoadMult",
+        "B": "Circuit_LineLosses_list",
+        "C": "Lines_Length",
+        "D": "Solution_Frequency"
+      },
+      "function_name": "Lines_Length"
+    }
+  },
+  {
+    "probe_id": "L0_1af14221",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Transformers_kVA_list",
+        "B": "Circuit_Convergence",
+        "C": "Lines_R1",
+        "D": "Capacitors_Length"
+      },
+      "function_name": "Lines_R1"
+    }
+  },
+  {
+    "probe_id": "L0_432e0970",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"CapControls_Name_list is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "CapControls_Name_list is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "CapControls_Name_list",
+        "B": "Lines_R1",
+        "C": "Loads_PF",
+        "D": "Circuit_TotalPower"
+      },
+      "function_name": "Lines_R1"
+    }
+  },
+  {
+    "probe_id": "L0_e229dab3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Transformers_CplxSeqVoltages",
+        "B": "Loads_Name",
+        "C": "Capacitors_MaxIterations_TotalIterations",
+        "D": "Text_Number"
+      },
+      "function_name": "Loads_Name"
+    }
+  },
+  {
+    "probe_id": "L0_a5bb67df",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Capacitors_StepSize_NumSteps does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function Capacitors_StepSize_NumSteps does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Capacitors_StepSize_NumSteps",
+        "B": "Loads_Name",
+        "C": "RegControls_MaxTapChange",
+        "D": "Solution_Number"
+      },
+      "function_name": "Loads_Name"
+    }
+  },
+  {
+    "probe_id": "L0_97d500b3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "C",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Loads_PF",
+        "B": "Bus_puVmagAngle_config",
+        "C": "CapControls_Converged",
+        "D": "Circuit_PF_ForwardBand"
+      },
+      "function_name": "Loads_PF"
+    }
+  },
+  {
+    "probe_id": "L0_47bc213e",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'Loads_PF' does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function 'Loads_PF' does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Loads_PF",
+        "B": "Vsources_Result",
+        "C": "Transformers_Wdg",
+        "D": "Bus_Zsc0"
+      },
+      "function_name": "Loads_PF"
+    }
+  },
+  {
+    "probe_id": "L0_8dddf8e9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Loads_kW is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Loads_kW is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Loads_kW",
+        "B": "Fuses_kW",
+        "C": "Transformers_Currents",
+        "D": "Bus_YscMatrix_info"
+      },
+      "function_name": "Loads_kW"
+    }
+  },
+  {
+    "probe_id": "L0_fd27f4bb",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_Tap is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Transformers_Tap is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Transformers_Tap",
+        "B": "Loads_kW",
+        "C": "Solution_Iterations",
+        "D": "Loads_kW_element"
+      },
+      "function_name": "Loads_kW"
+    }
+  },
+  {
+    "probe_id": "L0_f99a507a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Reclosers_Bus1",
+        "B": "Loads_kvar",
+        "C": "Monitors_Channel_config",
+        "D": "Bus_SubtractStep"
+      },
+      "function_name": "Loads_kvar"
+    }
+  },
+  {
+    "probe_id": "L0_e472bece",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_MaxControlIterations is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Vsources_MaxControlIterations is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Vsources_MaxControlIterations",
+        "B": "Solution_Frequency",
+        "C": "Generators_kW",
+        "D": "Loads_kvar"
+      },
+      "function_name": "Loads_kvar"
+    }
+  },
+  {
+    "probe_id": "L0_1d1be429",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_TotalIterations_data",
+        "B": "CktElement_SeqVoltages",
+        "C": "Circuit_LineLosses_data",
+        "D": "Meters_RegisterValues"
+      },
+      "function_name": "Meters_RegisterValues"
+    }
+  },
+  {
+    "probe_id": "L0_1818517f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Meters_RegisterValues",
+        "B": "Loads_TotalIterations",
+        "C": "CktElement_Currents",
+        "D": "RegControls_MaxTapChange"
+      },
+      "function_name": "Meters_RegisterValues"
+    }
+  },
+  {
+    "probe_id": "L0_19484578",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Monitors_Channel is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Monitors_Channel is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Circuit_AllBusNames_config",
+        "B": "Monitors_Channel",
+        "C": "Capacitors_SetActiveBus_StepSize",
+        "D": "Fuses_State_info"
+      },
+      "function_name": "Monitors_Channel"
+    }
+  },
+  {
+    "probe_id": "L0_f2844f0a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function CktElement_StepSize_Command does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function CktElement_StepSize_Command does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "CktElement_StepSize_Command",
+        "B": "Solution_ControlMode",
+        "C": "Monitors_Channel",
+        "D": "Circuit_SetActiveBus"
+      },
+      "function_name": "Monitors_Channel"
+    }
+  },
+  {
+    "probe_id": "L0_91bdddb8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_PhaseTrip is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Reclosers_PhaseTrip is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Reclosers_PhaseTrip",
+        "B": "Capacitors_States_table",
+        "C": "Reclosers_ONSetting_Length",
+        "D": "Fuses_Shots"
+      },
+      "function_name": "Reclosers_PhaseTrip"
+    }
+  },
+  {
+    "probe_id": "L0_61109749",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_PhaseTrip is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Reclosers_PhaseTrip is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Reclosers_PhaseTrip",
+        "B": "Transformers_NumWindings",
+        "C": "Text_Result",
+        "D": "Bus_puVmagAngle_config"
+      },
+      "function_name": "Reclosers_PhaseTrip"
+    }
+  },
+  {
+    "probe_id": "L0_f51c3390",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Reclosers_Shots",
+        "B": "Capacitors_Convergence",
+        "C": "CapControls_Capacitor_data",
+        "D": "Fuses_RatedCurrent_set"
+      },
+      "function_name": "Reclosers_Shots"
+    }
+  },
+  {
+    "probe_id": "L0_3458b79e",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_Shots is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Reclosers_Shots is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Reclosers_Shots",
+        "B": "Text_TapNumber",
+        "C": "Solution_LoadMult",
+        "D": "Circuit_AllBusMagPu"
+      },
+      "function_name": "Reclosers_Shots"
+    }
+  },
+  {
+    "probe_id": "L0_f55ef0f2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "RegControls_Winding_config",
+        "B": "Solution_Convergence_info",
+        "C": "Reclosers_State",
+        "D": "CktElement_Capacitor"
+      },
+      "function_name": "Reclosers_State"
+    }
+  },
+  {
+    "probe_id": "L0_3a7be3b9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Fuses_RatedCurrent does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "The function Fuses_RatedCurrent does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Fuses_RatedCurrent",
+        "B": "Reclosers_State",
+        "C": "Solution_LoadModel_TotalIterations",
+        "D": "RegControls_ForwardVreg"
+      },
+      "function_name": "Reclosers_State"
+    }
+  },
+  {
+    "probe_id": "L0_ebce3c22",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_ControlMode_set is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Solution_ControlMode_set is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_ControlMode_set",
+        "B": "RegControls_ForwardBand",
+        "C": "Vsources_ZscMatrix",
+        "D": "Lines_R1_info"
+      },
+      "function_name": "RegControls_ForwardBand"
+    }
+  },
+  {
+    "probe_id": "L0_952f5dac",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'RegControls_ForwardBand' does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function 'RegControls_ForwardBand' does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "RegControls_ForwardBand",
+        "B": "Circuit_LineLosses_data",
+        "C": "Bus_SeqVoltages",
+        "D": "Solution_MaxControlIterations"
+      },
+      "function_name": "RegControls_ForwardBand"
+    }
+  },
+  {
+    "probe_id": "L0_45977cc8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Vsources_kvar",
+        "B": "Capacitors_AddStep_element",
+        "C": "RegControls_ForwardVreg",
+        "D": "Loads_R1"
+      },
+      "function_name": "RegControls_ForwardVreg"
+    }
+  },
+  {
+    "probe_id": "L0_8cb0ec7d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CktElement_Losses",
+        "B": "Capacitors_States",
+        "C": "RegControls_ForwardVreg",
+        "D": "Circuit_SetActiveBus_set"
+      },
+      "function_name": "RegControls_ForwardVreg"
+    }
+  },
+  {
+    "probe_id": "L0_ce5c0675",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Transformers_ForwardBand_AvailableSteps",
+        "B": "RegControls_MaxTapChange",
+        "C": "Reclosers_SeqVoltages",
+        "D": "Bus_ZscMatrix_info"
+      },
+      "function_name": "RegControls_MaxTapChange"
+    }
+  },
+  {
+    "probe_id": "L0_77768f98",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Capacitors_SubtractStep does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function Capacitors_SubtractStep does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Capacitors_SubtractStep",
+        "B": "Circuit_ForwardBand_SeqVoltages",
+        "C": "RegControls_MaxTapChange",
+        "D": "CapControls_OFFSetting"
+      },
+      "function_name": "RegControls_MaxTapChange"
+    }
+  },
+  {
+    "probe_id": "L0_2f01ab87",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Circuit_ForwardBand_SeqVoltages",
+        "B": "RegControls_TapNumber",
+        "C": "Solution_State_Voc",
+        "D": "Solution_LoadModel_table"
+      },
+      "function_name": "RegControls_TapNumber"
+    }
+  },
+  {
+    "probe_id": "L0_29c68c27",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CktElement_Powers",
+        "B": "Bus_kVBase",
+        "C": "Loads_Algorithm",
+        "D": "RegControls_TapNumber"
+      },
+      "function_name": "RegControls_TapNumber"
+    }
+  },
+  {
+    "probe_id": "L0_19108579",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"RegControls_Winding is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "RegControls_Winding is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "RegControls_Winding",
+        "B": "Reclosers_AddStep_MaxControlIterations",
+        "C": "Circuit_Number_Length",
+        "D": "Transformers_ForwardBand"
+      },
+      "function_name": "RegControls_Winding"
+    }
+  },
+  {
+    "probe_id": "L0_f7b6e208",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_StepSize is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Reclosers_StepSize is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Reclosers_StepSize",
+        "B": "RegControls_Winding",
+        "C": "Solution_Solve",
+        "D": "Bus_ZscMatrix"
+      },
+      "function_name": "RegControls_Winding"
+    }
+  },
+  {
+    "probe_id": "L0_bf990657",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Circuit_PF_ForwardBand",
+        "B": "Solution_Algorithm",
+        "C": "Transformers_YscMatrix",
+        "D": "CktElement_kvar_Zsc0"
+      },
+      "function_name": "Solution_Algorithm"
+    }
+  },
+  {
+    "probe_id": "L0_596a9e32",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_Convergence",
+        "B": "Circuit_AllBusNames",
+        "C": "Loads_kW_info",
+        "D": "Solution_Algorithm"
+      },
+      "function_name": "Solution_Algorithm"
+    }
+  },
+  {
+    "probe_id": "L0_42b67dd6",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_Channel",
+        "B": "Solution_ControlMode",
+        "C": "Transformers_ForwardBand_AvailableSteps",
+        "D": "CapControls_Capacitor_data"
+      },
+      "function_name": "Solution_ControlMode"
+    }
+  },
+  {
+    "probe_id": "L0_97a6c3e7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function CapControls_Capacitor does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "The function CapControls_Capacitor does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "CapControls_Capacitor",
+        "B": "Solution_ControlMode",
+        "C": "Circuit_AllBusMagPu_table",
+        "D": "Generators_kW"
+      },
+      "function_name": "Solution_ControlMode"
+    }
+  },
+  {
+    "probe_id": "L0_79c107f9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Reclosers_Voc",
+        "B": "Vsources_ZscMatrix",
+        "C": "Solution_Converged",
+        "D": "Fuses_RatedCurrent_set"
+      },
+      "function_name": "Solution_Converged"
+    }
+  },
+  {
+    "probe_id": "L0_677b29ab",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Circuit_SetActiveElement is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Circuit_SetActiveElement is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Circuit_SetActiveElement",
+        "B": "Solution_YscMatrix",
+        "C": "Reclosers_PhaseTrip",
+        "D": "Solution_Converged"
+      },
+      "function_name": "Solution_Converged"
+    }
+  },
+  {
+    "probe_id": "L0_af55f01c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Reclosers_Converged_MaxControlIterations",
+        "B": "Bus_Wdg",
+        "C": "Solution_Convergence",
+        "D": "RegControls_State"
+      },
+      "function_name": "Solution_Convergence"
+    }
+  },
+  {
+    "probe_id": "L0_157c5955",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function RegControls_Winding does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function RegControls_Winding does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "RegControls_Winding",
+        "B": "RegControls_State",
+        "C": "Solution_Convergence",
+        "D": "Solution_Mode"
+      },
+      "function_name": "Solution_Convergence"
+    }
+  },
+  {
+    "probe_id": "L0_4a5eae77",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Loads_MaxIterations",
+        "B": "Vsources_StepSize",
+        "C": "Circuit_AllNodeNames_config",
+        "D": "Solution_Frequency"
+      },
+      "function_name": "Solution_Frequency"
+    }
+  },
+  {
+    "probe_id": "L0_1abc8423",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function RegControls_TapNumber does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function RegControls_TapNumber does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "RegControls_TapNumber",
+        "B": "Solution_SetActiveBus",
+        "C": "CktElement_Powers",
+        "D": "Solution_Frequency"
+      },
+      "function_name": "Solution_Frequency"
+    }
+  },
+  {
+    "probe_id": "L0_28347f81",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_Iterations is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Solution_Iterations is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_Iterations",
+        "B": "CapControls_Converged",
+        "C": "Circuit_AllBusNames_config",
+        "D": "Reclosers_TotalPower"
+      },
+      "function_name": "Solution_Iterations"
+    }
+  },
+  {
+    "probe_id": "L0_aaa9c140",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function RegControls_MaxTapChange_data does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function RegControls_MaxTapChange_data does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "RegControls_MaxTapChange_data",
+        "B": "Solution_Iterations",
+        "C": "Fuses_State",
+        "D": "Loads_Name"
+      },
+      "function_name": "Solution_Iterations"
+    }
+  },
+  {
+    "probe_id": "L0_5ae1cb99",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_LoadMult_element",
+        "B": "Vsources_puVmagAngle",
+        "C": "Solution_LoadModel",
+        "D": "Bus_ONSetting"
+      },
+      "function_name": "Solution_LoadModel"
+    }
+  },
+  {
+    "probe_id": "L0_f8aa1f66",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Generators_kW is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Generators_kW is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Generators_kW",
+        "B": "Text_Losses",
+        "C": "Solution_MaxIterations",
+        "D": "Solution_LoadModel"
+      },
+      "function_name": "Solution_LoadModel"
+    }
+  },
+  {
+    "probe_id": "L0_038076ff",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Bus_YscMatrix_list",
+        "B": "Solution_LoadMult",
+        "C": "Lines_Capacitor",
+        "D": "Circuit_ForwardBand_kW"
+      },
+      "function_name": "Solution_LoadMult"
+    }
+  },
+  {
+    "probe_id": "L0_e8de2e5d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_LoadMult is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "Solution_LoadMult is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_LoadMult",
+        "B": "Capacitors_AddStep",
+        "C": "Lines_Length_data",
+        "D": "Text_Result"
+      },
+      "function_name": "Solution_LoadMult"
+    }
+  },
+  {
+    "probe_id": "L0_71c5fd09",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Loads_Algorithm",
+        "B": "Circuit_SetActiveBus_set",
+        "C": "Circuit_AllNodeNames_config",
+        "D": "Solution_MaxControlIterations"
+      },
+      "function_name": "Solution_MaxControlIterations"
+    }
+  },
+  {
+    "probe_id": "L0_d9a988f1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_MaxIterations",
+        "B": "Vsources_BasekV_element",
+        "C": "Solution_LoadMult",
+        "D": "Solution_MaxControlIterations"
+      },
+      "function_name": "Solution_MaxControlIterations"
+    }
+  },
+  {
+    "probe_id": "L0_7fa78298",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_SubtractStep",
+        "B": "Reclosers_ONSetting_Length",
+        "C": "Generators_kW_set",
+        "D": "Solution_MaxIterations"
+      },
+      "function_name": "Solution_MaxIterations"
+    }
+  },
+  {
+    "probe_id": "L0_5a722d58",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_MaxIterations",
+        "B": "Reclosers_kW",
+        "C": "Bus_kVBase",
+        "D": "Vsources_BasekV"
+      },
+      "function_name": "Solution_MaxIterations"
+    }
+  },
+  {
+    "probe_id": "L0_cdbcb0e4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Capacitors_Length",
+        "B": "Solution_Mode",
+        "C": "Vsources_Result",
+        "D": "Solution_MaxIterations_data"
+      },
+      "function_name": "Solution_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_aebdc252",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_TotalIterations is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Solution_TotalIterations is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_TotalIterations",
+        "B": "Solution_Mode",
+        "C": "RegControls_ForwardBand",
+        "D": "Circuit_AllBusMagPu_table"
+      },
+      "function_name": "Solution_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_557ef81c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_SetActiveBus is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Solution_SetActiveBus is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_SetActiveBus",
+        "B": "Circuit_RegisterValues",
+        "C": "Fuses_Result_kvar",
+        "D": "Solution_Number"
+      },
+      "function_name": "Solution_Number"
+    }
+  },
+  {
+    "probe_id": "L0_5c5e9ef2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'Capacitors_SeqVoltages_Isc' does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function 'Capacitors_SeqVoltages_Isc' does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Capacitors_SeqVoltages_Isc",
+        "B": "Solution_Number",
+        "C": "Fuses_RatedCurrent",
+        "D": "Bus_puVmagAngle"
+      },
+      "function_name": "Solution_Number"
+    }
+  },
+  {
+    "probe_id": "L0_a8582b44",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_Solve is a real function in the opendssdirect Python library used to solve the circuit.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Solution_Solve is a real function in the opendssdirect Python library used to solve the circuit.",
+      "options": {
+        "A": "Solution_Solve",
+        "B": "Capacitors_SeqVoltages_Isc",
+        "C": "Transformers_PU",
+        "D": "Lines_Winding"
+      },
+      "function_name": "Solution_Solve"
+    }
+  },
+  {
+    "probe_id": "L0_fe4cafa9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function Lines_Length does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "The function Lines_Length does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Lines_Length",
+        "B": "Bus_Voltages",
+        "C": "Reclosers_Converged_Zsc0",
+        "D": "Solution_Solve"
+      },
+      "function_name": "Solution_Solve"
+    }
+  },
+  {
+    "probe_id": "L0_43213479",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Capacitors_MaxIterations_StepSize",
+        "B": "Solution_StepSize",
+        "C": "Text_Solve",
+        "D": "CapControls_AllNodeNames"
+      },
+      "function_name": "Solution_StepSize"
+    }
+  },
+  {
+    "probe_id": "L0_7d102736",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function CapControls_ONSetting_info does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function CapControls_ONSetting_info does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "CapControls_ONSetting_info",
+        "B": "Solution_ControlMode",
+        "C": "Solution_StepSize",
+        "D": "CapControls_OFFSetting"
+      },
+      "function_name": "Solution_StepSize"
+    }
+  },
+  {
+    "probe_id": "L0_4583dbb1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Lines_RegisterValues",
+        "B": "CktElement_Losses_config",
+        "C": "CapControls_AllNodeNames",
+        "D": "Solution_TotalIterations"
+      },
+      "function_name": "Solution_TotalIterations"
+    }
+  },
+  {
+    "probe_id": "L0_be3a50b8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Text_Mode is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Text_Mode is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Text_Mode",
+        "B": "Solution_TotalIterations",
+        "C": "Lines_Bus1",
+        "D": "Transformers_kVA"
+      },
+      "function_name": "Solution_TotalIterations"
+    }
+  },
+  {
+    "probe_id": "L0_04adef81",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Text_Command is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Text_Command is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Fuses_IsBlown_kvar",
+        "B": "Text_Command",
+        "C": "Lines_PU",
+        "D": "Text_Frequency"
+      },
+      "function_name": "Text_Command"
+    }
+  },
+  {
+    "probe_id": "L0_a926dfcb",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_Converged is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Solution_Converged is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Solution_Converged",
+        "B": "Circuit_LoadModel",
+        "C": "Bus_YscMatrix",
+        "D": "Text_Command"
+      },
+      "function_name": "Text_Command"
+    }
+  },
+  {
+    "probe_id": "L0_a666bb08",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Lines_State",
+        "B": "Text_Result_config",
+        "C": "Solution_State_Voc",
+        "D": "Text_Result"
+      },
+      "function_name": "Text_Result"
+    }
+  },
+  {
+    "probe_id": "L0_881e3e43",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Vsources_BasekV",
+        "B": "Bus_YscMatrix",
+        "C": "Text_Result",
+        "D": "Capacitors_TotalIterations_kW"
+      },
+      "function_name": "Text_Result"
+    }
+  },
+  {
+    "probe_id": "L0_c6af41db",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Transformers_NumWindings",
+        "B": "Lines_R1_info",
+        "C": "Capacitors_LoadMult",
+        "D": "CktElement_Currents_SeqVoltages"
+      },
+      "function_name": "Transformers_NumWindings"
+    }
+  },
+  {
+    "probe_id": "L0_089d15e6",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "CapControls_Capacitor",
+        "B": "Transformers_NumWindings",
+        "C": "Solution_LoadMult",
+        "D": "Transformers_RegisterValues"
+      },
+      "function_name": "Transformers_NumWindings"
+    }
+  },
+  {
+    "probe_id": "L0_1aa30cd2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "C",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Transformers_Tap",
+        "B": "Reclosers_Command",
+        "C": "CapControls_MaxTapChange",
+        "D": "Loads_Name_table"
+      },
+      "function_name": "Transformers_Tap"
+    }
+  },
+  {
+    "probe_id": "L0_a4d65c28",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Transformers_Tap",
+        "B": "Reclosers_TotalPower",
+        "C": "RegControls_TapNumber",
+        "D": "Lines_Bus1"
+      },
+      "function_name": "Transformers_Tap"
+    }
+  },
+  {
+    "probe_id": "L0_2bdd24f7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Generators_kW_set is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Generators_kW_set is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Generators_kW_set",
+        "B": "Circuit_LoadModel",
+        "C": "Bus_ONSetting",
+        "D": "Transformers_Wdg"
+      },
+      "function_name": "Transformers_Wdg"
+    }
+  },
+  {
+    "probe_id": "L0_ae49075f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_Wdg is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "Transformers_Wdg is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Transformers_Wdg",
+        "B": "Solution_LoadModel",
+        "C": "Vsources_Shots",
+        "D": "Text_Result"
+      },
+      "function_name": "Transformers_Wdg"
+    }
+  },
+  {
+    "probe_id": "L0_ee17526d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Circuit_LineLosses_list is a real function in the opendssdirect Python library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Circuit_LineLosses_list is a real function in the opendssdirect Python library.",
+      "options": {
+        "A": "Circuit_LineLosses_list",
+        "B": "Transformers_kVA",
+        "C": "Text_ForwardBand",
+        "D": "Reclosers_Losses"
+      },
+      "function_name": "Transformers_kVA"
+    }
+  },
+  {
+    "probe_id": "L0_8930c83c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Solution_Convergence",
+        "B": "Transformers_kVA",
+        "C": "Capacitors_Convergence",
+        "D": "Lines_Bus1"
+      },
+      "function_name": "Transformers_kVA"
+    }
+  },
+  {
+    "probe_id": "L0_ccff8333",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "D",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "RegControls_ForwardBand_data",
+        "B": "Loads_kW_element",
+        "C": "Circuit_ForwardBand_SeqVoltages",
+        "D": "Vsources_BasekV"
+      },
+      "function_name": "Vsources_BasekV"
+    }
+  },
+  {
+    "probe_id": "L0_7134e79b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'Circuit_TotalPower' does not exist in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "The function 'Circuit_TotalPower' does not exist in the opendssdirect Python library.",
+      "options": {
+        "A": "Circuit_TotalPower",
+        "B": "Vsources_BasekV",
+        "C": "CapControls_Capacitor",
+        "D": "Solution_SubtractStep"
+      },
+      "function_name": "Vsources_BasekV"
+    }
+  },
+  {
+    "probe_id": "L0_12f8a9bc",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"one sentence\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "one sentence",
+      "options": {
+        "A": "Vsources_PU",
+        "B": "Reclosers_kVBase",
+        "C": "Reclosers_Losses",
+        "D": "RegControls_AllNodeNames"
+      },
+      "function_name": "Vsources_PU"
+    }
+  },
+  {
+    "probe_id": "L0_8ff4e705",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_PU is not a function in the opendssdirect Python library.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "Vsources_PU is not a function in the opendssdirect Python library.",
+      "options": {
+        "A": "Vsources_PU",
+        "B": "Solution_LoadMult",
+        "C": "Fuses_LoadModel_YscMatrix",
+        "D": "CktElement_Powers"
+      },
+      "function_name": "Vsources_PU"
+    }
+  }
+]

@@ -1,0 +1,770 @@
+{
+  "Qwen_Qwen2.5-Coder-32B-Instruct": {
+    "execution_rate": 0.4556,
+    "result_accuracy": 0.4,
+    "result_acc_of_exec": 0.878,
+    "n_total": 90,
+    "n_executed": 41,
+    "n_matched": 36,
+    "per_task": {
+      "power_flow": {
+        "total": 18,
+        "executed": 8,
+        "matched": 8,
+        "exec_rate": 0.4444,
+        "accuracy": 0.4444,
+        "accuracy_of_executed": 1.0
+      },
+      "linear_power_flow": {
+        "total": 18,
+        "executed": 10,
+        "matched": 7,
+        "exec_rate": 0.5556,
+        "accuracy": 0.3889,
+        "accuracy_of_executed": 0.7
+      },
+      "opf": {
+        "total": 18,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0
+      },
+      "network_modification": {
+        "total": 18,
+        "executed": 12,
+        "matched": 11,
+        "exec_rate": 0.6667,
+        "accuracy": 0.6111,
+        "accuracy_of_executed": 0.9167
+      },
+      "result_extraction": {
+        "total": 18,
+        "executed": 11,
+        "matched": 10,
+        "exec_rate": 0.6111,
+        "accuracy": 0.5556,
+        "accuracy_of_executed": 0.9091
+      }
+    },
+    "per_gt_type": {
+      "float": {
+        "total": 90,
+        "executed": 41,
+        "matched": 36,
+        "exec_rate": 0.4556,
+        "accuracy": 0.4
+      }
+    },
+    "per_query_type": {
+      "point": {
+        "total": 17,
+        "executed": 2,
+        "matched": 2,
+        "exec_rate": 0.1176,
+        "accuracy": 0.1176
+      },
+      "point_abs": {
+        "total": 24,
+        "executed": 18,
+        "matched": 16,
+        "exec_rate": 0.75,
+        "accuracy": 0.6667
+      },
+      "max_abs": {
+        "total": 27,
+        "executed": 20,
+        "matched": 17,
+        "exec_rate": 0.7407,
+        "accuracy": 0.6296
+      },
+      "min": {
+        "total": 8,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.125,
+        "accuracy": 0.125
+      },
+      "objective": {
+        "total": 13,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "max": {
+        "total": 1,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_n_modifications": {
+      "1": {
+        "total": 89,
+        "executed": 41,
+        "matched": 36,
+        "exec_rate": 0.4607,
+        "accuracy": 0.4045
+      },
+      "2": {
+        "total": 1,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_network": {
+      "self-built 3-bus radial AC network (slack + 2 loads, 2 lines)": {
+        "total": 4,
+        "executed": 3,
+        "matched": 3,
+        "exec_rate": 0.75,
+        "accuracy": 0.75
+      },
+      "self-built 4-bus radial AC network (20 kV, slack + 3 loads, 3 series lines)": {
+        "total": 9,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.1111,
+        "accuracy": 0.1111
+      },
+      "self-built 5-bus radial AC network (20 kV, slack + 4 loads, 4 series lines)": {
+        "total": 3,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.3333,
+        "accuracy": 0.3333
+      },
+      "self-built 6-bus two-voltage-level AC network (110/20 kV, 1 transformer, 3 loads)": {
+        "total": 9,
+        "executed": 4,
+        "matched": 3,
+        "exec_rate": 0.4444,
+        "accuracy": 0.3333
+      },
+      "self-built 4-bus meshed AC network (slack + PV gen + 2 loads, 5 lines incl. diagonal)": {
+        "total": 22,
+        "executed": 18,
+        "matched": 15,
+        "exec_rate": 0.8182,
+        "accuracy": 0.6818
+      },
+      "self-built 5-bus ring AC network (slack + PV gen + 4 loads, 5 ring lines)": {
+        "total": 21,
+        "executed": 14,
+        "matched": 13,
+        "exec_rate": 0.6667,
+        "accuracy": 0.619
+      },
+      "PyPSA ac-dc-meshed example network (offline, first snapshot)": {
+        "total": 1,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 5-bus economic-dispatch OPF network (3 dispatchable gens, 2 loads, meshed)": {
+        "total": 11,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 4-bus OPF network with a binding line limit (cheap vs expensive gen, meshed)": {
+        "total": 6,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 6-bus two-area OPF network joined by a controllable HVDC Link": {
+        "total": 4,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_difficulty": {
+      "D1_basic": {
+        "total": 45,
+        "executed": 20,
+        "matched": 18,
+        "exec_rate": 0.4444,
+        "accuracy": 0.4,
+        "accuracy_of_executed": 0.9
+      },
+      "D3_semantic": {
+        "total": 45,
+        "executed": 21,
+        "matched": 18,
+        "exec_rate": 0.4667,
+        "accuracy": 0.4,
+        "accuracy_of_executed": 0.8571
+      }
+    },
+    "error_distribution": {
+      "AttributeError": 29,
+      "KeyError": 12,
+      "ValueError": 5,
+      "UFuncTypeError": 2,
+      "IndexError": 1
+    },
+    "match_failure_reasons": {
+      "value_outside_tolerance": 5
+    },
+    "float_error_stats": {
+      "mean_rel_error": 0.000539,
+      "median_rel_error": 0.0,
+      "max_rel_error": 0.005235,
+      "p95_rel_error": 0.004821
+    },
+    "semantic_rewrite_summary": {
+      "total": 45,
+      "semantic_phrase_rate": 0.0,
+      "explicit_leak_rate": 0.0,
+      "avg_phrase_hits": 0.0,
+      "phrase_hit_distribution": {
+        "0": 45
+      },
+      "semantic_sources": {
+        "null": 45
+      },
+      "top_semantic_rules": {},
+      "top_leaked_tokens": {},
+      "per_difficulty": {
+        "D3_semantic": {
+          "total": 45,
+          "has_semantic_phrase": 0,
+          "leaks_explicit_params": 0,
+          "max_phrase_hits": 0,
+          "semantic_phrase_rate": 0.0,
+          "explicit_leak_rate": 0.0,
+          "avg_phrase_hits": 0.0
+        }
+      }
+    },
+    "code_stats": {
+      "avg_lines": 28.9,
+      "min_lines": 13,
+      "max_lines": 37
+    },
+    "round_snapshots": []
+  },
+  "meta-llama_Llama-3.1-70B-Instruct": {
+    "execution_rate": 0.3111,
+    "result_accuracy": 0.0556,
+    "result_acc_of_exec": 0.1786,
+    "n_total": 90,
+    "n_executed": 28,
+    "n_matched": 5,
+    "per_task": {
+      "power_flow": {
+        "total": 18,
+        "executed": 8,
+        "matched": 0,
+        "exec_rate": 0.4444,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0.0
+      },
+      "linear_power_flow": {
+        "total": 18,
+        "executed": 8,
+        "matched": 0,
+        "exec_rate": 0.4444,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0.0
+      },
+      "opf": {
+        "total": 18,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0
+      },
+      "network_modification": {
+        "total": 18,
+        "executed": 7,
+        "matched": 3,
+        "exec_rate": 0.3889,
+        "accuracy": 0.1667,
+        "accuracy_of_executed": 0.4286
+      },
+      "result_extraction": {
+        "total": 18,
+        "executed": 5,
+        "matched": 2,
+        "exec_rate": 0.2778,
+        "accuracy": 0.1111,
+        "accuracy_of_executed": 0.4
+      }
+    },
+    "per_gt_type": {
+      "float": {
+        "total": 90,
+        "executed": 28,
+        "matched": 5,
+        "exec_rate": 0.3111,
+        "accuracy": 0.0556
+      }
+    },
+    "per_query_type": {
+      "point": {
+        "total": 17,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.0588,
+        "accuracy": 0.0588
+      },
+      "point_abs": {
+        "total": 24,
+        "executed": 8,
+        "matched": 3,
+        "exec_rate": 0.3333,
+        "accuracy": 0.125
+      },
+      "max_abs": {
+        "total": 27,
+        "executed": 15,
+        "matched": 0,
+        "exec_rate": 0.5556,
+        "accuracy": 0.0
+      },
+      "min": {
+        "total": 8,
+        "executed": 4,
+        "matched": 1,
+        "exec_rate": 0.5,
+        "accuracy": 0.125
+      },
+      "objective": {
+        "total": 13,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "max": {
+        "total": 1,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_n_modifications": {
+      "1": {
+        "total": 89,
+        "executed": 28,
+        "matched": 5,
+        "exec_rate": 0.3146,
+        "accuracy": 0.0562
+      },
+      "2": {
+        "total": 1,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_network": {
+      "self-built 3-bus radial AC network (slack + 2 loads, 2 lines)": {
+        "total": 4,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 4-bus radial AC network (20 kV, slack + 3 loads, 3 series lines)": {
+        "total": 9,
+        "executed": 3,
+        "matched": 1,
+        "exec_rate": 0.3333,
+        "accuracy": 0.1111
+      },
+      "self-built 5-bus radial AC network (20 kV, slack + 4 loads, 4 series lines)": {
+        "total": 3,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.3333,
+        "accuracy": 0.0
+      },
+      "self-built 6-bus two-voltage-level AC network (110/20 kV, 1 transformer, 3 loads)": {
+        "total": 9,
+        "executed": 3,
+        "matched": 1,
+        "exec_rate": 0.3333,
+        "accuracy": 0.1111
+      },
+      "self-built 4-bus meshed AC network (slack + PV gen + 2 loads, 5 lines incl. diagonal)": {
+        "total": 22,
+        "executed": 14,
+        "matched": 2,
+        "exec_rate": 0.6364,
+        "accuracy": 0.0909
+      },
+      "self-built 5-bus ring AC network (slack + PV gen + 4 loads, 5 ring lines)": {
+        "total": 21,
+        "executed": 7,
+        "matched": 1,
+        "exec_rate": 0.3333,
+        "accuracy": 0.0476
+      },
+      "PyPSA ac-dc-meshed example network (offline, first snapshot)": {
+        "total": 1,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 5-bus economic-dispatch OPF network (3 dispatchable gens, 2 loads, meshed)": {
+        "total": 11,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 4-bus OPF network with a binding line limit (cheap vs expensive gen, meshed)": {
+        "total": 6,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 6-bus two-area OPF network joined by a controllable HVDC Link": {
+        "total": 4,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_difficulty": {
+      "D1_basic": {
+        "total": 45,
+        "executed": 9,
+        "matched": 4,
+        "exec_rate": 0.2,
+        "accuracy": 0.0889,
+        "accuracy_of_executed": 0.4444
+      },
+      "D3_semantic": {
+        "total": 45,
+        "executed": 19,
+        "matched": 1,
+        "exec_rate": 0.4222,
+        "accuracy": 0.0222,
+        "accuracy_of_executed": 0.0526
+      }
+    },
+    "error_distribution": {
+      "KeyError": 34,
+      "AttributeError": 27,
+      "TypeError": 1
+    },
+    "match_failure_reasons": {
+      "cannot_parse_float:dtype: float64": 18,
+      "cannot_parse_float:Name: l12, dtype: float64": 3,
+      "cannot_parse_float:Name: l13, dtype: float64": 1,
+      "cannot_parse_float:Name: l23, dtype: float64": 1
+    },
+    "float_error_stats": {
+      "mean_rel_error": 0.0,
+      "median_rel_error": 0.0,
+      "max_rel_error": 0.0,
+      "p95_rel_error": 0.0
+    },
+    "semantic_rewrite_summary": {
+      "total": 45,
+      "semantic_phrase_rate": 0.0,
+      "explicit_leak_rate": 0.0,
+      "avg_phrase_hits": 0.0,
+      "phrase_hit_distribution": {
+        "0": 45
+      },
+      "semantic_sources": {
+        "null": 45
+      },
+      "top_semantic_rules": {},
+      "top_leaked_tokens": {},
+      "per_difficulty": {
+        "D3_semantic": {
+          "total": 45,
+          "has_semantic_phrase": 0,
+          "leaks_explicit_params": 0,
+          "max_phrase_hits": 0,
+          "semantic_phrase_rate": 0.0,
+          "explicit_leak_rate": 0.0,
+          "avg_phrase_hits": 0.0
+        }
+      }
+    },
+    "code_stats": {
+      "avg_lines": 27.8,
+      "min_lines": 13,
+      "max_lines": 45
+    },
+    "round_snapshots": []
+  },
+  "deepseek-v4-flash": {
+    "execution_rate": 0.7111,
+    "result_accuracy": 0.6889,
+    "result_acc_of_exec": 0.9688,
+    "n_total": 90,
+    "n_executed": 64,
+    "n_matched": 62,
+    "per_task": {
+      "power_flow": {
+        "total": 18,
+        "executed": 15,
+        "matched": 15,
+        "exec_rate": 0.8333,
+        "accuracy": 0.8333,
+        "accuracy_of_executed": 1.0
+      },
+      "linear_power_flow": {
+        "total": 18,
+        "executed": 12,
+        "matched": 11,
+        "exec_rate": 0.6667,
+        "accuracy": 0.6111,
+        "accuracy_of_executed": 0.9167
+      },
+      "opf": {
+        "total": 18,
+        "executed": 7,
+        "matched": 7,
+        "exec_rate": 0.3889,
+        "accuracy": 0.3889,
+        "accuracy_of_executed": 1.0
+      },
+      "network_modification": {
+        "total": 18,
+        "executed": 18,
+        "matched": 18,
+        "exec_rate": 1.0,
+        "accuracy": 1.0,
+        "accuracy_of_executed": 1.0
+      },
+      "result_extraction": {
+        "total": 18,
+        "executed": 12,
+        "matched": 11,
+        "exec_rate": 0.6667,
+        "accuracy": 0.6111,
+        "accuracy_of_executed": 0.9167
+      }
+    },
+    "per_gt_type": {
+      "float": {
+        "total": 90,
+        "executed": 64,
+        "matched": 62,
+        "exec_rate": 0.7111,
+        "accuracy": 0.6889
+      }
+    },
+    "per_query_type": {
+      "point": {
+        "total": 17,
+        "executed": 8,
+        "matched": 8,
+        "exec_rate": 0.4706,
+        "accuracy": 0.4706
+      },
+      "point_abs": {
+        "total": 24,
+        "executed": 19,
+        "matched": 18,
+        "exec_rate": 0.7917,
+        "accuracy": 0.75
+      },
+      "max_abs": {
+        "total": 27,
+        "executed": 22,
+        "matched": 21,
+        "exec_rate": 0.8148,
+        "accuracy": 0.7778
+      },
+      "min": {
+        "total": 8,
+        "executed": 8,
+        "matched": 8,
+        "exec_rate": 1.0,
+        "accuracy": 1.0
+      },
+      "objective": {
+        "total": 13,
+        "executed": 7,
+        "matched": 7,
+        "exec_rate": 0.5385,
+        "accuracy": 0.5385
+      },
+      "max": {
+        "total": 1,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_n_modifications": {
+      "1": {
+        "total": 89,
+        "executed": 63,
+        "matched": 61,
+        "exec_rate": 0.7079,
+        "accuracy": 0.6854
+      },
+      "2": {
+        "total": 1,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 1.0,
+        "accuracy": 1.0
+      }
+    },
+    "per_network": {
+      "self-built 3-bus radial AC network (slack + 2 loads, 2 lines)": {
+        "total": 4,
+        "executed": 3,
+        "matched": 3,
+        "exec_rate": 0.75,
+        "accuracy": 0.75
+      },
+      "self-built 4-bus radial AC network (20 kV, slack + 3 loads, 3 series lines)": {
+        "total": 9,
+        "executed": 8,
+        "matched": 8,
+        "exec_rate": 0.8889,
+        "accuracy": 0.8889
+      },
+      "self-built 5-bus radial AC network (20 kV, slack + 4 loads, 4 series lines)": {
+        "total": 3,
+        "executed": 3,
+        "matched": 3,
+        "exec_rate": 1.0,
+        "accuracy": 1.0
+      },
+      "self-built 6-bus two-voltage-level AC network (110/20 kV, 1 transformer, 3 loads)": {
+        "total": 9,
+        "executed": 8,
+        "matched": 7,
+        "exec_rate": 0.8889,
+        "accuracy": 0.7778
+      },
+      "self-built 4-bus meshed AC network (slack + PV gen + 2 loads, 5 lines incl. diagonal)": {
+        "total": 22,
+        "executed": 18,
+        "matched": 17,
+        "exec_rate": 0.8182,
+        "accuracy": 0.7727
+      },
+      "self-built 5-bus ring AC network (slack + PV gen + 4 loads, 5 ring lines)": {
+        "total": 21,
+        "executed": 16,
+        "matched": 16,
+        "exec_rate": 0.7619,
+        "accuracy": 0.7619
+      },
+      "PyPSA ac-dc-meshed example network (offline, first snapshot)": {
+        "total": 1,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 1.0,
+        "accuracy": 1.0
+      },
+      "self-built 5-bus economic-dispatch OPF network (3 dispatchable gens, 2 loads, meshed)": {
+        "total": 11,
+        "executed": 3,
+        "matched": 3,
+        "exec_rate": 0.2727,
+        "accuracy": 0.2727
+      },
+      "self-built 4-bus OPF network with a binding line limit (cheap vs expensive gen, meshed)": {
+        "total": 6,
+        "executed": 2,
+        "matched": 2,
+        "exec_rate": 0.3333,
+        "accuracy": 0.3333
+      },
+      "self-built 6-bus two-area OPF network joined by a controllable HVDC Link": {
+        "total": 4,
+        "executed": 2,
+        "matched": 2,
+        "exec_rate": 0.5,
+        "accuracy": 0.5
+      }
+    },
+    "per_difficulty": {
+      "D1_basic": {
+        "total": 45,
+        "executed": 30,
+        "matched": 29,
+        "exec_rate": 0.6667,
+        "accuracy": 0.6444,
+        "accuracy_of_executed": 0.9667
+      },
+      "D3_semantic": {
+        "total": 45,
+        "executed": 34,
+        "matched": 33,
+        "exec_rate": 0.7556,
+        "accuracy": 0.7333,
+        "accuracy_of_executed": 0.9706
+      }
+    },
+    "error_distribution": {
+      "AttributeError": 14,
+      "KeyError": 8,
+      "ValueError": 3,
+      "AssertionError": 1
+    },
+    "match_failure_reasons": {
+      "value_outside_tolerance": 2
+    },
+    "float_error_stats": {
+      "mean_rel_error": 0.000315,
+      "median_rel_error": 0.0,
+      "max_rel_error": 0.005606,
+      "p95_rel_error": 0.003971
+    },
+    "semantic_rewrite_summary": {
+      "total": 45,
+      "semantic_phrase_rate": 0.0,
+      "explicit_leak_rate": 0.0,
+      "avg_phrase_hits": 0.0,
+      "phrase_hit_distribution": {
+        "0": 45
+      },
+      "semantic_sources": {
+        "null": 45
+      },
+      "top_semantic_rules": {},
+      "top_leaked_tokens": {},
+      "per_difficulty": {
+        "D3_semantic": {
+          "total": 45,
+          "has_semantic_phrase": 0,
+          "leaks_explicit_params": 0,
+          "max_phrase_hits": 0,
+          "semantic_phrase_rate": 0.0,
+          "explicit_leak_rate": 0.0,
+          "avg_phrase_hits": 0.0
+        }
+      }
+    },
+    "code_stats": {
+      "avg_lines": 30.3,
+      "min_lines": 16,
+      "max_lines": 52
+    },
+    "round_snapshots": []
+  }
+}

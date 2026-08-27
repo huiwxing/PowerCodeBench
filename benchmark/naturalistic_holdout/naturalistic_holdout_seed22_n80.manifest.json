@@ -1,0 +1,6 @@
+{
+  "output": "benchmark/naturalistic_holdout/naturalistic_holdout_seed22_n80.json",
+  "n_items": 80,
+  "skipped": [],
+  "validation": null
+}

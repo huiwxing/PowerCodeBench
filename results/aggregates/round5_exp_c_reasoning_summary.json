@@ -1,0 +1,144 @@
+{
+  "rows": [
+    {
+      "vanilla_dir": "gpt-5.4-mini",
+      "reasoning_dir": "gpt-5.4-mini",
+      "condition": "A",
+      "vanilla_full_2000_acc": 24.25,
+      "vanilla_subset_200_acc": 25.0,
+      "vanilla_subset_200_n_matched": 50,
+      "reasoning_200_acc": 40.5,
+      "reasoning_200_n_matched": 81,
+      "delta_reasoning_minus_vanilla_pp": 15.5
+    },
+    {
+      "vanilla_dir": "gpt-5.4-mini",
+      "reasoning_dir": "gpt-5.4-mini",
+      "condition": "C",
+      "vanilla_full_2000_acc": 50.449999999999996,
+      "vanilla_subset_200_acc": 51.0,
+      "vanilla_subset_200_n_matched": 102,
+      "reasoning_200_acc": 59.0,
+      "reasoning_200_n_matched": 118,
+      "delta_reasoning_minus_vanilla_pp": 8.0
+    },
+    {
+      "vanilla_dir": "gpt-5.4-mini",
+      "reasoning_dir": "gpt-5.4-mini",
+      "condition": "C_FX",
+      "vanilla_full_2000_acc": 61.25000000000001,
+      "vanilla_subset_200_acc": 60.5,
+      "vanilla_subset_200_n_matched": 121,
+      "reasoning_200_acc": 67.0,
+      "reasoning_200_n_matched": 134,
+      "delta_reasoning_minus_vanilla_pp": 6.5
+    },
+    {
+      "vanilla_dir": "gpt-5.4-mini",
+      "reasoning_dir": "gpt-5.4-mini",
+      "condition": "C_FDR",
+      "vanilla_full_2000_acc": 61.150000000000006,
+      "vanilla_subset_200_acc": 59.5,
+      "vanilla_subset_200_n_matched": 119,
+      "reasoning_200_acc": 67.0,
+      "reasoning_200_n_matched": 134,
+      "delta_reasoning_minus_vanilla_pp": 7.5
+    },
+    {
+      "vanilla_dir": "gpt-5.4-mini",
+      "reasoning_dir": "gpt-5.4-mini",
+      "condition": "C_FDRS",
+      "vanilla_full_2000_acc": 62.150000000000006,
+      "vanilla_subset_200_acc": 59.5,
+      "vanilla_subset_200_n_matched": 119,
+      "reasoning_200_acc": 68.0,
+      "reasoning_200_n_matched": 136,
+      "delta_reasoning_minus_vanilla_pp": 8.5
+    },
+    {
+      "vanilla_dir": "deepseek-v4-flash",
+      "reasoning_dir": "deepseek-reasoner",
+      "condition": "A",
+      "vanilla_full_2000_acc": 11.05,
+      "vanilla_subset_200_acc": 11.0,
+      "vanilla_subset_200_n_matched": 22,
+      "reasoning_200_acc": 12.0,
+      "reasoning_200_n_matched": 24,
+      "delta_reasoning_minus_vanilla_pp": 1.0
+    },
+    {
+      "vanilla_dir": "deepseek-v4-flash",
+      "reasoning_dir": "deepseek-reasoner",
+      "condition": "C",
+      "vanilla_full_2000_acc": 40.65,
+      "vanilla_subset_200_acc": 39.5,
+      "vanilla_subset_200_n_matched": 79,
+      "reasoning_200_acc": 40.0,
+      "reasoning_200_n_matched": 80,
+      "delta_reasoning_minus_vanilla_pp": 0.5
+    },
+    {
+      "vanilla_dir": "deepseek-v4-flash",
+      "reasoning_dir": "deepseek-reasoner",
+      "condition": "C_FX",
+      "vanilla_full_2000_acc": 47.3,
+      "vanilla_subset_200_acc": 46.0,
+      "vanilla_subset_200_n_matched": 92,
+      "reasoning_200_acc": 55.50000000000001,
+      "reasoning_200_n_matched": 111,
+      "delta_reasoning_minus_vanilla_pp": 9.500000000000007
+    },
+    {
+      "vanilla_dir": "deepseek-v4-flash",
+      "reasoning_dir": "deepseek-reasoner",
+      "condition": "C_FDR",
+      "vanilla_full_2000_acc": 47.3,
+      "vanilla_subset_200_acc": 46.5,
+      "vanilla_subset_200_n_matched": 93,
+      "reasoning_200_acc": 55.50000000000001,
+      "reasoning_200_n_matched": 111,
+      "delta_reasoning_minus_vanilla_pp": 9.000000000000007
+    },
+    {
+      "vanilla_dir": "deepseek-v4-flash",
+      "reasoning_dir": "deepseek-reasoner",
+      "condition": "C_FDRS",
+      "vanilla_full_2000_acc": 55.900000000000006,
+      "vanilla_subset_200_acc": 53.0,
+      "vanilla_subset_200_n_matched": 106,
+      "reasoning_200_acc": 56.00000000000001,
+      "reasoning_200_n_matched": 112,
+      "delta_reasoning_minus_vanilla_pp": 3.000000000000007
+    }
+  ],
+  "intervention_lift": {
+    "gpt-5.4-mini_vanilla": {
+      "r0": 25.0,
+      "c": 51.0,
+      "c_fdrs": 59.5,
+      "d_ca": 26.0,
+      "d_fdrs_a": 34.5
+    },
+    "gpt-5.4-mini_reasoning": {
+      "r0": 40.5,
+      "c": 59.0,
+      "c_fdrs": 68.0,
+      "d_ca": 18.5,
+      "d_fdrs_a": 27.5
+    },
+    "deepseek-v4-flash_vanilla": {
+      "r0": 11.0,
+      "c": 39.5,
+      "c_fdrs": 53.0,
+      "d_ca": 28.5,
+      "d_fdrs_a": 42.0
+    },
+    "deepseek-v4-flash_reasoning": {
+      "r0": 12.0,
+      "c": 40.0,
+      "c_fdrs": 56.00000000000001,
+      "d_ca": 28.0,
+      "d_fdrs_a": 44.00000000000001
+    }
+  }
+}

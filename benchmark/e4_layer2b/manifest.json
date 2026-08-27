@@ -1,0 +1,161 @@
+{
+ "round": "2b",
+ "set_label": "externally engineer-written query set (2 practising power engineers)",
+ "source": "engineer-written",
+ "naming_discipline": "wording: 'engineer-written -- authored by two practising power engineers, whose approved edition is the authoritative text' (project owner's ruling 2026-08-02, supersedes the 2026-07-30 interim wording).",
+ "frozen_inputs": {
+  "query_csv": "E4_engineer_approved_queries_en.csv",
+  "query_csv_sha256": "14dd314926e15c6293717d46263fbb2ed01cc9175944b65f32f0f17d852dd8d5",
+  "query_csv_readme": "E4_engineer_approved_queries_en_README.md",
+  "records_module_sha256": "c9a7aea348009e5a598eb6a5078651213ca0c6e1d7e20e6f4264280c41535a58",
+  "build_harness_sha256": "35dc65602819c939a8f8b8dee826af73da87c2b5f2fc38e7e1f0fe58700d7023"
+ },
+ "a02_network_artifact": {
+  "file": "ieee69_network.py",
+  "sha256": "1b1bf38190657e75f51ab484abccfe9e3026f600df2888845b8c5dbb3375df9c",
+  "why": "pandapower 3.4.0 has no built-in 69-bus feeder; the canonical Baran-Wu data are pinned here and the frozen builder section is embedded verbatim in A02's reference_code",
+  "sanity": {
+   "n_bus": 69,
+   "n_branch": 68,
+   "n_load": 48,
+   "connected": true,
+   "n_cycles": 0,
+   "radial": true,
+   "total_p_kw": 3801.89,
+   "total_q_kvar": 2694.1,
+   "converged": true,
+   "loss_kw": 224.961,
+   "min_vm_pu": 0.90919,
+   "min_vm_bus_label": 65,
+   "slack_p_mw": 4.026851,
+   "max_line_i_ka": 0.22358,
+   "all_pass": true,
+   "checks": {
+    "69 buses": true,
+    "68 branches": true,
+    "radial (connected, no loop)": true,
+    "power flow converged": true,
+    "total P = 3801.89 kW": true,
+    "total Q = 2694.10 kvar": true,
+    "loss ~225 kW (lit. check value)": true,
+    "min V ~0.9092 pu (lit. check value)": true,
+    "min V at bus label 65": true,
+    "ratings non-binding": true
+   }
+  }
+ },
+ "n_built": 20,
+ "n_dropped": 0,
+ "n_eval_loadable": 20,
+ "oracle_pass_rate": "20/20",
+ "theme_counts": {
+  "power_flow": 5,
+  "network_build_modify": 2,
+  "der_control": 3,
+  "topology_matrix": 2,
+  "opf": 3,
+  "short_circuit": 2,
+  "state_estimation": 2,
+  "timeseries": 1
+ },
+ "difficulty_counts": {
+  "D1": 7,
+  "D2": 6,
+  "D3": 7
+ },
+ "difficulty_mapping": {
+  "Basic": "D1",
+  "Intermediate": "D2",
+  "Advanced": "D3"
+ },
+ "theme_x_difficulty": {
+  "power_flow": {
+   "D1": 2,
+   "D2": 1,
+   "D3": 2
+  },
+  "network_build_modify": {
+   "D1": 2
+  },
+  "der_control": {
+   "D3": 2,
+   "D2": 1
+  },
+  "topology_matrix": {
+   "D3": 1,
+   "D2": 1
+  },
+  "opf": {
+   "D2": 1,
+   "D3": 1,
+   "D1": 1
+  },
+  "short_circuit": {
+   "D1": 1,
+   "D2": 1
+  },
+  "state_estimation": {
+   "D2": 1,
+   "D3": 1
+  },
+  "timeseries": {
+   "D1": 1
+  }
+ },
+ "author_counts": {
+  "engineer": 20
+ },
+ "ground_truth_type_counts": {
+  "float": 19,
+  "int": 1
+ },
+ "network_counts": {
+  "case33bw": 4,
+  "ieee69_baran_wu (frozen artifact: ieee69_network.py)": 1,
+  "cigre_network_mv (with_der=False)": 3,
+  "cigre_network_lv": 1,
+  "case14": 5,
+  "case30": 1,
+  "case39": 1,
+  "case24_ieee_rts": 1,
+  "case57": 1,
+  "case9": 1,
+  "case118": 1
+ },
+ "distinct_oracle_functions": 24,
+ "oracle_functions_used": [
+  "calc_sc",
+  "case118",
+  "case14",
+  "case24_ieee_rts",
+  "case30",
+  "case33bw",
+  "case39",
+  "case57",
+  "case9",
+  "create_bus",
+  "create_cigre_network_lv",
+  "create_cigre_network_mv",
+  "create_empty_network",
+  "create_ext_grid",
+  "create_line_from_parameters",
+  "create_load",
+  "create_measurement",
+  "create_nxgraph",
+  "create_sgen",
+  "create_shunt",
+  "estimate",
+  "rundcopp",
+  "runopp",
+  "runpp"
+ ],
+ "ambiguities_open": 2,
+ "ambiguities_file": "ambiguities.json",
+ "dropped_items": [],
+ "function_universe_size": 275,
+ "interpreter": "venv/bin/python",
+ "pandapower_version": "3.4.0",
+ "set_sha256": "6906352a78a42fd837c72afb457e89161dc066c5d08802f6ccee5dcc7e9da645",
+ "freeze_discipline": "no demand evaluation is performed by this harness; the eval gate is 'build frozen' (the demand model has been frozen since submission). The adapted arm must pin Q_T to benchmark/benchmark.json -- the L1202 fallback is forbidden.",
+ "author_counts_note": "author_id is a de-identified pooled label: every one of the 20 items carries rewrite_meta.author_id == 'engineer'. The set was written and approved by two practising power engineers (see set_label and each item's rewrite_meta.annotator_id / license field); per-engineer attribution is not released, so this counter reports items per de-identified author label, not the number of authors."
+}

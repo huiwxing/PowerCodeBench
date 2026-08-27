@@ -1,0 +1,721 @@
+{
+  "schema_version": 1,
+  "adjudication_version": "revision-readjudication-a-v1",
+  "judge": "judge_a",
+  "reviewer_type": "practising power-systems engineer, rubric-constrained record review",
+  "reviewer_identity": "power_systems_engineer_1",
+  "review_pass": "independent primary pass A",
+  "independence": "Engineer 1 read only audit/matcher_fn/sample_records.json and audit/matcher_fn/README.md; did not open the historical aggregate file, use any historical aggregate tally, inspect item labels, or inspect Engineer 2's review.",
+  "rubric": {
+    "false_negative": "Execution output or code evidence shows that an engineering-equivalent correct answer was actually produced, but the parser/matcher did not extract it.",
+    "genuine_error": "The executed program, numeric output, or semantics are substantively incorrect.",
+    "ambiguous": "Available evidence is insufficient or the boundary cannot be judged reliably."
+  },
+  "execution_policy": "Generated code was not re-executed; the engineer's decision used only deterministic frozen record evidence. Matcher and parser outputs were supporting evidence, not verdicts.",
+  "tally": {
+    "genuine_error": 92,
+    "false_negative": 8
+  },
+  "records": [
+    {
+      "sample_id": "fn001",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 0.964434; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=0.964434; exec_output=\"Series([], Name: vm_pu, dtype: float64)\"; parser_error=cannot_parse_float:Series([], Name: vm_pu, dtype: float64)."
+    },
+    {
+      "sample_id": "fn002",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 0.985498; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=0.985498; exec_output=\"Series([], Name: vm_pu, dtype: float64)\"; parser_error=cannot_parse_float:Series([], Name: vm_pu, dtype: float64)."
+    },
+    {
+      "sample_id": "fn003",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 12.17746; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=12.17746; exec_output=\"0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100 12 100 13 100 14 100 15 100 16 100 17 100 18 100 19 100\"; parser_error=cannot_parse_float:Name: loading_percent, dtype: int64."
+    },
+    {
+      "sample_id": "fn004",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 24.134167; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=24.134167; exec_output=\"Series([], Name: vm_pu, dtype: float64)\"; parser_error=cannot_parse_float:Series([], Name: vm_pu, dtype: float64)."
+    },
+    {
+      "sample_id": "fn005",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 67.70708; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=67.70708; exec_output=\"The maximum line loading (%) is: Series([], Name: loading_percent, dtype: float64)\"; parser_error=cannot_parse_float:The maximum line loading (%) is: Series([], Name: ."
+    },
+    {
+      "sample_id": "fn006",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 1.0; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=1.0; exec_output=\"0 1.009473 1 1.009354 2 1.010306 3 1.008611 4 1.010021 ... 315 1.001721 316 0.983367 317 0.999822 318 1.000000 319 1.028804 Name: vm_pu, Length: 179\"; parser_error=cannot_parse_float:Name: vm_pu, Length: 179, dtype: float64."
+    },
+    {
+      "sample_id": "fn007",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 1.155903; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=1.155903; exec_output=\"The most heavily loaded line under the current operating point is bus 5.\"; parser_error=cannot_parse_float:The most heavily loaded line under the current ope."
+    },
+    {
+      "sample_id": "fn008",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 6420; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=6420; exec_output=\"Series([], Name: vm_pu, dtype: float64)\"; parser_error=cannot_parse_int:Series([], Name: vm_pu, dtype: float64)."
+    },
+    {
+      "sample_id": "fn009",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 0.813215; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=0.813215; exec_output=\"Minimum bus voltage (p.u.) across all contingency scenarios: nan\"; parser_error=cannot_parse_float:Minimum bus voltage (p.u.) across all contingency ."
+    },
+    {
+      "sample_id": "fn010",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 14.0, which is not the required target 1028.20259; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=14.0; ground_truth=1028.20259; exec_output=\"14\"."
+    },
+    {
+      "sample_id": "fn011",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 633.8551564852804, which is not the required target 55.368906; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=633.8551564852804; ground_truth=55.368906; exec_output=\"633.8551564852804\"."
+    },
+    {
+      "sample_id": "fn012",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted -1.8286295061939661, which is not the required target 3.905249; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=-1.8286295061939661; ground_truth=3.905249; exec_output=\"-1.8286295061939661\"."
+    },
+    {
+      "sample_id": "fn013",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9885354999706817, which is not the required target 0.805256; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9885354999706817; ground_truth=0.805256; exec_output=\"0.9885354999706817\"."
+    },
+    {
+      "sample_id": "fn014",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.4151221609634699, which is not the required target 1.225532; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.4151221609634699; ground_truth=1.225532; exec_output=\"1.4151221609634699\"."
+    },
+    {
+      "sample_id": "fn015",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 0.673284; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=0.673284; exec_output=\"None\"; parser_error=cannot_parse_float:None."
+    },
+    {
+      "sample_id": "fn016",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 2.0, which is not the required target 16.934411; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=2.0; ground_truth=16.934411; exec_output=\"2\"."
+    },
+    {
+      "sample_id": "fn017",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 4846.310669035614, which is not the required target 5047.58355; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=4846.310669035614; ground_truth=5047.58355; exec_output=\"4846.310669035614\"."
+    },
+    {
+      "sample_id": "fn018",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 133.53827234984988, which is not the required target 82.583352; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=133.53827234984988; ground_truth=82.583352; exec_output=\"133.53827234984988\"."
+    },
+    {
+      "sample_id": "fn019",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9925528877520444, which is not the required target 0.960233; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9925528877520444; ground_truth=0.960233; exec_output=\"0.9925528877520444\"."
+    },
+    {
+      "sample_id": "fn020",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The code computed the requested post-OPF cost change, and the executed value agrees with the target to the reported precision; failure arose because the matcher did not extract the labeled final number.",
+      "parser_evidence": "exec_output contains `Change in total generation cost: 55.36890578302098`; ground_truth=55.368906; parser_error starts `cannot_parse_float`."
+    },
+    {
+      "sample_id": "fn021",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9301040690154037, which is not the required target 0.989261; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9301040690154037; ground_truth=0.989261; exec_output=\"0.9301040690154037\"."
+    },
+    {
+      "sample_id": "fn022",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.8740202770725827, which is not the required target 2.196942; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.8740202770725827; ground_truth=2.196942; exec_output=\"1.8740202770725827\"."
+    },
+    {
+      "sample_id": "fn023",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 18.679260291218693, which is not the required target 12.17746; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=18.679260291218693; ground_truth=12.17746; exec_output=\"18.679260291218693\"."
+    },
+    {
+      "sample_id": "fn024",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1053.1064588663894, which is not the required target 1028.20259; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1053.1064588663894; ground_truth=1028.20259; exec_output=\"1053.1064588663894\"."
+    },
+    {
+      "sample_id": "fn025",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 2.734829949489472, which is not the required target 2.46584; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=2.734829949489472; ground_truth=2.46584; exec_output=\"2.734829949489472\"."
+    },
+    {
+      "sample_id": "fn026",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9983725099546179, which is not the required target 0.988455; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9983725099546179; ground_truth=0.988455; exec_output=\"0.9983725099546179\"."
+    },
+    {
+      "sample_id": "fn027",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 4301.5849303150135, which is not the required target 690.653432; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=4301.5849303150135; ground_truth=690.653432; exec_output=\"4301.5849303150135\"."
+    },
+    {
+      "sample_id": "fn028",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.922979775347019, which is not the required target 0.983916; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.922979775347019; ground_truth=0.983916; exec_output=\"'min_vm_pu' is missing in bus table. In OPF these limits are considered as 0.0 pu. 'max_vm_pu' is missing in bus table. In OPF these limits are considered as 2.0 pu. no costs are given - overall gener\"."
+    },
+    {
+      "sample_id": "fn029",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.0145916121455303, which is not the required target 1.225532; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.0145916121455303; ground_truth=1.225532; exec_output=\"1.0145916121455303\"."
+    },
+    {
+      "sample_id": "fn030",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.0, which is not the required target 0.97428; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.0; ground_truth=0.97428; exec_output=\"0.0\"."
+    },
+    {
+      "sample_id": "fn031",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.06946206455161462, which is not the required target 0.954526; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.06946206455161462; ground_truth=0.954526; exec_output=\"CalculationNotConverged at time step 0 0.06946206455161462\"."
+    },
+    {
+      "sample_id": "fn032",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The executed result is non-finite while the required target is 0.673284; this is a substantive computation/output failure, not an extraction-only miss.",
+      "parser_evidence": "parsed_value=nan; ground_truth=0.673284; exec_output=\"nan\"; parser_error=nan_or_inf_output."
+    },
+    {
+      "sample_id": "fn033",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.7903673402054429, which is not the required target 0.742128; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.7903673402054429; ground_truth=0.742128; exec_output=\"0.7903673402054429\"."
+    },
+    {
+      "sample_id": "fn034",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 0.494952; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=0.494952; exec_output=\"Initial maximum line loading: 7228.73% Final maximum line loading: 7228.23% Change in maximum line loading: -0.01%\"; parser_error=cannot_parse_float:Change in maximum line loading: -0.01%."
+    },
+    {
+      "sample_id": "fn035",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The executed maximum short-circuit current is numerically the target value; surrounding prose and the unit token prevented extraction rather than changing the engineering answer.",
+      "parser_evidence": "exec_output contains `Maximum short circuit current:  1.673479041129347 kA`; ground_truth=1.673479; parsed_value=None."
+    },
+    {
+      "sample_id": "fn036",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target True; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=True; exec_output=\"111.79992418535278\"; parser_error=cannot_parse_bool:111.79992418535278."
+    },
+    {
+      "sample_id": "fn037",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The requested OPF cost difference was produced and matches the target to floating-point precision; the labeled line was not parsed.",
+      "parser_evidence": "exec_output contains `Change in total generation cost:  55.36890578302098`; ground_truth=55.368906; parsed_value=None."
+    },
+    {
+      "sample_id": "fn038",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9348357762272261, which is not the required target 0.960233; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9348357762272261; ground_truth=0.960233; exec_output=\"0.9348357762272261\"."
+    },
+    {
+      "sample_id": "fn039",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9755597456496125, which is not the required target 1.0; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9755597456496125; ground_truth=1.0; exec_output=\"0.9755597456496125\"."
+    },
+    {
+      "sample_id": "fn040",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 16.282328349029086, which is not the required target 82.583352; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=16.282328349029086; ground_truth=82.583352; exec_output=\"16.282328349029086\"."
+    },
+    {
+      "sample_id": "fn041",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 3637.7994837062374, which is not the required target 3767.588176; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=3637.7994837062374; ground_truth=3767.588176; exec_output=\"3637.7994837062374\"."
+    },
+    {
+      "sample_id": "fn042",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 2.5868019967446916, which is not the required target 12.17746; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=2.5868019967446916; ground_truth=12.17746; exec_output=\"Initial maximum line loading (%): 1.7694429934302929 2.5868019967446916\"."
+    },
+    {
+      "sample_id": "fn043",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9583957579242796, which is not the required target 0.673284; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9583957579242796; ground_truth=0.673284; exec_output=\"0.9583957579242796\"."
+    },
+    {
+      "sample_id": "fn044",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 40.14698244632839, which is not the required target 42.829866; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=40.14698244632839; ground_truth=42.829866; exec_output=\"40.14698244632839\"."
+    },
+    {
+      "sample_id": "fn045",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9424101714597828, which is not the required target 0.964434; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9424101714597828; ground_truth=0.964434; exec_output=\"0.9424101714597828\"."
+    },
+    {
+      "sample_id": "fn046",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.999985600414708, which is not the required target 0.948404; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.999985600414708; ground_truth=0.948404; exec_output=\"0.999985600414708\"."
+    },
+    {
+      "sample_id": "fn047",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 96.39244726811008, which is not the required target 67.70708; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=96.39244726811008; ground_truth=67.70708; exec_output=\"96.39244726811008\"."
+    },
+    {
+      "sample_id": "fn048",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.8263801286836555, which is not the required target 1.005479; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.8263801286836555; ground_truth=1.005479; exec_output=\"0.8263801286836555\"."
+    },
+    {
+      "sample_id": "fn049",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1053.1135700872348, which is not the required target 1028.20259; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1053.1135700872348; ground_truth=1028.20259; exec_output=\"1053.1135700872348\"."
+    },
+    {
+      "sample_id": "fn050",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 3601.794291777267, which is not the required target 47.058971; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=3601.794291777267; ground_truth=47.058971; exec_output=\"3601.794291777267\"."
+    },
+    {
+      "sample_id": "fn051",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.1399535260408982, which is not the required target 2.196942; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.1399535260408982; ground_truth=2.196942; exec_output=\"1.1399535260408982\"."
+    },
+    {
+      "sample_id": "fn052",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 57.735027; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=57.735027; exec_output=\"Maximum line loading before outage: 79.11 % Maximum short‑circuit current (ikss) after outage: 1348.004 kA\"; parser_error=cannot_parse_float:Maximum short‑circuit current (ikss) after outage:."
+    },
+    {
+      "sample_id": "fn053",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.5078406327774547, which is not the required target 1.225532; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.5078406327774547; ground_truth=1.225532; exec_output=\"1.5078406327774547\"."
+    },
+    {
+      "sample_id": "fn054",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 4.15194856599532, which is not the required target 6.3172; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=4.15194856599532; ground_truth=6.3172; exec_output=\"4.15194856599532\"."
+    },
+    {
+      "sample_id": "fn055",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 57.42962443370777, which is not the required target 55.368906; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=57.42962443370777; ground_truth=55.368906; exec_output=\"57.42962443370777\"."
+    },
+    {
+      "sample_id": "fn056",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 3637.7999782771026, which is not the required target 3767.588176; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=3637.7999782771026; ground_truth=3767.588176; exec_output=\"3637.7999782771026\"."
+    },
+    {
+      "sample_id": "fn057",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 96.3924472732534, which is not the required target 67.70708; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=96.3924472732534; ground_truth=67.70708; exec_output=\"96.3924472732534\"."
+    },
+    {
+      "sample_id": "fn058",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.02, which is not the required target 1.0; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.02; ground_truth=1.0; exec_output=\"1.02\"."
+    },
+    {
+      "sample_id": "fn059",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 18.679260291218693, which is not the required target 12.17746; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=18.679260291218693; ground_truth=12.17746; exec_output=\"18.679260291218693\"."
+    },
+    {
+      "sample_id": "fn060",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.5702564981255334, which is not the required target 0.618124; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.5702564981255334; ground_truth=0.618124; exec_output=\"0.5702564981255334\"."
+    },
+    {
+      "sample_id": "fn061",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "No execution result was produced for target 1.673479; the record therefore does not show that a correct answer existed for the matcher to extract.",
+      "parser_evidence": "exec_output is empty; ground_truth=1.673479; parser_error=empty_output."
+    },
+    {
+      "sample_id": "fn062",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9833137005405034, which is not the required target 0.894782; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9833137005405034; ground_truth=0.894782; exec_output=\"0.9833137005405034\"."
+    },
+    {
+      "sample_id": "fn063",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The output reports a maximum loading of 150.644%, which directly establishes the requested Boolean answer (some line exceeds 120%); only the Boolean parser failed to convert that quantitative evidence to true.",
+      "parser_evidence": "exec_output=`150.64411641053772`; threshold=120%; ground_truth=True; parser_error=`cannot_parse_bool:150.64411641053772`."
+    },
+    {
+      "sample_id": "fn064",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 283.60189823521756, which is not the required target 127.046353; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=283.60189823521756; ground_truth=127.046353; exec_output=\"283.60189823521756\"."
+    },
+    {
+      "sample_id": "fn065",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 3980.793820828191, which is not the required target 690.653432; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=3980.793820828191; ground_truth=690.653432; exec_output=\"3980.793820828191\"."
+    },
+    {
+      "sample_id": "fn066",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9892584789511666, which is not the required target 0.95878; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9892584789511666; ground_truth=0.95878; exec_output=\"0.9892584789511666\"."
+    },
+    {
+      "sample_id": "fn067",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1100.4975095806954, which is not the required target 1028.20259; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1100.4975095806954; ground_truth=1028.20259; exec_output=\"1100.4975095806954\"."
+    },
+    {
+      "sample_id": "fn068",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9313697077097078, which is not the required target 0.909328; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9313697077097078; ground_truth=0.909328; exec_output=\"0.9313697077097078\"."
+    },
+    {
+      "sample_id": "fn069",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.0500000000000003, which is not the required target 1.08717; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.0500000000000003; ground_truth=1.08717; exec_output=\"1.0500000000000003\"."
+    },
+    {
+      "sample_id": "fn070",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 12, which is not the required target 0; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=12; ground_truth=0; exec_output=\"12\"."
+    },
+    {
+      "sample_id": "fn071",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.0, which is not the required target 127.331427; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.0; ground_truth=127.331427; exec_output=\"0.0\"."
+    },
+    {
+      "sample_id": "fn072",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 2.1967704030501083, which is not the required target 2.46584; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=2.1967704030501083; ground_truth=2.46584; exec_output=\"2.1967704030501083\"."
+    },
+    {
+      "sample_id": "fn073",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9348357762272261, which is not the required target 0.960233; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9348357762272261; ground_truth=0.960233; exec_output=\"0.9348357762272261\"."
+    },
+    {
+      "sample_id": "fn074",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9755597456496125, which is not the required target 1.0; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9755597456496125; ground_truth=1.0; exec_output=\"0.9755597456496125\"."
+    },
+    {
+      "sample_id": "fn075",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 3861.0, which is not the required target 3767.588176; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=3861.0; ground_truth=3767.588176; exec_output=\"3861.0\"."
+    },
+    {
+      "sample_id": "fn076",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 18.67926029121869, which is not the required target 12.17746; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=18.67926029121869; ground_truth=12.17746; exec_output=\"18.67926029121869\"."
+    },
+    {
+      "sample_id": "fn077",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The execution explicitly says that overloaded lines exist and displays a 150.644% loading, so the requested Boolean answer is true; the matcher missed the natural-language/table form.",
+      "parser_evidence": "exec_output begins `Yes, there are overloaded lines:` and lists 150.644116%; ground_truth=True; parsed_value=None."
+    },
+    {
+      "sample_id": "fn078",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 77.41221934763557, which is not the required target 67.70708; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=77.41221934763557; ground_truth=67.70708; exec_output=\"77.41221934763557\"."
+    },
+    {
+      "sample_id": "fn079",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 262.4319405407291, which is not the required target 26.243194; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=262.4319405407291; ground_truth=26.243194; exec_output=\"262.4319405407291\"."
+    },
+    {
+      "sample_id": "fn080",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9489892990035629, which is not the required target 0.964434; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9489892990035629; ground_truth=0.964434; exec_output=\"0.9489892990035629\"."
+    },
+    {
+      "sample_id": "fn081",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The code emitted the requested cost change rounded to two decimals; 55.37 is the normal presentation of the target 55.368906, so the failure is extraction of a labeled numeric answer rather than an engineering error.",
+      "parser_evidence": "exec_output contains `Change in cost: 55.37`; ground_truth=55.368906; parsed_value=None."
+    },
+    {
+      "sample_id": "fn082",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 1.673479; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=1.673479; exec_output=\"Maximum line loading: 73.37% Maximum short circuit current (ikss): 16.735 kA Report: Maximum short circuit current (ikss) = 16.735 kA\"; parser_error=cannot_parse_float:Report: Maximum short circuit current (ikss) = 16.."
+    },
+    {
+      "sample_id": "fn083",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The final reported maximum short-circuit current matches the target after ordinary four-decimal rounding; the parser missed the labeled value.",
+      "parser_evidence": "exec_output contains `Maximum short circuit current (ikss in kA): 57.7350`; ground_truth=57.735027; parsed_value=None."
+    },
+    {
+      "sample_id": "fn084",
+      "label": "false_negative",
+      "confidence": "high",
+      "rationale": "The generated program computed and printed the requested OPF cost change, matching the target to floating-point precision; the parser failed on the labeled line.",
+      "parser_evidence": "exec_output contains `Change in cost: 1512.1416099298303`; ground_truth=1512.14161; parsed_value=None."
+    },
+    {
+      "sample_id": "fn085",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 2.2345610156238243, which is not the required target 2.46584; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=2.2345610156238243; ground_truth=2.46584; exec_output=\"2.2345610156238243\"."
+    },
+    {
+      "sample_id": "fn086",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.19033142345312007, which is not the required target 0.265446; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.19033142345312007; ground_truth=0.265446; exec_output=\"0.19033142345312007\"."
+    },
+    {
+      "sample_id": "fn087",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 31.79978752694329, which is not the required target 24.134167; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=31.79978752694329; ground_truth=24.134167; exec_output=\"31.79978752694329\"."
+    },
+    {
+      "sample_id": "fn088",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target True; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=True; exec_output=\"0.0\"; parser_error=cannot_parse_bool:0.0."
+    },
+    {
+      "sample_id": "fn089",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.508024698832602, which is not the required target 0.805574; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.508024698832602; ground_truth=0.805574; exec_output=\"0.508024698832602\"."
+    },
+    {
+      "sample_id": "fn090",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.1553747432056412, which is not the required target 32.446049; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.1553747432056412; ground_truth=32.446049; exec_output=\"1.1553747432056412\"."
+    },
+    {
+      "sample_id": "fn091",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "No execution result was produced for target 2.641079; the record therefore does not show that a correct answer existed for the matcher to extract.",
+      "parser_evidence": "exec_output is empty; ground_truth=2.641079; parser_error=empty_output."
+    },
+    {
+      "sample_id": "fn092",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The execution output does not contain an engineering-equivalent final answer to target 149.79165; its visible content is substantively different, so this is not merely an extraction miss.",
+      "parser_evidence": "ground_truth=149.79165; exec_output=\"No worst-case line found, cannot disconnect. No worst-case line found or parsed, cannot disconnect. New maximum line loading after mitigation: 95.25%\"; parser_error=cannot_parse_float:New maximum line loading after mitigation: 95.25%."
+    },
+    {
+      "sample_id": "fn093",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 73.50086133900541, which is not the required target 23.588415; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=73.50086133900541; ground_truth=23.588415; exec_output=\"73.50086133900541\"."
+    },
+    {
+      "sample_id": "fn094",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The executed result is non-finite while the required target is 0.948404; this is a substantive computation/output failure, not an extraction-only miss.",
+      "parser_evidence": "parsed_value=inf; ground_truth=0.948404; exec_output=\"inf\"; parser_error=nan_or_inf_output."
+    },
+    {
+      "sample_id": "fn095",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The executed result is non-finite while the required target is 48.0; this is a substantive computation/output failure, not an extraction-only miss.",
+      "parser_evidence": "parsed_value=nan; ground_truth=48.0; exec_output=\"nan\"; parser_error=nan_or_inf_output."
+    },
+    {
+      "sample_id": "fn096",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 67.17739104858809, which is not the required target 0.001413; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=67.17739104858809; ground_truth=0.001413; exec_output=\"67.17739104858809\"."
+    },
+    {
+      "sample_id": "fn097",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 1.2010717223528526, which is not the required target 1.181696; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=1.2010717223528526; ground_truth=1.181696; exec_output=\"1.2010717223528526\"."
+    },
+    {
+      "sample_id": "fn098",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted -5.823238983480029, which is not the required target -0.029471; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=-5.823238983480029; ground_truth=-0.029471; exec_output=\"-5.823238983480029\"."
+    },
+    {
+      "sample_id": "fn099",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 639, which is not the required target 106; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=639; ground_truth=106; exec_output=\"639\"."
+    },
+    {
+      "sample_id": "fn100",
+      "label": "genuine_error",
+      "confidence": "high",
+      "rationale": "The matcher extracted 0.9755597456496125, which is not the required target 1.0; the execution therefore produced a numerically or semantically incorrect answer.",
+      "parser_evidence": "parsed_value=0.9755597456496125; ground_truth=1.0; exec_output=\"0.9755597456496125\"."
+    }
+  ]
+}

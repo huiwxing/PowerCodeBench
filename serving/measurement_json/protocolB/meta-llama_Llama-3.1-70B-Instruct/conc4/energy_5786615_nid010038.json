@@ -1,0 +1,52 @@
+{
+  "cluster_local_avg_power_w": 1037.4549624507806,
+  "devices": [
+    {
+      "avg_gpu_utilization_pct": 96.76425269645608,
+      "avg_sampled_power_w": 527.0782434514639,
+      "energy_counter_error": null,
+      "energy_j": 341250.536,
+      "energy_method": "nvml_total_energy_counter",
+      "index": 0,
+      "name": "NVIDIA GH200 120GB",
+      "peak_memory_used_bytes": 96558383104,
+      "peak_power_w": 549.52,
+      "sample_errors": 0,
+      "samples_count": 649,
+      "total_memory_bytes": 102625181696,
+      "uuid": "GPU-91f23958-597a-c60e-7250-222d757d06ff"
+    },
+    {
+      "avg_gpu_utilization_pct": 96.76425269645608,
+      "avg_sampled_power_w": 509.89945916795125,
+      "energy_counter_error": null,
+      "energy_j": 330168.735,
+      "energy_method": "nvml_total_energy_counter",
+      "index": 1,
+      "name": "NVIDIA GH200 120GB",
+      "peak_memory_used_bytes": 96558317568,
+      "peak_power_w": 532.849,
+      "sample_errors": 0,
+      "samples_count": 649,
+      "total_memory_bytes": 102625181696,
+      "uuid": "GPU-1edf8916-b17c-4c34-6bc4-916b707429e4"
+    }
+  ],
+  "driver_version": "565.57.01",
+  "duration_s": 647.179198424099,
+  "energy_scope": "gross_device_energy",
+  "gpu_indices": [
+    0,
+    1
+  ],
+  "hostname": "nid010038",
+  "job_id": "5786615",
+  "nvml_version": "12.565.57.01",
+  "peak_memory_used_bytes_sum": 193116700672,
+  "sample_interval_s": 1.0,
+  "schema_version": 1,
+  "selection_source": "explicit",
+  "started_at_unix_s": 1785108984.822949,
+  "stopped_at_unix_s": 1785109632.0021462,
+  "total_energy_j": 671419.271
+}

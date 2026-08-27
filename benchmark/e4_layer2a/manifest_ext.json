@@ -1,0 +1,170 @@
+{
+ "round": "2",
+ "note": "Independent source-diversity robustness extension reviewed by two practising power-systems engineers (2026-07-25). SEPARATE from the frozen, already-unsealed n=84 main set (e4_layer2a_set.json / manifest.json), which is NOT modified. Built under the same frozen §2.2 b-f rules.",
+ "n_built": 10,
+ "n_dropped": 0,
+ "n_eval_loadable": 10,
+ "dedup": {
+  "n_shortlist_in": 69,
+  "deduped_against": "n=84 main set + 362-candidate pool (URL + number/fingerprint)",
+  "n_url_duplicates": 0,
+  "n_number_collisions": 0,
+  "note": "all 69 shortlist items are genuinely new vs the 84 set and the 362 pool"
+ },
+ "screening": {
+  "criteria": "E4 §2.2b frozen (independent re-judgement; triage labels advisory only)",
+  "n_include_prescreen": 8,
+  "n_disagreement": 6,
+  "n_exclude_prescreen": 55,
+  "exclude_reason_counts": {
+   "capability-curiosity": 1,
+   "debugging-mismatch": 1,
+   "io-bug-collection": 1,
+   "needs-external-data": 1,
+   "other-lib": 1,
+   "feature-openended": 2,
+   "plotting": 3,
+   "performance-openended": 2,
+   "underspecified": 1,
+   "converter-otherlib": 1,
+   "basic-usage-no-target": 1,
+   "parameterization-curiosity": 1,
+   "capability-basic": 1,
+   "private-data-import-debugging": 1,
+   "converter-private-data": 2,
+   "bug-report-converter": 1,
+   "non-builtin-network-openended": 1,
+   "io-import-curiosity": 1,
+   "curiosity-metadata": 1,
+   "internal-mechanism-curiosity": 1,
+   "converter": 2,
+   "curiosity-dev-pr": 1,
+   "feature-data": 1,
+   "non-canonical-uniqueness": 1,
+   "openended-research": 1,
+   "basic-usage-debugging": 1,
+   "ambiguous-modeling": 1,
+   "debugging-internal": 1,
+   "feature-gap": 4,
+   "converter-otherlib-capability": 1,
+   "cross-post-dup": 1,
+   "debugging": 1,
+   "io-plumbing-howto": 1,
+   "empty-obsolete": 1,
+   "install-version": 1,
+   "modeling-curiosity-needs-image": 1,
+   "basic-param-curiosity": 1,
+   "non-canonical-method-debugging": 1,
+   "converter-feature-gap": 1,
+   "feature-request-template": 1,
+   "feature-gap-capability": 1,
+   "dev-design-discussion": 1,
+   "openended-suitability": 1,
+   "debugging-private-data": 1,
+   "converter-otherlib-openended": 1,
+   "not-pandapower-python-bug": 1
+  },
+  "adjudication": {
+   "adjudicator": "two practising power-systems engineers, jointly under the frozen rules",
+   "date": "2026-07-25",
+   "include": [
+    "github_discussion:1736",
+    "github_discussion:1762"
+   ],
+   "exclude": [
+    "electronics:543841",
+    "electronics:579875",
+    "github_discussion:1884",
+    "github_discussion:2236"
+   ],
+   "note": "The two engineers jointly reviewed all 6 disagreements after retrieving the original full texts (EE.SE items reviewed conservatively on excerpts, site unreachable). Round-2 frozen at the resulting n."
+  },
+  "detail_file": "round2_screening.json",
+  "disagreements_file": "round2_disagreements.json"
+ },
+ "platform_counts": {
+  "github_discussions": 6,
+  "openmod": 2,
+  "stackoverflow": 2
+ },
+ "theme_counts": {
+  "timeseries": 3,
+  "power_flow": 2,
+  "der_control": 1,
+  "state_estimation": 1,
+  "opf": 1,
+  "topology_matrix": 2
+ },
+ "difficulty_counts": {
+  "D3": 6,
+  "D2": 4
+ },
+ "platform_x_theme": {
+  "github_discussions": {
+   "timeseries": 2,
+   "power_flow": 2,
+   "der_control": 1,
+   "topology_matrix": 1
+  },
+  "openmod": {
+   "state_estimation": 1,
+   "opf": 1
+  },
+  "stackoverflow": {
+   "topology_matrix": 1,
+   "timeseries": 1
+  }
+ },
+ "ground_truth_type_counts": {
+  "float": 10
+ },
+ "distinct_oracle_functions": 19,
+ "oracle_functions_used": [
+  "ConstControl",
+  "DFData",
+  "OutputWriter",
+  "case14",
+  "case9",
+  "create_bus",
+  "create_empty_network",
+  "create_ext_grid",
+  "create_gen",
+  "create_line_from_parameters",
+  "create_load",
+  "create_measurement",
+  "create_poly_cost",
+  "create_sgen",
+  "create_transformer_from_parameters",
+  "estimate",
+  "run_timeseries",
+  "runopp",
+  "runpp"
+ ],
+ "platform_survival": {
+  "note": "prized non-GitHub-Discussion platforms preserved wherever faithfully rewritable (§8 round-2 directive)",
+  "stackoverflow": {
+   "in_shortlist": 4,
+   "built": 2,
+   "excluded": "67048257 (numpy bug, not pandapower), 67344016 (PSS/E converter)"
+  },
+  "ee_stackexchange": {
+   "in_shortlist": 2,
+   "built": 0,
+   "adjudicated_exclude": "543841, 579875: theory questions, jointly reviewed as EXCLUDE by the two engineers on 2026-07-25 (conservative, on excerpts; full text unreachable)"
+  },
+  "openmod": {
+   "in_shortlist": 3,
+   "built": 2,
+   "excluded": "4979 (GIS/PyPSA converter)"
+  },
+  "github_discussions": {
+   "in_shortlist": 60,
+   "built": 6
+  }
+ },
+ "dropped_items": [],
+ "function_universe_size": 275,
+ "interpreter": "venv/bin/python",
+ "rules_version": "E4-2.2c-v1",
+ "sources": "e2nIEE/pandapower GitHub Discussions + OpenMod forum + Stack Overflow"
+}

@@ -1,0 +1,1304 @@
+{
+"github_issue#546": {
+"url": "https://github.com/e2nIEE/pandapower/issues/546",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "Voltage constraints for xward in OPF"
+},
+"github_issue#1679": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1679",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "OPF doesn't converge when hourly load model of IEEE 14 RTS is reduced"
+},
+"github_issue#2402": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2402",
+"theme": "der_control",
+"screening": "INCLUDE",
+"title": "How to translate Reactive power in SVC definition"
+},
+"github_issue#2288": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2288",
+"theme": "timeseries",
+"screening": "INCLUDE",
+"title": "How to adjust steps of shunt devices in time series simulation"
+},
+"github_issue#2531": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2531",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Addition of Transformer to a pandapower builtin case33_bw()"
+},
+"github_issue#289": {
+"url": "https://github.com/e2nIEE/pandapower/issues/289",
+"theme": "plotting",
+"screening": "INCLUDE",
+"title": "Adapting colorbars"
+},
+"github_issue#2273": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2273",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "How to specify pw_mw for ext_grid"
+},
+"github_issue#1533": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1533",
+"theme": "topology_matrix",
+"screening": "INCLUDE",
+"title": "Pandapower network to exclude selected points from PTDF matrix"
+},
+"github_issue#2130": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2130",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "run opf with input load data"
+},
+"github_issue#2352": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2352",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Merge two networks as DSO/TSO network?"
+},
+"github_issue#1697": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1697",
+"theme": "other",
+"screening": "INCLUDE",
+"title": "How to create dispatchable loads on PP"
+},
+"github_issue#1494": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1494",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "TimeSeries simulation: Just PowerFlow?"
+},
+"github_issue#847": {
+"url": "https://github.com/e2nIEE/pandapower/issues/847",
+"theme": "topology_matrix",
+"screening": "INCLUDE",
+"title": "sensitivity analysis"
+},
+"github_issue#1366": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1366",
+"theme": "three_phase",
+"screening": "INCLUDE",
+"title": "Question- line definition"
+},
+"github_issue#992": {
+"url": "https://github.com/e2nIEE/pandapower/issues/992",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "Jacobian matrix after OPF run"
+},
+"github_issue#704": {
+"url": "https://github.com/e2nIEE/pandapower/issues/704",
+"theme": "power_flow",
+"screening": "INCLUDE",
+"title": "Create IEEE 123-bus"
+},
+"github_issue#1475": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1475",
+"theme": "topology_matrix",
+"screening": "INCLUDE",
+"title": "Computing impedances using Ybus inversion: Problem with internal indices."
+},
+"github_issue#260": {
+"url": "https://github.com/e2nIEE/pandapower/issues/260",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Add ideal transformers to impedances"
+},
+"github_issue#2134": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2134",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "Each timeseries cost"
+},
+"github_issue#1599": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1599",
+"theme": "three_phase",
+"screening": "INCLUDE",
+"title": "Running Time series simulation of the European Low Voltage Test Feeder with 3 phase asymmetric loads"
+},
+"github_issue#927": {
+"url": "https://github.com/e2nIEE/pandapower/issues/927",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "How to prevent generator from exceeding limit?"
+},
+"github_issue#850": {
+"url": "https://github.com/e2nIEE/pandapower/issues/850",
+"theme": "timeseries",
+"screening": "INCLUDE",
+"title": "ConstControl: Modifying scaling of all loads based on input dataframe"
+},
+"github_issue#2141": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2141",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "Userdefined Cost and per time step objective result"
+},
+"github_issue#929": {
+"url": "https://github.com/e2nIEE/pandapower/issues/929",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "DC net modeling"
+},
+"github_issue#2003": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2003",
+"theme": "power_flow",
+"screening": "INCLUDE",
+"title": "IEEE 13 case power flow"
+},
+"github_issue#1811": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1811",
+"theme": "timeseries",
+"screening": "INCLUDE",
+"title": "Use value calculated by a Constcontroller in a other controller for timeseries calculations"
+},
+"github_issue#1692": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1692",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "How to add ramp rate constraints to the pandapower.runopp."
+},
+"github_issue#1622": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1622",
+"theme": "topology_matrix",
+"screening": "INCLUDE",
+"title": "How to calculate the sensitivity/PTDF matrix of a network"
+},
+"github_issue#1612": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1612",
+"theme": "power_flow",
+"screening": "INCLUDE",
+"title": "How to modify the voltage per unit vm_pu of an existing grid"
+},
+"github_issue#1613": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1613",
+"theme": "der_control",
+"screening": "INCLUDE",
+"title": "How to activate the storage unit in the grid for only particular timesteps"
+},
+"github_issue#1584": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1584",
+"theme": "timeseries",
+"screening": "INCLUDE",
+"title": "How to directly handle the results after using the Timeseries tool and not write them to the hard disk"
+},
+"github_issue#1360": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1360",
+"theme": "io_serialization",
+"screening": "INCLUDE",
+"title": "How can I save my network, which I created with Pandapower, and use it in other scripts?"
+},
+"github_issue#1341": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1341",
+"theme": "three_phase",
+"screening": "INCLUDE",
+"title": "Branch short-circuit currents for 1ph fault"
+},
+"github_issue#1283": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1283",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "How to avoid convergence error"
+},
+"github_issue#719": {
+"url": "https://github.com/e2nIEE/pandapower/issues/719",
+"theme": "plotting",
+"screening": "INCLUDE",
+"title": "pf_res_plotly() for a specific time step"
+},
+"github_issue#1224": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1224",
+"theme": "state_estimation",
+"screening": "INCLUDE",
+"title": "(in)equality constraints in state estimation"
+},
+"github_issue#1527": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1527",
+"theme": "timeseries",
+"screening": "INCLUDE",
+"title": "time series power flow analysis with N-1 Contingency"
+},
+"github_issue#1342": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1342",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "How to divide net to two subnets and run rundcpp in each subnet."
+},
+"github_issue#1349": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1349",
+"theme": "plotting",
+"screening": "INCLUDE",
+"title": "Plot of bus index"
+},
+"github_issue#1134": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1134",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Controlling just one Trafo in Net with two trafos when i run powerflow"
+},
+"github_issue#1160": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1160",
+"theme": "der_control",
+"screening": "INCLUDE",
+"title": "TCSC in pandapower"
+},
+"github_issue#993": {
+"url": "https://github.com/e2nIEE/pandapower/issues/993",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "tapchanger controlling the voltage on a far busbar"
+},
+"github_issue#947": {
+"url": "https://github.com/e2nIEE/pandapower/issues/947",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Classical Model of Synch. Gen for power flow"
+},
+"github_issue#973": {
+"url": "https://github.com/e2nIEE/pandapower/issues/973",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Pandapower Voltagedrop and trafo control"
+},
+"github_issue#868": {
+"url": "https://github.com/e2nIEE/pandapower/issues/868",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "connecting with an existing bus"
+},
+"github_issue#1026": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1026",
+"theme": "timeseries",
+"screening": "INCLUDE",
+"title": "Options in time series load flow"
+},
+"github_issue#887": {
+"url": "https://github.com/e2nIEE/pandapower/issues/887",
+"theme": "other",
+"screening": "INCLUDE",
+"title": "Can read imax from excel"
+},
+"github_issue#854": {
+"url": "https://github.com/e2nIEE/pandapower/issues/854",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "OPF: runopp() for all time steps"
+},
+"github_issue#440": {
+"url": "https://github.com/e2nIEE/pandapower/issues/440",
+"theme": "topology_matrix",
+"screening": "INCLUDE",
+"title": "Calculation of R/X Ration at any Bus"
+},
+"github_issue#567": {
+"url": "https://github.com/e2nIEE/pandapower/issues/567",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "How to use drop_buses"
+},
+"github_issue#737": {
+"url": "https://github.com/e2nIEE/pandapower/issues/737",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Genetic algorithm - topology that minimizes ENS"
+},
+"github_issue#243": {
+"url": "https://github.com/e2nIEE/pandapower/issues/243",
+"theme": "state_estimation",
+"screening": "INCLUDE",
+"title": "State estimation and zero injection constraints"
+},
+"github_issue#1603": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1603",
+"theme": "plotting",
+"screening": "INCLUDE",
+"title": "get plot data"
+},
+"github_issue#1133": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1133",
+"theme": "power_flow",
+"screening": "INCLUDE",
+"title": "Calling one bus Information"
+},
+"github_issue#1037": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1037",
+"theme": "short_circuit",
+"screening": "INCLUDE",
+"title": "Add a faster version for shortcircuit calculation for single bus"
+},
+"github_issue#1013": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1013",
+"theme": "timeseries",
+"screening": "INCLUDE",
+"title": "Computation speed"
+},
+"github_issue#946": {
+"url": "https://github.com/e2nIEE/pandapower/issues/946",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Query about transformer"
+},
+"github_issue#837": {
+"url": "https://github.com/e2nIEE/pandapower/issues/837",
+"theme": "topology_matrix",
+"screening": "INCLUDE",
+"title": "How to check the Tap Changer Sensitivity by Pandapower?"
+},
+"github_issue#882": {
+"url": "https://github.com/e2nIEE/pandapower/issues/882",
+"theme": "plotting",
+"screening": "INCLUDE",
+"title": "Visuization of power grid"
+},
+"github_issue#480": {
+"url": "https://github.com/e2nIEE/pandapower/issues/480",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "How to incorporate start-up shutdown costs?"
+},
+"github_issue#898": {
+"url": "https://github.com/e2nIEE/pandapower/issues/898",
+"theme": "other",
+"screening": "INCLUDE",
+"title": "On reading"
+},
+"github_issue#948": {
+"url": "https://github.com/e2nIEE/pandapower/issues/948",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Classical Model of Synch. Gen for power flow"
+},
+"github_issue#965": {
+"url": "https://github.com/e2nIEE/pandapower/issues/965",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Creating Transformer - how to consider ohmic losses?"
+},
+"github_issue#374": {
+"url": "https://github.com/e2nIEE/pandapower/issues/374",
+"theme": "power_flow",
+"screening": "INCLUDE",
+"title": "current limited voltage source"
+},
+"github_issue#399": {
+"url": "https://github.com/e2nIEE/pandapower/issues/399",
+"theme": "short_circuit",
+"screening": "INCLUDE",
+"title": "Short circuit current calculation"
+},
+"github_issue#442": {
+"url": "https://github.com/e2nIEE/pandapower/issues/442",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Easy way to merge pp-networks?"
+},
+"github_issue#99": {
+"url": "https://github.com/e2nIEE/pandapower/issues/99",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "Piecewise linear costs with uneven slopes"
+},
+"github_issue#131": {
+"url": "https://github.com/e2nIEE/pandapower/issues/131",
+"theme": "other",
+"screening": "INCLUDE",
+"title": "Piecewise constant functions"
+},
+"github_issue#360": {
+"url": "https://github.com/e2nIEE/pandapower/issues/360",
+"theme": "plotting",
+"screening": "INCLUDE",
+"title": "create logarithmic colormap"
+},
+"github_issue#61": {
+"url": "https://github.com/e2nIEE/pandapower/issues/61",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "OPF: simulation of network including batteries over time snapshots"
+},
+"github_issue#1589": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1589",
+"theme": "plotting",
+"screening": "INCLUDE",
+"title": "Return plotly figure directly without creating an HTML file"
+},
+"github_issue#838": {
+"url": "https://github.com/e2nIEE/pandapower/issues/838",
+"theme": "opf",
+"screening": "INCLUDE",
+"title": "DC Powerlines in OPF"
+},
+"github_issue#257": {
+"url": "https://github.com/e2nIEE/pandapower/issues/257",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "create_gen scaling"
+},
+"github_discussion#2636": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2636",
+"theme": "other",
+"screening": "INCLUDE",
+"title": "Any guide on how to validate your simulation against real-world data?"
+},
+"github_discussion#2542": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2542",
+"theme": "other",
+"screening": "INCLUDE",
+"title": "How to use pandapower in the field of power system scheduling?"
+},
+"github_discussion#2538": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2538",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "get load flow current results for closed bus-bus switches"
+},
+"github_discussion#2475": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2475",
+"theme": "power_flow",
+"screening": "INCLUDE",
+"title": "How to calculate maximum power flow in a branch?"
+},
+"github_discussion#2471": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2471",
+"theme": "network_build_modify",
+"screening": "INCLUDE",
+"title": "Merge two networks as DSO/TSO network?"
+},
+"github_discussion#1407": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1407",
+"theme": "power_flow",
+"screening": "INCLUDE",
+"title": "How to know in which direction the current is flowing"
+},
+"github_discussion#1632": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1632",
+"theme": "topology_matrix",
+"screening": "INCLUDE",
+"title": "How to calculate the sensitivity/PTDF matrix of a network"
+},
+"github_issue#2702": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2702",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "False results for power at bus when connected with other bus via switch"
+},
+"github_issue#833": {
+"url": "https://github.com/e2nIEE/pandapower/issues/833",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Powerflow: Jacobi's law and Efficiency"
+},
+"github_issue#2461": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2461",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Modelling transformers with asymmetric charged susceptance"
+},
+"github_issue#1292": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1292",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Harmonic Analysis"
+},
+"github_issue#836": {
+"url": "https://github.com/e2nIEE/pandapower/issues/836",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Asymmetric Load and Unbalance Power Flow"
+},
+"github_issue#1600": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1600",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "PP does not check for feasibility in (O)PF?"
+},
+"github_issue#630": {
+"url": "https://github.com/e2nIEE/pandapower/issues/630",
+"theme": "plotting",
+"screening": "BORDERLINE",
+"title": "oos-elements in create_generic_coordinates"
+},
+"github_issue#2421": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2421",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "time series with multiple loads"
+},
+"github_issue#2089": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2089",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Result output for three phase powerflow"
+},
+"github_issue#2287": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2287",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "DC Line parameters"
+},
+"github_issue#1389": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1389",
+"theme": "state_estimation",
+"screening": "BORDERLINE",
+"title": "State Estimation - Low Nodal Voltages"
+},
+"github_issue#1695": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1695",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "External Grid defined but pp still leads to user warning and non converging NR"
+},
+"github_issue#225": {
+"url": "https://github.com/e2nIEE/pandapower/issues/225",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "PQ capability load flow possible"
+},
+"github_issue#1376": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1376",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Need to example for time simulation"
+},
+"github_issue#1647": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1647",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Enquiry on what the vn_kv parameter stands for"
+},
+"github_issue#1705": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1705",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "run_control argument not in runopp but in runpp for Trafo Control"
+},
+"github_issue#2144": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2144",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "Understanding internal Ybus matrix dimension"
+},
+"github_issue#1854": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1854",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "Sgen Cost has an effect on opf converging or not"
+},
+"github_issue#381": {
+"url": "https://github.com/e2nIEE/pandapower/issues/381",
+"theme": "topology_matrix",
+"screening": "BORDERLINE",
+"title": "Sensitivity Matrix Calculation in Pandapower"
+},
+"github_issue#2750": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2750",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "tolerance_mva option is used as if it were in PU?"
+},
+"github_issue#1454": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1454",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "assigning ConstControl in pwl_costs for opf timeseries"
+},
+"github_issue#2465": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2465",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "Add functionality to extract reactive power costs"
+},
+"github_issue#1497": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1497",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "Flexible Voltage (c) Factor in SC calculations"
+},
+"github_issue#1458": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1458",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Inconsistent behavior of load and asymmetric_load"
+},
+"github_issue#1474": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1474",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "runpp_3ph seems to expect that elements always have continuous indices"
+},
+"github_issue#1072": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1072",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "false power flow results for simbench and MV Oberrhein - 3ph power flow"
+},
+"github_issue#2609": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2609",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "Simbench network AC OPF not converging"
+},
+"github_issue#1526": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1526",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "optimal power flow does not converge"
+},
+"github_issue#1377": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1377",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "pp.runopp is not working with a trafo included"
+},
+"github_issue#1100": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1100",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "Issue Tutorial opf_dcline.ipynb. pp.runopp: Optimal Power Flow did not converge!"
+},
+"github_issue#1590": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1590",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Problem with defining angles when using ext_grid"
+},
+"github_issue#1551": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1551",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Unbalanced 3ph timeseries powerflow errors"
+},
+"github_issue#1361": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1361",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "OPF - polycost function and static generators"
+},
+"github_issue#1249": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1249",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "Optimal Power Flow"
+},
+"github_issue#550": {
+"url": "https://github.com/e2nIEE/pandapower/issues/550",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "output writer log of inputs"
+},
+"github_issue#1095": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1095",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Is this power flow result abnormal?"
+},
+"github_issue#1851": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1851",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "net.res_bus p_mw and q_mvar do not match net._ppc internal Sbus"
+},
+"github_issue#1209": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1209",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "to_mpc not working for some of the pn.networks"
+},
+"github_issue#572": {
+"url": "https://github.com/e2nIEE/pandapower/issues/572",
+"theme": "state_estimation",
+"screening": "BORDERLINE",
+"title": "Measurement elements"
+},
+"github_issue#1184": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1184",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "V setpoint of ext_grid in OPF"
+},
+"github_issue#1094": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1094",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "run time series not possible with multiple loads at same bus"
+},
+"github_issue#763": {
+"url": "https://github.com/e2nIEE/pandapower/issues/763",
+"theme": "state_estimation",
+"screening": "BORDERLINE",
+"title": "use of previous results as initial values in state estimation not working correctly?"
+},
+"github_issue#1508": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1508",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Double use of parameter name type for some elements"
+},
+"github_issue#2734": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2734",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Deprecation warnings in ieee_european_lv_time_series tutorial"
+},
+"github_issue#2716": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2716",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Bidirectional DC lines"
+},
+"github_issue#2126": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2126",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "timeseries OPF w/distributed slack"
+},
+"github_issue#1582": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1582",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "Whether time series simulations can be used for transient stability simulation"
+},
+"github_issue#1746": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1746",
+"theme": "topology_matrix",
+"screening": "BORDERLINE",
+"title": "Sign convention of PTDF factors from make PTDF matrix is confusing"
+},
+"github_issue#1531": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1531",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Handling multiple slack buses"
+},
+"github_issue#1375": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1375",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "std_type in create_lines"
+},
+"github_issue#900": {
+"url": "https://github.com/e2nIEE/pandapower/issues/900",
+"theme": "io_serialization",
+"screening": "BORDERLINE",
+"title": "Storing pandapower networks - issues for developers"
+},
+"github_issue#764": {
+"url": "https://github.com/e2nIEE/pandapower/issues/764",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "OPF with results as init parameter"
+},
+"github_issue#771": {
+"url": "https://github.com/e2nIEE/pandapower/issues/771",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "implement distributed slacks"
+},
+"github_issue#1192": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1192",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "Question: Is there any way to relax some constraints to force opf convergence?"
+},
+"github_issue#1167": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1167",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "using and modifying benchmark network"
+},
+"github_issue#1124": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1124",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Excess voltage magnitude when no load"
+},
+"github_issue#840": {
+"url": "https://github.com/e2nIEE/pandapower/issues/840",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "Load profile at real-time"
+},
+"github_issue#3071": {
+"url": "https://github.com/e2nIEE/pandapower/issues/3071",
+"theme": "plotting",
+"screening": "BORDERLINE",
+"title": "Plotting function still uses old bus_geodata entries, which causes errors when plotting a simbench-grid with simple_plot"
+},
+"github_issue#1148": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1148",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "plot_voltage_profile"
+},
+"github_issue#2684": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2684",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Ambiguity and mandatory requirement of max_loading_percent in N-1 contingency analysis"
+},
+"github_issue#2683": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2683",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Ambiguity and mandatory requirement of max_loading_percent in N-1 contingency analysis"
+},
+"github_issue#2170": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2170",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Unable to import contingency module"
+},
+"github_issue#1523": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1523",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "setting slack_weight for Pandapower Elements"
+},
+"github_issue#1408": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1408",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Maybe some issues with distributed slack Newton Raphson"
+},
+"github_issue#1020": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1020",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "DC OPF does not converge"
+},
+"github_issue#1243": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1243",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "Full matrix short circuit curent/ fault at different voltage phases"
+},
+"github_issue#1340": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1340",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Inquiries related to the power flow results of DC lines"
+},
+"github_issue#1200": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1200",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "Question: Is a constant minimum loading percent of MV-LV transformer of CIGRE LV network strange?"
+},
+"github_issue#1012": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1012",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Reopen an Issue: Warning due to impedance - unbalanced powerflow"
+},
+"github_issue#856": {
+"url": "https://github.com/e2nIEE/pandapower/issues/856",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Print a spesific bus"
+},
+"github_issue#789": {
+"url": "https://github.com/e2nIEE/pandapower/issues/789",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "time series simulation with p_mw and q_mvar per bus and time step?"
+},
+"github_issue#966": {
+"url": "https://github.com/e2nIEE/pandapower/issues/966",
+"theme": "topology_matrix",
+"screening": "BORDERLINE",
+"title": "Current Deviations and Admittance Matrix after Bus-Element Switching off"
+},
+"github_issue#554": {
+"url": "https://github.com/e2nIEE/pandapower/issues/554",
+"theme": "plotting",
+"screening": "BORDERLINE",
+"title": "PandaPower way of plotting TCC Curves"
+},
+"github_issue#694": {
+"url": "https://github.com/e2nIEE/pandapower/issues/694",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "qps_pypower Failing during tests"
+},
+"github_issue#560": {
+"url": "https://github.com/e2nIEE/pandapower/issues/560",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "ConstControl for several load busses"
+},
+"github_issue#350": {
+"url": "https://github.com/e2nIEE/pandapower/issues/350",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "First time running - TypeError p_mw issue"
+},
+"github_issue#669": {
+"url": "https://github.com/e2nIEE/pandapower/issues/669",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Correlation between voltage magnitudes"
+},
+"github_issue#259": {
+"url": "https://github.com/e2nIEE/pandapower/issues/259",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Adding z_ohm to net.switch"
+},
+"github_issue#1268": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1268",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "One problem with IEEE 33bus system"
+},
+"github_issue#1284": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1284",
+"theme": "topology_matrix",
+"screening": "BORDERLINE",
+"title": "Order of Ybus matrix"
+},
+"github_issue#579": {
+"url": "https://github.com/e2nIEE/pandapower/issues/579",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "DC Line Tests"
+},
+"github_issue#641": {
+"url": "https://github.com/e2nIEE/pandapower/issues/641",
+"theme": "topology_matrix",
+"screening": "BORDERLINE",
+"title": "Scrambled order of Results reported in res_bus DataFrame of IEEE 14 bus test case"
+},
+"github_issue#1009": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1009",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "short circuit, transformer impedance and tap changer main position"
+},
+"github_issue#1866": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1866",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "ShortCircuit caluclation doesn't work"
+},
+"github_issue#1755": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1755",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "Individual converter contributions for short circuit"
+},
+"github_issue#862": {
+"url": "https://github.com/e2nIEE/pandapower/issues/862",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "Expose all calculated short circuit branch currents"
+},
+"github_issue#1187": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1187",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "Feature: Toggle On the contribution of distributed generators in Minimum short circuit calculation"
+},
+"github_issue#814": {
+"url": "https://github.com/e2nIEE/pandapower/issues/814",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "Short-Circuit: Phase of current"
+},
+"github_issue#1033": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1033",
+"theme": "short_circuit",
+"screening": "BORDERLINE",
+"title": "Scalability of pandapower.shortcircuit.calc_sc"
+},
+"github_issue#96": {
+"url": "https://github.com/e2nIEE/pandapower/issues/96",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Unbalanced calculations / zero sequence models"
+},
+"github_issue#1350": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1350",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Problems with 3 phase asymmetric power flow"
+},
+"github_issue#1068": {
+"url": "https://github.com/e2nIEE/pandapower/issues/1068",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Does pandapower have a single phase simulator?"
+},
+"github_issue#889": {
+"url": "https://github.com/e2nIEE/pandapower/issues/889",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Convergence Issues with Unbalanced 123-Node Test Feeder"
+},
+"github_issue#721": {
+"url": "https://github.com/e2nIEE/pandapower/issues/721",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Editing Existing Network"
+},
+"github_issue#781": {
+"url": "https://github.com/e2nIEE/pandapower/issues/781",
+"theme": "plotting",
+"screening": "BORDERLINE",
+"title": "Simple Plot"
+},
+"github_issue#707": {
+"url": "https://github.com/e2nIEE/pandapower/issues/707",
+"theme": "topology_matrix",
+"screening": "BORDERLINE",
+"title": "Admittance Matrix Question"
+},
+"github_issue#528": {
+"url": "https://github.com/e2nIEE/pandapower/issues/528",
+"theme": "io_serialization",
+"screening": "BORDERLINE",
+"title": "Possible adaptation of JSONSerializableClass"
+},
+"github_issue#211": {
+"url": "https://github.com/e2nIEE/pandapower/issues/211",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "cost function definition"
+},
+"github_issue#146": {
+"url": "https://github.com/e2nIEE/pandapower/issues/146",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "STATCOM, UPFC and capacitor banks in pp"
+},
+"github_issue#85": {
+"url": "https://github.com/e2nIEE/pandapower/issues/85",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "parallel lines in multigraph"
+},
+"github_issue#132": {
+"url": "https://github.com/e2nIEE/pandapower/issues/132",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "3W transformer equivalent can have zero impedance"
+},
+"github_issue#2908": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2908",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "Sincal to pandapower converter update and inclusion"
+},
+"github_issue#2627": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2627",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "Modelating a battery (BESS)"
+},
+"github_issue#2999": {
+"url": "https://github.com/e2nIEE/pandapower/issues/2999",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "min max_vm_pu set incorrectly for gen"
+},
+"github_issue#511": {
+"url": "https://github.com/e2nIEE/pandapower/issues/511",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "optimal power flow generator limits"
+},
+"github_discussion#2559": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2559",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "Using 2 taps on three winding transformers."
+},
+"github_discussion#2645": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2645",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Bus phase to ground voltages during single-phase to ground faults"
+},
+"github_discussion#2988": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2988",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "Can sgen q_capability_curve_table be updated during time-series AC-OPF?"
+},
+"github_discussion#3063": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/3063",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "Basic use of PQ capability curve"
+},
+"github_discussion#2701": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2701",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Troubleshooting convergence issues"
+},
+"github_discussion#2864": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2864",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "ValueError: assignment destination is read-only"
+},
+"github_discussion#2907": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2907",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "Sincal to pandapower converter"
+},
+"github_discussion#2422": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2422",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "external grid vs gen slack = True"
+},
+"github_discussion#2447": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2447",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "Grid forming inverter with PP"
+},
+"github_discussion#2504": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2504",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "Time Series"
+},
+"github_discussion#2678": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2678",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "Update to transformer controllers in Pandapower 3.0, missing side mv"
+},
+"github_discussion#2789": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2789",
+"theme": "converter",
+"screening": "BORDERLINE",
+"title": "DC-DC converters in pandapower"
+},
+"github_discussion#2803": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2803",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "What is the right way of running tests?"
+},
+"github_discussion#2523": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2523",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Earthing configuration"
+},
+"github_discussion#2503": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2503",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Phase Shift Transformer in a simple network"
+},
+"github_discussion#2486": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2486",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "DC Line parameters"
+},
+"github_discussion#2119": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2119",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "Offshore wind turbine park with HVDC Link."
+},
+"github_discussion#2846": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2846",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Hardcoded c_min"
+},
+"github_discussion#1337": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1337",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "Custom controller for Optimal Power Flow Functions"
+},
+"github_discussion#1348": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1348",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "a map of indices"
+},
+"github_discussion#2151": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/2151",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Neutral voltage from Asymmetric Three Phase Power Flow computation"
+},
+"github_discussion#1684": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1684",
+"theme": "network_build_modify",
+"screening": "BORDERLINE",
+"title": "Slack property Generators"
+},
+"github_discussion#1515": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1515",
+"theme": "three_phase",
+"screening": "BORDERLINE",
+"title": "Is it possible to use timeSeries calculation with unbalanced loads and sgens in addition also using a storage?"
+},
+"github_discussion#1143": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1143",
+"theme": "plotting",
+"screening": "BORDERLINE",
+"title": "Geo data for GB Testcase"
+},
+"github_discussion#1275": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1275",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "Building a controller example modification"
+},
+"github_discussion#1320": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1320",
+"theme": "timeseries",
+"screening": "BORDERLINE",
+"title": "is it possible to use a custom function in time series calculations?"
+},
+"github_discussion#1334": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1334",
+"theme": "power_flow",
+"screening": "BORDERLINE",
+"title": "Documentation: sign for power flow"
+},
+"github_discussion#1324": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1324",
+"theme": "opf",
+"screening": "BORDERLINE",
+"title": "storage_powermodels.ipynb and opf_powermodels.ipynb tutorials not working"
+},
+"github_discussion#1074": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1074",
+"theme": "topology_matrix",
+"screening": "BORDERLINE",
+"title": "Power Transfer Distribution Factors"
+},
+"github_discussion#1058": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1058",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Schort Circuit with PandaPower"
+},
+"github_discussion#1076": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1076",
+"theme": "der_control",
+"screening": "BORDERLINE",
+"title": "Different types of HVDC links?"
+},
+"github_discussion#1081": {
+"url": "https://github.com/e2nIEE/pandapower/discussions/1081",
+"theme": "other",
+"screening": "BORDERLINE",
+"title": "Time resolution and frequency"
+}
+}

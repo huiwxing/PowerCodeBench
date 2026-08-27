@@ -1,0 +1,195 @@
+{
+ "meta": {
+  "purpose": "Frozen-release composition statistics of the 2,000-item PowerCodeBench release (per difficulty, per task family, per network), derived read-only from benchmark.json; plotted in benchmark/fig_benchmark_stats.pdf (SM Fig. reference: benchmark engineering section).",
+  "derived_from": "benchmark.json (frozen release), NETWORK_REGISTRY display names from code/benchmark_generator/benchmark_config.py",
+  "n_items": 2000
+ },
+ "per_difficulty": {
+  "D1_basic": 600,
+  "D2_multi_step": 600,
+  "D3_semantic": 400,
+  "D4_compound": 400
+ },
+ "per_task_family": {
+  "sequential": 171,
+  "comparison": 168,
+  "pf_then_sc": 157,
+  "parallel": 151,
+  "power_flow": 140,
+  "dc_power_flow": 137,
+  "state_estimation": 136,
+  "diagnose_and_fix": 130,
+  "time_series": 127,
+  "short_circuit_2ph": 124,
+  "short_circuit_3ph": 123,
+  "contingency_fix": 118,
+  "contingency": 110,
+  "comparison_opf": 105,
+  "opf": 103
+ },
+ "per_network": {
+  "case9": {
+   "items": 112,
+   "display": "9-bus WSCC case"
+  },
+  "case14": {
+   "items": 99,
+   "display": "IEEE 14-bus case"
+  },
+  "case5": {
+   "items": 97,
+   "display": "5-bus PJM case"
+  },
+  "case24_ieee_rts": {
+   "items": 93,
+   "display": "IEEE 24-bus RTS"
+  },
+  "case118": {
+   "items": 92,
+   "display": "IEEE 118-bus case"
+  },
+  "case39": {
+   "items": 91,
+   "display": "IEEE 39-bus New England"
+  },
+  "case30": {
+   "items": 89,
+   "display": "30-bus test case"
+  },
+  "case57": {
+   "items": 84,
+   "display": "IEEE 57-bus case"
+  },
+  "case6ww": {
+   "items": 80,
+   "display": "6-bus Ward-Hale case"
+  },
+  "case_ieee30": {
+   "items": 70,
+   "display": "IEEE 30-bus case"
+  },
+  "case33bw": {
+   "items": 54,
+   "display": "33-bus Baran-Wu case"
+  },
+  "case4gs": {
+   "items": 52,
+   "display": "4-bus test case"
+  },
+  "cigre_hv": {
+   "items": 51,
+   "display": "CIGRE HV benchmark"
+  },
+  "case200_illinois": {
+   "items": 47,
+   "display": "Illinois 200-bus"
+  },
+  "GBreducednetwork": {
+   "items": 46,
+   "display": "GB reduced 29-bus network"
+  },
+  "simple_mv_open_ring": {
+   "items": 45,
+   "display": "simple MV open ring"
+  },
+  "case6470rte": {
+   "items": 44,
+   "display": "RTE 6470-bus French grid"
+  },
+  "case145": {
+   "items": 43,
+   "display": "145-bus case"
+  },
+  "case89pegase": {
+   "items": 42,
+   "display": "PEGASE 89-bus"
+  },
+  "four_loads_branches": {
+   "items": 42,
+   "display": "4-loads-with-branches network"
+  },
+  "cigre_mv": {
+   "items": 40,
+   "display": "CIGRE MV benchmark"
+  },
+  "synth_volt_ctrl_lv": {
+   "items": 39,
+   "display": "synthetic voltage control LV network"
+  },
+  "example_simple": {
+   "items": 38,
+   "display": "pandapower example network"
+  },
+  "case9241pegase": {
+   "items": 38,
+   "display": "PEGASE 9241-bus"
+  },
+  "case1354pegase": {
+   "items": 37,
+   "display": "PEGASE 1354-bus"
+  },
+  "GBnetwork": {
+   "items": 37,
+   "display": "GB 2224-bus network"
+  },
+  "cigre_lv": {
+   "items": 37,
+   "display": "CIGRE LV benchmark"
+  },
+  "case300": {
+   "items": 36,
+   "display": "300-bus test case"
+  },
+  "case2848rte": {
+   "items": 36,
+   "display": "RTE 2848-bus French grid"
+  },
+  "kerber_landnetz_k1": {
+   "items": 33,
+   "display": "Kerber rural cable LV network"
+  },
+  "kerber_landnetz_f1": {
+   "items": 33,
+   "display": "Kerber rural overhead LV network"
+  },
+  "case2869pegase": {
+   "items": 33,
+   "display": "PEGASE 2869-bus"
+  },
+  "iceland": {
+   "items": 31,
+   "display": "Iceland 189-bus grid"
+  },
+  "simple_four_bus": {
+   "items": 31,
+   "display": "simple 4-bus system"
+  },
+  "case1888rte": {
+   "items": 31,
+   "display": "RTE 1888-bus French grid"
+  },
+  "oberrhein": {
+   "items": 31,
+   "display": "MV Oberrhein network"
+  },
+  "case3120sp": {
+   "items": 30,
+   "display": "Polish 3120-bus grid"
+  },
+  "kerber_dorfnetz": {
+   "items": 20,
+   "display": "Kerber village (Dorf) LV network"
+  },
+  "kerber_vorstadtnetz_k1": {
+   "items": 16,
+   "display": "Kerber suburban cable LV network"
+  }
+ },
+ "network_pool": {
+  "generator_registry_networks": 40,
+  "instantiated_in_release": 39,
+  "registry_networks_not_instantiated": [
+   "example_multivoltage"
+  ]
+ }
+}

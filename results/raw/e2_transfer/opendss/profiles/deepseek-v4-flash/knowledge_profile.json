@@ -1,0 +1,3990 @@
+{
+  "Bus_CplxSeqVoltages": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_Isc": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.8,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_SeqVoltages": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_Voc": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.6,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_Voltages": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Bus_YscMatrix": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_Zsc0": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_Zsc1": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_ZscMatrix": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Bus_kVBase": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Bus_puVmagAngle": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.75,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "CapControls_Capacitor": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "CapControls_Mode": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "CapControls_Name": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "CapControls_OFFSetting": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 0.6667,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "CapControls_ONSetting": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Capacitors_AddStep": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.75,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Capacitors_AvailableSteps": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Capacitors_NumSteps": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Capacitors_States": {
+    "L0": {
+      "score": 0.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.25,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Capacitors_SubtractStep": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.1111,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Circuit_AllBusMagPu": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Circuit_AllBusNames": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Circuit_AllNodeNames": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Circuit_LineLosses": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Circuit_Losses": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Circuit_SetActiveBus": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Circuit_SetActiveElement": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 0.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.75,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Circuit_TotalPower": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "CktElement_Currents": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "CktElement_Losses": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "CktElement_Powers": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Fuses_IsBlown": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Fuses_RatedCurrent": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Fuses_State": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Generators_kW": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Lines_Bus1": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Lines_Length": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.4,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Lines_R1": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Loads_Name": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Loads_PF": {
+    "L0": {
+      "score": 0.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Loads_kW": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.4,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Loads_kvar": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Meters_RegisterValues": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Monitors_Channel": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 0.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.375,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Reclosers_PhaseTrip": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Reclosers_Shots": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Reclosers_State": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.2,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "RegControls_ForwardBand": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "RegControls_ForwardVreg": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.2174,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "RegControls_MaxTapChange": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "RegControls_TapNumber": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "RegControls_Winding": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Algorithm": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_ControlMode": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Converged": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.6667,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Convergence": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Frequency": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Iterations": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.0,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_LoadModel": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_LoadMult": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_MaxControlIterations": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_MaxIterations": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Mode": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Number": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_Solve": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Solution_StepSize": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Solution_TotalIterations": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.125,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Text_Command": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 0.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 0.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Text_Result": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 1.0,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Transformers_NumWindings": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Transformers_Tap": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.8,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Transformers_Wdg": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 1.0,
+        "required_params_jaccard": 0.0,
+        "required_params_precision": 0.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Transformers_kVA": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 1.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 1.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 1.0,
+        "application_score": 1.0
+      }
+    }
+  },
+  "Vsources_BasekV": {
+    "L0": {
+      "score": 0.5,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 0.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.3333,
+        "target_function_used": 1.0,
+        "application_score": 0.0
+      }
+    }
+  },
+  "Vsources_PU": {
+    "L0": {
+      "score": 1.0,
+      "n_probes": 2,
+      "by_probe_type": {
+        "find_real": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "find_fake": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L1": {
+      "score": 0.5,
+      "n_probes": 1,
+      "diagnostics": {
+        "path_correct": 0.0,
+        "required_params_jaccard": 1.0,
+        "required_params_precision": 1.0,
+        "required_params_recall": 1.0
+      }
+    },
+    "L2": {
+      "score": 1.0,
+      "n_probes": 3,
+      "by_probe_type": {
+        "func_purpose": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "param_meaning": {
+          "score": 1.0,
+          "n_probes": 1
+        },
+        "return_info": {
+          "score": 1.0,
+          "n_probes": 1
+        }
+      }
+    },
+    "L3": {
+      "score": 0.0,
+      "n_probes": 1,
+      "diagnostics": {
+        "execution_success": 0.0,
+        "api_validity_rate": 0.5,
+        "target_function_used": 0.0,
+        "application_score": 0.0
+      }
+    }
+  }
+}

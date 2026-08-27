@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Frozen per-item evidence for the complete E2 cold-start transfer matrix (two backends, three models, and four conditions) plus the OpenDSS C-recal follow-up, including paired contrasts, prompt-token accounting, and accessor-surface mechanism counts.",
+  "source_repository": {
+    "local_path_at_migration": "frozen experimental pipeline",
+    "base_results_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+    "crecal_results_commit": "816b53a1b88122fdf77878bfabcdf5442b4c9e37",
+    "migration": "The 24 cold-start JSONs and three C-recal JSONs below are byte-exact copies of tracked files in the source repository; only the three job logs are sanitised derivatives."
+  },
+  "cold_start_cells": {
+    "description": "The complete frozen 2-backend x 3-model x 4-condition E2 cold-start matrix (24 cells, 90 paired items per cell).",
+    "source_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+    "source_path_pattern": "probe_eval_results/e2_{backend}_bench_v2/{model}/benchmark_results_cond{condition}.json",
+    "release_path_pattern": "results/raw/e2_transfer/{backend}/base/{model}/benchmark_results_cond{condition}.json",
+    "conditions": ["A", "C", "Rsem", "RsemB"],
+    "files": {
+      "opendss": {
+        "Qwen_Qwen2.5-Coder-32B-Instruct": {
+          "A": {"bytes": 446639, "sha256": "2d95b4425990199494296aa53c625b0b813e7ab065805a5422b8ed93f1783158"},
+          "C": {"bytes": 451066, "sha256": "eaabe942630ba03c015eaa440d5b2d9a556542a40b0f041afbc649ebeed87473"},
+          "Rsem": {"bytes": 448457, "sha256": "0d22750fd1ab9759220eab4bc9cb071b04db9eae816705c13db55a904bfbd336"},
+          "RsemB": {"bytes": 449701, "sha256": "a3b7d7f196eb96cc7270cd4cecffc9e412f5d093a2ea5ce6b3c88371897f3a20"}
+        },
+        "meta-llama_Llama-3.1-70B-Instruct": {
+          "A": {"bytes": 448233, "sha256": "977d8440cf8eccb2f769d8ecbb61899783b3a11e62d1e29d0ba0bac581df76bd"},
+          "C": {"bytes": 434841, "sha256": "1017bd6a00b5ea036cd99b24b4353133f81a37f29d257592e1f7c1102357ff5e"},
+          "Rsem": {"bytes": 432516, "sha256": "339b6a3d9f39946076faff4dd0fb233835d678f88052828403213b1201d71206"},
+          "RsemB": {"bytes": 443672, "sha256": "0fc2c257f715531697a144b7ba3a16cd407b93cacd659cd5be109a6d4859c980"}
+        },
+        "deepseek-v4-flash": {
+          "A": {"bytes": 444101, "sha256": "b89a2b17247a80940e1256583d9377b9de018ed40274e27b1028a236f61386a0"},
+          "C": {"bytes": 446513, "sha256": "0ac2c3c0ff062ed6068580e4e03aee998ff93bee209f06f7d7a4b1d3a5e6f873"},
+          "Rsem": {"bytes": 445958, "sha256": "097c7ab5d07ecf429143b3e138d3d540752eb77c1e876aba69ca2cd65e44137e"},
+          "RsemB": {"bytes": 455145, "sha256": "a29ca7afa96728cee7d27b8797800e720a4cc6d3d43759d3cfc00a9bfac4dcd2"}
+        }
+      },
+      "pypsa": {
+        "Qwen_Qwen2.5-Coder-32B-Instruct": {
+          "A": {"bytes": 402001, "sha256": "a463bfe0e786422e2a081706050df034f5a77f203e45768ff6400ff233fe99e7"},
+          "C": {"bytes": 406676, "sha256": "6643885bac8d9d4b57798dc599c0631ecf7b110d413ef013f1dc677397eca7b0"},
+          "Rsem": {"bytes": 409919, "sha256": "c6dc9fa62a5904eeab8878e62ebb81b18ed3ae4b81bb667ae1efc9688eea2735"},
+          "RsemB": {"bytes": 405747, "sha256": "fef557eecd764bfbeea0bab8d4d9858c784f2b04db88f6575ff59aa97f3f5ec2"}
+        },
+        "meta-llama_Llama-3.1-70B-Instruct": {
+          "A": {"bytes": 400313, "sha256": "1e2a6b20c6b0fa350504327ae0bf09026b32c6cb7958eef84f080ff462f31c2b"},
+          "C": {"bytes": 398581, "sha256": "825e84df904b7d2db8e694a6a5e11959c7744e1d4d39918c6b253c48f3e54896"},
+          "Rsem": {"bytes": 401363, "sha256": "381bcb86df37ab9e1ee94af5b88855348716a66d4c91e4952b5cf6ae67103fb0"},
+          "RsemB": {"bytes": 396142, "sha256": "c2215d353d50fc65c226e6b8179b19b1d7b4d1c4748e0a299e74b4c5dc76199f"}
+        },
+        "deepseek-v4-flash": {
+          "A": {"bytes": 407203, "sha256": "37e492ca41a2af8a9b3ac28fcf8f7448ed8ab1cc29f6a49a0f2c2974978bff68"},
+          "C": {"bytes": 418941, "sha256": "8b97c76b937e45869829a4c29525d8805069f6472866648c7c84b84b01d76592"},
+          "Rsem": {"bytes": 421857, "sha256": "2fb4149b69eee81fa20cbb7971a12b89efc482cf66e91e1201473ac4fe1be745"},
+          "RsemB": {"bytes": 415191, "sha256": "5b53e00a8c7ec2c37a254905548574a6085dc05741065278d88c3d8d4d7f0282"}
+        }
+      }
+    }
+  },
+  "recalibration_arm": {
+    "label": "C-recal",
+    "backend": "OpenDSS",
+    "items_per_cell": 90,
+    "models": [
+      "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "meta-llama_Llama-3.1-70B-Instruct",
+      "deepseek-v4-flash"
+    ],
+    "intended_single_change": "Relative to condition C, floor the L0/L1 name- and signature-layer deficit of demand-hit functions at 0.40; retain the same demand export, profile inputs, benchmark, renderer, token-budget setting, decoding temperature, and scalar matcher.",
+    "recal_name_layer_floor": 0.4,
+    "result_file_label": "The arm is stored as benchmark_results_condC.json because it runs condition C with an environment-controlled recalibration floor.",
+    "provenance_limit": "The result JSON config blocks do not embed recal_name_layer_floor. The value 0.40 and its activation before generation are evidenced by the source job logs listed below, not by the result JSONs alone. The protocol and results were committed together after the runs, so this release supports the narrower statement 'fixed before the C-recal runs', not a claim of independently timestamped preregistration.",
+    "log_sanitization": {
+      "reason": "The source logs contained no credential values. User-specific absolute paths, compute-node names, local rendezvous ports, and process IDs were replaced before release because they are operational identifiers unrelated to the evidence.",
+      "source_logs_git_tracked": false,
+      "rules": [
+        "absolute source-repository path -> <SOURCE_REPO>",
+        "absolute experiment-virtualenv path -> <EXPERIMENT_VENV>",
+        "absolute model-cache path -> <VLLM_CACHE>",
+        "nid[0-9]+ -> <COMPUTE_NODE>",
+        "tcp://127.0.0.1:[0-9]+ -> tcp://<LOOPBACK>:<PORT>",
+        "pid=[0-9]+ -> pid=<PID>"
+      ],
+      "credential_scan": "No API key, bearer token, Hugging Face token value, password, or secret literal was found. The harmless Transformers notice that HF_TOKEN is set was retained because it exposes no value."
+    },
+    "source_job_logs": [
+      {
+        "path": "logs/e2bCR_open_Qwen_Qwen2.5-Coder-3_5865036.out",
+        "sha256": "905cd76f48bf6d14d0cbabf68637f6436b849f8734eb8aaf6fb6bfd2d7a46f5d",
+        "bytes": 35705,
+        "released_sanitized_path": "results/raw/e2_transfer/job_logs/qwen32b_crecal.sanitized.log",
+        "released_sha256": "fcb1bbf80a7ed47a2276e137fb8aca66800368ad8d0c6106892f6d8edfcfebb5",
+        "released_bytes": 35529,
+        "observed": "Job start 2026-08-01 18:45:51 UTC; log echoes recal_name_layer_floor = 0.4 before generation."
+      },
+      {
+        "path": "logs/e2bCR_open_meta-llama_Llama-3.1_5865037.out",
+        "sha256": "7e8240ab2604f32cf9fc4f3fbe670908021d723d1642356525dfe939018c4c71",
+        "bytes": 40832,
+        "released_sanitized_path": "results/raw/e2_transfer/job_logs/llama70b_crecal.sanitized.log",
+        "released_sha256": "28d8d6ff9e453cef72bbe3f0a6aea0882a7a073d9c400738d8864bf7140f7e0b",
+        "released_bytes": 40640,
+        "observed": "Job start 2026-08-01 18:45:51 UTC; log echoes recal_name_layer_floor = 0.4 before generation."
+      },
+      {
+        "path": "logs/e2_deepseek_bench_v2_opendss_Crecal.log",
+        "sha256": "802ce08becc2444e815b81e0f93ee990a7e5d69a28ff7ffecf2426c13c8bd1c4",
+        "bytes": 28621,
+        "released_sanitized_path": "results/raw/e2_transfer/job_logs/deepseek_crecal.sanitized.log",
+        "released_sha256": "0f75253fec2ccb7e7360073a4bd812228c04d3891c1c2275e3049785eb21cb73",
+        "released_bytes": 28608,
+        "observed": "Log identifies the E2-R arm and echoes RECAL_NAME_LAYER_FLOOR=0.40 before generation."
+      }
+    ]
+  },
+  "canonical_recomputation": {
+    "full_transfer_script": "code/aggregate/aggregate_e2_transfer.py",
+    "full_transfer_output": "results/aggregates/e2_transfer_full_recomputed.json",
+    "crecal_only_script": "code/aggregate/aggregate_e2_crecal.py",
+    "crecal_only_output": "results/aggregates/e2_crecal_paired.json",
+    "bootstrap": "Paired item bootstrap, 10000 resamples, Python standard-library random.Random (MT19937), seed 20260727 reset for each contrast, percentile order statistics at indices 250 and 9749 after sorting.",
+    "mcnemar": "Two-sided exact binomial test over discordant pairs.",
+    "token_ratio": "C-recal total prompt-token count divided by Rsem total prompt-token count; this is a total-prompt ratio, not an incremental-injection ratio."
+  },
+  "artifact_listing_scope": "cold_start_cells.files is the authoritative inventory and hash ledger for all 24 cold-start result files. The artifacts array below is a focused nine-file cross-reference for the three OpenDSS C/Rsem/C-recal paired follow-ups; it is not the complete manifest inventory.",
+  "artifacts": [
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "arm": "C",
+      "path": "results/raw/e2_transfer/opendss/base/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+      "source_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+      "bytes": 451066,
+      "sha256": "eaabe942630ba03c015eaa440d5b2d9a556542a40b0f041afbc649ebeed87473"
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "arm": "Rsem",
+      "path": "results/raw/e2_transfer/opendss/base/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsem.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsem.json",
+      "source_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+      "bytes": 448457,
+      "sha256": "0d22750fd1ab9759220eab4bc9cb071b04db9eae816705c13db55a904bfbd336"
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "arm": "C-recal",
+      "path": "results/raw/e2_transfer/opendss/crecal/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2_crecal/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+      "source_commit": "816b53a1b88122fdf77878bfabcdf5442b4c9e37",
+      "bytes": 447561,
+      "sha256": "88d7f86e46cb0e2c0989646c2c35267cd65861627d743bbd5287c96d1dc1f849"
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "arm": "C",
+      "path": "results/raw/e2_transfer/opendss/base/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "source_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+      "bytes": 434841,
+      "sha256": "1017bd6a00b5ea036cd99b24b4353133f81a37f29d257592e1f7c1102357ff5e"
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "arm": "Rsem",
+      "path": "results/raw/e2_transfer/opendss/base/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsem.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsem.json",
+      "source_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+      "bytes": 432516,
+      "sha256": "339b6a3d9f39946076faff4dd0fb233835d678f88052828403213b1201d71206"
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "arm": "C-recal",
+      "path": "results/raw/e2_transfer/opendss/crecal/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2_crecal/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+      "source_commit": "816b53a1b88122fdf77878bfabcdf5442b4c9e37",
+      "bytes": 431982,
+      "sha256": "5ead1c598c6034cdff96d3120108d38025eefc81eb0dedebf82380a2527b6d3b"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "arm": "C",
+      "path": "results/raw/e2_transfer/opendss/base/deepseek-v4-flash/benchmark_results_condC.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condC.json",
+      "source_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+      "bytes": 446513,
+      "sha256": "0ac2c3c0ff062ed6068580e4e03aee998ff93bee209f06f7d7a4b1d3a5e6f873"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "arm": "Rsem",
+      "path": "results/raw/e2_transfer/opendss/base/deepseek-v4-flash/benchmark_results_condRsem.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condRsem.json",
+      "source_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+      "bytes": 445958,
+      "sha256": "097c7ab5d07ecf429143b3e138d3d540752eb77c1e876aba69ca2cd65e44137e"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "arm": "C-recal",
+      "path": "results/raw/e2_transfer/opendss/crecal/deepseek-v4-flash/benchmark_results_condC.json",
+      "source_path": "probe_eval_results/e2_opendss_bench_v2_crecal/deepseek-v4-flash/benchmark_results_condC.json",
+      "source_commit": "816b53a1b88122fdf77878bfabcdf5442b4c9e37",
+      "bytes": 383737,
+      "sha256": "eff74b3a231dd29fe85c084c7b8229f44456d1f0e08a02930744265e78a9e1c8"
+    }
+  ]
+}

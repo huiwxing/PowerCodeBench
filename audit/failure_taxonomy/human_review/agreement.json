@@ -1,0 +1,351 @@
+{
+ "schema_version": 1,
+ "scope": "Two practising power-systems engineers independently labelled the frozen 100-record Failure Anatomy sample under the rubric of the preliminary expert pass. Disagreements are reported, not adjudicated; the sensitivity block shows every reported quantity across all resolutions of them.",
+ "reviewers": [
+  "A",
+  "B"
+ ],
+ "n_items": 100,
+ "agreement_pct": 97.0,
+ "cohens_kappa": 0.955,
+ "n_disagreements": 3,
+ "disagreements": [
+  {
+   "sample_id": "tier1_C_FDRS_05",
+   "A": "C2_param_misuse",
+   "B": "C1_api_contract",
+   "preliminary_expert_final_label": "C2_param_misuse",
+   "model_tier": "tier1",
+   "condition": "condC_FDRS"
+  },
+  {
+   "sample_id": "tier2_C_FDRS_03",
+   "A": "C4_numerical_extraction",
+   "B": "C5_format_env",
+   "preliminary_expert_final_label": "C5_format_env",
+   "model_tier": "tier2",
+   "condition": "condC_FDRS"
+  },
+  {
+   "sample_id": "tier4_C_FDRS_01",
+   "A": "C2_param_misuse",
+   "B": "ambiguous_item_defect",
+   "preliminary_expert_final_label": "C2_param_misuse",
+   "model_tier": "tier4",
+   "condition": "condC_FDRS"
+  }
+ ],
+ "per_reviewer_marginals": {
+  "A": {
+   "C1_api_contract": 47,
+   "C5_format_env": 9,
+   "C3_workflow_logic": 28,
+   "C2_param_misuse": 13,
+   "C4_numerical_extraction": 2,
+   "ambiguous_item_defect": 1
+  },
+  "B": {
+   "C1_api_contract": 48,
+   "C5_format_env": 10,
+   "C3_workflow_logic": 28,
+   "C2_param_misuse": 11,
+   "ambiguous_item_defect": 2,
+   "C4_numerical_extraction": 1
+  }
+ },
+ "per_reviewer_tier_tables": {
+  "A": {
+   "tier1": {
+    "C1_api_contract": 15,
+    "C5_format_env": 5,
+    "C3_workflow_logic": 3,
+    "C2_param_misuse": 2
+   },
+   "tier2": {
+    "C2_param_misuse": 3,
+    "C1_api_contract": 11,
+    "C3_workflow_logic": 9,
+    "C5_format_env": 1,
+    "C4_numerical_extraction": 1
+   },
+   "tier3": {
+    "C1_api_contract": 13,
+    "C2_param_misuse": 5,
+    "ambiguous_item_defect": 1,
+    "C3_workflow_logic": 5,
+    "C5_format_env": 1
+   },
+   "tier4": {
+    "C1_api_contract": 8,
+    "C3_workflow_logic": 11,
+    "C2_param_misuse": 3,
+    "C5_format_env": 2,
+    "C4_numerical_extraction": 1
+   }
+  },
+  "B": {
+   "tier1": {
+    "C1_api_contract": 16,
+    "C5_format_env": 5,
+    "C3_workflow_logic": 3,
+    "C2_param_misuse": 1
+   },
+   "tier2": {
+    "C2_param_misuse": 3,
+    "C1_api_contract": 11,
+    "C3_workflow_logic": 9,
+    "C5_format_env": 2
+   },
+   "tier3": {
+    "C1_api_contract": 13,
+    "C2_param_misuse": 5,
+    "ambiguous_item_defect": 1,
+    "C3_workflow_logic": 5,
+    "C5_format_env": 1
+   },
+   "tier4": {
+    "C1_api_contract": 8,
+    "C3_workflow_logic": 11,
+    "C2_param_misuse": 2,
+    "C5_format_env": 2,
+    "ambiguous_item_defect": 1,
+    "C4_numerical_extraction": 1
+   }
+  }
+ },
+ "per_reviewer_condition_tables": {
+  "A": {
+   "condA_FD": {
+    "C1_api_contract": 16,
+    "C2_param_misuse": 2,
+    "C3_workflow_logic": 2
+   },
+   "condA_FDR": {
+    "C5_format_env": 2,
+    "C1_api_contract": 7,
+    "C2_param_misuse": 1,
+    "C3_workflow_logic": 9,
+    "ambiguous_item_defect": 1
+   },
+   "condA_FDRS": {
+    "C1_api_contract": 10,
+    "C5_format_env": 3,
+    "C3_workflow_logic": 5,
+    "C2_param_misuse": 2
+   },
+   "condA_FX": {
+    "C5_format_env": 3,
+    "C1_api_contract": 11,
+    "C2_param_misuse": 2,
+    "C3_workflow_logic": 4
+   },
+   "condC_FDRS": {
+    "C3_workflow_logic": 8,
+    "C2_param_misuse": 6,
+    "C4_numerical_extraction": 2,
+    "C1_api_contract": 3,
+    "C5_format_env": 1
+   }
+  },
+  "B": {
+   "condA_FD": {
+    "C1_api_contract": 16,
+    "C2_param_misuse": 2,
+    "C3_workflow_logic": 2
+   },
+   "condA_FDR": {
+    "C5_format_env": 2,
+    "C1_api_contract": 7,
+    "C2_param_misuse": 1,
+    "C3_workflow_logic": 9,
+    "ambiguous_item_defect": 1
+   },
+   "condA_FDRS": {
+    "C1_api_contract": 10,
+    "C5_format_env": 3,
+    "C3_workflow_logic": 5,
+    "C2_param_misuse": 2
+   },
+   "condA_FX": {
+    "C5_format_env": 3,
+    "C1_api_contract": 11,
+    "C2_param_misuse": 2,
+    "C3_workflow_logic": 4
+   },
+   "condC_FDRS": {
+    "C3_workflow_logic": 8,
+    "C2_param_misuse": 4,
+    "C1_api_contract": 4,
+    "C5_format_env": 2,
+    "ambiguous_item_defect": 1,
+    "C4_numerical_extraction": 1
+   }
+  }
+ },
+ "vs_preliminary_expert_pass": {
+  "A": {
+   "agreement_pct": 86.0,
+   "cohens_kappa": 0.79
+  },
+  "B": {
+   "agreement_pct": 85.0,
+   "cohens_kappa": 0.774
+  },
+  "note": "The preliminary expert pass is retained for provenance only; the formal expert labels supersede it for every reported quantity."
+ },
+ "sensitivity_over_disagreements": {
+  "n_resolutions": 8,
+  "invariant": {
+   "C1_is_largest_class_overall": true,
+   "tier4_C3_exceeds_C1": true
+  },
+  "ranges": {
+   "C1": [
+    47,
+    48
+   ],
+   "C3": [
+    28,
+    28
+   ],
+   "C1_plus_C2": [
+    59,
+    60
+   ],
+   "C1_plus_C2_pct_of_classifiable": [
+    60.2,
+    60.6
+   ],
+   "tier4_C1": [
+    8,
+    8
+   ],
+   "tier4_C3": [
+    11,
+    11
+   ]
+  },
+  "resolutions": [
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C2_param_misuse",
+     "tier2_C_FDRS_03": "C4_numerical_extraction",
+     "tier4_C_FDRS_01": "C2_param_misuse"
+    },
+    "C1": 47,
+    "C3": 28,
+    "C1_plus_C2": 60,
+    "classifiable": 99,
+    "C1_plus_C2_pct": 60.6,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   },
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C2_param_misuse",
+     "tier2_C_FDRS_03": "C4_numerical_extraction",
+     "tier4_C_FDRS_01": "ambiguous_item_defect"
+    },
+    "C1": 47,
+    "C3": 28,
+    "C1_plus_C2": 59,
+    "classifiable": 98,
+    "C1_plus_C2_pct": 60.2,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   },
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C2_param_misuse",
+     "tier2_C_FDRS_03": "C5_format_env",
+     "tier4_C_FDRS_01": "C2_param_misuse"
+    },
+    "C1": 47,
+    "C3": 28,
+    "C1_plus_C2": 60,
+    "classifiable": 99,
+    "C1_plus_C2_pct": 60.6,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   },
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C2_param_misuse",
+     "tier2_C_FDRS_03": "C5_format_env",
+     "tier4_C_FDRS_01": "ambiguous_item_defect"
+    },
+    "C1": 47,
+    "C3": 28,
+    "C1_plus_C2": 59,
+    "classifiable": 98,
+    "C1_plus_C2_pct": 60.2,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   },
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C1_api_contract",
+     "tier2_C_FDRS_03": "C4_numerical_extraction",
+     "tier4_C_FDRS_01": "C2_param_misuse"
+    },
+    "C1": 48,
+    "C3": 28,
+    "C1_plus_C2": 60,
+    "classifiable": 99,
+    "C1_plus_C2_pct": 60.6,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   },
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C1_api_contract",
+     "tier2_C_FDRS_03": "C4_numerical_extraction",
+     "tier4_C_FDRS_01": "ambiguous_item_defect"
+    },
+    "C1": 48,
+    "C3": 28,
+    "C1_plus_C2": 59,
+    "classifiable": 98,
+    "C1_plus_C2_pct": 60.2,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   },
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C1_api_contract",
+     "tier2_C_FDRS_03": "C5_format_env",
+     "tier4_C_FDRS_01": "C2_param_misuse"
+    },
+    "C1": 48,
+    "C3": 28,
+    "C1_plus_C2": 60,
+    "classifiable": 99,
+    "C1_plus_C2_pct": 60.6,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   },
+   {
+    "resolution": {
+     "tier1_C_FDRS_05": "C1_api_contract",
+     "tier2_C_FDRS_03": "C5_format_env",
+     "tier4_C_FDRS_01": "ambiguous_item_defect"
+    },
+    "C1": 48,
+    "C3": 28,
+    "C1_plus_C2": 59,
+    "classifiable": 98,
+    "C1_plus_C2_pct": 60.2,
+    "tier4_C1": 8,
+    "tier4_C3": 11,
+    "C1_is_largest_overall": true
+   }
+  ]
+ }
+}

@@ -1,0 +1,123 @@
+{
+  "timestamp": "2026-07-25T15:04:22.797615",
+  "layers": {
+    "L0_recognition": {
+      "count": 152,
+      "scores": {
+        "accuracy": {
+          "mean": 0.6184,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "parseable": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "hallucination_rate": 0.3816,
+      "false_rejection_rate": 0.3816,
+      "balanced_accuracy": 0.6184,
+      "auc": 0.6184,
+      "best_threshold": null,
+      "best_balanced_acc": 0.6184
+    },
+    "L1_recall": {
+      "count": 76,
+      "scores": {
+        "overall": {
+          "mean": 0.7368,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "parseable": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "path_correct": {
+          "mean": 0.9474,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "required_params_jaccard": {
+          "mean": 0.5263,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "required_params_precision": {
+          "mean": 0.5263,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "required_params_recall": {
+          "mean": 0.9605,
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    },
+    "L2_comprehension": {
+      "count": 199,
+      "scores": {
+        "accuracy": {
+          "mean": 0.9749,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "parseable": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "sub_type_breakdown": {
+        "func_purpose": {
+          "accuracy": 0.9605,
+          "n_probes": 76
+        },
+        "param_meaning": {
+          "accuracy": 1.0,
+          "n_probes": 47
+        },
+        "return_info": {
+          "accuracy": 0.9737,
+          "n_probes": 76
+        }
+      }
+    },
+    "L3_application": {
+      "count": 76,
+      "scores": {
+        "api_validity_rate": {
+          "mean": 0.3728,
+          "min": 0.0,
+          "max": 0.75
+        },
+        "code_extracted": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "execution_success": {
+          "mean": 0.4211,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "target_function_used": {
+          "mean": 0.7368,
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      "execution_pass_rate": 0.4211,
+      "avg_api_validity": 0.3728,
+      "error_type_distribution": {
+        "AttributeError": 21,
+        "DSSException": 11,
+        "RuntimeError": 10,
+        "NativeCrash": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "question": "Does an item-level final-label, judge, adjudication, or refutation ledger exist for the frozen 100-item matcher false-negative sample?",
+  "conclusion": "No such ledger was found. The 100 complete source item records and the aggregate 8/5/87 audit survive, but the mapping from fn001..fn100 to final adjudication labels does not.",
+  "scope_searched": {
+    "sources": [
+      {
+        "source": "the upstream experimental pipeline",
+        "description": "The frozen generation, execution, and matcher codebase together with its complete result trees.",
+        "relevant_filename_candidates": [],
+        "content_candidates_ruled_out": [
+          "The E1 engineering-validity/contamination pilot ledger (different item population and purpose, not the matcher FN sample).",
+          "The E1/T4 engineering-validity audit files (different item population and purpose)."
+        ]
+      },
+      {
+        "source": "the authors' pre-submission working records",
+        "description": "The manuscript working directory in which the historical P0-1 matcher audit outputs were produced.",
+        "relevant_filename_candidates": [
+          "the historical 100-item sample export, published here byte-exact as audit/matcher_fn/p01_fn_samples_legacy_truncated.json",
+          "the historical aggregate audit summary, published here byte-exact as audit/matcher_fn/P01_false_negative_audit.json",
+          "a drafted manuscript paragraph describing the audit (prose only)"
+        ],
+        "candidate_disposition": "The sample export has fn001..fn100 and submitted record fields but no label, judge, or refutation field; the aggregate audit has only final counts and breakdowns; the drafted paragraph is prose. None of the three carries a per-item adjudication label."
+      }
+    ],
+    "filename_terms": [
+      "p01",
+      "matcher",
+      "false-negative",
+      "fn_",
+      "judge",
+      "adjudication",
+      "refutation",
+      "verdict",
+      "label"
+    ],
+    "content_terms": [
+      "fn001..fn100",
+      "n_false_negative_upheld",
+      "parser_extraction",
+      "P01_false_negative_audit",
+      "p01_fn_samples",
+      "executed-but-unmatched"
+    ]
+  },
+  "history_search": {
+    "scope": "All reachable branches and reflog-visible history of both sources were searched, not only their current working trees.",
+    "upstream_pipeline_sample_id_hits": "None: the fn001..fn100 sample identifiers never appear in the history of the upstream experimental pipeline.",
+    "working_record_hits": "A single historical commit introducing exactly the two candidate exports named above (the sample export and the aggregate audit summary); no third matcher-adjudication file accompanied them.",
+    "result": "Reachable branches and reflog-visible history exposed no fourth matcher-adjudication artifact."
+  },
+  "search_commands": [
+    "recursive filename search of both sources filtered on matcher/audit/judge/adjudication/refutation/label terms",
+    "recursive content search for the sample identifiers and audit keys listed above over both working trees",
+    "history-wide content search (all branches plus reflog) for the same terms, reporting the paths that introduced or removed them"
+  ],
+  "reproducibility_boundary": "Do not infer per-item labels from aggregate stratum totals. A new readjudication would be a new versioned audit, not recovery of the historical ledger."
+}

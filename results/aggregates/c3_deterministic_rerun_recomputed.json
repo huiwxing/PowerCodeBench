@@ -1,0 +1,319 @@
+{
+  "all_integrity_checks_pass": true,
+  "cross_source_endpoint_comparison": {
+    "D12_eval_cross_D34_vs_in_D12": {
+      "cross_minus_in_source_pp": 0.07,
+      "cross_source_recall_at_10": 0.6869,
+      "cross_source_run": "R6_reweight_D34_eval_D12",
+      "evaluation_split": "D12",
+      "in_source_recall_at_10": 0.6862,
+      "in_source_run": "R3_reweight_D12_eval_D12",
+      "interpretation": "cross-source reaches nearly the same recall endpoint",
+      "n_paired_queries": 1200,
+      "paired_bootstrap": {
+        "ci95_pp": [
+          -0.12,
+          0.27
+        ],
+        "replicates": 10000,
+        "seed": 22,
+        "statistic": "mean(cross-source item recall@10 - in-source item recall@10), pp",
+        "unit": "paired evaluation query"
+      }
+    },
+    "D34_eval_cross_D12_vs_in_D34": {
+      "cross_minus_in_source_pp": -0.29,
+      "cross_source_recall_at_10": 0.659,
+      "cross_source_run": "R4_reweight_D12_eval_D34",
+      "evaluation_split": "D34",
+      "in_source_recall_at_10": 0.6619,
+      "in_source_run": "R5_reweight_D34_eval_D34",
+      "interpretation": "cross-source reaches nearly the same recall endpoint",
+      "n_paired_queries": 800,
+      "paired_bootstrap": {
+        "ci95_pp": [
+          -0.62,
+          0.0
+        ],
+        "replicates": 10000,
+        "seed": 22,
+        "statistic": "mean(cross-source item recall@10 - in-source item recall@10), pp",
+        "unit": "paired evaluation query"
+      }
+    }
+  },
+  "historical_recall_at_10_lifts_pp": {
+    "D12_source_held_out_D34": 17.96,
+    "D12_source_in_distribution": 12.24,
+    "D34_source_held_out_D12": 12.28,
+    "D34_source_in_distribution": 18.48
+  },
+  "integrity_checks": {
+    "lifts_match": true,
+    "paired_bootstrap_deterministic": {
+      "D12_eval_cross_D34_vs_in_D12": true,
+      "D34_eval_cross_D12_vs_in_D34": true
+    },
+    "provenance": {
+      "benchmark/c3_splits/benchmark_D1D2.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "benchmark/c3_splits/benchmark_D3D4.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "code/aggregate/export_c3_deterministic_rerun.py": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "code/task_demand/task_demand_model.py": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "dataset/augmented_dataset.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "dataset/pandapower_docs.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "results/aggregates/c3_holdout/R1_baseline_eval_D12/metrics.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "results/aggregates/c3_holdout/R2_baseline_eval_D34/metrics.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "results/aggregates/c3_holdout/R3_reweight_D12_eval_D12/metrics.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "results/aggregates/c3_holdout/R4_reweight_D12_eval_D34/metrics.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "results/aggregates/c3_holdout/R5_reweight_D34_eval_D34/metrics.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      },
+      "results/aggregates/c3_holdout/R6_reweight_D34_eval_D12/metrics.json": {
+        "bytes_match": true,
+        "exists": true,
+        "sha256_matches": true
+      }
+    },
+    "run_metrics_match": {
+      "R1_baseline_eval_D12": true,
+      "R2_baseline_eval_D34": true,
+      "R3_reweight_D12_eval_D12": true,
+      "R4_reweight_D12_eval_D34": true,
+      "R5_reweight_D34_eval_D34": true,
+      "R6_reweight_D34_eval_D12": true
+    }
+  },
+  "recall_at_10_lifts_pp": {
+    "D12_source_held_out_D34": 18.13,
+    "D12_source_in_distribution": 12.37,
+    "D34_source_held_out_D12": 12.44,
+    "D34_source_in_distribution": 18.42
+  },
+  "runs": {
+    "R1_baseline_eval_D12": {
+      "n_eval": 1200,
+      "top_k": {
+        "1": {
+          "hit_rate": 0.3408,
+          "precision": 0.3408,
+          "recall": 0.1163
+        },
+        "10": {
+          "hit_rate": 0.9142,
+          "precision": 0.1639,
+          "recall": 0.5625
+        },
+        "20": {
+          "hit_rate": 0.9575,
+          "precision": 0.0975,
+          "recall": 0.679
+        },
+        "3": {
+          "hit_rate": 0.7758,
+          "precision": 0.3956,
+          "recall": 0.4069
+        },
+        "5": {
+          "hit_rate": 0.8583,
+          "precision": 0.2878,
+          "recall": 0.4946
+        }
+      }
+    },
+    "R2_baseline_eval_D34": {
+      "n_eval": 800,
+      "top_k": {
+        "1": {
+          "hit_rate": 0.3013,
+          "precision": 0.3013,
+          "recall": 0.0956
+        },
+        "10": {
+          "hit_rate": 0.8175,
+          "precision": 0.1407,
+          "recall": 0.4777
+        },
+        "20": {
+          "hit_rate": 0.9475,
+          "precision": 0.0924,
+          "recall": 0.6476
+        },
+        "3": {
+          "hit_rate": 0.69,
+          "precision": 0.3308,
+          "recall": 0.3388
+        },
+        "5": {
+          "hit_rate": 0.7588,
+          "precision": 0.2415,
+          "recall": 0.4122
+        }
+      }
+    },
+    "R3_reweight_D12_eval_D12": {
+      "n_eval": 1200,
+      "top_k": {
+        "1": {
+          "hit_rate": 0.6425,
+          "precision": 0.6425,
+          "recall": 0.2363
+        },
+        "10": {
+          "hit_rate": 0.9825,
+          "precision": 0.1921,
+          "recall": 0.6862
+        },
+        "20": {
+          "hit_rate": 1.0,
+          "precision": 0.108,
+          "recall": 0.7692
+        },
+        "3": {
+          "hit_rate": 0.9042,
+          "precision": 0.4647,
+          "recall": 0.5049
+        },
+        "5": {
+          "hit_rate": 0.9592,
+          "precision": 0.3317,
+          "recall": 0.5945
+        }
+      }
+    },
+    "R4_reweight_D12_eval_D34": {
+      "n_eval": 800,
+      "top_k": {
+        "1": {
+          "hit_rate": 0.6375,
+          "precision": 0.6375,
+          "recall": 0.2382
+        },
+        "10": {
+          "hit_rate": 0.9762,
+          "precision": 0.1807,
+          "recall": 0.659
+        },
+        "20": {
+          "hit_rate": 1.0,
+          "precision": 0.1032,
+          "recall": 0.7525
+        },
+        "3": {
+          "hit_rate": 0.8575,
+          "precision": 0.4338,
+          "recall": 0.4703
+        },
+        "5": {
+          "hit_rate": 0.9187,
+          "precision": 0.3005,
+          "recall": 0.5457
+        }
+      }
+    },
+    "R5_reweight_D34_eval_D34": {
+      "n_eval": 800,
+      "top_k": {
+        "1": {
+          "hit_rate": 0.6425,
+          "precision": 0.6425,
+          "recall": 0.2409
+        },
+        "10": {
+          "hit_rate": 0.9775,
+          "precision": 0.1814,
+          "recall": 0.6619
+        },
+        "20": {
+          "hit_rate": 1.0,
+          "precision": 0.1033,
+          "recall": 0.7533
+        },
+        "3": {
+          "hit_rate": 0.8612,
+          "precision": 0.4354,
+          "recall": 0.4728
+        },
+        "5": {
+          "hit_rate": 0.925,
+          "precision": 0.3022,
+          "recall": 0.5501
+        }
+      }
+    },
+    "R6_reweight_D34_eval_D12": {
+      "n_eval": 1200,
+      "top_k": {
+        "1": {
+          "hit_rate": 0.6458,
+          "precision": 0.6458,
+          "recall": 0.238
+        },
+        "10": {
+          "hit_rate": 0.9825,
+          "precision": 0.1922,
+          "recall": 0.6869
+        },
+        "20": {
+          "hit_rate": 1.0,
+          "precision": 0.1079,
+          "recall": 0.7687
+        },
+        "3": {
+          "hit_rate": 0.9033,
+          "precision": 0.465,
+          "recall": 0.5054
+        },
+        "5": {
+          "hit_rate": 0.9608,
+          "precision": 0.3325,
+          "recall": 0.5969
+        }
+      }
+    }
+  },
+  "source": "results/supplementary_evidence/c3_deterministic_rerun_items.json",
+  "source_sha256": "741ab07c5766b5743219141bbcd00bfc014c200ac33e537792a79628bb12558c",
+  "status": "revision deterministic rerun; not an item-level replay of the pre-fix historical runs"
+}

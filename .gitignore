@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+!.env.example
+e1p_mcnemar.recomputed.json
+.build_checkpoint*.json

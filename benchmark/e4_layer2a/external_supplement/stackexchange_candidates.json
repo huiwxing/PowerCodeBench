@@ -1,0 +1,776 @@
+[
+  {
+    "candidate_id": "electronics:543841",
+    "source_type": "stackexchange_electronics_question",
+    "question_id": 543841,
+    "title": "Balanced and unbalanced short circuit voltage of transformer",
+    "body_excerpt": "This might be trivial, but I'd like some hint on where to start. I'm calculating power flow for three-phase-four-wire distribution networks. Positive",
+    "url": "https://electronics.stackexchange.com/questions/543841/balanced-and-unbalanced-short-circuit-voltage-of-transformer",
+    "published_at": "2021-01-21T09:04:42Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "transformer",
+      "three-phase"
+    ],
+    "score": 0,
+    "answer_count": 0,
+    "is_answered": false,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "energy-domain-parameterization-question",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "25eedd7463a2322063194bf1eeb67d7e1d04b4e21d5b157795d4d9030a00af0d"
+  },
+  {
+    "candidate_id": "electronics:579875",
+    "source_type": "stackexchange_electronics_question",
+    "question_id": 579875,
+    "title": "How to change per unit base before power flow calculation",
+    "body_excerpt": "I want to change the per unit base from transformers to a grid. My understanding can be illustrated by the following example",
+    "url": "https://electronics.stackexchange.com/questions/579875/how-to-change-per-unit-base-before-power-flow-calculation",
+    "published_at": "2021-08-02T09:30:00Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "transformer",
+      "power-flow-analysis"
+    ],
+    "score": 2,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "power_flow",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "energy-domain-modeling-question",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "2d4573dd267931fc166f7f2ec59070ac9e82178d800a14b5d0909b26e978584f"
+  },
+  {
+    "candidate_id": "stackoverflow:43979369",
+    "source_type": "stackoverflow_question",
+    "question_id": 43979369,
+    "title": "Sphinx autodoc with parameter from a mocked module on readthedocs",
+    "body_excerpt": "We are using readthedocs to document our open source project pandapower. Since pandapower has dependencies to numpy and other C libraries that",
+    "url": "https://stackoverflow.com/questions/43979369/sphinx-autodoc-with-parameter-from-a-mocked-module-on-readthedocs",
+    "published_at": "2017-05-15T12:18:51Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python-sphinx",
+      "read-the-docs",
+      "autodoc"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "832b0d0bd638dac9a1c77f1ce0c1679229aff313219c81fbacedf4ffeb8455ff"
+  },
+  {
+    "candidate_id": "stackoverflow:45777173",
+    "source_type": "stackoverflow_question",
+    "question_id": 45777173,
+    "title": "How can I download and install Numpy and Pandapower?",
+    "body_excerpt": "How can I Download and install numpy and pandapower on the RASPBIAN JESSIE LITE Minimal image based on Debian Jessie? the one",
+    "url": "https://stackoverflow.com/questions/45777173/how-can-i-download-and-install-numpy-and-pandapower",
+    "published_at": "2017-08-19T23:31:47Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "numpy",
+      "raspberry-pi3",
+      "raspbian",
+      "miniconda",
+      "pandapower"
+    ],
+    "score": -1,
+    "answer_count": 1,
+    "is_answered": false,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "installation_environment",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "4de18b432bc38976ae31b26e4b3fa64e803e912747f67311981f9f36727c8939"
+  },
+  {
+    "candidate_id": "stackoverflow:51987962",
+    "source_type": "stackoverflow_question",
+    "question_id": 51987962,
+    "title": "can't install pandas in windows python 3.7?",
+    "body_excerpt": "Due to some reasons I need to install pandas manually, I found this link: https://pandapower.readthedocs.io/en/v1.5.1/getting_started/installation_without_pip.html FYI: since I am using python 3.7,",
+    "url": "https://stackoverflow.com/questions/51987962/cant-install-pandas-in-windows-python-3-7",
+    "published_at": "2018-08-23T14:17:20Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "pandas"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": false,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "d9ece61b914f08d4575027296fca8ed5425cad6e617a03bb32cee0dbd2e47e06"
+  },
+  {
+    "candidate_id": "stackoverflow:55299203",
+    "source_type": "stackoverflow_question",
+    "question_id": 55299203,
+    "title": "How do I delete items in PandaPower?",
+    "body_excerpt": "I just started using pandapower today and I can't find a way to delete items. I don't know python at all, I've",
+    "url": "https://stackoverflow.com/questions/55299203/how-do-i-delete-items-in-pandapower",
+    "published_at": "2019-03-22T12:01:57Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "pandapower"
+    ],
+    "score": 1,
+    "answer_count": 2,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "network_build_modify",
+    "screening_decision": "POSSIBLE_DUPLICATE",
+    "reason_code": "element-deletion-already-covered",
+    "duplicate_of": "existing E4 drop_buses records",
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "b0fe2abdc2aaf31446d98cefd95de3eba7332a2b9cbaa5f6e7dfd1a45336be8b"
+  },
+  {
+    "candidate_id": "stackoverflow:56869806",
+    "source_type": "stackoverflow_question",
+    "question_id": 56869806,
+    "title": "How to solve \"NameError: name 'plotly_version' is not defined\" when using simple_plotly?",
+    "body_excerpt": "I'm trying to draw a map for my master thesis code. By now I'm just trying an example from https://nbviewer.jupyter.org/github/e2nIEE/pandapower/blob/develop/tutorials/plotly_maps.ipynb so I",
+    "url": "https://stackoverflow.com/questions/56869806/how-to-solve-nameerror-name-plotly-version-is-not-defined-when-using-simple",
+    "published_at": "2019-07-03T12:07:05Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "plotly",
+      "jupyter"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": false,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "8b1647bc9d9a6fe183fed50c8e85f75e426c2a549765fcc9986a8ca09cb2f0ee"
+  },
+  {
+    "candidate_id": "stackoverflow:59709355",
+    "source_type": "stackoverflow_question",
+    "question_id": 59709355,
+    "title": "ImportError: cannot import name 'DictType' from 'types'",
+    "body_excerpt": "import pandas as pd import pandapower as pp import control import timeseries import inspect I get this error for the Timeseries package",
+    "url": "https://stackoverflow.com/questions/59709355/importerror-cannot-import-name-dicttype-from-types",
+    "published_at": "2020-01-13T00:30:50Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python-3.x",
+      "anaconda",
+      "spyder"
+    ],
+    "score": 1,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "timeseries_control",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "4c6069ee4ef5d64cd2ea31c94bd677e324c5bc7711775c8bc479ef8976c73608"
+  },
+  {
+    "candidate_id": "stackoverflow:60214980",
+    "source_type": "stackoverflow_question",
+    "question_id": 60214980,
+    "title": "How to go to a specific line to check the condition again?",
+    "body_excerpt": "if net.res_bus.vm_pu[self.bus] > 1.005 : self.p_mw = self.p_mw + self.data_source.get_time_step_value(time_step=time,profile_name=self.p_profile) self.soc_percent += ((self.data_source.get_time_step_value(time_step=time,profile_name=self.p_profile)*15/60)/self.max_e_mwh) * 100 I am using the pandapower package in",
+    "url": "https://stackoverflow.com/questions/60214980/how-to-go-to-a-specific-line-to-check-the-condition-again",
+    "published_at": "2020-02-13T19:14:50Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "conditional-statements"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": false,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "timeseries_control",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "generic-control-flow",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "5d8ea2f1120b16766130afdbded4282ec2fa6f7300006ce332db978252899a2a"
+  },
+  {
+    "candidate_id": "stackoverflow:60838667",
+    "source_type": "stackoverflow_question",
+    "question_id": 60838667,
+    "title": "pandapower python: need OutputWriter before run_timeseries for updating net result",
+    "body_excerpt": "My problem: I am composing a data source that I pass to the constControl(..., ds=ds, ...) that will be updated iteratively. It",
+    "url": "https://stackoverflow.com/questions/60838667/pandapower-python-need-outputwriter-before-run-timeseries-for-updating-net-resu",
+    "published_at": "2020-03-24T20:18:03Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "iteration",
+      "pandapower"
+    ],
+    "score": 1,
+    "answer_count": 1,
+    "is_answered": false,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "timeseries_control",
+    "screening_decision": "POSSIBLE_DUPLICATE",
+    "reason_code": "timeseries-output-retrieval-already-covered",
+    "duplicate_of": "existing E4 OutputWriter/time-series records",
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "2d5d643d08d6e1ebca2478e0b85b8dce09c173a76125d74a24672a8596283898"
+  },
+  {
+    "candidate_id": "stackoverflow:60877955",
+    "source_type": "stackoverflow_question",
+    "question_id": 60877955,
+    "title": "'numpy.int64' object does not support item assignment",
+    "body_excerpt": "my_stor = np.zeros(27) for i in range(0,27): if net.storage.bus[i] == self.bus and net.storage.in_service[i] == True : my_stor[i] = net.storage.index[i] avail[my_stor[i],time] = 1",
+    "url": "https://stackoverflow.com/questions/60877955/numpy-int64-object-does-not-support-item-assignment",
+    "published_at": "2020-03-26T23:52:47Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "typeerror",
+      "dtype"
+    ],
+    "score": 0,
+    "answer_count": 0,
+    "is_answered": false,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "timeseries_control",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "real-user-question-needs-manual-triage",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "464f3c168d1dd0b7232b0b0a6962414970f4fdc13772c607c786d456370af75d"
+  },
+  {
+    "candidate_id": "stackoverflow:63364203",
+    "source_type": "stackoverflow_question",
+    "question_id": 63364203,
+    "title": "Trying to create/associate functions dynamically to variables in a for loop",
+    "body_excerpt": "My code reads from a csv the parameters to create an object (in that case a bus, a common element in the",
+    "url": "https://stackoverflow.com/questions/63364203/trying-to-create-associate-functions-dynamically-to-variables-in-a-for-loop",
+    "published_at": "2020-08-11T18:22:36Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "function",
+      "dictionary",
+      "for-loop",
+      "variables"
+    ],
+    "score": 1,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "external-data-network-construction",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "708c3b80fbee52ad02beea88a16ec6702a8c5391c8b7cfa9b20a47b26f719c09"
+  },
+  {
+    "candidate_id": "stackoverflow:67048257",
+    "source_type": "stackoverflow_question",
+    "question_id": 67048257,
+    "title": "index 5 is out of bounds for axis 0 with size 5, how to solve it?",
+    "body_excerpt": "I am a beginner in python and trying to write a code to determine the admittance matrix. my admittance list is defined",
+    "url": "https://stackoverflow.com/questions/67048257/index-5-is-out-of-bounds-for-axis-0-with-size-5-how-to-solve-it",
+    "published_at": "2021-04-11T17:39:49Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "arrays",
+      "numpy",
+      "matrix",
+      "pandapower"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "topology_matrix",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "direct-matrix-demand",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "75eaa6eeb451ebf3748891f2dfcc57e1324c6bb9042e9250b35b3eb124e966e5"
+  },
+  {
+    "candidate_id": "stackoverflow:67344016",
+    "source_type": "stackoverflow_question",
+    "question_id": 67344016,
+    "title": "Convert PSS/E .raw file to Pandapower",
+    "body_excerpt": "I'm trying to find a possible way to convert PSS/E native .raw files to Pandapower format. My objective is to take advantage",
+    "url": "https://stackoverflow.com/questions/67344016/convert-pss-e-raw-file-to-pandapower",
+    "published_at": "2021-05-01T07:46:12Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "psse",
+      "pandapower"
+    ],
+    "score": 0,
+    "answer_count": 2,
+    "is_answered": false,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "direct-conversion-demand",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "7061213146fab58956a13b898ae1faba2cb03933792f50a33dfd1368a2b7b244"
+  },
+  {
+    "candidate_id": "stackoverflow:67808220",
+    "source_type": "stackoverflow_question",
+    "question_id": 67808220,
+    "title": "color buses in pandapower network plot",
+    "body_excerpt": "I want to choose the color for certain buses in the graph of a pandapower network. I use the simple_plotly function from",
+    "url": "https://stackoverflow.com/questions/67808220/color-buses-in-pandapower-network-plot",
+    "published_at": "2021-06-02T15:34:20Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "pandas",
+      "plotly",
+      "pandapower"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": false,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "plotting-demand",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "b836a2dac8dbf3973d56daece14f03309cdfeb6b88f2bcefcaf4a688660db130"
+  },
+  {
+    "candidate_id": "stackoverflow:68223681",
+    "source_type": "stackoverflow_question",
+    "question_id": 68223681,
+    "title": "Combine multiple FMUs into one",
+    "body_excerpt": "I have a pandapower network and at some buses I have included batteries and photovoltaics as FMUs. Right now I have a",
+    "url": "https://stackoverflow.com/questions/68223681/combine-multiple-fmus-into-one",
+    "published_at": "2021-07-02T10:34:22Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "simulation",
+      "modelica",
+      "fmi",
+      "pyfmi"
+    ],
+    "score": 4,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "network_build_modify",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "79396023d4228018b5ad545f9af0ca59947d12aeea961dae9bde25ee3be6a91c"
+  },
+  {
+    "candidate_id": "stackoverflow:68337508",
+    "source_type": "stackoverflow_question",
+    "question_id": 68337508,
+    "title": "Error of ModelStructure/Outputs by using FMU container",
+    "body_excerpt": "I am trying to combine three FMUs into one FMU that contains all of the three. Specifically, I have one FMU of",
+    "url": "https://stackoverflow.com/questions/68337508/error-of-modelstructure-outputs-by-using-fmu-container",
+    "published_at": "2021-07-11T15:16:50Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "simulation",
+      "modelica",
+      "fmi"
+    ],
+    "score": 1,
+    "answer_count": 1,
+    "is_answered": false,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "25e7c67cd9f4ce2287781dda745e6d89e61b16a99b46a35a7cbd48b576432ae9"
+  },
+  {
+    "candidate_id": "stackoverflow:70939178",
+    "source_type": "stackoverflow_question",
+    "question_id": 70939178,
+    "title": "How can I get the impedance matrix of the network?",
+    "body_excerpt": "Is there any way to calculate impedance matrix of the network in pandapower?",
+    "url": "https://stackoverflow.com/questions/70939178/how-can-i-get-the-impedance-matrix-of-the-network",
+    "published_at": "2022-02-01T10:41:03Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "pandapower"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "topology_matrix",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "direct-domain-api-demand",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "6b83badcc15f024d6167bb9d05b87a4129f682ae65d42ad0b69b05bedc053bf3"
+  },
+  {
+    "candidate_id": "stackoverflow:70980604",
+    "source_type": "stackoverflow_question",
+    "question_id": 70980604,
+    "title": "why does my pandapower coding always error on every bus and won't work?",
+    "body_excerpt": "I have a task pandapower, to do this (see picture) but there is always an error on the part of the bus,",
+    "url": "https://stackoverflow.com/questions/70980604/why-does-my-pandapower-coding-always-error-on-every-bus-and-wont-work",
+    "published_at": "2022-02-04T01:54:55Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "pandapower"
+    ],
+    "score": 0,
+    "answer_count": 0,
+    "is_answered": false,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "network_build_modify",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "image-dependent-missing-context",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "ee52105d96fc60faed71a6894f441ddb98c1e7c014b48937ddf9a1deb60599df"
+  },
+  {
+    "candidate_id": "stackoverflow:71277288",
+    "source_type": "stackoverflow_question",
+    "question_id": 71277288,
+    "title": "How do I solve next keyError? None of [Int64Index([0, 1, 2], dtype='int64')] are in the [index] when using Pandapower Timeseries",
+    "body_excerpt": "When I try running this code using pandapower to run the powerflow timeseries of a low-voltage system, I get the following error:",
+    "url": "https://stackoverflow.com/questions/71277288/how-do-i-solve-next-keyerror-none-of-int64index0-1-2-dtype-int64-are",
+    "published_at": "2022-02-26T14:05:05Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "pandas",
+      "csv",
+      "indexing",
+      "pandapower"
+    ],
+    "score": 2,
+    "answer_count": 0,
+    "is_answered": false,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "timeseries_control",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "direct-timeseries-api-demand",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "f1128f552eff4721c5baa4420d2ad9ea51f224a38cd47b34fee3834cf3c41ecc"
+  },
+  {
+    "candidate_id": "stackoverflow:72288870",
+    "source_type": "stackoverflow_question",
+    "question_id": 72288870,
+    "title": "How to plot and save with an <AxesSubplot:> output",
+    "body_excerpt": "I am using this function It return one AxesSubplot: I would like to save the plot that is ploted when show_plot=True as",
+    "url": "https://stackoverflow.com/questions/72288870/how-to-plot-and-save-with-an-axessubplot-output",
+    "published_at": "2022-05-18T12:04:58Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "matplotlib",
+      "plot",
+      "pandapower"
+    ],
+    "score": 1,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "plotting",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "plotting-demand",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "0c09c9513f2c59a44e5cb789c5110439d5ca4b1b5ceaf974484ba3ec018f7fd4"
+  },
+  {
+    "candidate_id": "stackoverflow:72551186",
+    "source_type": "stackoverflow_question",
+    "question_id": 72551186,
+    "title": "How to adapt a logger.warning to an export with f.write()",
+    "body_excerpt": "I have this peace of code from a library that raise a warning : report_methods = { \"missing_bus_indices\": diag_report.report_missing_bus_indices, \"disconnected_elements\": diag_report.report_disconnected_elements, \"different_voltage_levels_connected\":",
+    "url": "https://stackoverflow.com/questions/72551186/how-to-adapt-a-logger-warning-to-an-export-with-f-write",
+    "published_at": "2022-06-08T19:25:43Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "pandas",
+      "pandapower"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "real-user-question-needs-manual-triage",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "b8527bd820b8ebe260e499def890e31460d4e2bda9a351fb9830b4e9e14d7ffc"
+  },
+  {
+    "candidate_id": "stackoverflow:72599521",
+    "source_type": "stackoverflow_question",
+    "question_id": 72599521,
+    "title": "Issue to write logging.warning into a .log file",
+    "body_excerpt": "This question is following another post I made. In a specific .py file, I tried the following code : import logging logging.basicConfig(filename='example.log',",
+    "url": "https://stackoverflow.com/questions/72599521/issue-to-write-logging-warning-into-a-log-file",
+    "published_at": "2022-06-13T08:05:33Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "logging",
+      "pandapower"
+    ],
+    "score": 1,
+    "answer_count": 0,
+    "is_answered": false,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "9adc8cc9161f23115268488fc50721e7376d55b31b91d50e8f50962affa84924"
+  },
+  {
+    "candidate_id": "stackoverflow:72706742",
+    "source_type": "stackoverflow_question",
+    "question_id": 72706742,
+    "title": "name 'TextPath' is not defined",
+    "body_excerpt": "I've tried running a program which imports the Pandapower library, and I get the Error: NameError: name 'TextPath' is not defined I",
+    "url": "https://stackoverflow.com/questions/72706742/name-textpath-is-not-defined",
+    "published_at": "2022-06-21T20:25:48Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "pandapower"
+    ],
+    "score": 1,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "7e18737906abc7037709acf98cc01c8dfe4c7fd75818f28907380e630baeceb7"
+  },
+  {
+    "candidate_id": "stackoverflow:76875889",
+    "source_type": "stackoverflow_question",
+    "question_id": 76875889,
+    "title": "Defining a Pyomo Constraint using values from external functions/calculations",
+    "body_excerpt": "I want to solve an optimization problem using Pyomo in which the charging profile of electric vehicles is determined in a price-optimal",
+    "url": "https://stackoverflow.com/questions/76875889/defining-a-pyomo-constraint-using-values-from-external-functions-calculations",
+    "published_at": "2023-08-10T12:49:51Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "optimization",
+      "pyomo"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "timeseries_control",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "cross-library-optimization",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "856b786b12e31f902c1c641a084c2a16847773e5a832a1e3d7202ebb89122d3f"
+  },
+  {
+    "candidate_id": "stackoverflow:78777667",
+    "source_type": "stackoverflow_question",
+    "question_id": 78777667,
+    "title": "Pandapower: Connect two networks",
+    "body_excerpt": "I would like to use two of the IEEE case examples and connect them using pandapower. One should represent a DSO net",
+    "url": "https://stackoverflow.com/questions/78777667/pandapower-connect-two-networks",
+    "published_at": "2024-07-22T08:31:18Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "ieee",
+      "pandapower"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "POSSIBLE_DUPLICATE",
+    "reason_code": "cross-source-near-duplicate",
+    "duplicate_of": "github_issue#2352; e4_layer2a:l2a_017",
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "61e2cf97aaf90e0987011720fe670615473c00518cd7854402eebdeeedfb9e5b"
+  },
+  {
+    "candidate_id": "stackoverflow:79565827",
+    "source_type": "stackoverflow_question",
+    "question_id": 79565827,
+    "title": "how to recover from error \"Cannot mix incompatible Qt library (6.8.3) with this library (6.8.2)\"",
+    "body_excerpt": "I am using a conda virtual environment. I ran my code yesterday and it worked perfectly fine. I changed NOTHING in my",
+    "url": "https://stackoverflow.com/questions/79565827/how-to-recover-from-error-cannot-mix-incompatible-qt-library-6-8-3-with-this",
+    "published_at": "2025-04-10T05:57:26Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "qt",
+      "matplotlib",
+      "conda"
+    ],
+    "score": 0,
+    "answer_count": 1,
+    "is_answered": true,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "environment-or-nonanalysis-task",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "1a3d55f8247e77252d0ab29036349600861b9e1fd65a5336f625b52c699144fc"
+  },
+  {
+    "candidate_id": "stackoverflow:79767750",
+    "source_type": "stackoverflow_question",
+    "question_id": 79767750,
+    "title": "How to solve power flow equations using GEKKO in Python?",
+    "body_excerpt": "I want to solve the AC power flow equations (wiki) using GEKKO in Python. This is a nonlinear system of equations describing",
+    "url": "https://stackoverflow.com/questions/79767750/how-to-solve-power-flow-equations-using-gekko-in-python",
+    "published_at": "2025-09-17T19:30:13Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "python",
+      "mathematical-optimization",
+      "gekko",
+      "pandapower"
+    ],
+    "score": 3,
+    "answer_count": 2,
+    "is_answered": true,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "topology_matrix",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "real-user-question-needs-manual-triage",
+    "duplicate_of": null,
+    "provenance_note": "Stack Exchange CC BY-SA terms vary by post date; source URL retained for attribution.",
+    "source_fingerprint": "302dce62f12b7841c3e6c5b476c17c8ffec026ca66b3ce5eab7f3534b5c2454e"
+  }
+]

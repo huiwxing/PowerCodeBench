@@ -1,0 +1,714 @@
+{
+ "reviewer_type": "Practising power-systems engineer; independent, rubric-constrained review of the frozen sample",
+ "reviewer_id": "B",
+ "rubric": {
+  "C1_api_contract": "hallucinated, missing, or wrong callable or API contract",
+  "C2_param_misuse": "wrong parameter, index, table, column, or result access",
+  "C3_workflow_logic": "wrong domain sequence, missing analysis, wrong network, intervention, or logic",
+  "C4_numerical_extraction": "correct workflow but wrong numeric transformation or scalar extraction",
+  "C5_format_env": "syntax, truncation, import, environment, timeout, or output-format execution failure",
+  "ambiguous_item_defect": "evidence is insufficient or the query and reference conflict"
+ },
+ "records": [
+  {
+   "sample_id": "tier1_A_FDRS_01",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Line 6 aborts first; the state estimation workflow has not begun.",
+   "primary_evidence": "`pp.read_power_system` does not exist; the reference solution uses `pn.create_cigre_network_hv()`."
+  },
+  {
+   "sample_id": "tier1_A_FDRS_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The network-loading API error is the first actual failure.",
+   "primary_evidence": "`pp.read_power_system` does not exist; the Illinois 200-bus should be created by `pn.case_illinois200()`."
+  },
+  {
+   "sample_id": "tier1_A_FDRS_03",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "Execution fails at the external-file loading stage; the power analysis never runs.",
+   "primary_evidence": "`pp.from_json` uses the placeholder file `path_to_your_network.json`; the file content is not parseable."
+  },
+  {
+   "sample_id": "tier1_A_FDRS_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong call at line 7 terminates the program directly.",
+   "primary_evidence": "`pp.read_sysid2848` does not exist; the reference solution uses `pn.case2848rte()`."
+  },
+  {
+   "sample_id": "tier1_A_FDRS_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The network-creation API error is the first failure point.",
+   "primary_evidence": "`pp.case30` does not exist in the top-level namespace; the reference solution uses `pn.case_ieee30()`."
+  },
+  {
+   "sample_id": "tier1_A_FDR_01",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "The code fails at the parsing stage; no network operation is executed.",
+   "primary_evidence": "The string at line 18 is unterminated; the interpreter reports `unterminated string literal`."
+  },
+  {
+   "sample_id": "tier1_A_FDR_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong API at line 5 is the actual abort point.",
+   "primary_evidence": "`pp.read_power_system` does not exist; the reference solution uses `pn.case24_ieee_rts()`."
+  },
+  {
+   "sample_id": "tier1_A_FDR_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The contract error in the network-loading call causes immediate failure.",
+   "primary_evidence": "`pp.read_pandapower` does not exist; the reference solution calls `pn.case6470rte()` directly."
+  },
+  {
+   "sample_id": "tier1_A_FDR_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The program aborts at network creation.",
+   "primary_evidence": "`case57` is not in the `pandapower` top-level namespace; `pandapower.networks.case57()` should be called."
+  },
+  {
+   "sample_id": "tier1_A_FDR_05",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "This is a file/environment input failure; the correct approach needs no external file and uses `pn.case9()` directly.",
+   "primary_evidence": "`pp.from_json` receives an unavailable local file `WSCC9.json`, and errors already at the loading stage."
+  },
+  {
+   "sample_id": "tier1_A_FD_01",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The program aborts at line 6 on the non-existent call; the subsequent steps never run.",
+   "primary_evidence": "`pp.import_network` is not an available pandapower API; the reference solution uses `pn.create_cigre_network_hv()`."
+  },
+  {
+   "sample_id": "tier1_A_FD_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The first failure is the network-loading API, not the downstream domain workflow.",
+   "primary_evidence": "`pp.read_power_system` does not exist; `pn.case300()` should be used to create the test network."
+  },
+  {
+   "sample_id": "tier1_A_FD_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong call at line 4 aborts execution directly.",
+   "primary_evidence": "`pp.read_power_system` does not exist; the reference solution uses `pn.case14()`."
+  },
+  {
+   "sample_id": "tier1_A_FD_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The program fails before it obtains a network object.",
+   "primary_evidence": "`pp.read_power_system` does not exist; the RTE network should be loaded by `pn.case6470rte()`."
+  },
+  {
+   "sample_id": "tier1_A_FD_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong call at line 10 is the first to cause the abort.",
+   "primary_evidence": "`pp.run_dc` does not exist; pandapower's DC power flow interface is `pp.rundcpp()`."
+  },
+  {
+   "sample_id": "tier1_A_FX_01",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "The parsing-stage failure takes precedence over the API and logic problems in the code that is never executed.",
+   "primary_evidence": "The string at line 13 is unterminated, triggering `SyntaxError`."
+  },
+  {
+   "sample_id": "tier1_A_FX_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The network-loading call at line 5 aborts.",
+   "primary_evidence": "`pp.read_pandas_data` does not exist; the reference solution uses `pn.case9241pegase()`."
+  },
+  {
+   "sample_id": "tier1_A_FX_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong API raises the exception before any analysis.",
+   "primary_evidence": "`pp.read_power_system` does not exist; the Kerber network should be created by the corresponding `pandapower.networks` factory."
+  },
+  {
+   "sample_id": "tier1_A_FX_04",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "The failure occurs at the file input/parsing stage.",
+   "primary_evidence": "The local file `145-bus.json` is not parseable pandapower JSON; `from_json` reports `Extra data`."
+  },
+  {
+   "sample_id": "tier1_A_FX_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The program aborts immediately at network creation.",
+   "primary_evidence": "`pp.create_ieee_39_bus_network` does not exist; the reference solution uses `pn.case39()`."
+  },
+  {
+   "sample_id": "tier1_C_FDRS_01",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The missing analysis steps make the result tables empty first, and only then does it show up as an `iloc[0]` out-of-range.",
+   "primary_evidence": "The model never calls `pp.runpp` and the short-circuit calculation, yet reads the empty `res_bus`/`res_bus_sc`."
+  },
+  {
+   "sample_id": "tier1_C_FDRS_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The dominant problem is the missing complete domain workflow, not a single numeric extraction.",
+   "primary_evidence": "The code only loads the network and prints `net.res_bus['vm_pu']`; it does not apply the load/external-grid modifications, and does not run the three power flow rounds and the conditional intervention."
+  },
+  {
+   "sample_id": "tier1_C_FDRS_03",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "The wrong result table/column triggers `KeyError` directly.",
+   "primary_evidence": "Short-circuit current is read from `net.res_bus['ikss_ka']`; the correct result table is `net.res_bus_sc`."
+  },
+  {
+   "sample_id": "tier1_C_FDRS_04",
+   "label": "C3_workflow_logic",
+   "confidence": 0.75,
+   "rationale": "The wrong grid triggers a type error after entering `runpp`; the root cause is better characterised as using the wrong network.",
+   "primary_evidence": "The query asks for the Kerber rural overhead LV network, but the code loads `ieee_european_lv_asymmetric()`."
+  },
+  {
+   "sample_id": "tier1_C_FDRS_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The non-existent attribute at line 10 is the first to cause the abort.",
+   "primary_evidence": "`pandapowerNet` has no `transformers` attribute; the correct element table is `net.trafo`."
+  },
+  {
+   "sample_id": "tier2_A_FDRS_01",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "Already fails at the syntax stage; the subsequent state estimation logic never executes.",
+   "primary_evidence": "The list at line 20 is not closed; the interpreter reports `'[' was never closed`."
+  },
+  {
+   "sample_id": "tier2_A_FDRS_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The wrong network/analysis workflow makes `runpp` fail on an empty sequence.",
+   "primary_evidence": "The code creates an empty network with no elements instead of `pn.case33bw()`, and calls AC power flow in place of DC power flow."
+  },
+  {
+   "sample_id": "tier2_A_FDRS_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong callable at line 17 aborts directly.",
+   "primary_evidence": "`pp.run3ph_isc` does not exist; `pandapower.shortcircuit.calc_sc()` should be called."
+  },
+  {
+   "sample_id": "tier2_A_FDRS_04",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The missing domain precondition setup makes `calc_sc` refuse to execute.",
+   "primary_evidence": "The external grid's necessary short-circuit parameters `s_sc_max_mva`, `rx_max`, etc. are not supplied before the short-circuit calculation."
+  },
+  {
+   "sample_id": "tier2_A_FDRS_05",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Wrong intervention target/magnitude: it runs, but the result does not correspond to the target scenario.",
+   "primary_evidence": "The maximum load is cut directly by `p_mw *= 0.1`; the reference semantics is setting the `scaling` of load 4 to 0.67."
+  },
+  {
+   "sample_id": "tier2_A_FDR_01",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "The wrong table-column access triggers `AttributeError` at line 11.",
+   "primary_evidence": "Rows of `net.trafo` have no `pf_out`, `pf_in`, `vn_hv` columns; loading results should be read from the post-analysis result table."
+  },
+  {
+   "sample_id": "tier2_A_FDR_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The wrong grid and its data structures cause the failure at the second power flow.",
+   "primary_evidence": "The query asks for synthetic voltage control LV, but the code uses `mv_oberrhein()`."
+  },
+  {
+   "sample_id": "tier2_A_FDR_03",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Using the wrong network plus the intervention changes the entire domain computation target.",
+   "primary_evidence": "The query asks for 5-bus PJM, but the code runs CIGRE MV and multiplies the maximum load directly by 0.1."
+  },
+  {
+   "sample_id": "tier2_A_FDR_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The program aborts while creating the network.",
+   "primary_evidence": "`pn.create_pegase_89bus` does not exist; the correct interface is `pn.case89pegase()`."
+  },
+  {
+   "sample_id": "tier2_A_FDR_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "This is a wrong callable return contract; aborts after `None` is subscripted.",
+   "primary_evidence": "`pp.runpp()` does not return a contingency-analysis dict, yet it is used as a return value containing `max_loading_line`."
+  },
+  {
+   "sample_id": "tier2_A_FD_01",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "The wrong result-filtering method triggers a boolean mask `ValueError`.",
+   "primary_evidence": "Reads the result using a `net.gen['name'].str.match('gen_0')` mask that contains NaN; the reference solution directly accesses `net.res_gen.at[0, 'p_mw']`."
+  },
+  {
+   "sample_id": "tier2_A_FD_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Aborts at the network creation stage because of the wrong API.",
+   "primary_evidence": "`pn.pegase9241` does not exist; the correct factory is `pn.case9241pegase()`."
+  },
+  {
+   "sample_id": "tier2_A_FD_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong network factory call is the first failure point.",
+   "primary_evidence": "`pn.pegase` does not exist; the reference solution uses `pn.case1354pegase()`."
+  },
+  {
+   "sample_id": "tier2_A_FD_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The program aborts at line 5.",
+   "primary_evidence": "`pn.create_pegase` does not exist; PEGASE 89-bus should use `pn.case89pegase()`."
+  },
+  {
+   "sample_id": "tier2_A_FD_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong network factory API causes immediate failure.",
+   "primary_evidence": "`pn.create_kerber` does not exist; the reference solution uses `pn.create_kerber_vorstadtnetz_kabel_1()`."
+  },
+  {
+   "sample_id": "tier2_A_FX_01",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The network factory error aborts at line 5.",
+   "primary_evidence": "`pn.case138` does not exist; the Illinois network should use `pn.case_illinois200()`."
+  },
+  {
+   "sample_id": "tier2_A_FX_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "What is imported is a non-existent API symbol, not a package missing from the environment.",
+   "primary_evidence": "`pandapower.networks` does not export `ieee30`; the reference solution uses `pn.case_ieee30()`."
+  },
+  {
+   "sample_id": "tier2_A_FX_03",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "The wrong column access triggers `KeyError` before state estimation.",
+   "primary_evidence": "The measurement table has no `type` column; pandapower measurements should be created item by item with the correct fields."
+  },
+  {
+   "sample_id": "tier2_A_FX_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The wrong factory call aborts before the time series starts.",
+   "primary_evidence": "`pn.case_ieee_rts_189` does not exist; the Iceland network should use `pn.iceland()`."
+  },
+  {
+   "sample_id": "tier2_A_FX_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The network creation API error is the first failure.",
+   "primary_evidence": "`pp.create_case_ieee30` does not exist; the reference solution uses `pn.case_ieee30()`."
+  },
+  {
+   "sample_id": "tier2_C_FDRS_01",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Both the analysis type and the intervention changed the domain problem, so the result does not match.",
+   "primary_evidence": "The task requires DC power flow, but the code calls `pp.runpp()`, and additionally zeroes the active power of load 2."
+  },
+  {
+   "sample_id": "tier2_C_FDRS_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The wrong step order changes the pre-fault voltages, causing numerical deviation.",
+   "primary_evidence": "The code disables `gen`/`sgen` before obtaining the pre-fault power flow; the reference solution disables them after `runpp` and before the short-circuit calculation."
+  },
+  {
+   "sample_id": "tier2_C_FDRS_03",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "The evaluation requires a single high-precision number; the output format and precision cause a mismatch even after a successful run.",
+   "primary_evidence": "The core computation is consistent with the reference workflow, but the output contains extra explanatory lines and formats the target value to two decimals."
+  },
+  {
+   "sample_id": "tier2_C_FDRS_04",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The domain scenario and analysis scope do not conform to the task from the start.",
+   "primary_evidence": "The code does not first set line 10 out of service, and no N-1 over all lines is done; only `[10]` is treated as the contingency set and the maximum is output instead of a boolean judgement."
+  },
+  {
+   "sample_id": "tier2_C_FDRS_05",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The wrong domain order introduces an actual abort point.",
+   "primary_evidence": "The code disables all generators and then executes a `runpp` the task does not require, and that power flow cannot converge; the reference solution directly prepares and runs the short-circuit calculation."
+  },
+  {
+   "sample_id": "tier3_A_FDRS_01",
+   "label": "C3_workflow_logic",
+   "confidence": 0.75,
+   "rationale": "Incomplete short-circuit domain preparation/logic makes an otherwise valid `calc_sc` call fail.",
+   "primary_evidence": "Before the short circuit only `s_sc_min_mva` is set, required parameters such as `rx_min` are missing, and `case='min'` is chosen, inconsistent with the reference."
+  },
+  {
+   "sample_id": "tier3_A_FDRS_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong callable at line 27 terminates the state estimation directly.",
+   "primary_evidence": "`pp.run_se` does not exist; `pandapower.estimation.estimate()` should be used."
+  },
+  {
+   "sample_id": "tier3_A_FDRS_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Fails already at the network-creation stage.",
+   "primary_evidence": "`pn.mv_open_ring_network` does not exist; the correct factory is `pn.simple_mv_open_ring_net()`."
+  },
+  {
+   "sample_id": "tier3_A_FDRS_04",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "Wrong result-key access triggers a `KeyError`.",
+   "primary_evidence": "The result returned by `run_contingency` has no `worst_line_loading` key; the correct result is written to `net.res_line['max_loading_percent']`."
+  },
+  {
+   "sample_id": "tier3_A_FDRS_05",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "The interpreter fails at the syntax stage.",
+   "primary_evidence": "The code is truncated at line 60, with the opening parenthesis of a function call unclosed."
+  },
+  {
+   "sample_id": "tier3_A_FDR_01",
+   "label": "ambiguous_item_defect",
+   "confidence": 0.95,
+   "rationale": "The target quantity conflicts between the query and the reference solution, so the dominant error cannot be uniquely determined from it.",
+   "primary_evidence": "The query asks for the \"new value\" of the minimum voltage after the modification, but the reference solution returns the absolute difference between the minimum voltages before and after."
+  },
+  {
+   "sample_id": "tier3_A_FDR_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Wrong network / missing short-circuit prerequisite settings ultimately make `calc_sc` fail.",
+   "primary_evidence": "The code uses `pn.case14()` instead of the Kerber rural overhead LV network, and does not set the external-grid parameters required for short circuit."
+  },
+  {
+   "sample_id": "tier3_A_FDR_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong API path at line 22 aborts directly.",
+   "primary_evidence": "`pandapower.contingency` is not imported, yet `pp.contingency.run_contingency` is called; the top-level module currently has no such attribute."
+  },
+  {
+   "sample_id": "tier3_A_FDR_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong API path aborts at the contingency-analysis call.",
+   "primary_evidence": "`pp.contingency` is not an exposed top-level attribute; the reference solution imports `run_contingency` explicitly."
+  },
+  {
+   "sample_id": "tier3_A_FDR_05",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The unnecessary and wrong analysis order is the actual cause of failure.",
+   "primary_evidence": "After the largest unit is taken out of service, an extra power flow is run and does not converge; the reference workflow does not need this step and goes straight to the short-circuit calculation."
+  },
+  {
+   "sample_id": "tier3_A_FD_01",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong network-creation API aborts immediately.",
+   "primary_evidence": "`pn.case_synthetic_voltage_control` does not exist; the correct factory is `pn.create_synthetic_voltage_control_lv_network()`."
+  },
+  {
+   "sample_id": "tier3_A_FD_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "A non-existent import symbol causes failure at program start.",
+   "primary_evidence": "`add_virtual_measurements_from_load_flow` is not an importable interface of `pandapower.estimation`."
+  },
+  {
+   "sample_id": "tier3_A_FD_03",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "`idxmax()` should be called on the `p_mw` column; the wrong index extraction triggers an ambiguous truth-value exception.",
+   "primary_evidence": "`net.load.idxmax()` returns a Series over the whole DataFrame, which is then used as a single index and as a boolean."
+  },
+  {
+   "sample_id": "tier3_A_FD_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong network factory aborts at line 5.",
+   "primary_evidence": "`pn.case4` does not exist; the reference solution uses `pn.case4gs()`."
+  },
+  {
+   "sample_id": "tier3_A_FD_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "A non-existent import symbol is the first failure.",
+   "primary_evidence": "`pandapower.networks` does not export `kerber`; the specific Kerber network factory should be called."
+  },
+  {
+   "sample_id": "tier3_A_FX_01",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Wrong network and analysis method make the power flow not converge.",
+   "primary_evidence": "The task asks for a DC power flow on the simple four-bus network, but the code runs a BFSW AC power flow on `case4gs()`."
+  },
+  {
+   "sample_id": "tier3_A_FX_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Domain prerequisites are incomplete, so `calc_sc` aborts.",
+   "primary_evidence": "Before the short circuit only `s_sc_max_mva` is set; `rx_max` and other required short-circuit parameters are missing."
+  },
+  {
+   "sample_id": "tier3_A_FX_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong callable type/contract triggers a `TypeError` directly.",
+   "primary_evidence": "`pp.shortcircuit` is a module but is called as a function."
+  },
+  {
+   "sample_id": "tier3_A_FX_04",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "The line number is wrongly decremented by one, so the wrong index is read.",
+   "primary_evidence": "The query and the reference solution read line 7, but the code uses `net.res_line.at[6, ...]`."
+  },
+  {
+   "sample_id": "tier3_A_FX_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong network-factory API aborts at line 6.",
+   "primary_evidence": "`pn.case89_pegase` does not exist; the correct name is `pn.case89pegase()`."
+  },
+  {
+   "sample_id": "tier3_C_FDRS_01",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "The first semantic deviation is the wrong line index; the subsequent shunt sign is also inconsistent with the reference solution.",
+   "primary_evidence": "line 8 was to be modified, but the code modifies index 7 because of a wrong \"zero-based\" assumption."
+  },
+  {
+   "sample_id": "tier3_C_FDRS_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "A non-existent import symbol fails already at the startup stage.",
+   "primary_evidence": "`pandapower.networks` does not export `kerber_dorf`; the correct factory is `pn.create_kerber_dorfnetz()`."
+  },
+  {
+   "sample_id": "tier3_C_FDRS_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Wrong import path triggers a `ModuleNotFoundError` before any computation.",
+   "primary_evidence": "The module path `pandapower.networks.kerber_grid` does not exist."
+  },
+  {
+   "sample_id": "tier3_C_FDRS_04",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "Wrong index resolution actively raises a `KeyError`.",
+   "primary_evidence": "The code looks up bus 13/8 as a name string or as a one-based number; the reference solution uses indices 13 and 8 directly."
+  },
+  {
+   "sample_id": "tier3_C_FDRS_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "A non-existent/wrong import contract aborts before the time series starts.",
+   "primary_evidence": "`Controller` cannot be imported from the path `pandapower.control.controller`."
+  },
+  {
+   "sample_id": "tier4_A_FDRS_01",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Network loading API/attribute error aborts at line 5.",
+   "primary_evidence": "`pp.networks.case6_ww_6bus` does not exist, and the code does not call a network factory."
+  },
+  {
+   "sample_id": "tier4_A_FDRS_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The nonexistent callable at line 32 aborts directly.",
+   "primary_evidence": "`pandapower.estimation.create_measurements` does not exist; the measurements should already be written into the network one by one with `pp.create_measurement`."
+  },
+  {
+   "sample_id": "tier4_A_FDRS_03",
+   "label": "C2_param_misuse",
+   "confidence": 0.75,
+   "rationale": "The actual failure comes from a wrong API argument value; the subsequent hand-built network logic has not executed yet.",
+   "primary_evidence": "A valid `pp.load_std_type` is passed a nonexistent standard line type name; the first line already reports `Unknown standard line type`."
+  },
+  {
+   "sample_id": "tier4_A_FDRS_04",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Aborts already at the network creation stage.",
+   "primary_evidence": "`nw.gb_reduced_29bus` does not exist; the correct factory is `pn.GBreducednetwork()`."
+  },
+  {
+   "sample_id": "tier4_A_FDRS_05",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Missing short-circuit domain preprocessing causes `calc_sc` to fail.",
+   "primary_evidence": "The case where the `gen` table lacks `vn_kv` is not handled before the short circuit, nor are the corresponding units deactivated as in the reference solution."
+  },
+  {
+   "sample_id": "tier4_A_FDR_01",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Wrong time-series logic progressively amplifies the load and causes the power flow not to converge.",
+   "primary_evidence": "Each step keeps multiplying the existing `p_mw/q_mvar` by the same random scalar, causing accumulation across time steps; the reference solution sets independent, non-cumulative scaling for each load."
+  },
+  {
+   "sample_id": "tier4_A_FDR_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Wrong intervention target and manner, so the OPF cost change does not correspond to the reference scenario.",
+   "primary_evidence": "The code creates a new line of a different standard type instead of setting `parallel` to 2 on the existing most heavily loaded line 21; it also writes load 15 as index 14."
+  },
+  {
+   "sample_id": "tier4_A_FDR_03",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Wrong intervention and scenario reset break the before/after comparison.",
+   "primary_evidence": "The baseline scenario should keep the -18 Mvar shunt at bus 75; the code instead puts +10 Mvar at the lowest-voltage bus and then deletes all shunts."
+  },
+  {
+   "sample_id": "tier4_A_FDR_04",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "With the wrong network, even if the workflow can run, the minimum voltage obtained is not the target network's result.",
+   "primary_evidence": "The query asks for the synthetic voltage control LV, but the code uses `example_simple()`."
+  },
+  {
+   "sample_id": "tier4_A_FDR_05",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The wrong network lacks a reference bus, so the first power flow fails.",
+   "primary_evidence": "The code does not load the 5-bus PJM, but hand-builds an incomplete network with no ext_grid or slack generator."
+  },
+  {
+   "sample_id": "tier4_A_FD_01",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Network creation API error aborts immediately.",
+   "primary_evidence": "`networks.rte_case5_ext` does not exist; the reference solution uses `pn.case6470rte()`."
+  },
+  {
+   "sample_id": "tier4_A_FD_02",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "The program aborts at network creation.",
+   "primary_evidence": "`pn.il200` does not exist; the correct factory is `pn.case_illinois200()`."
+  },
+  {
+   "sample_id": "tier4_A_FD_03",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Missing domain preprocessing makes `calc_sc` fail when accessing the generator table.",
+   "primary_evidence": "The newly created generator lacks the `vn_kv` required by the short-circuit model, and the code does not deactivate that class of units before the short circuit as the reference solution does."
+  },
+  {
+   "sample_id": "tier4_A_FD_04",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Neither the core domain workflow nor the intervention corresponds to the target scenario.",
+   "primary_evidence": "The code does not run N-1 contingency analysis, but instead treats the most heavily loaded line in the base case as the worst fault; load shedding also does not use the reference scaling."
+  },
+  {
+   "sample_id": "tier4_A_FD_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Network creation API error aborts directly.",
+   "primary_evidence": "`nw.create_kerber_network` does not exist; a specific Kerber network factory should be called."
+  },
+  {
+   "sample_id": "tier4_A_FX_01",
+   "label": "C3_workflow_logic",
+   "confidence": 0.75,
+   "rationale": "The missing short-circuit prerequisite setup is the actual abort cause at line 17; the later result-table error has not occurred yet.",
+   "primary_evidence": "Only `s_sc_max_mva` is set before the short circuit; necessary parameters such as `rx_max` are missing."
+  },
+  {
+   "sample_id": "tier4_A_FX_02",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "The program fails already at the parsing stage.",
+   "primary_evidence": "Line 5 mixes in the natural language `changed to`, forming illegal Python syntax."
+  },
+  {
+   "sample_id": "tier4_A_FX_03",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Network creation API error aborts at line 5.",
+   "primary_evidence": "`pn.rte_6470_grid` does not exist; the correct factory is `pn.case6470rte()`."
+  },
+  {
+   "sample_id": "tier4_A_FX_04",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "The intervention magnitude/target does not match the specified scenario, making the subsequent N-1 results different.",
+   "primary_evidence": "\"Raise the highest-output unit\" is implemented as the current value times 1.2, whereas the reference semantics is to set generator 0 to 243.0 MW."
+  },
+  {
+   "sample_id": "tier4_A_FX_05",
+   "label": "C1_api_contract",
+   "confidence": 0.95,
+   "rationale": "Network loading API error aborts immediately.",
+   "primary_evidence": "`nw.pegase_9241` does not exist; the correct factory is `pn.case9241pegase()`."
+  },
+  {
+   "sample_id": "tier4_C_FDRS_01",
+   "label": "ambiguous_item_defect",
+   "confidence": 0.75,
+   "rationale": "The stated target quantity is inconsistent with the reference computation, and the code additionally has a line 0/line 1 indexing difference, so attribution is not unique.",
+   "primary_evidence": "The query only asks for the maximum line loading \"result\" of the second power flow, but the reference solution returns the absolute difference of the two maximum loadings."
+  },
+  {
+   "sample_id": "tier4_C_FDRS_02",
+   "label": "C3_workflow_logic",
+   "confidence": 0.95,
+   "rationale": "Both the scenario order and the way the intervention is maintained are wrong; the dominant cause is the domain workflow.",
+   "primary_evidence": "The baseline OPF is run before shedding the largest load, and the second scenario resets the shedding; what is finally output is the final cost rather than the cost change."
+  },
+  {
+   "sample_id": "tier4_C_FDRS_03",
+   "label": "C5_format_env",
+   "confidence": 0.95,
+   "rationale": "The timeout is the actual abort cause; the indexing problem at line 32 has not been executed to an observable result.",
+   "primary_evidence": "Execution exceeds the 75-second hard timeout."
+  },
+  {
+   "sample_id": "tier4_C_FDRS_04",
+   "label": "C4_numerical_extraction",
+   "confidence": 0.95,
+   "rationale": "Only the final numerical transform differs; the negative sign would cause the result not to match.",
+   "primary_evidence": "Both the power flow and the intervention workflow match the reference solution, but `max_after - max_before` is used at the end, while the reference requires the absolute difference."
+  },
+  {
+   "sample_id": "tier4_C_FDRS_05",
+   "label": "C2_param_misuse",
+   "confidence": 0.95,
+   "rationale": "The real API exists, but the argument structure is wrong, triggering a `TypeError` from indexing a list by string.",
+   "primary_evidence": "`nminus1_cases` is written as a mapping from element type to a list; the interface requires the nested structure `{'line': {'index': [...]}}`."
+  }
+ ]
+}

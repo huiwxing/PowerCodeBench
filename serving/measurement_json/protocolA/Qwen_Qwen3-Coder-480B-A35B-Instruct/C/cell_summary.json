@@ -1,0 +1,88 @@
+{
+  "model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+  "operating_point": "C",
+  "protocol": "E3 protocol A",
+  "reps": {
+    "cluster_avg_power_w": {
+      "max": 4118.519333015672,
+      "median": 4118.519333015672,
+      "min": 4118.519333015672,
+      "values": [
+        4118.519333015672
+      ]
+    },
+    "energy_methods": [
+      "nvml_total_energy_counter"
+    ],
+    "j_per_completion_token": {
+      "max": 23.83313312372479,
+      "median": 23.83313312372479,
+      "min": 23.83313312372479,
+      "values": [
+        23.83313312372479
+      ]
+    },
+    "j_per_request": {
+      "max": 7125.39181,
+      "median": 7125.39181,
+      "min": 7125.39181,
+      "values": [
+        7125.39181
+      ]
+    },
+    "j_per_successful_request": {
+      "max": 12955.257836363637,
+      "median": 12955.257836363637,
+      "min": 12955.257836363637,
+      "values": [
+        12955.257836363637
+      ]
+    },
+    "j_per_total_token": {
+      "max": 4.214512391463789,
+      "median": 4.214512391463789,
+      "min": 4.214512391463789,
+      "values": [
+        4.214512391463789
+      ]
+    },
+    "n_gpus": 16,
+    "n_nodes": 4,
+    "n_reps": 1,
+    "peak_memory_used_bytes_max_device": 100459151360,
+    "peak_memory_used_bytes_sum": 1605809602560,
+    "representative_window_s": {
+      "max": 180.09435767060495,
+      "median": 180.09435767060495,
+      "min": 180.09435767060495,
+      "values": [
+        180.09435767060495
+      ]
+    },
+    "requests_per_s": {
+      "max": 0.5552644807612539,
+      "median": 0.5552644807612539,
+      "min": 0.5552644807612539,
+      "values": [
+        0.5552644807612539
+      ]
+    },
+    "total_energy_j": {
+      "max": 712539.181,
+      "median": 712539.181,
+      "min": 712539.181,
+      "values": [
+        712539.181
+      ]
+    },
+    "total_tokens_per_s": {
+      "max": 938.7745523334368,
+      "median": 938.7745523334368,
+      "min": 938.7745523334368,
+      "values": [
+        938.7745523334368
+      ]
+    }
+  },
+  "schema_version": 1
+}

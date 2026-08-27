@@ -1,0 +1,162 @@
+{
+  "conditions": [
+    "A",
+    "Rsem",
+    "RsemB"
+  ],
+  "models": [
+    {
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "A": null,
+      "Rsem": 0.001,
+      "RsemB": 0.0045
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "A": null,
+      "Rsem": 0.093,
+      "RsemB": 0.091
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "A": null,
+      "Rsem": 0.105,
+      "RsemB": 0.097
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "A": null,
+      "Rsem": 0.06,
+      "RsemB": 0.061
+    },
+    {
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "A": null,
+      "Rsem": 0.2275,
+      "RsemB": 0.207
+    },
+    {
+      "model": "Qwen_Qwen3-Coder-Next",
+      "A": null,
+      "Rsem": 0.142,
+      "RsemB": 0.1325
+    },
+    {
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "A": null,
+      "Rsem": 0.2305,
+      "RsemB": 0.2135
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "A": null,
+      "Rsem": 0.111,
+      "RsemB": 0.096
+    },
+    {
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "A": null,
+      "Rsem": 0.013,
+      "RsemB": 0.017
+    },
+    {
+      "model": "openai_gpt-oss-120b",
+      "A": null,
+      "Rsem": 0.222,
+      "RsemB": 0.203
+    }
+  ],
+  "delta_pairs": [],
+  "per_task_exec_rate": [
+    {
+      "task": "comparison",
+      "A": null,
+      "Rsem": 0.42383000000000004,
+      "RsemB": 0.41487999999999997
+    },
+    {
+      "task": "comparison_opf",
+      "A": null,
+      "Rsem": 0.23140000000000005,
+      "RsemB": 0.24286
+    },
+    {
+      "task": "contingency",
+      "A": null,
+      "Rsem": 0.18726000000000004,
+      "RsemB": 0.15910000000000002
+    },
+    {
+      "task": "contingency_fix",
+      "A": null,
+      "Rsem": 0.20508,
+      "RsemB": 0.18980999999999998
+    },
+    {
+      "task": "dc_power_flow",
+      "A": null,
+      "Rsem": 0.22921,
+      "RsemB": 0.22920999999999997
+    },
+    {
+      "task": "diagnose_and_fix",
+      "A": null,
+      "Rsem": 0.4223199999999999,
+      "RsemB": 0.35385
+    },
+    {
+      "task": "opf",
+      "A": null,
+      "Rsem": 0.37282,
+      "RsemB": 0.37281000000000003
+    },
+    {
+      "task": "parallel",
+      "A": null,
+      "Rsem": 0.013239999999999998,
+      "RsemB": 0.009260000000000001
+    },
+    {
+      "task": "pf_then_sc",
+      "A": null,
+      "Rsem": 0.006370000000000001,
+      "RsemB": 0.00573
+    },
+    {
+      "task": "power_flow",
+      "A": null,
+      "Rsem": 0.47714,
+      "RsemB": 0.46357
+    },
+    {
+      "task": "sequential",
+      "A": null,
+      "Rsem": 0.4707600000000001,
+      "RsemB": 0.42808
+    },
+    {
+      "task": "short_circuit_2ph",
+      "A": null,
+      "Rsem": 0.01049,
+      "RsemB": 0.00726
+    },
+    {
+      "task": "short_circuit_3ph",
+      "A": null,
+      "Rsem": 0.004059999999999999,
+      "RsemB": 0.00731
+    },
+    {
+      "task": "state_estimation",
+      "A": null,
+      "Rsem": 0.22279999999999997,
+      "RsemB": 0.14412
+    },
+    {
+      "task": "time_series",
+      "A": null,
+      "Rsem": 0.28346,
+      "RsemB": 0.2693
+    }
+  ]
+}

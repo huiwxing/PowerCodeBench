@@ -1,0 +1,72 @@
+{
+ "github_discussion#1174": {
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1174",
+  "theme": "timeseries",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "github_discussions",
+  "license": "Rewritten from a public GitHub discussion title/excerpt under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published."
+ },
+ "github_discussion#1488": {
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1488",
+  "theme": "power_flow",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "github_discussions",
+  "license": "Rewritten from a public GitHub discussion title/excerpt under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published."
+ },
+ "github_discussion#2160": {
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2160",
+  "theme": "der_control",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "github_discussions",
+  "license": "Rewritten from a public GitHub discussion title/excerpt under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published."
+ },
+ "github_discussion#2526": {
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2526",
+  "theme": "timeseries",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "github_discussions",
+  "license": "Rewritten from a public GitHub discussion title/excerpt under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published."
+ },
+ "github_discussion#1736": {
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1736",
+  "theme": "topology_matrix",
+  "screening": "INCLUDE (joint engineer adjudication 2026-07-25 of round-2 DISAGREEMENT; corrected sketch: internal impedance extraction, not calc_sc)",
+  "source_platform": "github_discussions",
+  "license": "Rewritten from a public GitHub discussion title/excerpt under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published."
+ },
+ "github_discussion#1762": {
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1762",
+  "theme": "power_flow",
+  "screening": "INCLUDE (joint engineer adjudication 2026-07-25 of round-2 DISAGREEMENT; original sketch maintained)",
+  "source_platform": "github_discussions",
+  "license": "Rewritten from a public GitHub discussion title/excerpt under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published."
+ },
+ "openmod_topic#2706": {
+  "url": "https://forum.openmod.org/t/convergence-problems-on-large-net-models-in-pandapower-state-estimation-module/2706",
+  "theme": "state_estimation",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "openmod",
+  "license": "Rewritten from a public Open Energy Modelling Forum (Discourse) topic title/excerpt; original text NOT redistributed, only the anonymised rewrite + source URL are published. Check forum terms before redistributing source text."
+ },
+ "openmod_topic#4026": {
+  "url": "https://forum.openmod.org/t/issues-with-slack-bus-power-going-beyond-maximum-limits-in-pandapower/4026",
+  "theme": "opf",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "openmod",
+  "license": "Rewritten from a public Open Energy Modelling Forum (Discourse) topic title/excerpt; original text NOT redistributed, only the anonymised rewrite + source URL are published. Check forum terms before redistributing source text."
+ },
+ "stackoverflow_question#70939178": {
+  "url": "https://stackoverflow.com/questions/70939178/how-can-i-get-the-impedance-matrix-of-the-network",
+  "theme": "topology_matrix",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "stackoverflow",
+  "license": "Paraphrased demand from a public Stack Overflow question (content CC BY-SA; terms vary by post date); original text NOT redistributed, source URL retained for attribution."
+ },
+ "stackoverflow_question#71277288": {
+  "url": "https://stackoverflow.com/questions/71277288/how-do-i-solve-next-keyerror-none-of-int64index0-1-2-dtype-int64-are",
+  "theme": "timeseries",
+  "screening": "INCLUDE (round-2 re-judged; triage PRIORITY_REVIEW)",
+  "source_platform": "stackoverflow",
+  "license": "Paraphrased demand from a public Stack Overflow question (content CC BY-SA; terms vary by post date); original text NOT redistributed, source URL retained for attribution."
+ }
+}

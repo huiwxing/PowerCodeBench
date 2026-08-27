@@ -1,0 +1,92 @@
+{
+  "run_name": "e4_layer2a_eval_unadapted_v2",
+  "model": "hybrid_tfidf",
+  "cross_encoder_model": null,
+  "hybrid_alpha_selected": 0.6,
+  "splits": {
+    "augmented_dev": {
+      "recall@1": 0.1359,
+      "hit@1": 0.5344,
+      "recall@3": 0.2842,
+      "hit@3": 0.7917,
+      "recall@5": 0.3614,
+      "hit@5": 0.8659,
+      "recall@10": 0.5362,
+      "hit@10": 0.9257,
+      "recall@20": 0.6969,
+      "hit@20": 0.9764
+    },
+    "augmented_dev_original_only": {
+      "recall@1": 0.1094,
+      "hit@1": 0.5789,
+      "recall@3": 0.2335,
+      "hit@3": 0.7368,
+      "recall@5": 0.3269,
+      "hit@5": 0.7895,
+      "recall@10": 0.5157,
+      "hit@10": 0.7895,
+      "recall@20": 0.6251,
+      "hit@20": 0.8947
+    },
+    "augmented_dev_variant_only": {
+      "recall@1": 0.1368,
+      "hit@1": 0.5328,
+      "recall@3": 0.286,
+      "hit@3": 0.7936,
+      "recall@5": 0.3626,
+      "hit@5": 0.8687,
+      "recall@10": 0.5369,
+      "hit@10": 0.9306,
+      "recall@20": 0.6995,
+      "hit@20": 0.9794
+    },
+    "augmented_test": {
+      "recall@1": 0.1252,
+      "hit@1": 0.4692,
+      "recall@3": 0.2745,
+      "hit@3": 0.7599,
+      "recall@5": 0.3696,
+      "hit@5": 0.8294,
+      "recall@10": 0.5668,
+      "hit@10": 0.9305,
+      "recall@20": 0.7614,
+      "hit@20": 0.9858
+    },
+    "augmented_test_original_only": {
+      "recall@1": 0.1022,
+      "hit@1": 0.5217,
+      "recall@3": 0.2399,
+      "hit@3": 0.7826,
+      "recall@5": 0.3478,
+      "hit@5": 0.8261,
+      "recall@10": 0.5957,
+      "hit@10": 0.913,
+      "recall@20": 0.8202,
+      "hit@20": 1.0
+    },
+    "augmented_test_variant_only": {
+      "recall@1": 0.126,
+      "hit@1": 0.4672,
+      "recall@3": 0.2758,
+      "hit@3": 0.759,
+      "recall@5": 0.3704,
+      "hit@5": 0.8295,
+      "recall@10": 0.5658,
+      "hit@10": 0.9311,
+      "recall@20": 0.7592,
+      "hit@20": 0.9852
+    },
+    "benchmark_reference_eval_only": {
+      "recall@1": 0.1228,
+      "hit@1": 0.5833,
+      "recall@3": 0.2633,
+      "hit@3": 0.7381,
+      "recall@5": 0.3686,
+      "hit@5": 0.7857,
+      "recall@10": 0.5507,
+      "hit@10": 0.8333,
+      "recall@20": 0.6897,
+      "hit@20": 0.9286
+    }
+  }
+}

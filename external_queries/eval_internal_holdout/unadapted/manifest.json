@@ -1,0 +1,10 @@
+{
+  "run_name": "e4_l1_unadapted",
+  "artifacts": {
+    "metrics": "task_demand/results/e4_layer1_holdout/unadapted/metrics.json",
+    "run_config": "task_demand/results/e4_layer1_holdout/unadapted/run_config.json",
+    "summary": "task_demand/results/e4_layer1_holdout/unadapted/summary.json",
+    "saved_model": null,
+    "prediction_export": null
+  }
+}

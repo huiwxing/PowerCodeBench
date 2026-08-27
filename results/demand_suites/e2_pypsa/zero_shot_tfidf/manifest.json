@@ -1,0 +1,7 @@
+{
+  "run_name": "e2_pypsa_zero_shot_tfidf",
+  "artifacts": {
+    "prediction_export": "task_demand/results/suites/e2_pypsa/zero_shot_tfidf/exports/pypsa_candidates.json",
+    "run_config": "task_demand/results/suites/e2_pypsa/zero_shot_tfidf/run_config.json"
+  }
+}

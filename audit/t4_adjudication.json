@@ -1,0 +1,142 @@
+{
+ "meta": {
+  "n": 19,
+  "kappa_binary": 0.882,
+  "adjudicated": "2026-07-25"
+ },
+ "rulings": [
+  {
+   "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1139",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "④错量：idxmin 索引差冒充电压差，GT=0 简并命中（J2 的 N7 不适用——索引≠电压）；item 另记 GT=0 简并 errata",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|1849",
+   "engineer_consensus_label": "equivalent-path",
+   "engineer_consensus_rationale": "Family-A 幻影修改：写落 pandas copy 未着地，但 runopp 结构性忽略 setpoint、ref 侧修改同为 bit-null——双侧场景逐位相同（元规则(b)满足）；item 记\"装饰性修改\"errata",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|384",
+   "engineer_consensus_label": "equivalent-path",
+   "engineer_consensus_rationale": "Family-A：属性错写但 runopp 对 vm/p_mw setpoint 双侧均 bit-null；同上",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|417",
+   "engineer_consensus_label": "equivalent-path",
+   "engineer_consensus_rationale": "Family-A：幻影列 vn_pu，DC 潮流可证不消费 ext_grid vm，ref 侧同 bit-null；同上",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|587",
+   "engineer_consensus_label": "suspected-item-defect",
+   "engineer_consensus_rationale": "query 文本自缺陷（load 1 重复赋值）主导——64 通道；模型的\"纠错读法\"越界但缺陷源于 item",
+   "j1_label": "suspected-item-defect",
+   "j2_label": "physical-error"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1828",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "Family-B：题面钉死 N-1 选线，实际用 baseline argmax（N-1 从未执行）——选线判据被替换、命中靠目标巧合；refute 须测该网上 argmax≡N-1-worst 的结构等价",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|188",
+   "engineer_consensus_label": "equivalent-path",
+   "engineer_consensus_rationale": "Family-A：幻影列 vn_max_pu，电压上限对 runpp 惰性、ref 侧 bit-null",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|936",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "Family-B：同 5（run_contingency 只在尾部装饰性调用）",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1137",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "Family-B：同 5 + 顺序偏差",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1082",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "Family-B：同 5 + .2f 精度丢失靠容差",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|936",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "Family-B：同 5",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1302",
+   "engineer_consensus_label": "FACT-CHECK",
+   "engineer_consensus_rationale": "两判官对 shunt q_mvar 符号断言相反（−100 vs +100）——refute 先读代码定事实再按 R3 判",
+   "j1_label": "equivalent-path",
+   "j2_label": "physical-error"
+  },
+  {
+   "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1391",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "方向违背：钉死 raise 实际执行为降（p:=max_p<baseline），1943 先例；item 弱判别另记 errata",
+   "j1_label": "physical-error",
+   "j2_label": "suspected-item-defect"
+  },
+  {
+   "key": "Qwen_Qwen3-Coder-Next|A_FX|599",
+   "engineer_consensus_label": "equivalent-path",
+   "engineer_consensus_rationale": "Family-A：1-based 误读落在 pf-惰性属性上、ref 侧同 bit-null（与 487 型不同——那里的属性是活的）",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "Qwen_Qwen3-Coder-Next|C_FDRS|980",
+   "engineer_consensus_label": "FACT-CHECK",
+   "engineer_consensus_rationale": "两判官 oracle 结论相反（with_der 变体对被查量是否不变）——refute 复跑 oracle 定事实",
+   "j1_label": "equivalent-path",
+   "j2_label": "physical-error"
+  },
+  {
+   "key": "gemini-2.5-flash|C_FDRS|487",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "双工作流错（基线取自未 tap 态 + 步长执行为 ~0）；4.7e-6 quasi-invariance 不满足冻结口径的可证不变",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|852",
+   "engineer_consensus_label": "equivalent-path",
+   "engineer_consensus_rationale": "Family-A：幻影列 vn_mmin，min_vm_pu 对 runpp/calc_sc 惰性、ref 侧 bit-null",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "openai_gpt-oss-120b|A_FX|1828",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "Family-B：同 5（1.5e-9 容差运气）",
+   "j1_label": "physical-error",
+   "j2_label": "equivalent-path"
+  },
+  {
+   "key": "openai_gpt-oss-120b|C_FDRS|1391",
+   "engineer_consensus_label": "physical-error",
+   "engineer_consensus_rationale": "方向违背（同 12，GB 网 max_p<p 数据怪癖使 max 锚定读法成为降档）；item 弱判别 errata",
+   "j1_label": "physical-error",
+   "j2_label": "suspected-item-defect"
+  }
+ ]
+}

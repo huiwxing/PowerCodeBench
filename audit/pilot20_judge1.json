@@ -1,0 +1,356 @@
+{
+ "meta": {
+  "role": "Reviewer A (practising power-systems engineer; independent physical-audit review, E1 s2.4 step 3)",
+  "generated": "2026-07-24T01:54:27",
+  "authority": "E1_validity_audit.md s2.2 five checks + s2.3 meta-rule & 10 frozen cases + s8 2026-07-24 frozen expert rulings N1-N6",
+  "inputs": "audit/pilot20_auto_results.json (auto-layer evidence) + raw records via audit.records.fetch_record + 3 oracle re-runs (cigre_mv AC/DC line ranking; case9 DC ranking; case1888rte trafo 404 tap/loading; example_simple gen@bus5 vm=1.03) in experiment venv (pandapower 3.4.0, pandas 2.3.3)",
+  "independence_note": "Self-assessment tables in s8 were NOT used as a basis; an initial grep for the N1-N6 ruling text incidentally surfaced fragments of the second table, which were set aside; every label above is derived from raw code, auto-layer evidence, and oracle runs cited in the rationale.",
+  "label_semantics": "physical-error = matched output is a false acceptance (pollution) via the named check; equivalent-path = deviation exists but is exempted by the cited frozen rule; clean = no substantive deviation."
+ },
+ "summary": {
+  "n_items": 20,
+  "counts": {
+   "equivalent-path": 7,
+   "clean": 4,
+   "physical-error": 9
+  },
+  "physical_error_items": [
+   1279,
+   1943,
+   64,
+   292,
+   487,
+   2,
+   202,
+   207,
+   1229
+  ],
+  "auto_layer_gaps_flagged": [
+   "bi=64: profile-matrix construction divergence invisible to checks 1/2 (canonical engine + pre-solve snapshot predates in-loop profile application); recommend fingerprinting the profile matrix/DFData before run_timeseries",
+   "bi=202: check4 parser missed the in-loop extraction target res_bus.at[5,...] (wrong bus) behind the list variable; judge-level source read required",
+   "bi=1085/bi=1064: signed vs abs difference convention is not covered by the 10 frozen cases or N1-N6; ruled equivalent via meta-rule (a)+(b); recommend freezing as an explicit case before the main sample"
+  ]
+ },
+ "judgements": [
+  {
+   "item_ref": {
+    "pilot_index": 0,
+    "tier": "T1",
+    "condition": "C_FDRS",
+    "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+    "bench_index": 760,
+    "item_id": "2dac5df92b49",
+    "task": "sequential",
+    "query_type": "sequential"
+   },
+   "label": "equivalent-path",
+   "violated_check": null,
+   "applied_rule": "N5 (frozen case 4 extension): argfn_index_is_minmax == .min()",
+   "rationale": "Mods and solver sequence identical to reference (check1 fingerprint_diffs=[], 2x ac_pf both, conditional branch taken identically); only deviation is extraction idiom res_bus.loc[idxmin(),'vm_pu'] vs res_bus['vm_pu'].min(), a mathematically identical aggregation (N5 pattern argfn_index_is_minmax). Re-exec outputs bit-identical (0.9604468397101047 both)."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 1,
+    "tier": "T1",
+    "condition": "C_FDRS",
+    "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+    "bench_index": 341,
+    "item_id": "f45b443294e0",
+    "task": "power_flow",
+    "query_type": "point_value"
+   },
+   "label": "clean",
+   "violated_check": null,
+   "applied_rule": "frozen cases 1/9 (loader alias, .loc vs .at idiom)",
+   "rationale": "Line-for-line semantic match: same mod (load 5 scaling=1.21), same runpp, same extraction res_trafo[2,'loading_percent'] with .loc vs .at only (frozen case 9). All five checks pass with direct/direct extraction; re-exec outputs identical to reference."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 2,
+    "tier": "T2",
+    "condition": "C_FDRS",
+    "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+    "bench_index": 333,
+    "item_id": "7739c7adf277",
+    "task": "power_flow",
+    "query_type": "max_value"
+   },
+   "label": "clean",
+   "violated_check": null,
+   "applied_rule": "s2.3 meta-rule (no deviation)",
+   "rationale": "All three mods applied to identical targets (line 1 out, sgen at bus 3 3.4 MW, trafo 0 shift 19.2), same runpp, extraction identical expression res_line['loading_percent'].max(). check1 diffs empty, outputs bit-identical (11.633963375481116)."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 3,
+    "tier": "T2",
+    "condition": "C_FDRS",
+    "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+    "bench_index": 1279,
+    "item_id": "7c4b295e4f04",
+    "task": "dc_power_flow",
+    "query_type": "point_value"
+   },
+   "label": "physical-error",
+   "violated_check": "check1 (network+mods; N1)",
+   "applied_rule": "N1 strict line: computed target != reference target -> pollution (default); reference not shown wrong",
+   "rationale": "Query: reinforce the most heavily loaded line 'under the current operating point'. Reference reinforces line 1; model identified the line via a DC pre-run idxmax and reinforced line 0 (fingerprint: line.parallel gen={0:2} vs ref={1:2}). Oracle re-run: under AC power flow the current-OP most-loaded line IS line 1 (96.96% vs 96.48%), and under DC lines 0/1 tie exactly at 85.99% so the model's line-0 pick is an idxmax tie-break artifact -- reference parsing is not shown wrong, so the N1 defect-exception channel does not apply. Scalar -39.635 vs GT -39.281 (rel 0.9%) matched only via tolerance: different physical scenario coincidentally accepted."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 4,
+    "tier": "T2",
+    "condition": "C_FDRS",
+    "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+    "bench_index": 1085,
+    "item_id": "126afbee960e",
+    "task": "comparison",
+    "query_type": "comparison"
+   },
+   "label": "equivalent-path",
+   "violated_check": null,
+   "applied_rule": "s2.3 meta-rule (a)+(b), N5-adjacent sign-convention (proposed new frozen case)",
+   "rationale": "Both PF runs and both extracted quantities (min vm_pu per run) are identical to reference (check1 pass, mods identical, 2x ac_pf); only the final combination differs: signed first-second vs reference abs(). 'Difference between the two runs' does not constrain sign, and |gen| == ref exactly (7.2495662420069e-05). Flag: matched despite the sign flip only because the value is near zero (abs tolerance); not covered explicitly by the 10 cases/N1-N6 -- recommend freezing signed-vs-abs as an explicit case."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 5,
+    "tier": "T3",
+    "condition": "C_FDRS",
+    "model": "meta-llama_Llama-3.1-70B-Instruct",
+    "bench_index": 427,
+    "item_id": "66e88cbeb2af",
+    "task": "power_flow",
+    "query_type": "total"
+   },
+   "label": "equivalent-path",
+   "violated_check": null,
+   "applied_rule": "N5: p_from+p_to == pl_mw (listed equivalence)",
+   "rationale": "Same mod (trafo 45 tap_pos=-1), same runpp; extraction sum(p_from_mw)+sum(p_to_mw) vs sum(pl_mw) is the exact line-loss identity in the N5 pattern table (from_plus_to_is_ploss). Re-exec outputs agree to 1e-13 (-1844.2949136233...)."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 6,
+    "tier": "T3",
+    "condition": "C_FDRS",
+    "model": "meta-llama_Llama-3.1-70B-Instruct",
+    "bench_index": 641,
+    "item_id": "799a89dba10b",
+    "task": "parallel",
+    "query_type": "parallel"
+   },
+   "label": "clean",
+   "violated_check": null,
+   "applied_rule": "s2.3 meta-rule (unused-parameter difference only) + N4 stiff exemption for check5",
+   "rationale": "Same workflow (runpp, then calc_sc fault='3ph', case='max'): the queried max-case ikss reads only s_sc_max_mva/rx_max, which match (1000/0.1); the differing min-side values (s_sc_min 500 vs 800, rx_min 0.05 vs 0.1) are never read under case='max', and gen/sgen deactivation matches reference behavior. Re-exec outputs bit-identical (583.1939052132992). check5 perturbation-invariance is the N4 stiff case (ikss insensitive to load), correctly exempted."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 7,
+    "tier": "T3",
+    "condition": "C_FDRS",
+    "model": "meta-llama_Llama-3.1-70B-Instruct",
+    "bench_index": 1064,
+    "item_id": "55f8b98975de",
+    "task": "comparison",
+    "query_type": "comparison"
+   },
+   "label": "equivalent-path",
+   "violated_check": null,
+   "applied_rule": "s2.3 meta-rule (a)+(b), same sign-convention family as item 4",
+   "rationale": "Runs and extractions identical to reference (line 1500 r=0.132, load 936 scaling 0.8, 2x runpp, min vm_pu each run); deviation is signed min2-min1 vs abs(). Actual value +2.2e-16 == reference output, GT 0.0 -- sign convention immaterial here; physically right-for-right-reason."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 8,
+    "tier": "T4",
+    "condition": "C_FDRS",
+    "model": "Qwen_Qwen3-Coder-Next",
+    "bench_index": 390,
+    "item_id": "21b7868f2a83",
+    "task": "power_flow",
+    "query_type": "point_value"
+   },
+   "label": "clean",
+   "violated_check": null,
+   "applied_rule": "frozen case 9 (.loc vs .at idiom) + N4 stiff exemption for check5",
+   "rationale": "Identical mod (trafo 0 parallel=2, .at both), same runpp, extraction res_bus.vm_pu.loc[0] vs .at[0,'vm_pu'] -- same table/column/index, pure idiom. Output 1.0 = slack-adjacent bus voltage, perturbation-invariant (N4 stiff case: check2 solver converged + check3 passed, so invariance is not pollution evidence). Outputs identical."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 9,
+    "tier": "T4",
+    "condition": "C_FDRS",
+    "model": "meta-llama_Llama-3.1-405B-Instruct",
+    "bench_index": 1943,
+    "item_id": "32164dcf5ba2",
+    "task": "pf_then_sc",
+    "query_type": "pf_then_sc"
+   },
+   "label": "physical-error",
+   "violated_check": "check1 (network+mods; N1-adjacent same-target value divergence)",
+   "applied_rule": "s2.3 meta-rule (physical scenario changed) + N1 ruling naming bi=1943 pollution-default class",
+   "rationale": "Model dynamically found the same most-loaded trafo 404 as reference (oracle confirms 404 is AC-most-loaded, 209%), but moved the tap the OPPOSITE way: base tap_pos=1 (neutral 0), reference steps to 0, model does +=1 to 2 (fingerprint: only trafo 404 differs, gen 2.0 vs ref default). The query does not pin the direction, but the GT physical scenario (tap 0) was not executed; additionally the model never re-ran PF after the tap change before calc_sc(use_pre_fault_voltage=True), so its superposition used the pre-modification operating point (reference: modify -> runpp -> calc_sc). ikss 12.6804 vs GT 12.6690 matched only at rel 9e-4. Refute-pass note: direction underdetermination is a plausible item-ambiguity argument, but per N1 the exception channel requires the reference parse to be wrong, which it is not."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 10,
+    "tier": "T4",
+    "condition": "C_FDRS",
+    "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+    "bench_index": 64,
+    "item_id": "b2e9dbbe9a1b",
+    "task": "time_series",
+    "query_type": "ts_max_value"
+   },
+   "label": "physical-error",
+   "violated_check": "check1 (modification/profile set vs query+reference; N2-(2) analog)",
+   "applied_rule": "N2 criterion (2) scenario-set (per frozen expert ruling's treatment of profile-matrix mismatch) + s2.3 meta-rule (b)",
+   "rationale": "Reference draws an independent (24 x n_load) uniform profile matrix at seed 4136; the model draws a single 24-vector and broadcasts it to all 5 loads (dict comprehension), so with the same seed the per-step per-load scalings are entirely different numbers and all loads move in lockstep -- a different stochastic physical scenario. Canonical run_timeseries was used, so auto checks 1/2 are blind to this (pre-solve snapshot predates in-loop profile application); re-exec gives 50.0899 vs GT 49.7124 (rel 0.76%), matched only via tolerance. False acceptance."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 11,
+    "tier": "T2",
+    "condition": "A_FX",
+    "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+    "bench_index": 1263,
+    "item_id": "0e1f9402d787",
+    "task": "dc_power_flow",
+    "query_type": "argmax"
+   },
+   "label": "equivalent-path",
+   "violated_check": null,
+   "applied_rule": "N1 (computed target == reference target -> equivalent; bi=1263 named class) + frozen case 10 (superset pre-analysis)",
+   "rationale": "Model identified the most-loaded line dynamically via an initial DC run and reinforced line 6 -- exactly the reference's hard-coded target (check1 fingerprint_diffs=[]; oracle: case9 DC and AC both rank line 6 top at ~65%). runpp(method='dc') traced as dc_pf, identical physics to rundcpp; the extra identification run is a harmless superset analysis (case 10). Extraction idxmax == idxmax, both dynamic same rule; outputs identical (2)."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 12,
+    "tier": "T2",
+    "condition": "A_FX",
+    "model": "meta-llama_Llama-3.1-8B-Instruct",
+    "bench_index": 292,
+    "item_id": "2e2f18d90228",
+    "task": "opf",
+    "query_type": "total"
+   },
+   "label": "physical-error",
+   "violated_check": "check1 (query-specified modification not applied)",
+   "applied_rule": "frozen case 3 strict line (omitted setup; insensitivity does not exempt)",
+   "rationale": "Query: set bus 12 min_vm_pu to 0.909 then OPF. The model instead CREATED a new isolated bus (pp.create_bus, vn_kv=1.0, min_vm_pu=0.909): check1 shows gen n_bus=15 vs ref 14, gen bus 12 min_vm_pu still 0.94 while the 0.909 sits on the spurious new bus 14. The required modification was never applied; the OPF scalar is insensitive because the constraint is non-binding (73.9572201 vs GT 73.9572189, rel 2e-8) -- textbook coincidental acceptance under frozen case 3."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 13,
+    "tier": "T2",
+    "condition": "A_FX",
+    "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+    "bench_index": 487,
+    "item_id": "e73d38064f83",
+    "task": "short_circuit_3ph",
+    "query_type": "argmax"
+   },
+   "label": "physical-error",
+   "violated_check": "check1 (wrong modification target)",
+   "applied_rule": "frozen case 3 strict line (query-specified setup executed on the wrong element)",
+   "rationale": "Query: disconnect line 5. Model code disconnects line 4 (net.line.in_service[4]=False; its own comment says line 5 -- an off-by-one/1-based slip). check1 fingerprint: out-of-service set {4,32..36} vs reference {5,32..36}. The argmax-ikss answer (bus 0, the ext-grid bus) is insensitive to which distal line is out, so the match (GT=0) is coincidental; case-3 explicitly rejects the insensitivity exemption. Secondary deviations (no s_sc_min/rx_min, ip=True) are unused under case='max' and not the basis of this ruling."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 14,
+    "tier": "T3",
+    "condition": "A_FX",
+    "model": "openai_gpt-oss-120b",
+    "bench_index": 480,
+    "item_id": "c718403b658e",
+    "task": "contingency",
+    "query_type": "bool_check"
+   },
+   "label": "equivalent-path",
+   "violated_check": null,
+   "applied_rule": "N2 (all four criteria verified) + N3 (count->bool coercion equivalent; fragile-coercion flag, not FAR)",
+   "rationale": "Manual N-1 loop replacing run_contingency: (1) per-step physics ac_pf == engine default contingency_evaluation_function=runpp (verified in pandapower source); (2) full enumeration of net.line.index, no early break, state restored each iteration (trace: 379 calls = base + 378 outages); (3) nonconvergence handling identical in kind -- model try/except-skips 6 non-convergent outages, and engine source likewise logs-and-skips failed cases from the envelope; skipping can only under-count violations and the full-set GT is False, so the queried bool is unchanged; (4) count-of-violating-scenarios>0 <=> any(max_loading>120): int 0 -> False mapping exact per N3(i)(ii) -- count is a real-simulation superset of the predicate. check5 literal_near_gt is the counter initialization, not hardcoding (output derives from 373 solved cases)."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 15,
+    "tier": "T3",
+    "condition": "A_FX",
+    "model": "openai_gpt-oss-120b",
+    "bench_index": 2,
+    "item_id": "4caf2191792c",
+    "task": "dc_power_flow",
+    "query_type": "point_value"
+   },
+   "label": "physical-error",
+   "violated_check": "check4 (wrong queried object/index)",
+   "applied_rule": "s2.3 meta-rule (changed the queried quantity); N1 defect-exception not applicable",
+   "rationale": "Query: voltage angle at bus 1. Reference reads res_bus.at[1,'va_degree'] (GT -3.77756); model reads bus_idx=net.bus.index[0] -> bus 0 (comment: 'the first bus (bus 1)', a 1-based misreading). Benchmark-wide convention maps 'bus k' to label k (cf. bus 11 -> at[11] in bi=1279, bus 1313 -> at[1313] in bi=1943), so the reference parse is correct and the exception channel does not apply. Output -3.75272 vs GT matched only at rel 0.66% < 1% tolerance: wrong bus accepted by luck. Mods and DC solver were correct -- the violation is purely the extraction object."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 16,
+    "tier": "T3",
+    "condition": "A_FX",
+    "model": "openai_gpt-oss-120b",
+    "bench_index": 202,
+    "item_id": "71b4b7648767",
+    "task": "time_series",
+    "query_type": "ts_point_at_step"
+   },
+   "label": "physical-error",
+   "violated_check": "check4 (wrong extraction object) + check1 (effective load profile differs)",
+   "applied_rule": "s2.3 meta-rule (changed queried quantity + changed physical scenario); N2-(2) profile application",
+   "rationale": "Two independent violations. (a) Query asks voltage at bus 6 step 14; model records res_bus.at[5,'vm_pu'] ('bus number 6' 1-based comment) -- bus 5 hosts the PV generator with setpoint vm=1.03 (verified in example_simple), so the printed 1.0300000000000002 is a constant PV setpoint, not the queried load-bus-6 voltage (GT 1.02065); matched only at rel 0.92% < 1% tolerance. (b) Reference applies the seed-5767 (24 x 1) profile via ConstControl variable='scaling' (replacing the base scaling 0.6, effective load 2.0*draw); model multiplies p_mw by the same draws while leaving scaling=0.6 (effective load 1.2*draw = 60% of reference) -- a different load trajectory every step. Auto check4 parsed only 'bus6_vm[14]' and missed the in-loop at[5] target."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 17,
+    "tier": "T4",
+    "condition": "A_FX",
+    "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+    "bench_index": 207,
+    "item_id": "f36eacc25413",
+    "task": "time_series",
+    "query_type": "ts_point_at_step"
+   },
+   "label": "physical-error",
+   "violated_check": "check2 (N2-(2) scenario set) + check4 (step misindex)",
+   "applied_rule": "N2 ruling naming bi=207: profile matrix mismatch + early break = criterion (2) not satisfied",
+   "rationale": "Three compounding deviations vs the GT-defining reference: (1) profile draws differ -- reference (24 x 5) independent matrix at seed 536 vs model's single 24-vector broadcast (net.load.scaling = scalar) so per-step per-load scalings are different numbers in lockstep; (2) early break at step 6 truncates the step set (n2_equivalence: early_break=True; frozen ruling: early break alone fails N2(2)); (3) reference extracts step row 7 (iloc[7,2]) while the model reports its loop step 6 ('time step 7' read 1-based). Output 0.97881 vs GT 0.97952 matched only at rel 7e-4. Mods themselves (ext_grid 0.985, tap 0) were applied correctly -- the scenario/extraction chain is what diverges."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 18,
+    "tier": "T4",
+    "condition": "A_FX",
+    "model": "meta-llama_Llama-3.1-405B-Instruct",
+    "bench_index": 1229,
+    "item_id": "835934ac3661",
+    "task": "contingency",
+    "query_type": "min_value"
+   },
+   "label": "physical-error",
+   "violated_check": "check1 (modification value divergence on same target)",
+   "applied_rule": "N1 ruling explicitly binning bi=1229 pollution-default (send to refute); frozen case 3 mirror rejects insensitivity exemption",
+   "rationale": "Query: 'reduce that unit to a lower dispatch level' (no value pinned). Reference sets gen 0 p_mw=262.9; model halves it to 159.0 (check1: gen.p_mw 159.0 vs 262.9, same target gen 0). The GT scenario was therefore not executed; the scalar matches to 1e-15 (0.90019489935878) only because the min-voltage envelope is dispatch-insensitive here (PV-bus setpoints pin vm) -- exactly the 'insensitive therefore exempt' pattern case 3 forbids. Loop mechanics are otherwise N2-conformant (all 4 lines enumerated, 4/4 converged, min-of-min == envelope min, deepcopy per case). Refute-pass note: 159 MW fully satisfies the query text (lower than base 318), so this is a strong equivalence/item-underdetermination refute candidate, but under the frozen N1 default it is pollution."
+  },
+  {
+   "item_ref": {
+    "pilot_index": 19,
+    "tier": "T4",
+    "condition": "A_FX",
+    "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+    "bench_index": 749,
+    "item_id": "4a345add25b2",
+    "task": "comparison_opf",
+    "query_type": "comparison_opf"
+   },
+   "label": "equivalent-path",
+   "violated_check": null,
+   "applied_rule": "N6 (dual-net accounting is a check-1 method artifact, resolved by pre-solve fingerprint) + s2.3 meta-rule (a) implementation difference; sign convention query-consistent",
+   "rationale": "Reference solves baseline OPF on net and modified OPF on a FRESH net2; model reuses one net (baseline OPF, then load 6 scaling=1.58, re-OPF). runopp does not mutate input state, so the two scenario pairs are identical -- confirmed by bit-identical outputs (24.64418213844249 both) and by check1 pre-solve fingerprint diffs=[] after the N6 fix. Extraction new_cost-initial_cost vs abs(before-after): cost increases, both positive, and 'how much the cost changes' does not constrain sign. Both runopp calls traced and converged."
+  }
+ ]
+}

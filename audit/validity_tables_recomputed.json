@@ -1,0 +1,745 @@
+{
+  "schema_version": "1.2",
+  "inputs": {
+    "final_labels": "audit/t4_final_labels_v2.json",
+    "sample_manifest": "audit/e1_sample_manifest.json",
+    "automatic_checks": "audit/t4_auto_results.json",
+    "design_cells": "audit/t4_far_weighted.json#cells",
+    "tolerance_replay": "audit/t4_tolerance_sensitivity.json",
+    "primary_item_outcomes": "results/raw/main_experiment/primary_outcomes_compact.json"
+  },
+  "scope": "Point estimates, Wilson intervals, and deterministic stratified bootstrap intervals for SM S13--S14 and main Table 10, including the common-support population-standardised contrast. Paired SM S15 is independently rebuilt by pair_mcnemar.py.",
+  "bootstrap": {
+    "B": 2000,
+    "seed": 20260731,
+    "rng": "Python random.Random(seed).choices",
+    "ci_order_statistics": [
+      50,
+      1950
+    ],
+    "primary_frame_mode": "hybrid: design cells with n_sample>=2 retained; singleton cells collapsed by frame x tier/model",
+    "tier_mode": "strict design-cell resampling",
+    "collapsed_sensitivity_mode": "frame x tier/model resampling",
+    "common_support_standardisation": "independent audit frames restricted to two-arm match support; hybrid-stratum joint bootstrap, contrast_S drawn before main_P; direct standardisation to the two-arm population tier mix"
+  },
+  "n_rows": 610,
+  "missing_inputs": [],
+  "far_by_frame": {
+    "main_P": {
+      "n_sampled": 400,
+      "n_defect": 25,
+      "n_eff": 375,
+      "n_contaminated": 84,
+      "far_unweighted_pct": 22.4,
+      "wilson95_pct": [
+        18.47,
+        26.89
+      ],
+      "far_weighted_pct": 18.51,
+      "est_population_nondefect": 9198.8,
+      "est_population_contaminated": 1702.7,
+      "boot95_unweighted_pct": [
+        19.09,
+        25.72
+      ],
+      "boot95_weighted_pct": [
+        15.13,
+        21.95
+      ],
+      "boot95_weighted_cell_pct": [
+        15.11,
+        21.94
+      ],
+      "boot95_weighted_collapsed_pct": [
+        14.34,
+        22.91
+      ],
+      "delta_w_minus_u_pp": -3.89
+    },
+    "api_T5": {
+      "n_sampled": 60,
+      "n_defect": 7,
+      "n_eff": 53,
+      "n_contaminated": 7,
+      "far_unweighted_pct": 13.21,
+      "wilson95_pct": [
+        6.55,
+        24.84
+      ],
+      "far_weighted_pct": 12.65,
+      "est_population_nondefect": 4127.0,
+      "est_population_contaminated": 522.0,
+      "boot95_unweighted_pct": [
+        5.36,
+        23.08
+      ],
+      "boot95_weighted_pct": [
+        4.72,
+        22.9
+      ],
+      "boot95_weighted_cell_pct": [
+        12.65,
+        12.65
+      ],
+      "boot95_weighted_collapsed_pct": [
+        4.72,
+        22.9
+      ],
+      "delta_w_minus_u_pp": -0.56
+    },
+    "C_combined": {
+      "n_sampled": 460,
+      "n_defect": 32,
+      "n_eff": 428,
+      "n_contaminated": 91,
+      "far_unweighted_pct": 21.26,
+      "wilson95_pct": [
+        17.65,
+        25.38
+      ],
+      "far_weighted_pct": 16.69,
+      "est_population_nondefect": 13325.8,
+      "est_population_contaminated": 2224.7,
+      "boot95_unweighted_pct": [
+        18.12,
+        24.36
+      ],
+      "boot95_weighted_pct": [
+        13.2,
+        20.41
+      ],
+      "boot95_weighted_cell_pct": [
+        14.26,
+        19.13
+      ],
+      "boot95_weighted_collapsed_pct": [
+        12.93,
+        20.92
+      ],
+      "delta_w_minus_u_pp": -4.57
+    },
+    "contrast_S": {
+      "n_sampled": 150,
+      "n_defect": 6,
+      "n_eff": 144,
+      "n_contaminated": 52,
+      "far_unweighted_pct": 36.11,
+      "wilson95_pct": [
+        28.72,
+        44.22
+      ],
+      "far_weighted_pct": 33.51,
+      "est_population_nondefect": 2252.7,
+      "est_population_contaminated": 755.0,
+      "boot95_unweighted_pct": [
+        30.14,
+        42.36
+      ],
+      "boot95_weighted_pct": [
+        25.86,
+        41.84
+      ],
+      "boot95_weighted_cell_pct": [
+        25.86,
+        41.84
+      ],
+      "boot95_weighted_collapsed_pct": [
+        24.5,
+        42.84
+      ],
+      "delta_w_minus_u_pp": -2.6
+    },
+    "main_P_T2toT4": {
+      "n_sampled": 340,
+      "n_defect": 25,
+      "n_eff": 315,
+      "n_contaminated": 58,
+      "far_unweighted_pct": 18.41,
+      "wilson95_pct": [
+        14.52,
+        23.06
+      ],
+      "far_weighted_pct": 17.93,
+      "est_population_nondefect": 9002.8,
+      "est_population_contaminated": 1614.6,
+      "boot95_unweighted_pct": [
+        15.09,
+        21.79
+      ],
+      "boot95_weighted_pct": [
+        14.62,
+        21.44
+      ],
+      "delta_w_minus_u_pp": -0.48
+    }
+  },
+  "far_by_tier": {
+    "main_P|T1": {
+      "n_sampled": 60,
+      "n_defect": 0,
+      "n_eff": 60,
+      "n_contaminated": 26,
+      "far_unweighted_pct": 43.33,
+      "wilson95_pct": [
+        31.57,
+        55.9
+      ],
+      "far_weighted_pct": 44.95,
+      "est_population_nondefect": 196.0,
+      "est_population_contaminated": 88.1,
+      "boot95_weighted_pct": [
+        34.21,
+        55.48
+      ]
+    },
+    "main_P|T2": {
+      "n_sampled": 110,
+      "n_defect": 5,
+      "n_eff": 105,
+      "n_contaminated": 23,
+      "far_unweighted_pct": 21.9,
+      "wilson95_pct": [
+        15.06,
+        30.73
+      ],
+      "far_weighted_pct": 21.27,
+      "est_population_nondefect": 3251.6,
+      "est_population_contaminated": 691.6,
+      "boot95_weighted_pct": [
+        15.15,
+        27.92
+      ]
+    },
+    "main_P|T3": {
+      "n_sampled": 110,
+      "n_defect": 14,
+      "n_eff": 96,
+      "n_contaminated": 18,
+      "far_unweighted_pct": 18.75,
+      "wilson95_pct": [
+        12.2,
+        27.7
+      ],
+      "far_weighted_pct": 18.54,
+      "est_population_nondefect": 2055.5,
+      "est_population_contaminated": 381.1,
+      "boot95_weighted_pct": [
+        12.39,
+        24.96
+      ]
+    },
+    "main_P|T4": {
+      "n_sampled": 120,
+      "n_defect": 6,
+      "n_eff": 114,
+      "n_contaminated": 17,
+      "far_unweighted_pct": 14.91,
+      "wilson95_pct": [
+        9.52,
+        22.59
+      ],
+      "far_weighted_pct": 14.66,
+      "est_population_nondefect": 3695.7,
+      "est_population_contaminated": 541.9,
+      "boot95_weighted_pct": [
+        9.31,
+        20.49
+      ]
+    },
+    "contrast_S|T2": {
+      "n_sampled": 50,
+      "n_defect": 2,
+      "n_eff": 48,
+      "n_contaminated": 26,
+      "far_unweighted_pct": 54.17,
+      "wilson95_pct": [
+        40.29,
+        67.42
+      ],
+      "far_weighted_pct": 56.08,
+      "est_population_nondefect": 318.5,
+      "est_population_contaminated": 178.6,
+      "boot95_weighted_pct": [
+        42.82,
+        69.05
+      ]
+    },
+    "contrast_S|T3": {
+      "n_sampled": 50,
+      "n_defect": 3,
+      "n_eff": 47,
+      "n_contaminated": 15,
+      "far_unweighted_pct": 31.91,
+      "wilson95_pct": [
+        20.4,
+        46.17
+      ],
+      "far_weighted_pct": 35.33,
+      "est_population_nondefect": 720.0,
+      "est_population_contaminated": 254.4,
+      "boot95_weighted_pct": [
+        23.0,
+        49.3
+      ]
+    },
+    "contrast_S|T4": {
+      "n_sampled": 50,
+      "n_defect": 1,
+      "n_eff": 49,
+      "n_contaminated": 11,
+      "far_unweighted_pct": 22.45,
+      "wilson95_pct": [
+        13.02,
+        35.88
+      ],
+      "far_weighted_pct": 26.51,
+      "est_population_nondefect": 1214.3,
+      "est_population_contaminated": 321.9,
+      "boot95_weighted_pct": [
+        14.21,
+        39.07
+      ]
+    },
+    "api_T5|API": {
+      "n_sampled": 60,
+      "n_defect": 7,
+      "n_eff": 53,
+      "n_contaminated": 7,
+      "far_unweighted_pct": 13.21,
+      "wilson95_pct": [
+        6.55,
+        24.84
+      ],
+      "far_weighted_pct": 12.65,
+      "est_population_nondefect": 4127.0,
+      "est_population_contaminated": 522.0,
+      "boot95_weighted_pct": [
+        12.65,
+        12.65
+      ]
+    }
+  },
+  "far_api_by_model": {
+    "claude-haiku-4-5": {
+      "n_sampled": 15,
+      "n_defect": 0,
+      "n_eff": 15,
+      "n_contaminated": 2,
+      "far_unweighted_pct": 13.33,
+      "wilson95_pct": [
+        3.74,
+        37.88
+      ],
+      "far_weighted_pct": 14.2,
+      "est_population_nondefect": 1275.0,
+      "est_population_contaminated": 181.0
+    },
+    "deepseek-v4-flash": {
+      "n_sampled": 15,
+      "n_defect": 2,
+      "n_eff": 13,
+      "n_contaminated": 1,
+      "far_unweighted_pct": 7.69,
+      "wilson95_pct": [
+        1.37,
+        33.31
+      ],
+      "far_weighted_pct": 7.77,
+      "est_population_nondefect": 991.0,
+      "est_population_contaminated": 77.0
+    },
+    "gemini-2.5-flash": {
+      "n_sampled": 15,
+      "n_defect": 2,
+      "n_eff": 13,
+      "n_contaminated": 3,
+      "far_unweighted_pct": 23.08,
+      "wilson95_pct": [
+        8.18,
+        50.26
+      ],
+      "far_weighted_pct": 23.6,
+      "est_population_nondefect": 860.0,
+      "est_population_contaminated": 203.0
+    },
+    "gpt-5.4-mini": {
+      "n_sampled": 15,
+      "n_defect": 3,
+      "n_eff": 12,
+      "n_contaminated": 1,
+      "far_unweighted_pct": 8.33,
+      "wilson95_pct": [
+        1.49,
+        35.39
+      ],
+      "far_weighted_pct": 6.09,
+      "est_population_nondefect": 1001.0,
+      "est_population_contaminated": 61.0
+    }
+  },
+  "separately_sampled_contrast": {
+    "S_minus_P": {
+      "delta_unweighted_pp": 13.71,
+      "boot95_unweighted_pp": [
+        6.47,
+        20.94
+      ],
+      "delta_weighted_pp": 15.0,
+      "boot95_weighted_pp": [
+        6.1,
+        24.34
+      ],
+      "design": "separately drawn frames (different item populations) -- not a paired/common-support contrast"
+    },
+    "S_minus_Ccombined": {
+      "delta_unweighted_pp": 14.85,
+      "boot95_unweighted_pp": [
+        7.74,
+        21.75
+      ],
+      "delta_weighted_pp": 16.82,
+      "boot95_weighted_pp": [
+        7.57,
+        25.98
+      ],
+      "design": "separately drawn frames (different item populations) -- not a paired/common-support contrast"
+    },
+    "S_minus_P_tier_aligned_T2toT4": {
+      "delta_unweighted_pp": 17.7,
+      "boot95_unweighted_pp": [
+        10.58,
+        25.13
+      ],
+      "delta_weighted_pp": 15.58,
+      "boot95_weighted_pp": [
+        6.9,
+        25.09
+      ],
+      "design": "separately drawn frames (different item populations) -- not a paired/common-support contrast"
+    }
+  },
+  "gate_operating_characteristics": {
+    "main_P": {
+      "n": 375,
+      "tp": 75,
+      "fp": 112,
+      "fn": 9,
+      "tn": 179,
+      "prevalence_pct": 22.4,
+      "flag_rate_pct": 49.87,
+      "sensitivity_pct": 89.29,
+      "specificity_pct": 61.51,
+      "precision_ppv_pct": 40.11,
+      "npv_pct": 95.21,
+      "sens_wilson95_pct": [
+        80.88,
+        94.26
+      ],
+      "spec_wilson95_pct": [
+        55.81,
+        66.92
+      ],
+      "ppv_wilson95_pct": [
+        33.35,
+        47.26
+      ],
+      "npv_wilson95_pct": [
+        91.15,
+        97.46
+      ],
+      "balanced_accuracy_pct": 75.4
+    },
+    "api_T5": {
+      "n": 53,
+      "tp": 6,
+      "fp": 18,
+      "fn": 1,
+      "tn": 28,
+      "prevalence_pct": 13.21,
+      "flag_rate_pct": 45.28,
+      "sensitivity_pct": 85.71,
+      "specificity_pct": 60.87,
+      "precision_ppv_pct": 25.0,
+      "npv_pct": 96.55,
+      "sens_wilson95_pct": [
+        48.69,
+        97.43
+      ],
+      "spec_wilson95_pct": [
+        46.46,
+        73.61
+      ],
+      "ppv_wilson95_pct": [
+        12.0,
+        44.9
+      ],
+      "npv_wilson95_pct": [
+        82.82,
+        99.39
+      ],
+      "balanced_accuracy_pct": 73.29
+    },
+    "C_combined": {
+      "n": 428,
+      "tp": 81,
+      "fp": 130,
+      "fn": 10,
+      "tn": 207,
+      "prevalence_pct": 21.26,
+      "flag_rate_pct": 49.3,
+      "sensitivity_pct": 89.01,
+      "specificity_pct": 61.42,
+      "precision_ppv_pct": 38.39,
+      "npv_pct": 95.39,
+      "sens_wilson95_pct": [
+        80.94,
+        93.92
+      ],
+      "spec_wilson95_pct": [
+        56.13,
+        66.46
+      ],
+      "ppv_wilson95_pct": [
+        32.09,
+        45.1
+      ],
+      "npv_wilson95_pct": [
+        91.73,
+        97.48
+      ],
+      "balanced_accuracy_pct": 75.22
+    },
+    "contrast_S": {
+      "n": 144,
+      "tp": 48,
+      "fp": 40,
+      "fn": 4,
+      "tn": 52,
+      "prevalence_pct": 36.11,
+      "flag_rate_pct": 61.11,
+      "sensitivity_pct": 92.31,
+      "specificity_pct": 56.52,
+      "precision_ppv_pct": 54.55,
+      "npv_pct": 92.86,
+      "sens_wilson95_pct": [
+        81.83,
+        96.97
+      ],
+      "spec_wilson95_pct": [
+        46.33,
+        66.19
+      ],
+      "ppv_wilson95_pct": [
+        44.17,
+        64.54
+      ],
+      "npv_wilson95_pct": [
+        83.02,
+        97.19
+      ],
+      "balanced_accuracy_pct": 74.41
+    },
+    "ALL_610": {
+      "n": 572,
+      "tp": 129,
+      "fp": 170,
+      "fn": 14,
+      "tn": 259,
+      "prevalence_pct": 25.0,
+      "flag_rate_pct": 52.27,
+      "sensitivity_pct": 90.21,
+      "specificity_pct": 60.37,
+      "precision_ppv_pct": 43.14,
+      "npv_pct": 94.87,
+      "sens_wilson95_pct": [
+        84.24,
+        94.08
+      ],
+      "spec_wilson95_pct": [
+        55.67,
+        64.89
+      ],
+      "ppv_wilson95_pct": [
+        37.65,
+        48.81
+      ],
+      "npv_wilson95_pct": [
+        91.58,
+        96.92
+      ],
+      "balanced_accuracy_pct": 75.29
+    }
+  },
+  "tolerance_tightened_far": {
+    "main_P": {
+      "n_eff_before": 375,
+      "n_eff_after": 336,
+      "contaminated_before": 84,
+      "contaminated_after": 50,
+      "contaminated_rejected_pct": 40.48,
+      "legitimate_rejected_pct": 1.72,
+      "far_unweighted_pct": 14.88,
+      "far_weighted_pct": 11.96,
+      "boot95_weighted_pct": [
+        9.02,
+        15.38
+      ]
+    },
+    "api_T5": {
+      "n_eff_before": 53,
+      "n_eff_after": 51,
+      "contaminated_before": 7,
+      "contaminated_after": 6,
+      "contaminated_rejected_pct": 14.29,
+      "legitimate_rejected_pct": 2.17,
+      "far_unweighted_pct": 11.76,
+      "far_weighted_pct": 11.74,
+      "boot95_weighted_pct": [
+        3.69,
+        22.02
+      ]
+    },
+    "C_combined": {
+      "n_eff_before": 428,
+      "n_eff_after": 387,
+      "contaminated_before": 91,
+      "contaminated_after": 56,
+      "contaminated_rejected_pct": 38.46,
+      "legitimate_rejected_pct": 1.78,
+      "far_unweighted_pct": 14.47,
+      "far_weighted_pct": 11.89,
+      "boot95_weighted_pct": [
+        8.38,
+        15.8
+      ]
+    },
+    "contrast_S": {
+      "n_eff_before": 144,
+      "n_eff_after": 126,
+      "contaminated_before": 52,
+      "contaminated_after": 35,
+      "contaminated_rejected_pct": 32.69,
+      "legitimate_rejected_pct": 1.09,
+      "far_unweighted_pct": 27.78,
+      "far_weighted_pct": 25.45,
+      "boot95_weighted_pct": [
+        17.53,
+        33.98
+      ]
+    }
+  },
+  "common_support": {
+    "population": {
+      "n_pairs_matched_both_conditions": 2106,
+      "by_tier": {
+        "T1": 0,
+        "T2": 288,
+        "T3": 696,
+        "T4": 1122
+      },
+      "by_model": {
+        "Qwen_Qwen2.5-Coder-0.5B-Instruct": 0,
+        "Qwen_Qwen2.5-Coder-1.5B-Instruct": 0,
+        "Qwen_Qwen2.5-Coder-7B-Instruct": 7,
+        "meta-llama_Llama-3.1-8B-Instruct": 23,
+        "Qwen_Qwen2.5-Coder-14B-Instruct": 71,
+        "Qwen_Qwen2.5-Coder-32B-Instruct": 187,
+        "meta-llama_Llama-3.1-70B-Instruct": 286,
+        "openai_gpt-oss-120b": 410,
+        "meta-llama_Llama-3.1-405B-Instruct": 540,
+        "Qwen_Qwen3-Coder-480B-A35B-Instruct": 469,
+        "Qwen_Qwen3-Coder-Next": 113
+      },
+      "A_FX_matched_population": 2334,
+      "C_FDRS_matched_population": 9844,
+      "share_of_A_FX_pool_pct": 90.23,
+      "share_of_C_FDRS_pool_pct": 21.39
+    },
+    "audit_sample_domain": {
+      "main_P_on_common_support": {
+        "n_sampled": 66,
+        "n_defect": 7,
+        "n_eff": 59,
+        "n_contaminated": 12,
+        "far_unweighted_pct": 20.34,
+        "wilson95_pct": [
+          12.04,
+          32.27
+        ],
+        "far_weighted_pct": 18.65,
+        "est_population_nondefect": 1671.1,
+        "est_population_contaminated": 311.7,
+        "boot95_weighted_pct": [
+          10.55,
+          27.59
+        ]
+      },
+      "contrast_S_on_common_support": {
+        "n_sampled": 131,
+        "n_defect": 5,
+        "n_eff": 126,
+        "n_contaminated": 45,
+        "far_unweighted_pct": 35.71,
+        "wilson95_pct": [
+          27.88,
+          44.39
+        ],
+        "far_weighted_pct": 32.61,
+        "est_population_nondefect": 2099.2,
+        "est_population_contaminated": 684.5,
+        "boot95_weighted_pct": [
+          24.62,
+          41.51
+        ]
+      },
+      "delta_S_minus_P": {
+        "delta_unweighted_pp": 15.38,
+        "boot95_unweighted_pp": [
+          3.78,
+          26.0
+        ],
+        "delta_weighted_pp": 13.95,
+        "boot95_weighted_pp": [
+          1.34,
+          26.01
+        ],
+        "design": "separately drawn frames (different item populations) -- not a paired/common-support contrast"
+      }
+    },
+    "tier_standardised": {
+      "T2_T3_T4|unweighted": {
+        "standardisation_weights": {
+          "T2": 0.1368,
+          "T3": 0.3305,
+          "T4": 0.5328
+        },
+        "far_contrast_S_pct": 29.5,
+        "far_main_P_pct": 20.23,
+        "delta_S_minus_P_pp": 9.28,
+        "boot95_delta_pp": [
+          -2.69,
+          20.61
+        ]
+      },
+      "T2_T3_T4|weighted": {
+        "standardisation_weights": {
+          "T2": 0.1368,
+          "T3": 0.3305,
+          "T4": 0.5328
+        },
+        "far_contrast_S_pct": 32.51,
+        "far_main_P_pct": 19.23,
+        "delta_S_minus_P_pp": 13.28,
+        "boot95_delta_pp": [
+          0.26,
+          25.37
+        ]
+      }
+    }
+  },
+  "validation": {
+    "status": "pass",
+    "model_tier_mapping_matches_frozen_design": true,
+    "mismatches": []
+  }
+}

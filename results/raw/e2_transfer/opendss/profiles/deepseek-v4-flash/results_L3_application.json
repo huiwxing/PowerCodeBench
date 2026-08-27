@@ -1,0 +1,2965 @@
+[
+  {
+    "probe_id": "L3_5d58fd63",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Define a simple three-phase circuit\ndss.Text.Command(\"New Circuit.TestGenerator\")\ndss.Text.Command(\"Set DefaultBaseFrequency=60\")\ndss.Text.Command(\"New LineCode.1 NPhases=3 R1=1 X1=1 C1=0.1\")\ndss.Text.Command(\"New Bus.Source Bus=1\")\ndss.Text.Command(\"New Bus.Load Bus=2\")\ndss.Text.Command(\"New Line.SourceToLoad Bus1=Source Bus2=Load LineCode=1 Length=1\")\ndss.Text.Command(\"New Load.Load Bus=Load Phases=3 kW=100 kVAR=50\")\n\n# Solve power flow\ndss.Solution.Solve()\n\n# Verify convergence\nif dss.Solution.Converged():\n    print(\"Power flow solved and converged.\")\nelse:\n    print(\"Power flow did not converge.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Define a simple three-phase circuit\ndss.Text.Command(\"New Circuit.TestGenerator\")\ndss.Text.Command(\"Set DefaultBaseFrequency=60\")\ndss.Text.Command(\"New LineCode.1 NPhases=3 R1=1 X1=1 C1=0.1\")\ndss.Text.Command(\"New Bus.Source Bus=1\")\ndss.Text.Command(\"New Bus.Load Bus=2\")\ndss.Text.Command(\"New Line.SourceToLoad Bus1=Source Bus2=Load LineCode=1 Length=1\")\ndss.Text.Command(\"New Load.Load Bus=Load Phases=3 kW=100 kVAR=50\")\n\n# Solve power flow\ndss.Solution.Solve()\n\n# Verify convergence\nif dss.Solution.Converged():\n    print(\"Power flow solved and converged.\")\nelse:\n    print(\"Power flow did not converge.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Solution_Converged",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Solution_Converged",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.Source Bus=1",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.Source Bus=1",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Solution_Solve"
+    }
+  },
+  {
+    "probe_id": "L3_30d85a56",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.test\")\ndss.run_command(\"New Load.test Load=100 kW=100 Pf=0.95\")\n\n# Solve the power flow\ndss.Solution.Solve()\n\n# Check convergence using the low-level function\nconverged = bool(dss.Solution_Converged())\nprint(f\"Solution converged: {converged}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.test\")\ndss.run_command(\"New Load.test Load=100 kW=100 Pf=0.95\")\n\n# Solve the power flow\ndss.Solution.Solve()\n\n# Check convergence using the low-level function\nconverged = bool(dss.Solution_Converged())\nprint(f\"Solution converged: {converged}\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "Solution_Converged",
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Solution_Converged",
+          "Solution_Solve",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Solution_Converged'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Solution_Converged'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Solution_Converged"
+    }
+  },
+  {
+    "probe_id": "L3_3daa9126",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit so the DSS engine is initialized\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Test bus1=sourcebus\")\n\n# Get the current solution mode (should be Snapshot = 1)\ninitial_mode = dss.Solution.Mode()\nprint(f\"Initial solution mode: {initial_mode}\")\n\n# Set to Direct mode (7)\ndss.Solution.Mode(7)  # Direct solve (non-iterative)\nprint(f\"Set mode to Direct (7): {dss.Solution.Mode()}\")\n\n# Set to FaultStudy mode (14)\ndss.Solution.Mode(14)  # Short-circuit analysis\nprint(f\"Set mode to FaultStudy (14): {dss.Solution.Mode()}\")\n\nprint(\"Successfully demonstrated the Solution.Mode function.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit so the DSS engine is initialized\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Test bus1=sourcebus\")\n\n# Get the current solution mode (should be Snapshot = 1)\ninitial_mode = dss.Solution.Mode()\nprint(f\"Initial solution mode: {initial_mode}\")\n\n# Set to Direct mode (7)\ndss.Solution.Mode(7)  # Direct solve (non-iterative)\nprint(f\"Set mode to Direct (7): {dss.Solution.Mode()}\")\n\n# Set to FaultStudy mode (14)\ndss.Solution.Mode(14)  # Short-circuit analysis\nprint(f\"Set mode to FaultStudy (14): {dss.Solution.Mode()}\")\n\nprint(\"Successfully demonstrated the Solution.Mode function.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Solution_Mode"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Solution_Mode",
+          "run_command"
+        ]
+      },
+      "error_msg": "RuntimeError: If you attempted to solve, then the solution has not yet converged.",
+      "exec_result": {
+        "success": false,
+        "error": "If you attempted to solve, then the solution has not yet converged.",
+        "output": "Initial solution mode: 0\nSet mode to Direct (7): 7\n",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Solution_Mode"
+    }
+  },
+  {
+    "probe_id": "L3_da243a45",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "DSSException"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit so that Solution object exists\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestCircuit\")\ndss.Text.Command(\"~ basekv=12.47, pu=1.0, phases=3\")\ndss.Text.Command(\"New Line.L1 bus1=TestBus1 bus2=TestBus2 length=1.0 units=miles\")\ndss.Text.Command(\"New Load.L1 buses=TestBus2 kw=1000 pf=0.9\")\n\n# Demonstrate Solution_MaxIterations: get current default\ninitial_max_iter = dss.Solution_MaxIterations()\nprint(f\"Initial MaxIterations: {initial_max_iter}\")\n\n# Set a new value\ndss.Solution_MaxIterations(50)\nnew_max_iter = dss.Solution_MaxIterations()\nprint(f\"After setting MaxIterations to 50: {new_max_iter}\")\n\n# Confirm successful demonstration\nprint(\"Successfully demonstrated Solution_MaxIterations.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit so that Solution object exists\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestCircuit\")\ndss.Text.Command(\"~ basekv=12.47, pu=1.0, phases=3\")\ndss.Text.Command(\"New Line.L1 bus1=TestBus1 bus2=TestBus2 length=1.0 units=miles\")\ndss.Text.Command(\"New Load.L1 buses=TestBus2 kw=1000 pf=0.9\")\n\n# Demonstrate Solution_MaxIterations: get current default\ninitial_max_iter = dss.Solution_MaxIterations()\nprint(f\"Initial MaxIterations: {initial_max_iter}\")\n\n# Set a new value\ndss.Solution_MaxIterations(50)\nnew_max_iter = dss.Solution_MaxIterations()\nprint(f\"After setting MaxIterations to 50: {new_max_iter}\")\n\n# Confirm successful demonstration\nprint(\"Successfully demonstrated Solution_MaxIterations.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Solution_MaxIterations",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Solution_MaxIterations",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "DSSException: dss._cffi_api_util.DSSException: (#110) Unknown parameter \"buses\" (value \"TestBus2\") for object \"Load.l1\"",
+      "exec_result": {
+        "success": false,
+        "error": "dss._cffi_api_util.DSSException: (#110) Unknown parameter \"buses\" (value \"TestBus2\") for object \"Load.l1\"",
+        "output": "",
+        "error_type": "DSSException"
+      },
+      "function_name": "Solution_MaxIterations"
+    }
+  },
+  {
+    "probe_id": "L3_8c8042aa",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Build a minimal circuit\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.test1 basekv=12.47 pu=1.0 angle=0.0\")\ndss.run_command(\"new linecode.L1 nphases=3 r1=0.1 x1=0.1 c1=1e-9\")\ndss.run_command(\"new line.Line1 bus1=test1 bus2=test1_1 linecode=L1 length=1000\")\ndss.run_command(\"new load.Load1 bus=test1_1 phases=3 kw=100 pf=0.9\")\n\n# Select Newton algorithm (1) and solve\ndss.Solution.Algorithm = 1\ndss.Solution.Solve()\n\n# Confirm solution\nprint(f\"Solved with Newton algorithm. Iterations: {dss.Solution.Iterations}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Build a minimal circuit\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.test1 basekv=12.47 pu=1.0 angle=0.0\")\ndss.run_command(\"new linecode.L1 nphases=3 r1=0.1 x1=0.1 c1=1e-9\")\ndss.run_command(\"new line.Line1 bus1=test1 bus2=test1_1 linecode=L1 length=1000\")\ndss.run_command(\"new load.Load1 bus=test1_1 phases=3 kw=100 pf=0.9\")\n\n# Select Newton algorithm (1) and solve\ndss.Solution.Algorithm = 1\ndss.Solution.Solve()\n\n# Confirm solution\nprint(f\"Solved with Newton algorithm. Iterations: {dss.Solution.Iterations}\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Solution_Solve",
+          "run_command"
+        ]
+      },
+      "error_msg": "RuntimeError: See also https://dss-extensions.org/python_apis.html",
+      "exec_result": {
+        "success": false,
+        "error": "See also https://dss-extensions.org/python_apis.html",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Solution_Algorithm"
+    }
+  },
+  {
+    "probe_id": "L3_609f4644",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "DSSException"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Build a minimal one-load feeder\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.test\")\ndss.Text.Command(\"New Vsource.source bus1=sourcebus basekv=12.47\")\ndss.Text.Command(\"New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=mi\")\ndss.Text.Command(\"New Load.L1 bus=loadbus kw=100 kvar=50\")\ndss.Text.Command(\"Set voltagebases=[12.47]\")\ndss.Text.Command(\"CalcVoltageBases\")\ndss.Solution_Solve()\n\n# Get total complex power at the source (kW, kvar)\ntotal_power = dss.Circuit_TotalPower()\nprint(f\"Total power at source: {total_power[0]:.3f} kW, {total_power[1]:.3f} kvar\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Build a minimal one-load feeder\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.test\")\ndss.Text.Command(\"New Vsource.source bus1=sourcebus basekv=12.47\")\ndss.Text.Command(\"New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=mi\")\ndss.Text.Command(\"New Load.L1 bus=loadbus kw=100 kvar=50\")\ndss.Text.Command(\"Set voltagebases=[12.47]\")\ndss.Text.Command(\"CalcVoltageBases\")\ndss.Solution_Solve()\n\n# Get total complex power at the source (kW, kvar)\ntotal_power = dss.Circuit_TotalPower()\nprint(f\"Total power at source: {total_power[0]:.3f} kW, {total_power[1]:.3f} kvar\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Circuit_TotalPower",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Circuit_TotalPower",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "DSSException: dss._cffi_api_util.DSSException: (#266) Warning: Duplicate new element definition: \"Vsource.source\". Element being redefined.",
+      "exec_result": {
+        "success": false,
+        "error": "dss._cffi_api_util.DSSException: (#266) Warning: Duplicate new element definition: \"Vsource.source\". Element being redefined.",
+        "output": "",
+        "error_type": "DSSException"
+      },
+      "function_name": "Circuit_TotalPower"
+    }
+  },
+  {
+    "probe_id": "L3_3fda0e91",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal distribution feeder circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.MyCircuit basekv=12.47 pu=1.0\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.Line1 Bus1=Bus1.1 Bus2=Bus2.1 Length=1 units=miles\")\ndss.run_command(\"New Load.Load1 Bus1=Bus2.1 Phases=1 kV=7.2 kW=1000\")\ndss.run_command(\"New Vsource.Source Bus1=Bus1.1 basekv=12.47\")\ndss.run_command(\"Solve\")\n\n# Retrieve per-unit voltage magnitudes for all nodes\nvoltage_mags_pu = dss.Circuit.AllBusMagPu()\n\n# Print confirmation\nprint(\"Voltage magnitudes retrieved successfully. First two values:\", voltage_mags_pu[:2])\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal distribution feeder circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.MyCircuit basekv=12.47 pu=1.0\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.Line1 Bus1=Bus1.1 Bus2=Bus2.1 Length=1 units=miles\")\ndss.run_command(\"New Load.Load1 Bus1=Bus2.1 Phases=1 kV=7.2 kW=1000\")\ndss.run_command(\"New Vsource.Source Bus1=Bus1.1 basekv=12.47\")\ndss.run_command(\"Solve\")\n\n# Retrieve per-unit voltage magnitudes for all nodes\nvoltage_mags_pu = dss.Circuit.AllBusMagPu()\n\n# Print confirmation\nprint(\"Voltage magnitudes retrieved successfully. First two values:\", voltage_mags_pu[:2])",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Circuit_AllBusMagPu"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Circuit_AllBusMagPu",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Voltage magnitudes retrieved successfully. First two values: [7199.557856794633, 7199.557856794634]\n",
+        "error_type": null
+      },
+      "function_name": "Circuit_AllBusMagPu"
+    }
+  },
+  {
+    "probe_id": "L3_0a7b486d",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with a source bus and two other buses\ndss.Text.Command(\"New Circuit.MyCircuit bus1=SourceBus\")\ndss.Text.Command(\"New Line.L1 Bus1=BusA Bus2=BusB length=1000 units=ft\")\ndss.Text.Command(\"New Line.L2 Bus1=SourceBus Bus2=BusA length=500 units=ft\")\ndss.Text.Command(\"New Load.Ld1 Bus1=BusB kW=100 kvar=0\")\n\n# Retrieve all bus names in internal order\nbus_names = dss.Circuit.AllBusNames()\nprint(\"Bus names:\", bus_names)\n\n# Confirm execution\nprint(\"Script executed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with a source bus and two other buses\ndss.Text.Command(\"New Circuit.MyCircuit bus1=SourceBus\")\ndss.Text.Command(\"New Line.L1 Bus1=BusA Bus2=BusB length=1000 units=ft\")\ndss.Text.Command(\"New Line.L2 Bus1=SourceBus Bus2=BusA length=500 units=ft\")\ndss.Text.Command(\"New Load.Ld1 Bus1=BusB kW=100 kvar=0\")\n\n# Retrieve all bus names in internal order\nbus_names = dss.Circuit.AllBusNames()\nprint(\"Bus names:\", bus_names)\n\n# Confirm execution\nprint(\"Script executed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Circuit_AllBusNames",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Circuit_AllBusNames",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Bus names: []\nScript executed successfully.\n",
+        "error_type": null
+      },
+      "function_name": "Circuit_AllBusNames"
+    }
+  },
+  {
+    "probe_id": "L3_e4477a29",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "TypeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.MyCircuit basekv=12.5 pu=1.0 phases=3\")\ndss.run_command(\"new line.L1 bus1=sourcebus.1.2.3 bus2=bus1.1.2.3 length=500 units=m\")\ndss.run_command(\"new load.L1 bus=bus1.1.2.3 kw=100 pf=0.9\")\ndss.run_command(\"solve\")\n\n# Get total losses (Watts, VArs)\nlosses = dss.Circuit.Losses\nprint(f\"Total losses: {losses[0]:.2f} Watts, {losses[1]:.2f} VArs\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.MyCircuit basekv=12.5 pu=1.0 phases=3\")\ndss.run_command(\"new line.L1 bus1=sourcebus.1.2.3 bus2=bus1.1.2.3 length=500 units=m\")\ndss.run_command(\"new load.L1 bus=bus1.1.2.3 kw=100 pf=0.9\")\ndss.run_command(\"solve\")\n\n# Get total losses (Watts, VArs)\nlosses = dss.Circuit.Losses\nprint(f\"Total losses: {losses[0]:.2f} Watts, {losses[1]:.2f} VArs\")",
+      "api_check": {
+        "api_validity_rate": 0.0,
+        "valid_functions": [],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "run_command"
+        ]
+      },
+      "error_msg": "TypeError: TypeError: 'method' object is not subscriptable",
+      "exec_result": {
+        "success": false,
+        "error": "TypeError: 'method' object is not subscriptable",
+        "output": "",
+        "error_type": "TypeError"
+      },
+      "function_name": "Circuit_Losses"
+    }
+  },
+  {
+    "probe_id": "L3_5144c52f",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.75,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "DSSException"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple distribution circuit\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestBus1 basekv=12.47 pu=1.0 angle=0\")\ndss.Text.Command(\"New Line.L1 Bus1=TestBus1 Bus2=TestBus2 Length=1000 Units=ft\")\ndss.Text.Command(\"New Load.Ld1 Bus2=TestBus2 Phases=1 kW=100 kVAr=50\")\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Activate an element by full object name\nindex = dss.Circuit.SetActiveElement(\"Line.L1\")\n\n# Confirm activation and print index (0-based)\nif index >= 0:\n    # Retrieve some property to demonstrate active element\n    name = dss.CktElement.Name()\n    print(f\"Active element set to: {name} (index {index})\")\nelse:\n    print(\"Element not found\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple distribution circuit\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestBus1 basekv=12.47 pu=1.0 angle=0\")\ndss.Text.Command(\"New Line.L1 Bus1=TestBus1 Bus2=TestBus2 Length=1000 Units=ft\")\ndss.Text.Command(\"New Load.Ld1 Bus2=TestBus2 Phases=1 kW=100 kVAr=50\")\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Activate an element by full object name\nindex = dss.Circuit.SetActiveElement(\"Line.L1\")\n\n# Confirm activation and print index (0-based)\nif index >= 0:\n    # Retrieve some property to demonstrate active element\n    name = dss.CktElement.Name()\n    print(f\"Active element set to: {name} (index {index})\")\nelse:\n    print(\"Element not found\")",
+      "api_check": {
+        "api_validity_rate": 0.75,
+        "valid_functions": [
+          "Circuit_SetActiveElement",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "Name"
+        ],
+        "all_used": [
+          "Circuit_SetActiveElement",
+          "Name",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "DSSException: dss._cffi_api_util.DSSException: (#110) Unknown parameter \"Bus2\" (value \"TestBus2\") for object \"Load.ld1\"",
+      "exec_result": {
+        "success": false,
+        "error": "dss._cffi_api_util.DSSException: (#110) Unknown parameter \"Bus2\" (value \"TestBus2\") for object \"Load.ld1\"",
+        "output": "",
+        "error_type": "DSSException"
+      },
+      "function_name": "Circuit_SetActiveElement"
+    }
+  },
+  {
+    "probe_id": "L3_6563d1e0",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a single bus\ndss.run_command(\"new circuit.test Bus1=bus1 basekv=12.47\")\ndss.Solution.Solve()\n\n# Set the active bus by name and get its zero‑based index\nindex = dss.Circuit.SetActiveBus(\"bus1\")\nprint(f\"Active bus index: {index}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a single bus\ndss.run_command(\"new circuit.test Bus1=bus1 basekv=12.47\")\ndss.Solution.Solve()\n\n# Set the active bus by name and get its zero‑based index\nindex = dss.Circuit.SetActiveBus(\"bus1\")\nprint(f\"Active bus index: {index}\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "Circuit_SetActiveBus",
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Circuit_SetActiveBus",
+          "Solution_Solve",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Active bus index: 0\n",
+        "error_type": null
+      },
+      "function_name": "Circuit_SetActiveBus"
+    }
+  },
+  {
+    "probe_id": "L3_f351334e",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with a source bus and a load bus\ndss.run_command(\"New Circuit.MyCircuit Bus1=SourceBus BasekV=12.47\")\ndss.run_command(\"New Line.L1 Bus1=SourceBus Bus2=LoadBus Phases=3 Length=1 Units=mi\")\ndss.run_command(\"New Load.Load1 Bus=LoadBus Phases=3 kW=1000 kVAR=500\")\n\n# Solve power flow\ndss.run_command(\"Solve\")\n\n# Select the load bus\ndss.Circuit.SetActiveBus(\"LoadBus\")\n\n# Get complex bus voltages (interleaved: re, im, re, im, ...)\nvoltages = dss.Bus.Voltages()\n\nprint(f\"Bus voltages at LoadBus (interleaved real/imag): {voltages}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with a source bus and a load bus\ndss.run_command(\"New Circuit.MyCircuit Bus1=SourceBus BasekV=12.47\")\ndss.run_command(\"New Line.L1 Bus1=SourceBus Bus2=LoadBus Phases=3 Length=1 Units=mi\")\ndss.run_command(\"New Load.Load1 Bus=LoadBus Phases=3 kW=1000 kVAR=500\")\n\n# Solve power flow\ndss.run_command(\"Solve\")\n\n# Select the load bus\ndss.Circuit.SetActiveBus(\"LoadBus\")\n\n# Get complex bus voltages (interleaved: re, im, re, im, ...)\nvoltages = dss.Bus.Voltages()\n\nprint(f\"Bus voltages at LoadBus (interleaved real/imag): {voltages}\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "Bus_Voltages",
+          "Circuit_SetActiveBus"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Bus_Voltages",
+          "Circuit_SetActiveBus",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Bus voltages at LoadBus (interleaved real/imag): [7191.446159248984, -7.297200378111131, -3602.0426412286447, -6224.326463264099, -3589.40351731691, 6231.623664853926]\n",
+        "error_type": null
+      },
+      "function_name": "Bus_Voltages"
+    }
+  },
+  {
+    "probe_id": "L3_b66585c9",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.75,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with two buses and a load\ndss.run_command('clear')\ndss.run_command('new circuit.TestCircuit basekv=12.47 mvasc3=20000')\ndss.run_command('new line.L1 bus1=SourceBus bus2=Bus2 length=1 units=mi')\ndss.run_command('new load.L2 bus=Bus2 kw=500 pf=0.9')\ndss.Solution.Solve()\n\n# Query per-unit voltage magnitude and angle at Bus2\ndss.Circuit.SetActiveBus('Bus2')\nvolts = dss.Bus.puVmagAngle()  # interleaved [mag1, ang1_deg, mag2, ang2_deg, ...]\n\n# Display results\nprint(f\"Number of phases: {len(volts)//2}\")\nprint(f\"Per-unit voltages (mag, angle): {volts}\")\nprint(\"Script executed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with two buses and a load\ndss.run_command('clear')\ndss.run_command('new circuit.TestCircuit basekv=12.47 mvasc3=20000')\ndss.run_command('new line.L1 bus1=SourceBus bus2=Bus2 length=1 units=mi')\ndss.run_command('new load.L2 bus=Bus2 kw=500 pf=0.9')\ndss.Solution.Solve()\n\n# Query per-unit voltage magnitude and angle at Bus2\ndss.Circuit.SetActiveBus('Bus2')\nvolts = dss.Bus.puVmagAngle()  # interleaved [mag1, ang1_deg, mag2, ang2_deg, ...]\n\n# Display results\nprint(f\"Number of phases: {len(volts)//2}\")\nprint(f\"Per-unit voltages (mag, angle): {volts}\")\nprint(\"Script executed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.75,
+        "valid_functions": [
+          "Bus_puVmagAngle",
+          "Circuit_SetActiveBus",
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Bus_puVmagAngle",
+          "Circuit_SetActiveBus",
+          "Solution_Solve",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Number of phases: 3\nPer-unit voltages (mag, angle): [7196.733961180834, -0.018273752152933937, 7196.733961181241, -120.01827375215363, 7196.733961179827, 119.98172622850055]\nScript executed successfully.\n",
+        "error_type": null
+      },
+      "function_name": "Bus_puVmagAngle"
+    }
+  },
+  {
+    "probe_id": "L3_f8c3e5b1",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "TypeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a bus at a typical distribution voltage (12.47 kV L-L)\ndss.Text.Command(\"New circuit.Example basekv=12.47\")\n\n# Select that bus as the active bus\ndss.Circuit.SetActiveBus(\"SourceBus\")\n\n# Read and display the line-to-neutral base voltage (in kV)\nbase_kv = dss.Bus.kVBase\nprint(f\"Line-to-neutral base voltage: {base_kv:.3f} kV\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a bus at a typical distribution voltage (12.47 kV L-L)\ndss.Text.Command(\"New circuit.Example basekv=12.47\")\n\n# Select that bus as the active bus\ndss.Circuit.SetActiveBus(\"SourceBus\")\n\n# Read and display the line-to-neutral base voltage (in kV)\nbase_kv = dss.Bus.kVBase\nprint(f\"Line-to-neutral base voltage: {base_kv:.3f} kV\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Circuit_SetActiveBus",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Circuit_SetActiveBus",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "TypeError: TypeError: unsupported format string passed to method.__format__",
+      "exec_result": {
+        "success": false,
+        "error": "TypeError: unsupported format string passed to method.__format__",
+        "output": "",
+        "error_type": "TypeError"
+      },
+      "function_name": "Bus_kVBase"
+    }
+  },
+  {
+    "probe_id": "L3_bf32337f",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.8,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal two-bus circuit\ndss.run_command('Clear')\ndss.run_command('New Circuit.Test')\ndss.run_command('New LineCode.1 nphases=3 r1=0.1 x1=0.5')\ndss.run_command('New Line.L1 bus1=SourceBus bus2=Bus2 linecode=1 length=1')\n\n# Solve in FaultStudy mode\ndss.Text.Command('Set Mode=FaultStudy')\ndss.Solution.Solve()\n\n# Set Bus2 as active bus and obtain short-circuit currents\ndss.Circuit.SetActiveBus('Bus2')\nisc = dss.Circuit.Bus_Isc()\nprint(f\"Short-circuit currents at Bus2 (interleaved complex): {isc}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal two-bus circuit\ndss.run_command('Clear')\ndss.run_command('New Circuit.Test')\ndss.run_command('New LineCode.1 nphases=3 r1=0.1 x1=0.5')\ndss.run_command('New Line.L1 bus1=SourceBus bus2=Bus2 linecode=1 length=1')\n\n# Solve in FaultStudy mode\ndss.Text.Command('Set Mode=FaultStudy')\ndss.Solution.Solve()\n\n# Set Bus2 as active bus and obtain short-circuit currents\ndss.Circuit.SetActiveBus('Bus2')\nisc = dss.Circuit.Bus_Isc()\nprint(f\"Short-circuit currents at Bus2 (interleaved complex): {isc}\")",
+      "api_check": {
+        "api_validity_rate": 0.8,
+        "valid_functions": [
+          "Bus_Isc",
+          "Circuit_SetActiveBus",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Bus_Isc",
+          "Circuit_SetActiveBus",
+          "Solution_Solve",
+          "Text_Command",
+          "run_command"
+        ]
+      },
+      "error_msg": "RuntimeError: If you attempted to solve, then the solution has not yet converged.",
+      "exec_result": {
+        "success": false,
+        "error": "If you attempted to solve, then the solution has not yet converged.",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Bus_Isc"
+    }
+  },
+  {
+    "probe_id": "L3_06b85ad9",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestCircuit basekv=12.47\")\ndss.Text.Command(\"New Bus.Bus1\")\ndss.Text.Command(\"New Bus.Bus2\")\ndss.Text.Command(\"New Line.Line1 Bus1 Bus2 Phases=1 Length=1 R=0.1 X=0.05 C=1e-6\")\ndss.Text.Command(\"New Load.Load1 Bus2 Phases=1 Kv=7.2 Kw=100 Kvar=0\")\ndss.Text.Command(\"Solve\")\n\ndss.Circuit.SetActiveElement(\"Line1\")\npowers = dss.CktElement.Powers()\nprint(\"Powers (P1_kW, Q1_kvar, P2_kW, Q2_kvar):\", powers)\nprint(\"Confirmation: CktElement_Powers executed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestCircuit basekv=12.47\")\ndss.Text.Command(\"New Bus.Bus1\")\ndss.Text.Command(\"New Bus.Bus2\")\ndss.Text.Command(\"New Line.Line1 Bus1 Bus2 Phases=1 Length=1 R=0.1 X=0.05 C=1e-6\")\ndss.Text.Command(\"New Load.Load1 Bus2 Phases=1 Kv=7.2 Kw=100 Kvar=0\")\ndss.Text.Command(\"Solve\")\n\ndss.Circuit.SetActiveElement(\"Line1\")\npowers = dss.CktElement.Powers()\nprint(\"Powers (P1_kW, Q1_kvar, P2_kW, Q2_kvar):\", powers)\nprint(\"Confirmation: CktElement_Powers executed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Circuit_SetActiveElement",
+          "CktElement_Powers",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Circuit_SetActiveElement",
+          "CktElement_Powers",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.Bus1",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.Bus1",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "CktElement_Powers"
+    }
+  },
+  {
+    "probe_id": "L3_3ad423da",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit\ndss.run_command('New Circuit.TestCircuit')\ndss.run_command('New Bus.SourceBus pu=1.0')\ndss.run_command('New Transformer.T1 phases=3 windings=2 wdg=1 bus=SourceBus conn=wye kv=12.47 kva=5000 %r=0.5 XHT=8 wdg=2 bus=LoadBus conn=wye kv=0.48 kva=5000 %r=0.5 XHT=2')\ndss.run_command('New Line.L1 bus1=LoadBus.1.2.3 bus2=EndBus.1.2.3 phases=3 length=1000 units=ft linecode=336')\ndss.run_command('New Load.Load1 bus=EndBus.1.2.3 phases=3 kw=1000 pf=0.9 model=1')\ndss.run_command('Set VoltageBases=[12.47, 0.48]')\ndss.run_command('CalcVoltageBases')\ndss.run_command('Solve')\n\n# Select the line element\ndss.run_command('Set ActiveElement=Line.L1')\n\n# Retrieve currents\ncurrents = dss.CktElement_Currents()\nprint('Branch currents (interleaved real, imag):', currents)\nprint('Successfully retrieved element currents.')\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit\ndss.run_command('New Circuit.TestCircuit')\ndss.run_command('New Bus.SourceBus pu=1.0')\ndss.run_command('New Transformer.T1 phases=3 windings=2 wdg=1 bus=SourceBus conn=wye kv=12.47 kva=5000 %r=0.5 XHT=8 wdg=2 bus=LoadBus conn=wye kv=0.48 kva=5000 %r=0.5 XHT=2')\ndss.run_command('New Line.L1 bus1=LoadBus.1.2.3 bus2=EndBus.1.2.3 phases=3 length=1000 units=ft linecode=336')\ndss.run_command('New Load.Load1 bus=EndBus.1.2.3 phases=3 kw=1000 pf=0.9 model=1')\ndss.run_command('Set VoltageBases=[12.47, 0.48]')\ndss.run_command('CalcVoltageBases')\ndss.run_command('Solve')\n\n# Select the line element\ndss.run_command('Set ActiveElement=Line.L1')\n\n# Retrieve currents\ncurrents = dss.CktElement_Currents()\nprint('Branch currents (interleaved real, imag):', currents)\nprint('Successfully retrieved element currents.')",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "CktElement_Currents"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "CktElement_Currents",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'CktElement_Currents'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'CktElement_Currents'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "CktElement_Currents"
+    }
+  },
+  {
+    "probe_id": "L3_409eb67f",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Build a simple circuit using only text commands\ndss.Text.Command(\"New Circuit.MyCircuit\")\ndss.Text.Command(\"New Bus.B1 (x=0, y=0)\")\ndss.Text.Command(\"New Bus.B2 (x=100, y=0)\")\ndss.Text.Command(\"New Line.L1 bus1=B1 bus2=B2 length=100 units=m\")\ndss.Text.Command(\"New Load.L1 bus1=B2 phases=1 kW=100 PF=0.95\")\ndss.Text.Command(\"Set mode=snap\")\ndss.Text.Command(\"Solve\")\n\nprint(\"Simulation ran successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Build a simple circuit using only text commands\ndss.Text.Command(\"New Circuit.MyCircuit\")\ndss.Text.Command(\"New Bus.B1 (x=0, y=0)\")\ndss.Text.Command(\"New Bus.B2 (x=100, y=0)\")\ndss.Text.Command(\"New Line.L1 bus1=B1 bus2=B2 length=100 units=m\")\ndss.Text.Command(\"New Load.L1 bus1=B2 phases=1 kW=100 PF=0.95\")\ndss.Text.Command(\"Set mode=snap\")\ndss.Text.Command(\"Solve\")\n\nprint(\"Simulation ran successfully.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.B1 (x=0, y=0)",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.B1 (x=0, y=0)",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Text_Command"
+    }
+  },
+  {
+    "probe_id": "L3_63ceb86e",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with one bus, a line, and a load\ndss.Text.Command(\"New Circuit.Test Bus1=Bus1\")\ndss.Text.Command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 Length=1000 Units=m\")\n\n# Query the line length - result will be stored in Text.Result\ndss.Text.Command(\"? Line.L1.Length\")\nresult = dss.Text.Result()\n\nprint(f\"Line length: {result}\")  # Confirm the result\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with one bus, a line, and a load\ndss.Text.Command(\"New Circuit.Test Bus1=Bus1\")\ndss.Text.Command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 Length=1000 Units=m\")\n\n# Query the line length - result will be stored in Text.Result\ndss.Text.Command(\"? Line.L1.Length\")\nresult = dss.Text.Result()\n\nprint(f\"Line length: {result}\")  # Confirm the result",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Text_Command",
+          "Text_Result"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Text_Command",
+          "Text_Result"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Line length: 1000\n",
+        "error_type": null
+      },
+      "function_name": "Text_Result"
+    }
+  },
+  {
+    "probe_id": "L3_8173b5a7",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.4,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Clear any existing circuit and create a new one with a simple load\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.MyCircuit basekV=12.47\")\ndss.run_command(\"New Load.Load1 Bus1=MyCircuit Phases=3 kV=12.47 kW=1000 PF=0.9\")\ndss.run_command(\"New Load.Load2 Bus1=MyCircuit Phases=3 kV=12.47 kW=2000 PF=0.95\")\n\n# Demonstrate Loads_kW using First/Next iteration\nidx = dss.Loads.First()\nwhile idx > 0:\n    print(f\"Load {dss.Loads.Name()}: current kW = {dss.Loads.kW()}\")\n    # Increase the load active power by 10%\n    new_kw = dss.Loads.kW() * 1.1\n    dss.Loads.kW(new_kw)\n    print(f\"  After increase, kW = {dss.Loads.kW()}\")\n    idx = dss.Loads.Next()\n\nprint(\"Success: Loads_kW get/set demonstrated.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Clear any existing circuit and create a new one with a simple load\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.MyCircuit basekV=12.47\")\ndss.run_command(\"New Load.Load1 Bus1=MyCircuit Phases=3 kV=12.47 kW=1000 PF=0.9\")\ndss.run_command(\"New Load.Load2 Bus1=MyCircuit Phases=3 kV=12.47 kW=2000 PF=0.95\")\n\n# Demonstrate Loads_kW using First/Next iteration\nidx = dss.Loads.First()\nwhile idx > 0:\n    print(f\"Load {dss.Loads.Name()}: current kW = {dss.Loads.kW()}\")\n    # Increase the load active power by 10%\n    new_kw = dss.Loads.kW() * 1.1\n    dss.Loads.kW(new_kw)\n    print(f\"  After increase, kW = {dss.Loads.kW()}\")\n    idx = dss.Loads.Next()\n\nprint(\"Success: Loads_kW get/set demonstrated.\")",
+      "api_check": {
+        "api_validity_rate": 0.4,
+        "valid_functions": [
+          "Loads_Name",
+          "Loads_kW"
+        ],
+        "invalid_functions": [
+          "First",
+          "Next",
+          "run_command"
+        ],
+        "all_used": [
+          "First",
+          "Loads_Name",
+          "Loads_kW",
+          "Next",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Load load1: current kW = 1000.0\n  After increase, kW = 1100.0\nLoad load2: current kW = 2000.0\n  After increase, kW = 2200.0\nSuccess: Loads_kW get/set demonstrated.\n",
+        "error_type": null
+      },
+      "function_name": "Loads_kW"
+    }
+  },
+  {
+    "probe_id": "L3_265980aa",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.4,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.Circuit.New(\"TestCircuit\")\ndss.Circuit.Set('basekv=12.47, pu=1.0')\n\n# Add two buses\ndss.Text.Command(\"New Bus.Bus1\")\ndss.Text.Command(\"New Bus.Bus2\")\n\n# Add a line (default length is 1 km, but we'll set explicitly)\ndss.Text.Command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 phases=3 length=1.0 units=km\")\n# Make the line active\ndss.Lines.Name(\"Line1\")\n\n# Set length (units are km as defined)\ndss.Lines.Length(2.0)  # set to 2 km\n\n# Read back\nlength = dss.Lines.Length()\n\nprint(f\"Lines.Length = {length} km (set to 2.0)\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.Circuit.New(\"TestCircuit\")\ndss.Circuit.Set('basekv=12.47, pu=1.0')\n\n# Add two buses\ndss.Text.Command(\"New Bus.Bus1\")\ndss.Text.Command(\"New Bus.Bus2\")\n\n# Add a line (default length is 1 km, but we'll set explicitly)\ndss.Text.Command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 phases=3 length=1.0 units=km\")\n# Make the line active\ndss.Lines.Name(\"Line1\")\n\n# Set length (units are km as defined)\ndss.Lines.Length(2.0)  # set to 2 km\n\n# Read back\nlength = dss.Lines.Length()\n\nprint(f\"Lines.Length = {length} km (set to 2.0)\")",
+      "api_check": {
+        "api_validity_rate": 0.4,
+        "valid_functions": [
+          "Lines_Length",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "Name",
+          "New",
+          "Set"
+        ],
+        "all_used": [
+          "Lines_Length",
+          "Name",
+          "New",
+          "Set",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: 'ICircuit' object has no attribute 'New'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: 'ICircuit' object has no attribute 'New'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Lines_Length"
+    }
+  },
+  {
+    "probe_id": "L3_f64ae32a",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a generator\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestGen\")\ndss.Text.Command(\"New Bus.B1\")\ndss.Text.Command(\"New Generator.Gen1 Bus1=B1 Phases=1 kV=0.44 kW=100 PF=0.90\")\ndss.Text.Command(\"Solve\")\n\n# Select the generator (makes it the active generator)\ndss.Generators.First()\n\n# Get and display current kW output\ninitial_kw = dss.Generators.kW()\nprint(f\"Initial generator kW: {initial_kw}\")\n\n# Set a new kW value\ndss.Generators.kW(150)\nnew_kw = dss.Generators.kW()\nprint(f\"Updated generator kW: {new_kw}\")\n\nprint(\"Generators_kW demonstration complete.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a generator\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.TestGen\")\ndss.Text.Command(\"New Bus.B1\")\ndss.Text.Command(\"New Generator.Gen1 Bus1=B1 Phases=1 kV=0.44 kW=100 PF=0.90\")\ndss.Text.Command(\"Solve\")\n\n# Select the generator (makes it the active generator)\ndss.Generators.First()\n\n# Get and display current kW output\ninitial_kw = dss.Generators.kW()\nprint(f\"Initial generator kW: {initial_kw}\")\n\n# Set a new kW value\ndss.Generators.kW(150)\nnew_kw = dss.Generators.kW()\nprint(f\"Updated generator kW: {new_kw}\")\n\nprint(\"Generators_kW demonstration complete.\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "Generators_kW",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "First"
+        ],
+        "all_used": [
+          "First",
+          "Generators_kW",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.B1",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.B1",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Generators_kW"
+    }
+  },
+  {
+    "probe_id": "L3_c3656f3b",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.75,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\ndef main():\n    # Create a simple circuit with a source, a line, and a multi-step capacitor\n    dss.Text.Command(\"Clear\")\n    dss.Text.Command(\"New Circuit.TestCircuit basekv=12.47 pu=1.0\")\n    dss.Text.Command(\"New Line.Line1 bus1=sourcebus bus2=loadbus length=1000 units=ft\")\n    dss.Text.Command(\"New Capacitor.MyCap bus1=loadbus phases=1 kvar=100 kv=12.47 numsteps=4\")\n    \n    # Activate the capacitor\n    dss.Capacitors.Name(\"MyCap\")\n    \n    # Add one step; returns True if a step was available and switched in\n    step_added = dss.Capacitors_AddStep()\n    \n    # Re-solve the circuit to see the effect\n    dss.Solution.Solve()\n    \n    # Print confirmation\n    print(f\"Step added: {step_added}\")\n\nif __name__ == \"__main__\":\n    main()\n```",
+      "extracted_code": "import opendssdirect as dss\n\ndef main():\n    # Create a simple circuit with a source, a line, and a multi-step capacitor\n    dss.Text.Command(\"Clear\")\n    dss.Text.Command(\"New Circuit.TestCircuit basekv=12.47 pu=1.0\")\n    dss.Text.Command(\"New Line.Line1 bus1=sourcebus bus2=loadbus length=1000 units=ft\")\n    dss.Text.Command(\"New Capacitor.MyCap bus1=loadbus phases=1 kvar=100 kv=12.47 numsteps=4\")\n    \n    # Activate the capacitor\n    dss.Capacitors.Name(\"MyCap\")\n    \n    # Add one step; returns True if a step was available and switched in\n    step_added = dss.Capacitors_AddStep()\n    \n    # Re-solve the circuit to see the effect\n    dss.Solution.Solve()\n    \n    # Print confirmation\n    print(f\"Step added: {step_added}\")\n\nif __name__ == \"__main__\":\n    main()",
+      "api_check": {
+        "api_validity_rate": 0.75,
+        "valid_functions": [
+          "Capacitors_AddStep",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "Name"
+        ],
+        "all_used": [
+          "Capacitors_AddStep",
+          "Name",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Capacitors_AddStep'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Capacitors_AddStep'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Capacitors_AddStep"
+    }
+  },
+  {
+    "probe_id": "L3_3e8cbb7c",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "DSSException"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit\ndss.run_command(\"New Circuit.Test\")\ndss.run_command(\"New Bus.TestBus\")\ndss.run_command(\"New Line.TestLine Bus1=TestBus Bus2=TestBus2 Length=1\")\ndss.run_command(\"New Load.TestLoad Bus=TestBus2 kW=100 PF=0.9\")\ndss.run_command(\"New Capacitor.TestCap Bus=TestBus2 kvar=50\")\ndss.run_command(\"New CapControl.TestCtrl Capacitor=TestCap Element=Line.TestLine Terminal=1 Mode=Voltage ONSetting=120 OFFSetting=110\")\n\n# Select the CapControl by name\ndss.CapControls.Name(\"TestCtrl\")\n\n# Set the mode to \"Current\" and verify\ndss.CapControls.Mode(\"Current\")\nmode = dss.CapControls.Mode()\nprint(f\"CapControl mode set to: {mode}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit\ndss.run_command(\"New Circuit.Test\")\ndss.run_command(\"New Bus.TestBus\")\ndss.run_command(\"New Line.TestLine Bus1=TestBus Bus2=TestBus2 Length=1\")\ndss.run_command(\"New Load.TestLoad Bus=TestBus2 kW=100 PF=0.9\")\ndss.run_command(\"New Capacitor.TestCap Bus=TestBus2 kvar=50\")\ndss.run_command(\"New CapControl.TestCtrl Capacitor=TestCap Element=Line.TestLine Terminal=1 Mode=Voltage ONSetting=120 OFFSetting=110\")\n\n# Select the CapControl by name\ndss.CapControls.Name(\"TestCtrl\")\n\n# Set the mode to \"Current\" and verify\ndss.CapControls.Mode(\"Current\")\nmode = dss.CapControls.Mode()\nprint(f\"CapControl mode set to: {mode}\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "CapControls_Mode",
+          "CapControls_Name"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "CapControls_Mode",
+          "CapControls_Name",
+          "run_command"
+        ]
+      },
+      "error_msg": "DSSException: dss._cffi_api_util.DSSException: (#110) Unknown parameter \"Mode\" (value \"Voltage\") for object \"CapControl.testctrl\"",
+      "exec_result": {
+        "success": false,
+        "error": "dss._cffi_api_util.DSSException: (#110) Unknown parameter \"Mode\" (value \"Voltage\") for object \"CapControl.testctrl\"",
+        "output": "",
+        "error_type": "DSSException"
+      },
+      "function_name": "CapControls_Mode"
+    }
+  },
+  {
+    "probe_id": "L3_37d537d2",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a regulator\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.RegDemo\")\ndss.Text.Command(\"New Bus.SourceBus\")\ndss.Text.Command(\"New Bus.LoadBus\")\ndss.Text.Command(\"New Transformer.RegTran Buses=[SourceBus LoadBus] Windings=2 XHL=8 kvs=[13.8 0.48] kvas=[500 500]\")\ndss.Text.Command(\"New RegControl.RegCtl Transformer=RegTran Winding=2 Vreg=126 Band=2 PtRatio=100\")\ndss.Text.Command(\"New Load.MyLoad Bus=LoadBus Phases=3 kW=100\")\ndss.Text.Command(\"Set VoltageBase=[13.8 0.48]\")\ndss.Text.Command(\"Solve\")\n\n# Select and read the current tap position\ndss.RegControls.First()\ntap_initial = dss.RegControls.TapNumber()\nprint(f\"Initial tap position: {tap_initial}\")\n\n# Set a specific tap position\ndss.RegControls.TapNumber(5)\ndss.Text.Command(\"Solve\")\ntap_after_set = dss.RegControls.TapNumber()\nprint(f\"Tap position after setting to 5: {tap_after_set}\")\n\nprint(\"RegControls_TapNumber demo completed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a regulator\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.RegDemo\")\ndss.Text.Command(\"New Bus.SourceBus\")\ndss.Text.Command(\"New Bus.LoadBus\")\ndss.Text.Command(\"New Transformer.RegTran Buses=[SourceBus LoadBus] Windings=2 XHL=8 kvs=[13.8 0.48] kvas=[500 500]\")\ndss.Text.Command(\"New RegControl.RegCtl Transformer=RegTran Winding=2 Vreg=126 Band=2 PtRatio=100\")\ndss.Text.Command(\"New Load.MyLoad Bus=LoadBus Phases=3 kW=100\")\ndss.Text.Command(\"Set VoltageBase=[13.8 0.48]\")\ndss.Text.Command(\"Solve\")\n\n# Select and read the current tap position\ndss.RegControls.First()\ntap_initial = dss.RegControls.TapNumber()\nprint(f\"Initial tap position: {tap_initial}\")\n\n# Set a specific tap position\ndss.RegControls.TapNumber(5)\ndss.Text.Command(\"Solve\")\ntap_after_set = dss.RegControls.TapNumber()\nprint(f\"Tap position after setting to 5: {tap_after_set}\")\n\nprint(\"RegControls_TapNumber demo completed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "RegControls_TapNumber",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "First"
+        ],
+        "all_used": [
+          "First",
+          "RegControls_TapNumber",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.SourceBus",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.SourceBus",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "RegControls_TapNumber"
+    }
+  },
+  {
+    "probe_id": "L3_8320d849",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.0,
+      "execution_success": 1.0,
+      "target_function_used": 0.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Clear any existing circuit and create a simple test feeder\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.test basekv=12.47\")\ndss.run_command(\"new line.L1 bus1=sourcebus bus2=loadbus length=1 units=km\")\ndss.run_command(\"new load.L1 bus=loadbus kw=100 kvar=0\")\n\n# Solve the power flow\ndss.run_command(\"solve\")\n\n# Retrieve the iteration count from the most recent solve\niterations = dss.Solution.Iterations\nprint(f\"Number of iterations for the solution: {iterations}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Clear any existing circuit and create a simple test feeder\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.test basekv=12.47\")\ndss.run_command(\"new line.L1 bus1=sourcebus bus2=loadbus length=1 units=km\")\ndss.run_command(\"new load.L1 bus=loadbus kw=100 kvar=0\")\n\n# Solve the power flow\ndss.run_command(\"solve\")\n\n# Retrieve the iteration count from the most recent solve\niterations = dss.Solution.Iterations\nprint(f\"Number of iterations for the solution: {iterations}\")",
+      "api_check": {
+        "api_validity_rate": 0.0,
+        "valid_functions": [],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Number of iterations for the solution: <bound method ISolution.Iterations of <opendssdirect.Solution.ISolution object at 0xfffd5c15e470>>\n",
+        "error_type": null
+      },
+      "function_name": "Solution_Iterations"
+    }
+  },
+  {
+    "probe_id": "L3_ef38ef14",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit in OpenDSS\ndss.Text.Command(\"New Circuit.test\")\ndss.Text.Command(\"New Line.L1 Bus1=bus1 Bus2=bus2 Phases=1 Length=1\")\n\n# Set the number of solutions per Solve call (e.g., 3)\ndss.Solution.Solution_Number(3)\n\n# Solve the circuit (snapshot mode ignores it, but prepares for time-series)\ndss.Solution.Solve()\n\n# Retrieve and print the current setting\nsoln_num = dss.Solution.Solution_Number()\nprint(f\"Solution_Number set to {soln_num}. Demonstration complete.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit in OpenDSS\ndss.Text.Command(\"New Circuit.test\")\ndss.Text.Command(\"New Line.L1 Bus1=bus1 Bus2=bus2 Phases=1 Length=1\")\n\n# Set the number of solutions per Solve call (e.g., 3)\ndss.Solution.Solution_Number(3)\n\n# Solve the circuit (snapshot mode ignores it, but prepares for time-series)\ndss.Solution.Solve()\n\n# Retrieve and print the current setting\nsoln_num = dss.Solution.Solution_Number()\nprint(f\"Solution_Number set to {soln_num}. Demonstration complete.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Solution_Number",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Solution_Number",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: 'ISolution' object has no attribute 'Solution_Number'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: 'ISolution' object has no attribute 'Solution_Number'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Solution_Number"
+    }
+  },
+  {
+    "probe_id": "L3_570c8adc",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Clear any existing circuit and create a new one\ndss.Text.Command(\"clear\")\ndss.Text.Command(\"New circuit.Test basekv=12.47 pu=1.0 phases=3 frequency=60\")\n\n# Define a minimal feeder: one source bus, one line, one load bus, and a load\ndss.Text.Command(\"New Bus.B1\")\ndss.Text.Command(\"New Line.L1 bus1=B1 bus2=B2 length=1 units=mi\")\ndss.Text.Command(\"New Bus.B2\")\ndss.Text.Command(\"New Load.L1 bus=B2 phases=3 kv=0.48 kw=100 pf=0.9\")\n\n# Solve with default load multiplier first (just to ensure circuit works)\ndss.Solution.Solve()\n\n# Now set the load multiplier to 1.2 (120% of nameplate)\ndss.Solution.LoadMult(1.2)\n\n# Solve the power flow again\ndss.Solution.Solve()\n\n# Print a brief confirmation\nprint(f\"Load multiplier set to {dss.Solution.LoadMult()}: all loads scaled to 120%.\")\nprint(\"Power flow solved successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Clear any existing circuit and create a new one\ndss.Text.Command(\"clear\")\ndss.Text.Command(\"New circuit.Test basekv=12.47 pu=1.0 phases=3 frequency=60\")\n\n# Define a minimal feeder: one source bus, one line, one load bus, and a load\ndss.Text.Command(\"New Bus.B1\")\ndss.Text.Command(\"New Line.L1 bus1=B1 bus2=B2 length=1 units=mi\")\ndss.Text.Command(\"New Bus.B2\")\ndss.Text.Command(\"New Load.L1 bus=B2 phases=3 kv=0.48 kw=100 pf=0.9\")\n\n# Solve with default load multiplier first (just to ensure circuit works)\ndss.Solution.Solve()\n\n# Now set the load multiplier to 1.2 (120% of nameplate)\ndss.Solution.LoadMult(1.2)\n\n# Solve the power flow again\ndss.Solution.Solve()\n\n# Print a brief confirmation\nprint(f\"Load multiplier set to {dss.Solution.LoadMult()}: all loads scaled to 120%.\")\nprint(\"Power flow solved successfully.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Solution_LoadMult",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Solution_LoadMult",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.B1",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.B1",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Solution_LoadMult"
+    }
+  },
+  {
+    "probe_id": "L3_f2bd2eb4",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal DSS circuit\ndss.Text.Command(\"New Circuit.TestCircuit\")\ndss.Text.Command(\"New Bus.Bus1\")\ndss.Text.Command(\"New Bus.Bus2\")\ndss.Text.Command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 Length=1\")\ndss.Text.Command(\"New Load.Load1 Bus1=Bus2 Phases=1 kV=0.416 kW=10\")\n\n# Set control mode to static (default)\ndss.Solution.ControlMode = \"static\"\nprint(\"Control mode set to static:\", dss.Solution.ControlMode)\n\n# Change to event mode (simulates time stepping)\ndss.Solution.ControlMode = \"event\"\nprint(\"Control mode changed to event:\", dss.Solution.ControlMode)\n\n# Optional solve (not required but confirms mode change)\ndss.Solution.Solve()\nprint(\"Solved with control mode:\", dss.Solution.ControlMode)\n\nprint(\"Demonstration of Solution_ControlMode complete.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal DSS circuit\ndss.Text.Command(\"New Circuit.TestCircuit\")\ndss.Text.Command(\"New Bus.Bus1\")\ndss.Text.Command(\"New Bus.Bus2\")\ndss.Text.Command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 Length=1\")\ndss.Text.Command(\"New Load.Load1 Bus1=Bus2 Phases=1 kV=0.416 kW=10\")\n\n# Set control mode to static (default)\ndss.Solution.ControlMode = \"static\"\nprint(\"Control mode set to static:\", dss.Solution.ControlMode)\n\n# Change to event mode (simulates time stepping)\ndss.Solution.ControlMode = \"event\"\nprint(\"Control mode changed to event:\", dss.Solution.ControlMode)\n\n# Optional solve (not required but confirms mode change)\ndss.Solution.Solve()\nprint(\"Solved with control mode:\", dss.Solution.ControlMode)\n\nprint(\"Demonstration of Solution_ControlMode complete.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.Bus1",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.Bus1",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Solution_ControlMode"
+    }
+  },
+  {
+    "probe_id": "L3_1ceba710",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Test\")\ndss.run_command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 Length=1\")\ndss.run_command(\"New Load.L1 Bus1=Bus2 kW=100\")\n\n# Set the solution mode and solve\ndss.run_command(\"Set Mode=Snap\")\ndss.run_command(\"Solve\")\n\n# Demonstrate Solution_Convergence\nprint(\"Current convergence tolerance:\", dss.Solution_Convergence())\ndss.Solution_Convergence(1e-3)\nprint(\"Updated convergence tolerance:\", dss.Solution_Convergence())\n\nprint(\"Script executed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Test\")\ndss.run_command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 Length=1\")\ndss.run_command(\"New Load.L1 Bus1=Bus2 kW=100\")\n\n# Set the solution mode and solve\ndss.run_command(\"Set Mode=Snap\")\ndss.run_command(\"Solve\")\n\n# Demonstrate Solution_Convergence\nprint(\"Current convergence tolerance:\", dss.Solution_Convergence())\ndss.Solution_Convergence(1e-3)\nprint(\"Updated convergence tolerance:\", dss.Solution_Convergence())\n\nprint(\"Script executed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Solution_Convergence"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Solution_Convergence",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Solution_Convergence'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Solution_Convergence'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Solution_Convergence"
+    }
+  },
+  {
+    "probe_id": "L3_d314f7a4",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"New Circuit.TestCircuit\")\n\n# Set the solution frequency to 60 Hz\ndss.Solution_Frequency(60.0)\n\n# Retrieve and display the frequency\nfreq = dss.Solution_Frequency()\nprint(f\"System frequency set to {freq} Hz.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"New Circuit.TestCircuit\")\n\n# Set the solution frequency to 60 Hz\ndss.Solution_Frequency(60.0)\n\n# Retrieve and display the frequency\nfreq = dss.Solution_Frequency()\nprint(f\"System frequency set to {freq} Hz.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Solution_Frequency"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Solution_Frequency",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Solution_Frequency'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Solution_Frequency'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Solution_Frequency"
+    }
+  },
+  {
+    "probe_id": "L3_6528c951",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit to have an active DSS object\ndss.run_command(\"new circuit.TestCircuit\")\n\n# Set solution mode to Daily (time-series mode) to enable step size\ndss.run_command(\"set mode=daily\")\n\n# Get initial step size (default is 3600 seconds)\ninitial = dss.Solution.StepSize()\nprint(f\"Default step size: {initial} s\")\n\n# Set step size to 60 seconds\ndss.Solution.StepSize(60)\n\n# Verify the update\nprint(f\"Updated step size: {dss.Solution.StepSize()} s\")\n\nprint(\"Test completed.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit to have an active DSS object\ndss.run_command(\"new circuit.TestCircuit\")\n\n# Set solution mode to Daily (time-series mode) to enable step size\ndss.run_command(\"set mode=daily\")\n\n# Get initial step size (default is 3600 seconds)\ninitial = dss.Solution.StepSize()\nprint(f\"Default step size: {initial} s\")\n\n# Set step size to 60 seconds\ndss.Solution.StepSize(60)\n\n# Verify the update\nprint(f\"Updated step size: {dss.Solution.StepSize()} s\")\n\nprint(\"Test completed.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Solution_StepSize"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Solution_StepSize",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Default step size: 3600.0 s\nUpdated step size: 60.0 s\nTest completed.\n",
+        "error_type": null
+      },
+      "function_name": "Solution_StepSize"
+    }
+  },
+  {
+    "probe_id": "L3_253f09b7",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.125,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple distribution circuit\ndss.new_circuit(\"minimal_circuit\")\ndss.bus_new(\"sourcebus\")\ndss.bus_new(\"loadbus\")\n# Add line between sourcebus and loadbus (enable control)\ndss.line_new(\"line_1\", \"sourcebus\", \"loadbus\", \"1\", \"0.05\", \"0.02\", length_km=1.0)\n\n# Add a load to create power flow\ndss.load_new(\"load_1\", \"loadbus\", kw=1000, pf=0.95, kV=12.47)\n\n# Add a regulator to cause control iterations\ndss.regcontrol_new(\"reg1\", \"line_1\", \"sourcebus\", n_tap_choices=32, delay=0, vreg=122, band=2)\n# Enable regulator control\ndss.regcontrol_set_(\"enabled\", True)\n\n# Solve the circuit\ndss.solution_solve()\n\n# Get total iterations\ntotal_iter = dss.Solution_TotalIterations()\n\nprint(f\"Total iterations across all control actions: {total_iter}\")\nprint(\"Test completed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple distribution circuit\ndss.new_circuit(\"minimal_circuit\")\ndss.bus_new(\"sourcebus\")\ndss.bus_new(\"loadbus\")\n# Add line between sourcebus and loadbus (enable control)\ndss.line_new(\"line_1\", \"sourcebus\", \"loadbus\", \"1\", \"0.05\", \"0.02\", length_km=1.0)\n\n# Add a load to create power flow\ndss.load_new(\"load_1\", \"loadbus\", kw=1000, pf=0.95, kV=12.47)\n\n# Add a regulator to cause control iterations\ndss.regcontrol_new(\"reg1\", \"line_1\", \"sourcebus\", n_tap_choices=32, delay=0, vreg=122, band=2)\n# Enable regulator control\ndss.regcontrol_set_(\"enabled\", True)\n\n# Solve the circuit\ndss.solution_solve()\n\n# Get total iterations\ntotal_iter = dss.Solution_TotalIterations()\n\nprint(f\"Total iterations across all control actions: {total_iter}\")\nprint(\"Test completed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.125,
+        "valid_functions": [
+          "Solution_TotalIterations"
+        ],
+        "invalid_functions": [
+          "bus_new",
+          "line_new",
+          "load_new",
+          "new_circuit",
+          "regcontrol_new",
+          "regcontrol_set_",
+          "solution_solve"
+        ],
+        "all_used": [
+          "Solution_TotalIterations",
+          "bus_new",
+          "line_new",
+          "load_new",
+          "new_circuit",
+          "regcontrol_new",
+          "regcontrol_set_",
+          "solution_solve"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'new_circuit'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'new_circuit'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Solution_TotalIterations"
+    }
+  },
+  {
+    "probe_id": "L3_1eb035a0",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "DSSException"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Get the current (default) value\ndefault = dss.Solution.MaxControlIterations()\nprint(f\"Default MaxControlIterations: {default}\")\n\n# Set a new value\ndss.Solution.MaxControlIterations(20)\n\n# Verify the change\nnew_val = dss.Solution.MaxControlIterations()\nprint(f\"New value: {new_val}\")\n\nprint(\"Done.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Get the current (default) value\ndefault = dss.Solution.MaxControlIterations()\nprint(f\"Default MaxControlIterations: {default}\")\n\n# Set a new value\ndss.Solution.MaxControlIterations(20)\n\n# Verify the change\nnew_val = dss.Solution.MaxControlIterations()\nprint(f\"New value: {new_val}\")\n\nprint(\"Done.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Solution_MaxControlIterations"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Solution_MaxControlIterations"
+        ]
+      },
+      "error_msg": "DSSException: dss._cffi_api_util.DSSException: (#8888) There is no active circuit! Create a circuit and retry.",
+      "exec_result": {
+        "success": false,
+        "error": "dss._cffi_api_util.DSSException: (#8888) There is no active circuit! Create a circuit and retry.",
+        "output": "",
+        "error_type": "DSSException"
+      },
+      "function_name": "Solution_MaxControlIterations"
+    }
+  },
+  {
+    "probe_id": "L3_b5ed6b05",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a trivial circuit to work with\ndss.run_command(\"new circuit.test\")\n\n# Set load model to Admittance (2)\ndss.Solution_LoadModel(2)\n\n# Get and print the current model\nmodel = dss.Solution_LoadModel()\nprint(\"Current load model (1=PowerFlow, 2=Admittance):\", model)\nprint(\"Successfully demonstrated Solution_LoadModel.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a trivial circuit to work with\ndss.run_command(\"new circuit.test\")\n\n# Set load model to Admittance (2)\ndss.Solution_LoadModel(2)\n\n# Get and print the current model\nmodel = dss.Solution_LoadModel()\nprint(\"Current load model (1=PowerFlow, 2=Admittance):\", model)\nprint(\"Successfully demonstrated Solution_LoadModel.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Solution_LoadModel"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Solution_LoadModel",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Solution_LoadModel'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Solution_LoadModel'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Solution_LoadModel"
+    }
+  },
+  {
+    "probe_id": "L3_06c72ff6",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Set up a minimal circuit\ndss.text(\"clear\")\ndss.text(\"new circuit.example basekv=12.47\")\ndss.text(\"new bus.source bus=sourcebus\")\ndss.text(\"new bus.load bus=loadbus\")\ndss.text(\"new line.line1 bus1=sourcebus bus2=loadbus length=1 units=mi linecode=336\")\ndss.text(\"new load.load1 bus=loadbus kw=100 pf=0.9\")\ndss.text(\"solve\")\n\n# Demonstrate Circuit_AllNodeNames\nnode_names = dss.Circuit.AllNodeNames()\nprint(\"All node names (busname.node):\", node_names)\nprint(\"Demonstration of Circuit_AllNodeNames complete.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Set up a minimal circuit\ndss.text(\"clear\")\ndss.text(\"new circuit.example basekv=12.47\")\ndss.text(\"new bus.source bus=sourcebus\")\ndss.text(\"new bus.load bus=loadbus\")\ndss.text(\"new line.line1 bus1=sourcebus bus2=loadbus length=1 units=mi linecode=336\")\ndss.text(\"new load.load1 bus=loadbus kw=100 pf=0.9\")\ndss.text(\"solve\")\n\n# Demonstrate Circuit_AllNodeNames\nnode_names = dss.Circuit.AllNodeNames()\nprint(\"All node names (busname.node):\", node_names)\nprint(\"Demonstration of Circuit_AllNodeNames complete.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Circuit_AllNodeNames"
+        ],
+        "invalid_functions": [
+          "text"
+        ],
+        "all_used": [
+          "Circuit_AllNodeNames",
+          "text"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Circuit_AllNodeNames"
+    }
+  },
+  {
+    "probe_id": "L3_a0c96979",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command('New Circuit.Test')\ndss.run_command('New Bus.B1')\ndss.run_command('New Bus.B2')\ndss.run_command('New Line.L1 Bus1=B1 Bus2=B2 Length=1 Units=km')\ndss.run_command('New Load.L1 Bus=B2 Phases=1 kW=10 kvar=5')\n\n# Add source\ndss.run_command('New Vsource.Source Bus=B1 BasekV=12.47 Pu=1.0 Angle=0')\n\n# Set solution mode and solve\ndss.Solution.Solve()\n\n# Get line losses\nlosses = dss.Circuit.LineLosses()\nprint(f\"Line losses: {losses[0]:.4f} kW, {losses[1]:.4f} kvar\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command('New Circuit.Test')\ndss.run_command('New Bus.B1')\ndss.run_command('New Bus.B2')\ndss.run_command('New Line.L1 Bus1=B1 Bus2=B2 Length=1 Units=km')\ndss.run_command('New Load.L1 Bus=B2 Phases=1 kW=10 kvar=5')\n\n# Add source\ndss.run_command('New Vsource.Source Bus=B1 BasekV=12.47 Pu=1.0 Angle=0')\n\n# Set solution mode and solve\ndss.Solution.Solve()\n\n# Get line losses\nlosses = dss.Circuit.LineLosses()\nprint(f\"Line losses: {losses[0]:.4f} kW, {losses[1]:.4f} kvar\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "Circuit_LineLosses",
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Circuit_LineLosses",
+          "Solution_Solve",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Line losses: 0.0000 kW, 0.0000 kvar\n",
+        "error_type": null
+      },
+      "function_name": "Circuit_LineLosses"
+    }
+  },
+  {
+    "probe_id": "L3_28161356",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create minimal circuit with one line\ndss.Text.Command('clear')\ndss.Text.Command('new circuit.MyCircuit basekv=12.47 pu=1.0')\ndss.Text.Command('new bus.SourceBus')\ndss.Text.Command('new bus.LoadBus')\ndss.Text.Command('new line.Line1 bus1=SourceBus bus2=LoadBus phases=3 length=1 units=mi r1=0.4 x1=0.3')\ndss.Text.Command('new load.Load1 bus=LoadBus phases=3 kw=1000 pf=0.92')\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Activate the line element\ndss.Circuit.SetActiveElement('Line.Line1')\n\n# Get losses as [watts, vars]\nlosses = dss.CktElement.Losses()\nprint(f\"Line losses: {losses[0]:.2f} W, {losses[1]:.2f} var\")\n\n# Brief confirmation\nprint(\"Successfully demonstrated CktElement_Losses.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create minimal circuit with one line\ndss.Text.Command('clear')\ndss.Text.Command('new circuit.MyCircuit basekv=12.47 pu=1.0')\ndss.Text.Command('new bus.SourceBus')\ndss.Text.Command('new bus.LoadBus')\ndss.Text.Command('new line.Line1 bus1=SourceBus bus2=LoadBus phases=3 length=1 units=mi r1=0.4 x1=0.3')\ndss.Text.Command('new load.Load1 bus=LoadBus phases=3 kw=1000 pf=0.92')\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Activate the line element\ndss.Circuit.SetActiveElement('Line.Line1')\n\n# Get losses as [watts, vars]\nlosses = dss.CktElement.Losses()\nprint(f\"Line losses: {losses[0]:.2f} W, {losses[1]:.2f} var\")\n\n# Brief confirmation\nprint(\"Successfully demonstrated CktElement_Losses.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Circuit_SetActiveElement",
+          "CktElement_Losses",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Circuit_SetActiveElement",
+          "CktElement_Losses",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: new bus.SourceBus",
+      "exec_result": {
+        "success": false,
+        "error": "new bus.SourceBus",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "CktElement_Losses"
+    }
+  },
+  {
+    "probe_id": "L3_b772658e",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.375,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit\ndss.NewCircuit('ExampleCircuit')\ndss.Text.Command('New Bus.B1 Bus1')\ndss.Text.Command('New Bus.B2 Bus2')\ndss.Text.Command('New Line.Code1 nphases=3 R=0.058 X=0.380')\ndss.Text.Command('New Line.Line1 Bus1 Bus2 1')\ndss.Text.Command('New Vsource.Source Bus1 1.0 0 1.0')\ndss.Text.Command('New Load.Load1 Bus2 100 50')\n\n# Add a monitor on the line (mode=0 records voltages)\ndss.Monitors.New('LineMonitor', 'element=Line.Line1, terminal=1, mode=0')\n\n# Solve and capture data\ndss.Solution.Solve()\ndss.Monitors.SampleAll()\ndss.Monitors.SaveAll()\n\n# Set active monitor and retrieve channel 1 (voltage magnitude for phase 1)\ndss.Monitors.Name('LineMonitor')\nchannel_data = dss.Monitors_Channel(1)  # direct function call\n\nprint(\"Captured voltage magnitude samples (first 10):\", channel_data[:10] if channel_data else \"No data\")\nprint(\"Monitors_Channel example executed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit\ndss.NewCircuit('ExampleCircuit')\ndss.Text.Command('New Bus.B1 Bus1')\ndss.Text.Command('New Bus.B2 Bus2')\ndss.Text.Command('New Line.Code1 nphases=3 R=0.058 X=0.380')\ndss.Text.Command('New Line.Line1 Bus1 Bus2 1')\ndss.Text.Command('New Vsource.Source Bus1 1.0 0 1.0')\ndss.Text.Command('New Load.Load1 Bus2 100 50')\n\n# Add a monitor on the line (mode=0 records voltages)\ndss.Monitors.New('LineMonitor', 'element=Line.Line1, terminal=1, mode=0')\n\n# Solve and capture data\ndss.Solution.Solve()\ndss.Monitors.SampleAll()\ndss.Monitors.SaveAll()\n\n# Set active monitor and retrieve channel 1 (voltage magnitude for phase 1)\ndss.Monitors.Name('LineMonitor')\nchannel_data = dss.Monitors_Channel(1)  # direct function call\n\nprint(\"Captured voltage magnitude samples (first 10):\", channel_data[:10] if channel_data else \"No data\")\nprint(\"Monitors_Channel example executed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.375,
+        "valid_functions": [
+          "Monitors_Channel",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "Name",
+          "New",
+          "NewCircuit",
+          "SampleAll",
+          "SaveAll"
+        ],
+        "all_used": [
+          "Monitors_Channel",
+          "Name",
+          "New",
+          "NewCircuit",
+          "SampleAll",
+          "SaveAll",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Monitors_Channel"
+    }
+  },
+  {
+    "probe_id": "L3_9d6b5e99",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit for demonstration\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.TestMeter basekv=12.47 phases=3\")\n\n# Add a line and a load with an energy meter\ndss.run_command(\"New Line.L1 Bus1=TestMeter Bus2=LoadBus Length=1 Units=mi\")\ndss.run_command(\"New Load.L1 Bus=LoadBus Phases=3 kW=100 pf=0.9\")\ndss.run_command(\"New EnergyMeter.M1 Element=Line.L1 Terminal=1\")\n\n# Solve the circuit\ndss.run_command(\"Solve\")\n\n# Sample all meters to update registers\ndss.run_command(\"Sample\")\n\n# Now get the register values from the active EnergyMeter (M1)\ndss.Meters.SetActive(\"M1\")\nregister_values = dss.Meters.RegisterValues()  # Returns list of floats\n\nprint(f\"Number of registers: {len(register_values)}\")\nprint(\"First few register values (kWh, peak kW, etc.):\", register_values[:5])\nprint(\"Demo of Meters_RegisterValues completed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit for demonstration\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.TestMeter basekv=12.47 phases=3\")\n\n# Add a line and a load with an energy meter\ndss.run_command(\"New Line.L1 Bus1=TestMeter Bus2=LoadBus Length=1 Units=mi\")\ndss.run_command(\"New Load.L1 Bus=LoadBus Phases=3 kW=100 pf=0.9\")\ndss.run_command(\"New EnergyMeter.M1 Element=Line.L1 Terminal=1\")\n\n# Solve the circuit\ndss.run_command(\"Solve\")\n\n# Sample all meters to update registers\ndss.run_command(\"Sample\")\n\n# Now get the register values from the active EnergyMeter (M1)\ndss.Meters.SetActive(\"M1\")\nregister_values = dss.Meters.RegisterValues()  # Returns list of floats\n\nprint(f\"Number of registers: {len(register_values)}\")\nprint(\"First few register values (kWh, peak kW, etc.):\", register_values[:5])\nprint(\"Demo of Meters_RegisterValues completed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Meters_RegisterValues"
+        ],
+        "invalid_functions": [
+          "SetActive",
+          "run_command"
+        ],
+        "all_used": [
+          "Meters_RegisterValues",
+          "SetActive",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: 'IMeters' object has no attribute 'SetActive'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: 'IMeters' object has no attribute 'SetActive'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Meters_RegisterValues"
+    }
+  },
+  {
+    "probe_id": "L3_35f1b7d9",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with one load\ndss.run_command(\"Clear\")  # Clear any existing circuit\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New LineCode.1 nphases=3 R=0.1 X=0.2\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 LineCode=1 length=1000 units=ft\")\ndss.run_command(\"New Transformer.T1 Phases=3 Windings=2 wdg=1 bus=Bus1 kv=12.47 kva=5000 %r=0.5 %x=4\")\ndss.run_command(\"winding 2 bus=Bus2 kv=0.48 kva=5000\")\ndss.run_command(\"New Load.Load1 Bus1=Bus2 Phases=1 kV=0.277 kW=10 PF=0.95\")\n\n# Activate the load object\ndss.Loads.First()\n\n# Get current kvar and print\ninitial_kvar = dss.Loads.kvar()\nprint(f\"Initial kvar: {initial_kvar:.4f}\")\n\n# Set a new kvar value (overrides PF)\ndss.Loads.kvar(5.0)\n\n# Verify by reading back\nnew_kvar = dss.Loads.kvar()\nprint(f\"New kvar after setting to 5.0: {new_kvar:.4f}\")\n\n# Final confirmation\nprint(\"Successfully demonstrated Loads_kvar accessor.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with one load\ndss.run_command(\"Clear\")  # Clear any existing circuit\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New LineCode.1 nphases=3 R=0.1 X=0.2\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 LineCode=1 length=1000 units=ft\")\ndss.run_command(\"New Transformer.T1 Phases=3 Windings=2 wdg=1 bus=Bus1 kv=12.47 kva=5000 %r=0.5 %x=4\")\ndss.run_command(\"winding 2 bus=Bus2 kv=0.48 kva=5000\")\ndss.run_command(\"New Load.Load1 Bus1=Bus2 Phases=1 kV=0.277 kW=10 PF=0.95\")\n\n# Activate the load object\ndss.Loads.First()\n\n# Get current kvar and print\ninitial_kvar = dss.Loads.kvar()\nprint(f\"Initial kvar: {initial_kvar:.4f}\")\n\n# Set a new kvar value (overrides PF)\ndss.Loads.kvar(5.0)\n\n# Verify by reading back\nnew_kvar = dss.Loads.kvar()\nprint(f\"New kvar after setting to 5.0: {new_kvar:.4f}\")\n\n# Final confirmation\nprint(\"Successfully demonstrated Loads_kvar accessor.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Loads_kvar"
+        ],
+        "invalid_functions": [
+          "First",
+          "run_command"
+        ],
+        "all_used": [
+          "First",
+          "Loads_kvar",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Initial kvar: 3.2868\nNew kvar after setting to 5.0: 5.0000\nSuccessfully demonstrated Loads_kvar accessor.\n",
+        "error_type": null
+      },
+      "function_name": "Loads_kvar"
+    }
+  },
+  {
+    "probe_id": "L3_cadbda57",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\ndss.Text.Command(\"New Circuit.Test\")\ndss.Text.Command(\"New Load.Load1 phases=1 bus1=1 kv=0.48 kW=100 pf=0.9\")\ndss.Loads.First()  # select the load\nprint(\"Initial PF:\", dss.Loads.PF)\ndss.Loads.PF = 0.95\nprint(\"After setting PF:\", dss.Loads.PF)\nprint(\"Success: Loads_PF demonstration completed.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\ndss.Text.Command(\"New Circuit.Test\")\ndss.Text.Command(\"New Load.Load1 phases=1 bus1=1 kv=0.48 kW=100 pf=0.9\")\ndss.Loads.First()  # select the load\nprint(\"Initial PF:\", dss.Loads.PF)\ndss.Loads.PF = 0.95\nprint(\"After setting PF:\", dss.Loads.PF)\nprint(\"Success: Loads_PF demonstration completed.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "First"
+        ],
+        "all_used": [
+          "First",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: See also https://dss-extensions.org/python_apis.html",
+      "exec_result": {
+        "success": false,
+        "error": "See also https://dss-extensions.org/python_apis.html",
+        "output": "Initial PF: <bound method ILoads.PF of <opendssdirect.Loads.ILoads object at 0xfffd6c3452b0>>\n",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Loads_PF"
+    }
+  },
+  {
+    "probe_id": "L3_b2bb6eff",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal DSS circuit with two loads\ndss.utils.run_command(\"New Circuit.Test\")\ndss.utils.run_command(\"New Load.Load1 phases=1 bus1=1 kV=0.208 kW=1\")\ndss.utils.run_command(\"New Load.Load2 phases=1 bus1=1 kV=0.208 kW=2\")\n\n# Demonstrate Loads_Name (property: get/set)\n# Initially active load (by default Load1 as first created)\ninitial_name = dss.Loads.Name\nprint(f\"Active load name before: {initial_name}\")\n\n# Set active load to Load2\ndss.Loads.Name = \"Load2\"\nprint(f\"Active load name after setting to Load2: {dss.Loads.Name}\")\n\n# Confirmation\nprint(\"Successfully demonstrated Loads_Name property.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal DSS circuit with two loads\ndss.utils.run_command(\"New Circuit.Test\")\ndss.utils.run_command(\"New Load.Load1 phases=1 bus1=1 kV=0.208 kW=1\")\ndss.utils.run_command(\"New Load.Load2 phases=1 bus1=1 kV=0.208 kW=2\")\n\n# Demonstrate Loads_Name (property: get/set)\n# Initially active load (by default Load1 as first created)\ninitial_name = dss.Loads.Name\nprint(f\"Active load name before: {initial_name}\")\n\n# Set active load to Load2\ndss.Loads.Name = \"Load2\"\nprint(f\"Active load name after setting to Load2: {dss.Loads.Name}\")\n\n# Confirmation\nprint(\"Successfully demonstrated Loads_Name property.\")",
+      "api_check": {
+        "api_validity_rate": 0.0,
+        "valid_functions": [],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "run_command"
+        ]
+      },
+      "error_msg": "RuntimeError: See also https://dss-extensions.org/python_apis.html",
+      "exec_result": {
+        "success": false,
+        "error": "See also https://dss-extensions.org/python_apis.html",
+        "output": "Active load name before: <bound method Iterable.Name of <opendssdirect.Loads.ILoads object at 0xfffd9d8552b0>>\n",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Loads_Name"
+    }
+  },
+  {
+    "probe_id": "L3_f29224e9",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple two-bus circuit with one line\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 Length=1 Units=m\")\n\n# Select the line and set/get its positive-sequence series resistance (R1)\ndss.Lines.Name(\"Line1\")\ndss.Lines_R1(0.01)               # set R1 to 0.01 ohm/m\nr1 = dss.Lines_R1()              # get R1 value\nprint(f\"Positive-sequence resistance R1 = {r1} ohm/m\")\nprint(\"Successfully used Lines_R1.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple two-bus circuit with one line\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 Length=1 Units=m\")\n\n# Select the line and set/get its positive-sequence series resistance (R1)\ndss.Lines.Name(\"Line1\")\ndss.Lines_R1(0.01)               # set R1 to 0.01 ohm/m\nr1 = dss.Lines_R1()              # get R1 value\nprint(f\"Positive-sequence resistance R1 = {r1} ohm/m\")\nprint(\"Successfully used Lines_R1.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Lines_R1"
+        ],
+        "invalid_functions": [
+          "Name",
+          "run_command"
+        ],
+        "all_used": [
+          "Lines_R1",
+          "Name",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Lines_R1'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Lines_R1'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Lines_R1"
+    }
+  },
+  {
+    "probe_id": "L3_03097ace",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.TestCircuit')\ndss.Text.Command('New Bus.Bus1')\ndss.Text.Command('New Bus.Bus2')\n# Add a line with default parameters\ndss.Text.Command('New Line.L1 Bus1=Bus1 Bus2=Bus2')\n\n# Select the line\ndss.Lines.Name = 'L1'\n\n# Read the current from-bus\noriginal_bus = dss.Lines.Bus1\nprint(f\"Original from-bus: {original_bus}\")\n\n# Set a new from-bus (the bus will be created implicitly if new)\ndss.Lines.Bus1 = 'NewBus'\n\n# Confirm the change\nnew_bus = dss.Lines.Bus1\nprint(f\"Changed from-bus to: {new_bus}\")\n\nprint(\"Line bus1 property successfully demonstrated.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.TestCircuit')\ndss.Text.Command('New Bus.Bus1')\ndss.Text.Command('New Bus.Bus2')\n# Add a line with default parameters\ndss.Text.Command('New Line.L1 Bus1=Bus1 Bus2=Bus2')\n\n# Select the line\ndss.Lines.Name = 'L1'\n\n# Read the current from-bus\noriginal_bus = dss.Lines.Bus1\nprint(f\"Original from-bus: {original_bus}\")\n\n# Set a new from-bus (the bus will be created implicitly if new)\ndss.Lines.Bus1 = 'NewBus'\n\n# Confirm the change\nnew_bus = dss.Lines.Bus1\nprint(f\"Changed from-bus to: {new_bus}\")\n\nprint(\"Line bus1 property successfully demonstrated.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.Bus1",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.Bus1",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Lines_Bus1"
+    }
+  },
+  {
+    "probe_id": "L3_a0b636fc",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.8,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create simple circuit with a transformer\ndss.Text.Command(\"New Circuit.TestCircuit\")\ndss.Text.Command(\"New Transformer.T1 Phases=1 Windings=2 Xhl=0.01\")\ndss.Text.Command(\"~ Wdg=1 Bus=SourceBus kV=0.48 kVA=100\")\ndss.Text.Command(\"~ Wdg=2 Bus=LoadBus kV=0.48 kVA=100\")\ndss.Text.Command(\"New Load.L1 Bus=LoadBus kW=50 PF=0.9\")\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Select the transformer by name\ndss.Transformers.Name(\"T1\")\n\n# Set active winding to 1 (default)\ndss.Transformers.Wdg(1)\n\n# Read current tap\ntap_before = dss.Transformers_Tap()\nprint(f\"Tap before adjustment: {tap_before}\")\n\n# Set tap to 1.05\ndss.Transformers_Tap(1.05)\n\n# Read again\ntap_after = dss.Transformers_Tap()\nprint(f\"Tap after adjustment: {tap_after}\")\n\n# Confirm\nprint(\"Demonstration of Transformers_Tap completed.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create simple circuit with a transformer\ndss.Text.Command(\"New Circuit.TestCircuit\")\ndss.Text.Command(\"New Transformer.T1 Phases=1 Windings=2 Xhl=0.01\")\ndss.Text.Command(\"~ Wdg=1 Bus=SourceBus kV=0.48 kVA=100\")\ndss.Text.Command(\"~ Wdg=2 Bus=LoadBus kV=0.48 kVA=100\")\ndss.Text.Command(\"New Load.L1 Bus=LoadBus kW=50 PF=0.9\")\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Select the transformer by name\ndss.Transformers.Name(\"T1\")\n\n# Set active winding to 1 (default)\ndss.Transformers.Wdg(1)\n\n# Read current tap\ntap_before = dss.Transformers_Tap()\nprint(f\"Tap before adjustment: {tap_before}\")\n\n# Set tap to 1.05\ndss.Transformers_Tap(1.05)\n\n# Read again\ntap_after = dss.Transformers_Tap()\nprint(f\"Tap after adjustment: {tap_after}\")\n\n# Confirm\nprint(\"Demonstration of Transformers_Tap completed.\")",
+      "api_check": {
+        "api_validity_rate": 0.8,
+        "valid_functions": [
+          "Solution_Solve",
+          "Text_Command",
+          "Transformers_Tap",
+          "Transformers_Wdg"
+        ],
+        "invalid_functions": [
+          "Name"
+        ],
+        "all_used": [
+          "Name",
+          "Solution_Solve",
+          "Text_Command",
+          "Transformers_Tap",
+          "Transformers_Wdg"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Transformers_Tap'. Did you mean: 'Transformers'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Transformers_Tap'. Did you mean: 'Transformers'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Transformers_Tap"
+    }
+  },
+  {
+    "probe_id": "L3_54ad038d",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Initialize a simple circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Test\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Transformer.T1 buses=[Bus1, Bus2] kvs=[12.47, 0.48] kvas=[1000, 1000]\")\ndss.run_command(\"Set DefaultBaseFreq=60\")\ndss.run_command(\"Set VoltageBases=[12.47, 0.48]\")\ndss.run_command(\"CalcVoltageBases\")\n\n# Select the transformer and winding\ndss.Transformers.Name(\"T1\")\ndss.Transformers.Wdg(1)          # Active winding = 1\n\n# Get current kVA\noriginal_kva = dss.Transformers.kVA()\nprint(f\"Original kVA: {original_kva}\")\n\n# Set a new kVA value\ndss.Transformers.kVA(2000)\nnew_kva = dss.Transformers.kVA()\nprint(f\"New kVA: {new_kva}\")\n\nprint(\"Transformers_kVA demo completed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Initialize a simple circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Test\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Transformer.T1 buses=[Bus1, Bus2] kvs=[12.47, 0.48] kvas=[1000, 1000]\")\ndss.run_command(\"Set DefaultBaseFreq=60\")\ndss.run_command(\"Set VoltageBases=[12.47, 0.48]\")\ndss.run_command(\"CalcVoltageBases\")\n\n# Select the transformer and winding\ndss.Transformers.Name(\"T1\")\ndss.Transformers.Wdg(1)          # Active winding = 1\n\n# Get current kVA\noriginal_kva = dss.Transformers.kVA()\nprint(f\"Original kVA: {original_kva}\")\n\n# Set a new kVA value\ndss.Transformers.kVA(2000)\nnew_kva = dss.Transformers.kVA()\nprint(f\"New kVA: {new_kva}\")\n\nprint(\"Transformers_kVA demo completed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Transformers_Wdg",
+          "Transformers_kVA"
+        ],
+        "invalid_functions": [
+          "Name",
+          "run_command"
+        ],
+        "all_used": [
+          "Name",
+          "Transformers_Wdg",
+          "Transformers_kVA",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Original kVA: 1000.0\nNew kVA: 2000.0\nTransformers_kVA demo completed successfully.\n",
+        "error_type": null
+      },
+      "function_name": "Transformers_kVA"
+    }
+  },
+  {
+    "probe_id": "L3_3e433925",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# ------------------------------------------------------------\n# Create a simple circuit with a two-winding transformer\n# ------------------------------------------------------------\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Example\")\ndss.run_command(\"New Transformer.T1 phases=1 windings=2 buses=[bus1, bus2] kvs=[12.47, 0.48] kv=12.47 kvas=[500, 500]\")\ndss.run_command(\"Set MaxIterations=10\")\n\n# ------------------------------------------------------------\n# Demonstrate Transformers_NumWindings\n# ------------------------------------------------------------\n# Activate the first transformer (T1)\ndss.Transformers_First()\n\n# Get current number of windings (should be 2)\nnw_orig = dss.Transformers_NumWindings()\nprint(f\"Original number of windings: {nw_orig}\")\n\n# Set to 3 to demonstrate the setter (might require extra winding data, but this is just a demo)\ndss.Transformers_NumWindings(3)\nnw_new = dss.Transformers_NumWindings()\nprint(f\"New number of windings (after set to 3): {nw_new}\")\n\nprint(\"\\nSuccess: Transformers_NumWindings get/set demonstration complete.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# ------------------------------------------------------------\n# Create a simple circuit with a two-winding transformer\n# ------------------------------------------------------------\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.Example\")\ndss.run_command(\"New Transformer.T1 phases=1 windings=2 buses=[bus1, bus2] kvs=[12.47, 0.48] kv=12.47 kvas=[500, 500]\")\ndss.run_command(\"Set MaxIterations=10\")\n\n# ------------------------------------------------------------\n# Demonstrate Transformers_NumWindings\n# ------------------------------------------------------------\n# Activate the first transformer (T1)\ndss.Transformers_First()\n\n# Get current number of windings (should be 2)\nnw_orig = dss.Transformers_NumWindings()\nprint(f\"Original number of windings: {nw_orig}\")\n\n# Set to 3 to demonstrate the setter (might require extra winding data, but this is just a demo)\ndss.Transformers_NumWindings(3)\nnw_new = dss.Transformers_NumWindings()\nprint(f\"New number of windings (after set to 3): {nw_new}\")\n\nprint(\"\\nSuccess: Transformers_NumWindings get/set demonstration complete.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Transformers_NumWindings"
+        ],
+        "invalid_functions": [
+          "Transformers_First",
+          "run_command"
+        ],
+        "all_used": [
+          "Transformers_First",
+          "Transformers_NumWindings",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Transformers_First'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Transformers_First'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Transformers_NumWindings"
+    }
+  },
+  {
+    "probe_id": "L3_5a31bb09",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a transformer\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Transformer.T1 Buses=[Bus1 Bus2] Windings=2 \"\n                \"wdg=1 bus=Bus1 conn=wye kv=12.47 kva=1000 \"\n                \"wdg=2 bus=Bus2 conn=delta kv=0.480 kva=1000 \"\n                \"XHL=0.05\")\n\n# Activate the transformer by name\ndss.Transformers.Name(\"T1\")\n\n# Set the active winding to 2 (secondary) and confirm\ndss.Transformers.Wdg(2)\nprint(\"Active winding index set to:\", dss.Transformers.Wdg())\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a transformer\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Transformer.T1 Buses=[Bus1 Bus2] Windings=2 \"\n                \"wdg=1 bus=Bus1 conn=wye kv=12.47 kva=1000 \"\n                \"wdg=2 bus=Bus2 conn=delta kv=0.480 kva=1000 \"\n                \"XHL=0.05\")\n\n# Activate the transformer by name\ndss.Transformers.Name(\"T1\")\n\n# Set the active winding to 2 (secondary) and confirm\ndss.Transformers.Wdg(2)\nprint(\"Active winding index set to:\", dss.Transformers.Wdg())",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Transformers_Wdg"
+        ],
+        "invalid_functions": [
+          "Name",
+          "run_command"
+        ],
+        "all_used": [
+          "Name",
+          "Transformers_Wdg",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Active winding index set to: 2\n",
+        "error_type": null
+      },
+      "function_name": "Transformers_Wdg"
+    }
+  },
+  {
+    "probe_id": "L3_b21b2718",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a base kV; this creates the default Vsource named 'source'\ndss.Text.Command(\"New circuit.Test basekv=12.47\")\n\n# Ensure the Vsource 'source' is the active element\ndss.Vsources.First()\n\n# Get current per-unit voltage magnitude\npu_before = dss.Vsources_PU\nprint(f\"Initial Vsource PU: {pu_before:.4f}\")\n\n# Set to a new value (e.g., 1.02 pu)\ndss.Vsources_PU = 1.02\n\n# Retrieve and confirm\npu_after = dss.Vsources_PU\nprint(f\"After setting, Vsource PU: {pu_after:.4f}\")\n\nprint(\"Vsources_PU demonstration complete.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a base kV; this creates the default Vsource named 'source'\ndss.Text.Command(\"New circuit.Test basekv=12.47\")\n\n# Ensure the Vsource 'source' is the active element\ndss.Vsources.First()\n\n# Get current per-unit voltage magnitude\npu_before = dss.Vsources_PU\nprint(f\"Initial Vsource PU: {pu_before:.4f}\")\n\n# Set to a new value (e.g., 1.02 pu)\ndss.Vsources_PU = 1.02\n\n# Retrieve and confirm\npu_after = dss.Vsources_PU\nprint(f\"After setting, Vsource PU: {pu_after:.4f}\")\n\nprint(\"Vsources_PU demonstration complete.\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "First"
+        ],
+        "all_used": [
+          "First",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Vsources_PU'. Did you mean: 'Vsources'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Vsources_PU'. Did you mean: 'Vsources'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Vsources_PU"
+    }
+  },
+  {
+    "probe_id": "L3_9c026cdc",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a Vsource\ndss.text(\"New Circuit.TestCircuit\")\ndss.text(\"New Vsource.Source bus1=SourceBus basekv=12.47 pu=1.0\")\n\n# Activate the Vsource and demonstrate BasekV\ndss.Vsources.Name(\"Source\")\nbase = dss.Vsources.BasekV()\nprint(f\"Initial base kV: {base}\")\ndss.Vsources.BasekV(13.8)\nnew_base = dss.Vsources.BasekV()\nprint(f\"Updated base kV: {new_base}\")\nprint(\"Vsources_BasekV demo ran successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a Vsource\ndss.text(\"New Circuit.TestCircuit\")\ndss.text(\"New Vsource.Source bus1=SourceBus basekv=12.47 pu=1.0\")\n\n# Activate the Vsource and demonstrate BasekV\ndss.Vsources.Name(\"Source\")\nbase = dss.Vsources.BasekV()\nprint(f\"Initial base kV: {base}\")\ndss.Vsources.BasekV(13.8)\nnew_base = dss.Vsources.BasekV()\nprint(f\"Updated base kV: {new_base}\")\nprint(\"Vsources_BasekV demo ran successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Vsources_BasekV"
+        ],
+        "invalid_functions": [
+          "Name",
+          "text"
+        ],
+        "all_used": [
+          "Name",
+          "Vsources_BasekV",
+          "text"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Vsources_BasekV"
+    }
+  },
+  {
+    "probe_id": "L3_21fd705e",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.25,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with one capacitor bank (3 steps)\ndss.Circuit.New('CapacitorStatesDemo')\ndss.Command('New Bus.Source 1.02')\ndss.Command('New Bus.Load')\ndss.Command('New Line.SourceLoad Bus1=Source Bus2=Load Length=1 Units=m')\ndss.Command('New Load.L1 Bus=Load Phases=1 kV=7.2 kW=100 PF=0.9')\ndss.Command('New Capacitor.C1 Bus=Load Phases=1 kV=7.2 kvar=300 Steps=3')\ndss.Solution.Solve()\n\n# Select the capacitor bank\ndss.Capacitors.First()   # or: dss.Capacitors.Name = 'C1'\n\n# Read and print current states\nprint('Initial states:', dss.Capacitors.States)\n\n# Set new states (e.g., energise step 1 and 3, step 2 off)\ndss.Capacitors.States = [1, 0, 1]\ndss.Solution.Solve()\nprint('States after write:', dss.Capacitors.States)\nprint('Capacitor states demonstration completed successfully.')\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with one capacitor bank (3 steps)\ndss.Circuit.New('CapacitorStatesDemo')\ndss.Command('New Bus.Source 1.02')\ndss.Command('New Bus.Load')\ndss.Command('New Line.SourceLoad Bus1=Source Bus2=Load Length=1 Units=m')\ndss.Command('New Load.L1 Bus=Load Phases=1 kV=7.2 kW=100 PF=0.9')\ndss.Command('New Capacitor.C1 Bus=Load Phases=1 kV=7.2 kvar=300 Steps=3')\ndss.Solution.Solve()\n\n# Select the capacitor bank\ndss.Capacitors.First()   # or: dss.Capacitors.Name = 'C1'\n\n# Read and print current states\nprint('Initial states:', dss.Capacitors.States)\n\n# Set new states (e.g., energise step 1 and 3, step 2 off)\ndss.Capacitors.States = [1, 0, 1]\ndss.Solution.Solve()\nprint('States after write:', dss.Capacitors.States)\nprint('Capacitor states demonstration completed successfully.')",
+      "api_check": {
+        "api_validity_rate": 0.25,
+        "valid_functions": [
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "Command",
+          "First",
+          "New"
+        ],
+        "all_used": [
+          "Command",
+          "First",
+          "New",
+          "Solution_Solve"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: 'ICircuit' object has no attribute 'New'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: 'ICircuit' object has no attribute 'New'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Capacitors_States"
+    }
+  },
+  {
+    "probe_id": "L3_e0a5baca",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Initialize a new circuit\ndss.run_command('clear')\ndss.run_command('new circuit.TestBus basekv=12.47')\n\n# Create a capacitor\ndss.run_command('new capacitor.Cap1 phases=1 kv=7.2 kvar=600')\n\n# Select the capacitor by name\ndss.Capacitors.Name('Cap1')\n\n# Set the number of steps to 4\ndss.Capacitors.NumSteps(4)\n\n# Get and print the current number of steps\nsteps = dss.Capacitors.NumSteps()\nprint(f\"Capacitor Cap1 has {steps} steps.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Initialize a new circuit\ndss.run_command('clear')\ndss.run_command('new circuit.TestBus basekv=12.47')\n\n# Create a capacitor\ndss.run_command('new capacitor.Cap1 phases=1 kv=7.2 kvar=600')\n\n# Select the capacitor by name\ndss.Capacitors.Name('Cap1')\n\n# Set the number of steps to 4\ndss.Capacitors.NumSteps(4)\n\n# Get and print the current number of steps\nsteps = dss.Capacitors.NumSteps()\nprint(f\"Capacitor Cap1 has {steps} steps.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Capacitors_NumSteps"
+        ],
+        "invalid_functions": [
+          "Name",
+          "run_command"
+        ],
+        "all_used": [
+          "Capacitors_NumSteps",
+          "Name",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Capacitor Cap1 has 4 steps.\n",
+        "error_type": null
+      },
+      "function_name": "Capacitors_NumSteps"
+    }
+  },
+  {
+    "probe_id": "L3_178db169",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a source and a bus\ndss.Text.Command(\"new circuit.test basekv=12.47\")\ndss.Text.Command(\"new bus.bus1\")\ndss.Text.Command(\"new line.line1 bus1=bus1 bus2=bus1 length=0.1 units=mi\")  # dummy line to have a bus\n\n# Add a switched capacitor with 5 steps\ndss.Text.Command(\"new capacitor.C1 bus1=bus1 phases=3 kv=7.2 kvar=1200 steps=5\")\n\n# Select the capacitor bank (first/only one)\ndss.Capacitors.First()\n\n# Get the number of steps not yet switched in\navailable = dss.Capacitors.AvailableSteps\n\nprint(f\"Available capacitor steps: {available}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a source and a bus\ndss.Text.Command(\"new circuit.test basekv=12.47\")\ndss.Text.Command(\"new bus.bus1\")\ndss.Text.Command(\"new line.line1 bus1=bus1 bus2=bus1 length=0.1 units=mi\")  # dummy line to have a bus\n\n# Add a switched capacitor with 5 steps\ndss.Text.Command(\"new capacitor.C1 bus1=bus1 phases=3 kv=7.2 kvar=1200 steps=5\")\n\n# Select the capacitor bank (first/only one)\ndss.Capacitors.First()\n\n# Get the number of steps not yet switched in\navailable = dss.Capacitors.AvailableSteps\n\nprint(f\"Available capacitor steps: {available}\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "First"
+        ],
+        "all_used": [
+          "First",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: new bus.bus1",
+      "exec_result": {
+        "success": false,
+        "error": "new bus.bus1",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Capacitors_AvailableSteps"
+    }
+  },
+  {
+    "probe_id": "L3_c2469db1",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.1111,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a new circuit (minimal example)\ndss.Circuit.New('CapTest')\ndss.Circuit.SetAs()\n\n# Add a bus\ndss.Circuit.AddBus('Bus1')\n\n# Add a line to provide a voltage source\ndss.Circuit.AddLine('Line1', 'sourcebus', 'Bus1', '1', '0.001', '0.01', '0.0001')\n\n# Add a capacitor bank with 3 steps, each 100 kvar\ndss.Circuit.AddCapacitor('Cap1', 'Bus1', '1', '0.0', '3', '100')\n\n# Set active capacitor\ndss.Circuit.SetActiveClass('Capacitors')\ndss.Capacitors.First()\n\n# Subtract one step (if bank is on, it will reduce reactive power)\nremoved = dss.Capacitors.SubtractStep()\n\n# Solve the circuit to update voltages\ndss.Circuit.Solve()\n\nprint(f\"Step removed: {removed}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a new circuit (minimal example)\ndss.Circuit.New('CapTest')\ndss.Circuit.SetAs()\n\n# Add a bus\ndss.Circuit.AddBus('Bus1')\n\n# Add a line to provide a voltage source\ndss.Circuit.AddLine('Line1', 'sourcebus', 'Bus1', '1', '0.001', '0.01', '0.0001')\n\n# Add a capacitor bank with 3 steps, each 100 kvar\ndss.Circuit.AddCapacitor('Cap1', 'Bus1', '1', '0.0', '3', '100')\n\n# Set active capacitor\ndss.Circuit.SetActiveClass('Capacitors')\ndss.Capacitors.First()\n\n# Subtract one step (if bank is on, it will reduce reactive power)\nremoved = dss.Capacitors.SubtractStep()\n\n# Solve the circuit to update voltages\ndss.Circuit.Solve()\n\nprint(f\"Step removed: {removed}\")",
+      "api_check": {
+        "api_validity_rate": 0.1111,
+        "valid_functions": [
+          "Capacitors_SubtractStep"
+        ],
+        "invalid_functions": [
+          "AddBus",
+          "AddCapacitor",
+          "AddLine",
+          "First",
+          "New",
+          "SetActiveClass",
+          "SetAs",
+          "Solve"
+        ],
+        "all_used": [
+          "AddBus",
+          "AddCapacitor",
+          "AddLine",
+          "Capacitors_SubtractStep",
+          "First",
+          "New",
+          "SetActiveClass",
+          "SetAs",
+          "Solve"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: 'ICircuit' object has no attribute 'New'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: 'ICircuit' object has no attribute 'New'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Capacitors_SubtractStep"
+    }
+  },
+  {
+    "probe_id": "L3_785b0dd8",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a capacitor and a capcontrol\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.Test\")\ndss.Text.Command(\"New Capacitor.Cap1 bus1=bus1 phases=3 kv=12.47 kvar=600\")\ndss.Text.Command(\"New CapControl.CC1 Capacitor=Cap1 element=bus1 terminal=1 type=voltage vreg=12.47 vband=1\")\n\n# Select the first capcontrol (makes it active)\ndss.CapControls.First()\n\n# Read the name of the capacitor that the active capcontrol controls\ncap_name = dss.CapControls.Capacitor\n\n# Output confirmation\nprint(f\"Active CapControl controls Capacitor: {cap_name}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a capacitor and a capcontrol\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.Test\")\ndss.Text.Command(\"New Capacitor.Cap1 bus1=bus1 phases=3 kv=12.47 kvar=600\")\ndss.Text.Command(\"New CapControl.CC1 Capacitor=Cap1 element=bus1 terminal=1 type=voltage vreg=12.47 vband=1\")\n\n# Select the first capcontrol (makes it active)\ndss.CapControls.First()\n\n# Read the name of the capacitor that the active capcontrol controls\ncap_name = dss.CapControls.Capacitor\n\n# Output confirmation\nprint(f\"Active CapControl controls Capacitor: {cap_name}\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "First"
+        ],
+        "all_used": [
+          "First",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: Error in command string or circuit data.",
+      "exec_result": {
+        "success": false,
+        "error": "Error in command string or circuit data.",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "CapControls_Capacitor"
+    }
+  },
+  {
+    "probe_id": "L3_e0b830ec",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.Text.Command(\"clear\")\ndss.Text.Command(\"new circuit.CapCtrlExample basekv=12.47 pu=1.0 phases=3\")\ndss.Text.Command(\"new line.Line1 bus1=sourcebus bus2=loadbus phases=3 length=1.0\")\ndss.Text.Command(\"new capacitor.Cap1 bus=loadbus phases=3 kv=12.47 kvar=500\")\ndss.Text.Command(\"new capcontrol.CC1 element=line.Line1 capacitor=Cap1 type=current ONsetting=50 OFFsetting=30\")\n\n# Access the CapControls object\ndss.CapControls.Name = \"CC1\"\n\n# Demonstrate getting the ONSetting\nvalue = dss.CapControls.ONSetting\nprint(f\"CapControls ONSetting = {value}\")\n\n# Demonstrate setting the ONSetting (optional, but shows both get and set)\ndss.CapControls.ONSetting = 60.0\nnew_value = dss.CapControls.ONSetting\nprint(f\"CapControls ONSetting updated to {new_value}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.Text.Command(\"clear\")\ndss.Text.Command(\"new circuit.CapCtrlExample basekv=12.47 pu=1.0 phases=3\")\ndss.Text.Command(\"new line.Line1 bus1=sourcebus bus2=loadbus phases=3 length=1.0\")\ndss.Text.Command(\"new capacitor.Cap1 bus=loadbus phases=3 kv=12.47 kvar=500\")\ndss.Text.Command(\"new capcontrol.CC1 element=line.Line1 capacitor=Cap1 type=current ONsetting=50 OFFsetting=30\")\n\n# Access the CapControls object\ndss.CapControls.Name = \"CC1\"\n\n# Demonstrate getting the ONSetting\nvalue = dss.CapControls.ONSetting\nprint(f\"CapControls ONSetting = {value}\")\n\n# Demonstrate setting the ONSetting (optional, but shows both get and set)\ndss.CapControls.ONSetting = 60.0\nnew_value = dss.CapControls.ONSetting\nprint(f\"CapControls ONSetting updated to {new_value}\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: See also https://dss-extensions.org/python_apis.html",
+      "exec_result": {
+        "success": false,
+        "error": "See also https://dss-extensions.org/python_apis.html",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "CapControls_ONSetting"
+    }
+  },
+  {
+    "probe_id": "L3_a1b1c877",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a capacitor and its control\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New circuit.Test\")\ndss.Text.Command(\"New capacitor.C1 bus1=Bus1 kv=12.47 kvar=600\")\ndss.Text.Command(\"New capcontrol.Ctrl1 capacitor=C1 type=voltage\")\n\n# Make Ctrl1 the active control\ndss.CapControls.First()\n\n# Set the OFF setting (dropout threshold in per-unit voltage)\ndss.CapControls_OFFSetting(1.05)\n\n# Retrieve and print the current value\nprint(\"CapControls OFFSetting =\", dss.CapControls_OFFSetting())\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a capacitor and its control\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New circuit.Test\")\ndss.Text.Command(\"New capacitor.C1 bus1=Bus1 kv=12.47 kvar=600\")\ndss.Text.Command(\"New capcontrol.Ctrl1 capacitor=C1 type=voltage\")\n\n# Make Ctrl1 the active control\ndss.CapControls.First()\n\n# Set the OFF setting (dropout threshold in per-unit voltage)\ndss.CapControls_OFFSetting(1.05)\n\n# Retrieve and print the current value\nprint(\"CapControls OFFSetting =\", dss.CapControls_OFFSetting())",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "CapControls_OFFSetting",
+          "Text_Command"
+        ],
+        "invalid_functions": [
+          "First"
+        ],
+        "all_used": [
+          "CapControls_OFFSetting",
+          "First",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: Error in command string or circuit data.",
+      "exec_result": {
+        "success": false,
+        "error": "Error in command string or circuit data.",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "CapControls_OFFSetting"
+    }
+  },
+  {
+    "probe_id": "L3_fc21b3bc",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.5,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a new circuit\ndss.run_command('new circuit.test')\n\n# Add a bus and a capacitor (required for CapControl)\ndss.run_command('new bus.b1')\ndss.run_command('new capacitor.c1 bus=b1 kvar=100')\n\n# Create a CapControl that controls that capacitor\ndss.run_command('new capcontrol.cc1 capacitor=c1')\n\n# Use CapControls_Name to make 'cc1' the active control and retrieve its name\ndss.CapControls.Name('cc1')\nactive_name = dss.CapControls.Name()\n\nprint(f\"Active CapControl name: {active_name}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a new circuit\ndss.run_command('new circuit.test')\n\n# Add a bus and a capacitor (required for CapControl)\ndss.run_command('new bus.b1')\ndss.run_command('new capacitor.c1 bus=b1 kvar=100')\n\n# Create a CapControl that controls that capacitor\ndss.run_command('new capcontrol.cc1 capacitor=c1')\n\n# Use CapControls_Name to make 'cc1' the active control and retrieve its name\ndss.CapControls.Name('cc1')\nactive_name = dss.CapControls.Name()\n\nprint(f\"Active CapControl name: {active_name}\")",
+      "api_check": {
+        "api_validity_rate": 0.5,
+        "valid_functions": [
+          "CapControls_Name"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "CapControls_Name",
+          "run_command"
+        ]
+      },
+      "error_msg": "RuntimeError: Error in command string or circuit data.",
+      "exec_result": {
+        "success": false,
+        "error": "Error in command string or circuit data.",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "CapControls_Name"
+    }
+  },
+  {
+    "probe_id": "L3_c877ba29",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.2174,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with a regulator\ndss.NewCircuit('RegulatorDemo')\n\n# Add buses\ndss.Solution.AddBus('sourcebus')\ndss.Solution.AddBus('loadbus')\ndss.Solution.AddBus('regbus1')\ndss.Solution.AddBus('regbus2')\n\n# Add a line from source to regulator primary\ndss.Lines.New('line1')\ndss.Lines.Bus1('sourcebus')\ndss.Lines.Bus2('regbus1')\ndss.Lines.Length(1)\ndss.Lines.Units('km')\n\n# Add a two-winding transformer (regulator)\ndss.Transformers.New('xfm1')\ndss.Transformers.Buses(['regbus1', 'regbus2'])\ndss.Transformers.Kv([12.47, 0.416])\ndss.Transformers.Kva([1000, 1000])\ndss.Transformers.Taps([1, 1])\ndss.Transformers.NumTaps([32, 32])\ndss.Transformers.MinTap([0.9, 0.9])\ndss.Transformers.MaxTap([1.1, 1.1])\ndss.Transformers.Tap([1, 1])\n\n# Add a load\ndss.Loads.New('load1')\ndss.Loads.Bus('regbus2')\ndss.Loads.Kw(500)\ndss.Loads.Pf(0.95)\n\n# Add a regcontrol\ndss.RegControls.New('reg1')\ndss.RegControls.Transformer('xfm1')\ndss.RegControls.Winding(2)      # regulated winding (secondary side)\ndss.RegControls.Vreg(122)       # set forward voltage regulation target [V]\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Select the regulator and read the ForwardVreg property\ndss.RegControls.Name('reg1')\nfvreg = dss.RegControls.ForwardVreg\nprint(f\"ForwardVreg = {fvreg} V\")\nprint(\"RegControls_ForwardVreg demonstration successful.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with a regulator\ndss.NewCircuit('RegulatorDemo')\n\n# Add buses\ndss.Solution.AddBus('sourcebus')\ndss.Solution.AddBus('loadbus')\ndss.Solution.AddBus('regbus1')\ndss.Solution.AddBus('regbus2')\n\n# Add a line from source to regulator primary\ndss.Lines.New('line1')\ndss.Lines.Bus1('sourcebus')\ndss.Lines.Bus2('regbus1')\ndss.Lines.Length(1)\ndss.Lines.Units('km')\n\n# Add a two-winding transformer (regulator)\ndss.Transformers.New('xfm1')\ndss.Transformers.Buses(['regbus1', 'regbus2'])\ndss.Transformers.Kv([12.47, 0.416])\ndss.Transformers.Kva([1000, 1000])\ndss.Transformers.Taps([1, 1])\ndss.Transformers.NumTaps([32, 32])\ndss.Transformers.MinTap([0.9, 0.9])\ndss.Transformers.MaxTap([1.1, 1.1])\ndss.Transformers.Tap([1, 1])\n\n# Add a load\ndss.Loads.New('load1')\ndss.Loads.Bus('regbus2')\ndss.Loads.Kw(500)\ndss.Loads.Pf(0.95)\n\n# Add a regcontrol\ndss.RegControls.New('reg1')\ndss.RegControls.Transformer('xfm1')\ndss.RegControls.Winding(2)      # regulated winding (secondary side)\ndss.RegControls.Vreg(122)       # set forward voltage regulation target [V]\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Select the regulator and read the ForwardVreg property\ndss.RegControls.Name('reg1')\nfvreg = dss.RegControls.ForwardVreg\nprint(f\"ForwardVreg = {fvreg} V\")\nprint(\"RegControls_ForwardVreg demonstration successful.\")",
+      "api_check": {
+        "api_validity_rate": 0.2174,
+        "valid_functions": [
+          "Lines_Bus1",
+          "Lines_Length",
+          "RegControls_Winding",
+          "Solution_Solve",
+          "Transformers_Tap"
+        ],
+        "invalid_functions": [
+          "AddBus",
+          "Bus",
+          "Bus2",
+          "Buses",
+          "Kv",
+          "Kva",
+          "Kw",
+          "MaxTap",
+          "MinTap",
+          "Name",
+          "New",
+          "NewCircuit",
+          "NumTaps",
+          "Pf",
+          "Taps",
+          "Transformer",
+          "Units",
+          "Vreg"
+        ],
+        "all_used": [
+          "AddBus",
+          "Bus",
+          "Bus2",
+          "Buses",
+          "Kv",
+          "Kva",
+          "Kw",
+          "Lines_Bus1",
+          "Lines_Length",
+          "MaxTap",
+          "MinTap",
+          "Name",
+          "New",
+          "NewCircuit",
+          "NumTaps",
+          "Pf",
+          "RegControls_Winding",
+          "Solution_Solve",
+          "Taps",
+          "Transformer",
+          "Transformers_Tap",
+          "Units",
+          "Vreg"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "RegControls_ForwardVreg"
+    }
+  },
+  {
+    "probe_id": "L3_a01509c4",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Initialize a minimal circuit with a regulator control\ndss.text.Command(\"Clear\")\ndss.text.Command(\"New Circuit.Test Bus1=1.0\")\ndss.text.Command(\"New Line.L1 Bus1=1 Bus2=2 Length=1 Units=m\")\ndss.text.Command(\"New Transformer.RegT XHL=1 [1, 2] Buses=[1, 2] Conns=[wye, wye] kVs=[12.47, 12.47] kVA=5000\")\ndss.text.Command(\"New RegControl.Reg1 Transformer=RegT winding=2 vreg=122 band=2 PTratio=20 CTratio=100\")\n\n# Select the first regulator control and use RegControls_ForwardBand\nif dss.RegControls.First():\n    current = dss.RegControls_ForwardBand()\n    print(f\"Current forward band: {current} V\")\n    dss.RegControls_ForwardBand(3.0)          # Set to 3 V\n    new_val = dss.RegControls_ForwardBand()\n    print(f\"New forward band: {new_val} V\")\n    print(\"RegControls_ForwardBand test successful.\")\nelse:\n    print(\"No RegControls found.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Initialize a minimal circuit with a regulator control\ndss.text.Command(\"Clear\")\ndss.text.Command(\"New Circuit.Test Bus1=1.0\")\ndss.text.Command(\"New Line.L1 Bus1=1 Bus2=2 Length=1 Units=m\")\ndss.text.Command(\"New Transformer.RegT XHL=1 [1, 2] Buses=[1, 2] Conns=[wye, wye] kVs=[12.47, 12.47] kVA=5000\")\ndss.text.Command(\"New RegControl.Reg1 Transformer=RegT winding=2 vreg=122 band=2 PTratio=20 CTratio=100\")\n\n# Select the first regulator control and use RegControls_ForwardBand\nif dss.RegControls.First():\n    current = dss.RegControls_ForwardBand()\n    print(f\"Current forward band: {current} V\")\n    dss.RegControls_ForwardBand(3.0)          # Set to 3 V\n    new_val = dss.RegControls_ForwardBand()\n    print(f\"New forward band: {new_val} V\")\n    print(\"RegControls_ForwardBand test successful.\")\nelse:\n    print(\"No RegControls found.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "RegControls_ForwardBand"
+        ],
+        "invalid_functions": [
+          "Command",
+          "First"
+        ],
+        "all_used": [
+          "Command",
+          "First",
+          "RegControls_ForwardBand"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "RegControls_ForwardBand"
+    }
+  },
+  {
+    "probe_id": "L3_d4d0729e",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create minimal circuit with a regulator control\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.L1 Bus1 Bus2 1 0.1 0.01 0.001 1\")\ndss.run_command(\"New Load.L1 Bus1 100 50\")\ndss.run_command(\"New Transformer.T1 Bus1 12.47 1000 0.01 0.1 1\")\ndss.run_command(\"New RegControl.R1 Transformer.T1 1 120 2 60 1 1 1 16 0.625 30\")\n\n# Select the first RegControl\ndss.RegControls.First()\n\n# Demonstrate getting and setting MaxTapChange\ncurrent = dss.RegControls.MaxTapChange\nprint(f\"Original MaxTapChange: {current}\")\n\ndss.RegControls.MaxTapChange = 2\nnew = dss.RegControls.MaxTapChange\nprint(f\"New MaxTapChange: {new}\")\n\nprint(\"Successfully demonstrated RegControls_MaxTapChange\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create minimal circuit with a regulator control\ndss.run_command(\"New Circuit.TestCircuit\")\ndss.run_command(\"New Bus.Bus1\")\ndss.run_command(\"New Bus.Bus2\")\ndss.run_command(\"New Line.L1 Bus1 Bus2 1 0.1 0.01 0.001 1\")\ndss.run_command(\"New Load.L1 Bus1 100 50\")\ndss.run_command(\"New Transformer.T1 Bus1 12.47 1000 0.01 0.1 1\")\ndss.run_command(\"New RegControl.R1 Transformer.T1 1 120 2 60 1 1 1 16 0.625 30\")\n\n# Select the first RegControl\ndss.RegControls.First()\n\n# Demonstrate getting and setting MaxTapChange\ncurrent = dss.RegControls.MaxTapChange\nprint(f\"Original MaxTapChange: {current}\")\n\ndss.RegControls.MaxTapChange = 2\nnew = dss.RegControls.MaxTapChange\nprint(f\"New MaxTapChange: {new}\")\n\nprint(\"Successfully demonstrated RegControls_MaxTapChange\")",
+      "api_check": {
+        "api_validity_rate": 0.0,
+        "valid_functions": [],
+        "invalid_functions": [
+          "First",
+          "run_command"
+        ],
+        "all_used": [
+          "First",
+          "run_command"
+        ]
+      },
+      "error_msg": "RuntimeError: See also https://dss-extensions.org/python_apis.html",
+      "exec_result": {
+        "success": false,
+        "error": "See also https://dss-extensions.org/python_apis.html",
+        "output": "Original MaxTapChange: <bound method IRegControls.MaxTapChange of <opendssdirect.RegControls.IRegControls object at 0xfffef7e02120>>\n",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "RegControls_MaxTapChange"
+    }
+  },
+  {
+    "probe_id": "L3_b862c624",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.example\")\ndss.run_command(\"new transformer.t1 phases=1 windings=2 xhl=0.01 %loadloss=0.01 ppm=0 [wdg=1 bus=bus1 conn=wye kv=0.48 kva=100] [wdg=2 bus=bus2 conn=wye kv=0.48 kva=100]\")\ndss.run_command(\"new regcontrol.rc1 transformer=t1 winding=2 vreg=120 band=2 ptratio=20\")\n\ndss.regcontrols.name(\"rc1\")\nprint(f\"RegControl winding: {dss.regcontrols.Winding}\")\n\ndss.regcontrols.Winding = 1\nprint(f\"RegControl winding after set: {dss.regcontrols.Winding}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\ndss.run_command(\"clear\")\ndss.run_command(\"new circuit.example\")\ndss.run_command(\"new transformer.t1 phases=1 windings=2 xhl=0.01 %loadloss=0.01 ppm=0 [wdg=1 bus=bus1 conn=wye kv=0.48 kva=100] [wdg=2 bus=bus2 conn=wye kv=0.48 kva=100]\")\ndss.run_command(\"new regcontrol.rc1 transformer=t1 winding=2 vreg=120 band=2 ptratio=20\")\n\ndss.regcontrols.name(\"rc1\")\nprint(f\"RegControl winding: {dss.regcontrols.Winding}\")\n\ndss.regcontrols.Winding = 1\nprint(f\"RegControl winding after set: {dss.regcontrols.Winding}\")",
+      "api_check": {
+        "api_validity_rate": 0.0,
+        "valid_functions": [],
+        "invalid_functions": [
+          "name",
+          "run_command"
+        ],
+        "all_used": [
+          "name",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'regcontrols'. Did you mean: 'RegControls'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'regcontrols'. Did you mean: 'RegControls'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "RegControls_Winding"
+    }
+  },
+  {
+    "probe_id": "L3_6733a3fd",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a source bus\ndss.Text.Command('New Circuit.test bus1=SourceBus basekv=12.47')\n\n# Set to fault study mode and solve\ndss.Text.Command('Set Mode=Faultstudy')\ndss.Text.Command('Solve')\n\n# Set the active bus to the source bus\ndss.Circuit.SetActiveBus('SourceBus')\n\n# Retrieve the positive-sequence short-circuit impedance\nz = dss.Circuit.Bus_Zsc1()\nprint(f'Positive-sequence Z1 = [{z[0]:.6f}, {z[1]:.6f}] ohms')\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a source bus\ndss.Text.Command('New Circuit.test bus1=SourceBus basekv=12.47')\n\n# Set to fault study mode and solve\ndss.Text.Command('Set Mode=Faultstudy')\ndss.Text.Command('Solve')\n\n# Set the active bus to the source bus\ndss.Circuit.SetActiveBus('SourceBus')\n\n# Retrieve the positive-sequence short-circuit impedance\nz = dss.Circuit.Bus_Zsc1()\nprint(f'Positive-sequence Z1 = [{z[0]:.6f}, {z[1]:.6f}] ohms')",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Bus_Zsc1",
+          "Circuit_SetActiveBus",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Bus_Zsc1",
+          "Circuit_SetActiveBus",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: If you attempted to solve, then the solution has not yet converged.",
+      "exec_result": {
+        "success": false,
+        "error": "If you attempted to solve, then the solution has not yet converged.",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Bus_Zsc1"
+    }
+  },
+  {
+    "probe_id": "L3_812846a0",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "DSSException"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a new circuit\ndss.Text.Command(\"New Circuit.Zsc0_demo\")\n\n# Define a source at bus \"sourcebus\"\ndss.Text.Command(\"New Vsource.Source Bus1=sourcebus basekv=115\")\n\n# Define a line from sourcebus to loadbus\ndss.Text.Command(\"New Line.Line1 Bus1=sourcebus Bus2=loadbus Length=1 Units=km\")\n\n# Set solution mode to FaultStudy and solve\ndss.Text.Command(\"Set Mode=FaultStudy\")\ndss.Solution.Solve()\n\n# Set the active bus to \"loadbus\"\ndss.Circuit.SetActiveBus(\"loadbus\")\n\n# Get zero-sequence short-circuit impedance [R, X] in ohms\nzsc0 = dss.Circuit.Bus_Zsc0()\n\nprint(f\"Zero-sequence impedance at loadbus: R = {zsc0[0]:.4f} Ohm, X = {zsc0[1]:.4f} Ohm\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a new circuit\ndss.Text.Command(\"New Circuit.Zsc0_demo\")\n\n# Define a source at bus \"sourcebus\"\ndss.Text.Command(\"New Vsource.Source Bus1=sourcebus basekv=115\")\n\n# Define a line from sourcebus to loadbus\ndss.Text.Command(\"New Line.Line1 Bus1=sourcebus Bus2=loadbus Length=1 Units=km\")\n\n# Set solution mode to FaultStudy and solve\ndss.Text.Command(\"Set Mode=FaultStudy\")\ndss.Solution.Solve()\n\n# Set the active bus to \"loadbus\"\ndss.Circuit.SetActiveBus(\"loadbus\")\n\n# Get zero-sequence short-circuit impedance [R, X] in ohms\nzsc0 = dss.Circuit.Bus_Zsc0()\n\nprint(f\"Zero-sequence impedance at loadbus: R = {zsc0[0]:.4f} Ohm, X = {zsc0[1]:.4f} Ohm\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Bus_Zsc0",
+          "Circuit_SetActiveBus",
+          "Solution_Solve",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Bus_Zsc0",
+          "Circuit_SetActiveBus",
+          "Solution_Solve",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "DSSException: dss._cffi_api_util.DSSException: (#266) Warning: Duplicate new element definition: \"Vsource.Source\". Element being redefined.",
+      "exec_result": {
+        "success": false,
+        "error": "dss._cffi_api_util.DSSException: (#266) Warning: Duplicate new element definition: \"Vsource.Source\". Element being redefined.",
+        "output": "",
+        "error_type": "DSSException"
+      },
+      "function_name": "Bus_Zsc0"
+    }
+  },
+  {
+    "probe_id": "L3_aaaaf944",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.TestBus_ZscMatrix\")\ndss.run_command(\"~ BasekV=12.47 pu=1.0 MVAsc3=100 MVAsc1=90\")\ndss.run_command(\"New Bus.B1\")\ndss.run_command(\"New Bus.B2\")\ndss.run_command(\"New Line.L1 Bus1=B1 Bus2=B2 Length=1 Units=m\")\ndss.run_command(\"New Transformer.T1 Bus1=B1 Bus2=B2 Phases=3 Windings=2 XHL=8\")\n\n# Add a load to ensure bus is valid\ndss.run_command(\"New Load.L1 Bus=B2 Phases=3 kW=1000 PF=0.9\")\n\n# Switch to FaultStudy mode (needed for Bus_ZscMatrix)\ndss.run_command(\"Set Mode=FaultStudy\")\n\n# Solve the circuit to initialize\ndss.run_command(\"Solve\")\n\n# Set the active bus to the load bus (B2)\ndss.Circuit.SetActiveBus(\"B2\")\n\n# Get the short-circuit impedance matrix (flattened interleaved complex list)\nzsc_matrix = dss.Bus.ZscMatrix()\n\n# Print confirmation and length of matrix (should be 2 * N^2 for 3 phases -> 18)\nN = 3  # three phases\nexpected_length = 2 * N * N\nprint(f\"Bus_ZscMatrix returned a list of length {len(zsc_matrix)} (expected {expected_length}). Confirming execution.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.TestBus_ZscMatrix\")\ndss.run_command(\"~ BasekV=12.47 pu=1.0 MVAsc3=100 MVAsc1=90\")\ndss.run_command(\"New Bus.B1\")\ndss.run_command(\"New Bus.B2\")\ndss.run_command(\"New Line.L1 Bus1=B1 Bus2=B2 Length=1 Units=m\")\ndss.run_command(\"New Transformer.T1 Bus1=B1 Bus2=B2 Phases=3 Windings=2 XHL=8\")\n\n# Add a load to ensure bus is valid\ndss.run_command(\"New Load.L1 Bus=B2 Phases=3 kW=1000 PF=0.9\")\n\n# Switch to FaultStudy mode (needed for Bus_ZscMatrix)\ndss.run_command(\"Set Mode=FaultStudy\")\n\n# Solve the circuit to initialize\ndss.run_command(\"Solve\")\n\n# Set the active bus to the load bus (B2)\ndss.Circuit.SetActiveBus(\"B2\")\n\n# Get the short-circuit impedance matrix (flattened interleaved complex list)\nzsc_matrix = dss.Bus.ZscMatrix()\n\n# Print confirmation and length of matrix (should be 2 * N^2 for 3 phases -> 18)\nN = 3  # three phases\nexpected_length = 2 * N * N\nprint(f\"Bus_ZscMatrix returned a list of length {len(zsc_matrix)} (expected {expected_length}). Confirming execution.\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "Bus_ZscMatrix",
+          "Circuit_SetActiveBus"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Bus_ZscMatrix",
+          "Circuit_SetActiveBus",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Bus_ZscMatrix returned a list of length 1 (expected 18). Confirming execution.\n",
+        "error_type": null
+      },
+      "function_name": "Bus_ZscMatrix"
+    }
+  },
+  {
+    "probe_id": "L3_5ec38489",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple 2-bus circuit\ndss.NewCircuit(\"FaultStudyExample\")\ndss.Vsource.New(\"source\", bus1=\"bus1\", basekv=12.47, pu=1.0)\ndss.Line.New(\"line1\", bus1=\"bus1\", bus2=\"bus2\", length=1, units=\"mi\", r1=0.1, x1=0.5)\n\n# Set active bus and solve in FaultStudy mode\ndss.Circuit.SetActiveBus(\"bus2\")\ndss.Solution.mode = \"faultstudy\"\ndss.Solution.Solve()\n\n# Retrieve open-circuit voltages\nvoc = dss.Bus.Voc()\nprint(\"Open-circuit voltages (interleaved real/imag) at bus2:\", voc)\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple 2-bus circuit\ndss.NewCircuit(\"FaultStudyExample\")\ndss.Vsource.New(\"source\", bus1=\"bus1\", basekv=12.47, pu=1.0)\ndss.Line.New(\"line1\", bus1=\"bus1\", bus2=\"bus2\", length=1, units=\"mi\", r1=0.1, x1=0.5)\n\n# Set active bus and solve in FaultStudy mode\ndss.Circuit.SetActiveBus(\"bus2\")\ndss.Solution.mode = \"faultstudy\"\ndss.Solution.Solve()\n\n# Retrieve open-circuit voltages\nvoc = dss.Bus.Voc()\nprint(\"Open-circuit voltages (interleaved real/imag) at bus2:\", voc)",
+      "api_check": {
+        "api_validity_rate": 0.6,
+        "valid_functions": [
+          "Bus_Voc",
+          "Circuit_SetActiveBus",
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "New",
+          "NewCircuit"
+        ],
+        "all_used": [
+          "Bus_Voc",
+          "Circuit_SetActiveBus",
+          "New",
+          "NewCircuit",
+          "Solution_Solve"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Bus_Voc"
+    }
+  },
+  {
+    "probe_id": "L3_16287967",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.6667,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple 2-bus test circuit\ndss.run_command(\"New Circuit.TestCircuit BasekV=12.47\")\ndss.run_command(\"New Bus.Source Bus1=Source\")\ndss.run_command(\"New Bus.Load Bus1=Load\")\n\n# Add a 3-phase line\ndss.run_command(\"New Line.Line1 Bus1=Source Bus2=Load Length=1 Units=km\")\ndss.run_command(\"Line.Line1 phases=3 R1=0.1 X1=0.1 R0=0.3 X0=0.3 C1=1e-9 C0=1e-9\")\n\n# Add a source\ndss.run_command(\"New Vsource.Source Bus1=Source basekv=12.47 pu=1.0 angle=0\")\n\n# Solve the circuit\ndss.run_command(\"Solve\")\n\n# Set the active bus to the load bus\ndss.Circuit.SetActiveBus(\"Load\")\n\n# Get the sequence voltages (V0, V1, V2) in volts\nV0, V1, V2 = dss.Bus_SeqVoltages()\nprint(f\"Sequence voltages at Load bus: V0={V0:.3f}, V1={V1:.3f}, V2={V2:.3f} V\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple 2-bus test circuit\ndss.run_command(\"New Circuit.TestCircuit BasekV=12.47\")\ndss.run_command(\"New Bus.Source Bus1=Source\")\ndss.run_command(\"New Bus.Load Bus1=Load\")\n\n# Add a 3-phase line\ndss.run_command(\"New Line.Line1 Bus1=Source Bus2=Load Length=1 Units=km\")\ndss.run_command(\"Line.Line1 phases=3 R1=0.1 X1=0.1 R0=0.3 X0=0.3 C1=1e-9 C0=1e-9\")\n\n# Add a source\ndss.run_command(\"New Vsource.Source Bus1=Source basekv=12.47 pu=1.0 angle=0\")\n\n# Solve the circuit\ndss.run_command(\"Solve\")\n\n# Set the active bus to the load bus\ndss.Circuit.SetActiveBus(\"Load\")\n\n# Get the sequence voltages (V0, V1, V2) in volts\nV0, V1, V2 = dss.Bus_SeqVoltages()\nprint(f\"Sequence voltages at Load bus: V0={V0:.3f}, V1={V1:.3f}, V2={V2:.3f} V\")",
+      "api_check": {
+        "api_validity_rate": 0.6667,
+        "valid_functions": [
+          "Bus_SeqVoltages",
+          "Circuit_SetActiveBus"
+        ],
+        "invalid_functions": [
+          "run_command"
+        ],
+        "all_used": [
+          "Bus_SeqVoltages",
+          "Circuit_SetActiveBus",
+          "run_command"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'Bus_SeqVoltages'",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'Bus_SeqVoltages'",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Bus_SeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L3_dffe98b3",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Clear any existing circuit and create a new one\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.Example Bus1=1.1.1.1\")\n\n# Add a second bus and a load\ndss.Text.Command(\"New Bus.Bus2 Bus2=2.2.2.2\")\ndss.Text.Command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 Length=1 Units=km\")\ndss.Text.Command(\"New Load.Load1 Bus2=Bus2 kV=0.4 kW=100\")\n\n# Solve the circuit\ndss.Text.Command(\"Solve\")\n\n# Activate the second bus\ndss.Circuit.SetActiveBus(\"Bus2\")\n\n# Get complex sequence voltages: [re0, im0, re1, im1, re2, im2]\nseq_voltages = dss.Bus.CplxSeqVoltages()\nprint(\"Complex sequence voltages (V):\", seq_voltages)\n\nprint(\"Script completed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Clear any existing circuit and create a new one\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.Example Bus1=1.1.1.1\")\n\n# Add a second bus and a load\ndss.Text.Command(\"New Bus.Bus2 Bus2=2.2.2.2\")\ndss.Text.Command(\"New Line.L1 Bus1=Bus1 Bus2=Bus2 Length=1 Units=km\")\ndss.Text.Command(\"New Load.Load1 Bus2=Bus2 kV=0.4 kW=100\")\n\n# Solve the circuit\ndss.Text.Command(\"Solve\")\n\n# Activate the second bus\ndss.Circuit.SetActiveBus(\"Bus2\")\n\n# Get complex sequence voltages: [re0, im0, re1, im1, re2, im2]\nseq_voltages = dss.Bus.CplxSeqVoltages()\nprint(\"Complex sequence voltages (V):\", seq_voltages)\n\nprint(\"Script completed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Bus_CplxSeqVoltages",
+          "Circuit_SetActiveBus",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Bus_CplxSeqVoltages",
+          "Circuit_SetActiveBus",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "RuntimeError: New Bus.Bus2 Bus2=2.2.2.2",
+      "exec_result": {
+        "success": false,
+        "error": "New Bus.Bus2 Bus2=2.2.2.2",
+        "output": "",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Bus_CplxSeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L3_1b5f646d",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit\ndss.NewCircuit('YscDemo')\ndss.NewBus('bus1')\ndss.NewBus('bus2')\ndss.NewLine('line1', 'bus1', 'bus2', [0.01, 0.05, 0.0, 1e-6])  # R, X, C, length\ndss.NewVsource('source', 'bus1', pu=1.0, angle=0.0, basekv=12.47)\ndss.NewLoad('load1', 'bus2', kw=1000, pf=0.9)\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Switch to fault study mode\ndss.text('set mode=faultstudy')\ndss.Solution.Solve()\n\n# Set active bus to bus2\ndss.Circuit.SetActiveBus('bus2')\n\n# Get short-circuit admittance matrix (flattened interleaved complex list)\nysc = dss.Bus.YscMatrix()\n\n# Print confirmation (first few elements)\nprint(f\"Bus YscMatrix length: {len(ysc)}\")\nprint(f\"First 2 values (Re, Im): {ysc[:2]}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit\ndss.NewCircuit('YscDemo')\ndss.NewBus('bus1')\ndss.NewBus('bus2')\ndss.NewLine('line1', 'bus1', 'bus2', [0.01, 0.05, 0.0, 1e-6])  # R, X, C, length\ndss.NewVsource('source', 'bus1', pu=1.0, angle=0.0, basekv=12.47)\ndss.NewLoad('load1', 'bus2', kw=1000, pf=0.9)\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Switch to fault study mode\ndss.text('set mode=faultstudy')\ndss.Solution.Solve()\n\n# Set active bus to bus2\ndss.Circuit.SetActiveBus('bus2')\n\n# Get short-circuit admittance matrix (flattened interleaved complex list)\nysc = dss.Bus.YscMatrix()\n\n# Print confirmation (first few elements)\nprint(f\"Bus YscMatrix length: {len(ysc)}\")\nprint(f\"First 2 values (Re, Im): {ysc[:2]}\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Bus_YscMatrix",
+          "Circuit_SetActiveBus",
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "NewBus",
+          "NewCircuit",
+          "NewLine",
+          "NewLoad",
+          "NewVsource",
+          "text"
+        ],
+        "all_used": [
+          "Bus_YscMatrix",
+          "Circuit_SetActiveBus",
+          "NewBus",
+          "NewCircuit",
+          "NewLine",
+          "NewLoad",
+          "NewVsource",
+          "Solution_Solve",
+          "text"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Bus_YscMatrix"
+    }
+  },
+  {
+    "probe_id": "L3_f5f7fd32",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 0.0,
+      "api_validity_rate": 0.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Define a simple circuit with a source, line, and fuse\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.FuseDemo\")\ndss.run_command(\"New Vsource.Source Bus1=B1 BasekV=12.47\")\ndss.run_command(\"New Bus.B1\")\ndss.run_command(\"New Bus.B2\")\ndss.run_command(\"New Line.L1 Bus1=B1 Bus2=B2 Length=100 Units=m\")\ndss.run_command(\"New Fuse.F1 MonitoredObj=Line.L1 MonitoredTerm=1\")\n\n# Activate the fuse by name\ndss.Fuses.Name(\"F1\")\n\n# Solve the circuit to get initial state\ndss.run_command(\"solve\")\ninitial_state = dss.Fuses_State()\nprint(f\"Initial fuse state: {initial_state}\")\n\n# Set all phases to \"open\"\ndss.Fuses_State([\"open\"] * len(initial_state))\nnew_state = dss.Fuses_State()\nprint(f\"New fuse state: {new_state}\")\n\nprint(\"Fuses_State demonstration completed successfully.\")",
+      "error": "No code extracted",
+      "function_name": "Fuses_State"
+    }
+  },
+  {
+    "probe_id": "L3_2742b14a",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 1.0,
+      "target_function_used": 1.0,
+      "error_type": null
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a fuse\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.FuseExample basekV=12.47\")\ndss.run_command(\"New Bus.B1 1.0\")\ndss.run_command(\"New Bus.B2 1.0\")\ndss.run_command(\"New Vsource.Source Bus1=B1 kv=12.47\")\ndss.run_command(\"New Line.L1 Bus1=B1 Bus2=B2 Phases=1 Length=1\")\ndss.run_command(\"New Fuse.F1 Line.L1 Phases=1\")\ndss.run_command(\"Solve\")\n\n# Select the fuse (first and only one)\ndss.Fuses.First()\nblown = dss.Fuses.IsBlown()\nprint(f\"Fuse blown: {blown}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a fuse\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.FuseExample basekV=12.47\")\ndss.run_command(\"New Bus.B1 1.0\")\ndss.run_command(\"New Bus.B2 1.0\")\ndss.run_command(\"New Vsource.Source Bus1=B1 kv=12.47\")\ndss.run_command(\"New Line.L1 Bus1=B1 Bus2=B2 Phases=1 Length=1\")\ndss.run_command(\"New Fuse.F1 Line.L1 Phases=1\")\ndss.run_command(\"Solve\")\n\n# Select the fuse (first and only one)\ndss.Fuses.First()\nblown = dss.Fuses.IsBlown()\nprint(f\"Fuse blown: {blown}\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Fuses_IsBlown"
+        ],
+        "invalid_functions": [
+          "First",
+          "run_command"
+        ],
+        "all_used": [
+          "First",
+          "Fuses_IsBlown",
+          "run_command"
+        ]
+      },
+      "error_msg": "",
+      "exec_result": {
+        "success": true,
+        "error": null,
+        "output": "Fuse blown: False\n",
+        "error_type": null
+      },
+      "function_name": "Fuses_IsBlown"
+    }
+  },
+  {
+    "probe_id": "L3_d2a40ac6",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.3333,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "RuntimeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a simple circuit with a fuse\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.TestCircuit basekv=12.47\")\ndss.run_command(\"New Bus.B1\")\ndss.run_command(\"New Bus.B2\")\ndss.run_command(\"New Line.L1 Bus1=B1 Bus2=B2 length=1000 units=ft\")\ndss.run_command(\"New Transformer.T1 Windings=2 Buses=[B2,B3] Conns=[wye,wye] kvs=[12.47,0.48] kvas=[500,500]\")\ndss.run_command(\"New Load.L1 Bus=B3 kV=0.48 kW=100\")\ndss.run_command(\"New Fuse.F1 Bus=B1 FuseCurve=TLink FuseLink=Line.L1\")\ndss.run_command(\"Set VoltageBases=[12.47, 0.48]\")\ndss.run_command(\"CalcVoltageBases\")\n\n# Select the fuse and get/set RatedCurrent\ndss.Fuses.Name(\"F1\")\ncurrent_rating = dss.Fuses.RatedCurrent()\nprint(f\"Current rated current: {current_rating} A\")\n\ndss.Fuses.RatedCurrent(100)\nprint(f\"New rated current set to: {dss.Fuses.RatedCurrent()} A\")\nprint(\"Script completed successfully.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a simple circuit with a fuse\ndss.run_command(\"Clear\")\ndss.run_command(\"New Circuit.TestCircuit basekv=12.47\")\ndss.run_command(\"New Bus.B1\")\ndss.run_command(\"New Bus.B2\")\ndss.run_command(\"New Line.L1 Bus1=B1 Bus2=B2 length=1000 units=ft\")\ndss.run_command(\"New Transformer.T1 Windings=2 Buses=[B2,B3] Conns=[wye,wye] kvs=[12.47,0.48] kvas=[500,500]\")\ndss.run_command(\"New Load.L1 Bus=B3 kV=0.48 kW=100\")\ndss.run_command(\"New Fuse.F1 Bus=B1 FuseCurve=TLink FuseLink=Line.L1\")\ndss.run_command(\"Set VoltageBases=[12.47, 0.48]\")\ndss.run_command(\"CalcVoltageBases\")\n\n# Select the fuse and get/set RatedCurrent\ndss.Fuses.Name(\"F1\")\ncurrent_rating = dss.Fuses.RatedCurrent()\nprint(f\"Current rated current: {current_rating} A\")\n\ndss.Fuses.RatedCurrent(100)\nprint(f\"New rated current set to: {dss.Fuses.RatedCurrent()} A\")\nprint(\"Script completed successfully.\")",
+      "api_check": {
+        "api_validity_rate": 0.3333,
+        "valid_functions": [
+          "Fuses_RatedCurrent"
+        ],
+        "invalid_functions": [
+          "Name",
+          "run_command"
+        ],
+        "all_used": [
+          "Fuses_RatedCurrent",
+          "Name",
+          "run_command"
+        ]
+      },
+      "error_msg": "RuntimeError: Element must be defined previously.",
+      "exec_result": {
+        "success": false,
+        "error": "Element must be defined previously.",
+        "output": "Current rated current: 1.0 A\n",
+        "error_type": "RuntimeError"
+      },
+      "function_name": "Fuses_RatedCurrent"
+    }
+  },
+  {
+    "probe_id": "L3_eaf9d01b",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 1.0,
+      "execution_success": 0.0,
+      "target_function_used": 1.0,
+      "error_type": "DSSException"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Clear any existing circuit and create a new one\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.Test\")\ndss.Text.Command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 phases=1 R=1 X=1\")\n\n# Add a recloser element on the line\ndss.Text.Command(\"New Recloser.Rec1 Line.Line1 monitored=line1 terminal=1\")\n\n# Select the recloser by name\ndss.Reclosers.Name = \"Rec1\"\n\n# Set the number of shots to 3\ndss.Reclosers_Shots(3)\n\n# Retrieve the current shots value\nshots = dss.Reclosers_Shots()\n\nprint(f\"Recloser 'Rec1' shots set to {shots}\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Clear any existing circuit and create a new one\ndss.Text.Command(\"Clear\")\ndss.Text.Command(\"New Circuit.Test\")\ndss.Text.Command(\"New Line.Line1 Bus1=Bus1 Bus2=Bus2 phases=1 R=1 X=1\")\n\n# Add a recloser element on the line\ndss.Text.Command(\"New Recloser.Rec1 Line.Line1 monitored=line1 terminal=1\")\n\n# Select the recloser by name\ndss.Reclosers.Name = \"Rec1\"\n\n# Set the number of shots to 3\ndss.Reclosers_Shots(3)\n\n# Retrieve the current shots value\nshots = dss.Reclosers_Shots()\n\nprint(f\"Recloser 'Rec1' shots set to {shots}\")",
+      "api_check": {
+        "api_validity_rate": 1.0,
+        "valid_functions": [
+          "Reclosers_Shots",
+          "Text_Command"
+        ],
+        "invalid_functions": [],
+        "all_used": [
+          "Reclosers_Shots",
+          "Text_Command"
+        ]
+      },
+      "error_msg": "DSSException: dss._cffi_api_util.DSSException: (#110) Unknown parameter \"terminal\" (value \"1\") for object \"Recloser.rec1\"",
+      "exec_result": {
+        "success": false,
+        "error": "dss._cffi_api_util.DSSException: (#110) Unknown parameter \"terminal\" (value \"1\") for object \"Recloser.rec1\"",
+        "output": "",
+        "error_type": "DSSException"
+      },
+      "function_name": "Reclosers_Shots"
+    }
+  },
+  {
+    "probe_id": "L3_af07ffe3",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.0,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a minimal circuit with a recloser\ndss.text(\"New Circuit.test\")\ndss.text(\"New Line.line1 bus1=sourcebus bus2=loadbus phases=3 length=1\")\ndss.text(\"New Recloser.myrec Line.line1 1\")\n\n# Activate the recloser and set PhaseTrip\ndss.Reclosers.Name = \"myrec\"\ndss.Reclosers.PhaseTrip = 200\ntrip = dss.Reclosers.PhaseTrip\n\nprint(f\"PhaseTrip set to {trip} A\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a minimal circuit with a recloser\ndss.text(\"New Circuit.test\")\ndss.text(\"New Line.line1 bus1=sourcebus bus2=loadbus phases=3 length=1\")\ndss.text(\"New Recloser.myrec Line.line1 1\")\n\n# Activate the recloser and set PhaseTrip\ndss.Reclosers.Name = \"myrec\"\ndss.Reclosers.PhaseTrip = 200\ntrip = dss.Reclosers.PhaseTrip\n\nprint(f\"PhaseTrip set to {trip} A\")",
+      "api_check": {
+        "api_validity_rate": 0.0,
+        "valid_functions": [],
+        "invalid_functions": [
+          "text"
+        ],
+        "all_used": [
+          "text"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'text'. Did you mean: 'Text'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Reclosers_PhaseTrip"
+    }
+  },
+  {
+    "probe_id": "L3_83b8b28a",
+    "layer": "L3",
+    "probe_type": "application",
+    "scores": {
+      "code_extracted": 1.0,
+      "api_validity_rate": 0.2,
+      "execution_success": 0.0,
+      "target_function_used": 0.0,
+      "error_type": "AttributeError"
+    },
+    "details": {
+      "raw_response": "```python\nimport opendssdirect as dss\n\n# Create a new circuit\ndss.NewCircuit(\"RecloserDemo\")\n\n# Define a simple two-bus system with a source and load\ndss.Solution.AddBus(\"Bus1\")\ndss.Solution.AddBus(\"Bus2\")\n\n# Add a voltage source at Bus1 (115 kV, 3-phase)\ndss.Vsources.New(\"Source\", bus1=\"Bus1\", basekv=115, pu=1.0, angle=0, frequency=60, phases=3)\n\n# Add a line between Bus1 and Bus2 (short line)\ndss.Lines.New(\"Line1\", bus1=\"Bus1\", bus2=\"Bus2\", length=1.0, units=\"mi\", r1=0.1, x1=0.5, c1=0.0, r0=0.3, x0=1.5, c0=0.0)\n\n# Add a recloser on the line (must be on a line that already exists)\n# In OpenDSS, a recloser is defined as a \"Recloser\" element, referencing the line it monitors.\ndss.Reclosers.New(\"Recloser1\", monitored_obj=\"Line1\", monitored_term=1, phased=1)\n# Note: Many parameters are required. We provide minimal defaults: basefreq, etc. are set automatically.\n\n# Add a load at Bus2 to draw some current\ndss.Loads.New(\"Load1\", bus1=\"Bus2\", phases=3, kW=1000, kvar=300, model=1)\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Select the recloser (by name)\ndss.Reclosers.Name(\"Recloser1\")\n\n# Get current state (should be closed, typically 1 for closed)\nstate = dss.Reclosers.State\nprint(f\"Initial recloser state (1=closed, 0=open): {state}\")\n\n# Set state to open (for isolation scenario)\ndss.Reclosers.State = 0\nprint(\"Recloser state set to open (0).\")\n\n# Verify the change\nnew_state = dss.Reclosers.State\nprint(f\"Recloser state after setting: {new_state}\")\n\n# Optionally, re-solve after opening\ndss.Solution.Solve()\nprint(f\"Solved after opening recloser. State remains {dss.Reclosers.State}.\")\n\nprint(\"Successfully demonstrated Reclosers_State functionality.\")\n```",
+      "extracted_code": "import opendssdirect as dss\n\n# Create a new circuit\ndss.NewCircuit(\"RecloserDemo\")\n\n# Define a simple two-bus system with a source and load\ndss.Solution.AddBus(\"Bus1\")\ndss.Solution.AddBus(\"Bus2\")\n\n# Add a voltage source at Bus1 (115 kV, 3-phase)\ndss.Vsources.New(\"Source\", bus1=\"Bus1\", basekv=115, pu=1.0, angle=0, frequency=60, phases=3)\n\n# Add a line between Bus1 and Bus2 (short line)\ndss.Lines.New(\"Line1\", bus1=\"Bus1\", bus2=\"Bus2\", length=1.0, units=\"mi\", r1=0.1, x1=0.5, c1=0.0, r0=0.3, x0=1.5, c0=0.0)\n\n# Add a recloser on the line (must be on a line that already exists)\n# In OpenDSS, a recloser is defined as a \"Recloser\" element, referencing the line it monitors.\ndss.Reclosers.New(\"Recloser1\", monitored_obj=\"Line1\", monitored_term=1, phased=1)\n# Note: Many parameters are required. We provide minimal defaults: basefreq, etc. are set automatically.\n\n# Add a load at Bus2 to draw some current\ndss.Loads.New(\"Load1\", bus1=\"Bus2\", phases=3, kW=1000, kvar=300, model=1)\n\n# Solve the circuit\ndss.Solution.Solve()\n\n# Select the recloser (by name)\ndss.Reclosers.Name(\"Recloser1\")\n\n# Get current state (should be closed, typically 1 for closed)\nstate = dss.Reclosers.State\nprint(f\"Initial recloser state (1=closed, 0=open): {state}\")\n\n# Set state to open (for isolation scenario)\ndss.Reclosers.State = 0\nprint(\"Recloser state set to open (0).\")\n\n# Verify the change\nnew_state = dss.Reclosers.State\nprint(f\"Recloser state after setting: {new_state}\")\n\n# Optionally, re-solve after opening\ndss.Solution.Solve()\nprint(f\"Solved after opening recloser. State remains {dss.Reclosers.State}.\")\n\nprint(\"Successfully demonstrated Reclosers_State functionality.\")",
+      "api_check": {
+        "api_validity_rate": 0.2,
+        "valid_functions": [
+          "Solution_Solve"
+        ],
+        "invalid_functions": [
+          "AddBus",
+          "Name",
+          "New",
+          "NewCircuit"
+        ],
+        "all_used": [
+          "AddBus",
+          "Name",
+          "New",
+          "NewCircuit",
+          "Solution_Solve"
+        ]
+      },
+      "error_msg": "AttributeError: AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+      "exec_result": {
+        "success": false,
+        "error": "AttributeError: module 'opendssdirect' has no attribute 'NewCircuit'. Did you mean: 'Circuit'?",
+        "output": "",
+        "error_type": "AttributeError"
+      },
+      "function_name": "Reclosers_State"
+    }
+  }
+]

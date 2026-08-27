@@ -1,0 +1,2764 @@
+{
+  "metadata": {
+    "source_benchmark": "benchmark/benchmark6.json",
+    "n": 80,
+    "seed": 22,
+    "strata": "difficulty,task",
+    "stratum_counts": {
+      "D1_basic|dc_power_flow": 4,
+      "D1_basic|contingency": 2,
+      "D1_basic|power_flow": 4,
+      "D1_basic|short_circuit_3ph": 3,
+      "D1_basic|short_circuit_2ph": 3,
+      "D1_basic|opf": 2,
+      "D1_basic|state_estimation": 3,
+      "D1_basic|time_series": 3,
+      "D2_multi_step|comparison": 5,
+      "D2_multi_step|sequential": 5,
+      "D2_multi_step|parallel": 4,
+      "D2_multi_step|pf_then_sc": 4,
+      "D2_multi_step|diagnose_and_fix": 3,
+      "D2_multi_step|contingency_fix": 2,
+      "D2_multi_step|comparison_opf": 1,
+      "D3_semantic|power_flow": 2,
+      "D3_semantic|contingency": 2,
+      "D3_semantic|time_series": 2,
+      "D3_semantic|dc_power_flow": 2,
+      "D3_semantic|short_circuit_2ph": 2,
+      "D3_semantic|opf": 2,
+      "D3_semantic|state_estimation": 2,
+      "D3_semantic|short_circuit_3ph": 2,
+      "D4_compound|diagnose_and_fix": 2,
+      "D4_compound|comparison": 2,
+      "D4_compound|parallel": 2,
+      "D4_compound|contingency_fix": 3,
+      "D4_compound|comparison_opf": 3,
+      "D4_compound|sequential": 2,
+      "D4_compound|pf_then_sc": 2
+    },
+    "selected_indices": [
+      15,
+      112,
+      139,
+      142,
+      166,
+      209,
+      218,
+      237,
+      298,
+      309,
+      317,
+      318,
+      390,
+      392,
+      423,
+      440,
+      442,
+      453,
+      471,
+      489,
+      502,
+      507,
+      535,
+      556,
+      616,
+      623,
+      630,
+      642,
+      660,
+      722,
+      745,
+      771,
+      823,
+      838,
+      895,
+      898,
+      925,
+      934,
+      1035,
+      1038,
+      1049,
+      1059,
+      1063,
+      1073,
+      1090,
+      1119,
+      1128,
+      1193,
+      1221,
+      1229,
+      1267,
+      1268,
+      1302,
+      1304,
+      1328,
+      1378,
+      1389,
+      1411,
+      1438,
+      1508,
+      1529,
+      1541,
+      1589,
+      1593,
+      1601,
+      1625,
+      1627,
+      1649,
+      1691,
+      1702,
+      1708,
+      1717,
+      1725,
+      1772,
+      1786,
+      1815,
+      1836,
+      1885,
+      1916,
+      1969
+    ]
+  },
+  "items": [
+    {
+      "id": "b10313f47731",
+      "scenario": {
+        "network": "case9",
+        "task": "dc_power_flow",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 1,
+            "value": 1.27
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_line",
+          "column": "loading_percent",
+          "filter_idx": 7
+        }
+      },
+      "natural_language_query": "Could you set the scaling of load 1 to 1.27, run the DC power flow for the 9-bus WSCC case and tell me the loading percent of line 7?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 9-bus WSCC case\nnet = pn.case9()\n\n# Apply modifications\nnet.load.at[1, \"scaling\"] = 1.27\n\n# Run analysis\npp.rundcpp(net)\n\n# Extract result\nresult = net.res_line.at[7, \"loading_percent\"]\nprint(result)",
+      "ground_truth": 29.03161,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "903b944da51b",
+      "scenario": {
+        "network": "kerber_landnetz_f1",
+        "task": "dc_power_flow",
+        "modifications": [
+          {
+            "op": "set_load_p",
+            "idx": 5,
+            "value": 22.1
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_line",
+          "column": "loading_percent",
+          "filter_idx": 5
+        }
+      },
+      "natural_language_query": "What is the loading percent of line 5 on the Kerber rural overhead LV network when you run DC power flow set the active power of load 5 to 22.1 MW,?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load Kerber rural overhead LV network\nnet = pn.create_kerber_landnetz_freileitung_1()\n\n# Apply modifications\nnet.load.at[5, \"p_mw\"] = 22.1\n\n# Run analysis\npp.rundcpp(net)\n\n# Extract result\nresult = net.res_line.at[5, \"loading_percent\"]\nprint(result)",
+      "ground_truth": 11844.233856,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "52bbc5b47da9",
+      "scenario": {
+        "network": "case118",
+        "task": "contingency",
+        "modifications": [],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus",
+          "column": "min_vm_pu"
+        }
+      },
+      "natural_language_query": "Can you run the N-1 contingency analysis on IEEE 118-bus case? What\u2019s the lowest bus voltage (p.u.) you find across all the contingency cases?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\n# Load IEEE 118-bus case\nnet = pn.case118()\n\n# Run analysis\nnminus1_cases = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1_cases)\n\n# Extract result\nresult = net.res_bus[\"min_vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.902134,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "8d2e28e24537",
+      "scenario": {
+        "network": "case30",
+        "task": "power_flow",
+        "modifications": [
+          {
+            "op": "set_line_x",
+            "idx": 23,
+            "value": 0.324
+          }
+        ],
+        "query_target": {
+          "qtype": "max_value",
+          "table": "res_line",
+          "column": "loading_percent"
+        }
+      },
+      "natural_language_query": "Perform a power flow operation for the 30-bus test case. set line 23 reactance to 0.324 Ohm/km, Then, check for the highest loading percentage of any line.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 30-bus test case\nnet = pn.case30()\n\n# Apply modifications\nnet.line.at[23, \"x_ohm_per_km\"] = 0.324\n\n# Run analysis\npp.runpp(net)\n\n# Extract result\nresult = net.res_line[\"loading_percent\"].max()\nprint(result)",
+      "ground_truth": 111.829955,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "a36d0455179f",
+      "scenario": {
+        "network": "case_ieee30",
+        "task": "short_circuit_3ph",
+        "modifications": [],
+        "query_target": {
+          "qtype": "argmax",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "On the IEEE 30-bus case, run 3-phase short circuit analysis. Which bus has the highest short circuit current? Report its index.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load IEEE 30-bus case\nnet = pn.case_ieee30()\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].idxmax()\nprint(result)",
+      "ground_truth": 8,
+      "ground_truth_type": "int",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "e23f5e4b2ddf",
+      "scenario": {
+        "network": "case33bw",
+        "task": "short_circuit_2ph",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 15
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 21
+          }
+        ],
+        "query_target": {
+          "qtype": "argmax",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "On the 33-bus Baran-Wu case, disconnect line 15 (take it out of service), disconnect line 21 (take it out of service), run 2-phase short circuit analysis. Which bus has the highest short circuit current? Report its index.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load 33-bus Baran-Wu case\nnet = pn.case33bw()\n\n# Apply modifications\nnet.line.at[15, \"in_service\"] = False\nnet.line.at[21, \"in_service\"] = False\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"2ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].idxmax()\nprint(result)",
+      "ground_truth": 0,
+      "ground_truth_type": "int",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "264318314279",
+      "scenario": {
+        "network": "case6470rte",
+        "task": "short_circuit_3ph",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.04
+          },
+          {
+            "op": "set_load_p",
+            "idx": 2696,
+            "value": 24.5
+          }
+        ],
+        "query_target": {
+          "qtype": "max_value",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "Set external grid 0 voltage to 1.04 p.u., set the active power of load 2696 to 24.5 MW. Could you execute a 3-phase short circuit analysis on RTE 6470-bus French grid? I'm interested in the highest ikss (kA) at the buses.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load RTE 6470-bus French grid\nnet = pn.case6470rte()\n\n# Apply modifications\nnet.ext_grid.at[0, \"vm_pu\"] = 1.04\nnet.load.at[2696, \"p_mw\"] = 24.5\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 66.648369,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "aae4b02aa1f3",
+      "scenario": {
+        "network": "case14",
+        "task": "opf",
+        "modifications": [],
+        "query_target": {
+          "qtype": "total",
+          "table": "res_gen",
+          "column": "p_mw"
+        }
+      },
+      "natural_language_query": "When you run the OPF on the IEEE 14-bus case, what is the total output (MW) from all generators?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load IEEE 14-bus case\nnet = pn.case14()\n\n# Run analysis\npp.runopp(net)\n\n# Extract result\nresult = net.res_gen[\"p_mw\"].sum()\nprint(result)",
+      "ground_truth": 73.95722,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "0da9d5815bf7",
+      "scenario": {
+        "network": "cigre_mv",
+        "task": "state_estimation",
+        "modifications": [],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus_est",
+          "column": "vm_pu",
+          "se_seed": 4784
+        }
+      },
+      "natural_language_query": "Execute state estimation utilizing the on the CIGRE MV benchmark with data from power flow results (seed=4784). What is the minimum estimated bus voltage (p.u.)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nfrom pandapower.estimation import estimate\n\n# Load CIGRE MV benchmark\nnet = pn.create_cigre_network_mv()\n\n# Step 1: Run true power flow\npp.runpp(net)\n\n# Step 2: Create noisy measurements from true PF results\nnp.random.seed(4784)\nin_service_buses = net.bus[net.bus.in_service].index\n\n# Voltage measurements at all buses\nfor bus_idx in in_service_buses:\n    true_v = net.res_bus.at[bus_idx, \"vm_pu\"]\n    noisy_v = true_v + np.random.normal(0, 0.003)\n    pp.create_measurement(net, \"v\", \"bus\", noisy_v, 0.01, element=bus_idx)\n\n# Power injection measurements at all buses\nfor bus_idx in in_service_buses:\n    true_p = net.res_bus.at[bus_idx, \"p_mw\"]\n    true_q = net.res_bus.at[bus_idx, \"q_mvar\"]\n    pp.create_measurement(net, \"p\", \"bus\", true_p + np.random.normal(0, 0.5), 1.0, element=bus_idx)\n    pp.create_measurement(net, \"q\", \"bus\", true_q + np.random.normal(0, 0.3), 1.0, element=bus_idx)\n\n# Step 3: Run WLS state estimation\nestimate(net, algorithm='wls')\n\n# Step 4: Extract result\nresult = net.res_bus_est[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.921669,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "9b9f893c83c2",
+      "scenario": {
+        "network": "case57",
+        "task": "contingency",
+        "modifications": [
+          {
+            "op": "set_gen_min_p",
+            "idx": 4,
+            "value": 9.5
+          }
+        ],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus",
+          "column": "min_vm_pu"
+        }
+      },
+      "natural_language_query": "On the IEEE 57-bus case, set generator 4 minimum active power to 9.5 MW, run N-1 contingency analysis. What is the lowest bus voltage (p.u.) observed across all contingency cases?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\n# Load IEEE 57-bus case\nnet = pn.case57()\n\n# Apply modifications\nnet.gen.at[4, \"min_p_mw\"] = 9.5\n\n# Run analysis\nnminus1_cases = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1_cases)\n\n# Extract result\nresult = net.res_bus[\"min_vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.496433,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "f8e488228b40",
+      "scenario": {
+        "network": "case6470rte",
+        "task": "power_flow",
+        "modifications": [
+          {
+            "op": "set_line_r",
+            "idx": 1009,
+            "value": 0.012
+          },
+          {
+            "op": "add_gen",
+            "bus": 4400,
+            "p_mw": 47.6,
+            "vm_pu": 1.001
+          }
+        ],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus",
+          "column": "vm_pu"
+        }
+      },
+      "natural_language_query": "Set line 1009 resistance to 0.012 Ohm/km, add a generator at bus 4400 (47.6 MW, vm=1.001 p.u.). Let's run a load flow analysis on the RTE 6470-bus French grid. What is the smallest bus voltage magnitude (p.u.) we can expect?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load RTE 6470-bus French grid\nnet = pn.case6470rte()\n\n# Apply modifications\nnet.line.at[1009, \"r_ohm_per_km\"] = 0.012\npp.create_gen(net, bus=4400, p_mw=47.6, vm_pu=1.001)\n\n# Run analysis\npp.runpp(net)\n\n# Extract result\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.55753,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "b5aa548f5c9f",
+      "scenario": {
+        "network": "case30",
+        "task": "opf",
+        "modifications": [],
+        "query_target": {
+          "qtype": "total",
+          "table": "res_gen",
+          "column": "p_mw"
+        }
+      },
+      "natural_language_query": "What is the total generation (MW) from all generators when you run OPF on the 30-bus test case with the?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 30-bus test case\nnet = pn.case30()\n\n# Run analysis\npp.runopp(net)\n\n# Extract result\nresult = net.res_gen[\"p_mw\"].sum()\nprint(result)",
+      "ground_truth": 152.542834,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "21b7868f2a83",
+      "scenario": {
+        "network": "simple_four_bus",
+        "task": "power_flow",
+        "modifications": [
+          {
+            "op": "set_trafo_parallel",
+            "idx": 0,
+            "value": 2
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "filter_idx": 0
+        }
+      },
+      "natural_language_query": "Can you explain how to use the simple 4-bus system for our analysis? set transformer 0 to 2 parallel units, Once you perform the load flow calculation, what will be the voltage at bus 0 in per-unit?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load simple 4-bus system\nnet = pn.simple_four_bus_system()\n\n# Apply modifications\nnet.trafo.at[0, \"parallel\"] = 2\n\n# Run analysis\npp.runpp(net)\n\n# Extract result\nresult = net.res_bus.at[0, \"vm_pu\"]\nprint(result)",
+      "ground_truth": 1.0,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "f88fd6e49bb4",
+      "scenario": {
+        "network": "simple_four_bus",
+        "task": "time_series",
+        "modifications": [],
+        "query_target": {
+          "qtype": "ts_min_value",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "se_seed": 9442,
+          "n_steps": 24,
+          "load_scaling_range": [
+            0.6,
+            1.4
+          ]
+        }
+      },
+      "natural_language_query": "What would be the minimum bus voltage (p.u.) recorded across all time steps during a 24-step time series simulation on the simple 4-bus system with random load scaling from 0.6x to 1.4x (seed=9442)? Please run the for this.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nimport pandas as pd\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\n\n# Load simple 4-bus system\nnet = pn.simple_four_bus_system()\n\n# Create time-varying load profiles\nnp.random.seed(9442)\nn_steps = 24\nprofiles = pd.DataFrame(\n    np.random.uniform(0.6, 1.4, size=(n_steps, len(net.load))),\n    columns=net.load.index\n)\n\n# Bind profiles to network\nds = DFData(profiles)\nConstControl(net, element='load', variable='scaling',\n             element_index=net.load.index,\n             data_source=ds, profile_name=net.load.index.tolist())\n\n# Set up output logging\now = OutputWriter(net, time_steps=range(n_steps))\now.log_variable('res_bus', 'vm_pu')\now.log_variable('res_line', 'loading_percent')\n\n# Run time series simulation\nrun_timeseries(net, time_steps=range(n_steps), verbose=False)\n\n# Extract result\nresult = ow.output[\"res_bus.vm_pu\"].min().min()\nprint(result)",
+      "ground_truth": 0.805256,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "6e5b271c7946",
+      "scenario": {
+        "network": "case5",
+        "task": "time_series",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.043
+          }
+        ],
+        "query_target": {
+          "qtype": "ts_min_value",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "se_seed": 3479,
+          "n_steps": 24,
+          "load_scaling_range": [
+            0.6,
+            1.4
+          ]
+        }
+      },
+      "natural_language_query": "Set external grid 0 voltage to 1.043 p.u. Run a 24-step time series simulation utilizing random load scaling in the range of 0.6x to 1.4x (seed=3479) on the 5-bus PJM case. What is the minimum observed bus voltage (p.u.)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nimport pandas as pd\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\n\n# Load 5-bus PJM case\nnet = pn.case5()\n\n# Apply modifications\nnet.ext_grid.at[0, \"vm_pu\"] = 1.043\n\n# Create time-varying load profiles\nnp.random.seed(3479)\nn_steps = 24\nprofiles = pd.DataFrame(\n    np.random.uniform(0.6, 1.4, size=(n_steps, len(net.load))),\n    columns=net.load.index\n)\n\n# Bind profiles to network\nds = DFData(profiles)\nConstControl(net, element='load', variable='scaling',\n             element_index=net.load.index,\n             data_source=ds, profile_name=net.load.index.tolist())\n\n# Set up output logging\now = OutputWriter(net, time_steps=range(n_steps))\now.log_variable('res_bus', 'vm_pu')\now.log_variable('res_line', 'loading_percent')\n\n# Run time series simulation\nrun_timeseries(net, time_steps=range(n_steps), verbose=False)\n\n# Extract result\nresult = ow.output[\"res_bus.vm_pu\"].min().min()\nprint(result)",
+      "ground_truth": 0.985134,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "7b35ea9d23f7",
+      "scenario": {
+        "network": "example_simple",
+        "task": "dc_power_flow",
+        "modifications": [
+          {
+            "op": "add_sgen",
+            "bus": 4,
+            "p_mw": 4.3,
+            "q_mvar": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "max_value",
+          "table": "res_line",
+          "column": "loading_percent"
+        }
+      },
+      "natural_language_query": "Perform a DC power flow analysis on pandapower example network and report back with the maximum loading percentage (%), based on Add a static generator at bus 4 (4.3 MW).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load pandapower example network\nnet = pn.example_simple()\n\n# Apply modifications\npp.create_sgen(net, bus=4, p_mw=4.3, q_mvar=0)\n\n# Run analysis\npp.rundcpp(net)\n\n# Extract result\nresult = net.res_line[\"loading_percent\"].max()\nprint(result)",
+      "ground_truth": 41.141349,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "4d3b983afecc",
+      "scenario": {
+        "network": "cigre_hv",
+        "task": "short_circuit_2ph",
+        "modifications": [],
+        "query_target": {
+          "qtype": "argmax",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "On the CIGRE HV benchmark, run 2-phase short circuit analysis. Which bus has the highest short circuit current? Report its index.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load CIGRE HV benchmark\nnet = pn.create_cigre_network_hv()\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"2ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].idxmax()\nprint(result)",
+      "ground_truth": 9,
+      "ground_truth_type": "int",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "fae5b8e33245",
+      "scenario": {
+        "network": "case1354pegase",
+        "task": "power_flow",
+        "modifications": [
+          {
+            "op": "set_bus_min_vm",
+            "idx": 1175,
+            "value": 0.921
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_ext_grid",
+          "column": "p_mw",
+          "filter_idx": 0
+        }
+      },
+      "natural_language_query": "Set bus 1175 minimum voltage limit to 0.921 p.u. Run power flow analysis using the PEGASE 1354-bus. What's the active power contribution from the external grid in MW?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load PEGASE 1354-bus\nnet = pn.case1354pegase()\n\n# Apply modifications\nnet.bus.at[1175, \"min_vm_pu\"] = 0.921\n\n# Run analysis\npp.runpp(net)\n\n# Extract result\nresult = net.res_ext_grid.at[0, \"p_mw\"]\nprint(result)",
+      "ground_truth": 2611.437495,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "da98ac19350e",
+      "scenario": {
+        "network": "simple_mv_open_ring",
+        "task": "state_estimation",
+        "modifications": [
+          {
+            "op": "set_trafo_shift",
+            "idx": 0,
+            "value": 4.8
+          },
+          {
+            "op": "set_load_q",
+            "idx": 0,
+            "value": 5.1
+          }
+        ],
+        "query_target": {
+          "qtype": "max_value",
+          "table": "res_bus_est",
+          "column": "vm_pu",
+          "se_seed": 313
+        }
+      },
+      "natural_language_query": "On the simple MV open ring, set transformer 0 phase shift to 4.8 degrees, set the reactive power of load 0 to 5.1 Mvar, set up a state estimation with noisy measurements from a power flow solution (voltage std_dev=0.01, power std_dev=1.0, seed=313). What is the maximum estimated bus voltage (p.u.)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nfrom pandapower.estimation import estimate\n\n# Load simple MV open ring\nnet = pn.simple_mv_open_ring_net()\n\n# Apply modifications\nnet.trafo.at[0, \"shift_degree\"] = 4.8\nnet.load.at[0, \"q_mvar\"] = 5.1\n\n# Step 1: Run true power flow\npp.runpp(net)\n\n# Step 2: Create noisy measurements from true PF results\nnp.random.seed(313)\nin_service_buses = net.bus[net.bus.in_service].index\n\n# Voltage measurements at all buses\nfor bus_idx in in_service_buses:\n    true_v = net.res_bus.at[bus_idx, \"vm_pu\"]\n    noisy_v = true_v + np.random.normal(0, 0.003)\n    pp.create_measurement(net, \"v\", \"bus\", noisy_v, 0.01, element=bus_idx)\n\n# Power injection measurements at all buses\nfor bus_idx in in_service_buses:\n    true_p = net.res_bus.at[bus_idx, \"p_mw\"]\n    true_q = net.res_bus.at[bus_idx, \"q_mvar\"]\n    pp.create_measurement(net, \"p\", \"bus\", true_p + np.random.normal(0, 0.5), 1.0, element=bus_idx)\n    pp.create_measurement(net, \"q\", \"bus\", true_q + np.random.normal(0, 0.3), 1.0, element=bus_idx)\n\n# Step 3: Run WLS state estimation\nestimate(net, algorithm='wls')\n\n# Step 4: Extract result\nresult = net.res_bus_est[\"vm_pu\"].max()\nprint(result)",
+      "ground_truth": 0.998707,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "1f554f20e33b",
+      "scenario": {
+        "network": "case24_ieee_rts",
+        "task": "short_circuit_3ph",
+        "modifications": [
+          {
+            "op": "set_trafo_shift",
+            "idx": 0,
+            "value": 26.7
+          },
+          {
+            "op": "set_trafo_tap_pos",
+            "idx": 0,
+            "value": 1
+          }
+        ],
+        "query_target": {
+          "qtype": "argmax",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "On the IEEE 24-bus RTS, set transformer 0 phase shift to 26.7 degrees, set transformer 0 tap position to 1, run 3-phase short circuit analysis. Which bus has the highest short circuit current? Report its index.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load IEEE 24-bus RTS\nnet = pn.case24_ieee_rts()\n\n# Apply modifications\nnet.trafo.at[0, \"shift_degree\"] = 26.7\nnet.trafo.at[0, \"tap_pos\"] = 1\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].idxmax()\nprint(result)",
+      "ground_truth": 8,
+      "ground_truth_type": "int",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "a544675bd9e7",
+      "scenario": {
+        "network": "case30",
+        "task": "time_series",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.024
+          }
+        ],
+        "query_target": {
+          "qtype": "ts_max_value",
+          "table": "res_line",
+          "column": "loading_percent",
+          "se_seed": 919,
+          "n_steps": 24,
+          "load_scaling_range": [
+            0.6,
+            1.4
+          ]
+        }
+      },
+      "natural_language_query": "Execute a 24-step time series simulation on the 30-bus test case with set external grid 0 voltage to 1.024 p.u.,, using random load profiles (from 0.6 to 1.4, seed=919). What is the peak line loading (%) across all lines and time intervals?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nimport pandas as pd\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\n\n# Load 30-bus test case\nnet = pn.case30()\n\n# Apply modifications\nnet.ext_grid.at[0, \"vm_pu\"] = 1.024\n\n# Create time-varying load profiles\nnp.random.seed(919)\nn_steps = 24\nprofiles = pd.DataFrame(\n    np.random.uniform(0.6, 1.4, size=(n_steps, len(net.load))),\n    columns=net.load.index\n)\n\n# Bind profiles to network\nds = DFData(profiles)\nConstControl(net, element='load', variable='scaling',\n             element_index=net.load.index,\n             data_source=ds, profile_name=net.load.index.tolist())\n\n# Set up output logging\now = OutputWriter(net, time_steps=range(n_steps))\now.log_variable('res_bus', 'vm_pu')\now.log_variable('res_line', 'loading_percent')\n\n# Run time series simulation\nrun_timeseries(net, time_steps=range(n_steps), verbose=False)\n\n# Extract result\nresult = ow.output[\"res_line.loading_percent\"].max().max()\nprint(result)",
+      "ground_truth": 151.108988,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "39dbb7f3147f",
+      "scenario": {
+        "network": "example_simple",
+        "task": "state_estimation",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.027
+          }
+        ],
+        "query_target": {
+          "qtype": "max_value",
+          "table": "res_bus_est",
+          "column": "vm_pu",
+          "se_seed": 1960
+        }
+      },
+      "natural_language_query": "Set external grid 0 voltage to 1.027 p.u. Execute a state estimation using noisy measurements from a power flow solution on the pandapower example network (with voltage std_dev=0.01, power std_dev=1.0, seed=1960). Can you determine the maximum estimated bus voltage in p.u.?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nfrom pandapower.estimation import estimate\n\n# Load pandapower example network\nnet = pn.example_simple()\n\n# Apply modifications\nnet.ext_grid.at[0, \"vm_pu\"] = 1.027\n\n# Step 1: Run true power flow\npp.runpp(net)\n\n# Step 2: Create noisy measurements from true PF results\nnp.random.seed(1960)\nin_service_buses = net.bus[net.bus.in_service].index\n\n# Voltage measurements at all buses\nfor bus_idx in in_service_buses:\n    true_v = net.res_bus.at[bus_idx, \"vm_pu\"]\n    noisy_v = true_v + np.random.normal(0, 0.003)\n    pp.create_measurement(net, \"v\", \"bus\", noisy_v, 0.01, element=bus_idx)\n\n# Power injection measurements at all buses\nfor bus_idx in in_service_buses:\n    true_p = net.res_bus.at[bus_idx, \"p_mw\"]\n    true_q = net.res_bus.at[bus_idx, \"q_mvar\"]\n    pp.create_measurement(net, \"p\", \"bus\", true_p + np.random.normal(0, 0.5), 1.0, element=bus_idx)\n    pp.create_measurement(net, \"q\", \"bus\", true_q + np.random.normal(0, 0.3), 1.0, element=bus_idx)\n\n# Step 3: Run WLS state estimation\nestimate(net, algorithm='wls')\n\n# Step 4: Extract result\nresult = net.res_bus_est[\"vm_pu\"].max()\nprint(result)",
+      "ground_truth": 1.030371,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "b20924fec9a5",
+      "scenario": {
+        "network": "case9241pegase",
+        "task": "short_circuit_2ph",
+        "modifications": [
+          {
+            "op": "set_line_parallel",
+            "idx": 304,
+            "value": 2
+          }
+        ],
+        "query_target": {
+          "qtype": "max_value",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "Can you check the maximum ikss (kA) by running a 2-phase short circuit analysis on the PEGASE 9241-bus? Use set line 304 to 2 parallel circuits, for reference.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load PEGASE 9241-bus\nnet = pn.case9241pegase()\n\n# Apply modifications\nnet.line.at[304, \"parallel\"] = 2\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"2ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 3.460273,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "17fccb81b2c8",
+      "scenario": {
+        "network": "simple_mv_open_ring",
+        "task": "dc_power_flow",
+        "modifications": [],
+        "query_target": {
+          "qtype": "total",
+          "table": "res_line",
+          "column": "pl_mw"
+        }
+      },
+      "natural_language_query": "Run the DC power flow for the simple MV open ring, if you could. What are the total line losses (MW) from that?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load simple MV open ring\nnet = pn.simple_mv_open_ring_net()\n\n# Run analysis\npp.rundcpp(net)\n\n# Extract result\nresult = net.res_line[\"pl_mw\"].sum()\nprint(result)",
+      "ground_truth": 0.0,
+      "ground_truth_type": "float",
+      "difficulty_level": "D1_basic"
+    },
+    {
+      "id": "f05e25537d86",
+      "scenario": {
+        "network": "cigre_lv",
+        "task": "comparison",
+        "modifications": [
+          {
+            "op": "set_bus_max_vm",
+            "idx": 4,
+            "value": 1.053
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 0,
+            "value": 0.65
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison",
+          "table": "res_line",
+          "column": "loading_percent"
+        }
+      },
+      "natural_language_query": "Using the CIGRE LV benchmark, set bus 4 maximum voltage limit to 1.053 p.u., first run a power flow to get maximum line loading (%). After that, set the scaling of load 0 to 0.65 and run power flow again. What is the difference in maximum line loading (%) between the two runs?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load CIGRE LV benchmark\nnet = pn.create_cigre_network_lv()\n\n# Baseline modifications\nnet.bus.at[4, \"max_vm_pu\"] = 1.053\n\n# Step 1: baseline power flow\npp.runpp(net)\nbaseline = net.res_line[\"loading_percent\"].max()\n\n# Step 2: set the scaling of load 0 to 0.65\nnet.load.at[0, \"scaling\"] = 0.65\n\n# Re-run power flow\npp.runpp(net)\nmodified = net.res_line[\"loading_percent\"].max()\n\nresult = abs(baseline - modified)\nprint(result)",
+      "ground_truth": 0.120252,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "b674ad517e4f",
+      "scenario": {
+        "network": "case300",
+        "task": "comparison",
+        "modifications": [
+          {
+            "op": "set_load_p",
+            "idx": 108,
+            "value": 23.6
+          },
+          {
+            "op": "set_gen_p",
+            "idx": 30,
+            "value": 1578.4
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison",
+          "table": "res_bus",
+          "column": "vm_pu"
+        }
+      },
+      "natural_language_query": "Start by accessing the 300-bus test case. Then, set the active power of load 108 to 23.6 MW, run a power flow for minimum bus voltage (p.u.). After this, set generator 30 active power to 1578.4 MW, and execute the power flow again. What is the new value of minimum bus voltage (p.u.)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 300-bus test case\nnet = pn.case300()\n\n# Baseline modifications\nnet.load.at[108, \"p_mw\"] = 23.6\n\n# Step 1: baseline power flow\npp.runpp(net)\nbaseline = net.res_bus[\"vm_pu\"].min()\n\n# Step 2: set generator 30 active power to 1578.4 MW\nnet.gen.at[30, \"p_mw\"] = 1578.4\n\n# Re-run power flow\npp.runpp(net)\nmodified = net.res_bus[\"vm_pu\"].min()\n\nresult = abs(baseline - modified)\nprint(result)",
+      "ground_truth": 0.028179,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "67b28dca8467",
+      "scenario": {
+        "network": "case145",
+        "task": "sequential",
+        "modifications": [
+          {
+            "op": "set_gen_out_of_service",
+            "idx": 23
+          },
+          {
+            "op": "add_shunt",
+            "bus": 94,
+            "q_mvar": -7.0,
+            "p_mw": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "sequential",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 15.6
+        }
+      },
+      "natural_language_query": "On the 145-bus case, begin from this semantic setup: take generator 23 out of service, run power flow. If any line's loading exceeds 15.6%, then add a shunt at bus 94 (-7.0 Mvar), re-run the analysis, and report the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case145()\n\n# Apply modifications\nnet.gen.at[23, \"in_service\"] = False\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: check condition\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 15.6:\n    pp.create_shunt(net, bus=94, q_mvar=-7.0, p_mw=0)\n    pp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.92,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "c1d8364e3c08",
+      "scenario": {
+        "network": "case2848rte",
+        "task": "parallel",
+        "modifications": [
+          {
+            "op": "set_load_p",
+            "idx": 613,
+            "value": 83.1
+          },
+          {
+            "op": "add_gen",
+            "bus": 1661,
+            "p_mw": 39.1,
+            "vm_pu": 0.981
+          },
+          {
+            "op": "set_line_r",
+            "idx": 1628,
+            "value": 0.121
+          }
+        ],
+        "query_target": {
+          "qtype": "parallel",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "Set the active power of load 613 to 83.1 MW, add a generator at bus 1661 (39.1 MW, vm=0.981 p.u.), set line 1628 resistance to 0.121 Ohm/km. Can you run power flow on the RTE 2848-bus French grid and take note of the maximum line loading (%)? Following that, run 3-phase short circuit analysis and record the maximum short circuit current (ikss in kA). Ensure to report the maximum short circuit current (ikss in kA).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.case2848rte()\n\nnet.load.at[613, \"p_mw\"] = 83.1\npp.create_gen(net, bus=1661, p_mw=39.1, vm_pu=0.981)\nnet.line.at[1628, \"r_ohm_per_km\"] = 0.121\n\n# Task A: power flow\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\n\n# Task B: short circuit\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 68.171507,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "7ee1eadd885d",
+      "scenario": {
+        "network": "kerber_landnetz_k1",
+        "task": "parallel",
+        "modifications": [],
+        "query_target": {
+          "qtype": "parallel",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "On the Kerber rural cable LV network, carry out by running power flow and capturing the maximum line loading (%). Subsequently, run 3-phase short circuit analysis and log the maximum short circuit current (ikss in kA). Don't forget to report the maximum short circuit current (ikss in kA).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.create_kerber_landnetz_kabel_1()\n\n# Task A: power flow\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\n\n# Task B: short circuit\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 57.735027,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "33e3da4a76e7",
+      "scenario": {
+        "network": "simple_mv_open_ring",
+        "task": "comparison",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison",
+          "table": "res_line",
+          "column": "loading_percent"
+        }
+      },
+      "natural_language_query": "Can you start with the simple MV open ring and run a power flow to find out maximum line loading (%)? Once you have that, disconnect line 0 (take it out of service) and run the power flow again. What changes do you see in maximum line loading (%)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load simple MV open ring\nnet = pn.simple_mv_open_ring_net()\n\n# Step 1: baseline power flow\npp.runpp(net)\nbaseline = net.res_line[\"loading_percent\"].max()\n\n# Step 2: disconnect line 0 (take it out of service)\nnet.line.at[0, \"in_service\"] = False\n\n# Re-run power flow\npp.runpp(net)\nmodified = net.res_line[\"loading_percent\"].max()\n\nresult = abs(baseline - modified)\nprint(result)",
+      "ground_truth": 8.256919,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "cd9a54e298f3",
+      "scenario": {
+        "network": "case39",
+        "task": "comparison",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.053
+          },
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.049
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 20,
+            "value": 1.98
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 20,
+            "value": 0.65
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison",
+          "table": "res_bus",
+          "column": "vm_pu"
+        }
+      },
+      "natural_language_query": "Can you start with the IEEE 39-bus New England and Set external grid 0 voltage to 1.053 p.u., set external grid 0 voltage to 1.049 p.u., set the scaling of load 20 to 1.98. run a power flow to find out minimum bus voltage (p.u.)? Once you have that, set the scaling of load 20 to 0.65 and run the power flow again. What changes do you see in minimum bus voltage (p.u.)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load IEEE 39-bus New England\nnet = pn.case39()\n\n# Baseline modifications\nnet.ext_grid.at[0, \"vm_pu\"] = 1.053\nnet.ext_grid.at[0, \"vm_pu\"] = 1.049\nnet.load.at[20, \"scaling\"] = 1.98\n\n# Step 1: baseline power flow\npp.runpp(net)\nbaseline = net.res_bus[\"vm_pu\"].min()\n\n# Step 2: set the scaling of load 20 to 0.65\nnet.load.at[20, \"scaling\"] = 0.65\n\n# Re-run power flow\npp.runpp(net)\nmodified = net.res_bus[\"vm_pu\"].min()\n\nresult = abs(baseline - modified)\nprint(result)",
+      "ground_truth": 0.038774,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "0799f0071a5a",
+      "scenario": {
+        "network": "GBnetwork",
+        "task": "pf_then_sc",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 148,
+            "value": 0.73
+          },
+          {
+            "op": "set_bus_max_vm",
+            "idx": 322,
+            "value": 1.098
+          }
+        ],
+        "query_target": {
+          "qtype": "pf_then_sc",
+          "table": "res_bus_sc",
+          "column": "ikss_ka",
+          "filter_idx": 948
+        }
+      },
+      "natural_language_query": "Set the scaling of load 148 to 0.73, set bus 322 maximum voltage limit to 1.098 p.u. To begin with the GB 2224-bus network, make sure to first execute a power flow to determine the operating point. Following that, perform a 3-phase short circuit calculation using the superposition method (use_pre_fault_voltage=True) and provide the short circuit current (ikss in kA) at bus 948.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.GBnetwork()\n\nnet.load.at[148, \"scaling\"] = 0.73\nnet.bus.at[322, \"max_vm_pu\"] = 1.098\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: SC with superposition method\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\", use_pre_fault_voltage=True)\n\nresult = net.res_bus_sc.at[948, \"ikss_ka\"]\nprint(result)",
+      "ground_truth": 3.955627,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "dd2f1d64b5ac",
+      "scenario": {
+        "network": "case118",
+        "task": "pf_then_sc",
+        "modifications": [
+          {
+            "op": "add_gen",
+            "bus": 22,
+            "p_mw": 17.4,
+            "vm_pu": 1.023
+          }
+        ],
+        "query_target": {
+          "qtype": "pf_then_sc",
+          "table": "res_bus_sc",
+          "column": "ikss_ka",
+          "filter_idx": 66
+        }
+      },
+      "natural_language_query": "Add a generator at bus 22 (17.4 MW, vm=1.023 p.u.). What is the procedure on the IEEE 118-bus case? Start with a power flow to find the operating point, then carry out a 3-phase short circuit calculation using the superposition method (use_pre_fault_voltage=True). Make sure to report the short circuit current (ikss in kA) at bus 66.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.case118()\n\npp.create_gen(net, bus=22, p_mw=17.4, vm_pu=1.023)\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: SC with superposition method\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\", use_pre_fault_voltage=True)\n\nresult = net.res_bus_sc.at[66, \"ikss_ka\"]\nprint(result)",
+      "ground_truth": 4.381413,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "eabd89207551",
+      "scenario": {
+        "network": "four_loads_branches",
+        "task": "sequential",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "sequential",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 50.9
+        }
+      },
+      "natural_language_query": "Please run power flow on the 4-loads-with-branches network. If any line's loading exceeds 50.9%, then disconnect line 0 (take it out of service) and subsequently re-run power flow. Finally, report the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.four_loads_with_branches_out()\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: check condition\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 50.9:\n    net.line.at[0, \"in_service\"] = False\n    pp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.999986,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "1e1b07bdee55",
+      "scenario": {
+        "network": "kerber_landnetz_f1",
+        "task": "pf_then_sc",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.033
+          }
+        ],
+        "query_target": {
+          "qtype": "pf_then_sc",
+          "table": "res_bus_sc",
+          "column": "ikss_ka",
+          "filter_idx": 3
+        }
+      },
+      "natural_language_query": "Set external grid 0 voltage to 1.033 p.u. Can you run a power flow on the Kerber rural overhead LV network initially to find the operating point? Afterward, utilize the superposition method for a 3-phase short circuit calculation (use_pre_fault_voltage=True) and report the short circuit current (ikss in kA) at bus 3.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.create_kerber_landnetz_freileitung_1()\n\nnet.ext_grid.at[0, \"vm_pu\"] = 1.033\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: SC with superposition method\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\", use_pre_fault_voltage=True)\n\nresult = net.res_bus_sc.at[3, \"ikss_ka\"]\nprint(result)",
+      "ground_truth": 4.643127,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "212af375b797",
+      "scenario": {
+        "network": "simple_mv_open_ring",
+        "task": "diagnose_and_fix",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 0.999
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "diagnose_and_fix",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 0.94
+        }
+      },
+      "natural_language_query": "Set external grid 0 voltage to 0.999 p.u. Can you run power flow on the simple MV open ring? Disconnect the line that is the most loaded if any line exceeds 13.8% loading. Then, perform another power flow analysis. If any bus voltage is lower than 0.94 p.u., add a 17 Mvar shunt where the bus voltage is the lowest. Run the power flow one last time and provide the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.simple_mv_open_ring_net()\n\nnet.ext_grid.at[0, \"vm_pu\"] = 0.999\n\n# Stage 1: run PF, check overloads\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 13.8:\n    worst_line = net.res_line[\"loading_percent\"].idxmax()\n    net.line.at[worst_line, \"in_service\"] = False\n\n# Stage 2: re-run PF, check voltages\npp.runpp(net)\nmin_v = net.res_bus[\"vm_pu\"].min()\nif min_v < 0.94:\n    weak_bus = net.res_bus[\"vm_pu\"].idxmin()\n    pp.create_shunt(net, bus=weak_bus, q_mvar=-17.0, p_mw=0)\n\n# Stage 3: final PF\npp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.995809,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "3d3cd17e3c20",
+      "scenario": {
+        "network": "case4gs",
+        "task": "sequential",
+        "modifications": [
+          {
+            "op": "set_line_x",
+            "idx": 2,
+            "value": 0.488
+          },
+          {
+            "op": "set_line_parallel",
+            "idx": 2,
+            "value": 3
+          },
+          {
+            "op": "set_line_r",
+            "idx": 1,
+            "value": 0.3
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 2,
+            "value": 0.8
+          }
+        ],
+        "query_target": {
+          "qtype": "sequential",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 31.4
+        }
+      },
+      "natural_language_query": "On the 4-bus test case, begin from this semantic setup: set line 2 reactance to 0.488 Ohm/km, set line 2 to 3 parallel circuits, set line 1 resistance to 0.3 Ohm/km, run power flow. If any line's loading exceeds 31.4%, then set the scaling of load 2 to 0.8, re-run the analysis, and report the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case4gs()\n\n# Apply modifications\nnet.line.at[2, \"x_ohm_per_km\"] = 0.488\nnet.line.at[2, \"parallel\"] = 3\nnet.line.at[1, \"r_ohm_per_km\"] = 0.3\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: check condition\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 31.4:\n    net.load.at[2, \"scaling\"] = 0.8\n    pp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.982084,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "ff98aaffe86a",
+      "scenario": {
+        "network": "case5",
+        "task": "contingency_fix",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 5
+          },
+          {
+            "op": "add_gen",
+            "bus": 4,
+            "p_mw": 18.0,
+            "vm_pu": 1.0
+          }
+        ],
+        "query_target": {
+          "qtype": "contingency_fix",
+          "table": "res_line",
+          "column": "loading_percent"
+        }
+      },
+      "natural_language_query": "What steps should be taken to perform N-1 contingency analysis on the 5-bus PJM case? Look into for every line to find the one that is loaded the most. To remedy this situation, add a 18 MW generator at bus 4. Afterward, re-run the power flow with that problematic line out of service, along with the newly added generator. Report back with the new maximum line loading (%).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\nnet = pn.case5()\n\n# Step 1: N-1 contingency analysis\nnminus1 = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1)\n\n# Find worst contingency\nworst_line = net.res_line[\"max_loading_percent\"].idxmax()\n\n# Step 2: add 18 MW gen at bus 4, disconnect worst line\nnet.line.at[worst_line, 'in_service'] = False\npp.create_gen(net, bus=4, p_mw=18.0, vm_pu=1.0)\n\n# Verify\npp.runpp(net)\n\nresult = net.res_line[\"loading_percent\"].max()\nprint(result)",
+      "ground_truth": 82.338531,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "e2c80759722a",
+      "scenario": {
+        "network": "case118",
+        "task": "comparison_opf",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 39,
+            "value": 1.53
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison_opf",
+          "table": "res_cost",
+          "column": "total"
+        }
+      },
+      "natural_language_query": "Execute the OPF on the IEEE 118-bus case, and make sure to keep track of the total generation cost. Then, once you set the scaling of load 39 to 1.53 is done, run OPF again and report the changes in cost.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case118()\n\n# Step 1: baseline OPF\npp.runopp(net)\ncost_before = net.res_cost\n\n# Step 2: set the scaling of load 39 to 1.53\nnet2 = pn.case118()\nnet2.load.at[39, \"scaling\"] = 1.53\n\npp.runopp(net2)\ncost_after = net2.res_cost\n\nresult = abs(cost_before - cost_after)\nprint(result)",
+      "ground_truth": 418.314894,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "50109fed464f",
+      "scenario": {
+        "network": "case39",
+        "task": "parallel",
+        "modifications": [
+          {
+            "op": "add_sgen",
+            "bus": 12,
+            "p_mw": 1.7,
+            "q_mvar": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "parallel",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "Add a static generator at bus 12 (1.7 MW). Run power flow on the IEEE 39-bus New England, and ensure you record the maximum line loading (%). Next, execute 3-phase short circuit analysis and keep track of the maximum short circuit current (ikss in kA). Be sure to summarize the maximum short circuit current (ikss in kA).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.case39()\n\npp.create_sgen(net, bus=12, p_mw=1.7, q_mvar=0)\n\n# Task A: power flow\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\n\n# Task B: short circuit\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 1.673479,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "671a4240a85f",
+      "scenario": {
+        "network": "four_loads_branches",
+        "task": "diagnose_and_fix",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 4
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 1
+          }
+        ],
+        "query_target": {
+          "qtype": "diagnose_and_fix",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 0.93
+        }
+      },
+      "natural_language_query": "Disconnect line 4 (take it out of service). On the 4-loads-with-branches network, initiate power flow. If any line's loading surpasses 38.3%, remove the line with the highest load. Follow up by running power flow again. Should any bus voltage drop below 0.93 p.u., please introduce a 12 Mvar shunt at the bus experiencing the lowest voltage. Conclude by running power flow and reporting the lowest bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.four_loads_with_branches_out()\n\nnet.line.at[4, \"in_service\"] = False\n\n# Stage 1: run PF, check overloads\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 38.3:\n    worst_line = net.res_line[\"loading_percent\"].idxmax()\n    net.line.at[worst_line, \"in_service\"] = False\n\n# Stage 2: re-run PF, check voltages\npp.runpp(net)\nmin_v = net.res_bus[\"vm_pu\"].min()\nif min_v < 0.93:\n    weak_bus = net.res_bus[\"vm_pu\"].idxmin()\n    pp.create_shunt(net, bus=weak_bus, q_mvar=-12.0, p_mw=0)\n\n# Stage 3: final PF\npp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.999986,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "f5e337ebb4a0",
+      "scenario": {
+        "network": "case3120sp",
+        "task": "sequential",
+        "modifications": [
+          {
+            "op": "set_gen_out_of_service",
+            "idx": 119
+          },
+          {
+            "op": "set_load_q",
+            "idx": 1885,
+            "value": 13.7
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 2312,
+            "value": 0.65
+          }
+        ],
+        "query_target": {
+          "qtype": "sequential",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 239.0
+        }
+      },
+      "natural_language_query": "Take generator 119 out of service, set the reactive power of load 1885 to 13.7 Mvar. Could you perform a power flow calculation on the Polish 3120-bus grid? If it turns out that any line's loading exceeds 239.0%, then go ahead and set the scaling of load 2312 to 0.65, before re-running the power flow and reporting the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case3120sp()\n\n# Apply modifications\nnet.gen.at[119, \"in_service\"] = False\nnet.load.at[1885, \"q_mvar\"] = 13.7\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: check condition\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 239.0:\n    net.load.at[2312, \"scaling\"] = 0.65\n    pp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.951808,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "e03f51c057f4",
+      "scenario": {
+        "network": "case14",
+        "task": "contingency_fix",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 1
+          },
+          {
+            "op": "add_gen",
+            "bus": 12,
+            "p_mw": 39.0,
+            "vm_pu": 1.0
+          }
+        ],
+        "query_target": {
+          "qtype": "contingency_fix",
+          "table": "res_line",
+          "column": "loading_percent"
+        }
+      },
+      "natural_language_query": "Please carry out an N-1 contingency analysis on IEEE 14-bus case, ensuring you check. Determine which contingency leads to the highest line loading. To mitigate this, a 39 MW generator should be added at bus 12. Re-run the power flow under these conditions with the worst-case line disconnected and the new generator operational. Report the new maximum line loading (%).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\nnet = pn.case14()\n\n# Step 1: N-1 contingency analysis\nnminus1 = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1)\n\n# Find worst contingency\nworst_line = net.res_line[\"max_loading_percent\"].idxmax()\n\n# Step 2: add 39 MW gen at bus 12, disconnect worst line\nnet.line.at[worst_line, 'in_service'] = False\npp.create_gen(net, bus=12, p_mw=39.0, vm_pu=1.0)\n\n# Verify\npp.runpp(net)\n\nresult = net.res_line[\"loading_percent\"].max()\nprint(result)",
+      "ground_truth": 1.911448,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "090e651a0713",
+      "scenario": {
+        "network": "case2848rte",
+        "task": "sequential",
+        "modifications": [
+          {
+            "op": "add_gen",
+            "bus": 2237,
+            "p_mw": 14.0,
+            "vm_pu": 1.002
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 1361,
+            "value": 0.8
+          }
+        ],
+        "query_target": {
+          "qtype": "sequential",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 68.0
+        }
+      },
+      "natural_language_query": "What steps should be taken on the RTE 2848-bus French grid? First, Add a generator at bus 2237 (14.0 MW, vm=1.002 p.u.). conduct a power flow analysis. If any line's loading exceeds 68.0%, set the scaling of load 1361 to 0.8 and afterward re-run power flow, reporting the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case2848rte()\n\n# Apply modifications\npp.create_gen(net, bus=2237, p_mw=14.0, vm_pu=1.002)\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: check condition\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 68.0:\n    net.load.at[1361, \"scaling\"] = 0.8\n    pp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.891903,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "28178d5040d7",
+      "scenario": {
+        "network": "cigre_mv",
+        "task": "diagnose_and_fix",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 1
+          }
+        ],
+        "query_target": {
+          "qtype": "diagnose_and_fix",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 0.96
+        }
+      },
+      "natural_language_query": "Please execute power flow on the CIGRE MV benchmark. If any line's loading exceeds 56.8%, disconnect the most heavily loaded line. Afterward, rerun the power flow. If you find that any bus voltage falls below 0.96 p.u., please add a 13 Mvar shunt at the bus with the lowest voltage. Finally, run the power flow once more and report the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.create_cigre_network_mv()\n\n# Stage 1: run PF, check overloads\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 56.8:\n    worst_line = net.res_line[\"loading_percent\"].idxmax()\n    net.line.at[worst_line, \"in_service\"] = False\n\n# Stage 2: re-run PF, check voltages\npp.runpp(net)\nmin_v = net.res_bus[\"vm_pu\"].min()\nif min_v < 0.96:\n    weak_bus = net.res_bus[\"vm_pu\"].idxmin()\n    pp.create_shunt(net, bus=weak_bus, q_mvar=-13.0, p_mw=0)\n\n# Stage 3: final PF\npp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.992553,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "a97f3816878e",
+      "scenario": {
+        "network": "case9",
+        "task": "comparison",
+        "modifications": [
+          {
+            "op": "set_gen_p",
+            "idx": 0,
+            "value": 195.6
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison",
+          "table": "res_line",
+          "column": "loading_percent"
+        }
+      },
+      "natural_language_query": "Start by accessing the 9-bus WSCC case. Then, run a power flow for maximum line loading (%). After this, set generator 0 active power to 195.6 MW, and execute the power flow again. What is the new value of maximum line loading (%)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 9-bus WSCC case\nnet = pn.case9()\n\n# Step 1: baseline power flow\npp.runpp(net)\nbaseline = net.res_line[\"loading_percent\"].max()\n\n# Step 2: set generator 0 active power to 195.6 MW\nnet.gen.at[0, \"p_mw\"] = 195.6\n\n# Re-run power flow\npp.runpp(net)\nmodified = net.res_line[\"loading_percent\"].max()\n\nresult = abs(baseline - modified)\nprint(result)",
+      "ground_truth": 13.298264,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "8c46720f1511",
+      "scenario": {
+        "network": "case1354pegase",
+        "task": "parallel",
+        "modifications": [
+          {
+            "op": "set_trafo_parallel",
+            "idx": 147,
+            "value": 2
+          },
+          {
+            "op": "set_gen_out_of_service",
+            "idx": 65
+          }
+        ],
+        "query_target": {
+          "qtype": "parallel",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        }
+      },
+      "natural_language_query": "Set transformer 147 to 2 parallel units, take generator 65 out of service. Please run power flow and track the maximum line loading (%) on the PEGASE 1354-bus. After that, perform 3-phase short circuit analysis and note down the maximum short circuit current (ikss in kA). Finally, provide a report on the maximum short circuit current (ikss in kA).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.case1354pegase()\n\nnet.trafo.at[147, \"parallel\"] = 2\nnet.gen.at[65, \"in_service\"] = False\n\n# Task A: power flow\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\n\n# Task B: short circuit\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 2.434362,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "c617ba6da337",
+      "scenario": {
+        "network": "cigre_mv",
+        "task": "pf_then_sc",
+        "modifications": [
+          {
+            "op": "set_ext_grid_vm",
+            "idx": 0,
+            "value": 1.035
+          }
+        ],
+        "query_target": {
+          "qtype": "pf_then_sc",
+          "table": "res_bus_sc",
+          "column": "ikss_ka",
+          "filter_idx": 14
+        }
+      },
+      "natural_language_query": "Set external grid 0 voltage to 1.035 p.u. First, execute a power flow on the CIGRE MV benchmark to determine the operating point. Once that's done, perform a 3-phase short circuit calculation using the superposition method (use_pre_fault_voltage=True) and ensure that you report the short circuit current (ikss in kA) at bus 14.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.create_cigre_network_mv()\n\nnet.ext_grid.at[0, \"vm_pu\"] = 1.035\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: SC with superposition method\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\", use_pre_fault_voltage=True)\n\nresult = net.res_bus_sc.at[14, \"ikss_ka\"]\nprint(result)",
+      "ground_truth": 1.810899,
+      "ground_truth_type": "float",
+      "difficulty_level": "D2_multi_step"
+    },
+    {
+      "id": "3cbacdb0dd6f",
+      "scenario": {
+        "network": "case2848rte",
+        "task": "power_flow",
+        "modifications": [
+          {
+            "op": "set_gen_p",
+            "idx": 230,
+            "value": 1756.1
+          }
+        ],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus",
+          "column": "vm_pu"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_generator_redispatch_up",
+          "rule_metadata": {
+            "target_gen": 230,
+            "p_mw": 1756.1
+          }
+        }
+      },
+      "natural_language_query": "Find the online generator with the highest active power dispatch and raise that unit to a higher dispatch level. After loading the RTE 2848-bus French grid, can you execute a power flow to ascertain the minimum voltage magnitude (p.u.) present at any bus?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load RTE 2848-bus French grid\nnet = pn.case2848rte()\n\n# Apply modifications\nnet.gen.at[230, \"p_mw\"] = 1756.1\n\n# Run analysis\npp.runpp(net)\n\n# Extract result\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.891882,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_generator_redispatch_up",
+        "semantic_phrases": [
+          "find the online generator with the highest active power dispatch and raise that unit to a higher dispatch level"
+        ]
+      }
+    },
+    {
+      "id": "835934ac3661",
+      "scenario": {
+        "network": "case4gs",
+        "task": "contingency",
+        "modifications": [
+          {
+            "op": "set_gen_p",
+            "idx": 0,
+            "value": 262.9
+          }
+        ],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus",
+          "column": "min_vm_pu"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_generator_redispatch_down",
+          "rule_metadata": {
+            "target_gen": 0,
+            "p_mw": 262.9
+          }
+        }
+      },
+      "natural_language_query": "Find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level. While conducting the N-1 contingency analysis on 4-bus test case, what is the least bus voltage (p.u.) you observe from all the contingency cases?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\n# Load 4-bus test case\nnet = pn.case4gs()\n\n# Apply modifications\nnet.gen.at[0, \"p_mw\"] = 262.9\n\n# Run analysis\nnminus1_cases = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1_cases)\n\n# Extract result\nresult = net.res_bus[\"min_vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.900195,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_generator_redispatch_down",
+        "semantic_phrases": [
+          "find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level"
+        ]
+      }
+    },
+    {
+      "id": "d9b1b9961577",
+      "scenario": {
+        "network": "cigre_hv",
+        "task": "time_series",
+        "modifications": [
+          {
+            "op": "set_gen_p",
+            "idx": 0,
+            "value": 401.0
+          }
+        ],
+        "query_target": {
+          "qtype": "ts_point_at_step",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "filter_idx": 9,
+          "time_step": 16,
+          "se_seed": 8405,
+          "n_steps": 24,
+          "load_scaling_range": [
+            0.6,
+            1.4
+          ]
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_generator_redispatch_down",
+          "rule_metadata": {
+            "target_gen": 0,
+            "p_mw": 401.0
+          }
+        }
+      },
+      "natural_language_query": "On the CIGRE HV benchmark, find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level, run a 24-step time series simulation with random load profiles (scaling 0.6-1.4, seed=8405). What is the voltage (p.u.) at bus 9 at time step 16?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nimport pandas as pd\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\n\n# Load CIGRE HV benchmark\nnet = pn.create_cigre_network_hv()\n\n# Apply modifications\nnet.gen.at[0, \"p_mw\"] = 401.0\n\n# Create time-varying load profiles\nnp.random.seed(8405)\nn_steps = 24\nprofiles = pd.DataFrame(\n    np.random.uniform(0.6, 1.4, size=(n_steps, len(net.load))),\n    columns=net.load.index\n)\n\n# Bind profiles to network\nds = DFData(profiles)\nConstControl(net, element='load', variable='scaling',\n             element_index=net.load.index,\n             data_source=ds, profile_name=net.load.index.tolist())\n\n# Set up output logging\now = OutputWriter(net, time_steps=range(n_steps))\now.log_variable('res_bus', 'vm_pu')\now.log_variable('res_line', 'loading_percent')\n\n# Run time series simulation\nrun_timeseries(net, time_steps=range(n_steps), verbose=False)\n\n# Extract result\nresult = ow.output[\"res_bus.vm_pu\"].iloc[16, 9]\nprint(result)",
+      "ground_truth": 1.03,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_generator_redispatch_down",
+        "semantic_phrases": [
+          "find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level"
+        ]
+      }
+    },
+    {
+      "id": "33257aecb86a",
+      "scenario": {
+        "network": "case9",
+        "task": "dc_power_flow",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 2,
+            "value": 0.64
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_line",
+          "column": "loading_percent",
+          "filter_idx": 3
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 2,
+            "load_factor": 0.64
+          }
+        }
+      },
+      "natural_language_query": "Identify the currently largest load and curtail only that demand point to a low-demand operating level. Execute the DC power flow on 9-bus WSCC case and find out the loading percent for line 3, would you?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 9-bus WSCC case\nnet = pn.case9()\n\n# Apply modifications\nnet.load.at[2, \"scaling\"] = 0.64\n\n# Run analysis\npp.rundcpp(net)\n\n# Extract result\nresult = net.res_line.at[3, \"loading_percent\"]\nprint(result)",
+      "ground_truth": 28.333333,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ]
+      }
+    },
+    {
+      "id": "8f0888a16738",
+      "scenario": {
+        "network": "case39",
+        "task": "contingency",
+        "modifications": [
+          {
+            "op": "add_shunt",
+            "bus": 30,
+            "q_mvar": -10.0,
+            "p_mw": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "max_value",
+          "table": "res_line",
+          "column": "max_loading_percent"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "lowest_voltage_shunt_support",
+          "rule_metadata": {
+            "target_bus": 30,
+            "shunt_mvar": -10.0
+          }
+        }
+      },
+      "natural_language_query": "Locate the lowest-voltage bus from the current operating point and install capacitive shunt support at that bus. Using the IEEE 39-bus New England, can you execute a N-1 contingency analysis for every line? I\u2019m curious to know the worst-case maximum line loading percentage.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\n# Load IEEE 39-bus New England\nnet = pn.case39()\n\n# Apply modifications\npp.create_shunt(net, bus=30, q_mvar=-10.0, p_mw=0)\n\n# Run analysis\nnminus1_cases = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1_cases)\n\n# Extract result\nresult = net.res_line[\"max_loading_percent\"].max()\nprint(result)",
+      "ground_truth": 157.536072,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "lowest_voltage_shunt_support",
+        "semantic_phrases": [
+          "locate the lowest-voltage bus from the current operating point and install capacitive shunt support at that bus"
+        ]
+      }
+    },
+    {
+      "id": "030135b1ff11",
+      "scenario": {
+        "network": "GBnetwork",
+        "task": "short_circuit_2ph",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 120,
+            "value": 0.72
+          }
+        ],
+        "query_target": {
+          "qtype": "argmax",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 120,
+            "load_factor": 0.72
+          }
+        }
+      },
+      "natural_language_query": "On the GB 2224-bus network, identify the currently largest load and curtail only that demand point to a low-demand operating level, run 2-phase short circuit analysis. Which bus has the highest short circuit current? Report its index.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load GB 2224-bus network\nnet = pn.GBnetwork()\n\n# Apply modifications\nnet.load.at[120, \"scaling\"] = 0.72\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"2ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].idxmax()\nprint(result)",
+      "ground_truth": 1269,
+      "ground_truth_type": "int",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ]
+      }
+    },
+    {
+      "id": "821239bec9c8",
+      "scenario": {
+        "network": "case200_illinois",
+        "task": "power_flow",
+        "modifications": [
+          {
+            "op": "set_gen_p",
+            "idx": 25,
+            "value": 162.3
+          }
+        ],
+        "query_target": {
+          "qtype": "total",
+          "table": "res_line",
+          "column": "pl_mw"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_generator_redispatch_down",
+          "rule_metadata": {
+            "target_gen": 25,
+            "p_mw": 162.3
+          }
+        }
+      },
+      "natural_language_query": "On the Illinois 200-bus, find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level, run power flow. What are the total active power losses (MW) across all lines?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load Illinois 200-bus\nnet = pn.case_illinois200()\n\n# Apply modifications\nnet.gen.at[25, \"p_mw\"] = 162.3\n\n# Run analysis\npp.runpp(net)\n\n# Extract result\nresult = net.res_line[\"pl_mw\"].sum()\nprint(result)",
+      "ground_truth": 18.007902,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_generator_redispatch_down",
+        "semantic_phrases": [
+          "find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level"
+        ]
+      }
+    },
+    {
+      "id": "5e8288ab01e4",
+      "scenario": {
+        "network": "case5",
+        "task": "time_series",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 2,
+            "value": 1.6
+          }
+        ],
+        "query_target": {
+          "qtype": "ts_point_at_step",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "filter_idx": 2,
+          "time_step": 17,
+          "se_seed": 2519,
+          "n_steps": 24,
+          "load_scaling_range": [
+            0.6,
+            1.4
+          ]
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_load_peak",
+          "rule_metadata": {
+            "target_load": 2,
+            "load_factor": 1.6
+          }
+        }
+      },
+      "natural_language_query": "Could you run a 24-step simulation on 5-bus PJM case using Identify the currently largest load and raise only that demand point to a peak-demand operating level. and random load profiles ranging from 0.6 to 1.4 (with seed=2519)? I'm curious about the voltage (p.u.) at bus 2 during the time step 17.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nimport pandas as pd\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\n\n# Load 5-bus PJM case\nnet = pn.case5()\n\n# Apply modifications\nnet.load.at[2, \"scaling\"] = 1.6\n\n# Create time-varying load profiles\nnp.random.seed(2519)\nn_steps = 24\nprofiles = pd.DataFrame(\n    np.random.uniform(0.6, 1.4, size=(n_steps, len(net.load))),\n    columns=net.load.index\n)\n\n# Bind profiles to network\nds = DFData(profiles)\nConstControl(net, element='load', variable='scaling',\n             element_index=net.load.index,\n             data_source=ds, profile_name=net.load.index.tolist())\n\n# Set up output logging\now = OutputWriter(net, time_steps=range(n_steps))\now.log_variable('res_bus', 'vm_pu')\now.log_variable('res_line', 'loading_percent')\n\n# Run time series simulation\nrun_timeseries(net, time_steps=range(n_steps), verbose=False)\n\n# Extract result\nresult = ow.output[\"res_bus.vm_pu\"].iloc[17, 2]\nprint(result)",
+      "ground_truth": 1.0,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_load_peak",
+        "semantic_phrases": [
+          "identify the currently largest load and raise only that demand point to a peak-demand operating level"
+        ]
+      }
+    },
+    {
+      "id": "efafebbb6a7e",
+      "scenario": {
+        "network": "case24_ieee_rts",
+        "task": "opf",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 2,
+            "value": 0.63
+          }
+        ],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus",
+          "column": "vm_pu"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "lowest_voltage_load_curtailment",
+          "rule_metadata": {
+            "target_bus": 2,
+            "target_load": 2,
+            "load_factor": 0.63
+          }
+        }
+      },
+      "natural_language_query": "Locate the lowest-voltage bus that has load connected and curtail the largest load at that bus to a low-demand level. Can you execute the optimal power flow on the IEEE 24-bus RTS? What is the minimum bus voltage (p.u.) in the optimal outcome?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load IEEE 24-bus RTS\nnet = pn.case24_ieee_rts()\n\n# Apply modifications\nnet.load.at[2, \"scaling\"] = 0.63\n\n# Run analysis\npp.runopp(net)\n\n# Extract result\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.961827,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "lowest_voltage_load_curtailment",
+        "semantic_phrases": [
+          "locate the lowest-voltage bus that has load connected and curtail the largest load at that bus to a low-demand level"
+        ]
+      }
+    },
+    {
+      "id": "46db3e0a124d",
+      "scenario": {
+        "network": "case5",
+        "task": "short_circuit_2ph",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 2,
+            "value": 0.74
+          }
+        ],
+        "query_target": {
+          "qtype": "argmax",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 2,
+            "load_factor": 0.74
+          }
+        }
+      },
+      "natural_language_query": "On the 5-bus PJM case, identify the currently largest load and curtail only that demand point to a low-demand operating level, run 2-phase short circuit analysis. Which bus has the highest short circuit current? Report its index.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load 5-bus PJM case\nnet = pn.case5()\n\n# Apply modifications\nnet.load.at[2, \"scaling\"] = 0.74\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"2ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].idxmax()\nprint(result)",
+      "ground_truth": 3,
+      "ground_truth_type": "int",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ]
+      }
+    },
+    {
+      "id": "a3dc7e3bb113",
+      "scenario": {
+        "network": "case9",
+        "task": "opf",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 2,
+            "value": 1.72
+          }
+        ],
+        "query_target": {
+          "qtype": "total",
+          "table": "res_gen",
+          "column": "p_mw"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_load_peak",
+          "rule_metadata": {
+            "target_load": 2,
+            "load_factor": 1.72
+          }
+        }
+      },
+      "natural_language_query": "Identify the currently largest load and raise only that demand point to a peak-demand operating level. Run OPF on the 9-bus WSCC case and provide me with the total generation (MW) from all generators.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 9-bus WSCC case\nnet = pn.case9()\n\n# Apply modifications\nnet.load.at[2, \"scaling\"] = 1.72\n\n# Run analysis\npp.runopp(net)\n\n# Extract result\nresult = net.res_gen[\"p_mw\"].sum()\nprint(result)",
+      "ground_truth": 291.675038,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_load_peak",
+        "semantic_phrases": [
+          "identify the currently largest load and raise only that demand point to a peak-demand operating level"
+        ]
+      }
+    },
+    {
+      "id": "6170ffcea33f",
+      "scenario": {
+        "network": "case9",
+        "task": "state_estimation",
+        "modifications": [
+          {
+            "op": "set_gen_p",
+            "idx": 0,
+            "value": 128.8
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_bus_est",
+          "column": "vm_pu",
+          "filter_idx": 0,
+          "se_seed": 581
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_generator_redispatch_down",
+          "rule_metadata": {
+            "target_gen": 0,
+            "p_mw": 128.8
+          }
+        }
+      },
+      "natural_language_query": "Find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level. First, you should conduct a power flow simulation on the 9-bus WSCC case to find the correct bus values. Afterward, inject noisy measurements (voltage at all buses with std_dev=0.01, bus power injections with std_dev=1.0 MW, seed=581) and carry out the WLS state estimation. Make sure to report the estimated voltage magnitude (p.u.) at bus 0.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nfrom pandapower.estimation import estimate\n\n# Load 9-bus WSCC case\nnet = pn.case9()\n\n# Apply modifications\nnet.gen.at[0, \"p_mw\"] = 128.8\n\n# Step 1: Run true power flow\npp.runpp(net)\n\n# Step 2: Create noisy measurements from true PF results\nnp.random.seed(581)\nin_service_buses = net.bus[net.bus.in_service].index\n\n# Voltage measurements at all buses\nfor bus_idx in in_service_buses:\n    true_v = net.res_bus.at[bus_idx, \"vm_pu\"]\n    noisy_v = true_v + np.random.normal(0, 0.003)\n    pp.create_measurement(net, \"v\", \"bus\", noisy_v, 0.01, element=bus_idx)\n\n# Power injection measurements at all buses\nfor bus_idx in in_service_buses:\n    true_p = net.res_bus.at[bus_idx, \"p_mw\"]\n    true_q = net.res_bus.at[bus_idx, \"q_mvar\"]\n    pp.create_measurement(net, \"p\", \"bus\", true_p + np.random.normal(0, 0.5), 1.0, element=bus_idx)\n    pp.create_measurement(net, \"q\", \"bus\", true_q + np.random.normal(0, 0.3), 1.0, element=bus_idx)\n\n# Step 3: Run WLS state estimation\nestimate(net, algorithm='wls')\n\n# Step 4: Extract result\nresult = net.res_bus_est.at[0, \"vm_pu\"]\nprint(result)",
+      "ground_truth": 0.998931,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_generator_redispatch_down",
+        "semantic_phrases": [
+          "find the online generator with the highest active power dispatch and reduce that unit to a lower dispatch level"
+        ]
+      }
+    },
+    {
+      "id": "c8fca343434e",
+      "scenario": {
+        "network": "case9241pegase",
+        "task": "short_circuit_3ph",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 4329,
+            "value": 0.73
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_bus_sc",
+          "column": "ikss_ka",
+          "filter_idx": 4734
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 4329,
+            "load_factor": 0.73
+          }
+        }
+      },
+      "natural_language_query": "Identify the currently largest load and curtail only that demand point to a low-demand operating level. Run a three-phase short circuit calculation on the PEGASE 9241-bus. Report ikss_ka at bus 4734.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load PEGASE 9241-bus\nnet = pn.case9241pegase()\n\n# Apply modifications\nnet.load.at[4329, \"scaling\"] = 0.73\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc.at[4734, \"ikss_ka\"]\nprint(result)",
+      "ground_truth": 1.14735,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ]
+      }
+    },
+    {
+      "id": "34e1e2a9227a",
+      "scenario": {
+        "network": "case30",
+        "task": "state_estimation",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 4,
+            "value": 0.57
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_bus_est",
+          "column": "vm_pu",
+          "filter_idx": 22,
+          "se_seed": 3304
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "lowest_voltage_load_curtailment",
+          "rule_metadata": {
+            "target_bus": 7,
+            "target_load": 4,
+            "load_factor": 0.57
+          }
+        }
+      },
+      "natural_language_query": "Locate the lowest-voltage bus that has load connected and curtail the largest load at that bus to a low-demand level. After running a power flow on the 30-bus test case, you should gather the actual bus values. Then, introduce noisy measurements (voltage at all buses with std_dev=0.01, bus power injections with std_dev=1.0 MW, seed=3304) and execute the WLS state estimation process. Finally, provide the estimated voltage magnitude (p.u.) at bus 22.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nfrom pandapower.estimation import estimate\n\n# Load 30-bus test case\nnet = pn.case30()\n\n# Apply modifications\nnet.load.at[4, \"scaling\"] = 0.57\n\n# Step 1: Run true power flow\npp.runpp(net)\n\n# Step 2: Create noisy measurements from true PF results\nnp.random.seed(3304)\nin_service_buses = net.bus[net.bus.in_service].index\n\n# Voltage measurements at all buses\nfor bus_idx in in_service_buses:\n    true_v = net.res_bus.at[bus_idx, \"vm_pu\"]\n    noisy_v = true_v + np.random.normal(0, 0.003)\n    pp.create_measurement(net, \"v\", \"bus\", noisy_v, 0.01, element=bus_idx)\n\n# Power injection measurements at all buses\nfor bus_idx in in_service_buses:\n    true_p = net.res_bus.at[bus_idx, \"p_mw\"]\n    true_q = net.res_bus.at[bus_idx, \"q_mvar\"]\n    pp.create_measurement(net, \"p\", \"bus\", true_p + np.random.normal(0, 0.5), 1.0, element=bus_idx)\n    pp.create_measurement(net, \"q\", \"bus\", true_q + np.random.normal(0, 0.3), 1.0, element=bus_idx)\n\n# Step 3: Run WLS state estimation\nestimate(net, algorithm='wls')\n\n# Step 4: Extract result\nresult = net.res_bus_est.at[22, \"vm_pu\"]\nprint(result)",
+      "ground_truth": 0.998779,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "lowest_voltage_load_curtailment",
+        "semantic_phrases": [
+          "locate the lowest-voltage bus that has load connected and curtail the largest load at that bus to a low-demand level"
+        ]
+      }
+    },
+    {
+      "id": "de582fc08687",
+      "scenario": {
+        "network": "case89pegase",
+        "task": "short_circuit_3ph",
+        "modifications": [
+          {
+            "op": "set_gen_out_of_service",
+            "idx": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "min_value",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_generator_trip",
+          "rule_metadata": {
+            "target_gen": 0
+          }
+        }
+      },
+      "natural_language_query": "On the PEGASE 89-bus, find the online generator with the highest active power dispatch and trip that unit offline, run 3-phase short circuit analysis. What is the minimum ikss (kA) across all buses?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\n# Load PEGASE 89-bus\nnet = pn.case89pegase()\n\n# Apply modifications\nnet.gen.at[0, \"in_service\"] = False\n\n# Run analysis\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\n# Extract result\nresult = net.res_bus_sc[\"ikss_ka\"].min()\nprint(result)",
+      "ground_truth": 1.078941,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_generator_trip",
+        "semantic_phrases": [
+          "find the online generator with the highest active power dispatch and trip that unit offline"
+        ]
+      }
+    },
+    {
+      "id": "f98304466a21",
+      "scenario": {
+        "network": "case24_ieee_rts",
+        "task": "dc_power_flow",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 14,
+            "value": 0.8
+          }
+        ],
+        "query_target": {
+          "qtype": "point_value",
+          "table": "res_line",
+          "column": "loading_percent",
+          "filter_idx": 9
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d3",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 14,
+            "load_factor": 0.8
+          }
+        }
+      },
+      "natural_language_query": "Identify the currently largest load and curtail only that demand point to a low-demand operating level. Can you run DC power flow on the IEEE 24-bus RTS? I need to know the loading of line 9 in percent.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load IEEE 24-bus RTS\nnet = pn.case24_ieee_rts()\n\n# Apply modifications\nnet.load.at[14, \"scaling\"] = 0.8\n\n# Run analysis\npp.rundcpp(net)\n\n# Extract result\nresult = net.res_line.at[9, \"loading_percent\"]\nprint(result)",
+      "ground_truth": 65.714286,
+      "ground_truth_type": "float",
+      "difficulty_level": "D3_semantic",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d3",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ]
+      }
+    },
+    {
+      "id": "9fa023ac4314",
+      "scenario": {
+        "network": "simple_mv_open_ring",
+        "task": "diagnose_and_fix",
+        "modifications": [
+          {
+            "op": "set_trafo_tap_pos",
+            "idx": 0,
+            "value": -1
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "diagnose_and_fix",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 0.95
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "largest_trafo_tap_adjustment",
+          "rule_metadata": {
+            "target_trafo": 0,
+            "tap_pos": -1
+          },
+          "base_task": "diagnose_and_fix"
+        }
+      },
+      "natural_language_query": "Find the most heavily loaded transformer and move its tap position by one step. Execute power flow on the simple MV open ring. If any line\u2019s loading goes beyond 17.8%, remove the line that is the most loaded. After that, run power flow again. If you find any bus voltage below 0.95 p.u., you need to introduce a 9 Mvar shunt at the bus with the lowest voltage. Finally, run the power flow one last time to report the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.simple_mv_open_ring_net()\n\nnet.trafo.at[0, \"tap_pos\"] = -1\n\n# Stage 1: run PF, check overloads\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 17.8:\n    worst_line = net.res_line[\"loading_percent\"].idxmax()\n    net.line.at[worst_line, \"in_service\"] = False\n\n# Stage 2: re-run PF, check voltages\npp.runpp(net)\nmin_v = net.res_bus[\"vm_pu\"].min()\nif min_v < 0.95:\n    weak_bus = net.res_bus[\"vm_pu\"].idxmin()\n    pp.create_shunt(net, bus=weak_bus, q_mvar=-9.0, p_mw=0)\n\n# Stage 3: final PF\npp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 1.0,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "largest_trafo_tap_adjustment",
+        "semantic_phrases": [
+          "find the most heavily loaded transformer and move its tap position by one step"
+        ],
+        "base_task": "diagnose_and_fix"
+      }
+    },
+    {
+      "id": "e202e1c9d630",
+      "scenario": {
+        "network": "kerber_landnetz_k1",
+        "task": "comparison",
+        "modifications": [
+          {
+            "op": "disconnect_line",
+            "idx": 0
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 12
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison",
+          "table": "res_bus",
+          "column": "vm_pu"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "most_loaded_line_outage",
+          "rule_metadata": {
+            "target_line": 0
+          },
+          "base_task": "comparison"
+        }
+      },
+      "natural_language_query": "Start by accessing the Kerber rural cable LV network. Then, identify the most heavily loaded line under the current operating point and take that line out of service, run a power flow for minimum bus voltage (p.u.). After this, disconnect line 12 (take it out of service), and execute the power flow again. What is the new value of minimum bus voltage (p.u.)?",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load Kerber rural cable LV network\nnet = pn.create_kerber_landnetz_kabel_1()\n\n# Baseline modifications\nnet.line.at[0, \"in_service\"] = False\n\n# Step 1: baseline power flow\npp.runpp(net)\nbaseline = net.res_bus[\"vm_pu\"].min()\n\n# Step 2: disconnect line 12 (take it out of service)\nnet.line.at[12, \"in_service\"] = False\n\n# Re-run power flow\npp.runpp(net)\nmodified = net.res_bus[\"vm_pu\"].min()\n\nresult = abs(baseline - modified)\nprint(result)",
+      "ground_truth": 0.008496,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "most_loaded_line_outage",
+        "semantic_phrases": [
+          "identify the most heavily loaded line under the current operating point and take that line out of service"
+        ],
+        "base_task": "comparison"
+      }
+    },
+    {
+      "id": "c93c7207dfbd",
+      "scenario": {
+        "network": "case9",
+        "task": "diagnose_and_fix",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 2,
+            "value": 0.66
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 6
+          }
+        ],
+        "query_target": {
+          "qtype": "diagnose_and_fix",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 0.95
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 2,
+            "load_factor": 0.66
+          },
+          "base_task": "diagnose_and_fix"
+        }
+      },
+      "natural_language_query": "Using the 9-bus WSCC case, start from this semantic operating condition: identify the currently largest load and curtail only that demand point to a low-demand operating level, run power flow. If any line exceeds 37.0% loading, disconnect the worst-loaded line and re-run. If any bus voltage is then below 0.95 p.u., add a 14 Mvar shunt at the weakest bus, run power flow again, and report the final minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case9()\n\nnet.load.at[2, \"scaling\"] = 0.66\n\n# Stage 1: run PF, check overloads\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 37.0:\n    worst_line = net.res_line[\"loading_percent\"].idxmax()\n    net.line.at[worst_line, \"in_service\"] = False\n\n# Stage 2: re-run PF, check voltages\npp.runpp(net)\nmin_v = net.res_bus[\"vm_pu\"].min()\nif min_v < 0.95:\n    weak_bus = net.res_bus[\"vm_pu\"].idxmin()\n    pp.create_shunt(net, bus=weak_bus, q_mvar=-14.0, p_mw=0)\n\n# Stage 3: final PF\npp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.982175,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ],
+        "base_task": "diagnose_and_fix"
+      }
+    },
+    {
+      "id": "4d03f7f236c2",
+      "scenario": {
+        "network": "case30",
+        "task": "comparison",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 4,
+            "value": 1.52
+          },
+          {
+            "op": "set_line_parallel",
+            "idx": 9,
+            "value": 2
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison",
+          "table": "res_line",
+          "column": "loading_percent"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "largest_load_peak",
+          "rule_metadata": {
+            "target_load": 4,
+            "load_factor": 1.52
+          },
+          "base_task": "comparison"
+        }
+      },
+      "natural_language_query": "Identify the currently largest load and raise only that demand point to a peak-demand operating level. Load the 30-bus test case. Run power flow. Then set line 9 to 2 parallel circuits and re-run. Report how much maximum line loading (%) changed.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\n# Load 30-bus test case\nnet = pn.case30()\n\n# Baseline modifications\nnet.load.at[4, \"scaling\"] = 1.52\n\n# Step 1: baseline power flow\npp.runpp(net)\nbaseline = net.res_line[\"loading_percent\"].max()\n\n# Step 2: set line 9 to 2 parallel circuits\nnet.line.at[9, \"parallel\"] = 2\n\n# Re-run power flow\npp.runpp(net)\nmodified = net.res_line[\"loading_percent\"].max()\n\nresult = abs(baseline - modified)\nprint(result)",
+      "ground_truth": 75.143138,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "largest_load_peak",
+        "semantic_phrases": [
+          "identify the currently largest load and raise only that demand point to a peak-demand operating level"
+        ],
+        "base_task": "comparison"
+      }
+    },
+    {
+      "id": "7f092ba5f39a",
+      "scenario": {
+        "network": "synth_volt_ctrl_lv",
+        "task": "parallel",
+        "modifications": [
+          {
+            "op": "add_shunt",
+            "bus": 11,
+            "q_mvar": 16.0,
+            "p_mw": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "parallel",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "highest_voltage_shunt_absorption",
+          "rule_metadata": {
+            "target_bus": 11,
+            "shunt_mvar": 16.0
+          },
+          "base_task": "parallel"
+        }
+      },
+      "natural_language_query": "Locate the highest-voltage bus from the current operating point and install inductive shunt absorption at that bus. Can you run power flow on the synthetic voltage control LV network and take note of the maximum line loading (%)? Following that, run 3-phase short circuit analysis and record the maximum short circuit current (ikss in kA). Ensure to report the maximum short circuit current (ikss in kA).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.create_synthetic_voltage_control_lv_network()\n\npp.create_shunt(net, bus=11, q_mvar=16.0, p_mw=0)\n\n# Task A: power flow\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\n\n# Task B: short circuit\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 28.867513,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "highest_voltage_shunt_absorption",
+        "semantic_phrases": [
+          "locate the highest-voltage bus from the current operating point and install inductive shunt absorption at that bus"
+        ],
+        "base_task": "parallel"
+      }
+    },
+    {
+      "id": "538fd05cb750",
+      "scenario": {
+        "network": "case33bw",
+        "task": "contingency_fix",
+        "modifications": [
+          {
+            "op": "set_line_parallel",
+            "idx": 0,
+            "value": 2
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 1
+          },
+          {
+            "op": "add_gen",
+            "bus": 1,
+            "p_mw": 22.0,
+            "vm_pu": 1.0
+          }
+        ],
+        "query_target": {
+          "qtype": "contingency_fix",
+          "table": "res_line",
+          "column": "loading_percent"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "most_loaded_line_reinforcement",
+          "rule_metadata": {
+            "target_line": 0,
+            "parallel": 2
+          },
+          "base_task": "contingency_fix"
+        }
+      },
+      "natural_language_query": "Using the 33-bus Baran-Wu case, begin from this semantic operating setup: identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit, run an N-1 contingency analysis for all lines. Find the contingency with the highest loading, add a 22 MW generator at bus 1 as the corrective measure, then re-run power flow with that worst-case line disconnected and report the new maximum line loading (%).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\nnet = pn.case33bw()\n\n# Apply semantic/base modifications\nnet.line.at[0, \"parallel\"] = 2\n\n# Step 1: N-1 contingency analysis\nnminus1 = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1)\n\n# Find worst contingency\nworst_line = net.res_line[\"max_loading_percent\"].idxmax()\n\n# Step 2: add 22 MW gen at bus 1, disconnect worst line\nnet.line.at[worst_line, 'in_service'] = False\npp.create_gen(net, bus=1, p_mw=22.0, vm_pu=1.0)\n\n# Verify\npp.runpp(net)\n\nresult = net.res_line[\"loading_percent\"].max()\nprint(result)",
+      "ground_truth": 0.001066,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "most_loaded_line_reinforcement",
+        "semantic_phrases": [
+          "identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit"
+        ],
+        "base_task": "contingency_fix"
+      }
+    },
+    {
+      "id": "c30b516a87fd",
+      "scenario": {
+        "network": "case14",
+        "task": "comparison_opf",
+        "modifications": [
+          {
+            "op": "set_line_parallel",
+            "idx": 0,
+            "value": 2
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 3,
+            "value": 1.58
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison_opf",
+          "table": "res_cost",
+          "column": "total"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "most_loaded_line_reinforcement",
+          "rule_metadata": {
+            "target_line": 0,
+            "parallel": 2
+          },
+          "base_task": "comparison_opf"
+        }
+      },
+      "natural_language_query": "Identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit. Can you run OPF on the IEEE 14-bus case and take note of the total generation cost? Subsequently, set the scaling of load 3 to 1.58, please re-run OPF and check how the cost has altered.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case14()\n\n# Baseline modifications\nnet.line.at[0, \"parallel\"] = 2\n\n# Step 1: baseline OPF\npp.runopp(net)\ncost_before = net.res_cost\n\n# Step 2: set the scaling of load 3 to 1.58\nnet2 = pn.case14()\n# Re-apply baseline modifications\nnet2.line.at[0, \"parallel\"] = 2\nnet2.load.at[3, \"scaling\"] = 1.58\n\npp.runopp(net2)\ncost_after = net2.res_cost\n\nresult = abs(cost_before - cost_after)\nprint(result)",
+      "ground_truth": 175.222181,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "most_loaded_line_reinforcement",
+        "semantic_phrases": [
+          "identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit"
+        ],
+        "base_task": "comparison_opf"
+      }
+    },
+    {
+      "id": "6e44127e49d1",
+      "scenario": {
+        "network": "cigre_mv",
+        "task": "parallel",
+        "modifications": [
+          {
+            "op": "add_shunt",
+            "bus": 0,
+            "q_mvar": 14.0,
+            "p_mw": 0
+          }
+        ],
+        "query_target": {
+          "qtype": "parallel",
+          "table": "res_bus_sc",
+          "column": "ikss_ka"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "highest_voltage_shunt_absorption",
+          "rule_metadata": {
+            "target_bus": 0,
+            "shunt_mvar": 14.0
+          },
+          "base_task": "parallel"
+        }
+      },
+      "natural_language_query": "Locate the highest-voltage bus from the current operating point and install inductive shunt absorption at that bus. What is the result when you run power flow on the CIGRE MV benchmark while recording the maximum line loading (%)? Afterward, run 3-phase short circuit analysis and take note of the maximum short circuit current (ikss in kA). Lastly, share the report for the maximum short circuit current (ikss in kA).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.create_cigre_network_mv()\n\npp.create_shunt(net, bus=0, q_mvar=14.0, p_mw=0)\n\n# Task A: power flow\npp.runpp(net)\nmax_loading = net.res_line[\"loading_percent\"].max()\n\n# Task B: short circuit\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\")\n\nresult = net.res_bus_sc[\"ikss_ka\"].max()\nprint(result)",
+      "ground_truth": 26.243194,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "highest_voltage_shunt_absorption",
+        "semantic_phrases": [
+          "locate the highest-voltage bus from the current operating point and install inductive shunt absorption at that bus"
+        ],
+        "base_task": "parallel"
+      }
+    },
+    {
+      "id": "61cfbc0c4b5a",
+      "scenario": {
+        "network": "simple_mv_open_ring",
+        "task": "sequential",
+        "modifications": [
+          {
+            "op": "add_shunt",
+            "bus": 4,
+            "q_mvar": -10.0,
+            "p_mw": 0
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 0,
+            "value": 0.8
+          }
+        ],
+        "query_target": {
+          "qtype": "sequential",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 59.7
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "lowest_voltage_shunt_support",
+          "rule_metadata": {
+            "target_bus": 4,
+            "shunt_mvar": -10.0
+          },
+          "base_task": "sequential"
+        }
+      },
+      "natural_language_query": "Using the simple MV open ring, locate the lowest-voltage bus from the current operating point and install capacitive shunt support at that bus, perform a power flow analysis. Check whether any line's loading exceeds 59.7%. If so, set the scaling of load 0 to 0.8, then re-run power flow and report the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.simple_mv_open_ring_net()\n\n# Apply modifications\npp.create_shunt(net, bus=4, q_mvar=-10.0, p_mw=0)\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: check condition\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 59.7:\n    net.load.at[0, \"scaling\"] = 0.8\n    pp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 1.0,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "lowest_voltage_shunt_support",
+        "semantic_phrases": [
+          "locate the lowest-voltage bus from the current operating point and install capacitive shunt support at that bus"
+        ],
+        "base_task": "sequential"
+      }
+    },
+    {
+      "id": "5f6a5c1bc7aa",
+      "scenario": {
+        "network": "GBreducednetwork",
+        "task": "pf_then_sc",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 24,
+            "value": 0.85
+          }
+        ],
+        "query_target": {
+          "qtype": "pf_then_sc",
+          "table": "res_bus_sc",
+          "column": "ikss_ka",
+          "filter_idx": 15
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 24,
+            "load_factor": 0.85
+          },
+          "base_task": "pf_then_sc"
+        }
+      },
+      "natural_language_query": "Identify the currently largest load and curtail only that demand point to a low-demand operating level. Can you check the GB reduced 29-bus network by running a power flow to establish the operating point? After that, utilize the superposition method for a 3-phase short circuit calculation (use_pre_fault_voltage=True) and let me know the short circuit current (ikss in kA) at bus 15.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.GBreducednetwork()\n\nnet.load.at[24, \"scaling\"] = 0.85\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: SC with superposition method\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\", use_pre_fault_voltage=True)\n\nresult = net.res_bus_sc.at[15, \"ikss_ka\"]\nprint(result)",
+      "ground_truth": 58.578382,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ],
+        "base_task": "pf_then_sc"
+      }
+    },
+    {
+      "id": "5d70072fbc1a",
+      "scenario": {
+        "network": "case24_ieee_rts",
+        "task": "contingency_fix",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 14,
+            "value": 0.63
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 4
+          },
+          {
+            "op": "add_gen",
+            "bus": 11,
+            "p_mw": 30.0,
+            "vm_pu": 1.0
+          }
+        ],
+        "query_target": {
+          "qtype": "contingency_fix",
+          "table": "res_line",
+          "column": "loading_percent"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "largest_load_curtailment",
+          "rule_metadata": {
+            "target_load": 14,
+            "load_factor": 0.63
+          },
+          "base_task": "contingency_fix"
+        }
+      },
+      "natural_language_query": "On the IEEE 24-bus RTS, identify the currently largest load and curtail only that demand point to a low-demand operating level, run N-1 contingency analysis for all lines. Identify the contingency causing the highest line loading. To mitigate, add a 30 MW generator at bus 11. Re-run power flow with that worst-case line disconnected and the new generator. Report the new maximum line loading (%).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\nnet = pn.case24_ieee_rts()\n\n# Apply semantic/base modifications\nnet.load.at[14, \"scaling\"] = 0.63\n\n# Step 1: N-1 contingency analysis\nnminus1 = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1)\n\n# Find worst contingency\nworst_line = net.res_line[\"max_loading_percent\"].idxmax()\n\n# Step 2: add 30 MW gen at bus 11, disconnect worst line\nnet.line.at[worst_line, 'in_service'] = False\npp.create_gen(net, bus=11, p_mw=30.0, vm_pu=1.0)\n\n# Verify\npp.runpp(net)\n\nresult = net.res_line[\"loading_percent\"].max()\nprint(result)",
+      "ground_truth": 107.940241,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "largest_load_curtailment",
+        "semantic_phrases": [
+          "identify the currently largest load and curtail only that demand point to a low-demand operating level"
+        ],
+        "base_task": "contingency_fix"
+      }
+    },
+    {
+      "id": "5c0b10c5e262",
+      "scenario": {
+        "network": "case145",
+        "task": "pf_then_sc",
+        "modifications": [
+          {
+            "op": "set_line_parallel",
+            "idx": 47,
+            "value": 2
+          }
+        ],
+        "query_target": {
+          "qtype": "pf_then_sc",
+          "table": "res_bus_sc",
+          "column": "ikss_ka",
+          "filter_idx": 143
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "most_loaded_line_reinforcement",
+          "rule_metadata": {
+            "target_line": 47,
+            "parallel": 2
+          },
+          "base_task": "pf_then_sc"
+        }
+      },
+      "natural_language_query": "Identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit. Run a power flow on the 145-bus case to identify the operating point, and then apply the superposition method for a 3-phase short circuit calculation (use_pre_fault_voltage=True). Don't forget to report the short circuit current (ikss in kA) at bus 143.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit\n\nnet = pn.case145()\n\nnet.line.at[47, \"parallel\"] = 2\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: SC with superposition method\nif \"s_sc_max_mva\" not in net.ext_grid.columns or net.ext_grid[\"s_sc_max_mva\"].isna().any():\n    net.ext_grid[\"s_sc_max_mva\"] = 1000\n    net.ext_grid[\"s_sc_min_mva\"] = 800\n    net.ext_grid[\"rx_max\"] = 0.1\n    net.ext_grid[\"rx_min\"] = 0.1\nif len(net.gen) > 0 and \"vn_kv\" not in net.gen.columns:\n    net.gen[\"in_service\"] = False\nif len(net.sgen) > 0:\n    net.sgen[\"in_service\"] = False\npp.shortcircuit.calc_sc(net, fault=\"3ph\", case=\"max\", use_pre_fault_voltage=True)\n\nresult = net.res_bus_sc.at[143, \"ikss_ka\"]\nprint(result)",
+      "ground_truth": 101.325685,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "most_loaded_line_reinforcement",
+        "semantic_phrases": [
+          "identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit"
+        ],
+        "base_task": "pf_then_sc"
+      }
+    },
+    {
+      "id": "e451c74cb059",
+      "scenario": {
+        "network": "case9",
+        "task": "comparison_opf",
+        "modifications": [
+          {
+            "op": "set_line_parallel",
+            "idx": 6,
+            "value": 2
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 1,
+            "value": 1.61
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison_opf",
+          "table": "res_cost",
+          "column": "total"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "most_loaded_line_reinforcement",
+          "rule_metadata": {
+            "target_line": 6,
+            "parallel": 2
+          },
+          "base_task": "comparison_opf"
+        }
+      },
+      "natural_language_query": "On the 9-bus WSCC case, first apply this operating-rule change: identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit, run OPF and record the total generation cost. Next, set the scaling of load 1 to 1.61, re-run OPF, and report the cost difference.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case9()\n\n# Baseline modifications\nnet.line.at[6, \"parallel\"] = 2\n\n# Step 1: baseline OPF\npp.runopp(net)\ncost_before = net.res_cost\n\n# Step 2: set the scaling of load 1 to 1.61\nnet2 = pn.case9()\n# Re-apply baseline modifications\nnet2.line.at[6, \"parallel\"] = 2\nnet2.load.at[1, \"scaling\"] = 1.61\n\npp.runopp(net2)\ncost_after = net2.res_cost\n\nresult = abs(cost_before - cost_after)\nprint(result)",
+      "ground_truth": 1620.687526,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "most_loaded_line_reinforcement",
+        "semantic_phrases": [
+          "identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit"
+        ],
+        "base_task": "comparison_opf"
+      }
+    },
+    {
+      "id": "263753f601da",
+      "scenario": {
+        "network": "case24_ieee_rts",
+        "task": "contingency_fix",
+        "modifications": [
+          {
+            "op": "set_trafo_tap_pos",
+            "idx": 0,
+            "value": 2
+          },
+          {
+            "op": "disconnect_line",
+            "idx": 4
+          },
+          {
+            "op": "add_gen",
+            "bus": 3,
+            "p_mw": 34.0,
+            "vm_pu": 1.0
+          }
+        ],
+        "query_target": {
+          "qtype": "contingency_fix",
+          "table": "res_line",
+          "column": "loading_percent"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "largest_trafo_tap_adjustment",
+          "rule_metadata": {
+            "target_trafo": 0,
+            "tap_pos": 2
+          },
+          "base_task": "contingency_fix"
+        }
+      },
+      "natural_language_query": "Please carry out an N-1 contingency analysis on IEEE 24-bus RTS, ensuring you check find the most heavily loaded transformer and move its tap position by one step,. Determine which contingency leads to the highest line loading. To mitigate this, a 34 MW generator should be added at bus 3. Re-run the power flow under these conditions with the worst-case line disconnected and the new generator operational. Report the new maximum line loading (%).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.contingency import run_contingency\n\nnet = pn.case24_ieee_rts()\n\n# Apply semantic/base modifications\nnet.trafo.at[0, \"tap_pos\"] = 2\n\n# Step 1: N-1 contingency analysis\nnminus1 = {\"line\": {\"index\": net.line.index.tolist()}}\nrun_contingency(net, nminus1)\n\n# Find worst contingency\nworst_line = net.res_line[\"max_loading_percent\"].idxmax()\n\n# Step 2: add 34 MW gen at bus 3, disconnect worst line\nnet.line.at[worst_line, 'in_service'] = False\npp.create_gen(net, bus=3, p_mw=34.0, vm_pu=1.0)\n\n# Verify\npp.runpp(net)\n\nresult = net.res_line[\"loading_percent\"].max()\nprint(result)",
+      "ground_truth": 107.766177,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "largest_trafo_tap_adjustment",
+        "semantic_phrases": [
+          "find the most heavily loaded transformer and move its tap position by one step"
+        ],
+        "base_task": "contingency_fix"
+      }
+    },
+    {
+      "id": "1990a4755d85",
+      "scenario": {
+        "network": "case39",
+        "task": "comparison_opf",
+        "modifications": [
+          {
+            "op": "set_line_parallel",
+            "idx": 21,
+            "value": 2
+          },
+          {
+            "op": "set_load_scaling",
+            "idx": 19,
+            "value": 1.37
+          }
+        ],
+        "query_target": {
+          "qtype": "comparison_opf",
+          "table": "res_cost",
+          "column": "total"
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "most_loaded_line_reinforcement",
+          "rule_metadata": {
+            "target_line": 21,
+            "parallel": 2
+          },
+          "base_task": "comparison_opf"
+        }
+      },
+      "natural_language_query": "On the IEEE 39-bus New England, first apply this operating-rule change: identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit, run OPF and record the total generation cost. Next, set the scaling of load 19 to 1.37, re-run OPF, and report the cost difference.",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.case39()\n\n# Baseline modifications\nnet.line.at[21, \"parallel\"] = 2\n\n# Step 1: baseline OPF\npp.runopp(net)\ncost_before = net.res_cost\n\n# Step 2: set the scaling of load 19 to 1.37\nnet2 = pn.case39()\n# Re-apply baseline modifications\nnet2.line.at[21, \"parallel\"] = 2\nnet2.load.at[19, \"scaling\"] = 1.37\n\npp.runopp(net2)\ncost_after = net2.res_cost\n\nresult = abs(cost_before - cost_after)\nprint(result)",
+      "ground_truth": 47.058971,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "most_loaded_line_reinforcement",
+        "semantic_phrases": [
+          "identify the most heavily loaded line under the current operating point and reinforce that line by adding one parallel circuit"
+        ],
+        "base_task": "comparison_opf"
+      }
+    },
+    {
+      "id": "3b0b2965f4e6",
+      "scenario": {
+        "network": "GBnetwork",
+        "task": "sequential",
+        "modifications": [
+          {
+            "op": "set_load_scaling",
+            "idx": 66,
+            "value": 0.78
+          },
+          {
+            "op": "set_gen_p",
+            "idx": 61,
+            "value": 384.4
+          }
+        ],
+        "query_target": {
+          "qtype": "sequential",
+          "table": "res_bus",
+          "column": "vm_pu",
+          "threshold": 16.6
+        },
+        "task_options": {
+          "semantic_source": "rule_grounded_d4",
+          "semantic_rule": "lowest_voltage_load_curtailment",
+          "rule_metadata": {
+            "target_bus": 676,
+            "target_load": 66,
+            "load_factor": 0.78
+          },
+          "base_task": "sequential"
+        }
+      },
+      "natural_language_query": "On the GB 2224-bus network, begin from this semantic setup: locate the lowest-voltage bus that has load connected and curtail the largest load at that bus to a low-demand level, run power flow. If any line's loading exceeds 16.6%, then set generator 61 active power to 384.4 MW, re-run the analysis, and report the minimum bus voltage (p.u.).",
+      "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\nnet = pn.GBnetwork()\n\n# Apply modifications\nnet.load.at[66, \"scaling\"] = 0.78\n\n# Step 1: run power flow\npp.runpp(net)\n\n# Step 2: check condition\nmax_loading = net.res_line[\"loading_percent\"].max()\nif max_loading > 16.6:\n    net.gen.at[61, \"p_mw\"] = 384.4\n    pp.runpp(net)\n\nresult = net.res_bus[\"vm_pu\"].min()\nprint(result)",
+      "ground_truth": 0.809947,
+      "ground_truth_type": "float",
+      "difficulty_level": "D4_compound",
+      "eval_criteria": {
+        "semantic_source": "rule_grounded_d4",
+        "semantic_rule": "lowest_voltage_load_curtailment",
+        "semantic_phrases": [
+          "locate the lowest-voltage bus that has load connected and curtail the largest load at that bus to a low-demand level"
+        ],
+        "base_task": "sequential"
+      }
+    }
+  ]
+}

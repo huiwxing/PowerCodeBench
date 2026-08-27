@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0",
+  "fetched_date": "2026-07-25",
+  "purpose": "Broad exploratory supplement for E4 external-demand collection. It does not modify the frozen 84-record Layer-2a evaluation set.",
+  "privacy": "No usernames, avatars, email addresses, comments, answers, or full post bodies are stored. Body excerpts are capped at 22 whitespace-delimited words.",
+  "sources": {
+    "stack_exchange": {
+      "endpoints": [
+        "https://api.stackexchange.com/2.3/questions?site=stackoverflow&tagged=pandapower",
+        "https://api.stackexchange.com/2.3/search/advanced?site=stackoverflow&q=pandapower",
+        "https://api.stackexchange.com/2.3/search/advanced?site=electronics&q=pandapower"
+      ],
+      "summary": {
+        "count": 28,
+        "by_source_type": {
+          "stackexchange_electronics_question": 2,
+          "stackoverflow_question": 26
+        },
+        "by_screening_decision": {
+          "BROAD_REVIEW": 7,
+          "LOW_PRIORITY": 12,
+          "POSSIBLE_DUPLICATE": 3,
+          "PRIORITY_REVIEW": 6
+        },
+        "by_theme": {
+          "conversion_io": 13,
+          "installation_environment": 1,
+          "network_build_modify": 3,
+          "plotting": 1,
+          "power_flow": 1,
+          "timeseries_control": 6,
+          "topology_matrix": 3
+        }
+      }
+    },
+    "openmod": {
+      "endpoints": [
+        "https://forum.openmod.org/tag/pandapower.json",
+        "https://forum.openmod.org/search.json?q=pandapower"
+      ],
+      "summary": {
+        "count": 14,
+        "by_source_type": {
+          "openmod_topic": 14
+        },
+        "by_screening_decision": {
+          "BROAD_REVIEW": 9,
+          "LOW_PRIORITY": 2,
+          "PRIORITY_REVIEW": 3
+        },
+        "by_theme": {
+          "conversion_io": 7,
+          "opf_optimization": 3,
+          "other": 1,
+          "power_flow": 1,
+          "timeseries_control": 1,
+          "unbalanced_short_circuit": 1
+        }
+      }
+    },
+    "github_discussions": {
+      "endpoint": "https://api.github.com/repos/e2nIEE/pandapower/discussions",
+      "summary": {
+        "count": 138,
+        "by_source_type": {
+          "github_discussion": 138
+        },
+        "by_screening_decision": {
+          "ALREADY_PRESENT": 46,
+          "BROAD_REVIEW": 26,
+          "LOW_PRIORITY": 1,
+          "POSSIBLE_DUPLICATE": 5,
+          "PRIORITY_REVIEW": 60
+        },
+        "by_theme": {
+          "conversion_io": 27,
+          "installation_environment": 5,
+          "network_build_modify": 23,
+          "opf_optimization": 9,
+          "other": 17,
+          "plotting": 3,
+          "power_flow": 7,
+          "state_estimation": 3,
+          "timeseries_control": 24,
+          "topology_matrix": 5,
+          "unbalanced_short_circuit": 15
+        }
+      },
+      "note": "Inventory includes existing-pool matches; merged supplement omits them."
+    },
+    "github_crossrepo": {
+      "endpoint": "https://api.github.com/search/issues",
+      "query": "pandapower in:title,body is:issue -repo:e2nIEE/pandapower",
+      "summary": {
+        "count": 461,
+        "by_source_type": {
+          "github_crossrepo_issue": 461
+        },
+        "by_screening_decision": {
+          "BROAD_REVIEW": 97,
+          "LOW_PRIORITY": 66,
+          "POSSIBLE_DUPLICATE": 2,
+          "PRIORITY_REVIEW": 296
+        },
+        "by_theme": {
+          "conversion_io": 161,
+          "installation_environment": 56,
+          "network_build_modify": 36,
+          "opf_optimization": 28,
+          "other": 49,
+          "plotting": 7,
+          "power_flow": 33,
+          "state_estimation": 3,
+          "timeseries_control": 50,
+          "topology_matrix": 16,
+          "unbalanced_short_circuit": 22
+        }
+      }
+    }
+  },
+  "merged_supplement": {
+    "count": 595,
+    "by_source_type": {
+      "github_crossrepo_issue": 461,
+      "github_discussion": 92,
+      "openmod_topic": 14,
+      "stackexchange_electronics_question": 2,
+      "stackoverflow_question": 26
+    },
+    "by_screening_decision": {
+      "BROAD_REVIEW": 139,
+      "LOW_PRIORITY": 81,
+      "POSSIBLE_DUPLICATE": 10,
+      "PRIORITY_REVIEW": 365
+    },
+    "by_theme": {
+      "conversion_io": 201,
+      "installation_environment": 61,
+      "network_build_modify": 58,
+      "opf_optimization": 36,
+      "other": 62,
+      "plotting": 10,
+      "power_flow": 37,
+      "state_estimation": 6,
+      "timeseries_control": 72,
+      "topology_matrix": 21,
+      "unbalanced_short_circuit": 31
+    }
+  },
+  "community_priority_shortlist": {
+    "count": 69,
+    "by_source_type": {
+      "github_discussion": 60,
+      "openmod_topic": 3,
+      "stackexchange_electronics_question": 2,
+      "stackoverflow_question": 4
+    },
+    "by_screening_decision": {
+      "PRIORITY_REVIEW": 69
+    },
+    "by_theme": {
+      "conversion_io": 17,
+      "installation_environment": 2,
+      "network_build_modify": 13,
+      "opf_optimization": 4,
+      "other": 5,
+      "plotting": 2,
+      "power_flow": 2,
+      "state_estimation": 1,
+      "timeseries_control": 14,
+      "topology_matrix": 3,
+      "unbalanced_short_circuit": 6
+    }
+  },
+  "outputs": {
+    "stackexchange_candidates.json": {
+      "sha256": "7fd376d97d9fb1eacd6cf42256718b36e7cfd14a43f81e710f026fbb9e7d22cb",
+      "bytes": 31880
+    },
+    "openmod_candidates.json": {
+      "sha256": "f457cf3194e356116c676ed11751c3d5ae359144e3e39ee62d95619872f6d09a",
+      "bytes": 15469
+    },
+    "github_discussions_inventory.json": {
+      "sha256": "e5b46b3f9c11cdbae1613ac48078af768cf3d16bae1e37425d6a15874b033b7f",
+      "bytes": 145219
+    },
+    "github_crossrepo_candidates.json": {
+      "sha256": "636b8bb6a7f04c31e2b09ffd68c82bcb6e1ed469f7be69bdcb29840f3678aced",
+      "bytes": 506161
+    },
+    "all_external_candidates.json": {
+      "sha256": "617d03d59f4eb96540f87fe34c75ef4079409c94d861a40e1b4d07ae7c23f907",
+      "bytes": 648766
+    },
+    "community_priority_shortlist.json": {
+      "sha256": "62a593954964e00af3b5e1fc1d90a3a8377404e471fead059d529857920b2ead",
+      "bytes": 72592
+    }
+  }
+}

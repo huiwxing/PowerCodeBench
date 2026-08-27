@@ -1,0 +1,10 @@
+{
+  "run_name": "hybrid_tfidf",
+  "artifacts": {
+    "metrics": "task_demand/results/e4_layer2a_eval/adapted/metrics.json",
+    "run_config": "task_demand/results/e4_layer2a_eval/adapted/run_config.json",
+    "summary": "task_demand/results/e4_layer2a_eval/adapted/summary.json",
+    "saved_model": null,
+    "prediction_export": null
+  }
+}

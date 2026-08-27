@@ -1,0 +1,3641 @@
+[
+  {
+    "probe_id": "L0_892ba9c2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Bus_CplxSeqVoltages` is a real function in the `opendssdirect` Python library used to retrieve complex sequence voltages at a bus.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "`Bus_CplxSeqVoltages` is a real function in the `opendssdirect` Python library used to retrieve complex sequence voltages at a bus.",
+      "options": {
+        "A": "Lines_Length_data",
+        "B": "Solution_ForwardVreg",
+        "C": "Bus_CplxSeqVoltages",
+        "D": "Bus_Convergence"
+      },
+      "function_name": "Bus_CplxSeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_e09134e2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Transformers_LoadMult is not a function in opendssdirect because load multiplier is typically a property of loads or the circuit, not transformers.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Transformers_LoadMult is not a function in opendssdirect because load multiplier is typically a property of loads or the circuit, not transformers.",
+      "options": {
+        "A": "Transformers_NumWindings",
+        "B": "Bus_CplxSeqVoltages",
+        "C": "CapControls_OFFSetting",
+        "D": "Transformers_LoadMult"
+      },
+      "function_name": "Bus_CplxSeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_32d44e34",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Bus_Isc is a real function in opendssdirect that returns the short-circuit currents for the active bus.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Bus_Isc is a real function in opendssdirect that returns the short-circuit currents for the active bus.",
+      "options": {
+        "A": "RegControls_ForwardBand_set",
+        "B": "Text_Solve",
+        "C": "Bus_ZscMatrix_info",
+        "D": "Bus_Isc"
+      },
+      "function_name": "Bus_Isc"
+    }
+  },
+  {
+    "probe_id": "L0_ac73ae0f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Bus_puVmagAngle_config is not a function in opendssdirect; the correct function is Bus_puVmagAngle without '_config'.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Bus_puVmagAngle_config is not a function in opendssdirect; the correct function is Bus_puVmagAngle without '_config'.",
+      "options": {
+        "A": "Transformers_NumWindings",
+        "B": "Solution_ControlMode",
+        "C": "Bus_Isc",
+        "D": "Bus_puVmagAngle_config"
+      },
+      "function_name": "Bus_Isc"
+    }
+  },
+  {
+    "probe_id": "L0_8ca27ba2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Bus_SeqVoltages is a documented function in the opendssdirect library that returns bus sequence voltages.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Bus_SeqVoltages is a documented function in the opendssdirect library that returns bus sequence voltages.",
+      "options": {
+        "A": "Reclosers_NumSteps_Mode",
+        "B": "Bus_SeqVoltages",
+        "C": "Fuses_Shots",
+        "D": "Loads_kW_element"
+      },
+      "function_name": "Bus_SeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_f872f22a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Loads_Algorithm does not exist in opendssdirect; loads have a Model property, not Algorithm.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Loads_Algorithm does not exist in opendssdirect; loads have a Model property, not Algorithm.",
+      "options": {
+        "A": "Bus_SeqVoltages",
+        "B": "Loads_Algorithm",
+        "C": "Monitors_Channel",
+        "D": "Circuit_TotalPower"
+      },
+      "function_name": "Bus_SeqVoltages"
+    }
+  },
+  {
+    "probe_id": "L0_e1a662d4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"In the opendssdirect Python library, `Bus_Voc` is a documented function that returns the complex bus voltages, while the other options are either constants or properties rather than functions.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "In the opendssdirect Python library, `Bus_Voc` is a documented function that returns the complex bus voltages, while the other options are either constants or properties rather than functions.",
+      "options": {
+        "A": "Solution_State_ForwardBand",
+        "B": "Solution_Frequency_table",
+        "C": "Circuit_MaxIterations",
+        "D": "Bus_Voc"
+      },
+      "function_name": "Bus_Voc"
+    }
+  },
+  {
+    "probe_id": "L0_605ee874",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_Convergence_table is not a standard function in opendssdirect; the correct property is Solution_Convergence or similar, while the others are valid functions.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Solution_Convergence_table is not a standard function in opendssdirect; the correct property is Solution_Convergence or similar, while the others are valid functions.",
+      "options": {
+        "A": "Solution_Convergence_table",
+        "B": "Capacitors_AddStep",
+        "C": "Bus_Voc",
+        "D": "Text_Result"
+      },
+      "function_name": "Bus_Voc"
+    }
+  },
+  {
+    "probe_id": "L0_7442024f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"The `Bus_Voltages` function exists in opendssdirect as a property to retrieve bus voltage magnitudes and angles, while the other options are not standard function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "The `Bus_Voltages` function exists in opendssdirect as a property to retrieve bus voltage magnitudes and angles, while the other options are not standard function names in the library.",
+      "options": {
+        "A": "CktElement_kvar_Zsc0",
+        "B": "CktElement_Losses_set",
+        "C": "CktElement_PU",
+        "D": "Bus_Voltages"
+      },
+      "function_name": "Bus_Voltages"
+    }
+  },
+  {
+    "probe_id": "L0_c844c1ee",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Text_Solve does not exist as a function in opendssdirect because the Text interface has no Solve method; solving is done via the Solution module instead.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Text_Solve does not exist as a function in opendssdirect because the Text interface has no Solve method; solving is done via the Solution module instead.",
+      "options": {
+        "A": "Text_Solve",
+        "B": "Bus_Voltages",
+        "C": "CapControls_Capacitor",
+        "D": "Lines_R1"
+      },
+      "function_name": "Bus_Voltages"
+    }
+  },
+  {
+    "probe_id": "L0_0beb8322",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"`Bus_YscMatrix` is a real function in `opendssdirect` (it returns the Ysc matrix for a bus), while the others are not standard documented functions.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "`Bus_YscMatrix` is a real function in `opendssdirect` (it returns the Ysc matrix for a bus), while the others are not standard documented functions.",
+      "options": {
+        "A": "Vsources_Powers",
+        "B": "Bus_YscMatrix",
+        "C": "Capacitors_MaxIterations_StepSize",
+        "D": "Generators_kW_table"
+      },
+      "function_name": "Bus_YscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_0700b690",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Solution_Algorithm_table is not a valid function in opendssdirect; the correct property is Solution_Algorithm.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Solution_Algorithm_table is not a valid function in opendssdirect; the correct property is Solution_Algorithm.",
+      "options": {
+        "A": "Bus_YscMatrix",
+        "B": "Solution_Algorithm_table",
+        "C": "Generators_kW",
+        "D": "Bus_puVmagAngle"
+      },
+      "function_name": "Bus_YscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_83c8735b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Bus_Zsc0 is a real function in opendssdirect that returns the zero-sequence short circuit impedance for the active bus, while the others do not match the library's API naming conventions.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Bus_Zsc0 is a real function in opendssdirect that returns the zero-sequence short circuit impedance for the active bus, while the others do not match the library's API naming conventions.",
+      "options": {
+        "A": "Bus_Zsc0",
+        "B": "Bus_kVBase_data",
+        "C": "Solution_Converged_set",
+        "D": "Solution_ControlMode_set"
+      },
+      "function_name": "Bus_Zsc0"
+    }
+  },
+  {
+    "probe_id": "L0_6a622ed7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 0.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Solution_Channel is not a function in opendssdirect; the correct property is Solution",
+      "question_type": "find_fake",
+      "error_category": "invalid_response",
+      "function_name": "Bus_Zsc0"
+    }
+  },
+  {
+    "probe_id": "L0_2b263493",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"CktElement_MaxTapChange is a documented function in opendssdirect for retrieving the maximum tap change of a circuit element, while the other options are not standard function names.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "CktElement_MaxTapChange is a documented function in opendssdirect for retrieving the maximum tap change of a circuit element, while the other options are not standard function names.",
+      "options": {
+        "A": "CktElement_MaxTapChange",
+        "B": "Capacitors_AddStep_config",
+        "C": "Bus_Zsc1",
+        "D": "Bus_TapNumber"
+      },
+      "function_name": "Bus_Zsc1"
+    }
+  },
+  {
+    "probe_id": "L0_872c4982",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Bus_AllNodeNames_Bus1 does not exist; the correct function is Bus_AllNodeNames.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Bus_AllNodeNames_Bus1 does not exist; the correct function is Bus_AllNodeNames.",
+      "options": {
+        "A": "Solution_LoadModel",
+        "B": "Bus_AllNodeNames_Bus1",
+        "C": "RegControls_TapNumber",
+        "D": "Bus_Zsc1"
+      },
+      "function_name": "Bus_Zsc1"
+    }
+  },
+  {
+    "probe_id": "L0_6a0f7d2b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Bus_ZscMatrix is a function in opendssdirect that returns the zero-sequence impedance matrix for a bus.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Bus_ZscMatrix is a function in opendssdirect that returns the zero-sequence impedance matrix for a bus.",
+      "options": {
+        "A": "Bus_ZscMatrix",
+        "B": "Solution_Frequency_info",
+        "C": "Vsources_MaxTapChange",
+        "D": "Capacitors_Wdg"
+      },
+      "function_name": "Bus_ZscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_0e8e8f73",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Lines_ForwardBand does not correspond to any known property or function in the OpenDSS Lines interface as exposed by opendssdirect, while the other three are actual function names.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Lines_ForwardBand does not correspond to any known property or function in the OpenDSS Lines interface as exposed by opendssdirect, while the other three are actual function names.",
+      "options": {
+        "A": "CktElement_Currents",
+        "B": "Bus_ZscMatrix",
+        "C": "Reclosers_State",
+        "D": "Lines_ForwardBand"
+      },
+      "function_name": "Bus_ZscMatrix"
+    }
+  },
+  {
+    "probe_id": "L0_676d935d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Bus_kVBase is a commonly used property/function in opendssdirect to get the base kV of a bus.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Bus_kVBase is a commonly used property/function in opendssdirect to get the base kV of a bus.",
+      "options": {
+        "A": "Vsources_Losses",
+        "B": "Bus_kVBase",
+        "C": "Loads_TotalIterations",
+        "D": "Loads_kW_element"
+      },
+      "function_name": "Bus_kVBase"
+    }
+  },
+  {
+    "probe_id": "L0_569323c3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"In the opendssdirect Python library, `Lines_SeqVoltages` is not a direct function; instead, sequence voltages are obtained through `Lines_SeqVoltages` as a property of the active line element, but it is commonly available as a function.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "In the opendssdirect Python library, `Lines_SeqVoltages` is not a direct function; instead, sequence voltages are obtained through `Lines_SeqVoltages` as a property of the active line element, but it is commonly available as a function.",
+      "options": {
+        "A": "RegControls_ForwardVreg",
+        "B": "RegControls_MaxTapChange",
+        "C": "Lines_SeqVoltages",
+        "D": "Bus_kVBase"
+      },
+      "function_name": "Bus_kVBase"
+    }
+  },
+  {
+    "probe_id": "L0_7d244f17",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Bus_puVmagAngle is a real function in opendssdirect that returns the per-unit voltage magnitude and angle for all buses.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Bus_puVmagAngle is a real function in opendssdirect that returns the per-unit voltage magnitude and angle for all buses.",
+      "options": {
+        "A": "CktElement_Losses_config",
+        "B": "Solution_SubtractStep",
+        "C": "Bus_puVmagAngle",
+        "D": "Solution_LoadMult_element"
+      },
+      "function_name": "Bus_puVmagAngle"
+    }
+  },
+  {
+    "probe_id": "L0_d3cae72b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `Capacitors_MaxIterations_StepSize` does not exist because it combines two separate properties (`MaxIterations` and `StepSize`) into one, which is not a valid opendssdirect function.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function `Capacitors_MaxIterations_StepSize` does not exist because it combines two separate properties (`MaxIterations` and `StepSize`) into one, which is not a valid opendssdirect function.",
+      "options": {
+        "A": "Capacitors_MaxIterations_StepSize",
+        "B": "Circuit_AllBusMagPu",
+        "C": "Bus_puVmagAngle",
+        "D": "Solution_Convergence"
+      },
+      "function_name": "Bus_puVmagAngle"
+    }
+  },
+  {
+    "probe_id": "L0_b3a3693b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Bus_SeqVoltages_set is a documented function in the opendssdirect library for setting sequence voltages at a bus, while the others are not standard functions in that library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Bus_SeqVoltages_set is a documented function in the opendssdirect library for setting sequence voltages at a bus, while the others are not standard functions in that library.",
+      "options": {
+        "A": "Bus_SeqVoltages_set",
+        "B": "Text_Frequency",
+        "C": "Text_Result_list",
+        "D": "CapControls_Capacitor"
+      },
+      "function_name": "CapControls_Capacitor"
+    }
+  },
+  {
+    "probe_id": "L0_719c6984",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Loads_TotalIterations does not exist because TotalIterations is a property of the Solution object, not the Loads object in OpenDSS.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Loads_TotalIterations does not exist because TotalIterations is a property of the Solution object, not the Loads object in OpenDSS.",
+      "options": {
+        "A": "Circuit_SetActiveBus",
+        "B": "Loads_TotalIterations",
+        "C": "Solution_Solve",
+        "D": "CapControls_Capacitor"
+      },
+      "function_name": "CapControls_Capacitor"
+    }
+  },
+  {
+    "probe_id": "L0_da5d5ceb",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"The function `Circuit_LoadModel` is a standard property accessor in the opendssdirect Python library, used to get or set the load model for the circuit.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "C",
+      "correct": "D",
+      "reasoning": "The function `Circuit_LoadModel` is a standard property accessor in the opendssdirect Python library, used to get or set the load model for the circuit.",
+      "options": {
+        "A": "Solution_StepSize_data",
+        "B": "CktElement_Command_kvar",
+        "C": "Circuit_LoadModel",
+        "D": "CapControls_Mode"
+      },
+      "function_name": "CapControls_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_a5885a63",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Loads_ForwardBand does not exist in opendssdirect; forward band is a property of load control elements (LoadControls), not the Loads object.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Loads_ForwardBand does not exist in opendssdirect; forward band is a property of load control elements (LoadControls), not the Loads object.",
+      "options": {
+        "A": "CapControls_Mode",
+        "B": "Bus_Zsc1",
+        "C": "Loads_ForwardBand",
+        "D": "CktElement_Powers"
+      },
+      "function_name": "CapControls_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_f8cac251",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`CapControls_Name` is a real function in the opendssdirect Python library used to get the name of the active capacitor control, while the other options either have incorrect naming patterns or do not exist.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "`CapControls_Name` is a real function in the opendssdirect Python library used to get the name of the active capacitor control, while the other options either have incorrect naming patterns or do not exist.",
+      "options": {
+        "A": "CapControls_Name",
+        "B": "Circuit_SetActiveBus_set",
+        "C": "RegControls_ForwardBand_element",
+        "D": "Loads_R1"
+      },
+      "function_name": "CapControls_Name"
+    }
+  },
+  {
+    "probe_id": "L0_735f5645",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Solution_State_ForwardBand is a constant value, not a callable function; the other options are standard property accessor functions in opendssdirect.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Solution_State_ForwardBand is a constant value, not a callable function; the other options are standard property accessor functions in opendssdirect.",
+      "options": {
+        "A": "Circuit_AllBusNames",
+        "B": "CapControls_Name",
+        "C": "Transformers_Tap",
+        "D": "Solution_State_ForwardBand"
+      },
+      "function_name": "CapControls_Name"
+    }
+  },
+  {
+    "probe_id": "L0_3b4335b9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`CapControls_OFFSetting` exists in opendssdirect as a property of the CapControls element, while the others do not correspond to real functions in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "`CapControls_OFFSetting` exists in opendssdirect as a property of the CapControls element, while the others do not correspond to real functions in the library.",
+      "options": {
+        "A": "CapControls_OFFSetting",
+        "B": "Circuit_ForwardBand_SeqVoltages",
+        "C": "Capacitors_StepSize_NumSteps",
+        "D": "Bus_Solve_IsBlown"
+      },
+      "function_name": "CapControls_OFFSetting"
+    }
+  },
+  {
+    "probe_id": "L0_8f7834ff",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Transformers_SubtractStep does not exist because the SubtractStep function is part of the Regulators interface, not Transformers, in OpenDSS.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Transformers_SubtractStep does not exist because the SubtractStep function is part of the Regulators interface, not Transformers, in OpenDSS.",
+      "options": {
+        "A": "CapControls_OFFSetting",
+        "B": "Transformers_SubtractStep",
+        "C": "Fuses_IsBlown",
+        "D": "Capacitors_AddStep"
+      },
+      "function_name": "CapControls_OFFSetting"
+    }
+  },
+  {
+    "probe_id": "L0_6eb789e1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"CapControls_ONSetting corresponds to the 'OnSetting' method/property of the CapControls module, which is a real function in opendssdirect.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "CapControls_ONSetting corresponds to the 'OnSetting' method/property of the CapControls module, which is a real function in opendssdirect.",
+      "options": {
+        "A": "Text_Result_config",
+        "B": "Bus_RegisterValues_AllNodeNames",
+        "C": "CapControls_ONSetting",
+        "D": "Text_Losses"
+      },
+      "function_name": "CapControls_ONSetting"
+    }
+  },
+  {
+    "probe_id": "L0_c599c766",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The function `Loads_kW_table` does not exist in the opendssdirect library; the correct function for retrieving kW values is `Loads_kW`.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The function `Loads_kW_table` does not exist in the opendssdirect library; the correct function for retrieving kW values is `Loads_kW`.",
+      "options": {
+        "A": "CapControls_ONSetting",
+        "B": "Loads_kW_table",
+        "C": "CktElement_Losses",
+        "D": "Bus_Zsc1"
+      },
+      "function_name": "CapControls_ONSetting"
+    }
+  },
+  {
+    "probe_id": "L0_2fa5d22d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"The opendssdirect library includes a function `Capacitors_AddStep` that corresponds to the OpenDSS Capacitors object's AddStep method, whereas the other options are not standard function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "The opendssdirect library includes a function `Capacitors_AddStep` that corresponds to the OpenDSS Capacitors object's AddStep method, whereas the other options are not standard function names in the library.",
+      "options": {
+        "A": "Vsources_Command",
+        "B": "CapControls_State",
+        "C": "Capacitors_AddStep",
+        "D": "Lines_R1_info"
+      },
+      "function_name": "Capacitors_AddStep"
+    }
+  },
+  {
+    "probe_id": "L0_93198ade",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Reclosers_NumSteps is a scalar integer property, so the function Reclosers_NumSteps_Length does not exist.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Reclosers_NumSteps is a scalar integer property, so the function Reclosers_NumSteps_Length does not exist.",
+      "options": {
+        "A": "Capacitors_AddStep",
+        "B": "Vsources_BasekV",
+        "C": "Solution_MaxControlIterations",
+        "D": "Reclosers_NumSteps_Length"
+      },
+      "function_name": "Capacitors_AddStep"
+    }
+  },
+  {
+    "probe_id": "L0_1901cec5",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`Capacitors_AvailableSteps` is a valid function in `opendssdirect` for retrieving available steps of capacitor controls, while the other options do not correspond to actual functions in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "`Capacitors_AvailableSteps` is a valid function in `opendssdirect` for retrieving available steps of capacitor controls, while the other options do not correspond to actual functions in the library.",
+      "options": {
+        "A": "Capacitors_AvailableSteps",
+        "B": "Reclosers_LineLosses",
+        "C": "Bus_Voltages_element",
+        "D": "Fuses_Number"
+      },
+      "function_name": "Capacitors_AvailableSteps"
+    }
+  },
+  {
+    "probe_id": "L0_f878cb4c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Fuses_MaxIterations is not a function in opendssdirect; MaxIterations belongs to the Solution object.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Fuses_MaxIterations is not a function in opendssdirect; MaxIterations belongs to the Solution object.",
+      "options": {
+        "A": "Fuses_MaxIterations",
+        "B": "Capacitors_AvailableSteps",
+        "C": "Bus_Zsc0",
+        "D": "Solution_LoadMult"
+      },
+      "function_name": "Capacitors_AvailableSteps"
+    }
+  },
+  {
+    "probe_id": "L0_82d23585",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Capacitors_NumSteps is a valid function in opendssdirect that returns the number of steps for a capacitor element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Capacitors_NumSteps is a valid function in opendssdirect that returns the number of steps for a capacitor element.",
+      "options": {
+        "A": "Capacitors_NumSteps",
+        "B": "CktElement_PU",
+        "C": "Vsources_Result",
+        "D": "Reclosers_OFFSetting"
+      },
+      "function_name": "Capacitors_NumSteps"
+    }
+  },
+  {
+    "probe_id": "L0_8adf00d3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_Length_Mode is not a valid function; the correct functions are Reclosers_Length and Reclosers_Mode, while the others are standard opendssdirect functions.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Reclosers_Length_Mode is not a valid function; the correct functions are Reclosers_Length and Reclosers_Mode, while the others are standard opendssdirect functions.",
+      "options": {
+        "A": "Reclosers_Length_Mode",
+        "B": "Capacitors_AvailableSteps",
+        "C": "Solution_Converged",
+        "D": "Capacitors_NumSteps"
+      },
+      "function_name": "Capacitors_NumSteps"
+    }
+  },
+  {
+    "probe_id": "L0_cce98d8a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`Bus_SeqVoltages_Solve` is a real function in the opendssdirect Python library used to compute sequence voltages at buses.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "`Bus_SeqVoltages_Solve` is a real function in the opendssdirect Python library used to compute sequence voltages at buses.",
+      "options": {
+        "A": "Bus_SeqVoltages_Solve",
+        "B": "Circuit_LineLosses_list",
+        "C": "Reclosers_TotalPower",
+        "D": "Capacitors_States"
+      },
+      "function_name": "Capacitors_States"
+    }
+  },
+  {
+    "probe_id": "L0_3185890f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"CapControls_Capacitor is not a standard function in opendssdirect; the correct function involves a read/write prefix, whereas Capacitors_States, CktElement_Powers, and CktElement_CplxSeqVoltages are valid.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "CapControls_Capacitor is not a standard function in opendssdirect; the correct function involves a read/write prefix, whereas Capacitors_States, CktElement_Powers, and CktElement_CplxSeqVoltages are valid.",
+      "options": {
+        "A": "CapControls_Capacitor",
+        "B": "Capacitors_States",
+        "C": "CktElement_Powers",
+        "D": "CktElement_CplxSeqVoltages"
+      },
+      "function_name": "Capacitors_States"
+    }
+  },
+  {
+    "probe_id": "L0_c92ed507",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Capacitors_SubtractStep is a real function in opendssdirect that removes a capacitor step from the active capacitor element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Capacitors_SubtractStep is a real function in opendssdirect that removes a capacitor step from the active capacitor element.",
+      "options": {
+        "A": "Reclosers_Isc",
+        "B": "Capacitors_SubtractStep",
+        "C": "Fuses_Result_kvar",
+        "D": "Circuit_Losses_list"
+      },
+      "function_name": "Capacitors_SubtractStep"
+    }
+  },
+  {
+    "probe_id": "L0_8532362f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Capacitors_MaxIterations_StepSize combines two separate properties into one function, which is not a standard opendssdirect function.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Capacitors_MaxIterations_StepSize combines two separate properties into one function, which is not a standard opendssdirect function.",
+      "options": {
+        "A": "RegControls_MaxTapChange",
+        "B": "Capacitors_MaxIterations_StepSize",
+        "C": "Fuses_State",
+        "D": "Capacitors_SubtractStep"
+      },
+      "function_name": "Capacitors_SubtractStep"
+    }
+  },
+  {
+    "probe_id": "L0_653c75e7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Circuit_AllBusMagPu is a documented function in opendssdirect that returns the magnitude of bus voltages in per unit.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Circuit_AllBusMagPu is a documented function in opendssdirect that returns the magnitude of bus voltages in per unit.",
+      "options": {
+        "A": "Circuit_ForwardBand_kW",
+        "B": "RegControls_ForwardVreg_info",
+        "C": "Circuit_AllBusMagPu",
+        "D": "Text_Result_info"
+      },
+      "function_name": "Circuit_AllBusMagPu"
+    }
+  },
+  {
+    "probe_id": "L0_21580792",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"The function `Circuit_SeqVoltages_Length` does not exist in opendssdirect; instead, the `Circuit_SeqVoltages` function returns the array, and its length can be obtained with Python's len().\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "The function `Circuit_SeqVoltages_Length` does not exist in opendssdirect; instead, the `Circuit_SeqVoltages` function returns the array, and its length can be obtained with Python's len().",
+      "options": {
+        "A": "Bus_Zsc1",
+        "B": "Loads_kW",
+        "C": "Circuit_AllBusMagPu",
+        "D": "Circuit_SeqVoltages_Length"
+      },
+      "function_name": "Circuit_AllBusMagPu"
+    }
+  },
+  {
+    "probe_id": "L0_303d82b1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Circuit_AllBusNames` is a valid function in the opendssdirect library for retrieving all bus names from the circuit.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "`Circuit_AllBusNames` is a valid function in the opendssdirect library for retrieving all bus names from the circuit.",
+      "options": {
+        "A": "Capacitors_Channel_kW",
+        "B": "Reclosers_kVBase",
+        "C": "Circuit_AllBusNames",
+        "D": "Reclosers_kVA"
+      },
+      "function_name": "Circuit_AllBusNames"
+    }
+  },
+  {
+    "probe_id": "L0_7f526a81",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_puVmagAngle is not a valid function in opendssdirect; the correct function is typically `Vsources_pu` or similar.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Vsources_puVmagAngle is not a valid function in opendssdirect; the correct function is typically `Vsources_pu` or similar.",
+      "options": {
+        "A": "Vsources_puVmagAngle",
+        "B": "CktElement_Powers",
+        "C": "Circuit_AllBusNames",
+        "D": "RegControls_Winding"
+      },
+      "function_name": "Circuit_AllBusNames"
+    }
+  },
+  {
+    "probe_id": "L0_7f8c7fc6",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"`Circuit_AllNodeNames` is a standard function in the `opendssdirect` library, while the others are not recognized valid functions.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "`Circuit_AllNodeNames` is a standard function in the `opendssdirect` library, while the others are not recognized valid functions.",
+      "options": {
+        "A": "Solution_ControlMode_info",
+        "B": "Circuit_AllNodeNames",
+        "C": "Capacitors_Channel_kW",
+        "D": "Transformers_Result"
+      },
+      "function_name": "Circuit_AllNodeNames"
+    }
+  },
+  {
+    "probe_id": "L0_34a151e4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Solution_State_ForwardBand is a constant value, not a function, while the others are valid functions in opendssdirect.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Solution_State_ForwardBand is a constant value, not a function, while the others are valid functions in opendssdirect.",
+      "options": {
+        "A": "Circuit_AllNodeNames",
+        "B": "CktElement_Powers",
+        "C": "Loads_kW",
+        "D": "Solution_State_ForwardBand"
+      },
+      "function_name": "Circuit_AllNodeNames"
+    }
+  },
+  {
+    "probe_id": "L0_3a5146c4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Bus_AllNodeNames is a documented function in opendssdirect that returns all node names for a bus, while Circuit_LineLosses is also real but often considered a property in actual usage, making C the most definitively correct function among the options.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "C",
+      "correct": "D",
+      "reasoning": "Bus_AllNodeNames is a documented function in opendssdirect that returns all node names for a bus, while Circuit_LineLosses is also real but often considered a property in actual usage, making C the most definitively correct function among the options.",
+      "options": {
+        "A": "Bus_ONSetting",
+        "B": "Text_Number",
+        "C": "Bus_AllNodeNames",
+        "D": "Circuit_LineLosses"
+      },
+      "function_name": "Circuit_LineLosses"
+    }
+  },
+  {
+    "probe_id": "L0_2e2c3918",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Circuit_Losses_list is not a function; the correct function is Circuit_Losses.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Circuit_Losses_list is not a function; the correct function is Circuit_Losses.",
+      "options": {
+        "A": "Circuit_Losses_list",
+        "B": "Text_Result",
+        "C": "Bus_kVBase",
+        "D": "Circuit_LineLosses"
+      },
+      "function_name": "Circuit_LineLosses"
+    }
+  },
+  {
+    "probe_id": "L0_430b184b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Circuit_Losses is a known function in opendssdirect that returns the circuit losses.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Circuit_Losses is a known function in opendssdirect that returns the circuit losses.",
+      "options": {
+        "A": "Vsources_NumWindings",
+        "B": "Loads_R1",
+        "C": "Circuit_Losses",
+        "D": "Capacitors_MaxIterations_TotalIterations"
+      },
+      "function_name": "Circuit_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_ae7b2c6d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `Capacitors_Shots` does not exist in opendssdirect because `Shots` is a property of CapControl, not Capacitors.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function `Capacitors_Shots` does not exist in opendssdirect because `Shots` is a property of CapControl, not Capacitors.",
+      "options": {
+        "A": "Capacitors_Shots",
+        "B": "Loads_Name",
+        "C": "Circuit_Losses",
+        "D": "Transformers_NumWindings"
+      },
+      "function_name": "Circuit_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_5d90b555",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Circuit_SetActiveBus is a real function in opendssdirect used to set the active bus in the circuit.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Circuit_SetActiveBus is a real function in opendssdirect used to set the active bus in the circuit.",
+      "options": {
+        "A": "Reclosers_Command",
+        "B": "CapControls_Name_info",
+        "C": "Solution_State_ForwardBand",
+        "D": "Circuit_SetActiveBus"
+      },
+      "function_name": "Circuit_SetActiveBus"
+    }
+  },
+  {
+    "probe_id": "L0_8de6918a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `Circuit_Losses_data` does not exist in opendssdirect; the correct function for circuit losses is `Circuit_Losses`.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function `Circuit_Losses_data` does not exist in opendssdirect; the correct function for circuit losses is `Circuit_Losses`.",
+      "options": {
+        "A": "Circuit_Losses_data",
+        "B": "Lines_Length",
+        "C": "Generators_kW",
+        "D": "Circuit_SetActiveBus"
+      },
+      "function_name": "Circuit_SetActiveBus"
+    }
+  },
+  {
+    "probe_id": "L0_d88390ee",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"In the opendssdirect Python library, `Circuit.SetActiveElement` is a real function; the underscore version `Circuit_SetActiveElement` is the C API binding name.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "In the opendssdirect Python library, `Circuit.SetActiveElement` is a real function; the underscore version `Circuit_SetActiveElement` is the C API binding name.",
+      "options": {
+        "A": "CktElement_Command_kvar",
+        "B": "Bus_Tap",
+        "C": "RegControls_MaxTapChange_data",
+        "D": "Circuit_SetActiveElement"
+      },
+      "function_name": "Circuit_SetActiveElement"
+    }
+  },
+  {
+    "probe_id": "L0_750fbf2f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_PU is not a standard function in the opendssdirect library, while Bus_YscMatrix, Lines_Bus1, and Circuit_SetActiveElement are commonly available.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Transformers_PU is not a standard function in the opendssdirect library, while Bus_YscMatrix, Lines_Bus1, and Circuit_SetActiveElement are commonly available.",
+      "options": {
+        "A": "Transformers_PU",
+        "B": "Bus_YscMatrix",
+        "C": "Lines_Bus1",
+        "D": "Circuit_SetActiveElement"
+      },
+      "function_name": "Circuit_SetActiveElement"
+    }
+  },
+  {
+    "probe_id": "L0_34e3d366",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Circuit_TotalPower is a real function in the opendssdirect library, while the others have incorrect suffixes or refer to properties from different classes.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Circuit_TotalPower is a real function in the opendssdirect library, while the others have incorrect suffixes or refer to properties from different classes.",
+      "options": {
+        "A": "CapControls_MaxTapChange",
+        "B": "Circuit_TotalPower",
+        "C": "Circuit_LineLosses_list",
+        "D": "RegControls_ForwardBand_data"
+      },
+      "function_name": "Circuit_TotalPower"
+    }
+  },
+  {
+    "probe_id": "L0_0cc244f8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"`Solution_StepSize_list` does not exist because `StepSize` is a single property and not a list in the opendssdirect library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "`Solution_StepSize_list` does not exist because `StepSize` is a single property and not a list in the opendssdirect library.",
+      "options": {
+        "A": "Circuit_TotalPower",
+        "B": "Solution_StepSize_list",
+        "C": "Bus_kVBase",
+        "D": "CapControls_OFFSetting"
+      },
+      "function_name": "Circuit_TotalPower"
+    }
+  },
+  {
+    "probe_id": "L0_1da5ab9f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"CktElement_Currents is a real function in opendssdirect that returns the currents of the active circuit element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "CktElement_Currents is a real function in opendssdirect that returns the currents of the active circuit element.",
+      "options": {
+        "A": "Circuit_Number_Length",
+        "B": "CktElement_Currents",
+        "C": "Reclosers_LineLosses",
+        "D": "Text_TapNumber"
+      },
+      "function_name": "CktElement_Currents"
+    }
+  },
+  {
+    "probe_id": "L0_05a47c2b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_Result is not a standard function in opendssdirect; the typical functions for Vsources include Count, Name, etc., but not a Result method.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Vsources_Result is not a standard function in opendssdirect; the typical functions for Vsources include Count, Name, etc., but not a Result method.",
+      "options": {
+        "A": "Vsources_Result",
+        "B": "CktElement_Currents",
+        "C": "Circuit_SetActiveBus",
+        "D": "Reclosers_Shots"
+      },
+      "function_name": "CktElement_Currents"
+    }
+  },
+  {
+    "probe_id": "L0_68a422a2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The opendssdirect library includes a function `CktElement_Losses` that returns the losses of a circuit element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The opendssdirect library includes a function `CktElement_Losses` that returns the losses of a circuit element.",
+      "options": {
+        "A": "CapControls_State",
+        "B": "CktElement_Losses",
+        "C": "Vsources_Powers",
+        "D": "Text_Result_info"
+      },
+      "function_name": "CktElement_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_00c6437d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Circuit_ONSetting is not a valid function in the opendssdirect Python library; the correct function for setting options is Circuit.Option or similar, but not ONSetting.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Circuit_ONSetting is not a valid function in the opendssdirect Python library; the correct function for setting options is Circuit.Option or similar, but not ONSetting.",
+      "options": {
+        "A": "CktElement_Losses",
+        "B": "Circuit_AllBusNames",
+        "C": "Circuit_ONSetting",
+        "D": "Meters_RegisterValues"
+      },
+      "function_name": "CktElement_Losses"
+    }
+  },
+  {
+    "probe_id": "L0_9a6bd982",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"The opendssdirect library includes a function 'CktElement_Powers' to retrieve powers for a circuit element, while the other options do not match known function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "The opendssdirect library includes a function 'CktElement_Powers' to retrieve powers for a circuit element, while the other options do not match known function names in the library.",
+      "options": {
+        "A": "Reclosers_OFFSetting",
+        "B": "CapControls_Convergence",
+        "C": "CktElement_Powers",
+        "D": "Circuit_SetActiveBus_data"
+      },
+      "function_name": "CktElement_Powers"
+    }
+  },
+  {
+    "probe_id": "L0_7d00bee4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"While `Reclosers_PhaseTrip` is a property, the function interface in opendssdirect typically uses `Reclosers_ReadPhaseTrip` and `Reclosers_WritePhaseTrip` instead of a direct `Reclosers_PhaseTrip` function.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "While `Reclosers_PhaseTrip` is a property, the function interface in opendssdirect typically uses `Reclosers_ReadPhaseTrip` and `Reclosers_WritePhaseTrip` instead of a direct `Reclosers_PhaseTrip` function.",
+      "options": {
+        "A": "Solution_SetActiveBus",
+        "B": "CktElement_Powers",
+        "C": "Solution_LoadModel",
+        "D": "Reclosers_PhaseTrip"
+      },
+      "function_name": "CktElement_Powers"
+    }
+  },
+  {
+    "probe_id": "L0_70b0ccb3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Fuses_IsBlown is a real function in opendssdirect that returns whether a fuse is blown, whereas the other options are not standard function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Fuses_IsBlown is a real function in opendssdirect that returns whether a fuse is blown, whereas the other options are not standard function names in the library.",
+      "options": {
+        "A": "Loads_Name_table",
+        "B": "CktElement_PU",
+        "C": "Fuses_IsBlown",
+        "D": "Capacitors_StepSize_NumSteps"
+      },
+      "function_name": "Fuses_IsBlown"
+    }
+  },
+  {
+    "probe_id": "L0_49278b13",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The function `Capacitors_StepSize_NumSteps` does not exist; the correct functions for capacitors are `Capacitors_StepSize` and `Capacitors_NumSteps`, not a combined one.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The function `Capacitors_StepSize_NumSteps` does not exist; the correct functions for capacitors are `Capacitors_StepSize` and `Capacitors_NumSteps`, not a combined one.",
+      "options": {
+        "A": "Solution_StepSize",
+        "B": "Capacitors_StepSize_NumSteps",
+        "C": "Reclosers_PhaseTrip",
+        "D": "Fuses_IsBlown"
+      },
+      "function_name": "Fuses_IsBlown"
+    }
+  },
+  {
+    "probe_id": "L0_0336c928",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Text_Result_list is a real function in opendssdirect that returns the result as a list, while the others are properties.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "C",
+      "reasoning": "Text_Result_list is a real function in opendssdirect that returns the result as a list, while the others are properties.",
+      "options": {
+        "A": "Solution_NumWindings",
+        "B": "CapControls_TotalIterations",
+        "C": "Fuses_RatedCurrent",
+        "D": "Text_Result_list"
+      },
+      "function_name": "Fuses_RatedCurrent"
+    }
+  },
+  {
+    "probe_id": "L0_d0d016fe",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Bus_YscMatrix_data does not exist as a function; the correct function is Bus_YscMatrix to retrieve the Ysc matrix.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Bus_YscMatrix_data does not exist as a function; the correct function is Bus_YscMatrix to retrieve the Ysc matrix.",
+      "options": {
+        "A": "Reclosers_PhaseTrip",
+        "B": "Solution_Convergence",
+        "C": "Fuses_RatedCurrent",
+        "D": "Bus_YscMatrix_data"
+      },
+      "function_name": "Fuses_RatedCurrent"
+    }
+  },
+  {
+    "probe_id": "L0_a6228d1e",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Fuses_State` is a standard function in the `opendssdirect` library used to get the state of fuses, while the other options are either non-existent or not typical function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "`Fuses_State` is a standard function in the `opendssdirect` library used to get the state of fuses, while the other options are either non-existent or not typical function names in the library.",
+      "options": {
+        "A": "RegControls_ForwardVreg_info",
+        "B": "Fuses_State_data",
+        "C": "Fuses_State",
+        "D": "CktElement_Losses_set"
+      },
+      "function_name": "Fuses_State"
+    }
+  },
+  {
+    "probe_id": "L0_af4595bf",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Vsources_MaxTapChange is not a valid function in opendssdirect because voltage sources (Vsources) do not have a MaxTapChange property; tap-changing properties are associated with transformers and regulators.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Vsources_MaxTapChange is not a valid function in opendssdirect because voltage sources (Vsources) do not have a MaxTapChange property; tap-changing properties are associated with transformers and regulators.",
+      "options": {
+        "A": "Bus_CplxSeqVoltages",
+        "B": "Fuses_State",
+        "C": "Vsources_MaxTapChange",
+        "D": "Solution_TotalIterations"
+      },
+      "function_name": "Fuses_State"
+    }
+  },
+  {
+    "probe_id": "L0_d4285377",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Bus_YscMatrix_data is a real function in opendssdirect for retrieving the Ysc matrix data.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Bus_YscMatrix_data is a real function in opendssdirect for retrieving the Ysc matrix data.",
+      "options": {
+        "A": "Bus_YscMatrix_data",
+        "B": "Loads_R1",
+        "C": "Circuit_AllBusNames_config",
+        "D": "Generators_kW"
+      },
+      "function_name": "Generators_kW"
+    }
+  },
+  {
+    "probe_id": "L0_84220bcc",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Lines do not have a 'Winding' property; that property belongs to transformers, so Lines_Winding does not exist in opendssdirect.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Lines do not have a 'Winding' property; that property belongs to transformers, so Lines_Winding does not exist in opendssdirect.",
+      "options": {
+        "A": "Solution_Solve",
+        "B": "Lines_Winding",
+        "C": "Loads_PF",
+        "D": "Generators_kW"
+      },
+      "function_name": "Generators_kW"
+    }
+  },
+  {
+    "probe_id": "L0_2bb4814a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Lines_Bus1 is a valid property in opendssdirect for accessing the bus1 of a line element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Lines_Bus1 is a valid property in opendssdirect for accessing the bus1 of a line element.",
+      "options": {
+        "A": "Lines_Bus1",
+        "B": "Bus_RegisterValues_AllNodeNames",
+        "C": "Text_TapNumber",
+        "D": "CktElement_PU"
+      },
+      "function_name": "Lines_Bus1"
+    }
+  },
+  {
+    "probe_id": "L0_b77c3c5b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `Transformers_kVA` does not exist in `opendssdirect`; the correct function is `Transformers_kva` (all lowercase).\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "The function `Transformers_kVA` does not exist in `opendssdirect`; the correct function is `Transformers_kva` (all lowercase).",
+      "options": {
+        "A": "Transformers_kVA",
+        "B": "Circuit_AllBusNames",
+        "C": "Lines_Bus1",
+        "D": "Bus_AvailableSteps_LoadMult"
+      },
+      "function_name": "Lines_Bus1"
+    }
+  },
+  {
+    "probe_id": "L0_3c44f2a9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Lines_Length is a documented function in the opendssdirect library that returns an array of line lengths.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Lines_Length is a documented function in the opendssdirect library that returns an array of line lengths.",
+      "options": {
+        "A": "Lines_Length",
+        "B": "Bus_Zsc0_data",
+        "C": "Bus_Voltages_info",
+        "D": "Circuit_Losses_data"
+      },
+      "function_name": "Lines_Length"
+    }
+  },
+  {
+    "probe_id": "L0_35f1e7df",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Lines_Length` is not a direct function in opendssdirect; instead, length is accessed per line element.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "C",
+      "correct": "B",
+      "reasoning": "`Lines_Length` is not a direct function in opendssdirect; instead, length is accessed per line element.",
+      "options": {
+        "A": "Solution_LoadMult",
+        "B": "Circuit_LineLosses_list",
+        "C": "Lines_Length",
+        "D": "Solution_Frequency"
+      },
+      "function_name": "Lines_Length"
+    }
+  },
+  {
+    "probe_id": "L0_1af14221",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_kVA_list is a recognized function in opendssdirect that returns a list of kVA ratings for transformers.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "Transformers_kVA_list is a recognized function in opendssdirect that returns a list of kVA ratings for transformers.",
+      "options": {
+        "A": "Transformers_kVA_list",
+        "B": "Circuit_Convergence",
+        "C": "Lines_R1",
+        "D": "Capacitors_Length"
+      },
+      "function_name": "Lines_R1"
+    }
+  },
+  {
+    "probe_id": "L0_432e0970",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'CapControls_Name_list' does not exist in opendssdirect; the correct function for listing capacitor control names is 'CapControls_Names' or 'CapControls_Name'.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function 'CapControls_Name_list' does not exist in opendssdirect; the correct function for listing capacitor control names is 'CapControls_Names' or 'CapControls_Name'.",
+      "options": {
+        "A": "CapControls_Name_list",
+        "B": "Lines_R1",
+        "C": "Loads_PF",
+        "D": "Circuit_TotalPower"
+      },
+      "function_name": "Lines_R1"
+    }
+  },
+  {
+    "probe_id": "L0_e229dab3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The function `Loads_Name` is a standard function in the opendssdirect library used to retrieve the name of the active load element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The function `Loads_Name` is a standard function in the opendssdirect library used to retrieve the name of the active load element.",
+      "options": {
+        "A": "Transformers_CplxSeqVoltages",
+        "B": "Loads_Name",
+        "C": "Capacitors_MaxIterations_TotalIterations",
+        "D": "Text_Number"
+      },
+      "function_name": "Loads_Name"
+    }
+  },
+  {
+    "probe_id": "L0_a5bb67df",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function 'Capacitors_StepSize_NumSteps' does not exist in the opendssdirect library; instead, 'Capacitors.StepSize' and 'Capacitors.NumSteps' are separate functions.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function 'Capacitors_StepSize_NumSteps' does not exist in the opendssdirect library; instead, 'Capacitors.StepSize' and 'Capacitors.NumSteps' are separate functions.",
+      "options": {
+        "A": "Capacitors_StepSize_NumSteps",
+        "B": "Loads_Name",
+        "C": "RegControls_MaxTapChange",
+        "D": "Solution_Number"
+      },
+      "function_name": "Loads_Name"
+    }
+  },
+  {
+    "probe_id": "L0_97d500b3",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"CapControls_Converged is a real getter function in the opendssdirect C API, commonly used to check if capacitor controls have converged after a power flow.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "C",
+      "correct": "A",
+      "reasoning": "CapControls_Converged is a real getter function in the opendssdirect C API, commonly used to check if capacitor controls have converged after a power flow.",
+      "options": {
+        "A": "Loads_PF",
+        "B": "Bus_puVmagAngle_config",
+        "C": "CapControls_Converged",
+        "D": "Circuit_PF_ForwardBand"
+      },
+      "function_name": "Loads_PF"
+    }
+  },
+  {
+    "probe_id": "L0_47bc213e",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"In opendssdirect, the function for load power factor is typically accessed via Loads_Result or specific properties, not a dedicated Loads_PF function.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "In opendssdirect, the function for load power factor is typically accessed via Loads_Result or specific properties, not a dedicated Loads_PF function.",
+      "options": {
+        "A": "Loads_PF",
+        "B": "Vsources_Result",
+        "C": "Transformers_Wdg",
+        "D": "Bus_Zsc0"
+      },
+      "function_name": "Loads_PF"
+    }
+  },
+  {
+    "probe_id": "L0_8dddf8e9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`Loads_kW` is a real function in the `opendssdirect` library used to retrieve the kW value of the active load element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "`Loads_kW` is a real function in the `opendssdirect` library used to retrieve the kW value of the active load element.",
+      "options": {
+        "A": "Loads_kW",
+        "B": "Fuses_kW",
+        "C": "Transformers_Currents",
+        "D": "Bus_YscMatrix_info"
+      },
+      "function_name": "Loads_kW"
+    }
+  },
+  {
+    "probe_id": "L0_fd27f4bb",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"The function Loads_kW_element does not exist in opendssdirect; the correct function is Loads_kW.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "The function Loads_kW_element does not exist in opendssdirect; the correct function is Loads_kW.",
+      "options": {
+        "A": "Transformers_Tap",
+        "B": "Loads_kW",
+        "C": "Solution_Iterations",
+        "D": "Loads_kW_element"
+      },
+      "function_name": "Loads_kW"
+    }
+  },
+  {
+    "probe_id": "L0_f99a507a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_Bus1 is a real function in the opendssdirect library that returns the first bus of the active recloser element.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Reclosers_Bus1 is a real function in the opendssdirect library that returns the first bus of the active recloser element.",
+      "options": {
+        "A": "Reclosers_Bus1",
+        "B": "Loads_kvar",
+        "C": "Monitors_Channel_config",
+        "D": "Bus_SubtractStep"
+      },
+      "function_name": "Loads_kvar"
+    }
+  },
+  {
+    "probe_id": "L0_e472bece",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `Vsources_MaxControlIterations` does not exist in opendssdirect; the correct property name is `Vsources_MaxControliterations` (lowercase 'i' in 'iterations'), while the other three options are valid function names.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function `Vsources_MaxControlIterations` does not exist in opendssdirect; the correct property name is `Vsources_MaxControliterations` (lowercase 'i' in 'iterations'), while the other three options are valid function names.",
+      "options": {
+        "A": "Vsources_MaxControlIterations",
+        "B": "Solution_Frequency",
+        "C": "Generators_kW",
+        "D": "Loads_kvar"
+      },
+      "function_name": "Loads_kvar"
+    }
+  },
+  {
+    "probe_id": "L0_1d1be429",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"CktElement_SeqVoltages is a real function in the opendssdirect library, used to retrieve sequence voltages for a circuit element.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "D",
+      "reasoning": "CktElement_SeqVoltages is a real function in the opendssdirect library, used to retrieve sequence voltages for a circuit element.",
+      "options": {
+        "A": "Solution_TotalIterations_data",
+        "B": "CktElement_SeqVoltages",
+        "C": "Circuit_LineLosses_data",
+        "D": "Meters_RegisterValues"
+      },
+      "function_name": "Meters_RegisterValues"
+    }
+  },
+  {
+    "probe_id": "L0_1818517f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The function Loads_TotalIterations does not exist in opendssdirect, while the other three are valid functions.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The function Loads_TotalIterations does not exist in opendssdirect, while the other three are valid functions.",
+      "options": {
+        "A": "Meters_RegisterValues",
+        "B": "Loads_TotalIterations",
+        "C": "CktElement_Currents",
+        "D": "RegControls_MaxTapChange"
+      },
+      "function_name": "Meters_RegisterValues"
+    }
+  },
+  {
+    "probe_id": "L0_19484578",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Monitors_Channel is a valid function in opendssdirect that retrieves the channel values from monitors, while the other options contain suffixes or names that do not match the library's actual API.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Monitors_Channel is a valid function in opendssdirect that retrieves the channel values from monitors, while the other options contain suffixes or names that do not match the library's actual API.",
+      "options": {
+        "A": "Circuit_AllBusNames_config",
+        "B": "Monitors_Channel",
+        "C": "Capacitors_SetActiveBus_StepSize",
+        "D": "Fuses_State_info"
+      },
+      "function_name": "Monitors_Channel"
+    }
+  },
+  {
+    "probe_id": "L0_f2844f0a",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `CktElement_StepSize_Command` does not exist in the opendssdirect library; the correct function for step size is typically `Solution_StepSize` or similar, not under CktElement.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The function `CktElement_StepSize_Command` does not exist in the opendssdirect library; the correct function for step size is typically `Solution_StepSize` or similar, not under CktElement.",
+      "options": {
+        "A": "CktElement_StepSize_Command",
+        "B": "Solution_ControlMode",
+        "C": "Monitors_Channel",
+        "D": "Circuit_SetActiveBus"
+      },
+      "function_name": "Monitors_Channel"
+    }
+  },
+  {
+    "probe_id": "L0_91bdddb8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_PhaseTrip is a real function in opendssdirect for accessing the PhaseTrip property of reclosers, while the other options do not correspond to existing functions in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Reclosers_PhaseTrip is a real function in opendssdirect for accessing the PhaseTrip property of reclosers, while the other options do not correspond to existing functions in the library.",
+      "options": {
+        "A": "Reclosers_PhaseTrip",
+        "B": "Capacitors_States_table",
+        "C": "Reclosers_ONSetting_Length",
+        "D": "Fuses_Shots"
+      },
+      "function_name": "Reclosers_PhaseTrip"
+    }
+  },
+  {
+    "probe_id": "L0_61109749",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Bus_puVmagAngle_config is not a standard function in opendssdirect; the correct function is Bus_puVmagAngle without the _config suffix.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Bus_puVmagAngle_config is not a standard function in opendssdirect; the correct function is Bus_puVmagAngle without the _config suffix.",
+      "options": {
+        "A": "Reclosers_PhaseTrip",
+        "B": "Transformers_NumWindings",
+        "C": "Text_Result",
+        "D": "Bus_puVmagAngle_config"
+      },
+      "function_name": "Reclosers_PhaseTrip"
+    }
+  },
+  {
+    "probe_id": "L0_f51c3390",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Reclosers_Shots is a real function in opendssdirect that gets or sets the number of shots for a recloser.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Reclosers_Shots is a real function in opendssdirect that gets or sets the number of shots for a recloser.",
+      "options": {
+        "A": "Reclosers_Shots",
+        "B": "Capacitors_Convergence",
+        "C": "CapControls_Capacitor_data",
+        "D": "Fuses_RatedCurrent_set"
+      },
+      "function_name": "Reclosers_Shots"
+    }
+  },
+  {
+    "probe_id": "L0_3458b79e",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Text_TapNumber is not a standard function in opendssdirect; tap numbers are accessed via transformer or regulator classes.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Text_TapNumber is not a standard function in opendssdirect; tap numbers are accessed via transformer or regulator classes.",
+      "options": {
+        "A": "Reclosers_Shots",
+        "B": "Text_TapNumber",
+        "C": "Solution_LoadMult",
+        "D": "Circuit_AllBusMagPu"
+      },
+      "function_name": "Reclosers_Shots"
+    }
+  },
+  {
+    "probe_id": "L0_f55ef0f2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The opendssdirect library contains the function `RegControls_Winding_config` for retrieving the winding configuration of a regulator control, while the others are not standard functions.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "The opendssdirect library contains the function `RegControls_Winding_config` for retrieving the winding configuration of a regulator control, while the others are not standard functions.",
+      "options": {
+        "A": "RegControls_Winding_config",
+        "B": "Solution_Convergence_info",
+        "C": "Reclosers_State",
+        "D": "CktElement_Capacitor"
+      },
+      "function_name": "Reclosers_State"
+    }
+  },
+  {
+    "probe_id": "L0_3a7be3b9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Solution_LoadModel_TotalIterations is not a valid function in opendssdirect; Solution_LoadModel and TotalIterations are separate.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Solution_LoadModel_TotalIterations is not a valid function in opendssdirect; Solution_LoadModel and TotalIterations are separate.",
+      "options": {
+        "A": "Fuses_RatedCurrent",
+        "B": "Reclosers_State",
+        "C": "Solution_LoadModel_TotalIterations",
+        "D": "RegControls_ForwardVreg"
+      },
+      "function_name": "Reclosers_State"
+    }
+  },
+  {
+    "probe_id": "L0_ebce3c22",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `Solution_ControlMode_set` exists in the `opendssdirect` library to set the control mode in the solution object, whereas the others are property-like accesses or not standard functions.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function `Solution_ControlMode_set` exists in the `opendssdirect` library to set the control mode in the solution object, whereas the others are property-like accesses or not standard functions.",
+      "options": {
+        "A": "Solution_ControlMode_set",
+        "B": "RegControls_ForwardBand",
+        "C": "Vsources_ZscMatrix",
+        "D": "Lines_R1_info"
+      },
+      "function_name": "RegControls_ForwardBand"
+    }
+  },
+  {
+    "probe_id": "L0_952f5dac",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Circuit_LineLosses_data is not a recognized function in the opendssdirect library; the correct function is Circuit_LineLosses without the '_data' suffix.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Circuit_LineLosses_data is not a recognized function in the opendssdirect library; the correct function is Circuit_LineLosses without the '_data' suffix.",
+      "options": {
+        "A": "RegControls_ForwardBand",
+        "B": "Circuit_LineLosses_data",
+        "C": "Bus_SeqVoltages",
+        "D": "Solution_MaxControlIterations"
+      },
+      "function_name": "RegControls_ForwardBand"
+    }
+  },
+  {
+    "probe_id": "L0_45977cc8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_kvar is a property in opendssdirect for specifying the reactive power of a voltage source.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "Vsources_kvar is a property in opendssdirect for specifying the reactive power of a voltage source.",
+      "options": {
+        "A": "Vsources_kvar",
+        "B": "Capacitors_AddStep_element",
+        "C": "RegControls_ForwardVreg",
+        "D": "Loads_R1"
+      },
+      "function_name": "RegControls_ForwardVreg"
+    }
+  },
+  {
+    "probe_id": "L0_8cb0ec7d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"The function `Circuit_SetActiveBus_set` does not exist because setting the active bus is done via the method `Circuit.SetActiveBus` or `Circuit_SetActiveBus`, not a property setter.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "The function `Circuit_SetActiveBus_set` does not exist because setting the active bus is done via the method `Circuit.SetActiveBus` or `Circuit_SetActiveBus`, not a property setter.",
+      "options": {
+        "A": "CktElement_Losses",
+        "B": "Capacitors_States",
+        "C": "RegControls_ForwardVreg",
+        "D": "Circuit_SetActiveBus_set"
+      },
+      "function_name": "RegControls_ForwardVreg"
+    }
+  },
+  {
+    "probe_id": "L0_ce5c0675",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_ForwardBand_AvailableSteps is a documented function in the opendssdirect library, while the others are not standard or correct names.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Transformers_ForwardBand_AvailableSteps is a documented function in the opendssdirect library, while the others are not standard or correct names.",
+      "options": {
+        "A": "Transformers_ForwardBand_AvailableSteps",
+        "B": "RegControls_MaxTapChange",
+        "C": "Reclosers_SeqVoltages",
+        "D": "Bus_ZscMatrix_info"
+      },
+      "function_name": "RegControls_MaxTapChange"
+    }
+  },
+  {
+    "probe_id": "L0_77768f98",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Circuit_ForwardBand_SeqVoltages is not a valid function in the opendssdirect library; the other three are standard properties or methods.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Circuit_ForwardBand_SeqVoltages is not a valid function in the opendssdirect library; the other three are standard properties or methods.",
+      "options": {
+        "A": "Capacitors_SubtractStep",
+        "B": "Circuit_ForwardBand_SeqVoltages",
+        "C": "RegControls_MaxTapChange",
+        "D": "CapControls_OFFSetting"
+      },
+      "function_name": "RegControls_MaxTapChange"
+    }
+  },
+  {
+    "probe_id": "L0_2f01ab87",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The `RegControls_TapNumber` function exists in opendssdirect as a property to get/set the tap number of a regulator control, while the other options are not valid functions based on typical naming conventions.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The `RegControls_TapNumber` function exists in opendssdirect as a property to get/set the tap number of a regulator control, while the other options are not valid functions based on typical naming conventions.",
+      "options": {
+        "A": "Circuit_ForwardBand_SeqVoltages",
+        "B": "RegControls_TapNumber",
+        "C": "Solution_State_Voc",
+        "D": "Solution_LoadModel_table"
+      },
+      "function_name": "RegControls_TapNumber"
+    }
+  },
+  {
+    "probe_id": "L0_29c68c27",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Loads_Algorithm is not a valid function in the opendssdirect library; instead, load model type is accessed via Loads_Model.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Loads_Algorithm is not a valid function in the opendssdirect library; instead, load model type is accessed via Loads_Model.",
+      "options": {
+        "A": "CktElement_Powers",
+        "B": "Bus_kVBase",
+        "C": "Loads_Algorithm",
+        "D": "RegControls_TapNumber"
+      },
+      "function_name": "RegControls_TapNumber"
+    }
+  },
+  {
+    "probe_id": "L0_19108579",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`RegControls_Winding` is a valid function in opendssdirect to access the winding of a regulator control, while the others are not standard function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "`RegControls_Winding` is a valid function in opendssdirect to access the winding of a regulator control, while the others are not standard function names in the library.",
+      "options": {
+        "A": "RegControls_Winding",
+        "B": "Reclosers_AddStep_MaxControlIterations",
+        "C": "Circuit_Number_Length",
+        "D": "Transformers_ForwardBand"
+      },
+      "function_name": "RegControls_Winding"
+    }
+  },
+  {
+    "probe_id": "L0_f7b6e208",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The Reclosers object in OpenDSS does not have a StepSize property; StepSize is a property of the Solution object.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The Reclosers object in OpenDSS does not have a StepSize property; StepSize is a property of the Solution object.",
+      "options": {
+        "A": "Reclosers_StepSize",
+        "B": "RegControls_Winding",
+        "C": "Solution_Solve",
+        "D": "Bus_ZscMatrix"
+      },
+      "function_name": "RegControls_Winding"
+    }
+  },
+  {
+    "probe_id": "L0_bf990657",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Solution_Algorithm is a real function in opendssdirect that sets or gets the solution algorithm, while the other options are not standard functions in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Solution_Algorithm is a real function in opendssdirect that sets or gets the solution algorithm, while the other options are not standard functions in the library.",
+      "options": {
+        "A": "Circuit_PF_ForwardBand",
+        "B": "Solution_Algorithm",
+        "C": "Transformers_YscMatrix",
+        "D": "CktElement_kvar_Zsc0"
+      },
+      "function_name": "Solution_Algorithm"
+    }
+  },
+  {
+    "probe_id": "L0_596a9e32",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Loads_kW_info is not a standard function in opendssdirect; typical functions are Loads_kW, not with '_info' suffix.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Loads_kW_info is not a standard function in opendssdirect; typical functions are Loads_kW, not with '_info' suffix.",
+      "options": {
+        "A": "Solution_Convergence",
+        "B": "Circuit_AllBusNames",
+        "C": "Loads_kW_info",
+        "D": "Solution_Algorithm"
+      },
+      "function_name": "Solution_Algorithm"
+    }
+  },
+  {
+    "probe_id": "L0_42b67dd6",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Solution_ControlMode is a real function in the opendssdirect library, whereas Bus_Channel is not a standard function (monitor channel functions are named differently), and the other options combine multiple property names incorrectly.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Solution_ControlMode is a real function in the opendssdirect library, whereas Bus_Channel is not a standard function (monitor channel functions are named differently), and the other options combine multiple property names incorrectly.",
+      "options": {
+        "A": "Bus_Channel",
+        "B": "Solution_ControlMode",
+        "C": "Transformers_ForwardBand_AvailableSteps",
+        "D": "CapControls_Capacitor_data"
+      },
+      "function_name": "Solution_ControlMode"
+    }
+  },
+  {
+    "probe_id": "L0_97a6c3e7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"In the opendssdirect Python library, the function 'CapControls_Capacitor' does not exist; the correct way to access the capacitor element is via `dss.CapControls.Capacitor`.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "C",
+      "reasoning": "In the opendssdirect Python library, the function 'CapControls_Capacitor' does not exist; the correct way to access the capacitor element is via `dss.CapControls.Capacitor`.",
+      "options": {
+        "A": "CapControls_Capacitor",
+        "B": "Solution_ControlMode",
+        "C": "Circuit_AllBusMagPu_table",
+        "D": "Generators_kW"
+      },
+      "function_name": "Solution_ControlMode"
+    }
+  },
+  {
+    "probe_id": "L0_79c107f9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Solution_Converged` is a real function in the `opendssdirect` Python library that returns the converged status of the solution.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "`Solution_Converged` is a real function in the `opendssdirect` Python library that returns the converged status of the solution.",
+      "options": {
+        "A": "Reclosers_Voc",
+        "B": "Vsources_ZscMatrix",
+        "C": "Solution_Converged",
+        "D": "Fuses_RatedCurrent_set"
+      },
+      "function_name": "Solution_Converged"
+    }
+  },
+  {
+    "probe_id": "L0_677b29ab",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Circuit_SetActiveElement does not exist as a function in opendssdirect; the correct function for setting the active element is Circuit.SetActiveElement.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "Circuit_SetActiveElement does not exist as a function in opendssdirect; the correct function for setting the active element is Circuit.SetActiveElement.",
+      "options": {
+        "A": "Circuit_SetActiveElement",
+        "B": "Solution_YscMatrix",
+        "C": "Reclosers_PhaseTrip",
+        "D": "Solution_Converged"
+      },
+      "function_name": "Solution_Converged"
+    }
+  },
+  {
+    "probe_id": "L0_af55f01c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Solution_Convergence is a valid function in opendssdirect that returns the convergence status of the solution.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Solution_Convergence is a valid function in opendssdirect that returns the convergence status of the solution.",
+      "options": {
+        "A": "Reclosers_Converged_MaxControlIterations",
+        "B": "Bus_Wdg",
+        "C": "Solution_Convergence",
+        "D": "RegControls_State"
+      },
+      "function_name": "Solution_Convergence"
+    }
+  },
+  {
+    "probe_id": "L0_157c5955",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Solution_Convergence` does not exist in opendssdirect; the correct function for checking convergence is `Solution_Converged`.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "C",
+      "correct": "B",
+      "reasoning": "`Solution_Convergence` does not exist in opendssdirect; the correct function for checking convergence is `Solution_Converged`.",
+      "options": {
+        "A": "RegControls_Winding",
+        "B": "RegControls_State",
+        "C": "Solution_Convergence",
+        "D": "Solution_Mode"
+      },
+      "function_name": "Solution_Convergence"
+    }
+  },
+  {
+    "probe_id": "L0_4a5eae77",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Solution_Frequency is a valid function in opendssdirect for getting/setting the solution frequency, while the others are not standard function names.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Solution_Frequency is a valid function in opendssdirect for getting/setting the solution frequency, while the others are not standard function names.",
+      "options": {
+        "A": "Loads_MaxIterations",
+        "B": "Vsources_StepSize",
+        "C": "Circuit_AllNodeNames_config",
+        "D": "Solution_Frequency"
+      },
+      "function_name": "Solution_Frequency"
+    }
+  },
+  {
+    "probe_id": "L0_1abc8423",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `RegControls_TapNumber` does not exist in opendssdirect; the correct property accessor is `RegControls_TapNum`.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function `RegControls_TapNumber` does not exist in opendssdirect; the correct property accessor is `RegControls_TapNum`.",
+      "options": {
+        "A": "RegControls_TapNumber",
+        "B": "Solution_SetActiveBus",
+        "C": "CktElement_Powers",
+        "D": "Solution_Frequency"
+      },
+      "function_name": "Solution_Frequency"
+    }
+  },
+  {
+    "probe_id": "L0_28347f81",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_Iterations is a real function in opendssdirect that returns the number of iterations in the last solution.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Solution_Iterations is a real function in opendssdirect that returns the number of iterations in the last solution.",
+      "options": {
+        "A": "Solution_Iterations",
+        "B": "CapControls_Converged",
+        "C": "Circuit_AllBusNames_config",
+        "D": "Reclosers_TotalPower"
+      },
+      "function_name": "Solution_Iterations"
+    }
+  },
+  {
+    "probe_id": "L0_aaa9c140",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"RegControls_MaxTapChange_data is not a standard function in opendssdirect; the correct function is RegControls_MaxTapChange, while the others are valid.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "RegControls_MaxTapChange_data is not a standard function in opendssdirect; the correct function is RegControls_MaxTapChange, while the others are valid.",
+      "options": {
+        "A": "RegControls_MaxTapChange_data",
+        "B": "Solution_Iterations",
+        "C": "Fuses_State",
+        "D": "Loads_Name"
+      },
+      "function_name": "Solution_Iterations"
+    }
+  },
+  {
+    "probe_id": "L0_5ae1cb99",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Solution_LoadModel` is a documented property in opendssdirect for setting the load model type, while the others are either incorrectly named or nonexistent.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "`Solution_LoadModel` is a documented property in opendssdirect for setting the load model type, while the others are either incorrectly named or nonexistent.",
+      "options": {
+        "A": "Solution_LoadMult_element",
+        "B": "Vsources_puVmagAngle",
+        "C": "Solution_LoadModel",
+        "D": "Bus_ONSetting"
+      },
+      "function_name": "Solution_LoadModel"
+    }
+  },
+  {
+    "probe_id": "L0_f8aa1f66",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Text_Losses does not exist as a function in opendssdirect because losses are not a direct property of the Text module; they are accessed via other means such as the `Losses` function or `Text.Command(\\\"Losses\\\")`.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Text_Losses does not exist as a function in opendssdirect because losses are not a direct property of the Text module; they are accessed via other means such as the `Losses` function or `Text.Command(\"Losses\")`.",
+      "options": {
+        "A": "Generators_kW",
+        "B": "Text_Losses",
+        "C": "Solution_MaxIterations",
+        "D": "Solution_LoadModel"
+      },
+      "function_name": "Solution_LoadModel"
+    }
+  },
+  {
+    "probe_id": "L0_038076ff",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Solution_LoadMult is a real function in the opendssdirect Python library, as it directly corresponds to the OpenDSS Solution.LoadMult property.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Solution_LoadMult is a real function in the opendssdirect Python library, as it directly corresponds to the OpenDSS Solution.LoadMult property.",
+      "options": {
+        "A": "Bus_YscMatrix_list",
+        "B": "Solution_LoadMult",
+        "C": "Lines_Capacitor",
+        "D": "Circuit_ForwardBand_kW"
+      },
+      "function_name": "Solution_LoadMult"
+    }
+  },
+  {
+    "probe_id": "L0_e8de2e5d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"`Lines_Length_data` does not exist as a standard function in the opendssdirect library; the correct property is typically `Lines_Length` without the '_data' suffix.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "`Lines_Length_data` does not exist as a standard function in the opendssdirect library; the correct property is typically `Lines_Length` without the '_data' suffix.",
+      "options": {
+        "A": "Solution_LoadMult",
+        "B": "Capacitors_AddStep",
+        "C": "Lines_Length_data",
+        "D": "Text_Result"
+      },
+      "function_name": "Solution_LoadMult"
+    }
+  },
+  {
+    "probe_id": "L0_71c5fd09",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Loads_Algorithm is a valid getter function in opendssdirect for the Load object's Algorithm property.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Loads_Algorithm is a valid getter function in opendssdirect for the Load object's Algorithm property.",
+      "options": {
+        "A": "Loads_Algorithm",
+        "B": "Circuit_SetActiveBus_set",
+        "C": "Circuit_AllNodeNames_config",
+        "D": "Solution_MaxControlIterations"
+      },
+      "function_name": "Solution_MaxControlIterations"
+    }
+  },
+  {
+    "probe_id": "L0_d9a988f1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The function `Vsources_BasekV_element` does not exist; the correct function is `Vsources_BasekV`, while the other three options are valid functions in the opendssdirect library.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The function `Vsources_BasekV_element` does not exist; the correct function is `Vsources_BasekV`, while the other three options are valid functions in the opendssdirect library.",
+      "options": {
+        "A": "Solution_MaxIterations",
+        "B": "Vsources_BasekV_element",
+        "C": "Solution_LoadMult",
+        "D": "Solution_MaxControlIterations"
+      },
+      "function_name": "Solution_MaxControlIterations"
+    }
+  },
+  {
+    "probe_id": "L0_7fa78298",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Solution_MaxIterations is a real function in opendssdirect that retrieves the maximum number of iterations for the solution.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Solution_MaxIterations is a real function in opendssdirect that retrieves the maximum number of iterations for the solution.",
+      "options": {
+        "A": "Solution_SubtractStep",
+        "B": "Reclosers_ONSetting_Length",
+        "C": "Generators_kW_set",
+        "D": "Solution_MaxIterations"
+      },
+      "function_name": "Solution_MaxIterations"
+    }
+  },
+  {
+    "probe_id": "L0_5a722d58",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"The Reclosers object in OpenDSS does not have a 'kW' property, so the function Reclosers_kW does not exist in opendssdirect.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "The Reclosers object in OpenDSS does not have a 'kW' property, so the function Reclosers_kW does not exist in opendssdirect.",
+      "options": {
+        "A": "Solution_MaxIterations",
+        "B": "Reclosers_kW",
+        "C": "Bus_kVBase",
+        "D": "Vsources_BasekV"
+      },
+      "function_name": "Solution_MaxIterations"
+    }
+  },
+  {
+    "probe_id": "L0_cdbcb0e4",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Solution_Mode is a real function in the opendssdirect library that allows getting or setting the solution mode for the circuit.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Solution_Mode is a real function in the opendssdirect library that allows getting or setting the solution mode for the circuit.",
+      "options": {
+        "A": "Capacitors_Length",
+        "B": "Solution_Mode",
+        "C": "Vsources_Result",
+        "D": "Solution_MaxIterations_data"
+      },
+      "function_name": "Solution_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_aebdc252",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Circuit_AllBusMagPu_table is not a standard function in the opendssdirect Python library; the correct function to retrieve bus voltage magnitudes as a DataFrame is typically via other methods like Circuit.AllBusMagPu or using pandas from the raw array.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Circuit_AllBusMagPu_table is not a standard function in the opendssdirect Python library; the correct function to retrieve bus voltage magnitudes as a DataFrame is typically via other methods like Circuit.AllBusMagPu or using pandas from the raw array.",
+      "options": {
+        "A": "Solution_TotalIterations",
+        "B": "Solution_Mode",
+        "C": "RegControls_ForwardBand",
+        "D": "Circuit_AllBusMagPu_table"
+      },
+      "function_name": "Solution_Mode"
+    }
+  },
+  {
+    "probe_id": "L0_557ef81c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`Solution_SetActiveBus` is a documented function in the `opendssdirect` library for setting the active bus during solution control.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "`Solution_SetActiveBus` is a documented function in the `opendssdirect` library for setting the active bus during solution control.",
+      "options": {
+        "A": "Solution_SetActiveBus",
+        "B": "Circuit_RegisterValues",
+        "C": "Fuses_Result_kvar",
+        "D": "Solution_Number"
+      },
+      "function_name": "Solution_Number"
+    }
+  },
+  {
+    "probe_id": "L0_5c5e9ef2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Capacitors_SeqVoltages_Isc is not a valid function in opendssdirect; the correct property is Capacitors.SeqVoltages.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Capacitors_SeqVoltages_Isc is not a valid function in opendssdirect; the correct property is Capacitors.SeqVoltages.",
+      "options": {
+        "A": "Capacitors_SeqVoltages_Isc",
+        "B": "Solution_Number",
+        "C": "Fuses_RatedCurrent",
+        "D": "Bus_puVmagAngle"
+      },
+      "function_name": "Solution_Number"
+    }
+  },
+  {
+    "probe_id": "L0_a8582b44",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Solution_Solve is a valid function in opendssdirect for executing the power flow solution, while the others are not standard function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Solution_Solve is a valid function in opendssdirect for executing the power flow solution, while the others are not standard function names in the library.",
+      "options": {
+        "A": "Solution_Solve",
+        "B": "Capacitors_SeqVoltages_Isc",
+        "C": "Transformers_PU",
+        "D": "Lines_Winding"
+      },
+      "function_name": "Solution_Solve"
+    }
+  },
+  {
+    "probe_id": "L0_fe4cafa9",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Reclosers_Converged_Zsc0 does not exist in opendssdirect; it is a fabricated function name.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Reclosers_Converged_Zsc0 does not exist in opendssdirect; it is a fabricated function name.",
+      "options": {
+        "A": "Lines_Length",
+        "B": "Bus_Voltages",
+        "C": "Reclosers_Converged_Zsc0",
+        "D": "Solution_Solve"
+      },
+      "function_name": "Solution_Solve"
+    }
+  },
+  {
+    "probe_id": "L0_43213479",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"`CapControls_AllNodeNames` is a real function in the opendssdirect library, as it corresponds to accessing the AllNodeNames property of the CapControls object, which is a standard feature.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "D",
+      "correct": "B",
+      "reasoning": "`CapControls_AllNodeNames` is a real function in the opendssdirect library, as it corresponds to accessing the AllNodeNames property of the CapControls object, which is a standard feature.",
+      "options": {
+        "A": "Capacitors_MaxIterations_StepSize",
+        "B": "Solution_StepSize",
+        "C": "Text_Solve",
+        "D": "CapControls_AllNodeNames"
+      },
+      "function_name": "Solution_StepSize"
+    }
+  },
+  {
+    "probe_id": "L0_7d102736",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The opendssdirect library has CapControls_ONSetting and CapControls_OFFSetting functions, but not CapControls_ONSetting_info.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "The opendssdirect library has CapControls_ONSetting and CapControls_OFFSetting functions, but not CapControls_ONSetting_info.",
+      "options": {
+        "A": "CapControls_ONSetting_info",
+        "B": "Solution_ControlMode",
+        "C": "Solution_StepSize",
+        "D": "CapControls_OFFSetting"
+      },
+      "function_name": "Solution_StepSize"
+    }
+  },
+  {
+    "probe_id": "L0_4583dbb1",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Solution_TotalIterations corresponds to the well-known OpenDSS property Solution.TotalIterations, which is directly accessible in opendssdirect.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Solution_TotalIterations corresponds to the well-known OpenDSS property Solution.TotalIterations, which is directly accessible in opendssdirect.",
+      "options": {
+        "A": "Lines_RegisterValues",
+        "B": "CktElement_Losses_config",
+        "C": "CapControls_AllNodeNames",
+        "D": "Solution_TotalIterations"
+      },
+      "function_name": "Solution_TotalIterations"
+    }
+  },
+  {
+    "probe_id": "L0_be3a50b8",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"In the opendssdirect Python library, the property is accessed as `kva` (lowercase) rather than `kVA`, so the function `Transformers_kVA` does not exist; the correct function would be `Transformers_kva`.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "D",
+      "correct": "A",
+      "reasoning": "In the opendssdirect Python library, the property is accessed as `kva` (lowercase) rather than `kVA`, so the function `Transformers_kVA` does not exist; the correct function would be `Transformers_kva`.",
+      "options": {
+        "A": "Text_Mode",
+        "B": "Solution_TotalIterations",
+        "C": "Lines_Bus1",
+        "D": "Transformers_kVA"
+      },
+      "function_name": "Solution_TotalIterations"
+    }
+  },
+  {
+    "probe_id": "L0_04adef81",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Text_Command is a real function in the opendssdirect library, used to execute OpenDSS commands via the Text object.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Text_Command is a real function in the opendssdirect library, used to execute OpenDSS commands via the Text object.",
+      "options": {
+        "A": "Fuses_IsBlown_kvar",
+        "B": "Text_Command",
+        "C": "Lines_PU",
+        "D": "Text_Frequency"
+      },
+      "function_name": "Text_Command"
+    }
+  },
+  {
+    "probe_id": "L0_a926dfcb",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Based on my knowledge of the opendssdirect Python library, the function `Bus_YscMatrix` does not exist; the correct function to get the Ysc matrix for a bus is `Bus_YscMatrix` is actually a property, but the library does not expose it as a standalone function.\"}",
+      "question_type": "find_fake",
+      "error_category": "false_rejection",
+      "predicted": "C",
+      "correct": "B",
+      "reasoning": "Based on my knowledge of the opendssdirect Python library, the function `Bus_YscMatrix` does not exist; the correct function to get the Ysc matrix for a bus is `Bus_YscMatrix` is actually a property, but the library does not expose it as a standalone function.",
+      "options": {
+        "A": "Solution_Converged",
+        "B": "Circuit_LoadModel",
+        "C": "Bus_YscMatrix",
+        "D": "Text_Command"
+      },
+      "function_name": "Text_Command"
+    }
+  },
+  {
+    "probe_id": "L0_a666bb08",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Text_Result is a known function in opendssdirect that retrieves the output from the last OpenDSS text command.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Text_Result is a known function in opendssdirect that retrieves the output from the last OpenDSS text command.",
+      "options": {
+        "A": "Lines_State",
+        "B": "Text_Result_config",
+        "C": "Solution_State_Voc",
+        "D": "Text_Result"
+      },
+      "function_name": "Text_Result"
+    }
+  },
+  {
+    "probe_id": "L0_881e3e43",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Capacitors_TotalIterations_kW does not exist as a function in opendssdirect because TotalIterations is not a property of the Capacitors module, and combining it with kW is not a valid function name.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Capacitors_TotalIterations_kW does not exist as a function in opendssdirect because TotalIterations is not a property of the Capacitors module, and combining it with kW is not a valid function name.",
+      "options": {
+        "A": "Vsources_BasekV",
+        "B": "Bus_YscMatrix",
+        "C": "Text_Result",
+        "D": "Capacitors_TotalIterations_kW"
+      },
+      "function_name": "Text_Result"
+    }
+  },
+  {
+    "probe_id": "L0_c6af41db",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Transformers_NumWindings is a valid property/function in the opendssdirect library that returns the number of windings for the active transformer element.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Transformers_NumWindings is a valid property/function in the opendssdirect library that returns the number of windings for the active transformer element.",
+      "options": {
+        "A": "Transformers_NumWindings",
+        "B": "Lines_R1_info",
+        "C": "Capacitors_LoadMult",
+        "D": "CktElement_Currents_SeqVoltages"
+      },
+      "function_name": "Transformers_NumWindings"
+    }
+  },
+  {
+    "probe_id": "L0_089d15e6",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"Transformers do not have a RegisterValues property in OpenDSS; that is specific to metering elements like meters.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "Transformers do not have a RegisterValues property in OpenDSS; that is specific to metering elements like meters.",
+      "options": {
+        "A": "CapControls_Capacitor",
+        "B": "Transformers_NumWindings",
+        "C": "Solution_LoadMult",
+        "D": "Transformers_RegisterValues"
+      },
+      "function_name": "Transformers_NumWindings"
+    }
+  },
+  {
+    "probe_id": "L0_1aa30cd2",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"`Transformers_Tap` is a real function in `opendssdirect` that returns the tap position of the active transformer, while the others are not standard functions.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "`Transformers_Tap` is a real function in `opendssdirect` that returns the tap position of the active transformer, while the others are not standard functions.",
+      "options": {
+        "A": "Transformers_Tap",
+        "B": "Reclosers_Command",
+        "C": "CapControls_MaxTapChange",
+        "D": "Loads_Name_table"
+      },
+      "function_name": "Transformers_Tap"
+    }
+  },
+  {
+    "probe_id": "L0_a4d65c28",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Reclosers_TotalPower does not exist because TotalPower is not a property of Reclosers in OpenDSS.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "B",
+      "correct": "B",
+      "reasoning": "Reclosers_TotalPower does not exist because TotalPower is not a property of Reclosers in OpenDSS.",
+      "options": {
+        "A": "Transformers_Tap",
+        "B": "Reclosers_TotalPower",
+        "C": "RegControls_TapNumber",
+        "D": "Lines_Bus1"
+      },
+      "function_name": "Transformers_Tap"
+    }
+  },
+  {
+    "probe_id": "L0_2bdd24f7",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Generators_kW_set is a real function in opendssdirect for setting the kW value of generators, while the others are not standard function names in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "D",
+      "reasoning": "Generators_kW_set is a real function in opendssdirect for setting the kW value of generators, while the others are not standard function names in the library.",
+      "options": {
+        "A": "Generators_kW_set",
+        "B": "Circuit_LoadModel",
+        "C": "Bus_ONSetting",
+        "D": "Transformers_Wdg"
+      },
+      "function_name": "Transformers_Wdg"
+    }
+  },
+  {
+    "probe_id": "L0_ae49075f",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Vsources_Shots does not exist because 'Shots' is a property of the Solution object, not VSources.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Vsources_Shots does not exist because 'Shots' is a property of the Solution object, not VSources.",
+      "options": {
+        "A": "Transformers_Wdg",
+        "B": "Solution_LoadModel",
+        "C": "Vsources_Shots",
+        "D": "Text_Result"
+      },
+      "function_name": "Transformers_Wdg"
+    }
+  },
+  {
+    "probe_id": "L0_ee17526d",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"The function `Circuit_LineLosses_list` is a real function in `opendssdirect` that returns a list of line losses for each line element.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "A",
+      "correct": "B",
+      "reasoning": "The function `Circuit_LineLosses_list` is a real function in `opendssdirect` that returns a list of line losses for each line element.",
+      "options": {
+        "A": "Circuit_LineLosses_list",
+        "B": "Transformers_kVA",
+        "C": "Text_ForwardBand",
+        "D": "Reclosers_Losses"
+      },
+      "function_name": "Transformers_kVA"
+    }
+  },
+  {
+    "probe_id": "L0_8930c83c",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"The `Capacitors_Convergence` function does not exist in the opendssdirect library because convergence is a property of the solution, not capacitors, while the other options correspond to valid functions like `Solution_Convergence`, `Transformers_kVA`, and `Lines_Bus1`.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "The `Capacitors_Convergence` function does not exist in the opendssdirect library because convergence is a property of the solution, not capacitors, while the other options correspond to valid functions like `Solution_Convergence`, `Transformers_kVA`, and `Lines_Bus1`.",
+      "options": {
+        "A": "Solution_Convergence",
+        "B": "Transformers_kVA",
+        "C": "Capacitors_Convergence",
+        "D": "Lines_Bus1"
+      },
+      "function_name": "Transformers_kVA"
+    }
+  },
+  {
+    "probe_id": "L0_ccff8333",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 0.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"B\", \"reasoning\": \"Loads_kW_element is a standard function in opendssdirect that retrieves the kW of a load element by index.\"}",
+      "question_type": "find_real",
+      "error_category": "hallucination",
+      "predicted": "B",
+      "correct": "D",
+      "reasoning": "Loads_kW_element is a standard function in opendssdirect that retrieves the kW of a load element by index.",
+      "options": {
+        "A": "RegControls_ForwardBand_data",
+        "B": "Loads_kW_element",
+        "C": "Circuit_ForwardBand_SeqVoltages",
+        "D": "Vsources_BasekV"
+      },
+      "function_name": "Vsources_BasekV"
+    }
+  },
+  {
+    "probe_id": "L0_7134e79b",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"D\", \"reasoning\": \"`Solution_SubtractStep` does not exist as a function in opendssdirect; the solution object has methods like `Solve` and `Step` but no `SubtractStep`.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "D",
+      "correct": "D",
+      "reasoning": "`Solution_SubtractStep` does not exist as a function in opendssdirect; the solution object has methods like `Solve` and `Step` but no `SubtractStep`.",
+      "options": {
+        "A": "Circuit_TotalPower",
+        "B": "Vsources_BasekV",
+        "C": "CapControls_Capacitor",
+        "D": "Solution_SubtractStep"
+      },
+      "function_name": "Vsources_BasekV"
+    }
+  },
+  {
+    "probe_id": "L0_12f8a9bc",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"A\", \"reasoning\": \"Vsources_PU is a valid property in opendssdirect for accessing the per-unit voltage of voltage sources, while the other options are not standard functions in the library.\"}",
+      "question_type": "find_real",
+      "error_category": "correct",
+      "predicted": "A",
+      "correct": "A",
+      "reasoning": "Vsources_PU is a valid property in opendssdirect for accessing the per-unit voltage of voltage sources, while the other options are not standard functions in the library.",
+      "options": {
+        "A": "Vsources_PU",
+        "B": "Reclosers_kVBase",
+        "C": "Reclosers_Losses",
+        "D": "RegControls_AllNodeNames"
+      },
+      "function_name": "Vsources_PU"
+    }
+  },
+  {
+    "probe_id": "L0_8ff4e705",
+    "layer": "L0",
+    "probe_type": "recognition",
+    "scores": {
+      "accuracy": 1.0,
+      "parseable": 1.0
+    },
+    "details": {
+      "raw_response": "{\"answer\": \"C\", \"reasoning\": \"Fuses_LoadModel_YscMatrix does not exist because fuses do not have a 'LoadModel' or 'YscMatrix' property; YscMatrix is a circuit-level property.\"}",
+      "question_type": "find_fake",
+      "error_category": "correct",
+      "predicted": "C",
+      "correct": "C",
+      "reasoning": "Fuses_LoadModel_YscMatrix does not exist because fuses do not have a 'LoadModel' or 'YscMatrix' property; YscMatrix is a circuit-level property.",
+      "options": {
+        "A": "Vsources_PU",
+        "B": "Solution_LoadMult",
+        "C": "Fuses_LoadModel_YscMatrix",
+        "D": "CktElement_Powers"
+      },
+      "function_name": "Vsources_PU"
+    }
+  }
+]

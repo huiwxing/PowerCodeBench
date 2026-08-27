@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "ok",
+  "output_path": "audit/failure_taxonomy/item_linkage_candidates.json",
+  "output_sha256": "0339f43f6b875dee18f932f849e459bbbe18624a2de876bd493b23086f468701",
+  "counts": {
+    "taxonomy_rows": 100,
+    "source_files_verified": 55,
+    "source_bytes_read_for_hash_and_parse": 2974825582,
+    "ambiguous_candidates": 68,
+    "unique_forensic_link": 32,
+    "candidate_lists_truncated": 0
+  },
+  "resource_discipline": {
+    "execution": "single process; source files loaded sequentially; no model loaded",
+    "peak_rss_kib": 55296
+  },
+  "checks": {
+    "all_source_hashes_verified": true,
+    "all_100_rows_reported": true,
+    "statuses_exhaustive": true,
+    "archived_labels_unchanged": true
+  }
+}

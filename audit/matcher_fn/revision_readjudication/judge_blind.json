@@ -1,0 +1,710 @@
+{
+  "metadata": {
+    "reviewer_type": "practising power-systems engineer, isolated blinded re-review",
+    "reviewer_identity": "one of the same two power-systems engineers",
+    "review_pass": "isolated blind re-check",
+    "isolation_protocol": "One of the same two engineers re-read ONLY the repository-relative `audit/matcher_fn/sample_records.json`, without the README, any other audit file, manuscript, Git history, prior review, or expected aggregate. For all 100 records the engineer classified independently: `false_negative` only if frozen execution/code/output evidence shows an engineering-equivalent correct answer was actually produced and matcher/parser alone missed it; `genuine_error` if the program/result/semantics is wrong; `ambiguous` if evidence is insufficient. Generated code was not re-executed; matcher and parser outputs were supporting evidence, not verdicts."
+  },
+  "records": [
+    {
+      "sample_id": "fn001",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code neither applies the shunt nor runs power flow/state estimation and prints an empty result table, so no requested estimate was produced.",
+      "parser_evidence": "The parser returned cannot_parse_float for an empty vm_pu Series; that output is substantively wrong, not a missed correct scalar."
+    },
+    {
+      "sample_id": "fn002",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "All requested modifications and conditional power-flow stages are omitted, and the code prints an uncomputed empty voltage Series.",
+      "parser_evidence": "parsed_value is null with cannot_parse_float on an empty Series; no correct answer is present."
+    },
+    {
+      "sample_id": "fn003",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The program fabricates loading_percent=100 for every line, applies modifications to whole columns, never runs power flow, and prints a Series rather than the requested result.",
+      "parser_evidence": "cannot_parse_float is expected for the printed integer Series, whose values are fabricated and unrelated to the ground truth."
+    },
+    {
+      "sample_id": "fn004",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code omits both modifications and OPF and prints an empty bus-voltage Series instead of generator 2 reactive power.",
+      "parser_evidence": "The null parse of an empty Series does not conceal a correct reactive-power answer."
+    },
+    {
+      "sample_id": "fn005",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "No semantic curtailment, contingency analysis, outage, mitigation generator, or final power flow is implemented; the output is an empty Series.",
+      "parser_evidence": "cannot_parse_float was raised on an empty loading Series, and no correct scalar appears in the output."
+    },
+    {
+      "sample_id": "fn006",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The requested bus/transformer/load changes and conditional rerun are omitted, and the full voltage vector is printed rather than its minimum.",
+      "parser_evidence": "The parser rejected a multi-value Series; the code did not compute the requested modified-system minimum."
+    },
+    {
+      "sample_id": "fn007",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The line-outage, power-flow, and short-circuit workflow is entirely absent, and a prose assertion about bus 5 is printed instead of ikss.",
+      "parser_evidence": "cannot_parse_float reflects a nonnumeric, non-answer sentence rather than a formatting-only miss."
+    },
+    {
+      "sample_id": "fn008",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code performs neither the operating-point line outage nor short-circuit analysis and prints an empty voltage table instead of a bus index.",
+      "parser_evidence": "cannot_parse_int on the empty Series is not a missed correct index."
+    },
+    {
+      "sample_id": "fn009",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Generator dispatch modification and N-1 contingency analysis are omitted; the uncomputed result is NaN.",
+      "parser_evidence": "The output contains only a labeled NaN, so the float parse failure is backed by an invalid computation."
+    },
+    {
+      "sample_id": "fn010",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code returns the transformer index of maximum loading (14) rather than the maximum loading value (1028.20259%).",
+      "parser_evidence": "The parser correctly extracted 14; the large numeric mismatch is caused by use of idxmax instead of max."
+    },
+    {
+      "sample_id": "fn011",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Only the post-scaling OPF is run, so 633.855156 is the final cost rather than the requested cost change.",
+      "parser_evidence": "The scalar was parsed correctly and differs from 55.368906 because the baseline cost was never computed."
+    },
+    {
+      "sample_id": "fn012",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The largest load is set to 1 MW rather than the specified low-demand rule, and summing res_bus.p_mw is not total active line loss.",
+      "parser_evidence": "The parser extracted -1.8286295; its disagreement with 3.905249 follows from incorrect semantics and result extraction."
+    },
+    {
+      "sample_id": "fn013",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The profile is deterministic and exceeds the requested range, ignores seed 9442, and reads only the final res_bus state rather than the minimum across stored time steps.",
+      "parser_evidence": "0.9885355 was parsed successfully but is not the requested seeded time-series minimum 0.805256."
+    },
+    {
+      "sample_id": "fn014",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The calc_sc call omits fault='2ph', yielding a three-phase current rather than the requested two-phase result.",
+      "parser_evidence": "The parser correctly extracted 1.41512216, whose mismatch with 1.225532 is consistent with the wrong fault type."
+    },
+    {
+      "sample_id": "fn015",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Line loading is inspected before any power flow, so no line is reinforced, and the contingency result handling is invalid; the program prints None.",
+      "parser_evidence": "cannot_parse_float:None reflects missing computation, not a matcher-only failure."
+    },
+    {
+      "sample_id": "fn016",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code invents a load scaling, records indices with idxmax instead of values, and prints bus index 2 rather than maximum ikss 16.934411 kA.",
+      "parser_evidence": "The parser extracted 2; the wrong value is an extraction/semantic error."
+    },
+    {
+      "sample_id": "fn017",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "Assigning scaling on the detached largest_load Series does not reliably modify net.load, so the required peak-demand setup is not applied before the first OPF.",
+      "parser_evidence": "4846.310669 was parsed correctly and materially differs from 5047.58355 due to the missing operating-rule modification."
+    },
+    {
+      "sample_id": "fn018",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code omits the separate load-4 scaling stage and subtracts a line index from a loading value rather than comparing the two maxima.",
+      "parser_evidence": "133.538272 was parsed; it is a wrongly formed calculation, not an unrecognized correct answer."
+    },
+    {
+      "sample_id": "fn019",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "It loads a CIGRE MV network instead of case9 and therefore computes a different system response.",
+      "parser_evidence": "0.992552888 was parsed successfully and is not the requested case9 result 0.960233."
+    },
+    {
+      "sample_id": "fn020",
+      "label": "false_negative",
+      "confidence": 1.0,
+      "rationale": "The code correctly runs both OPFs and prints the cost change 55.36890578302098, engineering-equivalent to ground truth 55.368906.",
+      "parser_evidence": "The matcher reported cannot_parse_float solely because the correct scalar was embedded in labeled multi-line output."
+    },
+    {
+      "sample_id": "fn021",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code loads CIGRE MV rather than the 5-bus PJM case and uses an invented 10% curtailment.",
+      "parser_evidence": "The parsed 0.930104069 is a result from the wrong network, not a missed 0.989261 answer."
+    },
+    {
+      "sample_id": "fn022",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "It substitutes MV Oberrhein for the Kerber Dorf LV network and never identifies or outages the most heavily loaded line.",
+      "parser_evidence": "1.874020277 parsed cleanly but is from the wrong topology and setup."
+    },
+    {
+      "sample_id": "fn023",
+      "label": "ambiguous",
+      "confidence": 0.98,
+      "rationale": "The generated code faithfully answers the natural-language request for the new post-outage maximum (18.6792603), while the reference code/ground truth instead define the absolute change (12.17746); the specification and target conflict.",
+      "parser_evidence": "The parser successfully extracted 18.679260291218693, so this is not a parse-format failure; frozen evidence cannot resolve which conflicting target is authoritative."
+    },
+    {
+      "sample_id": "fn024",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code changes load index 34 instead of requested index 35 and uses runpp(method='dc') rather than the specified DC power flow routine.",
+      "parser_evidence": "1053.106459 was parsed correctly; its mismatch arises from wrong indexing/analysis."
+    },
+    {
+      "sample_id": "fn025",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "A CIGRE MV network is used instead of the 4-bus test case, with an invented 10% curtailment.",
+      "parser_evidence": "2.734829949 parsed successfully but is not from the requested network or operating condition."
+    },
+    {
+      "sample_id": "fn026",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Both requested element indices are shifted, the measurement construction differs materially, and the final value is read from res_bus instead of res_bus_est.",
+      "parser_evidence": "0.99837251 was parsed correctly; it is the wrong result because the state-estimation task was implemented incorrectly."
+    },
+    {
+      "sample_id": "fn027",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The semantic curtailment is implemented as an invented 0.1 MW assignment and then reset before the second OPF, contrary to the compound operating condition.",
+      "parser_evidence": "4301.58493 was parsed, but the program's altered state does not match the requested/reference workflow."
+    },
+    {
+      "sample_id": "fn028",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The program runs OPF on a CIGRE MV network rather than the 30-bus case.",
+      "parser_evidence": "The matcher extracted 0.922979775 from warning-laden output; it is a valid parse of a wrong-network result."
+    },
+    {
+      "sample_id": "fn029",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The external-grid short-circuit strength is changed to 100 MVA rather than the benchmark's required setup, producing a different two-phase current.",
+      "parser_evidence": "1.014591612 was parsed successfully and genuinely differs from 1.225532."
+    },
+    {
+      "sample_id": "fn030",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "No N-1 search is performed, and the final code prints loading of the disconnected line itself, necessarily 0, rather than maximum remaining line loading.",
+      "parser_evidence": "The parser correctly extracted 0; the result-field choice is wrong."
+    },
+    {
+      "sample_id": "fn031",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The lowest-voltage-bus shunt setup is omitted and the run reports nonconvergence at step 0, with an implausible 0.06946 voltage.",
+      "parser_evidence": "Although 0.069462065 was extracted from mixed output, it is not the requested converged result 0.954526."
+    },
+    {
+      "sample_id": "fn032",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "It inspects res_line before a baseline power flow, does not reinforce a line, and ultimately prints NaN.",
+      "parser_evidence": "nan_or_inf_output accurately identifies an invalid output rather than missing a correct value."
+    },
+    {
+      "sample_id": "fn033",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Load-table indices are confused with bus indices and minimum voltage limits are used instead of solved bus voltages to select the semantic curtailment.",
+      "parser_evidence": "0.79036734 parsed correctly but results from an incorrect operating-rule implementation."
+    },
+    {
+      "sample_id": "fn034",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The task asks how much maximum loading changed, but the code reports a relative percentage change (-0.01%) instead of the absolute loading-point change 0.494952.",
+      "parser_evidence": "The parser rejected labeled output, but the explicitly labeled final value is the wrong metric; the correct answer is only derivable from rounded intermediates, not produced."
+    },
+    {
+      "sample_id": "fn035",
+      "label": "false_negative",
+      "confidence": 1.0,
+      "rationale": "The frozen output reports maximum short-circuit current 1.673479041129347 kA, matching ground truth 1.673479.",
+      "parser_evidence": "cannot_parse_float occurred only because the correct scalar was surrounded by a descriptive label and unit."
+    },
+    {
+      "sample_id": "fn036",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The requested answer is a boolean over contingency maxima, but the code ignores the contingency result and prints a base-case numeric line loading.",
+      "parser_evidence": "cannot_parse_bool on 111.799924 does not miss a produced True; that number concerns a different calculation."
+    },
+    {
+      "sample_id": "fn037",
+      "label": "false_negative",
+      "confidence": 1.0,
+      "rationale": "The code correctly computes and reports the OPF cost change as 55.36890578302098, matching 55.368906.",
+      "parser_evidence": "The parser failed only on the labeled multi-line formatting of the correct final scalar."
+    },
+    {
+      "sample_id": "fn038",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The added shunt uses positive q_mvar, which is inductive consumption in pandapower rather than the requested capacitive support, producing the wrong final voltage.",
+      "parser_evidence": "0.934835776 parsed correctly and differs from 0.960233 due to the shunt-sign error."
+    },
+    {
+      "sample_id": "fn039",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The MV Oberrhein loader omits the required generation scenario encoded by the frozen reference, yielding the default-scenario minimum 0.97556 instead of 1.0.",
+      "parser_evidence": "The parser correctly extracted 0.975559746; this is a network-instantiation mismatch, not a parse miss."
+    },
+    {
+      "sample_id": "fn040",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The peak-demand rule is replaced with an invented 1.25 multiplier, and the required subsequent scaling of load 4 is omitted.",
+      "parser_evidence": "16.282328349 parsed correctly but is not the requested two-stage loading difference."
+    },
+    {
+      "sample_id": "fn041",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The fixed semantic low-demand operating rule is replaced by an invented 10% curtailment, changing the OPF generation total.",
+      "parser_evidence": "3637.799484 was parsed successfully and genuinely differs from 3767.588176."
+    },
+    {
+      "sample_id": "fn042",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The program loads IEEE case14 instead of the CIGRE LV benchmark.",
+      "parser_evidence": "2.586801997 was parsed from the wrong network and cannot be a matcher-only miss."
+    },
+    {
+      "sample_id": "fn043",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "After contingency analysis the code reads ordinary res_bus.vm_pu, not the across-contingency minimum result field.",
+      "parser_evidence": "0.958395758 parsed correctly but is a base/final-state minimum rather than the contingency envelope 0.673284."
+    },
+    {
+      "sample_id": "fn044",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Requested transformer label/index 4 is incorrectly shifted to index 3.",
+      "parser_evidence": "40.146982446 was parsed correctly; the mismatch is caused by off-by-one extraction."
+    },
+    {
+      "sample_id": "fn045",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The semantic shunt magnitude/sign and noisy-measurement procedure are wrong, and the shunt is added only after the estimation whose minimum is reported.",
+      "parser_evidence": "0.942410171 parsed successfully but is produced by a materially different state-estimation workflow."
+    },
+    {
+      "sample_id": "fn046",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code disconnects line index 0 despite the explicit request for line index 1, changing the topology and voltage trajectory.",
+      "parser_evidence": "0.9999856 was parsed correctly; the wrong outage causes the mismatch with 0.948404."
+    },
+    {
+      "sample_id": "fn047",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The benchmark's low-demand rule is replaced with an invented 10% active-power curtailment, so the contingency and mitigation operate on the wrong state.",
+      "parser_evidence": "96.392447268 parsed correctly and genuinely differs from 67.70708."
+    },
+    {
+      "sample_id": "fn048",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The named pandapower example network is replaced with IEEE case9, so the contingency minimum is for a different system.",
+      "parser_evidence": "0.826380129 was parsed correctly but is a wrong-network result."
+    },
+    {
+      "sample_id": "fn049",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code calls AC runpp with a nonstandard dc=True argument instead of rundcpp, producing AC rather than requested DC transformer loading.",
+      "parser_evidence": "1053.11357 parsed successfully and differs because the wrong analysis was run."
+    },
+    {
+      "sample_id": "fn050",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "It treats load 19 as a bus number and selects the first load at that bus rather than setting load table index 19, changing the second OPF.",
+      "parser_evidence": "3601.794292 was parsed correctly and is not the target 47.058971."
+    },
+    {
+      "sample_id": "fn051",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code explicitly substitutes CIGRE LV for the Kerber Dorf network, so even though it performs an outage and SC analysis, it solves the wrong system.",
+      "parser_evidence": "1.139953526 parsed successfully but is not the requested-network result."
+    },
+    {
+      "sample_id": "fn052",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "It attempts an external JSON file and then fabricates a fallback network with arbitrary parameters, producing 1348.004 kA instead of 57.735027 kA.",
+      "parser_evidence": "The parser rejected labeled output, but the labeled numeric result itself is grossly wrong."
+    },
+    {
+      "sample_id": "fn053",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The explicit pandapower bus index 28 is incorrectly converted to 27.",
+      "parser_evidence": "1.507840633 parsed successfully; it is the current at the wrong bus."
+    },
+    {
+      "sample_id": "fn054",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Bus 20 is shifted to index 19 and the external-grid SC strength is changed to 10000 MVA, so the reported current is for a different setup.",
+      "parser_evidence": "4.151948566 was parsed correctly and is not the target 6.3172."
+    },
+    {
+      "sample_id": "fn055",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The request specifies OPF, but the program uses DC OPF for both runs, yielding a different cost change.",
+      "parser_evidence": "57.429624434 parsed correctly and genuinely differs from the AC-OPF target 55.368906."
+    },
+    {
+      "sample_id": "fn056",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The low-demand rule is replaced by an invented 10% active-power assignment, and reactive demand is not correspondingly scaled.",
+      "parser_evidence": "3637.799978 parsed successfully but comes from the wrong load state."
+    },
+    {
+      "sample_id": "fn057",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The required fixed low-demand semantic rule is replaced with an invented 10% curtailment, changing the identified worst contingency and mitigated loading.",
+      "parser_evidence": "96.392447273 parsed correctly and is not 67.70708."
+    },
+    {
+      "sample_id": "fn058",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The program loads example_simple rather than the synthetic voltage-control LV network, so its modifications and result apply to a different topology.",
+      "parser_evidence": "1.02 was parsed correctly and differs from the requested-network ground truth 1.0."
+    },
+    {
+      "sample_id": "fn059",
+      "label": "ambiguous",
+      "confidence": 0.98,
+      "rationale": "The generated code correctly returns the new post-outage maximum requested in prose (18.6792603), but the reference code and target define the absolute before/after difference (12.17746).",
+      "parser_evidence": "18.679260291218693 was parsed successfully; the frozen specification/target conflict prevents calling this a parser-only false negative or a clear program error."
+    },
+    {
+      "sample_id": "fn060",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The short-circuit calculation explicitly uses case='min' despite the benchmark reference using the maximum case for the requested three-phase analysis.",
+      "parser_evidence": "0.570256498 was parsed successfully and genuinely differs from 0.618124."
+    },
+    {
+      "sample_id": "fn061",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The generated response is a long unfinished comment stream with no executable analysis or printed result.",
+      "parser_evidence": "empty_output accurately reflects that no answer was produced."
+    },
+    {
+      "sample_id": "fn062",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Line 33 is incorrectly shifted to 32, and the one-shot conditional actions are changed into loops that remove multiple lines and add repeated shunts until thresholds clear.",
+      "parser_evidence": "0.983313701 parsed correctly but is the result of a materially different control procedure."
+    },
+    {
+      "sample_id": "fn063",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The code correctly applies both modifications and reports maximum line loading 150.644116%, which is direct engineering evidence that the answer to whether any line exceeds 120% is True.",
+      "parser_evidence": "The boolean matcher rejected the numeric maximum, although a value above 120% is an engineering-equivalent affirmative answer."
+    },
+    {
+      "sample_id": "fn064",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The generator p_mw control profile sets units to values near 1 MW rather than reducing the selected unit relative to its dispatch, and the random-profile construction differs from the fixed benchmark semantics.",
+      "parser_evidence": "283.601898 was parsed correctly and is a wrong-control result, not a matcher miss."
+    },
+    {
+      "sample_id": "fn065",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "It invents a 0.1 curtailment and then resets that curtailment before the second OPF, so the two cost states do not follow the compound task.",
+      "parser_evidence": "3980.793821 parsed successfully but is caused by incorrect state transitions."
+    },
+    {
+      "sample_id": "fn066",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "After running contingency analysis, the code runs an ordinary power flow and effectively reports the base-case minimum rather than the across-contingency minimum.",
+      "parser_evidence": "0.989258479 parsed correctly, but the requested contingency envelope is 0.95878."
+    },
+    {
+      "sample_id": "fn067",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Load 35 is shifted to index 34 and AC runpp is used with an ineffective run_dc argument instead of DC power flow.",
+      "parser_evidence": "1100.49751 was parsed successfully; the mismatch follows from wrong indexing and analysis."
+    },
+    {
+      "sample_id": "fn068",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The fixed peak-demand semantic rule is replaced by an assumed 1.2 multiplier, so the contingency voltages are computed for the wrong demand state.",
+      "parser_evidence": "0.931369708 parsed correctly and differs from 0.909328 because of the wrong modification."
+    },
+    {
+      "sample_id": "fn069",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The curtailment and measurement model differ materially from the task, and the code prints res_bus rather than the estimated res_bus_est maximum.",
+      "parser_evidence": "1.05 was parsed correctly but is not the requested estimated maximum 1.08717."
+    },
+    {
+      "sample_id": "fn070",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The frozen semantic setup requires line 1 out of service, but the code dynamically selects a different most-loaded line and obtains bus 12 rather than bus 0.",
+      "parser_evidence": "The parser correctly extracted integer 12; this is a semantic outage-selection error."
+    },
+    {
+      "sample_id": "fn071",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code searches for a line name 'line_7059' instead of setting line index 7059 out of service, so the outage is not applied; it also invents a 1.5 demand multiplier.",
+      "parser_evidence": "0 was parsed correctly but reflects an unchanged topology rather than the target change 127.331427."
+    },
+    {
+      "sample_id": "fn072",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The low-demand semantic level is replaced with nearly zero p/q demand, producing a different prefault state and ikss.",
+      "parser_evidence": "2.196770403 parsed successfully and genuinely differs from 2.46584."
+    },
+    {
+      "sample_id": "fn073",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The 11 Mvar shunt is created with positive q_mvar, representing inductive consumption rather than capacitive support.",
+      "parser_evidence": "0.934835776 parsed correctly; the wrong shunt sign explains the mismatch."
+    },
+    {
+      "sample_id": "fn074",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The network is instantiated with mv_oberrhein's default scenario instead of the generation scenario fixed by the frozen reference.",
+      "parser_evidence": "0.975559746 parsed correctly and is a different-scenario result, not a matcher miss."
+    },
+    {
+      "sample_id": "fn075",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code uses an invented 10% curtailment and sums the input net.gen.p_mw setpoints rather than optimized net.res_gen.p_mw outputs.",
+      "parser_evidence": "3861 was parsed successfully, but it is the wrong field and wrong operating state."
+    },
+    {
+      "sample_id": "fn076",
+      "label": "ambiguous",
+      "confidence": 0.98,
+      "rationale": "The generated code answers the prose request for the new maximum after the outage (18.6792603), whereas the frozen reference/ground truth silently score the absolute change (12.17746).",
+      "parser_evidence": "The matcher parsed 18.67926029121869 correctly; contradictory frozen task evidence makes the substantive label indeterminate."
+    },
+    {
+      "sample_id": "fn077",
+      "label": "false_negative",
+      "confidence": 1.0,
+      "rationale": "The code correctly applies the modifications and explicitly prints 'Yes, there are overloaded lines' with line loading 150.644116%, correctly answering True.",
+      "parser_evidence": "The boolean parser examined the trailing table line and failed to recognize the explicit affirmative sentence and supporting numeric evidence."
+    },
+    {
+      "sample_id": "fn078",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The fixed semantic curtailment is replaced with an invented 10% active-power reduction, so the contingency and mitigation outputs are for the wrong state.",
+      "parser_evidence": "77.412219348 parsed correctly and is not 67.70708."
+    },
+    {
+      "sample_id": "fn079",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The external-grid short-circuit power is set to 10000 MVA rather than the benchmark value, making the result exactly about ten times the target; the semantic multiplier is also invented.",
+      "parser_evidence": "262.431940541 parsed correctly and is a genuinely wrong current, not an unparsed 26.243194."
+    },
+    {
+      "sample_id": "fn080",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The shunt magnitude/sign and measurement noise model do not match the frozen task, and the final minimum is read from res_bus instead of res_bus_est.",
+      "parser_evidence": "0.948989299 parsed successfully and differs because the engineering workflow is wrong."
+    },
+    {
+      "sample_id": "fn081",
+      "label": "false_negative",
+      "confidence": 0.99,
+      "rationale": "The code correctly computes the OPF cost change and reports 55.37, a normal two-decimal engineering rounding of 55.368906.",
+      "parser_evidence": "cannot_parse_float was caused by labeled multi-line output; the final labeled scalar is correct to the reported precision."
+    },
+    {
+      "sample_id": "fn082",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Using 10000 MVA external-grid short-circuit strength produces 16.735 kA, ten times the required 1.673479 kA.",
+      "parser_evidence": "Although formatting caused cannot_parse_float, the visible labeled result is substantively wrong."
+    },
+    {
+      "sample_id": "fn083",
+      "label": "false_negative",
+      "confidence": 1.0,
+      "rationale": "The output reports maximum short-circuit current 57.7350 kA, matching ground truth 57.735027 within the displayed four-decimal precision.",
+      "parser_evidence": "The matcher failed only because the correct rounded scalar was embedded in a descriptive line after other diagnostics."
+    },
+    {
+      "sample_id": "fn084",
+      "label": "false_negative",
+      "confidence": 1.0,
+      "rationale": "The frozen run computes and prints cost change 1512.1416099298303, matching ground truth 1512.14161.",
+      "parser_evidence": "cannot_parse_float was solely due to the correct scalar appearing in labeled multi-line output."
+    },
+    {
+      "sample_id": "fn085",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The low-demand rule is replaced with an invented 10% curtailment, yielding a different prefault voltage state and short-circuit current.",
+      "parser_evidence": "2.234561016 parsed correctly and genuinely differs from 2.46584."
+    },
+    {
+      "sample_id": "fn086",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The program shifts requested transformer 4 to index 3 and arbitrarily decrements the selected tap, so it reports the wrong transformer/state.",
+      "parser_evidence": "0.190331423 parsed successfully and does not match 0.265446 because of indexing/control errors."
+    },
+    {
+      "sample_id": "fn087",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Load 2, generator 3, and reported generator 2 are all shifted down by one, and p_mw_min is not the requested min_p_mw field.",
+      "parser_evidence": "31.799787527 parsed correctly; the computation addresses different elements/field."
+    },
+    {
+      "sample_id": "fn088",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The run_contingency return structure is misinterpreted, producing no detected maxima and output 0.0 rather than the requested True boolean.",
+      "parser_evidence": "cannot_parse_bool on 0.0 is not a formatting miss of the correct answer; the program's contingency inspection failed."
+    },
+    {
+      "sample_id": "fn089",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The peak-demand rule is replaced by doubling the load and the capacitive shunt is given the wrong sign, materially changing the final voltage.",
+      "parser_evidence": "0.508024699 parsed correctly and is a wrong engineering result."
+    },
+    {
+      "sample_id": "fn090",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code invents a 10% curtailment and shifts explicit line index 5 to 4, so the loading change is computed for the wrong state and line.",
+      "parser_evidence": "1.155374743 parsed successfully and genuinely differs from 32.446049."
+    },
+    {
+      "sample_id": "fn091",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The generated code ends in comments without executing short-circuit analysis or printing any result.",
+      "parser_evidence": "empty_output accurately shows that no correct ikss was produced."
+    },
+    {
+      "sample_id": "fn092",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The contingency result structure is misread, no worst-case line is found or disconnected, and the reported 95.25% is an unmitigated/different case.",
+      "parser_evidence": "Formatting caused cannot_parse_float, but the visible labeled value is not the target 149.79165."
+    },
+    {
+      "sample_id": "fn093",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The external-grid short-circuit strength is set to 10000 MVA instead of the frozen benchmark setup, producing 73.500861 kA rather than 23.588415 kA.",
+      "parser_evidence": "73.500861339 was parsed correctly; the mismatch is computational."
+    },
+    {
+      "sample_id": "fn094",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The callback never records any time-step voltage, leaving the accumulator at infinity, so no time-series minimum is produced.",
+      "parser_evidence": "nan_or_inf_output correctly rejects inf; it does not hide the target 0.948404."
+    },
+    {
+      "sample_id": "fn095",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The code loads case4gs instead of the 4-loads-with-branches network, and that network has no applicable transformer result, yielding NaN.",
+      "parser_evidence": "nan_or_inf_output reflects the wrong network/result table, not a matcher miss."
+    },
+    {
+      "sample_id": "fn096",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The wrong network constructor is used, the semantic dispatch reduction is replaced with an invented 50%, and the fallback reports ordinary res_line loading rather than the contingency maximum.",
+      "parser_evidence": "67.177391049 parsed successfully and is not the target 0.001413."
+    },
+    {
+      "sample_id": "fn097",
+      "label": "genuine_error",
+      "confidence": 0.99,
+      "rationale": "The fixed peak-demand semantic rule is replaced by a 1.2 multiplier, producing a different prefault state and ikss.",
+      "parser_evidence": "1.201071722 parsed correctly and genuinely differs from 1.181696."
+    },
+    {
+      "sample_id": "fn098",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "Generator 2, bus 48, and requested result bus 6 are all incorrectly shifted to indices 1, 47, and 5.",
+      "parser_evidence": "-5.823238983 was parsed correctly; it is the voltage angle for the wrong modifications and bus."
+    },
+    {
+      "sample_id": "fn099",
+      "label": "genuine_error",
+      "confidence": 1.0,
+      "rationale": "The external-grid short-circuit strength is set/fill-na to 10000 MVA rather than the frozen 1000 MVA setup, changing the bus with maximum current from 106 to 639.",
+      "parser_evidence": "The integer parser correctly extracted 639; the incorrect result is caused by the SC model setup."
+    },
+    {
+      "sample_id": "fn100",
+      "label": "genuine_error",
+      "confidence": 0.98,
+      "rationale": "The code uses mv_oberrhein's default scenario instead of the generation scenario specified by the frozen reference, yielding a different final minimum voltage.",
+      "parser_evidence": "0.975559746 was parsed correctly and is not the target 1.0."
+    }
+  ]
+}

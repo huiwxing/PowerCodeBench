@@ -1,0 +1,1058 @@
+[
+ {
+  "id": "l2b_A01",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the standard Baran–Wu 33-bus radial distribution feeder in its base configuration and multiply both active and reactive power of every existing load by 1.10, leaving all other settings unchanged. Run a balanced AC power flow and report the total active-power loss over all in-service lines in kW.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case33bw()\nnet.load['p_mw'] = net.load['p_mw'] * 1.10\nnet.load['q_mvar'] = net.load['q_mvar'] * 1.10\npp.runpp(net)\nloss_kw = float(net.res_line.loc[net.line.in_service, 'pl_mw'].sum()) * 1000.0\nprint(round(loss_kw, 4))\n",
+  "ground_truth": 249.1815,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case33bw",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "scale_all_loads",
+     "factor": 1.1
+    }
+   ],
+   "query_target": {
+    "table": "res_line",
+    "column": "pl_mw",
+    "qtype": "sum_over_in_service_lines_kw"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "power_flow",
+   "query_id": "A01",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Basic",
+   "engineer_network_note": "pandapower 3.4.0 built-in Baran–Wu 33-bus case; original radial topology",
+   "engineer_expected_quantity": "Total in-service line active-power loss after load scaling (kW)",
+   "annotation_notes": [
+    "case33bw ships 37 line records of which the 5 tie lines are out of service; the loss sum is masked to in-service lines as the query states"
+   ],
+   "oracle_functions": [
+    "case33bw",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_A02",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the canonical Baran–Wu IEEE 69-bus radial distribution feeder, with bus numbers referring to the published 1–69 labels and with the exact base-case data frozen with the benchmark. Add a 1.2 MW unity-power-factor PV unit at bus 61, keep the original loads unchanged, run a balanced AC power flow, and report the active power imported from the upstream source at bus 1 in MW, with positive meaning power supplied into the feeder.",
+  "reference_code": "# -*- coding: utf-8 -*-\n\"\"\"Canonical Baran-Wu IEEE 69-bus radial distribution feeder (frozen artifact).\n\nWhy this file exists\n--------------------\nE4 layer-2b' query A02 asks for \"the canonical Baran-Wu IEEE 69-bus radial\ndistribution feeder, with bus numbers referring to the published 1-69 labels and\nwith the exact base-case data frozen with the benchmark\".  pandapower 3.4.0 has\nno built-in 69-bus feeder (``pandapower.networks`` ships case4gs/5/6ww/9/14/30/\ncase_ieee30/33bw/39/57/89pegase/118/145/... but nothing 69-bus), so the network\ndata is pinned here and frozen together with the query set.  This is an\nartifact-pinning requirement stated by the engineer-approved README; it is NOT a\nchange to the approved engineering request.\n\nData provenance\n---------------\nM. E. Baran and F. F. Wu, \"Optimal capacitor placement on radial distribution\nsystems\", IEEE Trans. Power Delivery 4(1):725-734, 1989 -- the 69-bus\n(sometimes \"70-bus\" incl. the source node) feeder, in the widely reproduced\nbase-case tabulation: 69 buses, 68 series branches, nominal 12.66 kV, branch\nresistance/reactance in ohms, spot loads in kW/kvar attached to the receiving\n(\"to\") bus of each branch.  Tie branches used in reconfiguration studies are NOT\npart of the base case and are not created here (the base case is strictly\nradial, as the query requires).\n\nTotals implied by the table below (checked by ``sanity_check``):\n    sum P = 3801.89 kW,  sum Q = 2694.10 kvar\nSome papers quote 3802.19 kW / 2694.60 kvar for a near-identical variant of the\nsame feeder (+0.30 kW / +0.50 kvar); the tabulation frozen here is internally\nconsistent and is the one the benchmark is defined against.\n\nReference base-case results reproduced by this implementation (slack 1.0 p.u.\nat bus label 1) -- these are the standard published check values for the feeder:\n    total active loss ~ 225 kW,  min bus voltage ~ 0.9092 p.u. at bus label 65.\n\nBus labelling convention (E4 layer-2b' README rule)\n---------------------------------------------------\nPublished labels are 1..69.  pandapower table indices are 0-based; this builder\ncreates bus label ``n`` at pandapower bus index ``n - 1`` and also writes the\nlabel into ``net.bus['name']`` as ``\"Bus <n>\"``.  Use ``bus_index(label)`` to\nconvert.  No other mapping is implied anywhere in the benchmark.\n\nRatings note\n------------\nThe published data set specifies only R, X and the spot loads.  Line current\nratings are not published; ``MAX_I_KA`` below is an implementation constant\n(uniform, non-binding: the base case and query A02 draw <= ~0.19 kA at the\nfeeder head).  Shunt capacitance is zero, as in the published data.\n\nFrozen: 2026-07-30 with ``e4_layer2b_set.json``.  Everything above the\nEND-FROZEN-BUILDER marker is embedded verbatim in the reference_code of A02, so\nthe query set is self-contained and the sha256 of this file pins the network.\n\"\"\"\nimport pandapower as pp\n\nVN_KV = 12.66\nMAX_I_KA = 0.4\nSLACK_LABEL = 1\n\n# (from_label, to_label, r_ohm, x_ohm, p_kw_at_to_bus, q_kvar_at_to_bus)\nBARAN_WU_69_BRANCHES = [\n    (1, 2, 0.0005, 0.0012, 0.00, 0.00),\n    (2, 3, 0.0005, 0.0012, 0.00, 0.00),\n    (3, 4, 0.0015, 0.0036, 0.00, 0.00),\n    (4, 5, 0.0251, 0.0294, 0.00, 0.00),\n    (5, 6, 0.3660, 0.1864, 2.60, 2.20),\n    (6, 7, 0.3811, 0.1941, 40.40, 30.00),\n    (7, 8, 0.0922, 0.0470, 75.00, 54.00),\n    (8, 9, 0.0493, 0.0251, 30.00, 22.00),\n    (9, 10, 0.8190, 0.2707, 28.00, 19.00),\n    (10, 11, 0.1872, 0.0619, 145.00, 104.00),\n    (11, 12, 0.7114, 0.2351, 145.00, 104.00),\n    (12, 13, 1.0300, 0.3400, 8.00, 5.00),\n    (13, 14, 1.0440, 0.3450, 8.00, 5.50),\n    (14, 15, 1.0580, 0.3496, 0.00, 0.00),\n    (15, 16, 0.1966, 0.0650, 45.50, 30.00),\n    (16, 17, 0.3744, 0.1238, 60.00, 35.00),\n    (17, 18, 0.0047, 0.0016, 60.00, 35.00),\n    (18, 19, 0.3276, 0.1083, 0.00, 0.00),\n    (19, 20, 0.2106, 0.0690, 1.00, 0.60),\n    (20, 21, 0.3416, 0.1129, 114.00, 81.00),\n    (21, 22, 0.0140, 0.0046, 5.00, 3.50),\n    (22, 23, 0.1591, 0.0526, 0.00, 0.00),\n    (23, 24, 0.3463, 0.1145, 28.00, 20.00),\n    (24, 25, 0.7488, 0.2475, 0.00, 0.00),\n    (25, 26, 0.3089, 0.1021, 14.00, 10.00),\n    (26, 27, 0.1732, 0.0572, 14.00, 10.00),\n    (3, 28, 0.0044, 0.0108, 26.00, 18.60),\n    (28, 29, 0.0640, 0.1565, 26.00, 18.60),\n    (29, 30, 0.3978, 0.1315, 0.00, 0.00),\n    (30, 31, 0.0702, 0.0232, 0.00, 0.00),\n    (31, 32, 0.3510, 0.1160, 0.00, 0.00),\n    (32, 33, 0.8390, 0.2816, 14.00, 10.00),\n    (33, 34, 1.7080, 0.5646, 19.50, 14.00),\n    (34, 35, 1.4740, 0.4873, 6.00, 4.00),\n    (3, 36, 0.0044, 0.0108, 26.00, 18.55),\n    (36, 37, 0.0640, 0.1565, 26.00, 18.55),\n    (37, 38, 0.1053, 0.1230, 0.00, 0.00),\n    (38, 39, 0.0304, 0.0355, 24.00, 17.00),\n    (39, 40, 0.0018, 0.0021, 24.00, 17.00),\n    (40, 41, 0.7283, 0.8509, 1.20, 1.00),\n    (41, 42, 0.3100, 0.3623, 0.00, 0.00),\n    (42, 43, 0.0410, 0.0478, 6.00, 4.30),\n    (43, 44, 0.0092, 0.0116, 0.00, 0.00),\n    (44, 45, 0.1089, 0.1373, 39.22, 26.30),\n    (45, 46, 0.0009, 0.0012, 39.22, 26.30),\n    (4, 47, 0.0034, 0.0084, 0.00, 0.00),\n    (47, 48, 0.0851, 0.2083, 79.00, 56.40),\n    (48, 49, 0.2898, 0.7091, 384.70, 274.50),\n    (49, 50, 0.0822, 0.2011, 384.70, 274.50),\n    (8, 51, 0.0928, 0.0473, 40.50, 28.30),\n    (51, 52, 0.3319, 0.1114, 3.60, 2.70),\n    (9, 53, 0.1740, 0.0886, 4.35, 3.50),\n    (53, 54, 0.2030, 0.1034, 26.40, 19.00),\n    (54, 55, 0.2842, 0.1447, 24.00, 17.20),\n    (55, 56, 0.2813, 0.1433, 0.00, 0.00),\n    (56, 57, 1.5900, 0.5337, 0.00, 0.00),\n    (57, 58, 0.7837, 0.2630, 0.00, 0.00),\n    (58, 59, 0.3042, 0.1006, 100.00, 72.00),\n    (59, 60, 0.3861, 0.1172, 0.00, 0.00),\n    (60, 61, 0.5075, 0.2585, 1244.00, 888.00),\n    (61, 62, 0.0974, 0.0496, 32.00, 23.00),\n    (62, 63, 0.1450, 0.0738, 0.00, 0.00),\n    (63, 64, 0.7105, 0.3619, 227.00, 162.00),\n    (64, 65, 1.0410, 0.5302, 59.00, 42.00),\n    (11, 66, 0.2012, 0.0611, 18.00, 13.00),\n    (66, 67, 0.0047, 0.0014, 18.00, 13.00),\n    (12, 68, 0.7394, 0.2444, 28.00, 20.00),\n    (68, 69, 0.0047, 0.0016, 28.00, 20.00),\n]\n\n\ndef bus_index(label):\n    \"\"\"Published 1-based bus label -> 0-based pandapower bus table index.\"\"\"\n    return label - 1\n\n\ndef create_ieee69_baran_wu():\n    \"\"\"Build the canonical Baran-Wu IEEE 69-bus radial feeder (base case).\"\"\"\n    net = pp.create_empty_network(name=\"IEEE 69-bus Baran-Wu radial feeder\")\n    for label in range(1, 70):\n        pp.create_bus(net, vn_kv=VN_KV, name=\"Bus %d\" % label, index=label - 1)\n    pp.create_ext_grid(net, bus=SLACK_LABEL - 1, vm_pu=1.0, va_degree=0.0,\n                       name=\"Substation\")\n    for f, t, r, x, p_kw, q_kvar in BARAN_WU_69_BRANCHES:\n        pp.create_line_from_parameters(\n            net, from_bus=f - 1, to_bus=t - 1, length_km=1.0,\n            r_ohm_per_km=r, x_ohm_per_km=x, c_nf_per_km=0.0,\n            max_i_ka=MAX_I_KA, name=\"Line %d-%d\" % (f, t))\n        if p_kw != 0.0 or q_kvar != 0.0:\n            pp.create_load(net, bus=t - 1, p_mw=p_kw / 1000.0,\n                           q_mvar=q_kvar / 1000.0, name=\"Load %d\" % t)\n    return net\n\nnet = create_ieee69_baran_wu()\npp.create_sgen(net, bus=bus_index(61), p_mw=1.2, q_mvar=0.0)\npp.runpp(net)\nprint(round(float(net.res_ext_grid.p_mw.iloc[0]), 6))\n",
+  "ground_truth": 2.701674,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "ieee69_baran_wu (frozen artifact: ieee69_network.py)",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "build_ieee69_baran_wu_base_case"
+    },
+    {
+     "op": "add_pv_sgen",
+     "bus_label": 61,
+     "p_mw": 1.2,
+     "pf": 1.0
+    }
+   ],
+   "query_target": {
+    "table": "res_ext_grid",
+    "column": "p_mw",
+    "qtype": "slack_import_mw"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "network_build_modify",
+   "query_id": "A02",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Basic",
+   "engineer_network_note": "Canonical Baran–Wu IEEE 69-bus feeder; the exact network implementation must be packaged and frozen with the benchmark",
+   "engineer_expected_quantity": "Post-PV active-power import from the upstream source (MW)",
+   "annotation_notes": [
+    "pandapower 3.4.0 has no built-in 69-bus feeder; the canonical Baran-Wu data are pinned in ieee69_network.py and frozen with the set",
+    "bus label 61 -> pandapower bus index 60 via bus_index()"
+   ],
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_sgen",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_A03",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the CIGRE MV benchmark without DER and retain its default radial switch state, with S1, S2, and S3 open. Represent one +2.5% boost position on both source transformers by setting the equivalent source-side voltage magnitude to 1.025 p.u., hold all other controls fixed, run a balanced AC power flow, and report the minimum voltage magnitude among the in-service 20 kV buses.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.create_cigre_network_mv(with_der=False)\n# default radial state already has S1, S2, S3 open -> left untouched\nnet.ext_grid['vm_pu'] = 1.025\npp.runpp(net)\nmask = (net.bus['vn_kv'] == 20.0) & net.bus['in_service']\nprint(round(float(net.res_bus.vm_pu[mask].min()), 5))\n",
+  "ground_truth": 0.91718,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "cigre_network_mv (with_der=False)",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "keep_default_open_ring",
+     "switches": [
+      "S1",
+      "S2",
+      "S3"
+     ]
+    },
+    {
+     "op": "set_source_voltage_pu",
+     "value": 1.025
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "min_over_20kv_buses"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "power_flow",
+   "query_id": "A03",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Intermediate",
+   "engineer_network_note": "pandapower 3.4.0 CIGRE MV case without DER; default radial switch state; buses 1–14 are the 20 kV buses",
+   "engineer_expected_quantity": "Minimum in-service 20 kV bus voltage after the equivalent tap boost (p.u.)",
+   "annotation_notes": [
+    "verified: pandapower 3.4.0 create_cigre_network_mv default switch state has S1=S2=S3 open, exactly as the query asserts"
+   ],
+   "oracle_functions": [
+    "create_cigre_network_mv",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_A04",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "On the standard Baran–Wu 33-bus feeder, add an inverter at bus label 18 with a fixed active-power injection of 0.400 MW. Sweep its reactive-power setpoint from −2000 to +2000 kvar in 1 kvar increments, run a balanced AC power flow at each setpoint, and select the converged setpoint that minimizes the absolute deviation of the bus-18 voltage from 1.000 p.u.; if tied, choose the smaller numerical setpoint. Report the selected reactive-power setpoint in kvar, with positive denoting injection into the network.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case33bw()\nb = 18 - 1\nsid = pp.create_sgen(net, bus=b, p_mw=0.400, q_mvar=0.0)\nbest_q = None\nbest_dev = None\nfor q_kvar in range(-2000, 2001):\n    net.sgen.at[sid, 'q_mvar'] = q_kvar / 1000.0\n    try:\n        pp.runpp(net)\n    except Exception:\n        continue\n    if not bool(net.converged):\n        continue\n    dev = abs(float(net.res_bus.vm_pu.at[b]) - 1.0)\n    if best_dev is None or dev < best_dev:\n        best_dev = dev\n        best_q = q_kvar\nprint(best_q)\n",
+  "ground_truth": 1003,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "case33bw",
+   "task": "der_control_sweep",
+   "modifications": [
+    {
+     "op": "add_inverter_sgen",
+     "bus_label": 18,
+     "p_mw": 0.4
+    },
+    {
+     "op": "sweep_q_setpoint",
+     "from_kvar": -2000,
+     "to_kvar": 2000,
+     "step_kvar": 1
+    }
+   ],
+   "query_target": {
+    "table": "sgen",
+    "column": "q_mvar",
+    "qtype": "argmin_abs_voltage_deviation_kvar"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "der_control",
+   "query_id": "A04",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Advanced",
+   "engineer_network_note": "pandapower 3.4.0 built-in Baran–Wu 33-bus case; bus references use case labels, not zero-based table indices",
+   "engineer_expected_quantity": "Reactive-power setpoint producing the closest bus-18 voltage to 1.000 p.u. (kvar)",
+   "annotation_notes": [
+    "ascending sweep with strict '<' improvement implements the stated tie rule (smaller numerical setpoint wins)"
+   ],
+   "oracle_functions": [
+    "case33bw",
+    "create_sgen",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_A05",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the CIGRE LV benchmark and identify residential loads as the existing load elements whose names begin with “Load R.” At each residential load bus, add a unity-power-factor PV unit whose rated active power equals that load’s original active power, then independently solve two balanced AC power-flow scenarios in which every original load and every added PV are scaled by (0.45, 0.90) and (0.80, 0.20), respectively. Report the highest voltage magnitude over all in-service 0.4 kV buses and both scenarios.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\ndef scenario(load_scale, pv_scale):\n    net = pn.create_cigre_network_lv()\n    residential = [i for i in net.load.index\n                   if str(net.load.name.at[i]).startswith('Load R')]\n    for li in residential:\n        pp.create_sgen(net, bus=int(net.load.bus.at[li]),\n                       p_mw=float(net.load.p_mw.at[li]) * pv_scale, q_mvar=0.0)\n    net.load['p_mw'] = net.load['p_mw'] * load_scale\n    net.load['q_mvar'] = net.load['q_mvar'] * load_scale\n    pp.runpp(net)\n    mask = (net.bus['vn_kv'] == 0.4) & net.bus['in_service']\n    return float(net.res_bus.vm_pu[mask].max())\n\nprint(round(max(scenario(0.45, 0.80), scenario(0.90, 0.20)), 5))\n",
+  "ground_truth": 1.01469,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "cigre_network_lv",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "add_pv_at_residential_loads",
+     "match": "name startswith 'Load R'"
+    },
+    {
+     "op": "two_scaling_scenarios",
+     "load_scales": [
+      0.45,
+      0.9
+     ],
+     "pv_scales": [
+      0.8,
+      0.2
+     ]
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "max_over_lv_buses_and_scenarios"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "der_control",
+   "query_id": "A05",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Intermediate",
+   "engineer_network_note": "pandapower 3.4.0 CIGRE LV case; PV is added only at the six residential loads; load scaling applies to all original loads",
+   "engineer_expected_quantity": "Maximum in-service 0.4 kV bus voltage across both scenarios (p.u.)",
+   "annotation_notes": [
+    "reading: 'respectively' pairs [every original load, every added PV] with [(0.45, 0.90), (0.80, 0.20)], i.e. scenario 1 = load x0.45 / PV x0.80 and scenario 2 = load x0.90 / PV x0.20; the alternative parse (tuples = scenarios) is logged in ambiguities.json",
+    "verified: exactly 6 loads match 'Load R' as the engineer note states"
+   ],
+   "oracle_functions": [
+    "create_cigre_network_lv",
+    "create_sgen",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_A06",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the CIGRE MV benchmark without DER and close the three normally open line switches S1, S2, and S3, leaving all other statuses unchanged. Run a balanced AC power flow, select the in-service line with the highest loading percentage, breaking an exact tie by the smallest line-record index, take that line out of service, and rerun the power flow. Define total active-power loss as the sum over all in-service lines and transformers, and report 100 × (post-outage loss − pre-outage loss) / pre-outage loss.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\n\ndef total_loss_mw(net):\n    line = float(net.res_line.loc[net.line.in_service, 'pl_mw'].sum())\n    trafo = float(net.res_trafo.loc[net.trafo.in_service, 'pl_mw'].sum())\n    return line + trafo\n\nnet = pn.create_cigre_network_mv(with_der=False)\nfor si in net.switch.index:\n    if str(net.switch.name.at[si]) in ('S1', 'S2', 'S3'):\n        net.switch.at[si, 'closed'] = True\npp.runpp(net)\npre = total_loss_mw(net)\nloading = net.res_line.loc[net.line.in_service, 'loading_percent']\nworst = max(loading.index, key=lambda i: (float(loading.at[i]), -int(i)))\nnet.line.at[worst, 'in_service'] = False\npp.runpp(net)\npost = total_loss_mw(net)\nprint(round(100.0 * (post - pre) / pre, 4))\n",
+  "ground_truth": 107.8305,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "cigre_network_mv (with_der=False)",
+   "task": "contingency_power_flow",
+   "modifications": [
+    {
+     "op": "close_switches",
+     "switches": [
+      "S1",
+      "S2",
+      "S3"
+     ]
+    },
+    {
+     "op": "outage_highest_loaded_line"
+    }
+   ],
+   "query_target": {
+    "table": "res_line+res_trafo",
+    "column": "pl_mw",
+    "qtype": "signed_percent_loss_change"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "topology_matrix",
+   "query_id": "A06",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Advanced",
+   "engineer_network_note": "pandapower 3.4.0 CIGRE MV case without DER; closed-loop state is defined by closing S1–S3; line IDs use table-record indices",
+   "engineer_expected_quantity": "Signed percentage change in total line-plus-transformer active-power loss after the ranked line outage (%)",
+   "annotation_notes": [],
+   "oracle_functions": [
+    "create_cigre_network_mv",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_A07",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the standard Baran–Wu 33-bus radial feeder with its original loads and branch statuses. At bus label 30, connect a fixed-admittance shunt capacitor rated to supply 600 kvar at 1.0 p.u., run a balanced AC power flow, and report the voltage magnitude at bus 30.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case33bw()\nb = 30 - 1\npp.create_shunt(net, bus=b, q_mvar=-0.6, p_mw=0.0,\n                vn_kv=float(net.bus.vn_kv.at[b]))\npp.runpp(net)\nprint(round(float(net.res_bus.vm_pu.at[b]), 5))\n",
+  "ground_truth": 0.93513,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case33bw",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "add_fixed_admittance_shunt",
+     "bus_label": 30,
+     "q_kvar_at_1pu": 600
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "at_bus_30"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "network_build_modify",
+   "query_id": "A07",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Basic",
+   "engineer_network_note": "pandapower 3.4.0 built-in Baran–Wu 33-bus case; bus references use case labels; capacitor is modeled as a fixed-admittance shunt",
+   "engineer_expected_quantity": "Voltage magnitude at bus 30 after capacitor connection (p.u.)",
+   "annotation_notes": [
+    "pandapower shunt q_mvar is consumption, so a capacitor supplying 600 kvar at 1.0 p.u. is q_mvar=-0.6 with vn_kv = the bus nominal voltage, which reproduces the required fixed-admittance behaviour"
+   ],
+   "oracle_functions": [
+    "case33bw",
+    "create_shunt",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_B01",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 14-bus case and take the sole generator at bus 2 out of service while leaving that bus and its load in service. Keep every other generator at its original active-power and voltage setpoints, let the external grid at bus 1 balance the system, run an AC power flow without enforcing generator reactive-power limits, and report the voltage magnitude at bus 14.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\ngid = int(net.gen.index[net.gen.bus == 2 - 1][0])\nnet.gen.at[gid, 'in_service'] = False\npp.runpp(net, enforce_q_lims=False)\nprint(round(float(net.res_bus.vm_pu.at[14 - 1]), 6))\n",
+  "ground_truth": 1.033241,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "contingency_power_flow",
+   "modifications": [
+    {
+     "op": "gen_outage",
+     "bus_label": 2
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "at_bus_14"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "power_flow",
+   "query_id": "B01",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Basic",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 14-bus case; bus numbers are one-based case labels, not zero-based table indices",
+   "engineer_expected_quantity": "Post-outage voltage magnitude at bus 14 (p.u.)",
+   "annotation_notes": [],
+   "oracle_functions": [
+    "case14",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_B02",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 30-bus case and increase both active and reactive demand of every load at bus 7 by 25%, leaving all other data unchanged. Solve an AC optimal power flow with the case’s original generation costs, generator P/Q limits, bus-voltage limits, and branch limits, then report the optimized total generation cost in the case’s native cost units per hour.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case30()\nmask = net.load['bus'] == 7 - 1\nnet.load.loc[mask, 'p_mw'] = net.load.loc[mask, 'p_mw'] * 1.25\nnet.load.loc[mask, 'q_mvar'] = net.load.loc[mask, 'q_mvar'] * 1.25\npp.runopp(net)\nprint(round(float(net.res_cost), 6))\n",
+  "ground_truth": 600.003082,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case30",
+   "task": "opf",
+   "modifications": [
+    {
+     "op": "scale_loads_at_bus",
+     "bus_label": 7,
+     "factor": 1.25
+    }
+   ],
+   "query_target": {
+    "table": "res_cost",
+    "column": "res_cost",
+    "qtype": "objective"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "opf",
+   "query_id": "B02",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Intermediate",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 30-bus case; bus 7 denotes the one-based case label",
+   "engineer_expected_quantity": "Minimum AC-OPF generation cost after the load increase (native cost units/h)",
+   "annotation_notes": [
+    "pandapower 3.4.0 ships two 30-bus cases (case30, case_ieee30); the primary reading is case30 -- see ambiguities.json for the rationale and the alternative ground truth"
+   ],
+   "oracle_functions": [
+    "case30",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_B03",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 39-bus case and run the base AC power flow with the original generator active-power and voltage setpoints, without enforcing reactive-power limits. Among in-service line elements whose individual removal leaves all in-service buses connected, select the line with the largest loading, defined as the larger terminal-current magnitude divided by rated current, breaking a tie by the smallest line-record index. Open that line, rerun the AC power flow, and report the highest loading of the remaining line elements under the same definition, excluding transformers.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.topology import create_nxgraph\nimport networkx as nx\n\ndef line_loading_percent(net):\n    imax = net.res_line[['i_from_ka', 'i_to_ka']].max(axis=1)\n    return imax / net.line.loc[imax.index, 'max_i_ka'] * 100.0\n\nnet = pn.case39()\npp.runpp(net, enforce_q_lims=False)\nbase_cc = nx.number_connected_components(create_nxgraph(net, respect_switches=True))\neligible = []\nfor li in list(net.line.index[net.line.in_service]):\n    net.line.at[li, 'in_service'] = False\n    if nx.number_connected_components(create_nxgraph(net, respect_switches=True)) == base_cc:\n        eligible.append(int(li))\n    net.line.at[li, 'in_service'] = True\nloading = line_loading_percent(net)\nworst = max(eligible, key=lambda i: (float(loading.at[i]), -int(i)))\nnet.line.at[worst, 'in_service'] = False\npp.runpp(net, enforce_q_lims=False)\npost = line_loading_percent(net)[net.line.in_service]\nprint(round(float(post.max()), 4))\n",
+  "ground_truth": 105.9754,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case39",
+   "task": "contingency_power_flow",
+   "modifications": [
+    {
+     "op": "outage_highest_loaded_non_islanding_line"
+    }
+   ],
+   "query_target": {
+    "table": "res_line",
+    "column": "loading",
+    "qtype": "max_post_contingency_percent"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "topology_matrix",
+   "query_id": "B03",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Intermediate",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 39-bus case; only non-islanding line outages are eligible",
+   "engineer_expected_quantity": "Maximum post-contingency loading among the remaining lines (%)",
+   "annotation_notes": [
+    "33 of the 35 case39 lines are non-islanding"
+   ],
+   "oracle_functions": [
+    "case39",
+    "create_nxgraph",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_B04",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE RTS-79 24-bus case and examine exactly 38 single-branch outages: each of its 33 lines and 5 two-winding transformers once. For each outage, require the remaining network to be connected and solve an AC optimal power flow with all original generation costs and P/Q, voltage, and branch constraints and no load shedding; count an outage as feasible only when the optimization terminates successfully and satisfies those constraints. After all outages have been examined, report the largest optimized total generation cost among the feasible outages in native cost units per hour, or −1.0 if none is feasible.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.topology import create_nxgraph\nimport networkx as nx\nbase = pn.case24_ieee_rts()\noutages = ([('line', int(i)) for i in base.line.index[base.line.in_service]] +\n           [('trafo', int(t)) for t in base.trafo.index[base.trafo.in_service]])\nbest = None\nfor et, idx in outages:\n    net = pn.case24_ieee_rts()\n    net[et].at[idx, 'in_service'] = False\n    if nx.number_connected_components(create_nxgraph(net, respect_switches=True)) != 1:\n        continue\n    try:\n        pp.runopp(net)\n    except Exception:\n        continue\n    if not bool(net.OPF_converged):\n        continue\n    cost = float(net.res_cost)\n    best = cost if best is None else max(best, cost)\nprint(round(best, 6) if best is not None else -1.0)\n",
+  "ground_truth": 66585.896515,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case24_ieee_rts",
+   "task": "contingency_opf",
+   "modifications": [
+    {
+     "op": "enumerate_n1",
+     "n_lines": 33,
+     "n_trafos": 5
+    }
+   ],
+   "query_target": {
+    "table": "res_cost",
+    "column": "res_cost",
+    "qtype": "max_over_feasible_contingencies"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "opf",
+   "query_id": "B04",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Advanced",
+   "engineer_network_note": "pandapower 3.4.0 IEEE RTS-79 24-bus case; finite enumeration of 33 line and 5 transformer outages",
+   "engineer_expected_quantity": "Highest feasible contingency AC-OPF cost, or the specified −1.0 sentinel (native cost units/h)",
+   "annotation_notes": [
+    "verified: case24_ieee_rts has exactly 33 in-service lines and 5 two-winding transformers, matching the query's '38 outages'"
+   ],
+   "oracle_functions": [
+    "case24_ieee_rts",
+    "create_nxgraph",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_B05",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 57-bus case and test λ = 1.00, 1.01, …, 2.00 in ascending order; at each value multiply every load’s active and reactive demand by λ, retain the base active-power and voltage setpoints of all non-slack generators, enforce their original reactive-power limits, and let the external grid balance the system. For each λ, test the 62 single-line outages whose individual removal leaves the original network connected, keeping all transformers in service; a value fails if any contingency power flow does not converge, any in-service bus voltage lies outside 0.95–1.05 p.u., or any remaining line’s larger terminal-current-to-rated-current ratio exceeds 100%. Return the largest passing λ, return 0.00 if λ = 1.00 fails, and return 2.00 if every tested value passes.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.topology import create_nxgraph\nimport networkx as nx\nbase = pn.case57()\nbase_cc = nx.number_connected_components(create_nxgraph(base, respect_switches=True))\neligible = []\nfor li in list(base.line.index[base.line.in_service]):\n    base.line.at[li, 'in_service'] = False\n    if nx.number_connected_components(create_nxgraph(base, respect_switches=True)) == base_cc:\n        eligible.append(int(li))\n    base.line.at[li, 'in_service'] = True\nbase_p = base.load['p_mw'].copy()\nbase_q = base.load['q_mvar'].copy()\n\ndef passes(lam):\n    for li in eligible:\n        net = pn.case57()\n        net.load['p_mw'] = base_p * lam\n        net.load['q_mvar'] = base_q * lam\n        net.line.at[li, 'in_service'] = False\n        try:\n            pp.runpp(net, enforce_q_lims=True)\n        except Exception:\n            return False\n        if not bool(net.converged):\n            return False\n        vm = net.res_bus.vm_pu[net.bus.in_service]\n        if float(vm.min()) < 0.95 or float(vm.max()) > 1.05:\n            return False\n        imax = net.res_line[['i_from_ka', 'i_to_ka']].max(axis=1)\n        loading = (imax / net.line.loc[imax.index, 'max_i_ka'] * 100.0)[net.line.in_service]\n        if float(loading.max()) > 100.0:\n            return False\n    return True\n\nlams = [round(1.00 + 0.01 * k, 2) for k in range(101)]\npassing = [lam for lam in lams if passes(lam)]\nif 1.00 not in passing:\n    answer = 0.00\nelif len(passing) == len(lams):\n    answer = 2.00\nelse:\n    answer = max(passing)\nprint(round(answer, 2))\n",
+  "ground_truth": 0.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case57",
+   "task": "n1_loadability_scan",
+   "modifications": [
+    {
+     "op": "load_multiplier_scan",
+     "from": 1.0,
+     "to": 2.0,
+     "step": 0.01
+    },
+    {
+     "op": "n1_line_outages",
+     "n": 62
+    }
+   ],
+   "query_target": {
+    "table": "scalar",
+    "column": "lambda",
+    "qtype": "largest_passing_multiplier"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "power_flow",
+   "query_id": "B05",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Advanced",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 57-bus case; 62 non-islanding line outages per load level; the no-outage state is not separately tested",
+   "engineer_expected_quantity": "Largest passing tested load multiplier under the stated N-1 rules",
+   "annotation_notes": [
+    "verified: exactly 62 of the 63 case57 lines are non-islanding, matching the number stated in the query",
+    "pandapower's case57 base voltage profile already has 40 buses below 0.95 p.u., so lambda=1.00 fails and the stated 0.00 sentinel is the ground truth (see ambiguities.json note D3)"
+   ],
+   "oracle_functions": [
+    "case57",
+    "create_nxgraph",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_B06",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 9-bus case and increase only the linear coefficient of the active-power polynomial cost of the sole generator at bus 2 by 30%, leaving its constant and quadratic coefficients and every other input unchanged. Solve a DC optimal power flow with the original generator and branch active-power limits, then report that generator’s optimized active-power output.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\ngid = int(net.gen.index[net.gen.bus == 2 - 1][0])\npc = int(net.poly_cost.index[(net.poly_cost.et == 'gen') &\n                             (net.poly_cost.element == gid)][0])\nnet.poly_cost.at[pc, 'cp1_eur_per_mw'] = net.poly_cost.at[pc, 'cp1_eur_per_mw'] * 1.30\npp.rundcopp(net)\nprint(round(float(net.res_gen.p_mw.at[gid]), 6))\n",
+  "ground_truth": 133.118466,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "dc_opf",
+   "modifications": [
+    {
+     "op": "scale_linear_cost_coefficient",
+     "gen_bus_label": 2,
+     "factor": 1.3
+    }
+   ],
+   "query_target": {
+    "table": "res_gen",
+    "column": "p_mw",
+    "qtype": "at_bus_2_gen"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "opf",
+   "query_id": "B06",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Basic",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 9-bus case; bus 2 denotes the one-based case label",
+   "engineer_expected_quantity": "Optimized active-power output of the bus-2 generator (MW)",
+   "annotation_notes": [],
+   "oracle_functions": [
+    "case9",
+    "rundcopp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_B07",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 118-bus case and run a base AC power flow, then select the online non-slack generator with the largest active-power output, breaking a tie by the smallest bus label and then the smallest generator-record index. Take that generator out of service and redistribute its pre-contingency MW once among the remaining online non-slack generators in proportion to each unit’s upward reserve, defined as original maximum active power minus base active-power output; exclude the external grid at bus 69 from this allocation and let it supply only losses and numerical allocation residual. Keep the remaining generators’ original voltage setpoints, enforce their original reactive-power limits, rerun the AC power flow, and report the greatest loading among line elements only, defined as the larger terminal-current magnitude divided by rated current.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case118()\npp.runpp(net)\nonline = [int(g) for g in net.gen.index if bool(net.gen.in_service.at[g])]\np_base = net.res_gen['p_mw']\nworst = max(online, key=lambda g: (float(p_base.at[g]),\n                                   -(int(net.gen.bus.at[g]) + 1), -int(g)))\np_lost = float(p_base.at[worst])\nnet.gen.at[worst, 'in_service'] = False\nremaining = [g for g in online if g != worst]\nreserve = {g: max(0.0, float(net.gen.max_p_mw.at[g]) - float(net.gen.p_mw.at[g]))\n           for g in remaining}\ntotal_reserve = sum(reserve.values())\nfor g in remaining:\n    net.gen.at[g, 'p_mw'] = float(net.gen.p_mw.at[g]) + p_lost * reserve[g] / total_reserve\npp.runpp(net, enforce_q_lims=True)\nimax = net.res_line[['i_from_ka', 'i_to_ka']].max(axis=1)\nloading = (imax / net.line.loc[imax.index, 'max_i_ka'] * 100.0)[net.line.in_service]\nprint(round(float(loading.max()), 4))\n",
+  "ground_truth": 4.5767,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case118",
+   "task": "contingency_redispatch",
+   "modifications": [
+    {
+     "op": "outage_largest_nonslack_gen"
+    },
+    {
+     "op": "proportional_reserve_redispatch",
+     "exclude": "ext_grid at bus 69"
+    }
+   ],
+   "query_target": {
+    "table": "res_line",
+    "column": "loading",
+    "qtype": "max_post_redispatch_percent"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "der_control",
+   "query_id": "B07",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Advanced",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 118-bus case; proportional redispatch excludes the external grid and transformers are excluded from the output",
+   "engineer_expected_quantity": "Maximum post-redispatch line loading (%)",
+   "annotation_notes": [
+    "the ext_grid at bus label 69 is not a net.gen record, so it is excluded from the allocation by construction, as the query requires"
+   ],
+   "oracle_functions": [
+    "case118",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_C01",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the CIGRE MV benchmark without DER and retain its default switch states. Set the external grid’s maximum short-circuit power to 500 MVA and maximum-case R/X ratio to 0.1, apply a zero-impedance three-phase fault at the 20 kV Bus 11, and under the IEC 60909 maximum short-circuit case report the initial symmetrical short-circuit current at Bus 11.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit as sc\nnet = pn.create_cigre_network_mv(with_der=False)\nnet.ext_grid['s_sc_max_mva'] = 500.0\nnet.ext_grid['rx_max'] = 0.1\nsc.calc_sc(net, fault='3ph', case='max', bus=11)\nprint(round(float(net.res_bus_sc.ikss_ka.at[11]), 6))\n",
+  "ground_truth": 1.142386,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "cigre_network_mv (with_der=False)",
+   "task": "short_circuit",
+   "modifications": [
+    {
+     "op": "set_ext_grid_sc_source",
+     "s_sc_max_mva": 500,
+     "rx_max": 0.1
+    }
+   ],
+   "query_target": {
+    "table": "res_bus_sc",
+    "column": "ikss_ka",
+    "qtype": "at_bus_11"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "short_circuit",
+   "query_id": "C01",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Basic",
+   "engineer_network_note": "pandapower 3.4.0 CIGRE MV case without DER; default topology and switch states",
+   "engineer_expected_quantity": "Initial symmetrical three-phase short-circuit current at Bus 11 (kA)",
+   "annotation_notes": [
+    "in the CIGRE MV network pandapower names the buses 'Bus 0'..'Bus 14' so the 20 kV 'Bus 11' is table index 11"
+   ],
+   "oracle_functions": [
+    "calc_sc",
+    "create_cigre_network_mv"
+   ]
+  }
+ },
+ {
+  "id": "l2b_C02",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 14-bus network and treat only the external grid at Bus 1 as a short-circuit source, with maximum short-circuit power 5000 MVA and maximum-case R/X ratio 0.1; exclude all other generators from short-circuit infeed. For a zero-impedance three-phase fault at Bus 9, calculate the IEC 60909 maximum initial symmetrical current I through the 4–9 transformer on its Bus 4 high-voltage side. Assuming I > Ip, with Ip = 0.05 kA and a time multiplier of 0.15, report t = 0.14 × 0.15 / ((I/Ip)^0.02 − 1).",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandapower.shortcircuit as sc\nnet = pn.case14()\nnet.gen['in_service'] = False\nnet.ext_grid['s_sc_max_mva'] = 5000.0\nnet.ext_grid['rx_max'] = 0.1\ntid = int(net.trafo.index[(net.trafo.hv_bus == 4 - 1) &\n                          (net.trafo.lv_bus == 9 - 1)][0])\nsc.calc_sc(net, fault='3ph', case='max', bus=9 - 1, branch_results=True)\ni_ka = float(net.res_trafo_sc.ikss_hv_ka.at[tid])\nt_s = 0.14 * 0.15 / ((i_ka / 0.05) ** 0.02 - 1.0)\nprint(round(t_s, 6))\n",
+  "ground_truth": 0.269043,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "short_circuit_protection",
+   "modifications": [
+    {
+     "op": "ext_grid_only_sc_source",
+     "s_sc_max_mva": 5000,
+     "rx_max": 0.1
+    },
+    {
+     "op": "iec_inverse_time_relay",
+     "ip_ka": 0.05,
+     "tms": 0.15
+    }
+   ],
+   "query_target": {
+    "table": "res_trafo_sc",
+    "column": "ikss_hv_ka",
+    "qtype": "relay_operating_time_s"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "short_circuit",
+   "query_id": "C02",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Intermediate",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 14-bus case; only the Bus 1 external grid contributes fault current",
+   "engineer_expected_quantity": "Operating time of the Bus 4-side protection for the 4–9 transformer (s)",
+   "annotation_notes": [
+    "'only the external grid contributes fault current' is implemented by deactivating every net.gen record before calc_sc",
+    "pandapower flags transformer branch short-circuit results as beta; they are deterministic for a frozen version (see ambiguities.json D4)"
+   ],
+   "oracle_functions": [
+    "calc_sc",
+    "case14"
+   ]
+  }
+ },
+ {
+  "id": "l2b_C03",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Run a base-case AC power flow on the built-in IEEE 14-bus network and create synthetic measurements consisting of voltage magnitude and active and reactive bus injection at every bus, line from-end active and reactive flow for every line, and high-voltage-end active and reactive flow for every transformer. Use the load-reference sign convention for bus injections and exclude fixed-shunt consumption from those measurements because the shunt remains represented in the network admittance; use the power-flow values without noise except for adding 0.03 p.u. to the Bus 14 voltage measurement, with standard deviations of 0.005 p.u., 1 MW, and 1 Mvar for voltage, active power, and reactive power, respectively. Run flat-start weighted least-squares state estimation and report the estimated Bus 14 voltage magnitude.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.estimation import estimate\nSTD_V, STD_P, STD_Q = 0.005, 1.0, 1.0\nnet = pn.case14()\npp.runpp(net)\nshunt_p, shunt_q = {}, {}\nfor si in net.shunt.index:\n    b = int(net.shunt.bus.at[si])\n    shunt_p[b] = shunt_p.get(b, 0.0) + float(net.res_shunt.p_mw.at[si])\n    shunt_q[b] = shunt_q.get(b, 0.0) + float(net.res_shunt.q_mvar.at[si])\nfor b in net.bus.index:\n    v = float(net.res_bus.vm_pu.at[b]) + (0.03 if int(b) == 14 - 1 else 0.0)\n    pp.create_measurement(net, 'v', 'bus', v, STD_V, element=int(b))\nfor b in net.bus.index:\n    p = float(net.res_bus.p_mw.at[b]) - shunt_p.get(int(b), 0.0)\n    q = float(net.res_bus.q_mvar.at[b]) - shunt_q.get(int(b), 0.0)\n    pp.create_measurement(net, 'p', 'bus', p, STD_P, element=int(b))\n    pp.create_measurement(net, 'q', 'bus', q, STD_Q, element=int(b))\nfor li in net.line.index:\n    pp.create_measurement(net, 'p', 'line', float(net.res_line.p_from_mw.at[li]),\n                          STD_P, element=int(li), side='from')\n    pp.create_measurement(net, 'q', 'line', float(net.res_line.q_from_mvar.at[li]),\n                          STD_Q, element=int(li), side='from')\nfor ti in net.trafo.index:\n    pp.create_measurement(net, 'p', 'trafo', float(net.res_trafo.p_hv_mw.at[ti]),\n                          STD_P, element=int(ti), side='hv')\n    pp.create_measurement(net, 'q', 'trafo', float(net.res_trafo.q_hv_mvar.at[ti]),\n                          STD_Q, element=int(ti), side='hv')\nestimate(net, init='flat')\nprint(round(float(net.res_bus_est.vm_pu.at[14 - 1]), 6))\n",
+  "ground_truth": 1.039843,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "state_estimation",
+   "modifications": [
+    {
+     "op": "synthetic_measurement_set",
+     "types": [
+      "v_bus",
+      "p_bus",
+      "q_bus",
+      "p_line_from",
+      "q_line_from",
+      "p_trafo_hv",
+      "q_trafo_hv"
+     ],
+     "shunt_excluded": true
+    },
+    {
+     "op": "bias_voltage_measurement",
+     "bus_label": 14,
+     "delta_pu": 0.03
+    }
+   ],
+   "query_target": {
+    "table": "res_bus_est",
+    "column": "vm_pu",
+    "qtype": "at_bus_14"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "state_estimation",
+   "query_id": "C03",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Intermediate",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 14-bus case in its original operating condition; measurement sides and fixed-shunt treatment are explicit",
+   "engineer_expected_quantity": "Estimated voltage magnitude at Bus 14 (p.u.)",
+   "annotation_notes": [
+    "pandapower bus power measurements are in the load reference system (create_measurement docstring), so res_bus.p_mw/q_mvar are used directly; the shunt term is subtracted because the shunt stays in the network admittance",
+    "validated: with a noiseless measurement set the WLS estimate reproduces the power flow to 2.8e-12 p.u."
+   ],
+   "oracle_functions": [
+    "case14",
+    "create_measurement",
+    "estimate",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_C04",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Run a base-case AC power flow on the built-in IEEE 14-bus network and create noiseless synthetic measurements consisting of voltage magnitude and active and reactive bus injection at every bus, line from-end active and reactive flow for every line, and high-voltage-end active and reactive flow for every transformer. Use the load-reference sign convention for bus injections, exclude fixed-shunt consumption from those measurements because the shunt remains represented in the network admittance, and add a +20 MW error only to the Bus 4 high-voltage-side active-power-flow measurement of the 4–9 transformer; use standard deviations of 0.005 p.u., 1 MW, and 1 Mvar. Run a flat-start weighted least-squares estimate, score each measurement by its absolute post-estimation residual divided by its stated standard deviation, remove the measurement with the largest score while breaking a tie by the smallest measurement-table index, rerun from a flat start, and report the Bus 14 voltage angle relative to Bus 1.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.estimation import estimate\nSTD_V, STD_P, STD_Q = 0.005, 1.0, 1.0\nnet = pn.case14()\npp.runpp(net)\ntid = int(net.trafo.index[(net.trafo.hv_bus == 4 - 1) &\n                          (net.trafo.lv_bus == 9 - 1)][0])\nshunt_p, shunt_q = {}, {}\nfor si in net.shunt.index:\n    b = int(net.shunt.bus.at[si])\n    shunt_p[b] = shunt_p.get(b, 0.0) + float(net.res_shunt.p_mw.at[si])\n    shunt_q[b] = shunt_q.get(b, 0.0) + float(net.res_shunt.q_mvar.at[si])\nfor b in net.bus.index:\n    pp.create_measurement(net, 'v', 'bus', float(net.res_bus.vm_pu.at[b]),\n                          STD_V, element=int(b))\nfor b in net.bus.index:\n    p = float(net.res_bus.p_mw.at[b]) - shunt_p.get(int(b), 0.0)\n    q = float(net.res_bus.q_mvar.at[b]) - shunt_q.get(int(b), 0.0)\n    pp.create_measurement(net, 'p', 'bus', p, STD_P, element=int(b))\n    pp.create_measurement(net, 'q', 'bus', q, STD_Q, element=int(b))\nfor li in net.line.index:\n    pp.create_measurement(net, 'p', 'line', float(net.res_line.p_from_mw.at[li]),\n                          STD_P, element=int(li), side='from')\n    pp.create_measurement(net, 'q', 'line', float(net.res_line.q_from_mvar.at[li]),\n                          STD_Q, element=int(li), side='from')\nfor ti in net.trafo.index:\n    p = float(net.res_trafo.p_hv_mw.at[ti]) + (20.0 if int(ti) == tid else 0.0)\n    pp.create_measurement(net, 'p', 'trafo', p, STD_P, element=int(ti), side='hv')\n    pp.create_measurement(net, 'q', 'trafo', float(net.res_trafo.q_hv_mvar.at[ti]),\n                          STD_Q, element=int(ti), side='hv')\nestimate(net, init='flat')\n\ndef estimated(row):\n    mt = row['measurement_type']\n    et = row['element_type']\n    e = int(row['element'])\n    if et == 'bus':\n        if mt == 'v':\n            return float(net.res_bus_est.vm_pu.at[e])\n        vm = float(net.res_bus_est.vm_pu.at[e])\n        sp = sum(float(net.shunt.p_mw.at[s]) * vm ** 2 for s in net.shunt.index\n                 if int(net.shunt.bus.at[s]) == e)\n        sq = sum(float(net.shunt.q_mvar.at[s]) * vm ** 2 for s in net.shunt.index\n                 if int(net.shunt.bus.at[s]) == e)\n        if mt == 'p':\n            return float(net.res_bus_est.p_mw.at[e]) - sp\n        return float(net.res_bus_est.q_mvar.at[e]) - sq\n    if et == 'line':\n        if mt == 'p':\n            return float(net.res_line_est.p_from_mw.at[e])\n        return float(net.res_line_est.q_from_mvar.at[e])\n    if mt == 'p':\n        return float(net.res_trafo_est.p_hv_mw.at[e])\n    return float(net.res_trafo_est.q_hv_mvar.at[e])\n\nscores = {int(mi): abs(float(row['value']) - estimated(row)) / float(row['std_dev'])\n          for mi, row in net.measurement.iterrows()}\ndrop = max(scores, key=lambda k: (scores[k], -k))\nnet.measurement = net.measurement.drop(index=drop)\nestimate(net, init='flat')\nangle = float(net.res_bus_est.va_degree.at[14 - 1]) - float(net.res_bus_est.va_degree.at[1 - 1])\nprint(round(angle, 6))\n",
+  "ground_truth": -16.033645,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "state_estimation_bad_data",
+   "modifications": [
+    {
+     "op": "synthetic_measurement_set",
+     "shunt_excluded": true
+    },
+    {
+     "op": "inject_bad_datum",
+     "element": "trafo 4-9 hv p",
+     "delta_mw": 20.0
+    },
+    {
+     "op": "largest_normalized_residual_rejection",
+     "n_removed": 1
+    }
+   ],
+   "query_target": {
+    "table": "res_bus_est",
+    "column": "va_degree",
+    "qtype": "bus14_minus_bus1_degrees"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "state_estimation",
+   "query_id": "C04",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Advanced",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 14-bus case; transformer side, fixed-shunt treatment, bad datum, and rejection rule are explicit",
+   "engineer_expected_quantity": "Bus 14 voltage angle relative to Bus 1 after bad-data removal (degrees)",
+   "annotation_notes": [
+    "the largest normalized residual (19.02) is exactly the injected bad datum (trafo 4-9 hv active-power flow), so the rejection step identifies the intended measurement"
+   ],
+   "oracle_functions": [
+    "case14",
+    "create_measurement",
+    "estimate",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_C05",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in Baran–Wu 33-bus radial distribution network in its default topology. For each integer hour h = 0, …, 23, independently scale both active and reactive power of every load by 0.75 + 0.35 sin²(π(h − 6)/24) and run a balanced AC power flow. Report the lowest voltage magnitude observed over all 24 hours and all buses except the external-grid bus.",
+  "reference_code": "import math\nimport pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case33bw()\nbase_p = net.load['p_mw'].copy()\nbase_q = net.load['q_mvar'].copy()\nslack = int(net.ext_grid.bus.iloc[0])\nworst = None\nfor h in range(24):\n    factor = 0.75 + 0.35 * math.sin(math.pi * (h - 6) / 24.0) ** 2\n    net.load['p_mw'] = base_p * factor\n    net.load['q_mvar'] = base_q * factor\n    pp.runpp(net)\n    step_min = float(net.res_bus.vm_pu.drop(index=slack).min())\n    worst = step_min if worst is None else min(worst, step_min)\nprint(round(worst, 5))\n",
+  "ground_truth": 0.90356,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case33bw",
+   "task": "timeseries",
+   "modifications": [
+    {
+     "op": "hourly_load_profile",
+     "n_steps": 24,
+     "profile": "0.75 + 0.35*sin^2(pi*(h-6)/24)"
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "min_over_steps_and_nonslack_buses"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "timeseries",
+   "query_id": "C05",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Basic",
+   "engineer_network_note": "pandapower 3.4.0 Baran–Wu 33-bus case with its default radial topology",
+   "engineer_expected_quantity": "Minimum non-slack-bus voltage over all 24 time steps (p.u.)",
+   "annotation_notes": [],
+   "oracle_functions": [
+    "case33bw",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2b_C06",
+  "round": "2b",
+  "source": "engineer-written",
+  "natural_language_query": "Use the built-in IEEE 14-bus network and test load multipliers from 1.00 through 5.00 in increments of 0.01, scaling every load’s active and reactive power by the same multiplier. At each step, run a Newton–Raphson AC power flow from a flat start with a 50-iteration limit, enforce the original reactive-power limits of all non-slack generators, and leave the external-grid reactive output unconstrained. Stop at the first step that does not converge or has any bus voltage below 0.70 p.u. and report the preceding multiplier; if no step fails through 5.00, report 5.00.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nreference = pn.case14()\nbase_p = reference.load['p_mw'].copy()\nbase_q = reference.load['q_mvar'].copy()\nanswer = 5.00\nfor k in range(401):\n    lam = round(1.00 + 0.01 * k, 2)\n    net = pn.case14()\n    net.load['p_mw'] = base_p * lam\n    net.load['q_mvar'] = base_q * lam\n    failed = False\n    try:\n        pp.runpp(net, algorithm='nr', init='flat', max_iteration=50,\n                 enforce_q_lims=True)\n        if not bool(net.converged) or float(net.res_bus.vm_pu.min()) < 0.70:\n            failed = True\n    except Exception:\n        failed = True\n    if failed:\n        answer = round(lam - 0.01, 2)\n        break\nprint(round(answer, 2))\n",
+  "ground_truth": 1.73,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "loadability_scan",
+   "modifications": [
+    {
+     "op": "load_multiplier_scan",
+     "from": 1.0,
+     "to": 5.0,
+     "step": 0.01,
+     "stop_rule": "first non-convergence or vm < 0.70 pu"
+    }
+   ],
+   "query_target": {
+    "table": "scalar",
+    "column": "multiplier",
+    "qtype": "largest_qualifying_multiplier"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": null,
+  "license": "E4 layer-2b' query set: written and approved by two practising power engineers; released with the paper artifact. Query text is reproduced verbatim from E4_engineer_approved_queries_en.csv (sha256 14dd3149...); reference solutions and ground truths are authored by the project side.",
+  "rewrite_meta": {
+   "rules_version": "E4-2b-v1 (verbatim: no rewriting)",
+   "rewriter_id": "none (frozen engineer-approved text used verbatim)",
+   "annotator_id": "power-systems engineer 1 (E4 Layer-2b reference annotator, frozen; independently verified by engineer 2)",
+   "protocol": "E4 §2.2d oracle protocol (reference_code -> regex oracle extraction)",
+   "deidentified": true,
+   "added_context": [],
+   "theme": "power_flow",
+   "query_id": "C06",
+   "author_id": "engineer",
+   "difficulty_self_rating": "Advanced",
+   "engineer_network_note": "pandapower 3.4.0 IEEE 14-bus case with original topology and non-slack-generator reactive limits",
+   "engineer_expected_quantity": "Largest qualifying discrete load multiplier",
+   "annotation_notes": [
+    "the external grid reactive output is unconstrained because enforce_q_lims applies to net.gen records only"
+   ],
+   "oracle_functions": [
+    "case14",
+    "runpp"
+   ]
+  }
+ }
+]

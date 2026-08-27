@@ -1,0 +1,1549 @@
+{
+ "meta": {
+  "purpose": "Pre-fix (B2-freeze) evidence for instrument defect D-6: the bare-condition (A) system prompt hard-coded \"pandapower\" as the library name, so every condition-A generation on both non-pandapower backends imported pandapower instead of the target library. Fixed via the BENCHMARK_LIBRARY template slot (utils.py benchmark_library_name); see transfer/DEFECT_LEDGER.md.",
+  "method": "line-anchored regex over generated_code of every frozen B2-round result file (read-only): pandapower = ^import pandapower|^from pandapower; target = opendssdirect/dss (OpenDSS) or pypsa (PyPSA) equivalents.",
+  "scan_scope": "probe_eval_results/e2_{opendss,pypsa}_bench (pre-B1-prime frozen round)",
+  "derived_from_frozen_data": true
+ },
+ "headline": {
+  "condA_generations": 360,
+  "condA_pandapower_imports": 360,
+  "condA_target_lib_imports": 0,
+  "note": "SM S10 quotes this as \"360/360 pp imports pre-fix\"."
+ },
+ "injected_arms": {
+  "generations": 720,
+  "pandapower_imports": 1,
+  "note": "Injected arms name the target library via LibrarySpec; the single Rsem pandapower co-import (PyPSA/32B) also imports pypsa and is counted in target_lib_imports of its file."
+ },
+ "per_file": [
+  {
+   "file": "probe_eval_results/e2_opendss_bench/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 90,
+   "target_lib_imports": 0,
+   "non_target_items": [
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    }
+   ]
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 90,
+   "target_lib_imports": 0,
+   "non_target_items": [
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    }
+   ]
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 90,
+   "target_lib_imports": 0,
+   "non_target_items": [
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    }
+   ]
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 1,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 90,
+   "target_lib_imports": 0,
+   "non_target_items": [
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    },
+    {
+     "id": null,
+     "empty": false
+    }
+   ]
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  }
+ ]
+}

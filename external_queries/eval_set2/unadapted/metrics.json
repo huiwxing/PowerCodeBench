@@ -1,0 +1,1246 @@
+{
+  "run_name": "hybrid_tfidf",
+  "config": {
+    "augmented_path": "dataset/augmented_dataset.json",
+    "docs_path": "dataset/pandapower_docs.json",
+    "benchmark_path": "benchmark/e4_layer2a/e4_layer2a_ext.json",
+    "reweight_benchmark_path": null,
+    "knowledge_profile": null,
+    "output_dir": "task_demand/results/e4_layer2a_ext_eval/unadapted",
+    "model": "hybrid_tfidf",
+    "include_variants": true,
+    "seed": 22,
+    "negative_per_positive": 8,
+    "max_train_pairs": null,
+    "max_positive_per_function": null,
+    "hybrid_alpha": 0.5,
+    "auto_hybrid_alpha": true,
+    "hybrid_alpha_target_k": 10,
+    "top_k": [
+      1,
+      3,
+      5,
+      10,
+      20
+    ],
+    "sbert_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "sbert_batch_size": 64,
+    "cross_encoder_model": null,
+    "cross_encoder_top_n": 50,
+    "ce_batch_size": 512,
+    "ce_fp16": false,
+    "sentence_transformers_device": null,
+    "save_model": null,
+    "benchmark_max_items": null,
+    "export_predictions": null,
+    "run_name": null,
+    "prediction_top_k": 10,
+    "prediction_roles": null,
+    "role_reweight": false,
+    "max_role_weight": 3.0
+  },
+  "data_summary": {
+    "all": {
+      "n_examples": 6312,
+      "n_groups": 511,
+      "n_variants": 6068,
+      "n_non_variants": 244,
+      "n_unique_functions": 125,
+      "avg_labels_per_example": 4.653,
+      "top_functions": {
+        "create_empty_network": 2326,
+        "create_bus": 2076,
+        "create_ext_grid": 1673,
+        "create_line": 1203,
+        "runpp": 1195,
+        "create_load": 1143,
+        "ConstControl": 1093,
+        "mv_oberrhein": 1032,
+        "create_transformer": 877,
+        "create_switch": 729,
+        "create_poly_cost": 713,
+        "DFData": 632,
+        "OutputWriter": 584,
+        "log_variable": 582,
+        "create_measurement": 555,
+        "run_timeseries": 492,
+        "create_gen": 415,
+        "draw_collections": 403,
+        "create_sgen": 400,
+        "create_nxgraph": 399,
+        "runopp": 395,
+        "example_simple": 394,
+        "create_bus_collection": 376,
+        "create_dcline": 367,
+        "calc_sc": 357,
+        "create_line_collection": 332,
+        "case9": 301,
+        "case14": 288,
+        "simple_mv_open_ring_net": 274,
+        "create_buses": 273
+      }
+    },
+    "train": {
+      "n_examples": 5127,
+      "n_groups": 409,
+      "n_variants": 4925,
+      "n_non_variants": 202,
+      "n_unique_functions": 124,
+      "avg_labels_per_example": 4.692,
+      "top_functions": {
+        "create_empty_network": 1935,
+        "create_bus": 1710,
+        "create_ext_grid": 1467,
+        "create_line": 1022,
+        "runpp": 973,
+        "create_load": 958,
+        "ConstControl": 830,
+        "mv_oberrhein": 805,
+        "create_transformer": 740,
+        "create_switch": 629,
+        "create_poly_cost": 556,
+        "DFData": 478,
+        "create_measurement": 463,
+        "OutputWriter": 461,
+        "log_variable": 460,
+        "run_timeseries": 370,
+        "create_sgen": 355,
+        "example_simple": 317,
+        "create_nxgraph": 316,
+        "create_gen": 314,
+        "draw_collections": 311,
+        "create_dcline": 296,
+        "calc_sc": 292,
+        "create_bus_collection": 284,
+        "create_line_collection": 274,
+        "runopp": 254,
+        "create_buses": 249,
+        "case9": 237,
+        "simple_mv_open_ring_net": 221,
+        "run_contingency": 216
+      }
+    },
+    "dev": {
+      "n_examples": 552,
+      "n_groups": 51,
+      "n_variants": 533,
+      "n_non_variants": 19,
+      "n_unique_functions": 85,
+      "avg_labels_per_example": 4.6,
+      "top_functions": {
+        "create_empty_network": 189,
+        "create_bus": 159,
+        "ConstControl": 155,
+        "create_line": 115,
+        "mv_oberrhein": 112,
+        "create_ext_grid": 104,
+        "DFData": 90,
+        "runpp": 77,
+        "create_load": 73,
+        "create_std_type": 71,
+        "create_nxgraph": 66,
+        "create_switch": 63,
+        "OutputWriter": 61,
+        "log_variable": 61,
+        "run_timeseries": 60,
+        "create_poly_cost": 56,
+        "create_measurement": 50,
+        "simple_mv_open_ring_net": 50,
+        "calc_sc": 45,
+        "create_transformer": 39,
+        "runopp": 37,
+        "create_dcline": 34,
+        "example_simple": 33,
+        "case14": 31,
+        "create_bus_collection": 31,
+        "get_collection_sizes": 31,
+        "draw_collections": 31,
+        "parameter_from_std_type": 28,
+        "create_sgen": 27,
+        "create_gen": 26
+      }
+    },
+    "test": {
+      "n_examples": 633,
+      "n_groups": 51,
+      "n_variants": 610,
+      "n_non_variants": 23,
+      "n_unique_functions": 83,
+      "avg_labels_per_example": 4.384,
+      "top_functions": {
+        "create_bus": 207,
+        "create_empty_network": 202,
+        "runpp": 145,
+        "mv_oberrhein": 115,
+        "create_load": 112,
+        "ConstControl": 108,
+        "runopp": 104,
+        "create_ext_grid": 102,
+        "create_poly_cost": 101,
+        "create_transformer": 98,
+        "create_gen": 75,
+        "create_line": 66,
+        "DFData": 64,
+        "run_timeseries": 62,
+        "OutputWriter": 62,
+        "create_bus_collection": 61,
+        "draw_collections": 61,
+        "log_variable": 61,
+        "case14": 51,
+        "case9": 44,
+        "example_simple": 44,
+        "get_collection_sizes": 43,
+        "create_measurement": 42,
+        "create_line_collection": 40,
+        "create_dcline": 37,
+        "create_switch": 37,
+        "create_svc": 29,
+        "Controller": 28,
+        "set_user_pf_options": 25,
+        "case30": 22
+      }
+    },
+    "benchmark_reference_eval_only": {
+      "n_examples": 10,
+      "n_groups": 10,
+      "n_variants": 0,
+      "n_non_variants": 10,
+      "n_unique_functions": 19,
+      "avg_labels_per_example": 6.1,
+      "top_functions": {
+        "create_empty_network": 7,
+        "create_bus": 7,
+        "create_load": 7,
+        "create_line_from_parameters": 6,
+        "create_ext_grid": 6,
+        "runpp": 5,
+        "ConstControl": 3,
+        "run_timeseries": 3,
+        "DFData": 3,
+        "OutputWriter": 3,
+        "case14": 2,
+        "create_transformer_from_parameters": 2,
+        "create_sgen": 1,
+        "estimate": 1,
+        "create_measurement": 1,
+        "runopp": 1,
+        "create_poly_cost": 1,
+        "case9": 1,
+        "create_gen": 1
+      }
+    }
+  },
+  "alpha_tuning": {
+    "selected": {
+      "alpha": 0.6,
+      "recall": 0.5371,
+      "hit_rate": 0.9275
+    },
+    "curve": [
+      {
+        "alpha": 0.0,
+        "recall@10": 0.3295,
+        "hit@10": 0.7826
+      },
+      {
+        "alpha": 0.1,
+        "recall@10": 0.3631,
+        "hit@10": 0.8297
+      },
+      {
+        "alpha": 0.2,
+        "recall@10": 0.3999,
+        "hit@10": 0.8678
+      },
+      {
+        "alpha": 0.3,
+        "recall@10": 0.4571,
+        "hit@10": 0.9167
+      },
+      {
+        "alpha": 0.4,
+        "recall@10": 0.4943,
+        "hit@10": 0.9293
+      },
+      {
+        "alpha": 0.5,
+        "recall@10": 0.5296,
+        "hit@10": 0.9348
+      },
+      {
+        "alpha": 0.6,
+        "recall@10": 0.5371,
+        "hit@10": 0.9275
+      },
+      {
+        "alpha": 0.7,
+        "recall@10": 0.5251,
+        "hit@10": 0.9275
+      },
+      {
+        "alpha": 0.8,
+        "recall@10": 0.504,
+        "hit@10": 0.9076
+      },
+      {
+        "alpha": 0.9,
+        "recall@10": 0.474,
+        "hit@10": 0.8696
+      },
+      {
+        "alpha": 1.0,
+        "recall@10": 0.4308,
+        "hit@10": 0.846
+      }
+    ]
+  },
+  "role_weights": null,
+  "metrics": {
+    "augmented_dev": {
+      "n_examples": 552,
+      "top_k": {
+        "1": {
+          "recall": 0.1359,
+          "precision": 0.5344,
+          "hit_rate": 0.5344
+        },
+        "3": {
+          "recall": 0.2819,
+          "precision": 0.4004,
+          "hit_rate": 0.7917
+        },
+        "5": {
+          "recall": 0.3604,
+          "precision": 0.3217,
+          "hit_rate": 0.8587
+        },
+        "10": {
+          "recall": 0.5371,
+          "precision": 0.2542,
+          "hit_rate": 0.9275
+        },
+        "20": {
+          "recall": 0.6963,
+          "precision": 0.1684,
+          "hit_rate": 0.9746
+        }
+      },
+      "per_role_recall": {
+        "network_or_element_construction": {
+          "1": 0.088,
+          "3": 0.2122,
+          "5": 0.3058,
+          "10": 0.5783,
+          "20": 0.8044
+        },
+        "network_loader": {
+          "1": 0.0611,
+          "3": 0.1812,
+          "5": 0.2838,
+          "10": 0.5502,
+          "20": 0.7511
+        },
+        "other": {
+          "1": 0.0203,
+          "3": 0.0464,
+          "5": 0.0783,
+          "10": 0.2,
+          "20": 0.3623
+        },
+        "controller_or_timeseries": {
+          "1": 0.3129,
+          "3": 0.5583,
+          "5": 0.6994,
+          "10": 0.7822,
+          "20": 0.8804
+        },
+        "analysis_executor": {
+          "1": 0.2582,
+          "3": 0.627,
+          "5": 0.709,
+          "10": 0.8156,
+          "20": 0.9221
+        },
+        "plotting": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.046,
+          "20": 0.1149
+        }
+      },
+      "label_frequency": {
+        "create_empty_network": 189,
+        "create_bus": 159,
+        "ConstControl": 155,
+        "create_line": 115,
+        "mv_oberrhein": 112,
+        "create_ext_grid": 104,
+        "DFData": 90,
+        "runpp": 77,
+        "create_load": 73,
+        "create_std_type": 71,
+        "create_nxgraph": 66,
+        "create_switch": 63,
+        "OutputWriter": 61,
+        "log_variable": 61,
+        "run_timeseries": 60,
+        "create_poly_cost": 56,
+        "create_measurement": 50,
+        "simple_mv_open_ring_net": 50,
+        "calc_sc": 45,
+        "create_transformer": 39,
+        "runopp": 37,
+        "create_dcline": 34,
+        "example_simple": 33,
+        "case14": 31,
+        "create_bus_collection": 31,
+        "get_collection_sizes": 31,
+        "draw_collections": 31,
+        "parameter_from_std_type": 28,
+        "create_sgen": 27,
+        "create_gen": 26,
+        "available_std_types": 24,
+        "create_buses": 23,
+        "elements_on_path": 23,
+        "simple_plot": 22,
+        "case9": 20,
+        "create_shunt": 19,
+        "create_transformer3w": 18,
+        "create_line_collection": 18,
+        "draw_traces": 17,
+        "convert_crs": 17,
+        "case30": 15,
+        "connected_components": 14,
+        "get_plotly_color_palette": 14,
+        "create_bus_trace": 14,
+        "DiscreteTapControl": 14,
+        "from_tap_step_percent": 14,
+        "simple_four_bus_system": 13,
+        "create_switches": 13,
+        "get_equivalent": 13,
+        "drop_lines": 13,
+        "create_impedance": 12,
+        "set_mapbox_token": 12,
+        "case33bw": 11,
+        "create_line_trace": 10,
+        "example_multivoltage": 9,
+        "runpp_3ph": 9,
+        "estimate": 9,
+        "Fuse": 9,
+        "create_lines_from_parameters": 9,
+        "case4gs": 8,
+        "create_asymmetric_load": 8,
+        "create_cigre_network_mv": 8,
+        "rundcpp": 7,
+        "case300": 6,
+        "calculate_protection_times": 6,
+        "case5": 5,
+        "create_lines": 5,
+        "create_svc": 5,
+        "case118": 5,
+        "unsupplied_buses": 5,
+        "case24_ieee_rts": 4,
+        "create_asymmetric_sgen": 4,
+        "case57": 3,
+        "create_cigre_network_lv": 3,
+        "OCRelay": 3,
+        "create_storage": 3,
+        "TrafoController": 3,
+        "ContinuousTapControl": 3,
+        "pf_res_plotly": 3,
+        "create_motor": 2,
+        "create_loads": 2,
+        "create_cigre_network_hv": 2,
+        "case6ww": 1,
+        "case_ieee30": 1,
+        "case39": 1
+      }
+    },
+    "augmented_dev_original_only": {
+      "n_examples": 19,
+      "top_k": {
+        "1": {
+          "recall": 0.1094,
+          "precision": 0.5789,
+          "hit_rate": 0.5789
+        },
+        "3": {
+          "recall": 0.2335,
+          "precision": 0.4211,
+          "hit_rate": 0.7368
+        },
+        "5": {
+          "recall": 0.3006,
+          "precision": 0.3368,
+          "hit_rate": 0.7368
+        },
+        "10": {
+          "recall": 0.5157,
+          "precision": 0.2947,
+          "hit_rate": 0.7895
+        },
+        "20": {
+          "recall": 0.6356,
+          "precision": 0.1763,
+          "hit_rate": 0.8947
+        }
+      },
+      "per_role_recall": {
+        "network_or_element_construction": {
+          "1": 0.1111,
+          "3": 0.1667,
+          "5": 0.3056,
+          "10": 0.7222,
+          "20": 0.8611
+        },
+        "network_loader": {
+          "1": 0.125,
+          "3": 0.25,
+          "5": 0.3125,
+          "10": 0.5625,
+          "20": 0.875
+        },
+        "other": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0667,
+          "10": 0.2,
+          "20": 0.2667
+        },
+        "controller_or_timeseries": {
+          "1": 0.2222,
+          "3": 0.6667,
+          "5": 0.7778,
+          "10": 0.8889,
+          "20": 0.8889
+        },
+        "analysis_executor": {
+          "1": 0.3333,
+          "3": 0.8889,
+          "5": 0.8889,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "plotting": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.2,
+          "20": 0.2
+        }
+      },
+      "label_frequency": {
+        "create_line": 7,
+        "create_empty_network": 7,
+        "create_bus": 7,
+        "mv_oberrhein": 6,
+        "create_ext_grid": 5,
+        "runpp": 5,
+        "create_std_type": 3,
+        "ConstControl": 3,
+        "DFData": 3,
+        "create_load": 3,
+        "create_nxgraph": 3,
+        "run_timeseries": 2,
+        "OutputWriter": 2,
+        "log_variable": 2,
+        "calc_sc": 2,
+        "simple_mv_open_ring_net": 2,
+        "create_bus_collection": 2,
+        "create_line_collection": 2,
+        "get_collection_sizes": 2,
+        "draw_collections": 2,
+        "parameter_from_std_type": 1,
+        "draw_traces": 1,
+        "connected_components": 1,
+        "get_plotly_color_palette": 1,
+        "create_bus_trace": 1,
+        "create_line_trace": 1,
+        "set_mapbox_token": 1,
+        "create_dcline": 1,
+        "case9": 1,
+        "get_equivalent": 1,
+        "drop_lines": 1,
+        "available_std_types": 1,
+        "convert_crs": 1,
+        "case14": 1,
+        "create_sgen": 1,
+        "example_simple": 1,
+        "simple_plot": 1,
+        "elements_on_path": 1,
+        "DiscreteTapControl": 1,
+        "from_tap_step_percent": 1
+      }
+    },
+    "augmented_dev_variant_only": {
+      "n_examples": 533,
+      "top_k": {
+        "1": {
+          "recall": 0.1369,
+          "precision": 0.5328,
+          "hit_rate": 0.5328
+        },
+        "3": {
+          "recall": 0.2836,
+          "precision": 0.3996,
+          "hit_rate": 0.7936
+        },
+        "5": {
+          "recall": 0.3625,
+          "precision": 0.3212,
+          "hit_rate": 0.863
+        },
+        "10": {
+          "recall": 0.5378,
+          "precision": 0.2527,
+          "hit_rate": 0.9325
+        },
+        "20": {
+          "recall": 0.6985,
+          "precision": 0.1681,
+          "hit_rate": 0.9775
+        }
+      },
+      "per_role_recall": {
+        "network_or_element_construction": {
+          "1": 0.0872,
+          "3": 0.2138,
+          "5": 0.3058,
+          "10": 0.5733,
+          "20": 0.8025
+        },
+        "controller_or_timeseries": {
+          "1": 0.3155,
+          "3": 0.5552,
+          "5": 0.6972,
+          "10": 0.7792,
+          "20": 0.8801
+        },
+        "network_loader": {
+          "1": 0.0588,
+          "3": 0.1787,
+          "5": 0.2828,
+          "10": 0.5498,
+          "20": 0.7466
+        },
+        "other": {
+          "1": 0.0212,
+          "3": 0.0485,
+          "5": 0.0788,
+          "10": 0.2,
+          "20": 0.3667
+        },
+        "analysis_executor": {
+          "1": 0.2553,
+          "3": 0.617,
+          "5": 0.7021,
+          "10": 0.8085,
+          "20": 0.9191
+        },
+        "plotting": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0366,
+          "20": 0.1098
+        }
+      },
+      "label_frequency": {
+        "create_empty_network": 182,
+        "ConstControl": 152,
+        "create_bus": 152,
+        "create_line": 108,
+        "mv_oberrhein": 106,
+        "create_ext_grid": 99,
+        "DFData": 87,
+        "runpp": 72,
+        "create_load": 70,
+        "create_std_type": 68,
+        "create_switch": 63,
+        "create_nxgraph": 63,
+        "OutputWriter": 59,
+        "log_variable": 59,
+        "run_timeseries": 58,
+        "create_poly_cost": 56,
+        "create_measurement": 50,
+        "simple_mv_open_ring_net": 48,
+        "calc_sc": 43,
+        "create_transformer": 39,
+        "runopp": 37,
+        "create_dcline": 33,
+        "example_simple": 32,
+        "case14": 30,
+        "create_bus_collection": 29,
+        "get_collection_sizes": 29,
+        "draw_collections": 29,
+        "parameter_from_std_type": 27,
+        "create_sgen": 26,
+        "create_gen": 26,
+        "create_buses": 23,
+        "available_std_types": 23,
+        "elements_on_path": 22,
+        "simple_plot": 21,
+        "create_shunt": 19,
+        "case9": 19,
+        "create_transformer3w": 18,
+        "draw_traces": 16,
+        "convert_crs": 16,
+        "create_line_collection": 16,
+        "case30": 15,
+        "simple_four_bus_system": 13,
+        "connected_components": 13,
+        "get_plotly_color_palette": 13,
+        "create_bus_trace": 13,
+        "create_switches": 13,
+        "from_tap_step_percent": 13,
+        "DiscreteTapControl": 13,
+        "create_impedance": 12,
+        "get_equivalent": 12,
+        "drop_lines": 12,
+        "case33bw": 11,
+        "set_mapbox_token": 11,
+        "example_multivoltage": 9,
+        "create_line_trace": 9,
+        "runpp_3ph": 9,
+        "estimate": 9,
+        "Fuse": 9,
+        "create_lines_from_parameters": 9,
+        "case4gs": 8,
+        "create_asymmetric_load": 8,
+        "create_cigre_network_mv": 8,
+        "rundcpp": 7,
+        "case300": 6,
+        "calculate_protection_times": 6,
+        "case5": 5,
+        "create_lines": 5,
+        "create_svc": 5,
+        "case118": 5,
+        "unsupplied_buses": 5,
+        "case24_ieee_rts": 4,
+        "create_asymmetric_sgen": 4,
+        "case57": 3,
+        "create_cigre_network_lv": 3,
+        "OCRelay": 3,
+        "create_storage": 3,
+        "TrafoController": 3,
+        "ContinuousTapControl": 3,
+        "pf_res_plotly": 3,
+        "create_motor": 2,
+        "create_loads": 2,
+        "create_cigre_network_hv": 2,
+        "case6ww": 1,
+        "case_ieee30": 1,
+        "case39": 1
+      }
+    },
+    "augmented_test": {
+      "n_examples": 633,
+      "top_k": {
+        "1": {
+          "recall": 0.1252,
+          "precision": 0.466,
+          "hit_rate": 0.466
+        },
+        "3": {
+          "recall": 0.2716,
+          "precision": 0.3591,
+          "hit_rate": 0.7536
+        },
+        "5": {
+          "recall": 0.372,
+          "precision": 0.309,
+          "hit_rate": 0.8341
+        },
+        "10": {
+          "recall": 0.5714,
+          "precision": 0.2499,
+          "hit_rate": 0.9321
+        },
+        "20": {
+          "recall": 0.7613,
+          "precision": 0.1729,
+          "hit_rate": 0.9858
+        }
+      },
+      "per_role_recall": {
+        "network_or_element_construction": {
+          "1": 0.1022,
+          "3": 0.2519,
+          "5": 0.3932,
+          "10": 0.67,
+          "20": 0.8944
+        },
+        "other": {
+          "1": 0.0275,
+          "3": 0.102,
+          "5": 0.1176,
+          "10": 0.2431,
+          "20": 0.6039
+        },
+        "network_loader": {
+          "1": 0.0736,
+          "3": 0.1681,
+          "5": 0.2487,
+          "10": 0.4378,
+          "20": 0.6427
+        },
+        "plotting": {
+          "1": 0.2537,
+          "3": 0.3134,
+          "5": 0.403,
+          "10": 0.5373,
+          "20": 0.6866
+        },
+        "analysis_executor": {
+          "1": 0.1658,
+          "3": 0.407,
+          "5": 0.4874,
+          "10": 0.6382,
+          "20": 0.794
+        },
+        "controller_or_timeseries": {
+          "1": 0.1423,
+          "3": 0.2633,
+          "5": 0.3986,
+          "10": 0.6192,
+          "20": 0.8185
+        }
+      },
+      "label_frequency": {
+        "create_bus": 207,
+        "create_empty_network": 202,
+        "runpp": 145,
+        "mv_oberrhein": 115,
+        "create_load": 112,
+        "ConstControl": 108,
+        "runopp": 104,
+        "create_ext_grid": 102,
+        "create_poly_cost": 101,
+        "create_transformer": 98,
+        "create_gen": 75,
+        "create_line": 66,
+        "DFData": 64,
+        "run_timeseries": 62,
+        "OutputWriter": 62,
+        "create_bus_collection": 61,
+        "draw_collections": 61,
+        "log_variable": 61,
+        "case14": 51,
+        "case9": 44,
+        "example_simple": 44,
+        "get_collection_sizes": 43,
+        "create_measurement": 42,
+        "create_line_collection": 40,
+        "create_dcline": 37,
+        "create_switch": 37,
+        "create_svc": 29,
+        "Controller": 28,
+        "set_user_pf_options": 25,
+        "case30": 22,
+        "create_transformer3w": 22,
+        "available_std_types": 22,
+        "ieee_european_lv_asymmetric": 22,
+        "create_storage": 21,
+        "rundcpp": 20,
+        "calc_sc": 20,
+        "ContinuousTapControl": 19,
+        "create_sgen": 18,
+        "create_shunt": 17,
+        "create_asymmetric_sgen": 17,
+        "rundcopp": 17,
+        "create_nxgraph": 17,
+        "create_cigre_network_hv": 16,
+        "case4gs": 16,
+        "create_impedance": 15,
+        "create_transformer_from_parameters": 15,
+        "panda_four_load_branch": 14,
+        "connected_components": 14,
+        "estimate": 13,
+        "create_asymmetric_load": 13,
+        "simple_four_bus_system": 12,
+        "case39": 10,
+        "case_ieee30": 10,
+        "create_std_types": 10,
+        "case5": 9,
+        "run_contingency": 9,
+        "runpp_3ph": 8,
+        "get_equivalent": 8,
+        "create_line_from_parameters": 7,
+        "case24_ieee_rts": 6,
+        "create_motor": 6,
+        "example_multivoltage": 6,
+        "get_boundaries_by_bus_zone_with_boundary_branches": 6,
+        "set_bus_zone_by_boundary_branches": 6,
+        "create_xward": 5,
+        "case118": 5,
+        "case33bw": 5,
+        "to_json": 5,
+        "from_json": 5,
+        "create_generic_coordinates": 4,
+        "create_cigre_network_mv": 4,
+        "draw_traces": 3,
+        "create_bus_trace": 3,
+        "create_annotation_collection": 3,
+        "case6ww": 3,
+        "case300": 3,
+        "case57": 3,
+        "elements_on_path": 3,
+        "simple_mv_open_ring_net": 3,
+        "create_cigre_network_lv": 3,
+        "simple_plotly": 3,
+        "create_trafo_collection": 2,
+        "create_buses": 1
+      }
+    },
+    "augmented_test_original_only": {
+      "n_examples": 23,
+      "top_k": {
+        "1": {
+          "recall": 0.1022,
+          "precision": 0.5217,
+          "hit_rate": 0.5217
+        },
+        "3": {
+          "recall": 0.2337,
+          "precision": 0.4058,
+          "hit_rate": 0.7826
+        },
+        "5": {
+          "recall": 0.3478,
+          "precision": 0.3826,
+          "hit_rate": 0.8261
+        },
+        "10": {
+          "recall": 0.6247,
+          "precision": 0.3261,
+          "hit_rate": 0.9565
+        },
+        "20": {
+          "recall": 0.8202,
+          "precision": 0.2217,
+          "hit_rate": 1.0
+        }
+      },
+      "per_role_recall": {
+        "network_or_element_construction": {
+          "1": 0.1034,
+          "3": 0.2069,
+          "5": 0.3448,
+          "10": 0.6897,
+          "20": 0.9138
+        },
+        "network_loader": {
+          "1": 0.0455,
+          "3": 0.1818,
+          "5": 0.2727,
+          "10": 0.5,
+          "20": 0.7727
+        },
+        "controller_or_timeseries": {
+          "1": 0.0833,
+          "3": 0.3333,
+          "5": 0.5833,
+          "10": 0.6667,
+          "20": 0.75
+        },
+        "analysis_executor": {
+          "1": 0.1765,
+          "3": 0.4118,
+          "5": 0.5294,
+          "10": 0.6471,
+          "20": 0.8824
+        },
+        "plotting": {
+          "1": 0.3333,
+          "3": 0.3333,
+          "5": 0.6667,
+          "10": 0.6667,
+          "20": 0.6667
+        },
+        "other": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.3333,
+          "20": 0.6667
+        }
+      },
+      "label_frequency": {
+        "create_empty_network": 11,
+        "create_bus": 11,
+        "create_transformer": 8,
+        "create_load": 8,
+        "runpp": 8,
+        "create_ext_grid": 7,
+        "mv_oberrhein": 6,
+        "create_line": 5,
+        "create_gen": 5,
+        "runopp": 5,
+        "create_poly_cost": 5,
+        "create_bus_collection": 3,
+        "create_line_collection": 3,
+        "draw_collections": 3,
+        "ConstControl": 3,
+        "run_timeseries": 3,
+        "DFData": 3,
+        "OutputWriter": 3,
+        "log_variable": 3,
+        "case9": 2,
+        "example_simple": 2,
+        "ContinuousTapControl": 2,
+        "get_collection_sizes": 2,
+        "Controller": 1,
+        "create_transformer_from_parameters": 1,
+        "create_dcline": 1,
+        "rundcopp": 1,
+        "case14": 1,
+        "set_user_pf_options": 1,
+        "create_nxgraph": 1,
+        "connected_components": 1,
+        "ieee_european_lv_asymmetric": 1,
+        "available_std_types": 1
+      }
+    },
+    "augmented_test_variant_only": {
+      "n_examples": 610,
+      "top_k": {
+        "1": {
+          "recall": 0.1261,
+          "precision": 0.4639,
+          "hit_rate": 0.4639
+        },
+        "3": {
+          "recall": 0.273,
+          "precision": 0.3574,
+          "hit_rate": 0.7525
+        },
+        "5": {
+          "recall": 0.3729,
+          "precision": 0.3062,
+          "hit_rate": 0.8344
+        },
+        "10": {
+          "recall": 0.5693,
+          "precision": 0.247,
+          "hit_rate": 0.9311
+        },
+        "20": {
+          "recall": 0.7591,
+          "precision": 0.1711,
+          "hit_rate": 0.9852
+        }
+      },
+      "per_role_recall": {
+        "network_or_element_construction": {
+          "1": 0.1022,
+          "3": 0.2541,
+          "5": 0.3956,
+          "10": 0.669,
+          "20": 0.8934
+        },
+        "other": {
+          "1": 0.0285,
+          "3": 0.1057,
+          "5": 0.122,
+          "10": 0.2398,
+          "20": 0.6016
+        },
+        "network_loader": {
+          "1": 0.0747,
+          "3": 0.1676,
+          "5": 0.2477,
+          "10": 0.4353,
+          "20": 0.6375
+        },
+        "plotting": {
+          "1": 0.25,
+          "3": 0.3125,
+          "5": 0.3906,
+          "10": 0.5312,
+          "20": 0.6875
+        },
+        "analysis_executor": {
+          "1": 0.1654,
+          "3": 0.4068,
+          "5": 0.4856,
+          "10": 0.6378,
+          "20": 0.79
+        },
+        "controller_or_timeseries": {
+          "1": 0.145,
+          "3": 0.2602,
+          "5": 0.3903,
+          "10": 0.6171,
+          "20": 0.8216
+        }
+      },
+      "label_frequency": {
+        "create_bus": 196,
+        "create_empty_network": 191,
+        "runpp": 137,
+        "mv_oberrhein": 109,
+        "ConstControl": 105,
+        "create_load": 104,
+        "runopp": 99,
+        "create_poly_cost": 96,
+        "create_ext_grid": 95,
+        "create_transformer": 90,
+        "create_gen": 70,
+        "create_line": 61,
+        "DFData": 61,
+        "run_timeseries": 59,
+        "OutputWriter": 59,
+        "create_bus_collection": 58,
+        "draw_collections": 58,
+        "log_variable": 58,
+        "case14": 50,
+        "create_measurement": 42,
+        "case9": 42,
+        "example_simple": 42,
+        "get_collection_sizes": 41,
+        "create_line_collection": 37,
+        "create_switch": 37,
+        "create_dcline": 36,
+        "create_svc": 29,
+        "Controller": 27,
+        "set_user_pf_options": 24,
+        "case30": 22,
+        "create_transformer3w": 22,
+        "create_storage": 21,
+        "available_std_types": 21,
+        "ieee_european_lv_asymmetric": 21,
+        "rundcpp": 20,
+        "calc_sc": 20,
+        "create_sgen": 18,
+        "create_shunt": 17,
+        "create_asymmetric_sgen": 17,
+        "ContinuousTapControl": 17,
+        "create_cigre_network_hv": 16,
+        "case4gs": 16,
+        "rundcopp": 16,
+        "create_nxgraph": 16,
+        "create_impedance": 15,
+        "panda_four_load_branch": 14,
+        "create_transformer_from_parameters": 14,
+        "estimate": 13,
+        "create_asymmetric_load": 13,
+        "connected_components": 13,
+        "simple_four_bus_system": 12,
+        "case39": 10,
+        "case_ieee30": 10,
+        "create_std_types": 10,
+        "case5": 9,
+        "run_contingency": 9,
+        "runpp_3ph": 8,
+        "get_equivalent": 8,
+        "create_line_from_parameters": 7,
+        "case24_ieee_rts": 6,
+        "create_motor": 6,
+        "example_multivoltage": 6,
+        "get_boundaries_by_bus_zone_with_boundary_branches": 6,
+        "set_bus_zone_by_boundary_branches": 6,
+        "create_xward": 5,
+        "case118": 5,
+        "case33bw": 5,
+        "to_json": 5,
+        "from_json": 5,
+        "create_generic_coordinates": 4,
+        "create_cigre_network_mv": 4,
+        "draw_traces": 3,
+        "create_bus_trace": 3,
+        "create_annotation_collection": 3,
+        "case6ww": 3,
+        "case300": 3,
+        "case57": 3,
+        "elements_on_path": 3,
+        "simple_mv_open_ring_net": 3,
+        "create_cigre_network_lv": 3,
+        "simple_plotly": 3,
+        "create_trafo_collection": 2,
+        "create_buses": 1
+      }
+    },
+    "benchmark_reference_eval_only": {
+      "n_examples": 10,
+      "top_k": {
+        "1": {
+          "recall": 0.1178,
+          "precision": 0.6,
+          "hit_rate": 0.6
+        },
+        "3": {
+          "recall": 0.245,
+          "precision": 0.5333,
+          "hit_rate": 0.8
+        },
+        "5": {
+          "recall": 0.3906,
+          "precision": 0.5,
+          "hit_rate": 0.9
+        },
+        "10": {
+          "recall": 0.6472,
+          "precision": 0.42,
+          "hit_rate": 1.0
+        },
+        "20": {
+          "recall": 0.7797,
+          "precision": 0.255,
+          "hit_rate": 1.0
+        }
+      },
+      "per_role_recall": {
+        "network_loader": {
+          "1": 0.0,
+          "3": 0.2,
+          "5": 0.4,
+          "10": 0.5,
+          "20": 0.7
+        },
+        "analysis_executor": {
+          "1": 0.4,
+          "3": 0.5,
+          "5": 0.6,
+          "10": 0.9,
+          "20": 1.0
+        },
+        "network_or_element_construction": {
+          "1": 0.0625,
+          "3": 0.1562,
+          "5": 0.3438,
+          "10": 0.6875,
+          "20": 0.7812
+        },
+        "controller_or_timeseries": {
+          "1": 0.0,
+          "3": 0.4444,
+          "5": 0.4444,
+          "10": 0.6667,
+          "20": 1.0
+        }
+      },
+      "label_frequency": {
+        "create_empty_network": 7,
+        "create_bus": 7,
+        "create_load": 7,
+        "create_line_from_parameters": 6,
+        "create_ext_grid": 6,
+        "runpp": 5,
+        "ConstControl": 3,
+        "run_timeseries": 3,
+        "DFData": 3,
+        "OutputWriter": 3,
+        "case14": 2,
+        "create_transformer_from_parameters": 2,
+        "create_sgen": 1,
+        "estimate": 1,
+        "create_measurement": 1,
+        "runopp": 1,
+        "create_poly_cost": 1,
+        "case9": 1,
+        "create_gen": 1
+      }
+    }
+  }
+}

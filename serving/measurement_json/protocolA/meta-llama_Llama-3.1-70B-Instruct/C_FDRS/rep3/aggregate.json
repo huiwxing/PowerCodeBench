@@ -1,0 +1,39 @@
+{
+  "cluster_avg_power_w": 424.43786127902837,
+  "completion_tokens": 189773,
+  "duration_s_by_node": {
+    "nid010130": 2660.042920293985
+  },
+  "energy_methods": [
+    "nvml_total_energy_counter"
+  ],
+  "energy_scope": [
+    "gross_device_energy"
+  ],
+  "hostnames": [
+    "nid010130"
+  ],
+  "j_per_completion_token": 5.949333825148993,
+  "j_per_request": 3763.4097599999996,
+  "j_per_successful_request": 6102.826637837837,
+  "j_per_total_token": 1.0871785141681807,
+  "n_gpus": 2,
+  "n_nodes": 1,
+  "peak_memory_used_bytes_max_device": 98309439488,
+  "peak_memory_used_bytes_sum": 196618878976,
+  "prompt_tokens": 848716,
+  "representative_window_s": 2660.042920293985,
+  "requests": 300,
+  "requests_per_s": 0.11278013512911451,
+  "schema_version": 1,
+  "source_files": [
+    "probe_eval_results/e3_protocolA/meta-llama_Llama-3.1-70B-Instruct/C_FDRS/rep3/energy_5786607_nid010130.json"
+  ],
+  "start_skew_s": 0.0,
+  "stop_skew_s": 0.0,
+  "successful_requests": 185,
+  "total_energy_j": 1129022.9279999998,
+  "total_tokens": 1038489.0,
+  "total_tokens_per_s": 390.40309916699664,
+  "wall_span_s": 2660.0429196357727
+}

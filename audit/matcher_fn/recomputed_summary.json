@@ -1,0 +1,208 @@
+{
+  "historical_aggregate": {
+    "breakdowns_arithmetically_consistent": true,
+    "nominal_wilson95": [
+      0.04109346148438063,
+      0.14998107700948732
+    ],
+    "population_transport_performed": false,
+    "reported_counts": {
+      "ambiguous": 5,
+      "confirmed_false_negative": 8,
+      "genuine_error": 87
+    },
+    "reproducibility_status": "aggregate-only: no item-level adjudication ledger",
+    "unweighted_rate": 0.08,
+    "upheld_subtype_aggregate": {
+      "parser_extraction": 8
+    }
+  },
+  "sample_provenance": {
+    "all_executed_but_unmatched": true,
+    "all_source_record_hashes_verified": true,
+    "conditions": {
+      "A": 11,
+      "A_FD": 9,
+      "A_FDR": 7,
+      "A_FDRS": 6,
+      "C": 36,
+      "C_FD": 6,
+      "C_FDR": 12,
+      "C_FDRS": 13
+    },
+    "item_level_adjudication_present": false,
+    "n": 100,
+    "n_difficulty_levels": 4,
+    "n_models": 15,
+    "n_task_families": 15,
+    "normalization_records_modified": 2,
+    "normalization_replacements": 6,
+    "normalization_verified": true,
+    "source_commit": "425e82847b5ff4b9c4cd4c6ee09e9c79f6950e3e",
+    "tiers": {
+      "api": 28,
+      "tier1": 18,
+      "tier2": 18,
+      "tier3": 18,
+      "tier4": 18
+    }
+  },
+  "status": "ok",
+  "unique_census": {
+    "audit_rate_transport_performed": false,
+    "deduplication_key": [
+      "condition",
+      "model"
+    ],
+    "eight_condition_diagnostic_frame": {
+      "cells": 104,
+      "executed": 94445,
+      "executed_but_unmatched": 35446,
+      "matched": 58999,
+      "parse_failures": 7824,
+      "total": 208000
+    },
+    "full_unique_panel": {
+      "cells": 196,
+      "executed": 188297,
+      "executed_but_unmatched": 66810,
+      "matched": 121487,
+      "parse_failures": 16551,
+      "total": 392000
+    },
+    "input_artifacts": [
+      "results/aggregates/api_comparison_2000/proactive_comparison.json",
+      "results/aggregates/api_comparison_2000/reactive_comparison.json"
+    ],
+    "per_condition": {
+      "A": {
+        "cells": 15,
+        "executed": 4090,
+        "executed_but_unmatched": 1938,
+        "matched": 2152,
+        "parse_failures": 169,
+        "total": 30000
+      },
+      "A_FD": {
+        "cells": 11,
+        "executed": 5118,
+        "executed_but_unmatched": 2656,
+        "matched": 2462,
+        "parse_failures": 489,
+        "total": 22000
+      },
+      "A_FDR": {
+        "cells": 11,
+        "executed": 5762,
+        "executed_but_unmatched": 2906,
+        "matched": 2856,
+        "parse_failures": 576,
+        "total": 22000
+      },
+      "A_FDRS": {
+        "cells": 11,
+        "executed": 5721,
+        "executed_but_unmatched": 2637,
+        "matched": 3084,
+        "parse_failures": 196,
+        "total": 22000
+      },
+      "A_FX": {
+        "cells": 11,
+        "executed": 4653,
+        "executed_but_unmatched": 2319,
+        "matched": 2334,
+        "parse_failures": 496,
+        "total": 22000
+      },
+      "B": {
+        "cells": 11,
+        "executed": 2852,
+        "executed_but_unmatched": 1058,
+        "matched": 1794,
+        "parse_failures": 73,
+        "total": 22000
+      },
+      "C": {
+        "cells": 15,
+        "executed": 17503,
+        "executed_but_unmatched": 6792,
+        "matched": 10711,
+        "parse_failures": 1583,
+        "total": 30000
+      },
+      "C_FD": {
+        "cells": 11,
+        "executed": 14170,
+        "executed_but_unmatched": 4746,
+        "matched": 9424,
+        "parse_failures": 1501,
+        "total": 22000
+      },
+      "C_FDR": {
+        "cells": 15,
+        "executed": 20571,
+        "executed_but_unmatched": 6782,
+        "matched": 13789,
+        "parse_failures": 2104,
+        "total": 30000
+      },
+      "C_FDRS": {
+        "cells": 15,
+        "executed": 21510,
+        "executed_but_unmatched": 6989,
+        "matched": 14521,
+        "parse_failures": 1206,
+        "total": 30000
+      },
+      "C_FX": {
+        "cells": 15,
+        "executed": 19979,
+        "executed_but_unmatched": 6555,
+        "matched": 13424,
+        "parse_failures": 2106,
+        "total": 30000
+      },
+      "X": {
+        "cells": 11,
+        "executed": 11909,
+        "executed_but_unmatched": 4272,
+        "matched": 7637,
+        "parse_failures": 1075,
+        "total": 22000
+      },
+      "X_FD": {
+        "cells": 11,
+        "executed": 13571,
+        "executed_but_unmatched": 4343,
+        "matched": 9228,
+        "parse_failures": 1283,
+        "total": 22000
+      },
+      "X_FDR": {
+        "cells": 11,
+        "executed": 13675,
+        "executed_but_unmatched": 4289,
+        "matched": 9386,
+        "parse_failures": 1382,
+        "total": 22000
+      },
+      "X_FDRS": {
+        "cells": 11,
+        "executed": 14167,
+        "executed_but_unmatched": 4505,
+        "matched": 9662,
+        "parse_failures": 940,
+        "total": 22000
+      },
+      "X_FX": {
+        "cells": 11,
+        "executed": 13046,
+        "executed_but_unmatched": 4023,
+        "matched": 9023,
+        "parse_failures": 1372,
+        "total": 22000
+      }
+    }
+  }
+}

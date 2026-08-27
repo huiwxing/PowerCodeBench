@@ -1,0 +1,118 @@
+{
+ "note": "E4 Layer-2a ROUND-2 hard-boundary cases jointly reviewed by the two practising power-systems engineers under the frozen §2.2b rules. These 6 of the 69 shortlist items are genuine 50/50 calls: a faithful, unique, executable pandapower reference solution is arguable but not clearly authorable without touching a frozen red line (four-element preservation, canonical uniqueness, feature-gap, or theory-vs-task). They were not among the 8 directly built items. The two engineers reviewed all 6 against the original full texts where available (EE.SE items conservatively on excerpts because the site was unreachable): 2 INCLUDE (gh#1736 with corrected build sketch -> l2a_ext_009; gh#1762 sketch maintained -> l2a_ext_010) and 4 EXCLUDE. Round-2 frozen at n=10.",
+ "criteria": "E4 §2.2b frozen; precedents from round-1 expert adjudication (#704/#2003 non-builtin network; #1527 no-canonical-unique; feature-gap; plotting/theory exclusion).",
+ "adjudicator": "two practising power-systems engineers, jointly under the frozen rules",
+ "counts": {
+  "n_shortlist": 69,
+  "n_include_prescreen": 8,
+  "n_disagreement": 6,
+  "n_exclude_prescreen": 55,
+  "adjudication": {
+   "include": 2,
+   "exclude": 4
+  },
+  "n_final_built": 10
+ },
+ "disagreements": [
+  {
+   "candidate_id": "github_discussion:1736",
+   "source_platform": "github_discussions",
+   "url": "https://github.com/e2nIEE/pandapower/discussions/1736",
+   "title": "short-circuit impedance transformer pandapower",
+   "theme": "short_circuit",
+   "lean": "borderline (weak-include)",
+   "argument_include": "Short-circuit is an under-represented, high-value out-of-scenario theme. A faithful task exists: build a small net with a transformer, run calc_sc, report the short-circuit current (ikss_ka) downstream of the transformer. Network is unspecified -> §2.2c permits a self-built net (round-1 kept several custom_feeder_sc items).",
+   "argument_exclude": "The title/excerpt are ambiguous between (a) a demand for a computed short-circuit RESULT (ikss) and (b) a modelling/parameter question about the transformer's short-circuit IMPEDANCE (vk/vkr) — reading (b) is a parameterisation-curiosity exclusion. The 22-word excerpt ('I am a student... I have') gives no target quantity, so choosing one risks authoring the target backward.",
+   "if_included_build_sketch": "custom small net (ext_grid -> transformer -> LV bus), pp.shortcircuit.calc_sc(fault='3ph'), report res_bus_sc.ikss_ka at the LV bus.",
+   "expert_verdict": {
+    "decision": "INCLUDE",
+    "date": "2026-07-25",
+    "basis": "Full original post retrieved: the author asks for the INTERNAL short-circuit impedance / magnetising admittance values pandapower derives from the nameplate vk/vkr/pfe/i0 parameters - a result-extraction demand, not a parameterisation curiosity.",
+    "build_correction": "Corrected sketch: no calc_sc. Build a transformer from nameplate parameters and extract the internally derived per-unit branch impedance magnitude via the deterministic internal branch representation.",
+    "built_as": "l2a_ext_009"
+   }
+  },
+  {
+   "candidate_id": "github_discussion:1762",
+   "source_platform": "github_discussions",
+   "url": "https://github.com/e2nIEE/pandapower/discussions/1762",
+   "title": "Frequency control in AC power flow calculation?",
+   "theme": "power_flow",
+   "lean": "borderline (weak-exclude)",
+   "argument_include": "pandapower does support a distributed-slack AC power flow (runpp(distributed_slack=True) with gen slack_weight), which is the concrete feature that answers this question. A unique task exists: build a net with two weighted gens, run distributed-slack pf, report one gen's active power (the frequency-response split).",
+   "argument_exclude": "Mapping 'frequency control' -> 'distributed slack' is interpretive: primary frequency response and pandapower's steady-state distributed-slack are not the same object, so the rewrite would drift the analysis-type element (one of the 4 frozen semantics). The original is phrased as a capability question ('is there any built-in method').",
+   "if_included_build_sketch": "custom 3-bus, 2 gens with slack_weight, pp.runpp(net, distributed_slack=True), report res_gen.p_mw of the non-reference gen.",
+   "expert_verdict": {
+    "decision": "INCLUDE",
+    "date": "2026-07-25",
+    "basis": "Full post confirms a built-in-method demand answered by weighted slack distribution in the AC power flow; the interpretive gap is acceptable under the four-element rule.",
+    "build_correction": "None - original sketch maintained (3-bus, two weighted gens, distributed-slack pf, non-reference gen p_mw).",
+    "built_as": "l2a_ext_010"
+   }
+  },
+  {
+   "candidate_id": "github_discussion:1884",
+   "source_platform": "github_discussions",
+   "url": "https://github.com/e2nIEE/pandapower/discussions/1884",
+   "title": "Control strategy for multiple OLTC-coupled transformer",
+   "theme": "der_control",
+   "lean": "borderline",
+   "argument_include": "Tap control is convertible and round-1 already used ContinuousTapControl: build a net with a tap-changing transformer whose controller holds a bus voltage setpoint, run pf, report the settled tap position or controlled-bus voltage.",
+   "argument_exclude": "The question is explicitly about the coupled-control STRATEGY between MULTIPLE OLTC transformers ('enquire on the strategy used') — a mechanism-curiosity framing, and coupled multi-tap coordination has no single canonical pandapower solution (uniqueness risk, cf. #1527).",
+   "if_included_build_sketch": "custom HV/MV net, 2 transformers with ContinuousTapControl to a shared setpoint, pp.runpp, report a controlled-bus vm_pu (single-transformer reduction to preserve uniqueness).",
+   "expert_verdict": {
+    "decision": "EXCLUDE",
+    "date": "2026-07-25",
+    "basis": "Full text confirms mechanism curiosity about the coupled multi-OLTC control strategy; no unique task."
+   }
+  },
+  {
+   "candidate_id": "github_discussion:2236",
+   "source_platform": "github_discussions",
+   "url": "https://github.com/e2nIEE/pandapower/discussions/2236",
+   "title": "Unbalanced voltage references for three phase asymmetrical power flow in LV grids",
+   "theme": "three_phase",
+   "lean": "borderline",
+   "argument_include": "Three-phase/unbalanced is a valuable out-of-scenario theme (only 4 in the n=84 set). A faithful 3ph task exists: build a small unbalanced LV feeder, run runpp_3ph, report the lowest per-phase voltage.",
+   "argument_exclude": "The specific novel ask is setting UNBALANCED voltage REFERENCES at the slack — pandapower's ext_grid in runpp_3ph uses a balanced positive-sequence source, so the exact demand may be feature-limited; a faithful rewrite might have to drop the 'unbalanced references' element (four-element preservation risk).",
+   "if_included_build_sketch": "custom small LV feeder with per-phase asymmetric_load, pp.runpp_3ph, report min over res_bus_3ph.vm_a/b/c_pu.",
+   "expert_verdict": {
+    "decision": "EXCLUDE",
+    "date": "2026-07-25",
+    "basis": "Feature-gap: ext_grid does not support per-phase unbalanced voltage references; a faithful rewrite is impossible."
+   }
+  },
+  {
+   "candidate_id": "electronics:543841",
+   "source_platform": "ee_stackexchange",
+   "url": "https://electronics.stackexchange.com/questions/543841/balanced-and-unbalanced-short-circuit-voltage-of-transformer",
+   "title": "Balanced and unbalanced short circuit voltage of transformer",
+   "theme": "short_circuit",
+   "lean": "borderline (prized platform)",
+   "argument_include": "Electrical-Engineering.SE is a prized platform for source diversity (0 built so far); the topic (transformer balanced vs unbalanced short-circuit behaviour) can be pointed at a pandapower calc_sc task with balanced vs single-phase faults.",
+   "argument_exclude": "The post is a power-systems THEORY question ('where to start', positive/zero sequence of a transformer's short-circuit voltage) that merely mentions pandapower in full-text; converting it to a fault-current demand changes the analysis type and target quantity (four-element drift). It reads as an open-ended discussion with no concrete pandapower output quantity.",
+   "if_included_build_sketch": "custom 3ph net with a transformer, calc_sc for 3ph vs 1ph faults, report the ratio or one ikss_ka.",
+   "expert_verdict": {
+    "decision": "EXCLUDE",
+    "date": "2026-07-25",
+    "basis": "Theory question. Conservative ruling on the stored excerpt - full text unreachable (site blocks fetching from this environment)."
+   }
+  },
+  {
+   "candidate_id": "electronics:579875",
+   "source_platform": "ee_stackexchange",
+   "url": "https://electronics.stackexchange.com/questions/579875/how-to-change-per-unit-base-before-power-flow-calculation",
+   "title": "How to change per unit base before power flow calculation",
+   "theme": "power_flow",
+   "lean": "borderline (prized platform)",
+   "argument_include": "Prized EE.SE platform. Convertible reading: parameterise a transformer/grid with quantities given on one per-unit base, build the net so pandapower's internal base is consistent, run pf, report a per-unit bus voltage.",
+   "argument_exclude": "The core ask is a per-unit base-change THEORY/derivation question (pandapower handles p.u. internally, so there is no user-facing 'change the base' operation); a faithful pandapower demand with a unique output quantity is hard to author without inventing the task. Reads as modelling-curiosity.",
+   "if_included_build_sketch": "custom 2-bus with a transformer parameterised from nameplate data, pp.runpp, report res_bus.vm_pu at the LV bus.",
+   "expert_verdict": {
+    "decision": "EXCLUDE",
+    "date": "2026-07-25",
+    "basis": "Theory question (per-unit base-change derivation). Conservative ruling on the stored excerpt - full text unreachable (site blocks fetching from this environment)."
+   }
+  }
+ ]
+}

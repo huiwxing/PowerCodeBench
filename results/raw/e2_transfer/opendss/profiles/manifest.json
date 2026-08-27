@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "artifact": "OpenDSS E2 probe profiles and per-probe evaluation records",
+  "scope": "Three frozen transfer-pilot models; 76 functions with complete L0-L3 probe records.",
+  "provenance": {
+    "source_repository_commit": "425e82847b5ff4b9c4cd4c6ee09e9c79f6950e3e",
+    "source_tree_last_modified_commit": "6990ac025ad3b7eb26d9767c5cc470eaef02374f",
+    "source_tree_last_modified_utc": "2026-08-01T12:34:11Z",
+    "source_tree_status": "clean",
+    "source_root": "probe_eval_results/e2_opendss_profiles"
+  },
+  "release_normalization": "A single terminal LF was appended to each source JSON during migration; JSON values are unchanged. Both source and release hashes are recorded below.",
+  "models": {
+    "Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "directory": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "files": {
+        "knowledge_profile.json": ["df882121a49c148c6504255b9848a22df76f2e2c", 81254, "149dc6e9ddc84dd17752f29c089d044804e36ac84f39008a1e52b7cd92b1ed11", 81255, "e112b68654d7dc80891954920169606af9a032d657674b6e86ec67a16c125df5"],
+        "results_L0_recognition.json": ["333099a16df4799095db631df9df550fa4f32a94", 105018, "008af377ae219f2fb4397a64ab3018b790223101e8361efb8517c5e4bb7d385b", 105019, "2957504d8fd1925d6498a856f112b7d821df673b264ed09a87d2a50b7427c1e7"],
+        "results_L1_recall.json": ["64620cc2302e5186e70d8331b9c1528f5a55bd94", 57394, "d7a5ea9951447cd2c30b5a30e3ae169de7f3570c6f0a909eda547ec4dfa82b55", 57395, "9919c6659872054f55231b592bbc7fc90e5b8f75a5180d6178ee7b32f7f82b34"],
+        "results_L2_comprehension.json": ["71c134a135fe3a386ee5ee912a81303229eeb143", 244308, "967ba98d41278f84bd5738f163773946a7aa916075bd6f377441e217b1684bdb", 244309, "3fac0e7e489f0b97a9974217cea16d77f6e4a1a08d3b58ed8d3069fe7ac6a469"],
+        "results_L3_application.json": ["53e026e6eb4a4d9b065a54aa7c7f6fafbd7efbd9", 172103, "6c18d00bb817185f420d77f31d44f80d8d3543c96b31280e4b3d13141cc195b2", 172104, "80bb515119c04010a59fe89576cfa943c9e6e417c5bb800f171b96dec7c55e5f"],
+        "summary.json": ["d386a6845f73b4d3bff152fa9bcf95334897b840", 2601, "c43239a41a10b000b518d143b8858176fc451fdedce5fbc2ecca5aebd332a6ed", 2602, "5d0db20723224aca09a70b8a69de5329404f3955cf764c0f9adbd71779a1d80a"]
+      }
+    },
+    "meta-llama/Llama-3.1-70B-Instruct": {
+      "directory": "meta-llama_Llama-3.1-70B-Instruct",
+      "files": {
+        "knowledge_profile.json": ["996912badd5a28922fbb110d695cf5d7e6814b69", 81260, "4c8cbe4ac8a2bd39c9e799da68fdc78521033b0b8149597823223efea2f7ab2c", 81261, "aeb0356f5197ccdf63445627c96f75508aac57605e9d854f71fb0685a1d50d53"],
+        "results_L0_recognition.json": ["e5a0bd3a80251ec3904a7093b23d1ed358e9f1bb", 125132, "c63f07419f9390965c6768c3158f2969419a0385334e017df4cb9c03b43fc3f1", 125133, "e221df08a0c11e579b89f3a8aa9eb2410875f39af28790d7261a2fae66f9a016"],
+        "results_L1_recall.json": ["6d22db94f4ba198d4d26d8f0016fbde439e5b98a", 62183, "6ca5eced8a416aa4b4d69f618880e30348a70019223d685b6f92d6eef1e47009", 62184, "406b7987b4539daa8f4ce8e989d465b8fe7ec2f02ceaebc839f3414578cfb4cb"],
+        "results_L2_comprehension.json": ["2acee49fb76f56139c150e8478f59f09510f822c", 245170, "5ba39408e26267c385f53c0d60f9db3bf3f1853d1300bc1194e3ad4b5c0aaec4", 245171, "9a4968b813ad0543283c5724943a2f1b708a4d7d37ea2c2019887642dd699d52"],
+        "results_L3_application.json": ["a43a7ba1dcf6b62e8c612d1ce81a324b314a64c0", 473165, "a1e0f0d92b59bcd60a49e22e40ac16a7191c96caab3051fb4a0f009ed5fd9f3d", 473166, "32a563928889af076ba6918cda9fa79acf99cec3542ccbe79b04ff02b9583a63"],
+        "summary.json": ["a1f84b6ab0ba39aa7c2b2975807e9a56057dfdd3", 2609, "e6828a8a97791f131d8b6f4600ed4d2a79b9718345dd2ae8b5269c6b8f73e47e", 2610, "72858e3f5929f86d9f8b089b6e9f755f4f65d61d44b26805e1a05c8f91c5a4aa"]
+      }
+    },
+    "deepseek-v4-flash": {
+      "directory": "deepseek-v4-flash",
+      "files": {
+        "knowledge_profile.json": ["84757de9de90a77aa3e0a47f736d603d337794a1", 81222, "dacca7f48841511635642f8144cf062591db973d7428cfa3fa01ae77c959aafb", 81223, "965e7f46a1d439979eb5860de7ba50eef35b0a372474e12c53d0bcc9b9162100"],
+        "results_L0_recognition.json": ["511cc4868d08f9fceb26a2a7740f3f56a9aff257", 135685, "4f5d1fedcbea178dc9ee39c515f4ca97b7dc055306790394e8175b8313dc49c8", 135686, "15a4a72b9fea3722daca6e1192bd04f098cee4c74851b7a5c7390838c195ec9d"],
+        "results_L1_recall.json": ["6184d62f67d05dcb2bc8e0625619dc992a410aaa", 56203, "09dce6a168727c912cc165f3bf48b7d397191862a73694fcd60a883f5871655b", 56204, "e1802543c062d0d1d5506822c3f2763eb0510039d05330fa7eca7fc899d57fe6"],
+        "results_L2_comprehension.json": ["69d455123fd3e72eb9d8779f28d60af778113d1c", 256587, "2b7c5289140a985dbd3b259e0b6b468ca6869d99267fbdc0009436e81e9bf43b", 256588, "f1b6d87575ea0ae2a04560b3093091fe5a1cce743f750bb036f803b812d05611"],
+        "results_L3_application.json": ["453ca5cd84f60844f2cdeb06f731aa013d583108", 183051, "7c92c8b8b5fb9da05d5de0a8068841e5172cc40cd80c03856d2acaf019ce8bbd", 183052, "2fe9b721ab4d7021312d7050e9067813e0eb4c5c8356071853296621c1510dd1"],
+        "summary.json": ["aacdc91979e19d98c7074367590138364169d24e", 2601, "1ac8b9b26521a2bfd4c465defb6706cda46b5db96044bfb58501f9ea52985a65", 2602, "1ab7a114f0f110da44da51d8864c5dd12a433ea5ae483d8570550465382f7d6f"]
+      }
+    }
+  },
+  "file_tuple_schema": ["source_git_blob", "source_bytes", "source_sha256", "release_bytes", "release_sha256"]
+}

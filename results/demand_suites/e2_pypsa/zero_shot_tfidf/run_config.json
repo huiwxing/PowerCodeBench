@@ -1,0 +1,16 @@
+{
+  "backend": "pypsa",
+  "model": "zero_shot_tfidf",
+  "docs_path": "dataset/pypsa_docs.json",
+  "benchmark_path": "benchmark/e2_pypsa/e2_pypsa_bench.json",
+  "export_predictions": "task_demand/results/suites/e2_pypsa/zero_shot_tfidf/exports/pypsa_candidates.json",
+  "prediction_top_k": 10,
+  "knowledge_profile": null,
+  "allowed_roles": null,
+  "leakage_note": "docs-corpus-only TF-IDF fit; no (query,function) supervised training",
+  "n_cards": 67,
+  "n_items": 90,
+  "n_items_exported": 90,
+  "n_items_empty_candidates": 0,
+  "min_candidates_per_item": 10
+}

@@ -1,0 +1,12 @@
+model,condition,D1_total,D1_executed,D1_matched,D1_acc,D1_acc_exec,D2_total,D2_executed,D2_matched,D2_acc,D2_acc_exec,D3_total,D3_executed,D3_matched,D3_acc,D3_acc_exec,D4_total,D4_executed,D4_matched,D4_acc,D4_acc_exec
+Qwen2.5-Coder-0.5B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,0,0,0.000,0.000,600,0,0,0.000,0.000,400,0,0,0.000,0.000,400,0,0,0.000,0.000
+Qwen2.5-Coder-1.5B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,0,0,0.000,0.000,600,0,0,0.000,0.000,400,0,0,0.000,0.000,400,1,0,0.000,0.000
+Qwen2.5-Coder-7B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,23,2,0.003,0.087,600,41,5,0.008,0.122,400,21,1,0.003,0.048,400,20,3,0.007,0.150
+Llama-3.1-8B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,40,17,0.028,0.425,600,17,8,0.013,0.471,400,10,0,0.000,0.000,400,8,0,0.000,0.000
+Qwen2.5-Coder-14B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,81,38,0.063,0.469,600,94,22,0.037,0.234,400,74,10,0.025,0.135,400,78,7,0.018,0.090
+Qwen2.5-Coder-32B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,105,46,0.077,0.438,600,168,107,0.178,0.637,400,69,25,0.062,0.362,400,110,45,0.113,0.409
+Qwen3-Coder-Next,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,85,58,0.097,0.682,600,95,43,0.072,0.453,400,55,20,0.050,0.364,400,59,18,0.045,0.305
+Llama-3.1-70B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,133,93,0.155,0.699,600,214,109,0.182,0.509,400,99,46,0.115,0.465,400,146,52,0.130,0.356
+GPT-OSS-120B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,216,146,0.243,0.676,600,265,153,0.255,0.577,400,158,90,0.225,0.570,400,185,69,0.172,0.373
+Llama-3.1-405B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,258,179,0.298,0.694,600,336,185,0.308,0.551,400,183,115,0.287,0.628,400,248,92,0.230,0.371
+Qwen3-Coder-480B,"A_FX (bare baseline + 3 naive fix rounds, no intervention)",600,241,178,0.297,0.739,600,293,167,0.278,0.570,400,198,113,0.282,0.571,400,226,72,0.180,0.319

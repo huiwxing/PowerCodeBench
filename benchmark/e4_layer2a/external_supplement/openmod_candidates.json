@@ -1,0 +1,357 @@
+[
+  {
+    "candidate_id": "openmod:58",
+    "source_type": "openmod_topic",
+    "topic_id": 58,
+    "title": "Feedback on 2017 FSFE position paper on publicly-funded science",
+    "body_excerpt": "The draft below is available for comment and modification by users (it is known as a wiki post and the edit icon",
+    "url": "https://forum.openmod.org/t/feedback-on-2017-fsfe-position-paper-on-publicly-funded-science/58",
+    "published_at": "2017-02-13T10:27:10.800Z",
+    "fetched_date": "2026-07-25",
+    "tags": [],
+    "posts_count": 3,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "other",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "coordination-or-nondemand-discussion",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "09028309cc31f158a84e97932e6d3030ac364d1a9373708711b0bd1c1a9ceec9"
+  },
+  {
+    "candidate_id": "openmod:1395",
+    "source_type": "openmod_topic",
+    "topic_id": 1395,
+    "title": "Do-a-thon: Modeling and optimization of flexibilities in power distribution systems",
+    "body_excerpt": "In this do-a-thon I would like to discuss challenges one faces when analyzing different flexibilities in power distribution systems, such as battery",
+    "url": "https://forum.openmod.org/t/do-a-thon-modeling-and-optimization-of-flexibilities-in-power-distribution-systems/1395",
+    "published_at": "2019-02-19T13:11:11.014Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems",
+      "do-a-thon",
+      "aarhus-2019",
+      "hydrogen",
+      "flexibility",
+      "distribution-grid"
+    ],
+    "posts_count": 10,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "opf_optimization",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "real-user-discussion-needs-manual-triage",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "762e24cff4e5896ca2f22215b3325b67c36cfd3adb4aef2e6498dcdd24527172"
+  },
+  {
+    "candidate_id": "openmod:1417",
+    "source_type": "openmod_topic",
+    "topic_id": 1417,
+    "title": "Do-a-thon pandapower / PowerModels",
+    "body_excerpt": "We have recently created an interface from pandapower to PowerModels that allows to optimize the detailed network models that can be built",
+    "url": "https://forum.openmod.org/t/do-a-thon-pandapower-powermodels/1417",
+    "published_at": "2019-02-26T12:09:34.740Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems",
+      "do-a-thon",
+      "aarhus-2019",
+      "pandapower"
+    ],
+    "posts_count": 4,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "opf_optimization",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "real-user-discussion-needs-manual-triage",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "0452c211914b18426f44b559b0399bcb4bda2aafe662f95d67df33f9382fe0d8"
+  },
+  {
+    "candidate_id": "openmod:1422",
+    "source_type": "openmod_topic",
+    "topic_id": 1422,
+    "title": "Electric distribution modeling",
+    "body_excerpt": "While the vast majority of discussion on openmod revolves around transmission level modeling, I was wondering if there is a significant interest",
+    "url": "https://forum.openmod.org/t/electric-distribution-modeling/1422",
+    "published_at": "2019-02-28T06:58:47.947Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems",
+      "do-a-thon",
+      "aarhus-2019",
+      "distribution-grid"
+    ],
+    "posts_count": 9,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "unbalanced_short_circuit",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "cross-tool-or-model-construction-discussion",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "8df6019bac19dc9fc3e56d40631cd18442e9e78235ed1b5a78ab814379824222"
+  },
+  {
+    "candidate_id": "openmod:1447",
+    "source_type": "openmod_topic",
+    "topic_id": 1447,
+    "title": "Do-a-thon: Julia models for Energy system optimization (best practices and next steps)",
+    "body_excerpt": "Do-a-thon: Julia models for Energy system optimization As a discussion basis the do-a-thon will start with a 10 min input-talk that compares",
+    "url": "https://forum.openmod.org/t/do-a-thon-julia-models-for-energy-system-optimization-best-practices-and-next-steps/1447",
+    "published_at": "2019-03-01T22:50:12.657Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems",
+      "do-a-thon",
+      "aarhus-2019",
+      "julia"
+    ],
+    "posts_count": 4,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "real-user-discussion-needs-manual-triage",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "39fe67dc8e8dc926988c397042c79e2b6f24307d5cb30eb0272eb6d9562ae9a3"
+  },
+  {
+    "candidate_id": "openmod:1473",
+    "source_type": "openmod_topic",
+    "topic_id": 1473,
+    "title": "Import cases from pypsa or pandapower in oemof",
+    "body_excerpt": "Hello, I want to use the test cases from pandapower (or pypsa) in oemof. Is there a way to import this test",
+    "url": "https://forum.openmod.org/t/import-cases-from-pypsa-or-pandapower-in-oemof/1473",
+    "published_at": "2019-03-19T00:07:38.887Z",
+    "fetched_date": "2026-07-25",
+    "tags": [],
+    "posts_count": 6,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "cross-tool-or-model-construction-discussion",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "5608f4d9bc1d8b65514050c3da5d3d61eb9edaf9feba7036adabba1f8e771313"
+  },
+  {
+    "candidate_id": "openmod:1642",
+    "source_type": "openmod_topic",
+    "topic_id": 1642,
+    "title": "Importing distribution grid model to Python",
+    "body_excerpt": "Hi all, I am currently writting my Master Thesis and therefore I have to carry out a LV distribution grid model simulation",
+    "url": "https://forum.openmod.org/t/importing-distribution-grid-model-to-python/1642",
+    "published_at": "2019-07-09T08:35:25.000Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems"
+    ],
+    "posts_count": 5,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "cross-tool-or-model-construction-discussion",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "7a888a6c4cf54a0187b8932298d37c90ea5967b87598471a44a1728e4aa63949"
+  },
+  {
+    "candidate_id": "openmod:1952",
+    "source_type": "openmod_topic",
+    "topic_id": 1952,
+    "title": "The new HELM Powerflow in GridCal",
+    "body_excerpt": "This thread is a continuation of the discussion on the openmod list about the HELM power flow implemented in GridCal by @SanPen",
+    "url": "https://forum.openmod.org/t/the-new-helm-powerflow-in-gridcal/1952",
+    "published_at": "2020-03-11T09:42:06.640Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems",
+      "gridcal",
+      "helm-method"
+    ],
+    "posts_count": 31,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "power_flow",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "real-user-discussion-needs-manual-triage",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "f4a5101f9e26b2c1f01d8ec6fe3ec7ccb10342bdef6d5cfa2cf8601c522e39b1"
+  },
+  {
+    "candidate_id": "openmod:2706",
+    "source_type": "openmod_topic",
+    "topic_id": 2706,
+    "title": "Convergence problems on large net models in PandaPower state estimation module",
+    "body_excerpt": "Hi all, I\u2019m testing state estimation capabilities of PandaPower lib. To emulate measurements i pass power flow results as feedback. For small",
+    "url": "https://forum.openmod.org/t/convergence-problems-on-large-net-models-in-pandapower-state-estimation-module/2706",
+    "published_at": "2021-06-24T16:02:00.537Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems",
+      "pandapower"
+    ],
+    "posts_count": 6,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "direct-engineering-workflow-or-analysis-question",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "23254ecaadedefd5ddd4c92484d8f57efcb4d2fb37421ce795bb2fa519a85d82"
+  },
+  {
+    "candidate_id": "openmod:3268",
+    "source_type": "openmod_topic",
+    "topic_id": 3268,
+    "title": "Webinar. Open-source power system analysis packages: Cross-Package Coordination for System Planning",
+    "body_excerpt": "Hi Openmodders, Join us on June 22. Registration link . The Global Power System Transformation Consortium (G-PST) and Linux Foundation Energy convened",
+    "url": "https://forum.openmod.org/t/webinar-open-source-power-system-analysis-packages-cross-package-coordination-for-system-planning/3268",
+    "published_at": "2022-06-18T09:14:03.941Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "lf-energy",
+      "global-pst"
+    ],
+    "posts_count": 1,
+    "found_by_paths": [
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "LOW_PRIORITY",
+    "reason_code": "coordination-or-nondemand-discussion",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "f20a47831f9bd82f95223f47824a5da0cfb326b39761c925b38fc7c63ad61e9c"
+  },
+  {
+    "candidate_id": "openmod:4026",
+    "source_type": "openmod_topic",
+    "topic_id": 4026,
+    "title": "Issues with Slack Bus Power Going Beyond Maximum Limits in PandaPower",
+    "body_excerpt": "Hi everyone, I am very new to this group. I am currently working on a power flow optimization problem using the PandaPower",
+    "url": "https://forum.openmod.org/t/issues-with-slack-bus-power-going-beyond-maximum-limits-in-pandapower/4026",
+    "published_at": "2023-05-09T14:55:02.246Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "power-systems",
+      "pandapower",
+      "power-flow",
+      "distributed-slack"
+    ],
+    "posts_count": 1,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "opf_optimization",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "direct-engineering-workflow-or-analysis-question",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "880b670864ade1b7d50f540a0d9bd60d8bc280f3f83ae3ec5447cd0d8a3b2c22"
+  },
+  {
+    "candidate_id": "openmod:4741",
+    "source_type": "openmod_topic",
+    "topic_id": 4741,
+    "title": "Integrating Pandapower and Pandapipes with oemof",
+    "body_excerpt": "I am currently working on a project for my master\u2019s thesis, focusing on integrating Pandapower and Pandapipes with oemof, and vice versa.",
+    "url": "https://forum.openmod.org/t/integrating-pandapower-and-pandapipes-with-oemof/4741",
+    "published_at": "2024-05-15T11:29:51.360Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "oemof",
+      "oemof-solph",
+      "power-systems",
+      "pandapower"
+    ],
+    "posts_count": 2,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "timeseries_control",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "cross-tool-or-model-construction-discussion",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "7d75a81769bdd1083129f29037f60835cb051857acad833e9d6fc0cda6ca10d8"
+  },
+  {
+    "candidate_id": "openmod:4979",
+    "source_type": "openmod_topic",
+    "topic_id": 4979,
+    "title": "From GIS to pandapower / PyPSA for power flow calculations",
+    "body_excerpt": "Hi everyone, I haven\u2019t been active here for a while, so a small introduction upfront: My name is Sascha and I am",
+    "url": "https://forum.openmod.org/t/from-gis-to-pandapower-pypsa-for-power-flow-calculations/4979",
+    "published_at": "2024-11-20T12:33:41.821Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "pypsa",
+      "pandapower",
+      "flexibility",
+      "power-flow",
+      "infrastructure-cartography"
+    ],
+    "posts_count": 7,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "PRIORITY_REVIEW",
+    "reason_code": "direct-engineering-workflow-or-analysis-question",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "1634a953db12a566d435a9d7996169a04d19c47ed16857f14823f6951397b3f2"
+  },
+  {
+    "candidate_id": "openmod:5033",
+    "source_type": "openmod_topic",
+    "topic_id": 5033,
+    "title": "PyPSA and the CIM CGMES - does it make sense to go down this road?",
+    "body_excerpt": "Hi everyone, I\u2019m working with the data from the BZR by ENTSO-E and would like to use PyPSA for my analysis. Over",
+    "url": "https://forum.openmod.org/t/pypsa-and-the-cim-cgmes-does-it-make-sense-to-go-down-this-road/5033",
+    "published_at": "2024-12-17T12:39:49.583Z",
+    "fetched_date": "2026-07-25",
+    "tags": [
+      "pypsa",
+      "pandapower",
+      "cgmes",
+      "common-information-model"
+    ],
+    "posts_count": 4,
+    "found_by_paths": [
+      "tag:pandapower",
+      "fulltext:pandapower"
+    ],
+    "theme": "conversion_io",
+    "screening_decision": "BROAD_REVIEW",
+    "reason_code": "cross-tool-or-model-construction-discussion",
+    "duplicate_of": null,
+    "provenance_note": "Public Discourse topic; only title, short excerpt, and URL retained. Check forum terms before redistributing source text.",
+    "source_fingerprint": "8bd2039074c1682a821a76cd522c4009289037212835fe0f713cc5720d1cc51c"
+  }
+]

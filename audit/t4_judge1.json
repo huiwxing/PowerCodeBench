@@ -1,0 +1,3198 @@
+{
+ "meta": {
+  "judge": "Reviewer A (practising power-systems engineer; physical-audit focus, same as pilot)",
+  "protocol": "E1_validity_audit.md s2.3 frozen 10 cases + N1-N7 + R2/R3/R5",
+  "source": "audit/t4_auto_results.json any_flag==true subset (n=332)",
+  "generated": "2026-07-25T19:47:25",
+  "batches_done": 14,
+  "n_judged": 332,
+  "complete": true
+ },
+ "judgments": [
+  {
+   "i": 250,
+   "label": "physical-error",
+   "violated_check": "2",
+   "applied_rule": "案2/1263 (D-① no-op kwarg)",
+   "rationale": "Query pins DC power flow; gen ran runpp(method='dc') twice — 'method' is silently absorbed (noop_kwargs evidence), solved pure AC. AC≠DC physics model change; gen_out 1.868e-4 vs DC ref 1.484e-4 (26% off) matched only via absolute tolerance on a tiny value. Also reinforced line chosen by AC-based idxmax vs ref hard-coded line 0 (N1).",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1585|3dd9d4a546a0",
+   "task": "dc_power_flow/max_value/D3_semantic/case33bw/nmod=1"
+  },
+  {
+   "i": 205,
+   "label": "physical-error",
+   "violated_check": "2,1,4",
+   "applied_rule": "②expected-solver + N1 + 案3",
+   "rationale": "Query requires WLS state estimation (noise, seed 5332); gen never called estimate — plain runpp only, read res_bus not res_bus_est. Also modified gen0.p_mw=0.952 instead of gen1.vm_pu=0.952 and disconnected line 5 vs line 6 (wrong targets, N1 strict). 1.0 vs GT 0.99933 = tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=354|9c2c32781590",
+   "task": "state_estimation/max_value/D1_basic/case9/nmod=2"
+  },
+  {
+   "i": 251,
+   "label": "physical-error",
+   "violated_check": "2",
+   "applied_rule": "案2/1263",
+   "rationale": "Query pins DC; runpp(method='dc') no-op kwarg → solved AC (noop_kwargs evidence). Dispatch-reduction magnitude dim alone would be R3/1229-legal (halve vs 83.0, both lower), but the solver physics violation decides; argmax line 0 concordance = 案2's named 'scalar 巧合匹配'.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1335|a5a423d69672",
+   "task": "dc_power_flow/argmax/D3_semantic/case9/nmod=1"
+  },
+  {
+   "i": 286,
+   "label": "physical-error",
+   "violated_check": "2",
+   "applied_rule": "案2",
+   "rationale": "Query pins 'execute the DC power flow'; gen ran plain AC runpp (no dc attempt at all). Queried line 2 is the disconnected line → loading 0.0 under any solver — textbook 案2 coincidental scalar.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=433|b9a0975a222c",
+   "task": "dc_power_flow/point_value/D1_basic/case4gs/nmod=3"
+  },
+  {
+   "i": 249,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2/1263 + N1",
+   "rationale": "runpp(method='dc')×2 no-op → pure AC on a query that pins DC. Additionally tap modification target diverges: ref trafo 0 → tap −2; gen moved its AC-computed most-loaded trafo +1 step (n1: ref target set includes 0, gen's does not). argmax line 6 coincided across physics models.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1577|beba7381698f",
+   "task": "dc_power_flow/argmax/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 284,
+   "label": "physical-error",
+   "violated_check": "2",
+   "applied_rule": "案2",
+   "rationale": "Query pins DC; gen called runpp(calculate_voltage_angles=True, dc=True) — 'dc' is not a runpp parameter, absorbed into **kwargs, solved AC (same no-op class as D-①'s method=, new kwarg spelling 'dc=True' worth recording). Bool GT False coincides under AC.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=89|cea83749a9ba",
+   "task": "dc_power_flow/bool_check/D1_basic/case1354pegase/nmod=1"
+  },
+  {
+   "i": 285,
+   "label": "physical-error",
+   "violated_check": "2",
+   "applied_rule": "案2",
+   "rationale": "runpp(dc=True) no-op kwarg → AC on a pinned-DC query. gen_out 2.062e-4 vs DC ref 1.912e-4 (7.9% off) matched only through absolute tolerance on a tiny value — the AC≠DC physics difference is visible in the number itself.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=290|e8e78ad21e43",
+   "task": "dc_power_flow/point_value/D1_basic/case89pegase/nmod=2"
+  },
+  {
+   "i": 138,
+   "label": "clean",
+   "violated_check": "3 (false alarm)",
+   "applied_rule": "oracle 复跑: ref-state 同残差",
+   "rationale": "Only flag = power-balance residual −4483 MW. Oracle rerun: the reference state (case145+rundcpp) yields the identical residual −4483.1582 (network-inherent shunt-draw accounting on case145), so the sanity fail is not model-caused. Gen state fingerprint == ref (① pass); trafo_loading='current' equals the default (no-op); output bit-identical to ref.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1|006c96a2a496",
+   "task": "dc_power_flow/max_value/D1_basic/case145/nmod=1"
+  },
+  {
+   "i": 81,
+   "label": "clean",
+   "violated_check": "3 (false alarm)",
+   "applied_rule": "oracle 复跑: ref-state 同残差",
+   "rationale": "bi=233: gen code semantically identical to ref (max_p_mw=192.6, rundcpp, res_trafo.at[35]); oracle rerun of ref state reproduces the same −4483.1582 residual → case145-inherent checker accounting artifact, not model pollution.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=233|1be383d3e14b",
+   "task": "dc_power_flow/point_value/D1_basic/case145/nmod=1"
+  },
+  {
+   "i": 22,
+   "label": "clean",
+   "violated_check": "3 (false alarm)",
+   "applied_rule": "oracle 复跑: ref-state 同残差",
+   "rationale": "Same item as i=81 (bi=233), 405B variant, code identical in semantics; c3 residual is the case145 reference-state artifact confirmed by oracle.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=233|1be383d3e14b",
+   "task": "dc_power_flow/point_value/D1_basic/case145/nmod=1"
+  },
+  {
+   "i": 193,
+   "label": "equivalent-path",
+   "violated_check": "3 (item-inherent)",
+   "applied_rule": "元规则(b)+N3-analog+N5",
+   "rationale": "Gen skipped the explicit '>51.5% loading' conditional but the condition is true in the reference state (max loading 1264%), so the executed physical scenario (add −10 Mvar shunt at bus 9, re-run PF) is exactly the query-required branch; extraction idxmin+loc ≡ .min() (N5); output == ref at 1e-13. The implausible vm_min 0.0164 IS the GT (shared with ref state) → item-inherent scenario absurdity (errata note), not model-caused. Fragile-workflow (unconditional branch) flag for W5.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=787|26bc54508c70",
+   "task": "sequential/sequential/D2_multi_step/four_loads_branches/nmod=2"
+  },
+  {
+   "i": 294,
+   "label": "physical-error",
+   "violated_check": "1,3",
+   "applied_rule": "R3-方向(1943 analog)/元规则-改变物理场景",
+   "rationale": "Query pins 'inductive shunt absorption' (ref q_mvar=+19); gen installed q_mvar=−100 = capacitive injection at the highest-vm bus — pinned direction inverted, no legal reading. c3 vm_max 1.589 p.u. is model-caused (capacitor at highest-V bus), absent from ref state. Note: shunt q_mvar sign passed ① fingerprint — checker blind spot recorded.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=1489|86e6c262f09e",
+   "task": "power_flow/point_value/D3_semantic/case1888rte/nmod=1"
+  },
+  {
+   "i": 137,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3/N1-值分歧",
+   "rationale": "Query pins 'set generator 34 MAXIMUM active power to 46.0' (max_p_mw); gen set gen34 p_mw=46 instead (a 3005→46 MW dispatch change) and never touched max_p_mw. Oracle: queried max line loading (24.0533) invariant to both variants → scalar coincidence via insensitivity; 题意 setup 未执行 + extraneous 3-GW dispatch change → 案3 default pollution.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=387|d2be09528d4e",
+   "task": "dc_power_flow/max_value/D1_basic/case145/nmod=3"
+  },
+  {
+   "i": 134,
+   "label": "clean",
+   "violated_check": "3 (false alarm)",
+   "applied_rule": "oracle 复跑: ref-state 同残差",
+   "rationale": "All three mods correct including max_p_mw attribute (order permutation of independent assignments); ① pass; c3 residual −4483.1582 reproduced in reference state by oracle → case145-inherent artifact.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=387|d2be09528d4e",
+   "task": "dc_power_flow/max_value/D1_basic/case145/nmod=3"
+  },
+  {
+   "i": 256,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络 (①fail)",
+   "rationale": "Loaded pn.mv_oberrhein() instead of create_synthetic_voltage_control_lv_network() — wrong network entirely (counts/bus/line indices all mismatch). gen_out 1.0 vs GT 0.99544 within 1% = textbook false acceptance on the wrong grid. While-loops also over-apply disconnections beyond query semantics.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=627|e92baca4b901",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/synth_volt_ctrl_lv/nmod=2"
+  },
+  {
+   "i": 292,
+   "label": "equivalent-path",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4/N5",
+   "rationale": "df[vm_pu<0.9].shape[0] ≡ (vm_pu<0.9).sum() — mathematically identical bus count; c4 'fail' is an extraction-parser artifact (point vs sum). Count comes from a real converged PF with correct modification (gen 8 out of service).",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=98|02ab1604e0dc",
+   "task": "power_flow/count_violations/D1_basic/case145/nmod=1"
+  },
+  {
+   "i": 174,
+   "label": "equivalent-path",
+   "violated_check": "4,5 (flags resolved)",
+   "applied_rule": "N7+N5",
+   "rationale": "Signed difference new−old vs ref abs(baseline−modified): N7 frozen equivalent; idxmin+loc ≡ .min() (N5). Value positive and equal to ref at 1e-9. c5 large-net perturb skip is a coverage gap, not adverse evidence — solver ran, extraction from res tables.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1071|0a0ef6b5b26a",
+   "task": "comparison/comparison/D2_multi_step/case2848rte/nmod=3"
+  },
+  {
+   "i": 116,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "min_final − min_initial signed vs ref abs() — N7 frozen equivalent; tables/aggregation otherwise identical to ref; output equal to ref at 1e-9.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1071|0a0ef6b5b26a",
+   "task": "comparison/comparison/D2_multi_step/case2848rte/nmod=3"
+  },
+  {
+   "i": 329,
+   "label": "equivalent-path",
+   "violated_check": "1,2,4,5 (flags resolved)",
+   "applied_rule": "R3-不变性(1229 模板)+N2 四判据+R2 语境",
+   "rationale": "Manual per-step loop satisfies all four N2 criteria (24× ac_pf all converged, no early break, full enumeration, min-of-min ≡ ref aggregation). Only deviation = RNG consumption shape (24 shared draws vs ref 24×n_loads matrix) — a query-silent dimension (R2/64 template). Queried scalar = min bus voltage = slack setpoint 1.013: gen_out=ref_out=GT=1.013 exactly under both readings → invariance ⇒ equivalent per 1229 handling. Errata note: invariant weak item (min V pinned to ext_grid setpoint).",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=138|15f12f9e30f1",
+   "task": "time_series/ts_min_value/D1_basic/example_simple/nmod=2"
+  },
+  {
+   "i": 110,
+   "label": "clean",
+   "violated_check": "5 (false alarm)",
+   "applied_rule": "N4-style + 202-precedent 单负荷论证",
+   "rationale": "Canonical ConstControl/OutputWriter engine; example_simple has exactly one load so gen's per-load column draw consumes the identical 24-value RNG stream as ref's (24,1) matrix (favorable single-load argument from pilot 202). The 1.013 literal is the query's ext_grid setpoint parameter, not a hardcoded output; extraction min().min() identical to ref.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=138|15f12f9e30f1",
+   "task": "time_series/ts_min_value/D1_basic/example_simple/nmod=2"
+  },
+  {
+   "i": 255,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络 (wrong network)",
+   "rationale": "Loaded cigre MV network instead of four_loads_with_branches_out (massive fingerprint mismatch); additionally sn_mva*=2 instead of parallel=2 and shunt built by raw df row insertion with q_mvar=+20 (sign opposite ref −20). 0.99255 vs GT 0.99999 within 1% = false acceptance on the wrong grid.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-7B-Instruct|A_FX|bi=932|39ecbd5ac17c",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/four_loads_branches/nmod=3"
+  },
+  {
+   "i": 218,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3-方向(1943 analog)",
+   "rationale": "Query pins 'inductive shunt absorption'; gen created q_mvar=−100 (capacitive) at its dynamically-picked highest-vm bus. Direction is a pinned dimension and is inverted → no legal reading; Δmin-vm 4.7477e-5 vs ref 4.7475e-5 = tolerance luck. The c4 signed-vs-abs part alone would be N7-equivalent but ① decides.",
+   "item_ref": "api_T5|API|deepseek-v4-flash|C_FDRS|bi=1891|4113a215c878",
+   "task": "comparison/comparison/D4_compound/case2848rte/nmod=2"
+  },
+  {
+   "i": 38,
+   "label": "clean",
+   "violated_check": "5 (false alarm)",
+   "applied_rule": "N4-性质 stiff + ①pass",
+   "rationale": "create_cigre_network_hv(length_km_6a_6b=0.1) passes the function's default value (① fingerprint identical to ref); the arctan dead-code line is overwritten before print, final extraction = res_bus.at[9,'va_degree'] ≡ ref; va=0.0 is structural (reference bus region), solver ran and converged — c5 flag is the stiff/literal false-positive class.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=394|6841958e34c4",
+   "task": "power_flow/point_value/D1_basic/cigre_hv/nmod=3"
+  },
+  {
+   "i": 89,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3-方向(1943 analog)",
+   "rationale": "'Inductive shunt absorption' pinned; gen q_mvar=−0.1 → capacitive AND essentially a no-op magnitude — physical scenario ≠ reference intent in the pinned direction dimension; output differs from ref in the 5th digit, matched via tolerance.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1489|86e6c262f09e",
+   "task": "power_flow/point_value/D3_semantic/case1888rte/nmod=1"
+  },
+  {
+   "i": 35,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 + R3-方向",
+   "rationale": "Bus chosen by max vn_kv (nominal voltage level) while the query pins 'highest-voltage bus from the CURRENT OPERATING POINT' (vm_pu) → wrong target-selection semantics (N1); plus q_mvar=−100 capacitive vs pinned inductive absorption. Two pinned dimensions violated.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1489|86e6c262f09e",
+   "task": "power_flow/point_value/D3_semantic/case1888rte/nmod=1"
+  },
+  {
+   "i": 173,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "元规则-改变被查量/案5-type",
+   "rationale": "Extracted vm_pu at net.bus.index[0] (bus 0) in both runs instead of the minimum over buses; reported Δ(bus0 V) = −3.76e-5 while true Δmin = 1.5e-8. Matched only because GT≈0 under absolute tolerance — wrong quantity extracted, right-scalar-wrong-reason.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=918|b845fd66d144",
+   "task": "comparison/comparison/D2_multi_step/case2869pegase/nmod=2"
+  },
+  {
+   "i": 61,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmin −1.5386e-8 vs ref abs +1.5386e-8 (GT 0.0): exactly the pilot bi=1085/1064 signed-vs-abs pattern, frozen N7 equivalent; extraction otherwise identical.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=918|b845fd66d144",
+   "task": "comparison/comparison/D2_multi_step/case2869pegase/nmod=2"
+  },
+  {
+   "i": 245,
+   "label": "physical-error",
+   "violated_check": "5,1,2",
+   "applied_rule": "案6 + wrong-network + ②",
+   "rationale": "Gen loaded cigre MV instead of case145, called runpp(contingency_analysis=True) — not a runpp parameter (silent no-op **kwargs); runpp returns None so the code fell into the else-branch and printed the literal False. No contingency analysis was ever run; printed value is a control-flow fallback literal (案6/⑤ fail is genuine here).",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-7B-Instruct|A_FX|bi=480|c718403b658e",
+   "task": "contingency/bool_check/D1_basic/case145/nmod=0"
+  },
+  {
+   "i": 208,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络/案3",
+   "rationale": "Gen fabricated a 2-bus toy network (create_empty_network) with a 3-step hand-made profile instead of case9 + line-1 outage + 24-step seeded simulation. Entire scenario fictional; 0.99840 vs GT 1.0 within 1% = pure tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-0.5B-Instruct|C_FDRS|bi=263|c96a50b19ee6",
+   "task": "time_series/ts_point_at_step/D1_basic/case9/nmod=1"
+  },
+  {
+   "i": 160,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3/R3-方向",
+   "rationale": "Query pins RAISE largest load to peak-demand level (ref: load4 scaling 1.88); gen picked target via net.load['bus'].idxmax() (highest bus number — semantically wrong rule that coincidentally hit load 4) and set p_mw=1.0, i.e. LOWERED demand to near zero — pinned direction inverted, no legal reading. Scalar identical (26.2432) only because IEC-60909 calc_sc ignores load values — 1943-family benchmark weak-item noted for errata; 案3 default pollution stands.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=1384|007313b5c27a",
+   "task": "short_circuit_3ph/max_value/D3_semantic/cigre_hv/nmod=1"
+  },
+  {
+   "i": 185,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 (语料方言 0-based, 487/2 先例)",
+   "rationale": "Query pins line 5 and bus 4; gen modified line 4 parallel=3 and bus 3 max_vm_pu (off-by-one on both pinned indices). Additionally compares idxmax/idxmin INDICES against 28.7/0.96 thresholds (semantic nonsense) and writes shunt via wrong column p_mvar. 0.98931 vs GT 0.98550 (0.39%) = tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1174|00919eaba836",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case5/nmod=4"
+  },
+  {
+   "i": 177,
+   "label": "physical-error",
+   "violated_check": "1,4",
+   "applied_rule": "案3 (292/1943 型: 输出=无修改状态)",
+   "rationale": "Dispatch reduction assigned to a pandas row COPY (never lands in net — fingerprint shows unmodified gen.p_mw), load-1361 scaling=1.5 never applied, and before/after both read from the same single run → printed 0.0 trivially. Matched GT 8.2e-5 only via absolute tolerance near zero. Both query-pinned modifications missing.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1747|0334e4aa8352",
+   "task": "comparison/comparison/D4_compound/case2848rte/nmod=2"
+  },
+  {
+   "i": 243,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络",
+   "rationale": "Loaded cigre MV network instead of case4gs (fingerprint counts all mismatch); also load.at[1,p_mw]*=0.65 instead of load 2 scaling=0.65. Δmin-V ≈ −2.8e-15 vs GT 0.0 — matched by construction of a near-invariant scalar on the wrong grid.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-7B-Instruct|A_FX|bi=1774|04c0d155f64e",
+   "task": "comparison/comparison/D4_compound/case4gs/nmod=2"
+  },
+  {
+   "i": 327,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 (487/2/207 先例)",
+   "rationale": "Query pins transformer 2 and load 14; gen modified trafo 1 and load 13 (systematic 1-based misread; corpus dialect is 0-based per frozen refute precedents). 0.95403 vs GT 0.95644 (0.25%) = tolerance luck.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=975|18cbf839b122",
+   "task": "sequential/sequential/D2_multi_step/case24_ieee_rts/nmod=2"
+  },
+  {
+   "i": 259,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 (0-based 方言)",
+   "rationale": "Query pins 'disconnect line 1'; gen disconnected line 0. Wrong pinned target; 2.252e-4 vs ref 2.218e-4 (1.5% relative) matched only through absolute tolerance on a tiny value.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=307|21b31f271697",
+   "task": "power_flow/point_value/D1_basic/synth_volt_ctrl_lv/nmod=1"
+  },
+  {
+   "i": 192,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改)",
+   "rationale": "Gen selected the line by name=='Line 1'; no such name exists in synth LV net → empty selection, NO line disconnected (n1: gen target set empty vs ref [1]). Output 1.817e-4 vs GT 2.218e-4 (18% relative) matched via absolute tolerance. The .max() vs .at[0] extraction alone would be N5-equivalent (single ext_grid) but ① decides.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=307|21b31f271697",
+   "task": "power_flow/point_value/D1_basic/synth_volt_ctrl_lv/nmod=1"
+  },
+  {
+   "i": 207,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络/案3",
+   "rationale": "Same fabricated 2-bus toy network boilerplate as i=208 in place of case118 + semantic curtailment + 24-step seeded profiles. 0.99840 vs GT 0.99 within 1% = tolerance luck on a fictional scenario.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-0.5B-Instruct|C_FDRS|bi=1598|2377cfd6a88b",
+   "task": "time_series/ts_point_at_step/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 111,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R2 (64 模板)",
+   "rationale": "Canonical ConstControl/OutputWriter engine; all text-pinned dimensions faithful (case118, 24 steps, uniform 0.6-1.4, scaling variable, seed 1355 set). Two query-silent dimensions diverge: RNG generator (default_rng vs legacy np.random.seed stream) and whether load 81 keeps its 1.55 scaling constant vs is overwritten by the random profile (in ref the pinned 1.55 mod is a controller-overridden NO-OP — item weakness). Legal-reading GTs 0.98440 vs 0.98382 both inside 1% tolerance → R2 item-underdetermination channel, not model pollution.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=182|2577528d6781",
+   "task": "time_series/ts_point_at_step/D1_basic/case118/nmod=1"
+  },
+  {
+   "i": 262,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 (487/2/207 先例)",
+   "rationale": "Query pins load 7, transformer 107, line 11; gen modified load 6, trafo 106, line 10 — systematic 1-based misread of 0-based corpus dialect. 0.87799 vs GT 0.87217 (0.67%) = tolerance luck.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=879|29449ca5503c",
+   "task": "sequential/sequential/D2_multi_step/iceland/nmod=3"
+  },
+  {
+   "i": 300,
+   "label": "suspected-item-defect",
+   "violated_check": "1,2 (欠定通道)",
+   "applied_rule": "R2 (64 模板) + N2 四判据 + N1 现算==参考",
+   "rationale": "Reinforcement done by creating a duplicate line with identical parameters on the argmax line (= ref target 6; electrically equivalent to parallel=2 — implementation difference 案8/案1 class). Manual 24-step loop satisfies N2: per-step ac_pf 25/25 converged, no early break, multiplicative scaling on preserved baseline (scaling base 1.0), min-of-min aggregation. Sole surviving deviation = RNG consumption shape (24 shared draws vs 24×3 per-load matrix) — query-silent (R2/64 template); reading GTs 0.93177 vs 0.92998 both within tolerance.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1425|2a751c4374a3",
+   "task": "time_series/ts_min_value/D3_semantic/case9/nmod=1"
+  },
+  {
+   "i": 112,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R2 (64 模板) + N1 现算==参考",
+   "rationale": "Canonical engine; reinforced line = runtime argmax = 6 = ref target (printed; N1 现算==参考 → 等价). Sole deviation = RNG consumption order (per-load 24-vectors drawn column-by-column vs ref row-major (24,3) matrix) — query-silent consumption-shape dimension; reading GTs 0.92939 vs 0.92998 both within tolerance → R2 channel.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1425|2a751c4374a3",
+   "task": "time_series/ts_min_value/D3_semantic/case9/nmod=1"
+  },
+  {
+   "i": 257,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (292 悬空母线先例)",
+   "rationale": "Gen created a NEW dangling bus named 'Bus 14' (vn_kv=1.0) and set vm_pu=0.934 on it, never touching real bus 14's min_vm_pu. Query-pinned modification not executed + spurious element added; output equals the essentially-unmodified OPF optimum (matches ref at 1e-11 only because ref's own mod is nearly non-binding) — textbook 292-pattern.",
+   "item_ref": "contrast_S|T2|meta-llama_Llama-3.1-8B-Instruct|A_FX|bi=201|2be39b4c2ce4",
+   "task": "opf/max_value/D1_basic/case118/nmod=1"
+  },
+  {
+   "i": 291,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络",
+   "rationale": "Loaded pn.case30() instead of pn.case_ieee30() — a different network variant (voltage caps 1.05/1.1 vs 1.06, different line parameters and limits; fingerprint confirms wholesale mismatch). Curtail-magnitude would be an R3 dimension but the wrong grid decides: 1.06499 vs GT 1.06 (0.47%) accepted on the wrong feasible set.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=1503|31acb614b3f0",
+   "task": "opf/max_value/D3_semantic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 88,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (方向欠定 + 忠实合法读法; oracle 复跑)",
+   "rationale": "'Move its tap position by one step' direction underdetermined: ref 1→0, gen 1→2 on the SAME runtime argmax trafo 404 (N1 target concordant); gen re-ran PF after the tap change (fresh OP — NOT the pilot-1943 stale-state failure). case1888rte carries no SC source data; ref invents s_sc_max=1000, gen invents 10000 — both query-silent infrastructure. Oracle: +1-tap/10000 reading reproduces gen output EXACTLY (12.685896145); no-mod answer is 12.680356 (≠gen); +1/1000 gives 12.688872. Model faithfully executed a legal reading; legal-reading spread (12.669-12.689) all within 1% tolerance → R3 item-defect channel (errata: tap-direction + SC-params underdetermined, near-insensitive query).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1943|32164dcf5ba2",
+   "task": "pf_then_sc/pf_then_sc/D4_compound/case1888rte/nmod=1"
+  },
+  {
+   "i": 260,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 (35 先例同型 vn_kv 误读)",
+   "rationale": "'Lowest-voltage bus that has load connected' resolved by gen as lowest NOMINAL vn_kv (with arbitrary tie-break among many equal-kV buses, no PF run) instead of the operating-point vm_pu semantics; curtailed a different load (p_mw→0.1) than ref's load 866 (scaling 0.6). Different target on the query's semantic dimension → N1 default pollution; 25.02687 vs 25.02734 = tolerance luck.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1259|39dff73c11be",
+   "task": "power_flow/point_value/D3_semantic/case1888rte/nmod=1"
+  },
+  {
+   "i": 186,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改)",
+   "rationale": "net.line.loc[16:3,'parallel']=1 — an empty label-slice assignment; line 16 parallel=3 never applied (fingerprint: ref-only diff at line 16). The OPF thus ran without the pinned reinforcement; 1266.008 vs GT 1267.273 (0.1%) = tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=13|3c1f3d63d173",
+   "task": "opf/total/D1_basic/case24_ieee_rts/nmod=2"
+  },
+  {
+   "i": 330,
+   "label": "equivalent-path",
+   "violated_check": "1,2,4 (flags resolved)",
+   "applied_rule": "N2 四判据 + 同一 RNG 流",
+   "rationale": "Manual 24-step loop: seed placed before load creation consumes nothing → uniform(0.6,1.4,(24,n_loads)) row-major is bit-identical to ref's profile matrix; applied multiplicatively to preserved p/q originals (scaling base 1.0 ≡ ref's scaling variable); tap8=-2 ✓; 24/24 ac_pf converged, no break, running-peak ≡ max-of-max. Output equals ref at 2e-15.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=304|3e925b865d1a",
+   "task": "time_series/ts_max_value/D1_basic/case118/nmod=1"
+  },
+  {
+   "i": 157,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3-方向欠定 (88/145 同族)",
+   "rationale": "'Move its tap position by one step': gen and ref both act on trafo 820 (gen's runtime argmax == ref target; gen -1→0 lands on column default hence invisible in nondefault set), but directions differ (ref -1→-2, gen -1→0). Direction query-silent; all other steps faithful (shunt conditional executed, -7 Mvar at 2158 ✓). Legal-reading answers differ by 5e-11 → R3 item-defect channel.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=1891|40343cee9e54",
+   "task": "sequential/sequential/D4_compound/case9241pegase/nmod=2"
+  },
+  {
+   "i": 319,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "元规则(a) 纯实现差异 (案8 类)",
+   "rationale": "line.drop(idx) instead of in_service=False on the SAME runtime argmax line 9 — identical electrical effect for the queried bus-voltage quantity; shunt -9 at idxmin ✓; output equals ref exactly (0.8907143620673754). Fingerprint count mismatch is the drop's bookkeeping shadow, not a physics difference.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=661|47291e5e3068",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case30/nmod=2"
+  },
+  {
+   "i": 21,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "R3-不变性 + N5",
+   "rationale": "Queried scalar = total DC line losses ≡ 0 structurally (lossless DC model) — invariant to ANY curtailment reading, so ref 0.82× vs gen 0.1× on the same largest-load target cannot matter (GT=0.0 exactly, both outputs 0.0). Extraction (p_from+p_to).sum() ≡ pl_mw.sum() is the frozen N5 pattern. Errata note: DC-losses query is degenerate (GT≡0 for every scenario) — zero discriminative power.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1217|4979f1cda618",
+   "task": "dc_power_flow/total/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 258,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改)",
+   "rationale": "Typo column 'vn_max_pu' creates a junk column; the pinned max_vm_pu=1.079 was never applied. Scalar identical because voltage LIMITS are inert to runpp — precisely 案3's coincidental-match shape. Judge-1 view: deviation is confined to a PF-inert constraint column (provable irrelevance), which the refuter/dual-judge downgrade channel may act on; default strict line = pollution.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=188|4c0694092f6b",
+   "task": "power_flow/max_value/D1_basic/simple_four_bus/nmod=1"
+  },
+  {
+   "i": 23,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (oracle) + 元规则(b)",
+   "rationale": "Gen loaded create_cigre_network_mv(with_der='pv_wind') — same named benchmark with 9 small DER sgens (1.71 MW), a variant flag the query text does not pin. All pinned mods faithful (load @14, ext_grid 1.007, conditional drop line 10, shunt -7 @11 — oracle shows identical branch path). Oracle: final min V bit-identical 0.9778812906159088 in both variants (argmin bus 12 on the DER-free feeder, electrically decoupled). Deviation provably irrelevant to the extracted quantity; fragile-variant flag recorded.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=980|4d5821a0a390",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/cigre_mv/nmod=4"
+  },
+  {
+   "i": 261,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 (487/2/207 先例)",
+   "rationale": "Query pins line 13 and load 14; gen modified line 12 and load 13 (1-based misread of 0-based dialect). 0.95430 vs GT 0.94776 (0.69%) = tolerance luck.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=765|57ed0c779e63",
+   "task": "sequential/sequential/D2_multi_step/case24_ieee_rts/nmod=2"
+  },
+  {
+   "i": 156,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Same item as i=261: gen's comments ('Line indices are 0-based') then subtract 1 anyway — line 12 for pinned 13, load 13 for pinned 14. Same wrong state, same tolerance-luck output.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=765|57ed0c779e63",
+   "task": "sequential/sequential/D2_multi_step/case24_ieee_rts/nmod=2"
+  },
+  {
+   "i": 145,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3-方向欠定 (88 同族)",
+   "rationale": "Most-loaded trafo: gen runtime argmax = trafo 0 = ref target (gen -1→0 = column default, hence invisible); direction differs (ref -1→-2 vs gen -1→0), query-silent. OPF min V differs 1.9e-5 between readings, both within tolerance → R3 item-defect channel.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1290|58de068c6573",
+   "task": "opf/min_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 84,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3-方向欠定 (88 同族)",
+   "rationale": "Same item/logic as i=145 with tap_max clamping (inert). Same trafo 0 target concordance, opposite step direction, reading-spread 1.9e-5 within tolerance → R3 channel.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1290|58de068c6573",
+   "task": "opf/min_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 159,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (条件分支未执行)",
+   "rationale": "Gen read res_line.loading_percent BEFORE any runpp — empty results give NaN, NaN>207.2 is False → the pinned conditional disconnect of line 1736 was skipped while the reference's true-branch disconnects it. Wrong branch executed; 9e-6 output gap swallowed by tolerance.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=796|5a16155e13a0",
+   "task": "sequential/sequential/D2_multi_step/case3120sp/nmod=1"
+  },
+  {
+   "i": 323,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned bus 2 / transformer 5; gen modified bus 1 / trafo 4 with explicit 'zero-based' subtract-one comments — 1-based misread. Trafo-4-vs-5 parallel=2 is a real physical difference; argmax line 21 coincided across it.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=131|5a99dbed3769",
+   "task": "power_flow/argmax/D1_basic/case39/nmod=2"
+  },
+  {
+   "i": 40,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (1229 模板)",
+   "rationale": "Same largest-load target (idx 24) as ref; 'curtail to low-demand level' magnitude query-silent — gen 0 MW vs ref 0.71× both are reductions (direction ✓). IEC-60909 calc_sc ignores load values → outputs exactly equal (3.0013473385504144); s_sc_min 1000-vs-800 inert under case='max'. Errata note: SC-blind-to-load-mod item family (1943 附录).",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1559|5f199815c5c8",
+   "task": "short_circuit_2ph/max_value/D3_semantic/GBreducednetwork/nmod=1"
+  },
+  {
+   "i": 213,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (oracle) ",
+   "rationale": "Gen's runtime argmax trafo = 38 = ref target. case_illinois200 tap_pos[38] is NaN → gen's tap+1 arithmetic is a NaN no-op, and ref's '=-1' is itself an invented instantiation of an ill-posed 'move one step' on a NaN tap. Oracle: DC argmax line = 43 under no-mod, ref(-1), and gen(NaN) alike — queried scalar invariant across the whole reading family → R3 invariance ⇒ equivalent. Errata note: ill-posed tap mod (NaN baseline) + invariant query.",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=347|5f5c4c764614",
+   "task": "dc_power_flow/argmax/D3_semantic/case200_illinois/nmod=1"
+  },
+  {
+   "i": 158,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3-方向 (294/218 同族) + 案3",
+   "rationale": "Query pins 'capacitive shunt support' (ref q_mvar=-10); gen created q_mvar=+0.1 = INDUCTIVE — pinned direction inverted (magnitude also near-no-op). Downstream the pinned conditional load-scaling (ref branch TRUE, scaling 0.8 applied) never fired in gen's state. 0.99168 vs GT 1.0 = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1725|61cfbc0c4b5a",
+   "task": "sequential/sequential/D4_compound/simple_mv_open_ring/nmod=2"
+  },
+  {
+   "i": 289,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 + 合法读法级联",
+   "rationale": "'Raise to a higher dispatch level' magnitude query-silent: gen ×1.10 (1000→1100) is a legal raise (ref 1360.4). The later argmax-line drop (21 vs ref 2) is a faithful cascade of that legal reading. Shunt branch not triggered in either run (its +9 sign would be fragile — flag only, N3 actual-behavior principle). Queried min V = case39 PV setpoint 0.982 exactly in both — setpoint-pinned invariant. Errata note: invariant weak item.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1789|6262d4896612",
+   "task": "diagnose_and_fix/diagnose_and_fix/D4_compound/case39/nmod=2"
+  },
+  {
+   "i": 141,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 + 合法读法级联",
+   "rationale": "Raise +10 MW (1000→1010) = legal reading of query-silent magnitude; argmax-line cascade (21 vs 2) follows from it; shunt branch untriggered (-9 sign would even match ref). Min V pinned at the 0.982 PV setpoint in both runs — invariant scalar.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=1789|6262d4896612",
+   "task": "diagnose_and_fix/diagnose_and_fix/D4_compound/case39/nmod=2"
+  },
+  {
+   "i": 209,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络/案3",
+   "rationale": "Same fabricated 2-bus toy boilerplate as i=208/207 in place of case39 + semantic load raise + 24-step seeded profiles; 0.99840 vs GT 0.99678 within 1% = tolerance luck on a fictional scenario.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-0.5B-Instruct|C_FDRS|bi=1519|646669c3b16b",
+   "task": "time_series/ts_point_at_step/D3_semantic/case39/nmod=1"
+  },
+  {
+   "i": 326,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 + 内部不一致 (207 先例)",
+   "rationale": "Gen 13/bus 2792/gen 889 substituted for pinned gen 14/bus 2793/gen 890 ('zero-based' subtract-one comments) while sgen bus 1817 was left UNshifted — the reading is internally incoherent, the 207-precedent killer. Output gap 3e-6 swallowed by tolerance.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=610|65fd0f687203",
+   "task": "sequential/sequential/D2_multi_step/case9241pegase/nmod=4"
+  },
+  {
+   "i": 63,
+   "label": "physical-error",
+   "violated_check": "1,4",
+   "applied_rule": "案3-工作流/元规则-改变被查量",
+   "rationale": "Baseline min-V captured BEFORE the pinned line removal (ref: after), then line-drop and gen-161 dispatch applied together in one re-run → reported Δ conflates line-outage effect with the dispatch change; a different measurand from the query's. 1.213e-5 vs ref 1.259e-5 matched via absolute tolerance.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1977|661e2c57f74e",
+   "task": "comparison/comparison/D4_compound/case1354pegase/nmod=2"
+  },
+  {
+   "i": 282,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 (pinned bus) + 语料方言",
+   "rationale": "N-1 loop itself satisfies all four N2 criteria (deepcopy isolation, full enumeration, 12/12 converged, max aggregation), but the pinned '18 MW generator at bus 5' was created at bus 4 (1-based misread). 149.99 vs GT 149.79 (0.13%) = tolerance luck.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1138|664410780faa",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case6ww/nmod=2"
+  },
+  {
+   "i": 201,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 + 292 悬空母线先例",
+   "rationale": "'Add a generator at bus 4' → gen created a NEW bus and attached the generator there (dangling), and the entire loading-conditional (ref branch TRUE → line 2 disconnected) was never evaluated. 0.99225 vs GT 0.99471 within 1% = tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=831|6977ea6c6370",
+   "task": "sequential/sequential/D2_multi_step/simple_mv_open_ring/nmod=3"
+  },
+  {
+   "i": 172,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列)",
+   "rationale": "trafo['phase_shift']=10.2 writes a junk column; the pinned shift_degree=10.2 was never applied. Signed-vs-abs output difference alone would be N7-equivalent, but the missing pinned modification decides; magnitude match is coincidence of the shift's near-inertness to Δmin-V.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1143|6a92dc910dc3",
+   "task": "comparison/comparison/D2_multi_step/case200_illinois/nmod=3"
+  },
+  {
+   "i": 264,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 内部不一致 (207 先例)",
+   "rationale": "Reinforcement landed correctly (runtime argmax line 6 == ref, parallel 2) — but then 'disconnect line 7' was executed as index 6 ('Line index is 6 for line 7'), i.e. gen disconnected its own reinforced line instead of the pinned line 7; the same script uses 0-based for one step and 1-based for the other. 2e-5 gap swallowed by tolerance.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1975|6bb2b5705070",
+   "task": "sequential/sequential/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 196,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1-属性分歧 + 案3",
+   "rationale": "'Generator 0 voltage setpoint 1.06' executed as gen.p_mw=1.06 (attribute swap; vm_pu left at 1.01), and the pinned loading-conditional (ref TRUE → line 7 parallel=2) plus its re-run were skipped entirely. 0.64534 vs GT 0.64566 within tolerance.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=911|6e1629cc9f28",
+   "task": "sequential/sequential/D2_multi_step/case57/nmod=4"
+  },
+  {
+   "i": 50,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "案5-type 读错表 + 案3-工作流",
+   "rationale": "Final read is res_bus.vm_pu.max() — the POWER-FLOW table — not res_bus_est: the state-estimation result the query asks for was never extracted (and the measurement set deviates: line P/Q measurements with different noise sigmas vs pinned bus measurements). 1.0200 vs GT 1.01847 within 1% = tolerance luck. Raise-magnitude (×1.5 vs scaling 1.59) alone would be R3-legal but ④ decides.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1301|701951138ade",
+   "task": "state_estimation/max_value/D3_semantic/case4gs/nmod=1"
+  },
+  {
+   "i": 97,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "R3-不变性 (1229/SC-blind 家族) + 案9",
+   "rationale": "Same largest-load target (idx 1 = argmax = ref); '×1.2 raise' is a legal reading of the query-silent peak magnitude (direction ✓). IEC-60909 SC ignores load values → output EXACTLY equals ref (1.537077012166014); rx_min/s_sc_min deviations inert under case='max'. .loc[2] ≡ .at[2] (案9). Errata: SC-blind-to-load-mod item family.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1511|71b1b4f865ea",
+   "task": "short_circuit_2ph/point_value/D3_semantic/case14/nmod=1"
+  },
+  {
+   "i": 244,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 + N1/语料方言",
+   "rationale": "Gen RESTORED the heaviest line to service before the second run (query keeps it out) and disconnected index 3 for pinned 'line 4' (1-based misread) — the second scenario has the wrong outage set entirely. 2.2e-16 vs GT 0.0 matched by construction under absolute tolerance.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1797|737ebbf0a58f",
+   "task": "comparison/comparison/D4_compound/case145/nmod=2"
+  },
+  {
+   "i": 79,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行)",
+   "rationale": "Query pins an N-1 contingency analysis to select the worst line; gen used the BASELINE argmax (no contingency run at all — ② family expected 'contingency' never invoked), picking line 7 vs ref's N-1 worst line 14. 1.8579 vs GT 1.8513 (0.36%) = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=792|77adc0fb1505",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case57/nmod=2"
+  },
+  {
+   "i": 19,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog + 题意违反",
+   "rationale": "Same missing N-1 as i=79 (baseline argmax, line 7 vs ref 14) AND the newly created 36 MW generator was set in_service=False — the query explicitly requires it operational. 1.85181 vs GT 1.85133 = tolerance luck.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=792|77adc0fb1505",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case57/nmod=2"
+  },
+  {
+   "i": 281,
+   "label": "equivalent-path",
+   "violated_check": "1,2,4 (flags resolved)",
+   "applied_rule": "R3-不变性 + N2 (其余判据) + 案8",
+   "rationale": "Reinforcement as a parameter-identical duplicate line on the runtime argmax (=6=ref; 案8/实现差异). Manual N-1 loop: per-step ac_pf, full enumeration, try/except nonconvergence, min aggregation ✓. Scenario-set nuance (separate circuit ⇒ its outage leaves the twin in service; ref's parallel=2 outage removes both, plus one extra scenario) is a query-silent modeling reading — and the queried min-V is EXACTLY equal to ref (0.8263801288013015), i.e. the divergent scenarios provably don't bind. Fragile-reading flag recorded.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1523|7f20e2636509",
+   "task": "contingency/min_value/D3_semantic/case9/nmod=1"
+  },
+  {
+   "i": 46,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind 家族)",
+   "rationale": "Same largest-load target (idx 2 = ref); ×2 raise = legal reading of query-silent 'peak-demand level' (direction ✓). calc_sc ignores loads → output exactly equals ref (2.5102185616940402); conditional s_sc fills equal ref where it matters (max case).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1564|807d6e95add4",
+   "task": "short_circuit_3ph/max_value/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 143,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3-方向 (160 同型)/案3",
+   "rationale": "'Raise the largest load to peak-demand level' executed as p_mw=1.0 — demand CUT from 1104 MW to 1 MW; pinned direction inverted, no legal reading. Cascade picks a different line to disconnect (2 vs 21). 0.95348 vs GT 0.94712 (0.67%) = tolerance luck.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=1661|85855e59663e",
+   "task": "diagnose_and_fix/diagnose_and_fix/D4_compound/case39/nmod=3"
+  },
+  {
+   "i": 325,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "案8/纯实现差异 + N1 现算==参考",
+   "rationale": "Reinforced by appending a copy of the argmax line's row (duplicate identical circuit ≡ parallel=2); queried max trafo loading equals ref at 2e-14 — bit-level agreement confirms same target line (6) and same physics.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=1407|8668fd95ea6d",
+   "task": "power_flow/max_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 287,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 案3",
+   "rationale": "net.trafo.shift_degree=-9.6 modified ALL five transformers where the query pins only trafo 3, and 'generator 3' was executed as gen 2 (1-based misread). Both branch conditions untriggered in both runs; min V = PV-setpoint-pinned 1.01 → coincidental match despite a materially different modification state.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=989|893b799aa950",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case14/nmod=3"
+  },
+  {
+   "i": 11,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "N1 现算==参考 + N7 + 案10",
+   "rationale": "Runtime argmax line = 0 = ref target (sibling i=73 prints it; output bit-identical 134.85200322860874). Baseline runpp before OPF = superset analysis (案10); signed cost diff vs ref abs (N7); net-reuse vs ref's fresh-net rebuild is state-equivalent for deterministic OPF optima (exact output equality).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1922|8cb4a0dd385d",
+   "task": "comparison_opf/comparison_opf/D4_compound/case_ieee30/nmod=2"
+  },
+  {
+   "i": 13,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "N1 现算==参考 + N7 + 案10",
+   "rationale": "Identical structure to i=11 (405B variant): argmax=0=ref, signed diff, bit-identical output.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1922|8cb4a0dd385d",
+   "task": "comparison_opf/comparison_opf/D4_compound/case_ieee30/nmod=2"
+  },
+  {
+   "i": 43,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (方向欠定但被查量精确不变)",
+   "rationale": "Most-loaded trafo = runtime argmax = trafo 6 = ref target (gen -1→0 lands on default, invisible in fingerprint); step direction query-silent (ref -1→-2, gen -1→0). Queried ikss at bus 50 EXACTLY equals ref (1.64468945508605) — the direction dimension provably doesn't move the scalar → R3 invariance branch. Omitted rx_min/s_sc_min inert under case='max'.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1464|8f379a88e6e1",
+   "task": "short_circuit_2ph/point_value/D3_semantic/case57/nmod=1"
+  },
+  {
+   "i": 308,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "N1 现算==参考 + N7 + 案10",
+   "rationale": "case33bw argmax line = 0 = ref (sibling i=73 prints it); signed cost diff (N7); bit-identical output 0.5323512342887255.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=1695|921644615360",
+   "task": "comparison_opf/comparison_opf/D4_compound/case33bw/nmod=2"
+  },
+  {
+   "i": 73,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "N1 现算==参考 (printed) + N7 + 案10",
+   "rationale": "Explicitly printed 'Most heavily loaded line: 0' = ref's hard-coded target; signed cost diff; bit-identical output.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1695|921644615360",
+   "task": "comparison_opf/comparison_opf/D4_compound/case33bw/nmod=2"
+  },
+  {
+   "i": 242,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络 (291 同型)",
+   "rationale": "Loaded pn.case30() for the pinned IEEE 30-bus (case_ieee30) — different variant (limits, line params, load table all differ per fingerprint). On the wrong grid the parallel-line change produced Δ≈-3e-16 vs GT 2.64e-4; matched only through absolute tolerance near zero.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=861|970a8610a844",
+   "task": "comparison/comparison/D2_multi_step/case_ieee30/nmod=2"
+  },
+  {
+   "i": 328,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3/元规则 (202-型 scaling 基数错误的极端版)",
+   "rationale": "Random draws written as ABSOLUTE p_mw (loads collapse from 4242 MW total to ~98 MW; q_mvar never scaled) instead of scaling factors; plus an invented gen-dispatch clamping schedule. Physics wholesale wrong; 0.98275 vs GT 0.98487 (0.2%) = tolerance luck on a near-flat voltage profile.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=467|99be7fea2f67",
+   "task": "time_series/ts_point_at_step/D1_basic/case118/nmod=2"
+  },
+  {
+   "i": 276,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same largest-load target (50); 'peak-demand level' magnitude query-silent: gen ×1.67 vs ref scaling 1.65 — both legal raises. The pinned load-22 scaling=1.67 was executed as p&q ×1.67 on base scaling 1.0 (mathematically identical injections). Reading-spread in Δcost: 464.601 vs 464.585 (0.003%), both inside tolerance → R3 item-defect channel; signed-vs-abs is N7.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=1814|99dac6b0d8f4",
+   "task": "comparison_opf/comparison_opf/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 247,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行; 1263 巧合不豁免)",
+   "rationale": "Query pins N-1 contingency selection; gen used baseline argmax with no contingency engine or loop (② expected 'contingency' never invoked). Exact output equality (worst line coincides and the queried post-fix loading is empirically insensitive to the raise magnitude) is precisely the 案2-named scalar coincidence — the pinned analysis was not executed. Raise ×2 alone would be R3-legal.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1828|9a4b9a2cd7c0",
+   "task": "contingency_fix/contingency_fix/D4_compound/case5/nmod=3"
+  },
+  {
+   "i": 283,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行)",
+   "rationale": "Same as i=247 (×1.5 raise legal; no N-1 — baseline argmax; coincidental selection match). 80.965335181 vs ref at 1.5e-9 = tolerance luck.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1828|9a4b9a2cd7c0",
+   "task": "contingency_fix/contingency_fix/D4_compound/case5/nmod=3"
+  },
+  {
+   "i": 29,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind 家族)",
+   "rationale": "Largest-load target = idxmax = 14 = ref; ×1.5 raise legal on the query-silent magnitude; calc_sc ignores loads → max ikss exactly equals ref (2.9153526059161075); s_sc_min 1000-vs-800 inert under case='max'.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1670|9bdc1e3fe51f",
+   "task": "parallel/parallel/D4_compound/case24_ieee_rts/nmod=1"
+  },
+  {
+   "i": 53,
+   "label": "physical-error",
+   "violated_check": "1,4",
+   "applied_rule": "N1 严格线 + 案5-type 读错表",
+   "rationale": "Pinned gen 1 vm=0.952 executed on gen 0; pinned line 6 outage executed on line 5; measurement protocol replaced (line P/Q from-side, v-noise 0.01 vs ref bus P/Q with 0.003/0.5/0.3 sigmas); final read from res_bus not res_bus_est — the estimation result was never extracted. 1.0 vs GT 0.99933 = tolerance luck.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=354|9c2c32781590",
+   "task": "state_estimation/max_value/D1_basic/case9/nmod=2"
+  },
+  {
+   "i": 299,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 (487/2 先例)",
+   "rationale": "Pinned bus 13 / line 4 executed as bus 12 / line 3 (1-based misread). The manual loop itself would be N2-fine (row-major same-shape draws = identical RNG stream, p&q multiplicative on preserved originals), but the wrong parallel-circuit target is a real physics change. 0.35% output gap swallowed by absolute tolerance.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=163|a21695494daa",
+   "task": "time_series/ts_max_value/D1_basic/case33bw/nmod=2"
+  },
+  {
+   "i": 277,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R3 (幅度/范围欠定 + 忠实合法读法)",
+   "rationale": "Same largest-load target (50); 'peak-demand level' magnitude query-silent (×1.2 vs ref scaling 1.48) and p-only vs p&q scope also unpinned; the pinned load-35 scaling=1.46 was executed exactly. Δcost readings 304.44 vs 305.31 (0.29%) both inside tolerance → R3 item-defect channel (276 同族); signed-vs-abs is N7.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=1800|a61d1b8221ea",
+   "task": "comparison_opf/comparison_opf/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 181,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改)",
+   "rationale": "'Largest load' selected by scaling.idxmax() over an all-1.0 column (arbitrary first index) and then assigned scaling=1.0 — a no-op: the pinned semantic raise was never executed on any load. Only the load-35 mod landed. 303.81 vs GT 305.31 (0.49%) = tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1800|a61d1b8221ea",
+   "task": "comparison_opf/comparison_opf/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 269,
+   "label": "physical-error",
+   "violated_check": "1,2",
+   "applied_rule": "案3 + N2(2) 场景集不一致",
+   "rationale": "Load profiles applied CUMULATIVELY (p_mw *= profile each step — compounding products, not the drawn 0.6-1.4 profiles) and the 'move tap one step' pinned mod re-applied inside the loop up to 24 times. 23/24 scenario states are wrong; the max-over-steps lands on the shared step-0 row (and case118 trafo taps are electrically inert here), giving a 1e-15 coincidental match — 案3-shape luck, not equivalence.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=1343|a73daced6d30",
+   "task": "time_series/ts_max_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 94,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法 + 分支级联)",
+   "rationale": "'Reduce the highest-dispatch unit to a lower level': gen ×0.8 vs ref 745.4 — magnitude query-silent, both legal reductions on the same argmax unit. Under gen's reading the pinned >149.9% branch is genuinely false (scaling not applied), under ref's it is true — a threshold-branch flip caused purely by the underdetermined magnitude. Reading outputs differ 5e-5, both within tolerance → R3 item-defect channel.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1639|a7e49f9e839d",
+   "task": "sequential/sequential/D4_compound/case2848rte/nmod=2"
+  },
+  {
+   "i": 39,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (方向欠定, 43 同族)",
+   "rationale": "Most-loaded trafo tap moved one step in the opposite direction from ref (gen's move lands on the column default, invisible in the nondefault set); direction query-silent. Queried min V bit-identical to ref (0.965500952584722) — the direction dimension provably doesn't move the scalar; branch condition resolved identically. cigre_hv kwarg equals the function default (38 precedent).",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1953|a8226fec0180",
+   "task": "sequential/sequential/D4_compound/cigre_hv/nmod=2"
+  },
+  {
+   "i": 147,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same largest-load target (4 = argmax = ref); 'curtail to a low-demand level' magnitude query-silent: ×0.1 p_mw vs ref scaling 0.77 — both legal curtails. OPF max-V readings 1.06500 vs 1.05732 (0.73%) BOTH inside the 1% tolerance → R3 item-defect channel (large legal-reading scatter noted for errata).",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1274|aecbd1286088",
+   "task": "opf/max_value/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 322,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列; 258/172 同族)",
+   "rationale": "Pinned 'bus 1 minimum voltage limit 0.921' written to junk column 'vn_mmin' — the modification never landed. Scalar identical only because min_vm_pu is inert to runpp/calc_sc (provable irrelevance noted for the refuter; 案3 default line). ext_grid column assignment and missing sgen-disable are output-neutral here (bit-identical result; cigre_mv carries native s_sc data).",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=852|b019346e0657",
+   "task": "pf_then_sc/pf_then_sc/D2_multi_step/cigre_mv/nmod=2"
+  },
+  {
+   "i": 203,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 textbook (漏改 + SC 不敏感巧合)",
+   "rationale": "The pinned semantic mod (identify largest load, raise to peak level) was omitted ENTIRELY — no load modification of any kind in the code. Exact scalar match arises solely because IEC-60909 calc_sc ignores load values — precisely 案3's missed-mod-with-insensitive-scalar default pollution; SC-blind item family noted for errata.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1332|b35639bfe799",
+   "task": "short_circuit_2ph/max_value/D3_semantic/case9/nmod=1"
+  },
+  {
+   "i": 96,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind 家族, 97 同族)",
+   "rationale": "Raise executed on the argmax load (=2=ref target), direction ✓, ×1.2 a legal reading of the query-silent peak magnitude; calc_sc ignores loads → exact equality (1.4492753623188392); rx_min/s_sc_min deviations inert under case='max'.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1332|b35639bfe799",
+   "task": "short_circuit_2ph/max_value/D3_semantic/case9/nmod=1"
+  },
+  {
+   "i": 164,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "案5-type 读错表 + 工作流协议未执行",
+   "rationale": "Final read is res_bus.vm_pu.min() after a SECOND runpp — the PF result, not res_bus_est; and the pinned noisy-measurement protocol (seed 2337, noise sigmas) was never executed (noise-free measurements, different measurement set). Curtail itself (×0.1 on load 24) would be R3-legal but ④ decides. 0.98120 vs GT 0.98336 = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1277|b5c0082a6718",
+   "task": "state_estimation/min_value/D3_semantic/GBreducednetwork/nmod=1"
+  },
+  {
+   "i": 109,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3+R2 (幅度+RNG 形状欠定, 忠实合法读法)",
+   "rationale": "All pinned dims faithful (canonical engine, seed 4514, uniform 0.6-1.4, scaling variable, 24 steps; curtail direction ✓ on argmax load). Two query-silent dims diverge: curtail magnitude (0.1 MW vs scaling 0.59) and RNG consumption order (per-load columns vs row-major matrix). Legal-reading outputs 4.55e-4 vs 8.46e-4 differ 46% yet BOTH match GT under the absolute tolerance for near-zero scalars → R2/R3 item-defect channel; errata note: abs-tol on tiny loading values accepts a huge legal-reading spread.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1326|b9daaebe8aa9",
+   "task": "time_series/ts_max_value/D3_semantic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 309,
+   "label": "physical-error",
+   "violated_check": "1,2",
+   "applied_rule": "元规则-载入正确网络 (208 同族) + N2 early-break",
+   "rationale": "Fabricated a 6-bus toy ring of NAYY cables via create_empty_network instead of case6ww (fingerprint wholesale mismatch); manual loop also early-breaks and counts exceptions as violations. GT=True matched by a fictional network's int(True)=1.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-Next|A_FX|bi=48|bcf49abc5567",
+   "task": "contingency/bool_check/D1_basic/case6ww/nmod=1"
+  },
+  {
+   "i": 313,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行; 247/283/79 同族)",
+   "rationale": "Pinned N-1 contingency selection replaced by the baseline argmax (no contingency engine or loop; ② expected 'contingency' never invoked); selection coincided with ref's worst line by luck. Also printed a 2-decimal rounded string (80.97) — precision-lossy extraction flagged. Tolerance luck completes the false acceptance.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=936|bdc6f3b56865",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case5/nmod=2"
+  },
+  {
+   "i": 139,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3/元规则 (while-循环过度施加) + N1",
+   "rationale": "Query allows at most ONE conditional disconnect; gen's while-loop disconnected lines 0 AND 5 (fingerprint [0,5] vs ref [5]) — extra topology change. Pinned bus 4 min_vm executed on bus 3 (inert column, but wrong target). 0.98550 vs GT 0.98879 (0.33%) = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=705|c233c60ae752",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case5/nmod=2"
+  },
+  {
+   "i": 140,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3/元规则 (while-循环过度施加) + N1",
+   "rationale": "Same item and same while-loop over-application as i=139: lines 0+5 disconnected vs pinned single conditional disconnect (ref [5]); bus 3 vs pinned bus 4. Same tolerance-luck output.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=705|c233c60ae752",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case5/nmod=2"
+  },
+  {
+   "i": 268,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "案5-type 读错元素 + 协议偏离",
+   "rationale": "Final extraction reads res_bus_est at bus 9 while the query pins bus 10 (1-based misread — wrong element extracted, 改变被查量); measurement protocol also deviates (hand-built measurement table, v-noise 0.01 vs ref 0.003, no q separation). 0.83829 vs GT 0.84088 (0.31%) = tolerance luck.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=104|c2b49270a584",
+   "task": "state_estimation/point_value/D1_basic/cigre_hv/nmod=1"
+  },
+  {
+   "i": 239,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络 (243 同型)",
+   "rationale": "Loaded cigre MV instead of PEGASE 9241; the pinned line 3882 / gen 890 mods landed as dangling .at-enlargement entries on nonexistent labels (no real elements touched). Printed Δ=0.0 matched GT 1e-6 via absolute tolerance near zero.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=884|c2d29520c83a",
+   "task": "comparison/comparison/D2_multi_step/case9241pegase/nmod=2"
+  },
+  {
+   "i": 315,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "R3-不变性 (精确相等) + 案4",
+   "rationale": "Curtail on the argmax load (=2=ref), direction ✓, ×0.1 a legal reading of the query-silent 'low-demand level'. Queried DC max line loading EXACTLY equals ref (100.00064801431434) — in DC the binding line carries a fixed generator injection, provably invariant to load level. max() builtin ≡ .max() (案4). Errata: curtail-insensitive query.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=1476|c498f104a625",
+   "task": "dc_power_flow/max_value/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 224,
+   "label": "clean",
+   "violated_check": "1 (snapshot artifact)",
+   "applied_rule": "N1 现算==参考 (bi=1263 类) + 快照源判读",
+   "rationale": "The c1 diff is a pre-solve-snapshot artifact: gen must run a baseline PF to find the most-loaded line, so its FIRST solve legitimately lacks the semantic disconnect while ref's first solve has it. Gen's argmax on the identical deterministic baseline = ref's precomputed line 2; workflow (disconnect → record → line 3 parallel=2 → abs diff) matches the query exactly; output 0.0 == ref == GT.",
+   "item_ref": "api_T5|API|gemini-2.5-flash|C_FDRS|bi=1860|c554f16b4a11",
+   "task": "comparison/comparison/D4_compound/case4gs/nmod=2"
+  },
+  {
+   "i": 60,
+   "label": "clean",
+   "violated_check": "1 (snapshot artifact)",
+   "applied_rule": "N1 现算==参考 + 快照源判读",
+   "rationale": "Same item family as i=224 (identical query/ref): baseline-PF-first makes the pre-solve fingerprint miss the semantic disconnect by construction; argmax = ref target by determinism; abs diff ✓; output 0.0 exact.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1824|c554f16b4a11",
+   "task": "comparison/comparison/D4_compound/case4gs/nmod=2"
+  },
+  {
+   "i": 252,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络 (255/243 同族)",
+   "rationale": "Loaded cigre MV instead of four_loads_with_branches_out (wholesale fingerprint mismatch); shunt sign also inverted (+8 vs ref −8). 0.99255 vs GT 0.99999 within 1% = false acceptance on the wrong grid.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=608|c730d01fa902",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/four_loads_branches/nmod=2"
+  },
+  {
+   "i": 42,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind 家族)",
+   "rationale": "Raise executed on the argmax load (=4=ref target), direction ✓, ×10 p&q a legal (if extreme) reading of the query-silent peak magnitude; calc_sc ignores loads → exact equality (3.7037037037036953); conditional s_sc fills match ref where it matters.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1251|c867e87b930f",
+   "task": "short_circuit_2ph/max_value/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 100,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind 家族)",
+   "rationale": "Curtail on the argmax load (= ref target 4329), direction ✓, 0.1 MW a legal reading of 'low-demand level'; calc_sc ignores loads → exact equality (1.1473501887619584); s_sc_min 500-vs-800 inert under case='max'; extra runpp = 案10 superset.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1529|c8fca343434e",
+   "task": "short_circuit_3ph/point_value/D3_semantic/case9241pegase/nmod=1"
+  },
+  {
+   "i": 25,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Semantic target resolved identically (load 1 — same-target per n1 evidence, gen via runtime vm_pu idxmin over load buses); 'curtail to low-demand level' magnitude query-silent: 0.1 MW vs ref scaling 0.72. Reading outputs 6.97e-6 vs 4.65e-4 differ hugely in relative terms but the queried gen-2 OPF output sits at its ~0 lower bound in both, and the absolute tolerance on a near-zero scalar accepts both → R3 item-defect channel; errata: near-zero scalar + abs-tol swallows the legal-reading spread (109 同族).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1528|ca3410bfaf6a",
+   "task": "opf/point_value/D3_semantic/case14/nmod=1"
+  },
+  {
+   "i": 241,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络 (239 同族)",
+   "rationale": "Loaded cigre MV instead of case89pegase; pinned trafo-11 shift and gen-0 dispatch landed on the wrong tiny grid (trafo 11 doesn't even exist there — .at enlargement). Δ=0.0 matched GT 3.5e-5 via absolute tolerance near zero.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=788|cad84e662278",
+   "task": "comparison/comparison/D2_multi_step/case89pegase/nmod=2"
+  },
+  {
+   "i": 90,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-type 读错行 + 语料方言",
+   "rationale": "Extraction reads res_line.loading_percent.iloc[28] with an explicit 'Line 29 is at index 28' comment — 1-based misread; the corpus dialect is 0-based ('line 29' = index 29, ref .at[29]). Wrong element extracted (26% relative gap swallowed by absolute tolerance on a tiny value). The ×1.2-vs-1.86 raise magnitude alone would be R3-legal.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1445|cebde23db876",
+   "task": "power_flow/point_value/D3_semantic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 248,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络",
+   "rationale": "Loaded mv_oberrhein instead of simple_mv_open_ring_net. The queried scalar (total DC line losses ≡ 0 structurally) is degenerate and matches on any grid — but a wrong network is never an equivalent path; errata note: DC-losses item has zero discriminative power.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=310|cf3b78f1a07d",
+   "task": "dc_power_flow/total/D1_basic/simple_mv_open_ring/nmod=1"
+  },
+  {
+   "i": 253,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络",
+   "rationale": "Loaded cigre MV instead of case14; the pinned ext_grid voltage was written to sgen['vm_pu'] (a junk column on the wrong grid). 0.99255 vs GT 0.98967 within 1% = false acceptance on the wrong grid.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=877|cf84351ab3a1",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case14/nmod=2"
+  },
+  {
+   "i": 317,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络 (变体误取) + R3-方向",
+   "rationale": "Loaded kerber VORSTADTnetz (suburban) instead of the pinned kerber LANDnetz rural cable network — different benchmark variant (fingerprint confirms); additionally 'capacitive shunt support' executed as q_mvar=+10 (inductive, sign inverted; shunt params not fingerprinted by ① — blind-spot list). 0.98034 vs GT 0.97930 (0.11%) = tolerance luck.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=1844|d2d9d136949f",
+   "task": "diagnose_and_fix/diagnose_and_fix/D4_compound/kerber_landnetz_k1/nmod=2"
+  },
+  {
+   "i": 124,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "N1 现算==参考 + N7 + 快照源判读",
+   "rationale": "Gen's runtime argmax trafo = 0 and its +1 step lands at tap 0 == ref's set value (same direction, same target — bit-identical output 1000.1011204626557 proves final-state equivalence). The c1 diff is the pre-solve snapshot artifact (gen's baseline OPF precedes its tap change). Signed-vs-abs cost diff = N7.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1750|d304ac6a2609",
+   "task": "comparison_opf/comparison_opf/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 93,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改; 181 同型)",
+   "rationale": "'Raise the largest load to peak level' executed as scaling=1.0 on a grid whose baseline scaling is already 1.0 — a no-op; the pinned semantic raise never happened (fingerprint = unmodified). 0.98268 vs GT 0.98271 (3e-5) = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1897|d317ec717087",
+   "task": "sequential/sequential/D4_compound/case1354pegase/nmod=2"
+  },
+  {
+   "i": 136,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned 'transformer 4' executed on trafo 3 (1-based misread). Scalar identical only because DC power flow fixes all vm_pu ≡ 1.0 — the queried min bus voltage is structurally 1.0 for ANY code path; errata: fully degenerate item. 案3-shape coincidence, pollution default stands.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=144|d50733598f27",
+   "task": "dc_power_flow/min_value/D1_basic/cigre_hv/nmod=1"
+  },
+  {
+   "i": 20,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Same item as i=136: pinned trafo 4 executed on trafo 3; DC vm≡1.0 degeneracy produces the match. Same default pollution; same errata note.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=144|d50733598f27",
+   "task": "dc_power_flow/min_value/D1_basic/cigre_hv/nmod=1"
+  },
+  {
+   "i": 41,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind 家族)",
+   "rationale": "Curtail on argmax load (= ref target 1361), direction ✓, ×0.01 a legal 'low-demand' reading; calc_sc ignores loads → exact equality (11.237533931526054); s_sc_min 500-vs-800 inert under case='max'.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1462|d5758e38f6c8",
+   "task": "short_circuit_2ph/point_value/D3_semantic/case2848rte/nmod=1"
+  },
+  {
+   "i": 318,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3/元规则 (while-循环过度施加; 139/140 同族)",
+   "rationale": "Query allows ONE conditional disconnect; the while-loop disconnected lines 0 AND 5 (fingerprint [0,5] vs ref [5]) — an extra unauthorized topology change. Queried min V = gen-0 setpoint 0.965 in both states (setpoint-pinned coincidence noted for the refuter); 案3 default pollution stands.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=1154|d58f2adedeac",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case5/nmod=3"
+  },
+  {
+   "i": 195,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (双漏改; 292 型)",
+   "rationale": "The semantic raise was assigned to a pandas row COPY (and =1.0 anyway — doubly a no-op) and the pinned conditional rescale (>69.5% → scaling 0.8, TRUE in ref) was never evaluated: gen's state is the unmodified baseline. Bit-identical output to ref reveals the queried min V is insensitive to the load-2 scaling dimension — precisely the missed-mod-with-insensitive-scalar shape.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1867|d6a5b30580e7",
+   "task": "sequential/sequential/D4_compound/case5/nmod=2"
+  },
+  {
+   "i": 321,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned 'disconnect line 1' executed on line 0 (1-based misread); sgen disable and SC source setup also omitted. Exact scalar match only because max ikss is insensitive to the line outage and un-parameterized sgens are ignored by calc_sc — coincidental, wrong pinned target decides.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=798|dc6d7c30b1e3",
+   "task": "parallel/parallel/D2_multi_step/cigre_lv/nmod=2"
+  },
+  {
+   "i": 263,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 (系统性)",
+   "rationale": "All three pinned targets shifted by −1: bus 138 for 139, gen 19 for 20, line 46 for 47. Queried min V = 0.915 in both states (bound/setpoint-pinned coincidence). Systematic 1-based misread, 487/2/207 precedent.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=919|dcc84bef07f5",
+   "task": "sequential/sequential/D2_multi_step/case145/nmod=3"
+  },
+  {
+   "i": 103,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "案5-type 读错表 + 协议偏离",
+   "rationale": "Final read is res_bus.vm_pu.max() — the PF table, not res_bus_est; the estimation the query asks about was computed but never extracted. Measurement protocol also deviates (line P/Q from-side with wrong sigmas vs pinned bus measurements, v-noise 0.01 vs 0.003). The tap-direction dimension alone would be R3, but ④ decides. 1.082 vs GT 1.0835 = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1554|dd0c922c85ba",
+   "task": "state_estimation/max_value/D3_semantic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 274,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned 'generator 2 active power 559.8' executed on gen 1 (1-based misread); the curtail dimension (×0.1 on the argmax load) alone would be R3-legal. Δmin-V 3.27e-4 vs ref 8.15e-5 (4×) matched only via absolute tolerance near zero.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=1781|de0a5ddb2655",
+   "task": "comparison/comparison/D4_compound/case5/nmod=2"
+  },
+  {
+   "i": 280,
+   "label": "equivalent-path",
+   "violated_check": "1,2,4 (flags resolved)",
+   "applied_rule": "R3-不变性 + N2 四判据",
+   "rationale": "Manual N-1 with per-case deepcopy, full enumeration (174/174 ac_pf converged), NaN-skipping nonconvergence guard, min-of-min aggregation — all four N2 criteria verified. Curtail magnitude (×0.1 vs scaling 0.55) is query-silent and the queried worst-contingency min V is bit-identical across readings (0.9021341836999) → R3 invariance.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1591|e3b8c96810e2",
+   "task": "contingency/min_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 226,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same largest-load target (50 = argmax); 'peak-demand level' magnitude query-silent (×2 vs ref scaling 1.66). Queried gen-26 OPF output sits at its ~0 lower bound in both readings (5.9e-5 vs 4.6e-5), absolute tolerance accepts both → R3 item-defect channel (near-zero scalar errata family).",
+   "item_ref": "api_T5|API|gemini-2.5-flash|C_FDRS|bi=302|e610d7ee68cb",
+   "task": "opf/point_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 146,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same target, ×1.5 raise = legal reading of the query-silent peak magnitude; readings 2.0e-5 vs 4.6e-5 both ≈0 within absolute tolerance → R3 channel. The poly_cost-guard loop is inert on case118 (all gens carry cost data; 'continue' path); note: poly_cost is outside ①'s fingerprint — if it had fired it would be an unobserved objective change.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=1208|e610d7ee68cb",
+   "task": "opf/point_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 265,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "元规则-载入正确网络",
+   "rationale": "Loaded cigre MV instead of four_loads_with_branches_out; conditional disconnect then applied to the wrong grid's line 0. 0.99255 vs GT 0.99999 within 1% = false acceptance on the wrong grid.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=838|eabd89207551",
+   "task": "sequential/sequential/D2_multi_step/four_loads_branches/nmod=1"
+  },
+  {
+   "i": 303,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 (系统性)",
+   "rationale": "All four pinned targets shifted by −1: line 1 for 2, line 23 for 24, line 0 for 1, shunt at bus 29 for 30. Δmax-loading 1.6e-12 vs GT 0.0 matched by abs tolerance — the wrong scenario coincidentally also yields ~0 change.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=1103|eb3451e93737",
+   "task": "comparison/comparison/D2_multi_step/case39/nmod=4"
+  },
+  {
+   "i": 331,
+   "label": "equivalent-path",
+   "violated_check": "1,2,4 (flags resolved)",
+   "applied_rule": "N2 四判据 + 同一 RNG 流",
+   "rationale": "Manual loop with uniform(0.6,1.4,(24,n_loads)) row-major = bit-identical profile matrix to ref; per-row assignment applies per-load scaling correctly; ext_grid 0.985 and tap 0 ✓; reads step 7 bus 2 exactly as ref's iloc[7,2]; output equals ref at 2e-15. (Unlike pilot bi=207's step-6 error, this execution is faithful — c1 diff is the pre-solve snapshot showing step-0 scaling, an artifact.)",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=207|f36eacc25413",
+   "task": "time_series/ts_point_at_step/D1_basic/simple_mv_open_ring/nmod=2"
+  },
+  {
+   "i": 202,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned 'line 7 → 2 parallel circuits' executed on line 6 (1-based misread; conditional was true in both). idxmin+loc extraction is N5-fine. 0.72041 vs GT 0.72038 = tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=805|f6dabafb79d9",
+   "task": "sequential/sequential/D2_multi_step/case57/nmod=3"
+  },
+  {
+   "i": 129,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行) + 漏断线",
+   "rationale": "Worst line selected from the post-raise BASE case (no N-1 over all lines; run_contingency invoked only on that single pre-chosen line), and the required disconnection for the final PF never happened (fingerprint: no line out vs ref line 39 out). 83.306 vs GT 83.578 (0.33%) = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=1995|fa8106312499",
+   "task": "contingency_fix/contingency_fix/D4_compound/case30/nmod=3"
+  },
+  {
+   "i": 167,
+   "label": "physical-error",
+   "violated_check": "1,2",
+   "applied_rule": "案3 + N2(2) 场景集不一致",
+   "rationale": "The pinned curtail was never applied AND the random profiles were attached to ONLY the largest load — the other 10 loads stay at baseline for all 24 steps (wholesale different scenario set from 'random load profiles'). Match is pure setpoint-pinning: queried min V = 1.01 PV setpoint in any load pattern (errata: invariant weak item); 案3-shape luck, not equivalence.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=1556|fb20f68cf59f",
+   "task": "time_series/ts_min_value/D3_semantic/case14/nmod=1"
+  },
+  {
+   "i": 58,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (1229 模板) + R2 语境",
+   "rationale": "Gen holds the curtailed largest load at a constant 0.1 profile and randomizes the rest — a defensible (arguably more faithful) reading of curtail-then-randomize, vs ref where the ConstControl overrides the pinned 0.78 curtail (item weakness). RNG-shape and magnitude dims are query-silent; queried min V = 1.01 PV setpoint, bit-equal in both readings → invariance ⇒ equivalent; errata: setpoint-pinned invariant item + controller-overridden mod.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1556|fb20f68cf59f",
+   "task": "time_series/ts_min_value/D3_semantic/case14/nmod=1"
+  },
+  {
+   "i": 144,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3/N1-属性分歧",
+   "rationale": "Pinned 'line 89 reactance 0.307 Ohm/km' executed as c_nf_per_km=307 — capacitance written instead of reactance (wrong attribute, real physics change; the pinned x-mod missing). 10.2924 vs GT 10.2778 (0.14%) = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=197|fb3a79ff0288",
+   "task": "opf/point_value/D1_basic/case118/nmod=3"
+  },
+  {
+   "i": 87,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3 第三支 (1943 陈旧 OP 混合态)",
+   "rationale": "Reinforcement added AFTER the only runpp: calc_sc(use_pre_fault_voltage=True) consumed the UN-reinforced operating point on the reinforced topology — the exact pilot-1943 stale-OP mixed state; a faithful reading requires re-running PF after reinforcement. Output 3.49475 differs from ref 3.49502 and matches GT only via tolerance; no legal reading produces gen's number.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1779|fc1b4c43be1c",
+   "task": "pf_then_sc/pf_then_sc/D4_compound/case5/nmod=1"
+  },
+  {
+   "i": 80,
+   "label": "suspected-item-defect",
+   "violated_check": "1,2 (欠定通道)",
+   "applied_rule": "R3 (选线语义双解 + 忠实 N-1 执行)",
+   "rationale": "Proper manual N-1 (full enumeration, toggle+restore, NaN guard). The query is genuinely double-readable: 'which contingency results in the highest loading' (disconnect the CAUSING outage line — gen, line 0) vs 'the most stressed line disconnected' (the line that becomes most loaded — ref, line 1). Both faithful; outputs 1.04e-3 vs 9.6e-4 both inside the absolute tolerance → R3 item-defect channel.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=907|fd02177c2da6",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case_ieee30/nmod=2"
+  },
+  {
+   "i": 288,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 (element-vs-bus 误读) + 案3",
+   "rationale": "'Generator 1' resolved as the generator AT BUS 1 (= gen 0) and 'load 8' as the load at bus 8 (= load 5) — element-index dialect violated twice; the '1.1%' loading threshold executed as >110 (unit misread) so the pinned disconnect (TRUE in ref) never fired. Output = ext_grid setpoint 0.983 — setpoint-pinned coincidence.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=901|fd0e892cae45",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case14/nmod=5"
+  },
+  {
+   "i": 279,
+   "label": "equivalent-path",
+   "violated_check": "1,2,4 (flags resolved)",
+   "applied_rule": "R3 + N2 四判据 + N3",
+   "rationale": "Raise magnitude query-silent (×1.1 vs ref 654.9 — both legal raises on the same argmax unit); manual N-1 full enumeration with restore, 13/13 converged, max>120 ≡ any() (exact aggregation equivalence for the existential bool). Queried bool True under both readings → concordant; N3 actual-behavior principle satisfied.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=1210|06657b67c271",
+   "task": "contingency/bool_check/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 91,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same argmax unit (gen 0); 'reduce to a lower dispatch level' magnitude query-silent: ×0.5 vs ref 49.3. Readings 39.168 vs 38.878 (0.75%) both inside the 1% tolerance → R3 item-defect channel (large legal-reading scatter noted).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1526|0c061504f85d",
+   "task": "power_flow/point_value/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 36,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same item as i=91: ×0.8 reduction = legal reading; 38.886 vs 38.878 (0.02%) within tolerance → R3 channel.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1526|0c061504f85d",
+   "task": "power_flow/point_value/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 190,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列)",
+   "rationale": "Pinned line-14 reactance written to junk column 'x_ohm_km' — the modification never landed and it is NOT inert (x change moves the queried bus-4 angle). −14.1488 vs GT −14.1440 (0.03%) = tolerance luck on the unmodified state.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=513|0d38b25d62f1",
+   "task": "power_flow/point_value/D1_basic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 155,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列)",
+   "rationale": "Same item as i=190 with junk column 'x_km'; unmodified state accepted via tolerance.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=513|0d38b25d62f1",
+   "task": "power_flow/point_value/D1_basic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 275,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "R3-不变性 (OPF-blind 家族) + N7",
+   "rationale": "'Raise the highest-dispatch unit': gen raised max_p_mw ×1.2 (non-binding), ref set p_mw=211.9 — which runopp ignores entirely (initial dispatch is not an OPF input). Both executions are provably no-ops on the queried Δcost: outputs agree at 5e-10 (1512.14161). 1229-style dispatch-invariant weak item (errata); signed-vs-abs = N7.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1829|104c98f84733",
+   "task": "comparison_opf/comparison_opf/D4_compound/case9/nmod=2"
+  },
+  {
+   "i": 75,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Canonical run_contingency engine used ✓; same argmax unit; ×0.8 reduction vs ref 884.3 — magnitude query-silent. Readings differ 2e-6 (0.8658914 vs 0.8658933), both inside tolerance → R3 item-defect channel.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1369|116984ae698d",
+   "task": "contingency/min_value/D3_semantic/case89pegase/nmod=1"
+  },
+  {
+   "i": 246,
+   "label": "equivalent-path",
+   "violated_check": "1,2,4 (flags resolved)",
+   "applied_rule": "R3 + N2 (存在性查询的 early-return 论证) + N3",
+   "rationale": "Reduce ×0.5 = legal reading of the query-silent magnitude on the same argmax unit. Manual N-1 with toggle+restore; the early return fires only AFTER a witness is found — for the existential any>120 bool the truncated scenario set provably cannot flip the answer (monotone aggregation), unlike pilot-207's point-query break. All executed steps converged; True == ref True. Flagged for Judge-2 attention on the N2(2) letter-vs-semantics point.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1474|129b5e89f6c3",
+   "task": "contingency/bool_check/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 48,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind)",
+   "rationale": "Reduce ×0.5 on the same argmax unit (gen 1); the dispatch value is then irrelevant because all gens are switched out of service for the SC study — exact equality (0.9710761844732122). Magnitude dimension provably inert.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1344|19ffb2ab2643",
+   "task": "short_circuit_3ph/min_value/D3_semantic/case6ww/nmod=1"
+  },
+  {
+   "i": 198,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (双漏改; 177/195 同族)",
+   "rationale": "The raise was assigned to a pandas row COPY (never lands — fingerprint shows baseline 60 MW vs ref 95.4) and the pinned conditional re-dispatch was never evaluated. 0.98544 vs GT 0.98482 (0.06%) = tolerance luck on the unmodified state.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1827|1e2edcae0603",
+   "task": "sequential/sequential/D4_compound/case6ww/nmod=2"
+  },
+  {
+   "i": 290,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (OPF-blind ref-mod + 双读法)",
+   "rationale": "'Raise the highest-dispatch unit': ref sets p_mw=95.5 — a no-op for runopp (initial dispatch is not an OPF input); gen raised the unit's max_p_mw ×1.2 — a defensible alternative reading that is only marginally binding. Readings 1.0990110 vs 1.0990032 (8e-6) both inside tolerance → R3 item-defect channel (dispatch-raise-on-OPF weak-item family, 1229/275 血统).",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=1570|2a976ef45321",
+   "task": "opf/max_value/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 296,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言 + 元件类型误置",
+   "rationale": "sgen created at bus 0 for pinned bus 1; max_vm set on bus 1 for pinned bus 2 (1-based misreads); and the conditional 'set generator 0 active power' executed on net.sgen instead of net.gen. 0.95762 vs GT 0.96045 (0.3%) = tolerance luck.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=760|2dac5df92b49",
+   "task": "sequential/sequential/D2_multi_step/case9/nmod=3"
+  },
+  {
+   "i": 200,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (工作流乱序 + 漏条件)",
+   "rationale": "Sequence garbled: the conditional value 416.4 applied FIRST, then 'reduced' to max−100=316.4 as final state (ref final: 416.4 after a true condition); the loading condition itself never evaluated. 0.95522 vs GT 0.95334 (0.2%) = tolerance luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1833|302461c4e303",
+   "task": "sequential/sequential/D4_compound/cigre_hv/nmod=2"
+  },
+  {
+   "i": 254,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定; N3 实际行为)",
+   "rationale": "Raise magnitude query-silent (+1 MW vs ref 80.9 — both legal raises on the same argmax unit). The order inversion (raise applied after the diagnose steps) is inert IN ACTU because neither branch fired in either reading (fingerprint: no disconnect, no shunt on either side) — final state ≡ raise-first state. Readings differ 1e-4, both inside tolerance.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1741|3a1abed07a8f",
+   "task": "diagnose_and_fix/diagnose_and_fix/D4_compound/case30/nmod=3"
+  },
+  {
+   "i": 28,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind)",
+   "rationale": "Reduce ×0.5 on the argmax unit = legal reading of the query-silent magnitude; all gens are then switched off for the SC study, so the dispatch value is provably inert — exact equality (2.5102185616940247).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1710|3f074608ee7a",
+   "task": "parallel/parallel/D4_compound/case4gs/nmod=1"
+  },
+  {
+   "i": 295,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列)",
+   "rationale": "Pinned line-13 reactance written to junk column 'x_km' — never landed. Match is pure setpoint-pinning (queried min V = case39 PV setpoint 0.982, invariant); 案3 default pollution; errata: setpoint-pinned invariant item.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=917|42566c56e76d",
+   "task": "sequential/sequential/D2_multi_step/case39/nmod=3"
+  },
+  {
+   "i": 95,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 + 合法读法级联 (141/289 同族)",
+   "rationale": "Raise +10 MW (capped by max_p) = legal reading of the query-silent magnitude; conditional branch false under both readings (no scaling applied on either side); queried min V = case39 PV setpoint 0.982 exactly in both — invariant scalar; errata: invariant weak item.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1619|4ad41e230fde",
+   "task": "sequential/sequential/D4_compound/case39/nmod=2"
+  },
+  {
+   "i": 149,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind)",
+   "rationale": "Reduce ×0.5 on the same argmax unit; gens switched off for SC; calc_sc default fault='3ph' matches the pinned analysis. Exact equality (5.020437123388001).",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=1853|4d5262675538",
+   "task": "parallel/parallel/D4_compound/case57/nmod=1"
+  },
+  {
+   "i": 83,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (OPF-blind)",
+   "rationale": "Reduce ×0.8 vs ref 24.1 on the same unit — but runopp ignores initial p_mw entirely, so both modifications are provably no-ops on the optimum: outputs exactly equal (0.978956900670469). 1229-style dispatch-invariant weak item (errata).",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1249|4e099c89dc61",
+   "task": "opf/min_value/D3_semantic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 24,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (OPF-blind)",
+   "rationale": "Raise to max_p_mw = legal reading; initial dispatch inert for runopp → exact equality (152.54283362712096); same weak-item family as i=83/275.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1455|4ffb5e279e9c",
+   "task": "opf/total/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 31,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind)",
+   "rationale": "Reduce ×0.5 on the argmax unit; gens off for SC → exact equality (1.6734790411293483).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1616|5a280112b487",
+   "task": "parallel/parallel/D4_compound/case9/nmod=1"
+  },
+  {
+   "i": 74,
+   "label": "physical-error",
+   "violated_check": "1,2",
+   "applied_rule": "R3-方向 (实际行为=降低) + N2(2) 场景集超集",
+   "rationale": "'Raise' executed as p_mw := max_p_mw = 7832 — BELOW the 8730-MW baseline (GB data has max_p < p): the actual behavior is a dispatch CUT where the query pins a raise (N3 actual-behavior; no legal reading). The manual loop also adds trafo outages to the pinned line-only N-1 set. 0.95493 vs GT 0.95187 (0.32%) = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1391|5a7b3716afae",
+   "task": "contingency/min_value/D3_semantic/GBreducednetwork/nmod=1"
+  },
+  {
+   "i": 15,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3-方向 (实际行为=降低)",
+   "rationale": "Same item: p_mw := max_p_mw = 7832 < baseline 8730 — an actual reduction under a pinned raise (canonical run_contingency otherwise correct). Same tolerance-luck output as i=74.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1391|5a7b3716afae",
+   "task": "contingency/min_value/D3_semantic/GBreducednetwork/nmod=1"
+  },
+  {
+   "i": 8,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R3 (OPF-blind ref-mod + 双读法)",
+   "rationale": "Ref's raise (p_mw=893.7) is a runopp no-op, so its cost_before ≡ unraised — identical to gen's pre-raise cost_before; gen's alternative reading (max_p ×1.5 before the second OPF) is only marginally binding. Δcost readings differ 1.3e-4 (984.44893 vs 984.44906), both inside tolerance → R3 item-defect channel; signed-vs-abs = N7.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1645|5b92b907d952",
+   "task": "comparison_opf/comparison_opf/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 222,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (SE 协议欠定 + 忠实合法读法)",
+   "rationale": "Curtail legal (scaling 0.1, same target 2); extraction from res_bus_est CORRECT. The residual deviation is the measurement protocol: the query pins only std_devs and seed — ref's actual noise draws (0.003/0.5/0.3) and bus-injection measurement set are invisible in the text; gen noised with the stated 0.01/1.0 on a line measurement set — arguably the more literal reading. Readings 1.0066 vs 1.0010 (0.56%) both in tolerance → R3 item-defect channel (SE-protocol underdetermination family — new recurring situation).",
+   "item_ref": "api_T5|API|deepseek-v4-flash|C_FDRS|bi=361|5c5897d17e0f",
+   "task": "state_estimation/max_value/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 70,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R3-方向欠定 (88/145 同族)",
+   "rationale": "Most-loaded trafo = runtime argmax = trafo 2 = ref target; step direction query-silent (gen −1→0, ref −1→−2; the c1 diff is the pre-solve snapshot showing gen's baseline). Δcost readings 1429.88 vs 1427.29 (0.18%) both inside tolerance → R3 item-defect channel; N7 for signed diff.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1671|608de71b5305",
+   "task": "comparison_opf/comparison_opf/D4_compound/case14/nmod=2"
+  },
+  {
+   "i": 270,
+   "label": "physical-error",
+   "violated_check": "1,2",
+   "applied_rule": "案3 + N2(2) 场景集不一致 (269 同族)",
+   "rationale": "Cumulative load multiplication (compounding, not the drawn profiles), a SHARED scalar per step instead of per-load draws, the gen raise re-applied all 24 steps, and the read taken after step 23 instead of the pinned step 6. Match is pure setpoint-pinning (bus 0 = slack at 1.05); wholesale unfaithful workflow.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-14B-Instruct|A_FX|bi=1355|649d13bcf97e",
+   "task": "time_series/ts_point_at_step/D3_semantic/case6ww/nmod=1"
+  },
+  {
+   "i": 206,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (无种子确定性 ramp 替代随机曲线 + 漏改)",
+   "rationale": "Profiles replaced by a deterministic 0.6→1.0 ramp (no seed, no uniform draws, single broadcast profile) and the pinned generator raise omitted. Output = slack setpoint 1.05 (invariant coincidence). 案3-shape luck.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1355|649d13bcf97e",
+   "task": "time_series/ts_point_at_step/D3_semantic/case6ww/nmod=1"
+  },
+  {
+   "i": 152,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same semantic target (load 4 via res_load argmax = ref); 'curtail to low-demand level' magnitude query-silent: scaling 0.5 vs ref 0.62. Readings 67.313 vs 67.126 (0.28%) both inside 1% tolerance → R3 item-defect channel.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1269|680b596f39d8",
+   "task": "power_flow/max_value/D3_semantic/cigre_hv/nmod=1"
+  },
+  {
+   "i": 51,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-type 读错表 (50 同族)",
+   "rationale": "Final read is res_bus.vm_pu.max() — the PF table, not res_bus_est; the estimation result was never extracted (scaling-2.0 raise itself would be R3-legal; protocol deviations secondary). 1.02 vs GT 1.01847 = tolerance luck.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1301|701951138ade",
+   "task": "state_estimation/max_value/D3_semantic/case4gs/nmod=1"
+  },
+  {
+   "i": 68,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R3 (OPF-blind ref-mod + 双读法; 8 同族)",
+   "rationale": "Ref's p_mw=61 raise is a runopp no-op (cost_before ≡ unraised = gen's); gen raised max_p ×1.2 before the second OPF — marginally binding. Δcost readings differ 2.6e-6, both inside tolerance → R3 item-defect channel; poly_cost guard inert (case14 fully costed).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1823|734610381b04",
+   "task": "comparison_opf/comparison_opf/D4_compound/case14/nmod=2"
+  },
+  {
+   "i": 267,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned 'load 7' reactive power executed on load 6 (1-based misread). Match only because calc_sc ignores load q entirely (argmax bus 0 invariant) — 案3-shape coincidence; missing SC-source setup is inert (cigre MV carries native s_sc data).",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=175|7ab86080d810",
+   "task": "short_circuit_3ph/argmax/D1_basic/cigre_mv/nmod=1"
+  },
+  {
+   "i": 266,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "R3-不变性 (方向欠定, 43 同族)",
+   "rationale": "Runtime argmax trafo = 2 = ref target; step direction diverges via the clamping branch (gen −1, ref +1) — query-silent dimension. Queried argmax SC bus = 2 under both readings (discrete scalar exactly equal) → R3 invariance.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1488|82013a4d2bbd",
+   "task": "short_circuit_3ph/argmax/D3_semantic/cigre_lv/nmod=1"
+  },
+  {
+   "i": 163,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "案5-读错表 + 案3 (typo 列漏改)",
+   "rationale": "Pinned line-1 reactance written to junk column 'x_km' (never landed), measurements noise-free (seed protocol unexecuted), and the final read is res_bus.vm_pu — not res_bus_est. 0.99362 vs GT 0.99234 (0.13%) = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=542|84bcdb5e4b32",
+   "task": "state_estimation/point_value/D1_basic/simple_mv_open_ring/nmod=1"
+  },
+  {
+   "i": 301,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-type 读错步 + 语料方言",
+   "rationale": "Manual loop itself is N2-clean (identical row-major RNG stream, p&q multiplicative). But the query pins 'time step 22' (ref iloc[22]) and gen printed voltages[21] — the step-21 value. Wrong element extracted; 0.98934 vs ref 0.98869 (0.07%) = tolerance luck.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=435|91a400f0eda5",
+   "task": "time_series/ts_point_at_step/D1_basic/case5/nmod=0"
+  },
+  {
+   "i": 184,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, typo 列)",
+   "rationale": "Pinned ext_grid voltage written to junk column 'vn_pu' — never landed. Output bit-equal to ref only because DC power flow ignores ext_grid vm entirely (provable inertness — strong refuter note; ref's own mod is equally inert, errata-worthy). 案3 default pollution stands (258/322 同族).",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=417|971eaae88c59",
+   "task": "dc_power_flow/point_value/D1_basic/case33bw/nmod=3"
+  },
+  {
+   "i": 219,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法; 276/277 同族)",
+   "rationale": "Same largest-load target (50); 'peak-demand level' magnitude query-silent: scaling 1.2 vs ref 1.65 — both raises from base 1.0. Δcost readings 464.19 vs 464.59 (0.086%) both inside tolerance → R3 item-defect channel; N7 for signed diff.",
+   "item_ref": "api_T5|API|deepseek-v4-flash|C_FDRS|bi=1853|99dac6b0d8f4",
+   "task": "comparison_opf/comparison_opf/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 18,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Reduce −10 MW = legal reading of the query-silent magnitude (ref 30.5); the canonical run_contingency N-1 workflow was fully executed (worst-line selection, disconnect, new 24-MW gen at pinned bus 23, re-run). Readings 0.0010573 vs 0.0010550 both inside tolerance → R3 channel.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1615|9bd19fffbaaf",
+   "task": "contingency_fix/contingency_fix/D4_compound/case_ieee30/nmod=3"
+  },
+  {
+   "i": 148,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (OPF-blind)",
+   "rationale": "Raise ×1.1 vs ref 51.6 on the same unit — runopp ignores initial p_mw, both mods provably no-ops on the optimum: exact equality (1.0600000000373637). 1229-family weak item (errata).",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1273|a00cd33ef123",
+   "task": "opf/max_value/D3_semantic/case14/nmod=1"
+  },
+  {
+   "i": 57,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (方向欠定; 43/39 同族)",
+   "rationale": "Canonical engine with identical row-major profile matrix (seed placement equivalent); tap moved on the runtime argmax trafo 0 = ref target, opposite direction (−1→0 vs −1→−2) — a query-silent dimension that is also electrically inert on case118 taps: output equals ref at 1e-15 (4.475087324337678).",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1343|a73daced6d30",
+   "task": "time_series/ts_max_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 86,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind)",
+   "rationale": "Reduce ×0.5 on the argmax unit; gens then switched off for SC → exact equality (2.5102185616940247).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1626|aa591219a47c",
+   "task": "parallel/parallel/D4_compound/case4gs/nmod=1"
+  },
+  {
+   "i": 225,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3-工作流 + 非法步长",
+   "rationale": "cost_before computed from the UN-tapped state (ref: with tap applied), and 'move tap by one step' executed as tap_pos += tap_step_percent/100 — a fractional ~0.015 shift, not one discrete step (no legal reading). 2258.046 vs GT 2258.036 = tolerance luck.",
+   "item_ref": "api_T5|API|gemini-2.5-flash|C_FDRS|bi=487|ae4071cb6504",
+   "task": "comparison_opf/comparison_opf/D4_compound/case24_ieee_rts/nmod=2"
+  },
+  {
+   "i": 135,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (DC-losses≡0; 21 同族)",
+   "rationale": "Reduce −10 MW = legal reading (direction ✓, same argmax unit); queried total DC line losses ≡ 0 structurally for any scenario (GT 0.0, both outputs 0.0). Errata: degenerate zero-discrimination item.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1395|b2a7256a6312",
+   "task": "dc_power_flow/total/D3_semantic/case57/nmod=1"
+  },
+  {
+   "i": 26,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (OPF-blind)",
+   "rationale": "Raise to max_p_mw = legal reading; initial dispatch inert for runopp → exact equality (23.685095311571715).",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1323|b45672543de7",
+   "task": "opf/point_value/D3_semantic/case14/nmod=1"
+  },
+  {
+   "i": 237,
+   "label": "suspected-item-defect",
+   "violated_check": "1,4 (欠定通道)",
+   "applied_rule": "R3 (SE 协议欠定; 222 同族)",
+   "rationale": "Raise ×1.1 legal (same argmax unit 38); extraction from res_bus_est CORRECT; measurement set matches ref (bus V + bus P/Q). Residual deviations are protocol dimensions the text does not pin: actual noise draws (ref 0.003/0.5/0.3 vs gen's literal 0.01/1.0) and injection sign convention. Readings 1.0538 vs 1.0523 (0.15%) both in tolerance → R3 item-defect channel.",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=1576|b61a5746b84b",
+   "task": "state_estimation/max_value/D3_semantic/case118/nmod=1"
+  },
+  {
+   "i": 171,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (控制器覆盖 + 同一 RNG 流)",
+   "rationale": "Curtail scaling 0.1 vs ref 0.76 on the same target — but the ConstControl profile overrides load-2 scaling at every step in BOTH codes, making both curtails no-ops; profile matrices identical (row-major same shape, same seed) → exact equality (0.984818819121631). Errata: controller-overridden mod weak item.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=1505|b669cead1e94",
+   "task": "time_series/ts_min_value/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 187,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1-属性分歧/案3 (137/196 同族)",
+   "rationale": "Pinned 'generator 1 voltage setpoint 0.954' executed as gen.p_mw=0.954 (attribute swap; vm left at 1.0). Exact output equality arises only because runopp ignores BOTH gen vm setpoints and initial p_mw (double inertness — strong refuter note; ref's own mod equally inert, errata-worthy). 案3 default pollution.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=384|b9466a4b8211",
+   "task": "opf/min_value/D1_basic/case30/nmod=2"
+  },
+  {
+   "i": 99,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind)",
+   "rationale": "Reduce ×0.5 on the argmax unit (robust gen/sgen scan); gens off for SC → argmax bus 3 exact under both readings.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1506|bb9dfa5e2a1a",
+   "task": "short_circuit_3ph/argmax/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 44,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC-blind)",
+   "rationale": "Reduce ×0.8; gens off for SC → argmax bus 3 exact; s_sc_min 1000-vs-800 inert under case='max'.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1506|bb9dfa5e2a1a",
+   "task": "short_circuit_3ph/argmax/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 307,
+   "label": "equivalent-path",
+   "violated_check": "1,4 (flags resolved)",
+   "applied_rule": "R3-不变性 (OPF-blind) + N7",
+   "rationale": "Raise ×1.1 p_mw vs ref 825.7 — both runopp no-ops; Δcost bit-identical to ref (820.6997094460385); net-reuse vs fresh-net equivalent for deterministic optima; signed-vs-abs = N7.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=1794|bd91d78e78b3",
+   "task": "comparison_opf/comparison_opf/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 194,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (双漏改; 198 同族)",
+   "rationale": "Reduce assigned to a pandas row COPY (never lands — fingerprint = baseline dispatch) and the pinned conditional re-dispatch (TRUE in ref: gen0=40) never evaluated. 0.98544 vs GT 0.98554 = tolerance luck on the unmodified state.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1991|c437761097a8",
+   "task": "sequential/sequential/D4_compound/case6ww/nmod=2"
+  },
+  {
+   "i": 182,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改, row-copy; 195 同族)",
+   "rationale": "The semantic reduce was assigned to a row COPY and never landed (fingerprint = baseline 163 MW vs ref 123.2). Exact Δcost equality arises only because runopp ignores initial p_mw — ref's mod is equally inert (provable irrelevance, strong refuter note + errata: OPF-blind mod item). 案3 default: the pinned setup was not executed.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1849|c9e8797a427d",
+   "task": "comparison_opf/comparison_opf/D4_compound/case9/nmod=2"
+  },
+  {
+   "i": 320,
+   "label": "equivalent-path",
+   "violated_check": "1 (flag resolved)",
+   "applied_rule": "R3-不变性 (OPF-blind) + 案10",
+   "rationale": "Extra DC-OPF used only to identify the argmax unit (superset analysis, 案10); reduce ×0.9 p_mw vs ref 38.9 — both runopp no-ops → exact equality (0.9839161988322189).",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=1298|ca675a215d34",
+   "task": "opf/min_value/D3_semantic/case30/nmod=1"
+  },
+  {
+   "i": 133,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R2/R3-类推 (文本自缺陷 + 简并不变查询)",
+   "rationale": "The query itself assigns load 1 TWICE (construction bug — errata); ref reads it as sequential overwrite (final 98.4 on load 1), gen as a typo-corrected pair (load 1=59.4, load 2=98.4) — a defensible de-duplication reading of defective text. Queried DC min vm ≡ 1.0 structurally for the whole reading family (GT degenerate) → item-defect channel, not model pollution.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=587|d1f7675f6a48",
+   "task": "dc_power_flow/min_value/D1_basic/case9/nmod=2"
+  },
+  {
+   "i": 168,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (漏改)",
+   "rationale": "The pinned dispatch reduction was omitted entirely (fingerprint: baseline 1269.4 vs ref 811.5); canonical TS otherwise identical (same profile matrix). The scalar is NOT invariant here (139.58 vs 140.07, 0.35%) — pure tolerance luck on the unmodified dispatch.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1276|dcdb983a4876",
+   "task": "time_series/ts_max_value/D3_semantic/case89pegase/nmod=1"
+  },
+  {
+   "i": 105,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表 (50/164/163 同族)",
+   "rationale": "Final read is res_bus.vm_pu.min() — the PF table, not res_bus_est (curtail itself legal and target-concordant; noise protocol also unexecuted). 0.99464 vs GT 0.99516 = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1516|e27ebe384a7c",
+   "task": "state_estimation/min_value/D3_semantic/simple_mv_open_ring/nmod=1"
+  },
+  {
+   "i": 85,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Semantic target resolved identically (load 16); 'curtail to low-demand level' magnitude query-silent: scaling 0.1 vs ref 0.62. Readings 0.91832 vs 0.91679 (0.17%) both inside tolerance → R3 item-defect channel.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1447|ea9769343413",
+   "task": "opf/min_value/D3_semantic/case33bw/nmod=1"
+  },
+  {
+   "i": 27,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度欠定 + 忠实合法读法)",
+   "rationale": "Same item and same ×0.1 reading as i=85; identical output; same R3 channel.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1447|ea9769343413",
+   "task": "opf/min_value/D3_semantic/case33bw/nmod=1"
+  },
+  {
+   "i": 197,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (条件分支未执行)",
+   "rationale": "The pinned conditional (loading >1.5% → −6 Mvar shunt at bus 62, TRUE in ref) was never evaluated or applied (count mismatch: ref has the extra shunt). 0.91586 vs GT 0.92453 — 0.94%, just inside the tolerance edge.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=942|1d3789c5c8c1",
+   "task": "sequential/sequential/D2_multi_step/iceland/nmod=2"
+  },
+  {
+   "i": 199,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3 (条件分支未执行)",
+   "rationale": "Same pattern: the TRUE conditional shunt at bus 108 never evaluated/applied (ref carries the extra shunt). Output 0.915 exactly equals GT because min V sits at a pinned bound in both states — coincidence, the pinned workflow was not executed.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=649|4ab3812f03f8",
+   "task": "sequential/sequential/D2_multi_step/case145/nmod=2"
+  },
+  {
+   "i": 1,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "R3-方向 (294/218 同族) + 案3-工作流",
+   "rationale": "'Inductive shunt absorption' executed as q_mvar=−10 (capacitive, pinned direction inverted) AND the shunt was dropped before the second run (query keeps it installed). Match is setpoint-pinning luck: case39 min V = PV setpoint 0.982 in every state → Δ=0.0 exactly. Note: shunt sign/removal invisible to ① fingerprint (blind-spot list).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1712|7f057d5394e3",
+   "task": "comparison/comparison/D4_compound/case39/nmod=2"
+  },
+  {
+   "i": 30,
+   "label": "suspected-item-defect",
+   "violated_check": "1 (欠定通道)",
+   "applied_rule": "R3 (幅度/实现欠定)",
+   "rationale": "'Inductive shunt absorption' realized as an sgen with q=−0.1 (0.1 Mvar absorption — direction consistent with the pinned inductive absorption; ref +16 Mvar shunt) at the same idxmax-vm bus. Magnitude and shunt-vs-sgen realization are query-silent; SC-side deviations (sgen kept with k=1, sn=0.001) are negligible by construction. Readings 28.867542 vs 28.867513 (1e-6) both inside tolerance → R3 channel.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1691|7f092ba5f39a",
+   "task": "parallel/parallel/D4_compound/synth_volt_ctrl_lv/nmod=1"
+  },
+  {
+   "i": 142,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "案3-mirror (条件为假仍执行)",
+   "rationale": "Both conditionals executed UNCONDITIONALLY: the shunt branch is FALSE in ref (no shunt created — count mismatch confirms) but gen added the −6 Mvar shunt anyway — an extra physical modification the query forbids in this state (the inverse of the i=193 true-branch case). 0.96432 vs GT 0.95902 (0.55%) = tolerance luck.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=868|b9c73b49fa38",
+   "task": "diagnose_and_fix/diagnose_and_fix/D2_multi_step/case6ww/nmod=1"
+  },
+  {
+   "i": 312,
+   "label": "physical-error",
+   "violated_check": "1",
+   "applied_rule": "N1 严格线 + 语料方言",
+   "rationale": "Pinned 'bus 110 maximum voltage limit' executed on bus 109 (1-based misread); scalar unaffected only because max_vm_pu is inert to power flow — 案3-shape coincidence. Manual N-1 with early break is exact for the existential bool, but divergence-skip (except: continue) could silently drop a witness — noted; the wrong pinned target decides.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-Next|A_FX|bi=599|164498039990",
+   "task": "contingency/bool_check/D1_basic/case118/nmod=1"
+  },
+  {
+   "i": 310,
+   "label": "equivalent-path",
+   "violated_check": "2,4 (flags resolved)",
+   "applied_rule": "N2 四判据 + 输出精确一致",
+   "rationale": "Both pinned mods executed exactly; manual N-1 with per-case deepcopy, full enumeration (10/10 converged), max aggregation ≡ ref envelope. Output bit-identical (97.63129913319672).",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=299|2f3d3f68df39",
+   "task": "contingency/max_value/D1_basic/case9/nmod=2"
+  },
+  {
+   "i": 78,
+   "label": "equivalent-path",
+   "violated_check": "2,4 (flags resolved)",
+   "applied_rule": "N2 四判据",
+   "rationale": "All three pinned mods exact; toggle+restore N-1 over the full line set (incl. the already-out line 9, as in ref's index list), min aggregation ≡ envelope; 11/11 converged (the mis-named exception class never fired). Difference 3e-12 = numeric noise.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=161|4d7035f94a67",
+   "task": "contingency/min_value/D1_basic/case6ww/nmod=3"
+  },
+  {
+   "i": 130,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行; 79/247 同族)",
+   "rationale": "No contingency analysis at all — worst line chosen as the BASELINE argmax, and even that selection was made after the new generator was already added (order deviation). Exact scalar match is the 案2-named coincidence (selection happens to agree on case5); the pinned N-1 workflow was not executed.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1137|69527669d48b",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case5/nmod=2"
+  },
+  {
+   "i": 314,
+   "label": "physical-error",
+   "violated_check": "2,1",
+   "applied_rule": "案2-analog (N-1 未执行) + 精度丢失",
+   "rationale": "Same missing N-1 (baseline argmax, printed 'line 5'); output printed as a 2-decimal f-string (80.97) — extraction precision loss; matched GT only through the 1% tolerance.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=1082|a7504517904b",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case5/nmod=2"
+  },
+  {
+   "i": 311,
+   "label": "suspected-item-defect",
+   "violated_check": "2,4 (欠定通道)",
+   "applied_rule": "R3 (N-1 范围欠定 + 忠实合法读法)",
+   "rationale": "Query says only 'N-1 contingency analysis' without pinning the outage set; corpus convention is line-only (ref), gen enumerated lines AND generators (proper deepcopy loop, drop≡outage). The extra gen-outage cases lower the min (0.8964 vs 0.9002, 0.42%) — a reading-dependent measurand with both readings inside tolerance → R3 item-defect channel (scope-underdetermined N-1 item).",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=94|f0e607d15d2d",
+   "task": "contingency/min_value/D1_basic/case4gs/nmod=0"
+  },
+  {
+   "i": 278,
+   "label": "equivalent-path",
+   "violated_check": "2,4 (flags resolved)",
+   "applied_rule": "N2 四判据 + N3 (计数超集→bool)",
+   "rationale": "All three pinned mods exact; manual N-1 full enumeration (174/174 converged), divergence conservatively counted as violation (never fired). Printed the violation COUNT (0) — an information superset of the pinned any() bool with exact 0↔False mapping on this item (N3). ",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=90|f34291fe4541",
+   "task": "contingency/bool_check/D1_basic/case118/nmod=3"
+  },
+  {
+   "i": 234,
+   "label": "equivalent-path",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4/N5 (batch-0 292 同族)",
+   "rationale": "int((vm<0.9).sum()) ≡ ref (vm<0.9).sum() — identical count; c4 'fail' is an extraction-parser artifact; modification and PF exact.",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=580|02ab1604e0dc",
+   "task": "power_flow/count_violations/D1_basic/case145/nmod=1"
+  },
+  {
+   "i": 101,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Final read is res_bus.vm_pu.max() — the PF table (which equals the 0.981 slack setpoint), not res_bus_est. The estimation was computed but never extracted; default_rng-vs-RandomState protocol deviation is secondary. 0.981 vs GT 0.98188 = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=83|0e189c9ac70b",
+   "task": "state_estimation/max_value/D1_basic/cigre_mv/nmod=1"
+  },
+  {
+   "i": 216,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Measurement protocol close to ref (bus V + bus P/Q with legacy seed), but the final read is res_bus.loc[11] — the PF table, not res_bus_est.at[11]. Wrong table extracted; 0.92298 vs GT 0.92352 = tolerance luck.",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=603|10073d8cf5e5",
+   "task": "state_estimation/point_value/D1_basic/cigre_mv/nmod=1"
+  },
+  {
+   "i": 76,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-type (基态列 ≠ 包络列)",
+   "rationale": "Canonical run_contingency executed, but the read is res_bus.vm_pu.min() — the base-state voltage column — instead of the min_vm_pu contingency ENVELOPE the query asks for ('lowest across all contingencies'). 0.99225 vs GT 0.99208 = tolerance luck on a different measurand.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=146|143bd5198353",
+   "task": "contingency/min_value/D1_basic/simple_mv_open_ring/nmod=0"
+  },
+  {
+   "i": 165,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Noise-free measurements with wrong sigmas (0.01 for power vs pinned 1.0), and the final read is res_bus.vm_pu.min() — not res_bus_est. 0.99175 vs GT 0.98800 (0.38%) = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=50|144955c7e4aa",
+   "task": "state_estimation/min_value/D1_basic/case_ieee30/nmod=2"
+  },
+  {
+   "i": 204,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (builtin max ≡ .max())",
+   "rationale": "max(series) ≡ series.max() — pure idiom; SC setup matches ref where it matters (case='max'; omitted s_sc_min/rx_min inert). Output bit-identical (2.510218561694028). The c4 fail is an extraction-parser artifact only.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=331|273a99919bd6",
+   "task": "short_circuit_3ph/max_value/D1_basic/case6ww/nmod=0"
+  },
+  {
+   "i": 102,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Line-P-only measurement set and literal sigmas aside, the decisive violation is the final read from res_bus.vm_pu.max() — not res_bus_est. 1.04 vs GT 1.03935 = tolerance luck (1.04 is a PF setpoint).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=69|4c64527c8e9a",
+   "task": "state_estimation/max_value/D1_basic/case57/nmod=2"
+  },
+  {
+   "i": 104,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Bus-measurement protocol near-ref, but the final read is res_bus.loc[2] — the PF table, not res_bus_est.at[2]. 0.96906 vs GT 0.96632 (0.28%) = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=252|53824a4c4b7c",
+   "task": "state_estimation/point_value/D1_basic/case4gs/nmod=1"
+  },
+  {
+   "i": 151,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N5 (idxmax+loc ≡ max) + N1 现算==参考",
+   "rationale": "Runtime argmax line = ref's precomputed 222 (bit-identical output 302.9733864563679 confirms the same outage state); extraction loading.loc[idxmax] ≡ .max() is the frozen N5 pattern.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1352|5ab246c800a5",
+   "task": "power_flow/max_value/D3_semantic/case1354pegase/nmod=1"
+  },
+  {
+   "i": 161,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Noise-free line-set measurements, and the final read is res_bus.vm_pu.max() — not res_bus_est. Output 1.0000 (slack-anchored PF value) vs GT 0.99997 = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=525|5e3bce1e7516",
+   "task": "state_estimation/max_value/D1_basic/GBreducednetwork/nmod=1"
+  },
+  {
+   "i": 232,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "元规则(b) + N3-实际行为",
+   "rationale": "Canonical run_contingency used; the only deviation is compositional order (new gen created BEFORE the N-1 scan vs ref after). The worst-line selection is unaffected in actu — final state identical, output bit-identical (65.7190186314916). float() cast harmless.",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=964|6677b8459009",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case9/nmod=2"
+  },
+  {
+   "i": 293,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N5 (冻结模式: p_from+p_to ≡ pl_mw)",
+   "rationale": "(p_from_mw+p_to_mw).sum() ≡ pl_mw.sum() — the exact frozen N5 exemplar (pilot bi=427); pinned tap mod guarded but executed; output equals ref.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=427|66e88cbeb2af",
+   "task": "power_flow/total/D1_basic/case145/nmod=1"
+  },
+  {
+   "i": 98,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (builtin max ≡ .max())",
+   "rationale": "max(series) idiom only; conditional s_sc fills equal ref where binding (max case; s_sc_min 1000-vs-800 inert). Output bit-identical (2.936547378885832).",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=88|695fe4d7ae64",
+   "task": "short_circuit_2ph/max_value/D1_basic/case89pegase/nmod=0"
+  },
+  {
+   "i": 77,
+   "label": "physical-error",
+   "violated_check": "1,4",
+   "applied_rule": "R3-方向 (capacitive pinned; 158/294 同族) + 读错列",
+   "rationale": "'Capacitive shunt support' executed as q_mvar=+0.05 — inductive, pinned direction inverted (and near-no-op magnitude); final read from the base-state vm_pu column instead of the min_vm_pu contingency envelope (76 同型). 0.99196 vs GT 0.99471 (0.28%) = tolerance luck.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1388|6c977e6397b3",
+   "task": "contingency/min_value/D3_semantic/simple_mv_open_ring/nmod=1"
+  },
+  {
+   "i": 228,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Final read res_bus.vm_pu.max() — the PF table, not res_bus_est (protocol otherwise near-ref). 1.05 vs GT 1.05106 = tolerance luck.",
+   "item_ref": "api_T5|API|gemini-2.5-flash|C_FDRS|bi=852|719713303e4e",
+   "task": "state_estimation/max_value/D1_basic/case118/nmod=2"
+  },
+  {
+   "i": 188,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (float cast idiom)",
+   "rationale": "float(res_gen.p_mw.sum()) ≡ ref sum; pinned load created exactly; output bit-identical. Parser artifact only.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=176|9d2fe53de73a",
+   "task": "opf/total/D1_basic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 214,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N5 (p_from+p_to ≡ pl_mw) + N1 现算==参考",
+   "rationale": "Trip-offline executed on the runtime argmax unit (= ref gen 61 — bit-identical output proves state equality); loss extraction via (p_from+p_to).sum() is the frozen N5 pattern.",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=1548|9f25363966c3",
+   "task": "power_flow/total/D3_semantic/GBnetwork/nmod=1"
+  },
+  {
+   "i": 34,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "案9 (iloc≡at 连续索引) + 惰性参数",
+   "rationale": "iloc[5] ≡ at[5] on case9's contiguous bus index; gen/sgen disable condition equals ref's in actu; s_sc_min 1000-vs-800 inert under case='max'. Output bit-identical (0.6046180300327992).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1098|a38e1b937053",
+   "task": "pf_then_sc/pf_then_sc/D2_multi_step/case9/nmod=0"
+  },
+  {
+   "i": 233,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "N1/语料方言 (读错元件)",
+   "rationale": "Pinned 'generator 4' read as res_gen.loc[3] (1-based misread). Near-identical value is a coincidence of both units sitting at the same 6.0-Mvar Q-limit; wrong element extracted.",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=814|a6d9305d0ad6",
+   "task": "opf/point_value/D1_basic/case_ieee30/nmod=0"
+  },
+  {
+   "i": 106,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Final read res_bus.at[6] — the PF table, not res_bus_est.at[6]; Q measurements also omitted from the pinned protocol. 0.99223 vs GT 0.99270 = tolerance luck.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=474|a80417b760f9",
+   "task": "state_estimation/point_value/D1_basic/four_loads_branches/nmod=2"
+  },
+  {
+   "i": 324,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N5-类 (单 ext_grid: sum≡point)",
+   "rationale": "res_ext_grid.q_mvar.sum() over a single-slack network ≡ .at[0]; bit-identical output (13.09886183354228).",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=300|a9c948bd0a33",
+   "task": "power_flow/point_value/D1_basic/case1888rte/nmod=0"
+  },
+  {
+   "i": 52,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Final read res_bus.vm_pu.max() (= slack-anchored 1.0), not res_bus_est; line-set measurement protocol also deviates. 1.0 vs GT 1.00289 = tolerance luck.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=55|b41d8420a492",
+   "task": "state_estimation/max_value/D1_basic/case9/nmod=2"
+  },
+  {
+   "i": 32,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "案9 + 惰性参数",
+   "rationale": "iloc[2] ≡ at[2] (contiguous); unconditional s_sc fill equals ref's conditional fill on this SC-data-free network; omitted s_sc_min inert under case='max'. Bit-identical output.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=921|b6c130fbb37b",
+   "task": "pf_then_sc/pf_then_sc/D2_multi_step/case4gs/nmod=0"
+  },
+  {
+   "i": 231,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4",
+   "rationale": "Canonical run_contingency, both pinned mods exact, guarded lookups no-op; float() cast idiom only; output bit-identical (95.68154370749605).",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=607|b71f21898419",
+   "task": "contingency/max_value/D1_basic/case200_illinois/nmod=2"
+  },
+  {
+   "i": 162,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Capacitive shunt direction correct (−0.1, magnitude R3-legal) at the idxmin bus, but the final read is res_bus.vm_pu.max() — not res_bus_est (and measurements are noise-free). 1.0 vs GT 0.99751 = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1375|ba556538587d",
+   "task": "state_estimation/max_value/D3_semantic/case5/nmod=1"
+  },
+  {
+   "i": 191,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (builtin sum ≡ .sum())",
+   "rationale": "sum(vm<0.97) ≡ (vm<0.97).sum(); no modification pinned; output exact.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=551|c436a4bd009f",
+   "task": "power_flow/count_violations/D1_basic/simple_four_bus/nmod=0"
+  },
+  {
+   "i": 49,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-读错表",
+   "rationale": "Final read res_bus.vm_pu.max() (slack-anchored 1.0), not res_bus_est; measurement superset with non-ref noise. Note: runpp(seed=1850) is another silently-absorbed no-op kwarg (record). 1.0 vs GT 1.00019 = tolerance luck.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=439|e06bcedfa9b2",
+   "task": "state_estimation/max_value/D1_basic/GBreducednetwork/nmod=0"
+  },
+  {
+   "i": 107,
+   "label": "suspected-item-defect",
+   "violated_check": "4 (欠定通道)",
+   "applied_rule": "R2 (RNG 生成器欠定; 111 同族)",
+   "rationale": "Canonical engine, all text-pinned dims faithful (24 steps, uniform 0.6-1.4, scaling, line-1 outage); only deviation = default_rng(7518) vs the legacy np.random.seed stream — a query-silent generator choice. Readings 0.95010 vs 0.94840 (0.18%) both inside tolerance → R2 item-defect channel.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=347|000868a577ec",
+   "task": "time_series/ts_min_value/D1_basic/simple_four_bus/nmod=1"
+  },
+  {
+   "i": 297,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "案9 (name-lookup ≡ index)",
+   "rationale": "Bus resolved via name=='28' landing on index 28 (bit-identical output proves the same element); SC setup matches ref where binding. Label-vs-index idiom only.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=205|005db9e4f36f",
+   "task": "short_circuit_2ph/point_value/D1_basic/case33bw/nmod=0"
+  },
+  {
+   "i": 12,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed cost diff vs ref abs (N7); net-reuse vs fresh-net rebuild equivalent for deterministic OPF optima — bit-identical output (55.36890578302098).",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=927|00757b17a75c",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case30/nmod=1"
+  },
+  {
+   "i": 220,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (返回值 ≡ net 表)",
+   "rationale": "run_contingency's returned res['bus']['min_vm_pu'] is the same data as net.res_bus.min_vm_pu (bit-identical output); both pinned mods exact.",
+   "item_ref": "api_T5|API|deepseek-v4-flash|C_FDRS|bi=910|041ccd088262",
+   "task": "contingency/min_value/D1_basic/case200_illinois/nmod=2"
+  },
+  {
+   "i": 119,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (幅度欠定, Δ≈0 两读法一致)",
+   "rationale": "'Capacitive shunt support' with correct sign (−10 vs ref −18 — magnitude query-silent) at the runtime idxmin bus; pinned −14@75 executed. Queried |Δ max loading| ≈ 0 at float-noise level under both readings (8.9e-15 vs 1.8e-15; GT 0.0). Note: shunt params outside ① fingerprint (blind-spot list).",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=1926|071cba6d73f6",
+   "task": "comparison/comparison/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 64,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "R3-方向 (capacitive pinned; 294/158/77 同族)",
+   "rationale": "First shunt created with q_mvar=+14 — INDUCTIVE where the query pins capacitive support (second shunt −14@75 correct). Scalar Δ≈0 is invariant luck; pinned direction inverted → no legal reading. Shunt sign invisible to ① (blind-spot list).",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1926|071cba6d73f6",
+   "task": "comparison/comparison/D4_compound/case118/nmod=2"
+  },
+  {
+   "i": 183,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (返回值 ≡ net 表)",
+   "rationale": "res['line']['max_loading_percent'].max() ≡ net.res_line envelope max — same data; canonical engine; output equal at 6e-15.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=449|0763e6d6e138",
+   "task": "contingency/max_value/D1_basic/case_ieee30/nmod=0"
+  },
+  {
+   "i": 17,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (方向欠定; 43 同族)",
+   "rationale": "Runtime argmax trafo = 5 = ref target; step direction via a min-guard branch (query-silent). Worst-case N-1 loading bit-identical to ref (161.32549209480626) — the direction dimension provably doesn't move the scalar; abs-of-max/min extraction ≡ max for nonnegative loadings.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1329|0ebc82577d02",
+   "task": "contingency/max_value/D3_semantic/case89pegase/nmod=1"
+  },
+  {
+   "i": 121,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + 惰性 poly_cost guard",
+   "rationale": "Signed diff vs abs (N7); net-reuse equivalent (bit-identical 1537.7370548634644); the poly_cost guard is a no-op on fully-costed case118 (would be an unobserved objective change if it fired — noted).",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=730|12daa5a8d00e",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case118/nmod=1"
+  },
+  {
+   "i": 62,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "min_vm_pu_2 − min_vm_pu_1 signed vs ref abs; all four pinned mods exact; output equals ref (3e-14 rel).",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1041|1731631c0cf6",
+   "task": "comparison/comparison/D2_multi_step/GBnetwork/nmod=4"
+  },
+  {
+   "i": 230,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (7287.91978850172).",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=1072|193510928366",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case39/nmod=1"
+  },
+  {
+   "i": 238,
+   "label": "suspected-item-defect",
+   "violated_check": "4 (欠定通道)",
+   "applied_rule": "R2 (RNG 生成器欠定; 111/107 同族)",
+   "rationale": "Canonical engine, pinned mod exact; only deviation = default_rng(313) vs legacy seed stream (query-silent generator choice; initial_run=False is default). Readings 26.350 vs 26.327 (0.087%) both inside tolerance → R2 channel.",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=810|1c2da44b434e",
+   "task": "time_series/ts_max_value/D1_basic/synth_volt_ctrl_lv/nmod=1"
+  },
+  {
+   "i": 302,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmax-loading vs ref abs; all pinned mods exact; output equals ref at 3e-14.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=604|1d15ff608f3c",
+   "task": "comparison/comparison/D2_multi_step/case4gs/nmod=3"
+  },
+  {
+   "i": 6,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "initial−final ordering yields the same positive magnitude as ref's abs (N7 covers sign/order); pinned mod exact; output equals ref at 2e-13.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=631|1e9108c0effc",
+   "task": "comparison/comparison/D2_multi_step/GBnetwork/nmod=1"
+  },
+  {
+   "i": 176,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "元规则-改变被查量 (idxmax 差值 ≠ loading 差值)",
+   "rationale": "Printed the difference of ARGMAX INDICES (both runs' most-loaded line = same index → 0) instead of the change in max loading. 0 vs GT 2.46e-4 matched only via absolute tolerance near zero — wrong quantity extracted.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1122|205058f7527f",
+   "task": "comparison/comparison/D2_multi_step/case33bw/nmod=3"
+  },
+  {
+   "i": 154,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (values[0]≡at[0]) + 默认参数",
+   "rationale": "Single-ext-grid values[0] ≡ at[0]; the extra network_class kwarg equals the loader default (① fingerprint identical); output bit-identical.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=307|21b31f271697",
+   "task": "power_flow/point_value/D1_basic/synth_volt_ctrl_lv/nmod=1"
+  },
+  {
+   "i": 71,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed cost diff vs ref abs; net-reuse equivalent for deterministic optima; bit-identical output (795.8007501614484).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=781|21e9897bdd9d",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case118/nmod=1"
+  },
+  {
+   "i": 166,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (at≡iloc 连续索引)",
+   "rationale": "Canonical engine identical to ref (same profile matrix); at[13,63] ≡ iloc[13,63] on RangeIndex; output equal at 1e-16.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=182|2577528d6781",
+   "task": "time_series/ts_point_at_step/D1_basic/case118/nmod=1"
+  },
+  {
+   "i": 170,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "案3 (种子未生效) + N2(2)",
+   "rationale": "np.random.seed(1355) placed AFTER the uniform draws — the pinned seed never governs the profiles (unseeded run) — and a single 24-vector is broadcast to all 99 loads instead of per-load draws. Scenario set unfaithful on a pinned dimension (seed); 0.9855 vs GT 0.98382 (0.17%) = tolerance luck.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=182|2577528d6781",
+   "task": "time_series/ts_point_at_step/D1_basic/case118/nmod=1"
+  },
+  {
+   "i": 123,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (389.05828382069376).",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=686|2b69c4dcc5db",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case_ieee30/nmod=1"
+  },
+  {
+   "i": 298,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (np.min ≡ .min())",
+   "rationale": "np.min over the same ikss array; s_sc setup equal to ref where binding; output bit-identical.",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=472|2bd18ba740fd",
+   "task": "short_circuit_3ph/min_value/D1_basic/case33bw/nmod=0"
+  },
+  {
+   "i": 118,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "before−after signed diff vs ref abs (N7 covers sign/order); pinned mod exact; |output| equals ref.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=640|2e305706db9f",
+   "task": "comparison/comparison/D2_multi_step/case_ieee30/nmod=1"
+  },
+  {
+   "i": 65,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed diff; bit-identical magnitude (0.0002469732169894101).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=640|2e305706db9f",
+   "task": "comparison/comparison/D2_multi_step/case_ieee30/nmod=1"
+  },
+  {
+   "i": 33,
+   "label": "physical-error",
+   "violated_check": "4,1",
+   "applied_rule": "R3 第三支 (1943 陈旧 OP 混合态 — 与 pilot 旗舰同一 item)",
+   "rationale": "Same bench item as pilot bi=1943: gen moved the correct argmax trafo 404 (+1, tap-max guarded) but NEVER re-ran the power flow before calc_sc(use_pre_fault_voltage=True) — the SC consumed the pre-tap OP on post-tap topology. Oracle family: faithful +1/1000 = 12.688872, ref = 12.669006, no-mod = 12.680356; gen printed 12.680314 — a stale mixed state no legal reading produces. Matched GT via the 1% tolerance (0.09%).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1943|32164dcf5ba2",
+   "task": "pf_then_sc/pf_then_sc/D4_compound/case1888rte/nmod=1"
+  },
+  {
+   "i": 47,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9/N5 (np.argmax ≡ idxmax) + ①pass",
+   "rationale": "Fingerprint identical to ref (its +1 move lands exactly on ref's tap 2 — same target and direction); np.argmax ≡ idxmax on contiguous index; output exact (8).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1353|34d33b936f97",
+   "task": "short_circuit_3ph/argmax/D3_semantic/case24_ieee_rts/nmod=1"
+  },
+  {
+   "i": 122,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (2415.174063110605).",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=1199|49347d0d53fa",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case9/nmod=1"
+  },
+  {
+   "i": 240,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmax-loading (float-noise scale ≈0 both sides, GT 0.0); shunt p_mw omission = create_shunt default; pinned mods exact.",
+   "item_ref": "contrast_S|T2|Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|bi=1180|4f1df27cbc7c",
+   "task": "comparison/comparison/D2_multi_step/case1888rte/nmod=3"
+  },
+  {
+   "i": 127,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (返回值包络列 ≡ net 表)",
+   "rationale": "Read res['line']['max_loading_percent'] — the correct contingency ENVELOPE from the return dict (same data as net table); extra baseline runpp = superset; output True exact.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=110|54895cd25295",
+   "task": "contingency/bool_check/D1_basic/case6ww/nmod=1"
+  },
+  {
+   "i": 211,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (23.992717290377527).",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=1217|5a4cf10ef0da",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case30/nmod=1"
+  },
+  {
+   "i": 115,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δ; shunt p_mw default; outputs both ≈3.68e-8 (float noise), GT 0.0.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=1025|5a5ebab5111a",
+   "task": "comparison/comparison/D2_multi_step/case2869pegase/nmod=3"
+  },
+  {
+   "i": 229,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmin-V = 0.0 exactly in both (case39 min V setpoint-pinned at 0.982 — errata: invariant item); pinned mod exact.",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=1067|5b8a648c2ab8",
+   "task": "comparison/comparison/D2_multi_step/case39/nmod=1"
+  },
+  {
+   "i": 128,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-type (基态列 ≠ 包络列; oracle 复证)",
+   "rationale": "Read any(res['line']['loading_percent']>100) — oracle confirms that return key holds the BASE-CASE loadings, not the contingency envelope (max_loading_percent). The queried single-outage-exceedance was never evaluated; False coincides only because the true envelope answer is False (one-sided implication). Junk sgen kwargs harmless.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=210|64abe7cc7a79",
+   "task": "contingency/bool_check/D1_basic/case200_illinois/nmod=3"
+  },
+  {
+   "i": 180,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (22.375419545586055).",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=827|64c1b46a0be8",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case30/nmod=1"
+  },
+  {
+   "i": 221,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC 源强欠定; 88-型) + ①pass",
+   "rationale": "Fingerprint identical (runtime argmax trafo 1311, +1 → tap 2 == ref's value — same target/direction); the only divergence is the query-silent SC source fill (10000/8000 vs ref 1000/800), and the queried ARGMAX bus is invariant across it (6420 both).",
+   "item_ref": "api_T5|API|deepseek-v4-flash|C_FDRS|bi=1681|6520cc90b921",
+   "task": "short_circuit_2ph/argmax/D3_semantic/case6470rte/nmod=1"
+  },
+  {
+   "i": 153,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (values[0]≡at[0])",
+   "rationale": "Single-slack point read idiom; pinned mod exact; output bit-identical.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=492|67e1e5513fe1",
+   "task": "power_flow/point_value/D1_basic/case14/nmod=1"
+  },
+  {
+   "i": 67,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Correct shift_degree column (unlike sibling i=172); signed Δmin-V −2.42e-4 vs ref abs +2.42e-4 — N7; the extra intermediate print does not affect the captured final value.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1143|6a92dc910dc3",
+   "task": "comparison/comparison/D2_multi_step/case200_illinois/nmod=3"
+  },
+  {
+   "i": 212,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "案5-type (基态列 ≠ 包络列; oracle 复证; 76/77 同族)",
+   "rationale": "Read res['bus']['vm_pu'].min() — oracle confirms that key holds BASE-CASE voltages, not the min_vm_pu contingency envelope; the queried across-contingency minimum was never extracted. (Shunt direction correct and magnitude R3-legal — the wrong measurand decides.) 0.99509 vs GT 0.99471 = tolerance luck.",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=1541|6c977e6397b3",
+   "task": "contingency/min_value/D3_semantic/simple_mv_open_ring/nmod=1"
+  },
+  {
+   "i": 2,
+   "label": "physical-error",
+   "violated_check": "1,4",
+   "applied_rule": "R3-方向 (capacitive pinned) + 工作流乱序 (63 同族)",
+   "rationale": "'Capacitive shunt support' created with q_mvar=+1 — inductive, pinned direction inverted; baseline min-V captured BEFORE the shunt existed (ref: after), and the parallel-line change applied together with the shunt — the reported Δ conflates both effects. −1.5e-4 vs GT 3.0e-4 accepted only by the matcher's loose absolute band.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1703|710dcf258e21",
+   "task": "comparison/comparison/D4_compound/GBnetwork/nmod=2"
+  },
+  {
+   "i": 113,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "baseline−modified signed ordering ≡ abs (both runs identical: Δ=0.0 exact); pinned mods exact.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=983|7612312f3533",
+   "task": "comparison/comparison/D2_multi_step/case5/nmod=2"
+  },
+  {
+   "i": 306,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (212608.46486839186).",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=761|76271f4e2bb5",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/GBreducednetwork/nmod=1"
+  },
+  {
+   "i": 120,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmax-loading; output equals ref at 2e-13.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1053|7aa6d08652e5",
+   "task": "comparison/comparison/D2_multi_step/case_ieee30/nmod=1"
+  },
+  {
+   "i": 5,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmax-loading; output equals ref at 2e-13.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1053|7aa6d08652e5",
+   "task": "comparison/comparison/D2_multi_step/case_ieee30/nmod=1"
+  },
+  {
+   "i": 16,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 + N3 (1↔True)",
+   "rationale": "Read the correct envelope column (max_loading_percent) from the return dict; printed 1 for True — exact bool↔int mapping on this item (N3); pinned mod exact.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=231|7d5c55f89468",
+   "task": "contingency/bool_check/D1_basic/case30/nmod=1"
+  },
+  {
+   "i": 236,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC 源强欠定; argmax 不变)",
+   "rationale": "All three pinned mods exact; only divergence = query-silent SC source fill (10000 vs ref 1000) and the queried argmax bus is invariant across it (0 both); int(idxmax) idiom.",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=909|7e56eff7e4b3",
+   "task": "short_circuit_3ph/argmax/D1_basic/case57/nmod=3"
+  },
+  {
+   "i": 66,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmin-V; guarded lookups no-op; output equals ref at 2e-15.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=809|7f45a0828b77",
+   "task": "comparison/comparison/D2_multi_step/cigre_lv/nmod=2"
+  },
+  {
+   "i": 272,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "initial−final signed ordering ≡ abs (positive); pinned mod exact; output equals ref at 3e-12.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=724|7f5d787d1fb2",
+   "task": "comparison/comparison/D2_multi_step/case2869pegase/nmod=1"
+  },
+  {
+   "i": 114,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmin-V (float-noise ≈0 both sides, GT 0.0); pinned mods exact; shunt p_mw omission = default.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=727|81b1c909462b",
+   "task": "comparison/comparison/D2_multi_step/case118/nmod=2"
+  },
+  {
+   "i": 3,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Same item: signed Δ, float-noise ≈0; pinned mods exact.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=727|81b1c909462b",
+   "task": "comparison/comparison/D2_multi_step/case118/nmod=2"
+  },
+  {
+   "i": 4,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Same item: signed Δ, float-noise ≈0; pinned mods exact (p_mw=0 explicit).",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=727|81b1c909462b",
+   "task": "comparison/comparison/D2_multi_step/case118/nmod=2"
+  },
+  {
+   "i": 92,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (max()>x ≡ any(>x))",
+   "rationale": "series.max()>120 is mathematically identical to (series>120).any(); all three pinned mods exact; output False exact.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=582|820ed065359c",
+   "task": "power_flow/bool_check/D1_basic/case1888rte/nmod=3"
+  },
+  {
+   "i": 9,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (23.788454983345446).",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1116|84b69ea6c934",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case30/nmod=1"
+  },
+  {
+   "i": 273,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmax-loading vs ref abs; guarded lookups no-op; output equals ref (3e-12 rel).",
+   "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=606|865011aeb40b",
+   "task": "comparison/comparison/D2_multi_step/case33bw/nmod=3"
+  },
+  {
+   "i": 0,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmax-loading; all three pinned mods exact; output equals ref (3e-12 rel).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=606|865011aeb40b",
+   "task": "comparison/comparison/D2_multi_step/case33bw/nmod=3"
+  },
+  {
+   "i": 14,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (幅度欠定; 方向 ✓)",
+   "rationale": "'Capacitive shunt support' with correct sign (−100 vs ref −10 — magnitude query-silent) at the runtime idxmin bus (= ref 30); canonical N-1 with the correct envelope column. Worst-case loading equals ref at 1e-12 — the magnitude dimension provably doesn't move the scalar.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1302|8f0888a16738",
+   "task": "contingency/max_value/D3_semantic/case39/nmod=1"
+  },
+  {
+   "i": 179,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "元规则-改变被查量 (idxmin 差值; 176 同族)",
+   "rationale": "Assigned idxmin() (a bus INDEX) to both 'voltage' variables and printed their difference (0) instead of the min-voltage change. Matched GT 0.0 by construction — wrong quantity extracted.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1139|93961cd87f39",
+   "task": "comparison/comparison/D2_multi_step/case14/nmod=1"
+  },
+  {
+   "i": 55,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (at≡iloc)",
+   "rationale": "Canonical engine, identical row-major profile matrix (seed placement equivalent); at[19,4] ≡ iloc[19,4] on RangeIndex; output equal at 3e-15.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=4|94c0147554f4",
+   "task": "time_series/ts_point_at_step/D1_basic/case33bw/nmod=1"
+  },
+  {
+   "i": 175,
+   "label": "physical-error",
+   "violated_check": "4",
+   "applied_rule": "元规则-改变被查量 + errata (item 文本/ref 不一致)",
+   "rationale": "Printed res_line.loading_percent.idxmax() — a line INDEX (0) — which is neither the query's literal 'new max loading value' nor ref's |Δ| measurand; 0 == GT 0.0 by pure coincidence. Errata note: the item itself is inconsistent (query asks the NEW VALUE, ref computes the CHANGE).",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=1989|95614529eb89",
+   "task": "comparison/comparison/D4_compound/case5/nmod=2"
+  },
+  {
+   "i": 10,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (3157.646965131753).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=1198|97e2507f3517",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case24_ieee_rts/nmod=1"
+  },
+  {
+   "i": 108,
+   "label": "suspected-item-defect",
+   "violated_check": "4 (欠定通道)",
+   "applied_rule": "R2 (RNG 消耗形状; 109/112 同族)",
+   "rationale": "Both pinned mods exact (line 138 out, max_p 191.3); canonical engine; only deviation = per-load column draws (load-major dict) vs ref's row-major matrix — query-silent consumption order. Readings 0.98667 vs 0.98487 (0.18%) both inside tolerance → R2 channel.",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=467|99be7fea2f67",
+   "task": "time_series/ts_point_at_step/D1_basic/case118/nmod=2"
+  },
+  {
+   "i": 45,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (int(idxmax)) + 案10",
+   "rationale": "New gen created exactly as pinned then (like ref) switched off for SC; conditional s_sc fill lands on the same 1000 (s_sc_min difference inert under case='max'); extra baseline runpp = superset; output exact (477).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=389|9c4e8f11af2a",
+   "task": "short_circuit_3ph/argmax/D1_basic/case3120sp/nmod=1"
+  },
+  {
+   "i": 305,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmax-loading −3.25e-5 vs ref abs +3.25e-5; column-.at assignments land in place; pinned mods exact.",
+   "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=854|a69151e88557",
+   "task": "comparison/comparison/D2_multi_step/case89pegase/nmod=3"
+  },
+  {
+   "i": 169,
+   "label": "suspected-item-defect",
+   "violated_check": "4 (欠定通道)",
+   "applied_rule": "R2 (RNG 消耗形状)",
+   "rationale": "Both pinned mods exact; canonical engine; only deviation = per-load column draws vs row-major matrix (query-silent). Readings 0.96218 vs 0.96565 (0.36%) both inside tolerance → R2 channel.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=395|aea3d1d8e1d2",
+   "task": "time_series/ts_point_at_step/D1_basic/cigre_lv/nmod=2"
+  },
+  {
+   "i": 37,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (变量中转 idiom)",
+   "rationale": "Series stored in a variable then .max() — same extraction; pinned outage exact; output bit-identical.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=315|b24a64ac501f",
+   "task": "power_flow/max_value/D1_basic/case14/nmod=1"
+  },
+  {
+   "i": 117,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "initial−parallel signed ordering ≡ abs (Δ=0.0 exact both); pinned mod exact.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|bi=1019|b492eeb633ad",
+   "task": "comparison/comparison/D2_multi_step/cigre_lv/nmod=1"
+  },
+  {
+   "i": 132,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案4 (len(filter) ≡ sum(cond))",
+   "rationale": "len(df[cond]) ≡ (cond).sum(); pinned outage exact; output exact (1).",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=346|b5b1e53260d4",
+   "task": "dc_power_flow/count_violations/D1_basic/case9241pegase/nmod=1"
+  },
+  {
+   "i": 316,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (iloc≡at)",
+   "rationale": "iloc[2] ≡ at[2] on contiguous trafo index; no mods pinned; output bit-identical.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|bi=148|b8126acfeeb8",
+   "task": "dc_power_flow/point_value/D1_basic/case118/nmod=0"
+  },
+  {
+   "i": 235,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC 源强欠定) + N1 现算==参考",
+   "rationale": "Trip executed on the runtime argmax unit (= ref gen 25); only divergences are the query-silent SC source fill (10000 vs 1000) and gen-column heuristics that end in the same all-off state; queried argmax bus invariant (188 both).",
+   "item_ref": "api_T5|API|gpt-5.4-mini|C_FDRS|bi=304|b8423a9a4db2",
+   "task": "short_circuit_2ph/argmax/D3_semantic/case200_illinois/nmod=1"
+  },
+  {
+   "i": 131,
+   "label": "physical-error",
+   "violated_check": "4,2",
+   "applied_rule": "案2-analog (N-1 未用于选线; 130/313 同族)",
+   "rationale": "The pinned N-1-based worst-line selection was replaced by the BASELINE argmax; run_contingency was only called at the END and its base-case column read back — semantically a no-op tail. Selection coincides on case5 (line 5) and the base-case read reproduces ref's final PF value exactly — the 案2-named coincidence; the pinned workflow was not executed.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=936|bdc6f3b56865",
+   "task": "contingency_fix/contingency_fix/D2_multi_step/case5/nmod=2"
+  },
+  {
+   "i": 126,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (388.0791633193294); extra prints harmless (final line captured).",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=819|c07a0d3df3ba",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case118/nmod=1"
+  },
+  {
+   "i": 7,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmin-V −5.135e-7 vs ref abs +5.135e-7; pinned mods exact.",
+   "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=884|c2d29520c83a",
+   "task": "comparison/comparison/D2_multi_step/case9241pegase/nmod=2"
+  },
+  {
+   "i": 69,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (7691.303707477498).",
+   "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=645|c8183d7822ef",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case24_ieee_rts/nmod=1"
+  },
+  {
+   "i": 189,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "案10-subset (97 同族) + 案9",
+   "rationale": "calc_sc(bus=26) computes exactly the queried bus (legal subset); ['ikss_ka'][26] ≡ at[26]; bit-identical output proves SC parameter parity (cigre LV carries native data where it matters).",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=985|c9f2682b8f55",
+   "task": "pf_then_sc/pf_then_sc/D2_multi_step/cigre_lv/nmod=0"
+  },
+  {
+   "i": 271,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmin-V; all three pinned mods exact; outputs both ≈1.947e-8 (float noise), GT 0.0.",
+   "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=916|d0eed5a119c9",
+   "task": "comparison/comparison/D2_multi_step/case2869pegase/nmod=3"
+  },
+  {
+   "i": 227,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "案4 (手写循环 ≡ idxmax) + R3-不变性 (SC 源强)",
+   "rationale": "Trip executed on the runtime argmax unit (= ref gen 0); manual max-scan ≡ idxmax; only query-silent divergence is the SC source fill (10000 vs 1000) and the queried argmax bus is invariant (8 both).",
+   "item_ref": "api_T5|API|gemini-2.5-flash|C_FDRS|bi=1592|da5a827a141d",
+   "task": "short_circuit_3ph/argmax/D3_semantic/case_ieee30/nmod=1"
+  },
+  {
+   "i": 54,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (at≡iloc)",
+   "rationale": "Canonical engine identical (row-major matrix, legacy seed); at[15,154] ≡ iloc; output exact (1.04).",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=107|e0d093c2d870",
+   "task": "time_series/ts_point_at_step/D1_basic/case200_illinois/nmod=1"
+  },
+  {
+   "i": 178,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N5 (idxmin+loc ≡ min) + N7",
+   "rationale": "loc[idxmin,'vm_pu'] ≡ .min() (frozen N5) on both runs; signed Δ = 0.0 exact; all four pinned mods exact.",
+   "item_ref": "main_P|T1|Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|bi=673|e378afc6ea4a",
+   "task": "comparison/comparison/D2_multi_step/case39/nmod=4"
+  },
+  {
+   "i": 82,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (iloc[0]≡at[0]) + 交换律",
+   "rationale": "Single-slack point read idiom; independent assignments applied in permuted order (commutative); output bit-identical.",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=199|e6ee827b9b5b",
+   "task": "dc_power_flow/point_value/D1_basic/case57/nmod=3"
+  },
+  {
+   "i": 56,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (loc≡iloc RangeIndex)",
+   "rationale": "Canonical engine identical (row-major matrix, legacy seed); loc[3,14] ≡ iloc[3,14]; output bit-identical.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=519|e7b77693b7d4",
+   "task": "time_series/ts_point_at_step/D1_basic/case30/nmod=1"
+  },
+  {
+   "i": 72,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed cost diff + net-reuse; bit-identical output (0.43075930722247335).",
+   "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1145|e7bfb72260ab",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case33bw/nmod=1"
+  },
+  {
+   "i": 125,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7 + net-reuse 等价",
+   "rationale": "Signed diff + net-reuse; bit-identical output (2705.531885212942); intermediate prints harmless.",
+   "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=729|e834cef16f94",
+   "task": "comparison_opf/comparison_opf/D2_multi_step/case14/nmod=1"
+  },
+  {
+   "i": 217,
+   "label": "clean",
+   "violated_check": "4 (parser artifact)",
+   "applied_rule": "案9 (at≡iloc)",
+   "rationale": "Canonical engine identical; at[0,117] ≡ iloc[0,117]; output bit-identical.",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=707|e9cf399fbee8",
+   "task": "time_series/ts_point_at_step/D1_basic/iceland/nmod=1"
+  },
+  {
+   "i": 215,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (SC 源强欠定; 235/227 同族)",
+   "rationale": "No pinned mods; only divergence = query-silent SC source fills (10000/5000/rx_min 0.05 vs ref 1000/800/0.1); queried argmax bus invariant (0 both).",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=124|ed75bf29bd53",
+   "task": "short_circuit_2ph/argmax/D1_basic/case9/nmod=0"
+  },
+  {
+   "i": 210,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "baseline−modified signed ordering ≡ abs (positive); pinned mods exact; bit-identical output.",
+   "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=156|f05e25537d86",
+   "task": "comparison/comparison/D2_multi_step/cigre_lv/nmod=2"
+  },
+  {
+   "i": 223,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "案4 (数学等价抽样)",
+   "rationale": "0.6+0.8*rand(n,m) is mathematically identical to uniform(0.6,1.4,(n,m)) and consumes the same seeded stream — profiles equal; output equals ref at 8e-13; at≡iloc idiom.",
+   "item_ref": "api_T5|API|deepseek-v4-flash|C_FDRS|bi=77|f3ec5652e2e3",
+   "task": "time_series/ts_point_at_step/D1_basic/iceland/nmod=2"
+  },
+  {
+   "i": 59,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "R3-不变性 (R2 语境: 消耗次序欠定, 被查量 setpoint-锁定)",
+   "rationale": "Per-load column draws (load-major dict) vs ref row-major — query-silent consumption order; but the queried bus-99 voltage is setpoint-pinned at 1.014 (gen bus): outputs equal at 2e-16 under both readings → invariance ⇒ equivalent; errata: setpoint-pinned invariant item. continue_on_divergence unused.",
+   "item_ref": "main_P|T4|Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|bi=40|fa7625817255",
+   "task": "time_series/ts_point_at_step/D1_basic/case145/nmod=1"
+  },
+  {
+   "i": 304,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "N7",
+   "rationale": "Signed Δmin-V; single-ext-grid column assignment ≡ pinned at[0]; output equals ref at 1e-14.",
+   "item_ref": "contrast_S|T4|Qwen_Qwen3-Coder-Next|A_FX|bi=900|fcada67592dd",
+   "task": "comparison/comparison/D2_multi_step/simple_four_bus/nmod=2"
+  },
+  {
+   "i": 150,
+   "label": "equivalent-path",
+   "violated_check": "4 (flag resolved)",
+   "applied_rule": "案10-subset (97/189 同族) + 案9",
+   "rationale": "calc_sc(bus=1) computes exactly the queried bus (legal subset); unconditional s_sc fill equals ref's conditional fill on this SC-data-free network; loc[1] ≡ at[1]; output bit-identical after the required pre-fault runpp.",
+   "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=668|fdf67c9b5a7b",
+   "task": "pf_then_sc/pf_then_sc/D2_multi_step/case33bw/nmod=1"
+  }
+ ],
+ "summary": {
+  "labels_total": {
+   "physical-error": 142,
+   "clean": 32,
+   "equivalent-path": 120,
+   "suspected-item-defect": 38
+  },
+  "labels_by_frame": {
+   "contrast_S": {
+    "physical-error": 55,
+    "equivalent-path": 30,
+    "suspected-item-defect": 6,
+    "clean": 2
+   },
+   "main_P": {
+    "physical-error": 81,
+    "clean": 26,
+    "equivalent-path": 76,
+    "suspected-item-defect": 27
+   },
+   "api_T5": {
+    "physical-error": 6,
+    "equivalent-path": 14,
+    "clean": 4,
+    "suspected-item-defect": 5
+   }
+  },
+  "labels_by_tier": {
+   "T2": {
+    "physical-error": 52,
+    "clean": 7,
+    "equivalent-path": 24,
+    "suspected-item-defect": 8
+   },
+   "T1": {
+    "physical-error": 29,
+    "equivalent-path": 5,
+    "clean": 4
+   },
+   "T3": {
+    "physical-error": 30,
+    "clean": 7,
+    "equivalent-path": 29,
+    "suspected-item-defect": 18
+   },
+   "T4": {
+    "clean": 10,
+    "equivalent-path": 48,
+    "physical-error": 25,
+    "suspected-item-defect": 7
+   },
+   "API": {
+    "physical-error": 6,
+    "equivalent-path": 14,
+    "clean": 4,
+    "suspected-item-defect": 5
+   }
+  },
+  "labels_by_condition": {
+   "A_FX": {
+    "physical-error": 55,
+    "equivalent-path": 30,
+    "suspected-item-defect": 6,
+    "clean": 2
+   },
+   "C_FDRS": {
+    "physical-error": 87,
+    "clean": 30,
+    "equivalent-path": 90,
+    "suspected-item-defect": 32
+   }
+  },
+  "oracle_reruns": {
+   "n_probe_scripts": 8,
+   "probes": [
+    "case9241pegase baseline balance (c3 cluster)",
+    "case145 ref-state balance bi=233/387/1 (c3 cluster, 5 items)",
+    "bi=387 max-loading sensitivity (i=137)",
+    "bi=1943-family tap/s_sc readings (i=88; also decisive for i=33)",
+    "cigre_mv with_der branch-path comparison (i=23, 2 scripts)",
+    "illinois200 tap NaN + DC argmax readings (i=213)",
+    "run_contingency return-key semantics (i=128, i=212, and 131/16/127 column checks)"
+   ]
+  },
+  "checker_blind_spots": {
+   "D3_candidate_shunt_params_not_fingerprinted": {
+    "note": "check1 fingerprint omits shunt.q_mvar/p_mw (and shunt sign); sign-inverted or magnitude-divergent shunts pass ① silently — judged from code + c3/oracle instead",
+    "items": [
+     {
+      "i": 1,
+      "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1712|7f057d5394e3",
+      "label": "physical-error"
+     },
+     {
+      "i": 2,
+      "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1703|710dcf258e21",
+      "label": "physical-error"
+     },
+     {
+      "i": 30,
+      "item_ref": "main_P|T4|Qwen_Qwen3-Coder-Next|C_FDRS|bi=1691|7f092ba5f39a",
+      "label": "suspected-item-defect"
+     },
+     {
+      "i": 35,
+      "item_ref": "main_P|T4|meta-llama_Llama-3.1-405B-Instruct|C_FDRS|bi=1489|86e6c262f09e",
+      "label": "physical-error"
+     },
+     {
+      "i": 64,
+      "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1926|071cba6d73f6",
+      "label": "physical-error"
+     },
+     {
+      "i": 77,
+      "item_ref": "main_P|T3|meta-llama_Llama-3.1-70B-Instruct|C_FDRS|bi=1388|6c977e6397b3",
+      "label": "physical-error"
+     },
+     {
+      "i": 89,
+      "item_ref": "main_P|T3|openai_gpt-oss-120b|C_FDRS|bi=1489|86e6c262f09e",
+      "label": "physical-error"
+     },
+     {
+      "i": 119,
+      "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|bi=1926|071cba6d73f6",
+      "label": "equivalent-path"
+     },
+     {
+      "i": 142,
+      "item_ref": "main_P|T2|meta-llama_Llama-3.1-8B-Instruct|C_FDRS|bi=868|b9c73b49fa38",
+      "label": "physical-error"
+     },
+     {
+      "i": 158,
+      "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1725|61cfbc0c4b5a",
+      "label": "physical-error"
+     },
+     {
+      "i": 162,
+      "item_ref": "main_P|T2|Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|bi=1375|ba556538587d",
+      "label": "physical-error"
+     },
+     {
+      "i": 212,
+      "item_ref": "api_T5|API|claude-haiku-4-5|C_FDRS|bi=1541|6c977e6397b3",
+      "label": "physical-error"
+     },
+     {
+      "i": 218,
+      "item_ref": "api_T5|API|deepseek-v4-flash|C_FDRS|bi=1891|4113a215c878",
+      "label": "physical-error"
+     },
+     {
+      "i": 294,
+      "item_ref": "contrast_S|T3|meta-llama_Llama-3.1-70B-Instruct|A_FX|bi=1489|86e6c262f09e",
+      "label": "physical-error"
+     },
+     {
+      "i": 317,
+      "item_ref": "contrast_S|T4|meta-llama_Llama-3.1-405B-Instruct|A_FX|bi=1844|d2d9d136949f",
+      "label": "physical-error"
+     }
+    ],
+    "count": 15
+   },
+   "D4_candidate_second_noop_kwarg_spelling": {
+    "note": "runpp(dc=True) is a second silently-absorbed no-op kwarg spelling beyond D-①'s method='dc' (classifier already returns ac_pf correctly, but no noop_kwargs flag is recorded); related sightings: runpp(contingency_analysis=True) i=245, runpp(seed=...) i=49",
+    "items": [
+     {
+      "i": 284,
+      "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=89|cea83749a9ba",
+      "label": "physical-error",
+      "kwarg": "runpp(dc=True)"
+     },
+     {
+      "i": 285,
+      "item_ref": "contrast_S|T3|openai_gpt-oss-120b|A_FX|bi=290|e8e78ad21e43",
+      "label": "physical-error",
+      "kwarg": "runpp(dc=True)"
+     }
+    ],
+    "count": 2,
+    "related": [
+     {
+      "i": 245,
+      "kwarg": "runpp(contingency_analysis=True)"
+     },
+     {
+      "i": 49,
+      "kwarg": "runpp(seed=1850)"
+     }
+    ]
+   }
+  },
+  "errata_channel_notes": "R2/R3 item-defect labels carry per-item rationale; recurring weak-item families flagged: SC-blind-to-load-mods (1943 家族), OPF-blind dispatch mods (runopp ignores initial p_mw), DC-losses≡0 and DC-vm≡1.0 degenerate queries, setpoint-pinned min/max-V invariant items, controller-overridden scaling mods, near-zero scalars under absolute tolerance, i=175 query-text vs ref measurand mismatch, i=133 duplicate-assignment query text."
+ }
+}

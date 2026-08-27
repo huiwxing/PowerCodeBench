@@ -1,0 +1,3622 @@
+[
+ {
+  "issue_or_discussion_number": 2702,
+  "source_type": "github_issue",
+  "title": "False results for power at bus when connected with other bus via switch",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2702"
+ },
+ {
+  "issue_or_discussion_number": 1917,
+  "source_type": "github_issue",
+  "title": "clean up import",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1917"
+ },
+ {
+  "issue_or_discussion_number": 2292,
+  "source_type": "github_issue",
+  "title": "[bug] Possibly incorrect Ik'' results.",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2292"
+ },
+ {
+  "issue_or_discussion_number": 2337,
+  "source_type": "github_issue",
+  "title": "[bug] reference_column assigned incorrectly on creation of groups",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2337"
+ },
+ {
+  "issue_or_discussion_number": 546,
+  "source_type": "github_issue",
+  "title": "Voltage constraints for xward in OPF",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/546"
+ },
+ {
+  "issue_or_discussion_number": 833,
+  "source_type": "github_issue",
+  "title": "Powerflow: Jacobi's law and Efficiency",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/833"
+ },
+ {
+  "issue_or_discussion_number": 1679,
+  "source_type": "github_issue",
+  "title": "OPF doesn't converge when hourly load model of IEEE 14 RTS is reduced",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1679"
+ },
+ {
+  "issue_or_discussion_number": 786,
+  "source_type": "github_issue",
+  "title": "Improve pp.diagnostic(net) and validation",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/786"
+ },
+ {
+  "issue_or_discussion_number": 2461,
+  "source_type": "github_issue",
+  "title": "Modelling transformers with asymmetric charged susceptance",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2461"
+ },
+ {
+  "issue_or_discussion_number": 2628,
+  "source_type": "github_issue",
+  "title": "[feature] Implement a p_flexibility functionality in PQVAreas.py for DER Controller",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2628"
+ },
+ {
+  "issue_or_discussion_number": 1292,
+  "source_type": "github_issue",
+  "title": "Harmonic Analysis",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1292"
+ },
+ {
+  "issue_or_discussion_number": 2458,
+  "source_type": "github_issue",
+  "title": "Improved error handling",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2458"
+ },
+ {
+  "issue_or_discussion_number": 114,
+  "source_type": "github_issue",
+  "title": "Algorithms for ill-conditioned problems",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/114"
+ },
+ {
+  "issue_or_discussion_number": 2620,
+  "source_type": "github_issue",
+  "title": "[bug] [converter] converter.to_mpc converts trafo into impedance, when reloaded with converter.from_mpc",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2620"
+ },
+ {
+  "issue_or_discussion_number": 2921,
+  "source_type": "github_issue",
+  "title": "Exporting switches to PowerModels.jl switches with PandaModels converter",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2921"
+ },
+ {
+  "issue_or_discussion_number": 2611,
+  "source_type": "github_issue",
+  "title": "Pandapower NEPLAN",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2611"
+ },
+ {
+  "issue_or_discussion_number": 836,
+  "source_type": "github_issue",
+  "title": "Asymmetric Load and Unbalance Power Flow",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/836"
+ },
+ {
+  "issue_or_discussion_number": 2322,
+  "source_type": "github_issue",
+  "title": "Pandapower is missing generator from 9-bus ieee case",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2322"
+ },
+ {
+  "issue_or_discussion_number": 1600,
+  "source_type": "github_issue",
+  "title": "PP does not check for feasibility in (O)PF?",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1600"
+ },
+ {
+  "issue_or_discussion_number": 630,
+  "source_type": "github_issue",
+  "title": "oos-elements in create_generic_coordinates",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/630"
+ },
+ {
+  "issue_or_discussion_number": 2828,
+  "source_type": "github_issue",
+  "title": "Import from CIM file fails",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "timeseries",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2828"
+ },
+ {
+  "issue_or_discussion_number": 2421,
+  "source_type": "github_issue",
+  "title": "time series with multiple loads",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2421"
+ },
+ {
+  "issue_or_discussion_number": 2402,
+  "source_type": "github_issue",
+  "title": "How to translate Reactive power in SVC definition",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2402"
+ },
+ {
+  "issue_or_discussion_number": 2089,
+  "source_type": "github_issue",
+  "title": "Result output for three phase powerflow",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2089"
+ },
+ {
+  "issue_or_discussion_number": 2288,
+  "source_type": "github_issue",
+  "title": "How to adjust steps of shunt devices in time series simulation",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2288"
+ },
+ {
+  "issue_or_discussion_number": 2289,
+  "source_type": "github_issue",
+  "title": "[bug] Serialization of shapely objects in dataframes creates intermediate products",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "io_serialization",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2289"
+ },
+ {
+  "issue_or_discussion_number": 2531,
+  "source_type": "github_issue",
+  "title": "Addition of Transformer to a pandapower builtin case33_bw()",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2531"
+ },
+ {
+  "issue_or_discussion_number": 289,
+  "source_type": "github_issue",
+  "title": "Adapting colorbars",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/289"
+ },
+ {
+  "issue_or_discussion_number": 2273,
+  "source_type": "github_issue",
+  "title": "How to specify pw_mw for ext_grid",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2273"
+ },
+ {
+  "issue_or_discussion_number": 1533,
+  "source_type": "github_issue",
+  "title": "Pandapower network to exclude selected points from PTDF matrix",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1533"
+ },
+ {
+  "issue_or_discussion_number": 2287,
+  "source_type": "github_issue",
+  "title": "DC Line parameters",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2287"
+ },
+ {
+  "issue_or_discussion_number": 2130,
+  "source_type": "github_issue",
+  "title": "run opf with input load data",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2130"
+ },
+ {
+  "issue_or_discussion_number": 1389,
+  "source_type": "github_issue",
+  "title": "State Estimation - Low Nodal Voltages",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "state_estimation",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1389"
+ },
+ {
+  "issue_or_discussion_number": 2352,
+  "source_type": "github_issue",
+  "title": "Merge two networks as DSO/TSO network?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2352"
+ },
+ {
+  "issue_or_discussion_number": 2386,
+  "source_type": "github_issue",
+  "title": "Lines got lost when using PYPOWER converter",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2386"
+ },
+ {
+  "issue_or_discussion_number": 2403,
+  "source_type": "github_issue",
+  "title": "[bug] The identified bug of function pandapower.converter.from_mpc for .m file",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2403"
+ },
+ {
+  "issue_or_discussion_number": 2495,
+  "source_type": "github_issue",
+  "title": "New release",
+  "decision": "EXCLUDE",
+  "reason_code": "version",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2495"
+ },
+ {
+  "issue_or_discussion_number": 2338,
+  "source_type": "github_issue",
+  "title": "Convergence for power flow analysis shows inconsistent properties",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2338"
+ },
+ {
+  "issue_or_discussion_number": 2715,
+  "source_type": "github_issue",
+  "title": "[feature] Parallel Contigency analysis",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2715"
+ },
+ {
+  "issue_or_discussion_number": 2396,
+  "source_type": "github_issue",
+  "title": "[bug] failure while executing test_from_mpc_m",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2396"
+ },
+ {
+  "issue_or_discussion_number": 2041,
+  "source_type": "github_issue",
+  "title": "[bug] Incompatibility with numba 0.57.0 version information",
+  "decision": "EXCLUDE",
+  "reason_code": "install",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2041"
+ },
+ {
+  "issue_or_discussion_number": 1399,
+  "source_type": "github_issue",
+  "title": "Inconsistent behaviour when multiple slacks on the grid",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1399"
+ },
+ {
+  "issue_or_discussion_number": 1695,
+  "source_type": "github_issue",
+  "title": "External Grid defined but pp still leads to user warning and non converging NR",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1695"
+ },
+ {
+  "issue_or_discussion_number": 225,
+  "source_type": "github_issue",
+  "title": "PQ capability load flow possible",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/225"
+ },
+ {
+  "issue_or_discussion_number": 1697,
+  "source_type": "github_issue",
+  "title": "How to create dispatchable loads on PP",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1697"
+ },
+ {
+  "issue_or_discussion_number": 1494,
+  "source_type": "github_issue",
+  "title": "TimeSeries simulation: Just PowerFlow?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1494"
+ },
+ {
+  "issue_or_discussion_number": 1376,
+  "source_type": "github_issue",
+  "title": "Need to example for time simulation",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1376"
+ },
+ {
+  "issue_or_discussion_number": 1556,
+  "source_type": "github_issue",
+  "title": "[MATPOWER-PIP Maintainer] Support conversion from matpower .m file",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1556"
+ },
+ {
+  "issue_or_discussion_number": 1442,
+  "source_type": "github_issue",
+  "title": "Importing OpenDSS files",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1442"
+ },
+ {
+  "issue_or_discussion_number": 847,
+  "source_type": "github_issue",
+  "title": "sensitivity analysis",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/847"
+ },
+ {
+  "issue_or_discussion_number": 1366,
+  "source_type": "github_issue",
+  "title": "Question- line definition",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1366"
+ },
+ {
+  "issue_or_discussion_number": 992,
+  "source_type": "github_issue",
+  "title": "Jacobian matrix after OPF run",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/992"
+ },
+ {
+  "issue_or_discussion_number": 704,
+  "source_type": "github_issue",
+  "title": "Create IEEE 123-bus",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/704"
+ },
+ {
+  "issue_or_discussion_number": 1475,
+  "source_type": "github_issue",
+  "title": "Computing impedances using Ybus inversion: Problem with internal indices.",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1475"
+ },
+ {
+  "issue_or_discussion_number": 2516,
+  "source_type": "github_issue",
+  "title": "[bug] Can not read-in Matpower file with various voltage levels",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2516"
+ },
+ {
+  "issue_or_discussion_number": 1647,
+  "source_type": "github_issue",
+  "title": "Enquiry on what the vn_kv parameter stands for",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1647"
+ },
+ {
+  "issue_or_discussion_number": 2413,
+  "source_type": "github_issue",
+  "title": "[feature] KeyError: bus_dc",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2413"
+ },
+ {
+  "issue_or_discussion_number": 1705,
+  "source_type": "github_issue",
+  "title": "run_control argument not in runopp but in runpp for Trafo Control",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1705"
+ },
+ {
+  "issue_or_discussion_number": 2144,
+  "source_type": "github_issue",
+  "title": "Understanding internal Ybus matrix dimension",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2144"
+ },
+ {
+  "issue_or_discussion_number": 29,
+  "source_type": "github_issue",
+  "title": "GUI discussion",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/29"
+ },
+ {
+  "issue_or_discussion_number": 1854,
+  "source_type": "github_issue",
+  "title": "Sgen Cost has an effect on opf converging or not",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1854"
+ },
+ {
+  "issue_or_discussion_number": 1828,
+  "source_type": "github_issue",
+  "title": "Error in conversion from power factory to pandapower",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1828"
+ },
+ {
+  "issue_or_discussion_number": 2083,
+  "source_type": "github_issue",
+  "title": "Run PowerFlow with NumBa",
+  "decision": "EXCLUDE",
+  "reason_code": "install",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2083"
+ },
+ {
+  "issue_or_discussion_number": 381,
+  "source_type": "github_issue",
+  "title": "Sensitivity Matrix Calculation in Pandapower",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/381"
+ },
+ {
+  "issue_or_discussion_number": 1592,
+  "source_type": "github_issue",
+  "title": "PandaPower Toolbox.py get_connected_elements for respect_in_service True leads to error",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1592"
+ },
+ {
+  "issue_or_discussion_number": 1206,
+  "source_type": "github_issue",
+  "title": "WARNING: replacing module PP2PM with PowerModel.jl usage",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1206"
+ },
+ {
+  "issue_or_discussion_number": 2750,
+  "source_type": "github_issue",
+  "title": "tolerance_mva option is used as if it were in PU?",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2750"
+ },
+ {
+  "issue_or_discussion_number": 1454,
+  "source_type": "github_issue",
+  "title": "assigning ConstControl in pwl_costs for opf timeseries",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1454"
+ },
+ {
+  "issue_or_discussion_number": 260,
+  "source_type": "github_issue",
+  "title": "Add ideal transformers to impedances",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/260"
+ },
+ {
+  "issue_or_discussion_number": 2662,
+  "source_type": "github_issue",
+  "title": "[bug] Inconsistent currents and powers on the LV side of transformer in 3 phase power flow",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2662"
+ },
+ {
+  "issue_or_discussion_number": 2465,
+  "source_type": "github_issue",
+  "title": "Add functionality to extract reactive power costs",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "der_control",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2465"
+ },
+ {
+  "issue_or_discussion_number": 2644,
+  "source_type": "github_issue",
+  "title": "[feature] Specify port for pandapower.to_postgresql",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "io_serialization",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2644"
+ },
+ {
+  "issue_or_discussion_number": 2134,
+  "source_type": "github_issue",
+  "title": "Each timeseries cost",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2134"
+ },
+ {
+  "issue_or_discussion_number": 2527,
+  "source_type": "github_issue",
+  "title": "[feature] Double-phase-to-ground faults in short circuit",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2527"
+ },
+ {
+  "issue_or_discussion_number": 2546,
+  "source_type": "github_issue",
+  "title": "[feature] kwargs handling in controller",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2546"
+ },
+ {
+  "issue_or_discussion_number": 1497,
+  "source_type": "github_issue",
+  "title": "Flexible Voltage (c) Factor in SC calculations",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1497"
+ },
+ {
+  "issue_or_discussion_number": 3068,
+  "source_type": "github_issue",
+  "title": "runpp_3ph does not flag failed convergence results stay silently NaN",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3068"
+ },
+ {
+  "issue_or_discussion_number": 3069,
+  "source_type": "github_issue",
+  "title": "Missing required zero-sequence fields raise inconsistent errors in runpp_3ph",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3069"
+ },
+ {
+  "issue_or_discussion_number": 1458,
+  "source_type": "github_issue",
+  "title": "Inconsistent behavior of load and asymmetric_load",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1458"
+ },
+ {
+  "issue_or_discussion_number": 2488,
+  "source_type": "github_issue",
+  "title": "move all runpp function to pandapower.run",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2488"
+ },
+ {
+  "issue_or_discussion_number": 1580,
+  "source_type": "github_issue",
+  "title": "shift degree not applied in Assymetric load flow",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1580"
+ },
+ {
+  "issue_or_discussion_number": 1474,
+  "source_type": "github_issue",
+  "title": "runpp_3ph seems to expect that elements always have continuous indices",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1474"
+ },
+ {
+  "issue_or_discussion_number": 1430,
+  "source_type": "github_issue",
+  "title": "BUG in rerun a powerflow with dclines since v2.6.0",
+  "decision": "EXCLUDE",
+  "reason_code": "version",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1430"
+ },
+ {
+  "issue_or_discussion_number": 1919,
+  "source_type": "github_issue",
+  "title": "[bug] Ward and Xward constant power components to be included in 3 phase powerflow",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1919"
+ },
+ {
+  "issue_or_discussion_number": 1892,
+  "source_type": "github_issue",
+  "title": "[bug] Shunt elements 3 phase powerflow calculation difference",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1892"
+ },
+ {
+  "issue_or_discussion_number": 2060,
+  "source_type": "github_issue",
+  "title": "[feature] Recycling for 3ph power flow",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2060"
+ },
+ {
+  "issue_or_discussion_number": 2910,
+  "source_type": "github_issue",
+  "title": "[future] converter issues due to pd.NA in networks",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2910"
+ },
+ {
+  "issue_or_discussion_number": 3002,
+  "source_type": "github_issue",
+  "title": "residual elements if loadflow/opf fails",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3002"
+ },
+ {
+  "issue_or_discussion_number": 1072,
+  "source_type": "github_issue",
+  "title": "false power flow results for simbench and MV Oberrhein - 3ph power flow",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1072"
+ },
+ {
+  "issue_or_discussion_number": 1554,
+  "source_type": "github_issue",
+  "title": "Zero and negative sequence admittance matrices are not accessible anymore",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1554"
+ },
+ {
+  "issue_or_discussion_number": 3018,
+  "source_type": "github_issue",
+  "title": "Additional tests for OPF required.",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3018"
+ },
+ {
+  "issue_or_discussion_number": 1599,
+  "source_type": "github_issue",
+  "title": "Running Time series simulation of the European Low Voltage Test Feeder with 3 phase asymmetric loads",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1599"
+ },
+ {
+  "issue_or_discussion_number": 1101,
+  "source_type": "github_issue",
+  "title": "Pandapower OPF does not converge with pp version > 2.2.0",
+  "decision": "EXCLUDE",
+  "reason_code": "version",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1101"
+ },
+ {
+  "issue_or_discussion_number": 2609,
+  "source_type": "github_issue",
+  "title": "Simbench network AC OPF not converging",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2609"
+ },
+ {
+  "issue_or_discussion_number": 1178,
+  "source_type": "github_issue",
+  "title": "Unwanted error in the OPF AC when trying to combine controllable out of service and non controllable in service",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1178"
+ },
+ {
+  "issue_or_discussion_number": 2933,
+  "source_type": "github_issue",
+  "title": "[feature] Improve Python-Based OPF Speed",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2933"
+ },
+ {
+  "issue_or_discussion_number": 2932,
+  "source_type": "github_issue",
+  "title": "[bug] pandapower.converter.pypower matpower broken",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2932"
+ },
+ {
+  "issue_or_discussion_number": 2385,
+  "source_type": "github_issue",
+  "title": "[feature] Support of angle difference constraints",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2385"
+ },
+ {
+  "issue_or_discussion_number": 2954,
+  "source_type": "github_issue",
+  "title": "Wrong sign parameter cp2_eur_per_mw2 of create_poly_cost for load",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2954"
+ },
+ {
+  "issue_or_discussion_number": 1526,
+  "source_type": "github_issue",
+  "title": "optimal power flow does not converge",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1526"
+ },
+ {
+  "issue_or_discussion_number": 1377,
+  "source_type": "github_issue",
+  "title": "pp.runopp is not working with a trafo included",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1377"
+ },
+ {
+  "issue_or_discussion_number": 1100,
+  "source_type": "github_issue",
+  "title": "Issue Tutorial opf_dcline.ipynb. pp.runopp: Optimal Power Flow did not converge!",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1100"
+ },
+ {
+  "issue_or_discussion_number": 2831,
+  "source_type": "github_issue",
+  "title": "Gurobi to solve ACOPF: Power Flow Equations",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2831"
+ },
+ {
+  "issue_or_discussion_number": 2202,
+  "source_type": "github_issue",
+  "title": "Error: local variable result referenced before assignment with runpm_storage_opf and runpm_tnep",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2202"
+ },
+ {
+  "issue_or_discussion_number": 2206,
+  "source_type": "github_issue",
+  "title": "Bus in load Not defined Pandamodels",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2206"
+ },
+ {
+  "issue_or_discussion_number": 2009,
+  "source_type": "github_issue",
+  "title": "[bug] to_ppc then pypower.runopf.runopf results in an error",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2009"
+ },
+ {
+  "issue_or_discussion_number": 1590,
+  "source_type": "github_issue",
+  "title": "Problem with defining angles when using ext_grid",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1590"
+ },
+ {
+  "issue_or_discussion_number": 1551,
+  "source_type": "github_issue",
+  "title": "Unbalanced 3ph timeseries powerflow errors",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1551"
+ },
+ {
+  "issue_or_discussion_number": 2567,
+  "source_type": "github_issue",
+  "title": "[bug] [plotting] [docs] pandapower.plotting.pf_res_plotly() cmap",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2567"
+ },
+ {
+  "issue_or_discussion_number": 2959,
+  "source_type": "github_issue",
+  "title": "[bug] OPF (line) loading limits not considered correctly",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2959"
+ },
+ {
+  "issue_or_discussion_number": 1901,
+  "source_type": "github_issue",
+  "title": "OPF - unexpected results with 2 generators on the same bus",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1901"
+ },
+ {
+  "issue_or_discussion_number": 1361,
+  "source_type": "github_issue",
+  "title": "OPF - polycost function and static generators",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1361"
+ },
+ {
+  "issue_or_discussion_number": 1249,
+  "source_type": "github_issue",
+  "title": "Optimal Power Flow",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1249"
+ },
+ {
+  "issue_or_discussion_number": 219,
+  "source_type": "github_issue",
+  "title": "Improved measurement table",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "state_estimation",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/219"
+ },
+ {
+  "issue_or_discussion_number": 550,
+  "source_type": "github_issue",
+  "title": "output writer log of inputs",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/550"
+ },
+ {
+  "issue_or_discussion_number": 943,
+  "source_type": "github_issue",
+  "title": "inconsistent consideration of unloaded branches",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/943"
+ },
+ {
+  "issue_or_discussion_number": 1095,
+  "source_type": "github_issue",
+  "title": "Is this power flow result abnormal?",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1095"
+ },
+ {
+  "issue_or_discussion_number": 927,
+  "source_type": "github_issue",
+  "title": "How to prevent generator from exceeding limit?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/927"
+ },
+ {
+  "issue_or_discussion_number": 244,
+  "source_type": "github_issue",
+  "title": "Separating async motors from static generators",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/244"
+ },
+ {
+  "issue_or_discussion_number": 728,
+  "source_type": "github_issue",
+  "title": "NaN values in res_line_sc",
+  "decision": "EXCLUDE",
+  "reason_code": "version",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/728"
+ },
+ {
+  "issue_or_discussion_number": 850,
+  "source_type": "github_issue",
+  "title": "ConstControl: Modifying scaling of all loads based on input dataframe",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/850"
+ },
+ {
+  "issue_or_discussion_number": 2692,
+  "source_type": "github_issue",
+  "title": "[bug] Ideal 3 winding transformers with tap at hv side and star point do not work properly",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "der_control",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2692"
+ },
+ {
+  "issue_or_discussion_number": 1851,
+  "source_type": "github_issue",
+  "title": "net.res_bus p_mw and q_mvar do not match net._ppc internal Sbus",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1851"
+ },
+ {
+  "issue_or_discussion_number": 2474,
+  "source_type": "github_issue",
+  "title": "[bug] MemoryError from makeYbus_tcsc - does NOT occur in pandapower version 2.8!",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2474"
+ },
+ {
+  "issue_or_discussion_number": 1996,
+  "source_type": "github_issue",
+  "title": "[bug] Issue when running DC powerflow after AC powerflow",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1996"
+ },
+ {
+  "issue_or_discussion_number": 1209,
+  "source_type": "github_issue",
+  "title": "to_mpc not working for some of the pn.networks",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1209"
+ },
+ {
+  "issue_or_discussion_number": 572,
+  "source_type": "github_issue",
+  "title": "Measurement elements",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "state_estimation",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/572"
+ },
+ {
+  "issue_or_discussion_number": 1184,
+  "source_type": "github_issue",
+  "title": "V setpoint of ext_grid in OPF",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1184"
+ },
+ {
+  "issue_or_discussion_number": 1094,
+  "source_type": "github_issue",
+  "title": "run time series not possible with multiple loads at same bus",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "timeseries",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1094"
+ },
+ {
+  "issue_or_discussion_number": 763,
+  "source_type": "github_issue",
+  "title": "use of previous results as initial values in state estimation not working correctly?",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "state_estimation",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/763"
+ },
+ {
+  "issue_or_discussion_number": 1508,
+  "source_type": "github_issue",
+  "title": "Double use of parameter name type for some elements",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1508"
+ },
+ {
+  "issue_or_discussion_number": 2700,
+  "source_type": "github_issue",
+  "title": "State-Estimation: zero-injection no_inj_bus produces IndexError",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "state_estimation",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2700"
+ },
+ {
+  "issue_or_discussion_number": 2445,
+  "source_type": "github_issue",
+  "title": "[bug] Failing power flow calculation if non mandatory attributes not set",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2445"
+ },
+ {
+  "issue_or_discussion_number": 1791,
+  "source_type": "github_issue",
+  "title": "pandapower change log - entries missing",
+  "decision": "EXCLUDE",
+  "reason_code": "version",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1791"
+ },
+ {
+  "issue_or_discussion_number": 372,
+  "source_type": "github_issue",
+  "title": "Outdated docstrings in create_sgen and create_gen functions",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/372"
+ },
+ {
+  "issue_or_discussion_number": 3073,
+  "source_type": "github_issue",
+  "title": "State not reset on failed run for run_timeseries with continue_on_divergence True",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "timeseries",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3073"
+ },
+ {
+  "issue_or_discussion_number": 1857,
+  "source_type": "github_issue",
+  "title": "[bug] Setting a ConstControl giving an index that does not exist",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "timeseries",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1857"
+ },
+ {
+  "issue_or_discussion_number": 2676,
+  "source_type": "github_issue",
+  "title": "init_time_steps function in run_time_series.py module incorrectly skips tuples when creating range",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "timeseries",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2676"
+ },
+ {
+  "issue_or_discussion_number": 2734,
+  "source_type": "github_issue",
+  "title": "Deprecation warnings in ieee_european_lv_time_series tutorial",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2734"
+ },
+ {
+  "issue_or_discussion_number": 2716,
+  "source_type": "github_issue",
+  "title": "Bidirectional DC lines",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2716"
+ },
+ {
+  "issue_or_discussion_number": 2126,
+  "source_type": "github_issue",
+  "title": "timeseries OPF w/distributed slack",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2126"
+ },
+ {
+  "issue_or_discussion_number": 2643,
+  "source_type": "github_issue",
+  "title": "[bug]Transformers lost during from_ppc() conversion - to_ppc() incorrectly sets transformer ratio to 1.0 instead of turns ratio",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2643"
+ },
+ {
+  "issue_or_discussion_number": 2614,
+  "source_type": "github_issue",
+  "title": "Use the from_ppc function to convert the case of pypower, but the number of lines is reduced after the conversion",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2614"
+ },
+ {
+  "issue_or_discussion_number": 3043,
+  "source_type": "github_issue",
+  "title": "Add an OpenDSS pandapower converter",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3043"
+ },
+ {
+  "issue_or_discussion_number": 2532,
+  "source_type": "github_issue",
+  "title": "[bug] changes for characteristics in shunt trafo trafo3w are not considered in stored nets and convert_format",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2532"
+ },
+ {
+  "issue_or_discussion_number": 2557,
+  "source_type": "github_issue",
+  "title": "[bug] Doc not up to date behaviour mismatch on ieee cases between pp3 and pp2",
+  "decision": "EXCLUDE",
+  "reason_code": "version",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2557"
+ },
+ {
+  "issue_or_discussion_number": 1834,
+  "source_type": "github_issue",
+  "title": "pip install pandapower does not update the converter.from_mpc() file",
+  "decision": "EXCLUDE",
+  "reason_code": "install",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1834"
+ },
+ {
+  "issue_or_discussion_number": 1207,
+  "source_type": "github_issue",
+  "title": "Data is wrong in converted ppc network",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1207"
+ },
+ {
+  "issue_or_discussion_number": 2141,
+  "source_type": "github_issue",
+  "title": "Userdefined Cost and per time step objective result",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2141"
+ },
+ {
+  "issue_or_discussion_number": 929,
+  "source_type": "github_issue",
+  "title": "DC net modeling",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/929"
+ },
+ {
+  "issue_or_discussion_number": 2275,
+  "source_type": "github_issue",
+  "title": "[bug] simple_plot() does not plot lines since geojson update",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2275"
+ },
+ {
+  "issue_or_discussion_number": 2003,
+  "source_type": "github_issue",
+  "title": "IEEE 13 case power flow",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2003"
+ },
+ {
+  "issue_or_discussion_number": 1528,
+  "source_type": "github_issue",
+  "title": "[WinError 206] The filename or extension is too long",
+  "decision": "EXCLUDE",
+  "reason_code": "install",
+  "theme": "timeseries",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1528"
+ },
+ {
+  "issue_or_discussion_number": 1582,
+  "source_type": "github_issue",
+  "title": "Whether time series simulations can be used for transient stability simulation",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1582"
+ },
+ {
+  "issue_or_discussion_number": 2101,
+  "source_type": "github_issue",
+  "title": "[bug] numba is not used due to import error",
+  "decision": "EXCLUDE",
+  "reason_code": "install",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2101"
+ },
+ {
+  "issue_or_discussion_number": 1746,
+  "source_type": "github_issue",
+  "title": "Sign convention of PTDF factors from make PTDF matrix is confusing",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1746"
+ },
+ {
+  "issue_or_discussion_number": 1904,
+  "source_type": "github_issue",
+  "title": "Reactive power at PV buses is silently ignored",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "der_control",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1904"
+ },
+ {
+  "issue_or_discussion_number": 1811,
+  "source_type": "github_issue",
+  "title": "Use value calculated by a Constcontroller in a other controller for timeseries calculations",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1811"
+ },
+ {
+  "issue_or_discussion_number": 1692,
+  "source_type": "github_issue",
+  "title": "How to add ramp rate constraints to the pandapower.runopp.",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1692"
+ },
+ {
+  "issue_or_discussion_number": 1676,
+  "source_type": "github_issue",
+  "title": "How to get multiple variable in fledge through MODBUS-C in South Plugin",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1676"
+ },
+ {
+  "issue_or_discussion_number": 1622,
+  "source_type": "github_issue",
+  "title": "How to calculate the sensitivity/PTDF matrix of a network",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1622"
+ },
+ {
+  "issue_or_discussion_number": 1225,
+  "source_type": "github_issue",
+  "title": "Power flow from PowerModels.",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1225"
+ },
+ {
+  "issue_or_discussion_number": 1612,
+  "source_type": "github_issue",
+  "title": "How to modify the voltage per unit vm_pu of an existing grid",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1612"
+ },
+ {
+  "issue_or_discussion_number": 1613,
+  "source_type": "github_issue",
+  "title": "How to activate the storage unit in the grid for only particular timesteps",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1613"
+ },
+ {
+  "issue_or_discussion_number": 1584,
+  "source_type": "github_issue",
+  "title": "How to directly handle the results after using the Timeseries tool and not write them to the hard disk",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1584"
+ },
+ {
+  "issue_or_discussion_number": 1664,
+  "source_type": "github_issue",
+  "title": "add automated testing for tutorials / jupyter notebooks",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1664"
+ },
+ {
+  "issue_or_discussion_number": 1572,
+  "source_type": "github_issue",
+  "title": "Is it possible to evaluate PTDF with pandapower?",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1572"
+ },
+ {
+  "issue_or_discussion_number": 1531,
+  "source_type": "github_issue",
+  "title": "Handling multiple slack buses",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1531"
+ },
+ {
+  "issue_or_discussion_number": 1375,
+  "source_type": "github_issue",
+  "title": "std_type in create_lines",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1375"
+ },
+ {
+  "issue_or_discussion_number": 1351,
+  "source_type": "github_issue",
+  "title": "Timeseries - OutputWriter fails to init from log variables for 3ph cases",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1351"
+ },
+ {
+  "issue_or_discussion_number": 1360,
+  "source_type": "github_issue",
+  "title": "How can I save my network, which I created with Pandapower, and use it in other scripts?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "io_serialization",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1360"
+ },
+ {
+  "issue_or_discussion_number": 1182,
+  "source_type": "github_issue",
+  "title": "Question: Are there Include Lagrange multipliers in results from AC OPF using PowerModels.jl?",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1182"
+ },
+ {
+  "issue_or_discussion_number": 1341,
+  "source_type": "github_issue",
+  "title": "Branch short-circuit currents for 1ph fault",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1341"
+ },
+ {
+  "issue_or_discussion_number": 1021,
+  "source_type": "github_issue",
+  "title": "Inconsistent 3ph power flow results for transformers",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1021"
+ },
+ {
+  "issue_or_discussion_number": 900,
+  "source_type": "github_issue",
+  "title": "Storing pandapower networks - issues for developers",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "io_serialization",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/900"
+ },
+ {
+  "issue_or_discussion_number": 764,
+  "source_type": "github_issue",
+  "title": "OPF with results as init parameter",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/764"
+ },
+ {
+  "issue_or_discussion_number": 897,
+  "source_type": "github_issue",
+  "title": "Can't load network from json dictionary",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "io_serialization",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/897"
+ },
+ {
+  "issue_or_discussion_number": 771,
+  "source_type": "github_issue",
+  "title": "implement distributed slacks",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/771"
+ },
+ {
+  "issue_or_discussion_number": 1283,
+  "source_type": "github_issue",
+  "title": "How to avoid convergence error",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1283"
+ },
+ {
+  "issue_or_discussion_number": 1192,
+  "source_type": "github_issue",
+  "title": "Question: Is there any way to relax some constraints to force opf convergence?",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1192"
+ },
+ {
+  "issue_or_discussion_number": 719,
+  "source_type": "github_issue",
+  "title": "pf_res_plotly() for a specific time step",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/719"
+ },
+ {
+  "issue_or_discussion_number": 1224,
+  "source_type": "github_issue",
+  "title": "(in)equality constraints in state estimation",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "state_estimation",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1224"
+ },
+ {
+  "issue_or_discussion_number": 1167,
+  "source_type": "github_issue",
+  "title": "using and modifying benchmark network",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1167"
+ },
+ {
+  "issue_or_discussion_number": 1124,
+  "source_type": "github_issue",
+  "title": "Excess voltage magnitude when no load",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1124"
+ },
+ {
+  "issue_or_discussion_number": 840,
+  "source_type": "github_issue",
+  "title": "Load profile at real-time",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/840"
+ },
+ {
+  "issue_or_discussion_number": 3071,
+  "source_type": "github_issue",
+  "title": "Plotting function still uses old bus_geodata entries, which causes errors when plotting a simbench-grid with simple_plot",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3071"
+ },
+ {
+  "issue_or_discussion_number": 2098,
+  "source_type": "github_issue",
+  "title": "[feature] setting flag to not plot out of service elements in convenience plotting functions",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2098"
+ },
+ {
+  "issue_or_discussion_number": 2613,
+  "source_type": "github_issue",
+  "title": "[bug] Incorrect Behavior of dump_to_geojson Method with trafos Parameter",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2613"
+ },
+ {
+  "issue_or_discussion_number": 1400,
+  "source_type": "github_issue",
+  "title": "Plotting bug: switches at lines connecting busbars",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1400"
+ },
+ {
+  "issue_or_discussion_number": 1875,
+  "source_type": "github_issue",
+  "title": "[feature] simple_plot | Make Orientation of Assets Adjustable",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1875"
+ },
+ {
+  "issue_or_discussion_number": 2552,
+  "source_type": "github_issue",
+  "title": "[bug] [plotting] Colorbar for Line Loading Not Displayed Correctly in pf_res_plotly",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2552"
+ },
+ {
+  "issue_or_discussion_number": 2845,
+  "source_type": "github_issue",
+  "title": "[bug] VSC drawing uses incorrect coordinates due to unused function parameter",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2845"
+ },
+ {
+  "issue_or_discussion_number": 2733,
+  "source_type": "github_issue",
+  "title": "Missing plots in ieee_european_lv_asymmetric tutorial",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2733"
+ },
+ {
+  "issue_or_discussion_number": 1148,
+  "source_type": "github_issue",
+  "title": "plot_voltage_profile",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "timeseries",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1148"
+ },
+ {
+  "issue_or_discussion_number": 1773,
+  "source_type": "github_issue",
+  "title": "BUG: coords_from_node_geodata with ignore_zero_length causes index mismatch",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1773"
+ },
+ {
+  "issue_or_discussion_number": 2761,
+  "source_type": "github_issue",
+  "title": "[BUG] convert_csr fails in case coordinates are present in bus but not in branch",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2761"
+ },
+ {
+  "issue_or_discussion_number": 2435,
+  "source_type": "github_issue",
+  "title": "State Estimation Error bus_append aux_bus ZERO_INJ_FLAG True IndexError",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "state_estimation",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2435"
+ },
+ {
+  "issue_or_discussion_number": 2436,
+  "source_type": "github_issue",
+  "title": "[issue] Measurement defined in pp-grid does not exist in ppci, will be deleted!",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "state_estimation",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2436"
+ },
+ {
+  "issue_or_discussion_number": 910,
+  "source_type": "github_issue",
+  "title": "maybe its a bug",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/910"
+ },
+ {
+  "issue_or_discussion_number": 2684,
+  "source_type": "github_issue",
+  "title": "Ambiguity and mandatory requirement of max_loading_percent in N-1 contingency analysis",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2684"
+ },
+ {
+  "issue_or_discussion_number": 2438,
+  "source_type": "github_issue",
+  "title": "[bug] run_contingency_ls2g doesn't work when there are redundant buses",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2438"
+ },
+ {
+  "issue_or_discussion_number": 2683,
+  "source_type": "github_issue",
+  "title": "Ambiguity and mandatory requirement of max_loading_percent in N-1 contingency analysis",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2683"
+ },
+ {
+  "issue_or_discussion_number": 2361,
+  "source_type": "github_issue",
+  "title": "broken lightsim2grid integration for contingency analysis",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2361"
+ },
+ {
+  "issue_or_discussion_number": 2170,
+  "source_type": "github_issue",
+  "title": "Unable to import contingency module",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2170"
+ },
+ {
+  "issue_or_discussion_number": 2068,
+  "source_type": "github_issue",
+  "title": "[feature] using parallel threading from PowerGridModel for contingency analysis",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2068"
+ },
+ {
+  "issue_or_discussion_number": 1527,
+  "source_type": "github_issue",
+  "title": "time series power flow analysis with N-1 Contingency",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1527"
+ },
+ {
+  "issue_or_discussion_number": 1638,
+  "source_type": "github_issue",
+  "title": "Exception: EXCEPTION_ACCESS_VIOLATION when running timeseries opf with pandamodels",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1638"
+ },
+ {
+  "issue_or_discussion_number": 1342,
+  "source_type": "github_issue",
+  "title": "How to divide net to two subnets and run rundcpp in each subnet.",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1342"
+ },
+ {
+  "issue_or_discussion_number": 1523,
+  "source_type": "github_issue",
+  "title": "setting slack_weight for Pandapower Elements",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1523"
+ },
+ {
+  "issue_or_discussion_number": 1349,
+  "source_type": "github_issue",
+  "title": "Plot of bus index",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1349"
+ },
+ {
+  "issue_or_discussion_number": 1408,
+  "source_type": "github_issue",
+  "title": "Maybe some issues with distributed slack Newton Raphson",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1408"
+ },
+ {
+  "issue_or_discussion_number": 1020,
+  "source_type": "github_issue",
+  "title": "DC OPF does not converge",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1020"
+ },
+ {
+  "issue_or_discussion_number": 1243,
+  "source_type": "github_issue",
+  "title": "Full matrix short circuit curent/ fault at different voltage phases",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1243"
+ },
+ {
+  "issue_or_discussion_number": 234,
+  "source_type": "github_issue",
+  "title": "Short circuit failure with in_service False",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/234"
+ },
+ {
+  "issue_or_discussion_number": 1273,
+  "source_type": "github_issue",
+  "title": "Inconsistent result tables of asymm. elements in 3ph power flow",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1273"
+ },
+ {
+  "issue_or_discussion_number": 1340,
+  "source_type": "github_issue",
+  "title": "Inquiries related to the power flow results of DC lines",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1340"
+ },
+ {
+  "issue_or_discussion_number": 1134,
+  "source_type": "github_issue",
+  "title": "Controlling just one Trafo in Net with two trafos when i run powerflow",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1134"
+ },
+ {
+  "issue_or_discussion_number": 1200,
+  "source_type": "github_issue",
+  "title": "Question: Is a constant minimum loading percent of MV-LV transformer of CIGRE LV network strange?",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1200"
+ },
+ {
+  "issue_or_discussion_number": 1160,
+  "source_type": "github_issue",
+  "title": "TCSC in pandapower",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1160"
+ },
+ {
+  "issue_or_discussion_number": 993,
+  "source_type": "github_issue",
+  "title": "tapchanger controlling the voltage on a far busbar",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/993"
+ },
+ {
+  "issue_or_discussion_number": 947,
+  "source_type": "github_issue",
+  "title": "Classical Model of Synch. Gen for power flow",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/947"
+ },
+ {
+  "issue_or_discussion_number": 973,
+  "source_type": "github_issue",
+  "title": "Pandapower Voltagedrop and trafo control",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/973"
+ },
+ {
+  "issue_or_discussion_number": 868,
+  "source_type": "github_issue",
+  "title": "connecting with an existing bus",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/868"
+ },
+ {
+  "issue_or_discussion_number": 1026,
+  "source_type": "github_issue",
+  "title": "Options in time series load flow",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1026"
+ },
+ {
+  "issue_or_discussion_number": 1012,
+  "source_type": "github_issue",
+  "title": "Reopen an Issue: Warning due to impedance - unbalanced powerflow",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1012"
+ },
+ {
+  "issue_or_discussion_number": 856,
+  "source_type": "github_issue",
+  "title": "Print a spesific bus",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/856"
+ },
+ {
+  "issue_or_discussion_number": 789,
+  "source_type": "github_issue",
+  "title": "time series simulation with p_mw and q_mvar per bus and time step?",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/789"
+ },
+ {
+  "issue_or_discussion_number": 780,
+  "source_type": "github_issue",
+  "title": "Single bus island leads to error in powerflow",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/780"
+ },
+ {
+  "issue_or_discussion_number": 887,
+  "source_type": "github_issue",
+  "title": "Can read imax from excel",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/887"
+ },
+ {
+  "issue_or_discussion_number": 966,
+  "source_type": "github_issue",
+  "title": "Current Deviations and Admittance Matrix after Bus-Element Switching off",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/966"
+ },
+ {
+  "issue_or_discussion_number": 854,
+  "source_type": "github_issue",
+  "title": "OPF: runopp() for all time steps",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/854"
+ },
+ {
+  "issue_or_discussion_number": 554,
+  "source_type": "github_issue",
+  "title": "PandaPower way of plotting TCC Curves",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/554"
+ },
+ {
+  "issue_or_discussion_number": 694,
+  "source_type": "github_issue",
+  "title": "qps_pypower Failing during tests",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "converter",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/694"
+ },
+ {
+  "issue_or_discussion_number": 560,
+  "source_type": "github_issue",
+  "title": "ConstControl for several load busses",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/560"
+ },
+ {
+  "issue_or_discussion_number": 440,
+  "source_type": "github_issue",
+  "title": "Calculation of R/X Ration at any Bus",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/440"
+ },
+ {
+  "issue_or_discussion_number": 350,
+  "source_type": "github_issue",
+  "title": "First time running - TypeError p_mw issue",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/350"
+ },
+ {
+  "issue_or_discussion_number": 669,
+  "source_type": "github_issue",
+  "title": "Correlation between voltage magnitudes",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/669"
+ },
+ {
+  "issue_or_discussion_number": 567,
+  "source_type": "github_issue",
+  "title": "How to use drop_buses",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/567"
+ },
+ {
+  "issue_or_discussion_number": 737,
+  "source_type": "github_issue",
+  "title": "Genetic algorithm - topology that minimizes ENS",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/737"
+ },
+ {
+  "issue_or_discussion_number": 259,
+  "source_type": "github_issue",
+  "title": "Adding z_ohm to net.switch",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/259"
+ },
+ {
+  "issue_or_discussion_number": 243,
+  "source_type": "github_issue",
+  "title": "State estimation and zero injection constraints",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "state_estimation",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/243"
+ },
+ {
+  "issue_or_discussion_number": 53,
+  "source_type": "github_issue",
+  "title": "KeyError: max_p_kw",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/53"
+ },
+ {
+  "issue_or_discussion_number": 1603,
+  "source_type": "github_issue",
+  "title": "get plot data",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1603"
+ },
+ {
+  "issue_or_discussion_number": 1268,
+  "source_type": "github_issue",
+  "title": "One problem with IEEE 33bus system",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1268"
+ },
+ {
+  "issue_or_discussion_number": 1284,
+  "source_type": "github_issue",
+  "title": "Order of Ybus matrix",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1284"
+ },
+ {
+  "issue_or_discussion_number": 579,
+  "source_type": "github_issue",
+  "title": "DC Line Tests",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/579"
+ },
+ {
+  "issue_or_discussion_number": 1133,
+  "source_type": "github_issue",
+  "title": "Calling one bus Information",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1133"
+ },
+ {
+  "issue_or_discussion_number": 641,
+  "source_type": "github_issue",
+  "title": "Scrambled order of Results reported in res_bus DataFrame of IEEE 14 bus test case",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/641"
+ },
+ {
+  "issue_or_discussion_number": 1009,
+  "source_type": "github_issue",
+  "title": "short circuit, transformer impedance and tap changer main position",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1009"
+ },
+ {
+  "issue_or_discussion_number": 2646,
+  "source_type": "github_issue",
+  "title": "[bug] NaN values for bus voltages when performing single-phase short-circuit calculation",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2646"
+ },
+ {
+  "issue_or_discussion_number": 1236,
+  "source_type": "github_issue",
+  "title": "Index Error with Short Circuit Computation with calc_sc()",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1236"
+ },
+ {
+  "issue_or_discussion_number": 2197,
+  "source_type": "github_issue",
+  "title": "pandapower main site",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2197"
+ },
+ {
+  "issue_or_discussion_number": 1902,
+  "source_type": "github_issue",
+  "title": "[bug] SC-calculation doesn't work with 2 or more transformators",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1902"
+ },
+ {
+  "issue_or_discussion_number": 1876,
+  "source_type": "github_issue",
+  "title": "[bug] Short-circuit calculation doesn't work",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1876"
+ },
+ {
+  "issue_or_discussion_number": 1866,
+  "source_type": "github_issue",
+  "title": "ShortCircuit caluclation doesn't work",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1866"
+ },
+ {
+  "issue_or_discussion_number": 1755,
+  "source_type": "github_issue",
+  "title": "Individual converter contributions for short circuit",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1755"
+ },
+ {
+  "issue_or_discussion_number": 862,
+  "source_type": "github_issue",
+  "title": "Expose all calculated short circuit branch currents",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/862"
+ },
+ {
+  "issue_or_discussion_number": 1187,
+  "source_type": "github_issue",
+  "title": "Feature: Toggle On the contribution of distributed generators in Minimum short circuit calculation",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1187"
+ },
+ {
+  "issue_or_discussion_number": 814,
+  "source_type": "github_issue",
+  "title": "Short-Circuit: Phase of current",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/814"
+ },
+ {
+  "issue_or_discussion_number": 1037,
+  "source_type": "github_issue",
+  "title": "Add a faster version for shortcircuit calculation for single bus",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1037"
+ },
+ {
+  "issue_or_discussion_number": 1004,
+  "source_type": "github_issue",
+  "title": "calc_sc branch calculation error",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1004"
+ },
+ {
+  "issue_or_discussion_number": 1033,
+  "source_type": "github_issue",
+  "title": "Scalability of pandapower.shortcircuit.calc_sc",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1033"
+ },
+ {
+  "issue_or_discussion_number": 96,
+  "source_type": "github_issue",
+  "title": "Unbalanced calculations / zero sequence models",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/96"
+ },
+ {
+  "issue_or_discussion_number": 272,
+  "source_type": "github_issue",
+  "title": "Short-Circuit Calculation ERROR",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "short_circuit",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/272"
+ },
+ {
+  "issue_or_discussion_number": 1350,
+  "source_type": "github_issue",
+  "title": "Problems with 3 phase asymmetric power flow",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1350"
+ },
+ {
+  "issue_or_discussion_number": 1135,
+  "source_type": "github_issue",
+  "title": "Errors when using rundcpp in Pandapower on islands during cascading failure",
+  "decision": "EXCLUDE",
+  "reason_code": "install",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1135"
+ },
+ {
+  "issue_or_discussion_number": 1068,
+  "source_type": "github_issue",
+  "title": "Does pandapower have a single phase simulator?",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1068"
+ },
+ {
+  "issue_or_discussion_number": 1013,
+  "source_type": "github_issue",
+  "title": "Computation speed",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1013"
+ },
+ {
+  "issue_or_discussion_number": 963,
+  "source_type": "github_issue",
+  "title": "hello maybe this is a bug about Example simple plot on a map",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/963"
+ },
+ {
+  "issue_or_discussion_number": 946,
+  "source_type": "github_issue",
+  "title": "Query about transformer",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/946"
+ },
+ {
+  "issue_or_discussion_number": 964,
+  "source_type": "github_issue",
+  "title": "List available of all py-Documents that tell the code for different devices?",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/964"
+ },
+ {
+  "issue_or_discussion_number": 837,
+  "source_type": "github_issue",
+  "title": "How to check the Tap Changer Sensitivity by Pandapower?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/837"
+ },
+ {
+  "issue_or_discussion_number": 816,
+  "source_type": "github_issue",
+  "title": "Powermodels test failing locally - Different results",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/816"
+ },
+ {
+  "issue_or_discussion_number": 882,
+  "source_type": "github_issue",
+  "title": "Visuization of power grid",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/882"
+ },
+ {
+  "issue_or_discussion_number": 994,
+  "source_type": "github_issue",
+  "title": "Drop support for Python 3.5?",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/994"
+ },
+ {
+  "issue_or_discussion_number": 1157,
+  "source_type": "github_issue",
+  "title": "Difference between the type of some buses in Pandapower Pypower",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1157"
+ },
+ {
+  "issue_or_discussion_number": 480,
+  "source_type": "github_issue",
+  "title": "How to incorporate start-up shutdown costs?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/480"
+ },
+ {
+  "issue_or_discussion_number": 898,
+  "source_type": "github_issue",
+  "title": "On reading",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/898"
+ },
+ {
+  "issue_or_discussion_number": 948,
+  "source_type": "github_issue",
+  "title": "Classical Model of Synch. Gen for power flow",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/948"
+ },
+ {
+  "issue_or_discussion_number": 889,
+  "source_type": "github_issue",
+  "title": "Convergence Issues with Unbalanced 123-Node Test Feeder",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/889"
+ },
+ {
+  "issue_or_discussion_number": 721,
+  "source_type": "github_issue",
+  "title": "Editing Existing Network",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/721"
+ },
+ {
+  "issue_or_discussion_number": 944,
+  "source_type": "github_issue",
+  "title": "Dependencies for Julia, PowerModels and all associated packages",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/944"
+ },
+ {
+  "issue_or_discussion_number": 965,
+  "source_type": "github_issue",
+  "title": "Creating Transformer - how to consider ohmic losses?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/965"
+ },
+ {
+  "issue_or_discussion_number": 781,
+  "source_type": "github_issue",
+  "title": "Simple Plot",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "plotting",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/781"
+ },
+ {
+  "issue_or_discussion_number": 629,
+  "source_type": "github_issue",
+  "title": "sphinx-rtd-theme",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/629"
+ },
+ {
+  "issue_or_discussion_number": 707,
+  "source_type": "github_issue",
+  "title": "Admittance Matrix Question",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/707"
+ },
+ {
+  "issue_or_discussion_number": 528,
+  "source_type": "github_issue",
+  "title": "Possible adaptation of JSONSerializableClass",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "io_serialization",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/528"
+ },
+ {
+  "issue_or_discussion_number": 374,
+  "source_type": "github_issue",
+  "title": "current limited voltage source",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/374"
+ },
+ {
+  "issue_or_discussion_number": 399,
+  "source_type": "github_issue",
+  "title": "Short circuit current calculation",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/399"
+ },
+ {
+  "issue_or_discussion_number": 442,
+  "source_type": "github_issue",
+  "title": "Easy way to merge pp-networks?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/442"
+ },
+ {
+  "issue_or_discussion_number": 211,
+  "source_type": "github_issue",
+  "title": "cost function definition",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/211"
+ },
+ {
+  "issue_or_discussion_number": 99,
+  "source_type": "github_issue",
+  "title": "Piecewise linear costs with uneven slopes",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/99"
+ },
+ {
+  "issue_or_discussion_number": 131,
+  "source_type": "github_issue",
+  "title": "Piecewise constant functions",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/131"
+ },
+ {
+  "issue_or_discussion_number": 146,
+  "source_type": "github_issue",
+  "title": "STATCOM, UPFC and capacitor banks in pp",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/146"
+ },
+ {
+  "issue_or_discussion_number": 360,
+  "source_type": "github_issue",
+  "title": "create logarithmic colormap",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/360"
+ },
+ {
+  "issue_or_discussion_number": 85,
+  "source_type": "github_issue",
+  "title": "parallel lines in multigraph",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/85"
+ },
+ {
+  "issue_or_discussion_number": 61,
+  "source_type": "github_issue",
+  "title": "OPF: simulation of network including batteries over time snapshots",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/61"
+ },
+ {
+  "issue_or_discussion_number": 132,
+  "source_type": "github_issue",
+  "title": "3W transformer equivalent can have zero impedance",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/132"
+ },
+ {
+  "issue_or_discussion_number": 251,
+  "source_type": "github_issue",
+  "title": "OPF solver logger",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/251"
+ },
+ {
+  "issue_or_discussion_number": 2847,
+  "source_type": "github_issue",
+  "title": "Trafo docs equations wrong",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2847"
+ },
+ {
+  "issue_or_discussion_number": 1553,
+  "source_type": "github_issue",
+  "title": "inconsistent element columns behaviour",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1553"
+ },
+ {
+  "issue_or_discussion_number": 2507,
+  "source_type": "github_issue",
+  "title": "Usage of trafo vector_group unclear, information inconsistent",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "der_control",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2507"
+ },
+ {
+  "issue_or_discussion_number": 2908,
+  "source_type": "github_issue",
+  "title": "Sincal to pandapower converter update and inclusion",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2908"
+ },
+ {
+  "issue_or_discussion_number": 1381,
+  "source_type": "github_issue",
+  "title": "Idea/Feature Request: Zero impedance power flow",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1381"
+ },
+ {
+  "issue_or_discussion_number": 2867,
+  "source_type": "github_issue",
+  "title": "[BUG] unreliable behaviour of test_cigre_with_bad_data",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2867"
+ },
+ {
+  "issue_or_discussion_number": 3009,
+  "source_type": "github_issue",
+  "title": "3-Ph power flow fails if gen is in net.",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "three_phase",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/3009"
+ },
+ {
+  "issue_or_discussion_number": 2955,
+  "source_type": "github_issue",
+  "title": "[bug] docs regarding PandaModels.jl outdated",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2955"
+ },
+ {
+  "issue_or_discussion_number": 2627,
+  "source_type": "github_issue",
+  "title": "Modelating a battery (BESS)",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2627"
+ },
+ {
+  "issue_or_discussion_number": 1227,
+  "source_type": "github_issue",
+  "title": "Running storage_powermodels for multinetwork storage optimization",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1227"
+ },
+ {
+  "issue_or_discussion_number": 2363,
+  "source_type": "github_issue",
+  "title": "PowerFactory to Pandapower Import - Data Validation for Large Transmission Systems",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2363"
+ },
+ {
+  "issue_or_discussion_number": 1589,
+  "source_type": "github_issue",
+  "title": "Return plotly figure directly without creating an HTML file",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/1589"
+ },
+ {
+  "issue_or_discussion_number": 2999,
+  "source_type": "github_issue",
+  "title": "min max_vm_pu set incorrectly for gen",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2999"
+ },
+ {
+  "issue_or_discussion_number": 2535,
+  "source_type": "github_issue",
+  "title": "Missing docstring description in create_gen for slack",
+  "decision": "EXCLUDE",
+  "reason_code": "open-ended",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/issues/2535"
+ },
+ {
+  "issue_or_discussion_number": 838,
+  "source_type": "github_issue",
+  "title": "DC Powerlines in OPF",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/838"
+ },
+ {
+  "issue_or_discussion_number": 511,
+  "source_type": "github_issue",
+  "title": "optimal power flow generator limits",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/511"
+ },
+ {
+  "issue_or_discussion_number": 257,
+  "source_type": "github_issue",
+  "title": "create_gen scaling",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/issues/257"
+ },
+ {
+  "issue_or_discussion_number": 2559,
+  "source_type": "github_discussion",
+  "title": "Using 2 taps on three winding transformers.",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2559"
+ },
+ {
+  "issue_or_discussion_number": 2645,
+  "source_type": "github_discussion",
+  "title": "Bus phase to ground voltages during single-phase to ground faults",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2645"
+ },
+ {
+  "issue_or_discussion_number": 2988,
+  "source_type": "github_discussion",
+  "title": "Can sgen q_capability_curve_table be updated during time-series AC-OPF?",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2988"
+ },
+ {
+  "issue_or_discussion_number": 3063,
+  "source_type": "github_discussion",
+  "title": "Basic use of PQ capability curve",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/3063"
+ },
+ {
+  "issue_or_discussion_number": 2701,
+  "source_type": "github_discussion",
+  "title": "Troubleshooting convergence issues",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2701"
+ },
+ {
+  "issue_or_discussion_number": 2050,
+  "source_type": "github_discussion",
+  "title": "Powerfactory to Pandapower",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2050"
+ },
+ {
+  "issue_or_discussion_number": 2864,
+  "source_type": "github_discussion",
+  "title": "ValueError: assignment destination is read-only",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2864"
+ },
+ {
+  "issue_or_discussion_number": 2907,
+  "source_type": "github_discussion",
+  "title": "Sincal to pandapower converter",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2907"
+ },
+ {
+  "issue_or_discussion_number": 2376,
+  "source_type": "github_discussion",
+  "title": "Pandapower Diagnostic Tool Flags Correct Impedance Values as Too Low and Incorrect Transformer Loading Calculation",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2376"
+ },
+ {
+  "issue_or_discussion_number": 2422,
+  "source_type": "github_discussion",
+  "title": "external grid vs gen slack = True",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2422"
+ },
+ {
+  "issue_or_discussion_number": 2447,
+  "source_type": "github_discussion",
+  "title": "Grid forming inverter with PP",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2447"
+ },
+ {
+  "issue_or_discussion_number": 2504,
+  "source_type": "github_discussion",
+  "title": "Time Series",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2504"
+ },
+ {
+  "issue_or_discussion_number": 2636,
+  "source_type": "github_discussion",
+  "title": "Any guide on how to validate your simulation against real-world data?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2636"
+ },
+ {
+  "issue_or_discussion_number": 2542,
+  "source_type": "github_discussion",
+  "title": "How to use pandapower in the field of power system scheduling?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2542"
+ },
+ {
+  "issue_or_discussion_number": 2783,
+  "source_type": "github_discussion",
+  "title": "Julia issue using PowerModels interface",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2783"
+ },
+ {
+  "issue_or_discussion_number": 2678,
+  "source_type": "github_discussion",
+  "title": "Update to transformer controllers in Pandapower 3.0, missing side mv",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2678"
+ },
+ {
+  "issue_or_discussion_number": 2789,
+  "source_type": "github_discussion",
+  "title": "DC-DC converters in pandapower",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2789"
+ },
+ {
+  "issue_or_discussion_number": 2803,
+  "source_type": "github_discussion",
+  "title": "What is the right way of running tests?",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2803"
+ },
+ {
+  "issue_or_discussion_number": 2538,
+  "source_type": "github_discussion",
+  "title": "get load flow current results for closed bus-bus switches",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2538"
+ },
+ {
+  "issue_or_discussion_number": 2523,
+  "source_type": "github_discussion",
+  "title": "Earthing configuration",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2523"
+ },
+ {
+  "issue_or_discussion_number": 2475,
+  "source_type": "github_discussion",
+  "title": "How to calculate maximum power flow in a branch?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2475"
+ },
+ {
+  "issue_or_discussion_number": 2503,
+  "source_type": "github_discussion",
+  "title": "Phase Shift Transformer in a simple network",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2503"
+ },
+ {
+  "issue_or_discussion_number": 2486,
+  "source_type": "github_discussion",
+  "title": "DC Line parameters",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2486"
+ },
+ {
+  "issue_or_discussion_number": 2471,
+  "source_type": "github_discussion",
+  "title": "Merge two networks as DSO/TSO network?",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2471"
+ },
+ {
+  "issue_or_discussion_number": 2119,
+  "source_type": "github_discussion",
+  "title": "Offshore wind turbine park with HVDC Link.",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2119"
+ },
+ {
+  "issue_or_discussion_number": 2846,
+  "source_type": "github_discussion",
+  "title": "Hardcoded c_min",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "other",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2846"
+ },
+ {
+  "issue_or_discussion_number": 1337,
+  "source_type": "github_discussion",
+  "title": "Custom controller for Optimal Power Flow Functions",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "opf",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1337"
+ },
+ {
+  "issue_or_discussion_number": 1348,
+  "source_type": "github_discussion",
+  "title": "a map of indices",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1348"
+ },
+ {
+  "issue_or_discussion_number": 2151,
+  "source_type": "github_discussion",
+  "title": "Neutral voltage from Asymmetric Three Phase Power Flow computation",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2151"
+ },
+ {
+  "issue_or_discussion_number": 1684,
+  "source_type": "github_discussion",
+  "title": "Slack property Generators",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "network_build_modify",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1684"
+ },
+ {
+  "issue_or_discussion_number": 1515,
+  "source_type": "github_discussion",
+  "title": "Is it possible to use timeSeries calculation with unbalanced loads and sgens in addition also using a storage?",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "three_phase",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1515"
+ },
+ {
+  "issue_or_discussion_number": 1407,
+  "source_type": "github_discussion",
+  "title": "How to know in which direction the current is flowing",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1407"
+ },
+ {
+  "issue_or_discussion_number": 1143,
+  "source_type": "github_discussion",
+  "title": "Geo data for GB Testcase",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "plotting",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1143"
+ },
+ {
+  "issue_or_discussion_number": 1275,
+  "source_type": "github_discussion",
+  "title": "Building a controller example modification",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1275"
+ },
+ {
+  "issue_or_discussion_number": 2250,
+  "source_type": "github_discussion",
+  "title": "Comparison with Opendss load flow and short circuit",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "short_circuit",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/2250"
+ },
+ {
+  "issue_or_discussion_number": 1632,
+  "source_type": "github_discussion",
+  "title": "How to calculate the sensitivity/PTDF matrix of a network",
+  "decision": "INCLUDE",
+  "reason_code": "question->codegen",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1632"
+ },
+ {
+  "issue_or_discussion_number": 1320,
+  "source_type": "github_discussion",
+  "title": "is it possible to use a custom function in time series calculations?",
+  "decision": "BORDERLINE",
+  "reason_code": "capability-Q-review",
+  "theme": "timeseries",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1320"
+ },
+ {
+  "issue_or_discussion_number": 1333,
+  "source_type": "github_discussion",
+  "title": "Could pandapower load Matpower .m file as the input files?",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "converter",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1333"
+ },
+ {
+  "issue_or_discussion_number": 1334,
+  "source_type": "github_discussion",
+  "title": "Documentation: sign for power flow",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "power_flow",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1334"
+ },
+ {
+  "issue_or_discussion_number": 1324,
+  "source_type": "github_discussion",
+  "title": "storage_powermodels.ipynb and opf_powermodels.ipynb tutorials not working",
+  "decision": "BORDERLINE",
+  "reason_code": "b-flag-review",
+  "theme": "opf",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1324"
+ },
+ {
+  "issue_or_discussion_number": 1074,
+  "source_type": "github_discussion",
+  "title": "Power Transfer Distribution Factors",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "topology_matrix",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1074"
+ },
+ {
+  "issue_or_discussion_number": 1058,
+  "source_type": "github_discussion",
+  "title": "Schort Circuit with PandaPower",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1058"
+ },
+ {
+  "issue_or_discussion_number": 1076,
+  "source_type": "github_discussion",
+  "title": "Different types of HVDC links?",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "der_control",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1076"
+ },
+ {
+  "issue_or_discussion_number": 1081,
+  "source_type": "github_discussion",
+  "title": "Time resolution and frequency",
+  "decision": "BORDERLINE",
+  "reason_code": "unclassified-Q",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1081"
+ },
+ {
+  "issue_or_discussion_number": 1203,
+  "source_type": "github_discussion",
+  "title": "PowerModels.jl custom file for accesing lagrange multipliers or duals in Pandapower results",
+  "decision": "EXCLUDE",
+  "reason_code": "other-lib",
+  "theme": "other",
+  "flag_q_or_b": "Q",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1203"
+ },
+ {
+  "issue_or_discussion_number": 1205,
+  "source_type": "github_discussion",
+  "title": "KeyError None of Int64Index while creating bus collections",
+  "decision": "EXCLUDE",
+  "reason_code": "bug",
+  "theme": "power_flow",
+  "flag_q_or_b": "B",
+  "url": "https://github.com/e2nIEE/pandapower/discussions/1205"
+ }
+]

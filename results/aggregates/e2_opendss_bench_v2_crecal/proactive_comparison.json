@@ -1,0 +1,53 @@
+{
+  "conditions": [
+    "A",
+    "C"
+  ],
+  "models": [
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "A": null,
+      "C": 0.4111
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "A": null,
+      "C": 0.6889
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "A": null,
+      "C": 0.4444
+    }
+  ],
+  "delta_pairs": [
+    "C-A"
+  ],
+  "per_task_exec_rate": [
+    {
+      "task": "control_device",
+      "A": null,
+      "C": 0.8148
+    },
+    {
+      "task": "fault_analysis",
+      "A": null,
+      "C": 0.5370333333333334
+    },
+    {
+      "task": "network_modification",
+      "A": null,
+      "C": 0.8148333333333334
+    },
+    {
+      "task": "power_flow_3ph",
+      "A": null,
+      "C": 0.7963
+    },
+    {
+      "task": "result_extraction",
+      "A": null,
+      "C": 0.8148333333333334
+    }
+  ]
+}

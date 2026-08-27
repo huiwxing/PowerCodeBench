@@ -1,0 +1,1750 @@
+{
+  "library": "opendssdirect",
+  "library_name": "opendssdirect",
+  "functions": [
+    {
+      "name": "Solution_Solve",
+      "full_path": "opendssdirect.Solution.Solve",
+      "category": "power_flow",
+      "type": "method",
+      "signature": "opendssdirect.Solution.Solve()",
+      "description": "Executes the solution for the present solution mode (snapshot power flow by default). For a radial or meshed distribution feeder it runs the iterative unbalanced three-phase power flow, updating all node voltages, branch currents, element powers and system losses in the active circuit. Nothing is returned; results are read afterwards through the Circuit, Bus and CktElement accessors. Convergence must be checked separately via Solution.Converged.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None. The solved state is stored in the active circuit and retrieved through result accessors (e.g. Circuit.TotalPower, Bus.Voltages)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nprint('converged =', dss.Solution.Converged())"
+      ]
+    },
+    {
+      "name": "Solution_Converged",
+      "full_path": "opendssdirect.Solution.Converged",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.Converged() -> bool  |  opendssdirect.Solution.Converged(value: bool)",
+      "description": "Boolean flag reporting whether the most recent Solution.Solve reached convergence. Called with no argument it returns True/False for the last solve; this is the canonical feasibility/admission check for a distribution power-flow task, analogous to inspecting the converged status of a transmission solver. A non-converged result (False) indicates the feeder did not settle within MaxIterations and any downstream voltages/powers are unreliable.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "bool",
+          "default": "None",
+          "description": "Optional override of the converged flag; normally omitted so the accessor acts as a getter of the last solve outcome.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "bool",
+          "description": "True if the last Solution.Solve converged, False otherwise."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nif not dss.Solution.Converged():\n    raise RuntimeError('power flow did not converge')\nprint('solved OK')"
+      ]
+    },
+    {
+      "name": "Solution_Mode",
+      "full_path": "opendssdirect.Solution.Mode",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.Mode() -> int  |  opendssdirect.Solution.Mode(mode: int)",
+      "description": "Gets or sets the present solution mode, which selects what Solution.Solve computes. Common modes are Snapshot (single power flow at the current loads), Daily/Yearly (time-series over a load shape), Direct (single non-iterative solve), and Fault/FaultStudy (short-circuit analysis). Setting Fault mode before Solve switches the engine from load-flow to fault-current computation, so this accessor is how a distribution study moves between the power-flow and fault-analysis task families.",
+      "parameters": [
+        {
+          "name": "mode",
+          "type": "int",
+          "default": "0",
+          "description": "Integer solution-mode code (e.g. 0 = Snapshot, 1 = Daily, 2 = Yearly, 11 = FaultStudy). Omit to read the current mode.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Integer code of the current solution mode when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Text.Command('Set mode=faultstudy')\ndss.Solution.Solve()\nprint('mode code =', dss.Solution.Mode())"
+      ]
+    },
+    {
+      "name": "Solution_MaxIterations",
+      "full_path": "opendssdirect.Solution.MaxIterations",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.MaxIterations() -> int  |  opendssdirect.Solution.MaxIterations(n: int)",
+      "description": "Gets or sets the maximum number of iterations the power-flow solver will attempt before declaring non-convergence for a single snapshot solve. Increasing it can help stiff or heavily loaded feeders converge; if the solver hits this ceiling, Solution.Converged returns False. This is the primary knob for trading robustness against runtime in the iterative unbalanced solve.",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "int",
+          "default": "15",
+          "description": "Maximum iteration count for the snapshot power-flow solver. Omit to read the current limit.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The current maximum-iterations limit when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.MaxIterations(50)\ndss.Solution.Solve()\nprint('iterations used =', dss.Solution.Iterations(), 'of', dss.Solution.MaxIterations())"
+      ]
+    },
+    {
+      "name": "Solution_Algorithm",
+      "full_path": "opendssdirect.Solution.Algorithm",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.Algorithm() -> int  |  opendssdirect.Solution.Algorithm(value: int)",
+      "description": "Selects the power-flow solution algorithm. Value 0 is the default Normal (fixed-point / current-injection) method that is fast and robust for well-behaved radial feeders; value 1 is the Newton method, which is more robust for stressed or meshed networks that struggle to converge under the fixed-point iteration. Choosing the algorithm affects both convergence behaviour and iteration count of the subsequent Solve.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "0",
+          "description": "Algorithm selector: 0 = Normal fixed-point, 1 = Newton. Omit to read the current selection.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Integer code of the currently selected solution algorithm."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Algorithm(1)  # Newton\ndss.Solution.Solve()\nprint('converged =', dss.Solution.Converged())"
+      ]
+    },
+    {
+      "name": "Circuit_TotalPower",
+      "full_path": "opendssdirect.Circuit.TotalPower",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Circuit.TotalPower() -> list[float]",
+      "description": "Returns the total complex power delivered into the circuit at the source, as a two-element list [kW, kvar]. By OpenDSS sign convention the values are negative because power flows out of the source into the loads. Taking the negated real part gives the total active power supplied to the feeder, making this the standard scalar extraction for a system-level power-balance or loss study after a converged Solve.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Two-element list [total_kW, total_kvar] of complex power delivered to the circuit at the source (negative by OpenDSS convention)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\np_kw, q_kvar = dss.Circuit.TotalPower()\nprint('supplied active power kW =', round(-p_kw, 6))"
+      ]
+    },
+    {
+      "name": "Circuit_AllBusMagPu",
+      "full_path": "opendssdirect.Circuit.AllBusMagPu",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Circuit.AllBusMagPu() -> list[float]",
+      "description": "Returns a flat list of per-unit voltage magnitudes for every node (each phase of each bus) in the active circuit, ordered consistently with Circuit.AllNodeNames. This is the primary vector for a system-wide voltage-profile or voltage-violation scan on a distribution feeder, letting the analyst detect under/over-voltage nodes (e.g. below 0.95 pu) after a converged power flow without querying buses one at a time.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "List of per-unit voltage magnitudes, one entry per node, aligned with Circuit.AllNodeNames."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nvmags = dss.Circuit.AllBusMagPu()\nprint('min node voltage pu =', round(min(vmags), 6))"
+      ]
+    },
+    {
+      "name": "Circuit_AllBusNames",
+      "full_path": "opendssdirect.Circuit.AllBusNames",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Circuit.AllBusNames() -> list[str]",
+      "description": "Returns the list of all bus names defined in the active circuit, in the internal bus order used by other Circuit-level array accessors. Buses are created implicitly by referencing them in element bus1/bus2 fields, so this enumerates the network's node set and provides the index/name mapping needed to interpret voltage and distance arrays or to drive Circuit.SetActiveBus.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[str]",
+          "description": "List of bus names in the active circuit, in internal bus order."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nnames = dss.Circuit.AllBusNames()\nprint('num buses =', len(names), '| first =', names[0])"
+      ]
+    },
+    {
+      "name": "Circuit_Losses",
+      "full_path": "opendssdirect.Circuit.Losses",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Circuit.Losses() -> list[float]",
+      "description": "Returns the total losses of the active circuit as a two-element list [watts, vars] (note: watts/vars, not kW/kvar). This aggregates the series I^2*Z losses of every power-delivery element plus shunt losses, giving the single scalar most used to compare feeder efficiency across network-modification scenarios such as reconductoring, capacitor placement or reconfiguration.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Two-element list [total_watts, total_vars] of complex system losses in the active circuit."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nwatts, vars_ = dss.Circuit.Losses()\nprint('total losses kW =', round(watts / 1000.0, 6))"
+      ]
+    },
+    {
+      "name": "Circuit_SetActiveElement",
+      "full_path": "opendssdirect.Circuit.SetActiveElement",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "opendssdirect.Circuit.SetActiveElement(FullName: str) -> int",
+      "description": "Makes a specific circuit element active by its full object name (class.name, e.g. 'Line.L1' or 'Transformer.T1'), so that subsequent CktElement accessors (Powers, Currents, Losses, Voltages) operate on it. Returns the zero-based index into the circuit's element collection, or -1 if the name is not found. This is the addressing step that precedes any per-element result extraction after a solve.",
+      "parameters": [
+        {
+          "name": "FullName",
+          "type": "str",
+          "default": null,
+          "description": "Full element name in 'class.name' form, e.g. 'Line.L1', 'Transformer.reg1', 'Load.Load1'.",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Zero-based index of the now-active element in the CktElements collection, or -1 if the name was not found."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nidx = dss.Circuit.SetActiveElement('Line.L1')\nprint('element index =', idx, '| P1 kW =', round(dss.CktElement.Powers()[0], 6))"
+      ]
+    },
+    {
+      "name": "Circuit_SetActiveBus",
+      "full_path": "opendssdirect.Circuit.SetActiveBus",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "opendssdirect.Circuit.SetActiveBus(BusName: str) -> int",
+      "description": "Sets the active bus by name so that the Bus interface accessors (Voltages, puVmagAngle, kVBase, Isc, Distance) report values for that bus. Any node-list suffix is ignored. Returns the zero-based bus index compatible with Circuit.AllBusNames. This is the required addressing step before reading per-bus voltage or short-circuit results after a solve.",
+      "parameters": [
+        {
+          "name": "BusName",
+          "type": "str",
+          "default": null,
+          "description": "Name of the bus to activate (node-list suffixes such as '.1.2.3' are ignored).",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Zero-based bus index (aligned with Circuit.AllBusNames) of the now-active bus."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nmags = dss.Bus.puVmagAngle()[0::2]\nprint('min phase voltage pu =', round(min(mags), 6))"
+      ]
+    },
+    {
+      "name": "Bus_Voltages",
+      "full_path": "opendssdirect.Bus.Voltages",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.Voltages() -> list[float]",
+      "description": "Returns the complex phase-to-ground node voltages at the active bus as an interleaved list [re1, im1, re2, im2, ...] in volts, one complex pair per node present at the bus. Requires a bus to have been selected with Circuit.SetActiveBus. This is the fundamental per-bus result for inspecting unbalance across the three phases of a distribution node after a converged power flow.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Interleaved real/imaginary node voltages in volts at the active bus: [re1, im1, re2, im2, ...]."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nv = dss.Bus.Voltages()\nmag1 = (v[0]**2 + v[1]**2) ** 0.5\nprint('phase-1 |V| volts =', round(mag1, 6))"
+      ]
+    },
+    {
+      "name": "Bus_puVmagAngle",
+      "full_path": "opendssdirect.Bus.puVmagAngle",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.puVmagAngle() -> list[float]",
+      "description": "Returns per-unit voltage magnitude and angle pairs at the active bus as an interleaved list [mag1, ang1_deg, mag2, ang2_deg, ...]; magnitudes are normalised to the bus kV base and angles are in degrees. This is the most convenient per-bus accessor for a voltage-violation check because magnitudes come pre-normalised, avoiding a manual divide by the base voltage. Requires Circuit.SetActiveBus first.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Interleaved [magnitude_pu, angle_deg] pairs, one per node at the active bus."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nmags = dss.Bus.puVmagAngle()[0::2]\nprint('min phase voltage pu =', round(min(mags), 6))"
+      ]
+    },
+    {
+      "name": "Bus_kVBase",
+      "full_path": "opendssdirect.Bus.kVBase",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.kVBase() -> float",
+      "description": "Returns the line-to-neutral base voltage of the active bus in kV, i.e. the reference used to convert the complex volt readings from Bus.Voltages into per-unit. On a three-phase 12.47 kV feeder this reports roughly 7.2 kV (12.47/sqrt(3)). Needed whenever raw volt results must be normalised by hand or checked for correct voltage-base assignment. Requires Circuit.SetActiveBus first.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "Line-to-neutral base voltage of the active bus in kV."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nprint('kV base (L-N) =', round(dss.Bus.kVBase(), 6))"
+      ]
+    },
+    {
+      "name": "Bus_Isc",
+      "full_path": "opendssdirect.Bus.Isc",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.Isc() -> list[float]",
+      "description": "Returns the short-circuit (fault) currents at the active bus as an interleaved complex list [re1, im1, ...] in amperes, computed from the driving-point impedance at that bus. Meaningful after solving in FaultStudy mode, it gives the bolted-fault current magnitude used to size protective devices and evaluate interrupting duty, playing the role in OpenDSS that a transmission short-circuit routine plays elsewhere. Requires Circuit.SetActiveBus first.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Interleaved real/imaginary short-circuit currents in amperes at the active bus."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Text.Command('Set mode=faultstudy')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nisc = dss.Bus.Isc()\nprint('phase-1 fault current A =', round((isc[0]**2 + isc[1]**2) ** 0.5, 6))"
+      ]
+    },
+    {
+      "name": "CktElement_Powers",
+      "full_path": "opendssdirect.CktElement.Powers",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.CktElement.Powers() -> list[float]",
+      "description": "Returns the complex power flowing into each conductor of each terminal of the active circuit element, as an interleaved list [P1_kW, Q1_kvar, P2_kW, Q2_kvar, ...] in kW/kvar. For a two-terminal line the first block is the sending-end injection; summing sending and receiving blocks yields the element's loss. This is the core per-element extraction for branch-flow, loading and loss analysis after Circuit.SetActiveElement.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Interleaved [kW, kvar] pairs, one per conductor per terminal of the active element."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveElement('Line.L1')\np = dss.CktElement.Powers()\nprint('sending-end phase-1 kW =', round(p[0], 6))"
+      ]
+    },
+    {
+      "name": "CktElement_Currents",
+      "full_path": "opendssdirect.CktElement.Currents",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.CktElement.Currents() -> list[float]",
+      "description": "Returns the complex currents into each conductor of each terminal of the active circuit element, as an interleaved list [re, im, ...] in amperes. For a line or transformer these are the branch currents used to check thermal loading against the element's NormalAmps/EmergAmps rating. Retrieved after Circuit.SetActiveElement has selected the element of interest.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Interleaved real/imaginary terminal currents in amperes for the active element."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveElement('Line.L1')\ni = dss.CktElement.Currents()\nmag1 = (i[0]**2 + i[1]**2) ** 0.5\nprint('phase-1 current A =', round(mag1, 6))"
+      ]
+    },
+    {
+      "name": "Text_Command",
+      "full_path": "opendssdirect.Text.Command",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Text.Command(value: str) -> None  |  opendssdirect.Text.Command() -> str",
+      "description": "Submits a single OpenDSS scripting command to the engine, e.g. 'New Line.L2 bus1=a bus2=b ...', 'Edit Load.Load1 kW=1500', 'Set mode=snap' or 'Solve'. This text DSL is the principal way to build and modify a network in OpenDSSDirect: elements, their parameters, and solution settings are all defined through command strings rather than Python kwargs. Errors are surfaced via the Error interface; use Text.Result to read any textual output of the command.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "str",
+          "default": null,
+          "description": "The OpenDSS command string to execute (a New/Edit/Set/Solve/Export/... statement).",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None when used as a command setter; any textual output is retrieved separately via Text.Result."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=src')\ndss.Text.Command('New Line.L1 bus1=src bus2=mid length=2 units=km phases=3')\ndss.Text.Command('Edit Line.L1 length=3')\ndss.Text.Command('New Load.Ld1 bus1=mid phases=3 kV=12.47 kW=800 pf=0.9')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nprint('converged =', dss.Solution.Converged())"
+      ]
+    },
+    {
+      "name": "Text_Result",
+      "full_path": "opendssdirect.Text.Result",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Text.Result() -> str",
+      "description": "Returns the textual result string produced by the most recent Text.Command invocation. Query-style commands (for example '? Line.L1.length' which interrogates an element property, or a Show/Export command) place their answer here, so this accessor is how a script reads back the value or confirmation string emitted by a command it just issued.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "str",
+          "description": "Result string of the last executed text command (may be empty for commands that produce no textual output)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=a')\ndss.Text.Command('New Line.L1 bus1=a bus2=b length=1.5 units=km phases=3')\ndss.Text.Command('? Line.L1.length')\nprint('queried length =', dss.Text.Result())"
+      ]
+    },
+    {
+      "name": "Loads_kW",
+      "full_path": "opendssdirect.Loads.kW",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Loads.kW() -> float  |  opendssdirect.Loads.kW(value: float)",
+      "description": "Gets or sets the nominal active power (kW) of the currently active Load object; when set, the reactive power (kvar) is automatically recomputed from the load's present power factor. Combined with Loads.First/Loads.Next to iterate the load collection, this is the accessor used to scale demand for a network-modification or what-if study without re-issuing a full 'Edit Load' text command.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New active-power setpoint in kW for the active load; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The active-power rating (kW) of the active load when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Loads.First()\ndss.Loads.kW(1500)\ndss.Solution.Solve()\nprint('load kW =', round(dss.Loads.kW(), 6))"
+      ]
+    },
+    {
+      "name": "Lines_Length",
+      "full_path": "opendssdirect.Lines.Length",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Lines.Length() -> float  |  opendssdirect.Lines.Length(value: float)",
+      "description": "Gets or sets the length of the active Line object in the units declared for that line (miles, km, kft, m, ...). Because a line's series impedance and shunt admittance are the per-unit-length values scaled by this length, changing it directly rescales the branch impedance, making this accessor a convenient lever for feeder-length sensitivity or reconductoring studies. Select the line first with Lines.Name or Lines.First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New line length in the line's own length units; omit to read the present length.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The length of the active line in its declared units when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Lines.Name('L1')\ndss.Lines.Length(3.0)\ndss.Solution.Solve()\nprint('line length =', round(dss.Lines.Length(), 6))"
+      ]
+    },
+    {
+      "name": "Generators_kW",
+      "full_path": "opendssdirect.Generators.kW",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Generators.kW() -> float  |  opendssdirect.Generators.kW(value: float)",
+      "description": "Gets or sets the active-power output (kW) of the currently active Generator; kvar is updated for the present power factor. Distributed generators in OpenDSS act as negative loads in the power flow, so raising this value increases local injection and typically lifts nearby voltages and reduces upstream line flows. Used to model DER dispatch or hosting-capacity scenarios after selecting the generator with Generators.First/Generators.Next.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New active-power output in kW for the active generator; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The active-power output (kW) of the active generator when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Generator.G1 bus1=loadbus phases=3 kV=12.47 kW=500 pf=1.0')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Generators.First()\ndss.Generators.kW(750)\ndss.Solution.Solve()\nprint('gen kW =', round(dss.Generators.kW(), 6))"
+      ]
+    },
+    {
+      "name": "Capacitors_AddStep",
+      "full_path": "opendssdirect.Capacitors.AddStep",
+      "category": "control_device",
+      "type": "method",
+      "signature": "opendssdirect.Capacitors.AddStep() -> bool",
+      "description": "Switches in one additional step of the currently active Capacitor bank (a multi-step shunt capacitor). Returns True if a step was available and switched in, False if the bank was already fully energised. This is the manual actuation of reactive-power support used in voltage/VAr control studies; after adding a step the circuit must be re-solved to see the voltage rise. Select the bank with Capacitors.First/Capacitors.Name.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "bool",
+          "description": "True if an additional capacitor step was switched in, False if no steps remained available."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[0,0,0]')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Capacitors.Name('C1')\nadded = dss.Capacitors.AddStep()\ndss.Solution.Solve()\nprint('step added =', added, '| available steps =', dss.Capacitors.AvailableSteps())"
+      ]
+    },
+    {
+      "name": "CapControls_Mode",
+      "full_path": "opendssdirect.CapControls.Mode",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.CapControls.Mode() -> int  |  opendssdirect.CapControls.Mode(value: int)",
+      "description": "Gets or sets the control mode of the active CapControl, i.e. the measured quantity that decides when its capacitor bank switches: Voltage, Current, kvar, Time, or Power-Factor. The mode determines how the ONSetting/OFFSetting thresholds are interpreted, so it is the defining parameter of an automatic capacitor-switching scheme in a distribution volt/VAr study. Select the control with CapControls.First/CapControls.Name.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "Control-mode code selecting the monitored quantity (e.g. Voltage, kvar, Current, Time, PF); omit to read the current mode.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Integer code of the active CapControl's control mode when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.CapControls.Name('CC1')\nprint('capcontrol mode code =', dss.CapControls.Mode())"
+      ]
+    },
+    {
+      "name": "RegControls_TapNumber",
+      "full_path": "opendssdirect.RegControls.TapNumber",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.RegControls.TapNumber() -> int  |  opendssdirect.RegControls.TapNumber(value: int)",
+      "description": "Gets or sets the integer tap position of the transformer winding controlled by the active RegControl (a voltage regulator). Typical regulators span -16 to +16 taps of 0.625% each around nominal. Reading it after a solve reports the tap the controller settled on to hold its voltage setpoint; writing it forces a tap for a manual what-if. This is the actuator/observable of automatic voltage regulation on a feeder. Select the control with RegControls.First/RegControls.Name.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "Tap position to set on the controlled winding (e.g. -16..+16); omit to read the current tap.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The current integer tap number of the controlled regulator winding when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.RegControls.First()\nprint('settled tap =', dss.RegControls.TapNumber())"
+      ]
+    },
+    {
+      "name": "Solution_Iterations",
+      "full_path": "opendssdirect.Solution.Iterations",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.Iterations() -> int",
+      "description": "Returns the number of iterations the most recent Solution.Solve took to converge for the present snapshot. Because the unbalanced fixed-point (or Newton) power flow iterates until node-voltage changes fall below the convergence tolerance, this count diagnoses how stressed or ill-conditioned the feeder is: a value approaching MaxIterations warns the solution is near the edge of convergence. It is read after a solve and is not set by the user.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Number of solver iterations used by the last Solution.Solve."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nprint('iterations used =', dss.Solution.Iterations())"
+      ]
+    },
+    {
+      "name": "Solution_Number",
+      "full_path": "opendssdirect.Solution.Number",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.Number() -> int  |  opendssdirect.Solution.Number(n: int)",
+      "description": "Gets or sets the number of solutions performed per Solve call in a multi-step mode (Daily, Yearly, Duty, Monte-Carlo). In snapshot mode a single solution is run regardless; in time-series modes this determines how many sequential time steps the engine advances through in one Solve, turning a single power flow into a quasi-static sequence. It is the loop count of a time-series run.",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "int",
+          "default": "None",
+          "description": "Number of sequential solutions to run per Solve in a multi-step mode; omit to read the current value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The number of solutions currently configured per Solve."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Solution.Number(24)\nprint('solutions per Solve =', dss.Solution.Number())"
+      ]
+    },
+    {
+      "name": "Solution_LoadMult",
+      "full_path": "opendssdirect.Solution.LoadMult",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.LoadMult() -> float  |  opendssdirect.Solution.LoadMult(value: float)",
+      "description": "Gets or sets the global load multiplier applied uniformly to every load before the power flow is solved. Setting it to 1.2, for example, scales all demand to 120% of nameplate, the standard lever for a peak-loading or stress test without editing each load individually. Because it multiplies each load's kW/kvar according to its load model, raising it lowers voltages and increases losses across the feeder.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "1.0",
+          "description": "Uniform scaling factor applied to all loads (1.0 = nameplate); omit to read the current multiplier.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The global load multiplier currently in effect."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Solution.LoadMult(1.2)\ndss.Solution.Solve()\nprint('load mult =', round(dss.Solution.LoadMult(), 6), '| converged =', dss.Solution.Converged())"
+      ]
+    },
+    {
+      "name": "Solution_ControlMode",
+      "full_path": "opendssdirect.Solution.ControlMode",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.ControlMode() -> int  |  opendssdirect.Solution.ControlMode(value: int)",
+      "description": "Gets or sets how the built-in control devices (regulators, capacitor controls, reclosers) are handled during a solve. Static (the default) lets all controls act to completion within a single snapshot; Event and Time modes schedule control actions across time steps for a quasi-static sequence. This mode therefore decides whether automatic volt/VAr equipment settles immediately or is stepped in simulated time, which changes the converged tap and switching state.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "0",
+          "description": "Control-mode code: 0 = Static, 1 = Event, 2 = Time; omit to read the current mode.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Integer code of the active control mode (returned as a ControlModes enum that compares equal to its int value)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Solution.ControlMode(0)\ndss.Solution.Solve()\nprint('control mode =', int(dss.Solution.ControlMode()))"
+      ]
+    },
+    {
+      "name": "Solution_Convergence",
+      "full_path": "opendssdirect.Solution.Convergence",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.Convergence() -> float  |  opendssdirect.Solution.Convergence(value: float)",
+      "description": "Gets or sets the convergence tolerance of the iterative power flow, i.e. the maximum per-unit change in any node voltage between successive iterations accepted as converged (default 1e-4). Tightening it (smaller value) yields more accurate voltages at the cost of more iterations; loosening it can force convergence on a marginal case at the expense of accuracy. It is the numerical stopping criterion that Solution.Converged tests against.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "0.0001",
+          "description": "Per-unit voltage-change tolerance for declaring convergence; omit to read the current tolerance.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The current convergence tolerance (per-unit voltage change)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Solution.Convergence(1e-5)\ndss.Solution.Solve()\nprint('tolerance =', dss.Solution.Convergence(), '| converged =', dss.Solution.Converged())"
+      ]
+    },
+    {
+      "name": "Solution_Frequency",
+      "full_path": "opendssdirect.Solution.Frequency",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.Frequency() -> float  |  opendssdirect.Solution.Frequency(value: float)",
+      "description": "Gets or sets the fundamental system frequency in hertz used for the solution (e.g. 60 Hz in North America, 50 Hz elsewhere). All reactances are computed at this frequency, so it must match the base frequency of the impedances declared for lines, transformers and sources; changing it rescales every inductive and capacitive element and is also how off-nominal-frequency or harmonic studies are set up.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "60.0",
+          "description": "Solution frequency in Hz; omit to read the current frequency.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The solution frequency in Hz."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nprint('solution frequency Hz =', round(dss.Solution.Frequency(), 6))"
+      ]
+    },
+    {
+      "name": "Solution_StepSize",
+      "full_path": "opendssdirect.Solution.StepSize",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.StepSize() -> float  |  opendssdirect.Solution.StepSize(value: float)",
+      "description": "Gets or sets the time-step size in seconds between successive solutions in the time-series modes (Daily, Yearly, Duty). It defines the temporal resolution at which load shapes and control actions are advanced during a quasi-static sequence: a 3600 s step walks the feeder hour-by-hour, a 1 s step resolves fast control dynamics. It is ignored by a pure snapshot solve.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "0.001",
+          "description": "Time-series step size in seconds; omit to read the current step size.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The time-step size in seconds."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Solution.StepSize(3600)\nprint('step size s =', round(dss.Solution.StepSize(), 6))"
+      ]
+    },
+    {
+      "name": "Solution_TotalIterations",
+      "full_path": "opendssdirect.Solution.TotalIterations",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.TotalIterations() -> int",
+      "description": "Returns the total number of power-flow iterations executed across all control iterations of the most recent Solve. When automatic controls (regulators, cap controls) act, OpenDSS re-solves the power flow after each control adjustment; this accumulates the per-solve iteration counts over that outer control loop, whereas Solution.Iterations reports only the last inner solve. It is a fuller measure of the effort a controlled snapshot required.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Total inner power-flow iterations summed over the control loop of the last Solve."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nprint('total iterations =', dss.Solution.TotalIterations())"
+      ]
+    },
+    {
+      "name": "Solution_MaxControlIterations",
+      "full_path": "opendssdirect.Solution.MaxControlIterations",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.MaxControlIterations() -> int  |  opendssdirect.Solution.MaxControlIterations(n: int)",
+      "description": "Gets or sets the maximum number of outer control-loop iterations allowed when solving a circuit that contains automatic controls (voltage regulators, capacitor controls, reclosers). Each outer iteration re-solves the power flow after the controls sample and act; if the equipment keeps switching and this ceiling is reached without the control state settling, the solution is flagged as not control-converged. It bounds the regulator/capacitor hunting loop, distinct from MaxIterations which bounds the inner power-flow loop.",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "int",
+          "default": "10",
+          "description": "Maximum outer control-loop iterations; omit to read the current limit.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The current maximum control-iterations limit."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Solution.MaxControlIterations(20)\ndss.Solution.Solve()\nprint('max control iters =', dss.Solution.MaxControlIterations())"
+      ]
+    },
+    {
+      "name": "Solution_LoadModel",
+      "full_path": "opendssdirect.Solution.LoadModel",
+      "category": "power_flow",
+      "type": "accessor",
+      "signature": "opendssdirect.Solution.LoadModel() -> int  |  opendssdirect.Solution.LoadModel(value: int)",
+      "description": "Gets or sets the load-solution model used by the power flow: PowerFlow (1) treats loads as constant-power injections solved iteratively, while Admittance (2) converts loads to fixed admittances for a single non-iterative linear solve. Constant-power is the realistic default for demand but can be harder to converge on weak feeders; the admittance model always solves but only approximates true load behaviour. This choice trades physical fidelity against robustness.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "1",
+          "description": "Load-model code: 1 = PowerFlow (constant power), 2 = Admittance; omit to read the current model.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Integer code of the active load model (1 = PowerFlow, 2 = Admittance)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Solution.LoadModel(1)\ndss.Solution.Solve()\nprint('load model =', dss.Solution.LoadModel())"
+      ]
+    },
+    {
+      "name": "Circuit_AllNodeNames",
+      "full_path": "opendssdirect.Circuit.AllNodeNames",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Circuit.AllNodeNames() -> list[str]",
+      "description": "Returns every node name in the active circuit in 'busname.node' form (e.g. 'loadbus.1'), enumerating each individual phase/conductor rather than each bus. This ordering is the index basis for the node-wise array accessors such as Circuit.AllBusMagPu and Circuit.AllBusVolts, so it provides the name-to-index map needed to attribute a per-unit voltage or a voltage violation back to a specific phase of a specific bus.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[str]",
+          "description": "List of node names 'bus.node', aligned with the node-wise voltage arrays (Circuit.AllBusMagPu / AllBusVolts)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\nnodes = dss.Circuit.AllNodeNames()\nprint('num nodes =', len(nodes), '| first =', nodes[0])"
+      ]
+    },
+    {
+      "name": "Circuit_LineLosses",
+      "full_path": "opendssdirect.Circuit.LineLosses",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Circuit.LineLosses() -> list[float]",
+      "description": "Returns the total losses of all Line objects in the active circuit as a two-element list [kW, kvar]. Unlike Circuit.Losses (whole-system loss in watts/vars including transformers and shunts), this isolates the series copper loss of the line/cable segments only, in kW/kvar, making it the targeted metric for evaluating conductor efficiency in a reconductoring or reconfiguration study.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Two-element list [kW, kvar] of aggregate line-only losses."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\np_kw, q_kvar = dss.Circuit.LineLosses()\nprint('total line losses kW =', round(p_kw, 6))"
+      ]
+    },
+    {
+      "name": "CktElement_Losses",
+      "full_path": "opendssdirect.CktElement.Losses",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.CktElement.Losses() -> list[float]",
+      "description": "Returns the total internal losses of the active circuit element as a two-element list [watts, vars]. Obtained after Circuit.SetActiveElement, it is the element-level counterpart of Circuit.Losses: for a line the I^2*Z series loss, for a transformer the copper-plus-core loss. Summing it across elements reconstructs the system loss, and comparing it between candidate designs is the standard per-element efficiency check.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Two-element list [watts, vars] of the active element's internal losses."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveElement('Line.L1')\nw, v = dss.CktElement.Losses()\nprint('line L1 loss kW =', round(w / 1000.0, 6))"
+      ]
+    },
+    {
+      "name": "Monitors_Channel",
+      "full_path": "opendssdirect.Monitors.Channel",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "opendssdirect.Monitors.Channel(index: int) -> list[float]",
+      "description": "Returns the recorded time-series for one channel of the active Monitor as an array of samples, one value per solution step captured. A Monitor attached to an element records selected quantities (voltages, currents or powers depending on its mode) into numbered 1-based channels; the monitor must first be sampled (Monitors.SampleAll then SaveAll) after solving. This is the primary way to extract a logged waveform or per-step trace of a specific measured quantity for time-series result extraction.",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "int",
+          "default": "None",
+          "description": "1-based channel number to retrieve (e.g. channel 1 is the first recorded quantity for the monitor's mode).",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Array of recorded samples for the requested channel, one per captured solution step (numpy float32 array)."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Monitor.M1 element=Line.L1 terminal=1 mode=0')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Monitors.SampleAll()\ndss.Monitors.SaveAll()\ndss.Monitors.Name('M1')\nch1 = dss.Monitors.Channel(1)\nprint('channel-1 first sample =', round(float(ch1[0]), 6))"
+      ]
+    },
+    {
+      "name": "Meters_RegisterValues",
+      "full_path": "opendssdirect.Meters.RegisterValues",
+      "category": "result_extraction",
+      "type": "accessor",
+      "signature": "opendssdirect.Meters.RegisterValues() -> list[float]",
+      "description": "Returns the current values of all accumulator registers of the active EnergyMeter as a list of floats, aligned with Meters.RegisterNames. An EnergyMeter integrates energy and demand quantities over its metered zone (kWh, peak kW, zone losses, overload energy, etc.), so this array is how a feeder-level energy, demand or loss-accounting result is read out after sampling (Meters.SampleAll) a solved circuit.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "List of EnergyMeter register values, positionally aligned with Meters.RegisterNames."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New EnergyMeter.EM1 element=Line.L1 terminal=1')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Meters.SampleAll()\ndss.Meters.Name('EM1')\nvals = dss.Meters.RegisterValues()\nnames = dss.Meters.RegisterNames()\nprint(names[0], '=', round(vals[0], 6))"
+      ]
+    },
+    {
+      "name": "Loads_kvar",
+      "full_path": "opendssdirect.Loads.kvar",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Loads.kvar() -> float  |  opendssdirect.Loads.kvar(value: float)",
+      "description": "Gets or sets the reactive power (kvar) of the currently active Load; assigning it overrides the value implied by the load's power factor and re-derives the load's PF from the new kW/kvar pair. Combined with Loads.First/Loads.Next to walk the collection, it is the accessor used to impose a specific reactive demand — for example a poorly-compensated feeder — without re-issuing an 'Edit Load' command.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New reactive-power setpoint in kvar for the active load; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The reactive-power (kvar) of the active load when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Loads.First()\ndss.Loads.kvar(600)\ndss.Solution.Solve()\nprint('load kvar =', round(dss.Loads.kvar(), 6))"
+      ]
+    },
+    {
+      "name": "Loads_PF",
+      "full_path": "opendssdirect.Loads.PF",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Loads.PF() -> float  |  opendssdirect.Loads.PF(value: float)",
+      "description": "Gets or sets the power factor of the active Load; when set, the reactive power (kvar) is recomputed from the present kW while the active power is held. A positive value denotes a lagging (inductive) load, the usual case for distribution demand. This is the convenient lever for sweeping load power factor in a volt/VAr or capacitor-placement study after selecting the load with Loads.Name or Loads.First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New power factor (-1..1; positive = lagging/inductive) for the active load; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The power factor of the active load when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Loads.First()\ndss.Loads.PF(0.90)\ndss.Solution.Solve()\nprint('load pf =', round(dss.Loads.PF(), 6))"
+      ]
+    },
+    {
+      "name": "Loads_Name",
+      "full_path": "opendssdirect.Loads.Name",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Loads.Name() -> str  |  opendssdirect.Loads.Name(value: str)",
+      "description": "Gets the name of the active Load, or makes a named Load active when called with a string argument. Because the per-load accessors (kW, kvar, PF, Model) all operate on whichever load is currently active, this is the addressing step that selects a specific load by name before reading or modifying it, the alternative to iterating with Loads.First/Loads.Next.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "str",
+          "default": "None",
+          "description": "Name of the load to make active; omit to read the name of the currently active load.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "str",
+          "description": "The name of the active load when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Loads.Name('Load1')\nprint('active load =', dss.Loads.Name(), '| kW =', round(dss.Loads.kW(), 6))"
+      ]
+    },
+    {
+      "name": "Lines_R1",
+      "full_path": "opendssdirect.Lines.R1",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Lines.R1() -> float  |  opendssdirect.Lines.R1(value: float)",
+      "description": "Gets or sets the positive-sequence series resistance of the active Line in ohms per unit length (in the line's declared length units). Together with X1 it defines the positive-sequence impedance that dominates balanced power-flow behaviour, so editing it directly changes the voltage drop and losses along the branch — the lever for a conductor-type sensitivity or reconductoring what-if. Select the line first with Lines.Name or Lines.First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New positive-sequence resistance in ohms per unit length; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The positive-sequence resistance (ohms per unit length) of the active line when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Lines.Name('L1')\ndss.Lines.R1(0.12)\ndss.Solution.Solve()\nprint('line R1 ohm/unit =', round(dss.Lines.R1(), 6))"
+      ]
+    },
+    {
+      "name": "Lines_Bus1",
+      "full_path": "opendssdirect.Lines.Bus1",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Lines.Bus1() -> str  |  opendssdirect.Lines.Bus1(value: str)",
+      "description": "Gets or sets the from-bus (bus1) connection of the active Line, in 'bus.nodes' form. Reading it reports which bus the sending end is tied to; setting it reconnects the line's first terminal to a different bus, which is how feeder topology is altered for a reconfiguration or tie-switch study. A referenced bus is created implicitly if new. Select the line first with Lines.Name.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "str",
+          "default": "None",
+          "description": "New from-bus connection ('bus.nodes' form) for the active line; omit to read the present bus1.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "str",
+          "description": "The from-bus (bus1) of the active line when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Lines.Name('L1')\nprint('line L1 bus1 =', dss.Lines.Bus1())"
+      ]
+    },
+    {
+      "name": "Transformers_Tap",
+      "full_path": "opendssdirect.Transformers.Tap",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Transformers.Tap() -> float  |  opendssdirect.Transformers.Tap(value: float)",
+      "description": "Gets or sets the per-unit tap ratio of the active winding of the active Transformer (1.0 = nominal turns ratio). Distribution transformers and regulators adjust this in discrete steps to raise or lower the secondary voltage; reading it after a solve reports the ratio a regulator settled on, while writing it forces a manual off-nominal tap for a what-if. Use Transformers.Wdg to choose which winding the tap applies to and Transformers.Name/First to select the transformer.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New per-unit tap ratio for the active winding (1.0 = nominal); omit to read the present tap.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The per-unit tap ratio of the active winding when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Transformers.Name('reg1')\ndss.Transformers.Wdg(2)\nprint('winding-2 tap =', round(dss.Transformers.Tap(), 6))"
+      ]
+    },
+    {
+      "name": "Transformers_kVA",
+      "full_path": "opendssdirect.Transformers.kVA",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Transformers.kVA() -> float  |  opendssdirect.Transformers.kVA(value: float)",
+      "description": "Gets or sets the rated apparent power (kVA) of the active winding of the active Transformer. This nameplate rating sets the base for per-unit impedances and the loading reference against which the transformer's throughput is judged, so it is the parameter edited to model a transformer upgrade or to test thermal headroom in a capacity study. Select the transformer with Transformers.Name/First and the winding with Transformers.Wdg.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New rated apparent power in kVA for the active winding; omit to read the present rating.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The rated apparent power (kVA) of the active winding when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Transformers.Name('reg1')\ndss.Transformers.Wdg(1)\nprint('winding-1 kVA =', round(dss.Transformers.kVA(), 6))"
+      ]
+    },
+    {
+      "name": "Transformers_NumWindings",
+      "full_path": "opendssdirect.Transformers.NumWindings",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Transformers.NumWindings() -> int  |  opendssdirect.Transformers.NumWindings(value: int)",
+      "description": "Gets or sets the number of windings of the active Transformer (2 for a standard two-winding unit, 3 for a three-winding or split-phase transformer). It defines how many terminals and winding-specific parameters (kV, kVA, tap, connection) the transformer exposes and must be consistent with the buses list; reading it tells a script how many windings to iterate over when extracting or setting per-winding data.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "New winding count for the active transformer; omit to read the present count.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The number of windings of the active transformer when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Transformers.Name('reg1')\nprint('num windings =', dss.Transformers.NumWindings())"
+      ]
+    },
+    {
+      "name": "Transformers_Wdg",
+      "full_path": "opendssdirect.Transformers.Wdg",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Transformers.Wdg() -> int  |  opendssdirect.Transformers.Wdg(value: int)",
+      "description": "Gets or sets the index of the active winding (1-based) of the active Transformer, selecting which winding subsequent per-winding accessors (Tap, kV, kVA, R) read from or write to. A two-winding transformer has windings 1 (primary) and 2 (secondary); a regulator typically controls winding 2. This is the sub-addressing step within a transformer that pairs with Transformers.Name/First to reach a specific winding's parameters.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "1-based winding index to make active within the current transformer; omit to read the present index.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The 1-based index of the active winding when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Transformers.Name('reg1')\ndss.Transformers.Wdg(2)\nprint('active winding =', dss.Transformers.Wdg())"
+      ]
+    },
+    {
+      "name": "Vsources_PU",
+      "full_path": "opendssdirect.Vsources.PU",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Vsources.PU() -> float  |  opendssdirect.Vsources.PU(value: float)",
+      "description": "Gets or sets the per-unit voltage magnitude of the active Vsource relative to its base kV; 1.0 holds exactly the nominal voltage. The Vsource is the Thevenin equivalent of the upstream grid at the feeder head, so raising this raises every downstream voltage and is the standard way to model a strong/weak or high/low substation-voltage boundary condition. Select it with Vsources.Name or Vsources.First (the default circuit source is named 'source').",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "1.0",
+          "description": "New per-unit voltage magnitude for the active source (1.0 = nominal); omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The per-unit voltage magnitude of the active Vsource when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Vsources.First()\ndss.Vsources.PU(1.05)\ndss.Solution.Solve()\nprint('source pu =', round(dss.Vsources.PU(), 6))"
+      ]
+    },
+    {
+      "name": "Vsources_BasekV",
+      "full_path": "opendssdirect.Vsources.BasekV",
+      "category": "network_modification",
+      "type": "accessor",
+      "signature": "opendssdirect.Vsources.BasekV() -> float  |  opendssdirect.Vsources.BasekV(value: float)",
+      "description": "Gets or sets the line-to-line base voltage (kV) of the active Vsource, i.e. the nominal voltage of the equivalent grid source at the feeder head. It anchors the per-unit magnitude (Vsources.PU) to a physical voltage and must match the circuit's voltage base at the source bus; changing it rescales the feeder's operating voltage. Select the source with Vsources.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New line-to-line base voltage in kV for the active source; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The line-to-line base voltage (kV) of the active Vsource when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Vsources.First()\nprint('source base kV =', round(dss.Vsources.BasekV(), 6))"
+      ]
+    },
+    {
+      "name": "Capacitors_States",
+      "full_path": "opendssdirect.Capacitors.States",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.Capacitors.States() -> list[int]  |  opendssdirect.Capacitors.States(value: list[int])",
+      "description": "Gets or sets the on/off state of each step of the active multi-step Capacitor bank as a list of integers (1 = step energised, 0 = off), one entry per step. Reading it reports the current switching configuration; writing a new list forces a specific combination of steps in for a manual volt/VAr what-if. The list length equals Capacitors.NumSteps, and the circuit must be re-solved to see the resulting voltage and reactive-power change. Select the bank with Capacitors.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "list[int]",
+          "default": "None",
+          "description": "List of per-step states (1 = on, 0 = off), length = NumSteps; omit to read the present states.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "list[int]",
+          "description": "List of per-step on/off states of the active capacitor bank."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Capacitors.Name('C1')\ndss.Capacitors.States([1, 1, 0])\ndss.Solution.Solve()\nprint('cap states =', dss.Capacitors.States())"
+      ]
+    },
+    {
+      "name": "Capacitors_NumSteps",
+      "full_path": "opendssdirect.Capacitors.NumSteps",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.Capacitors.NumSteps() -> int  |  opendssdirect.Capacitors.NumSteps(value: int)",
+      "description": "Gets or sets the number of discrete switchable steps of the active Capacitor bank. A single fixed capacitor has one step; a switched bank has several, each contributing an equal fraction of the total kvar. This count sets the granularity of reactive-power support available for voltage control and equals the length of the Capacitors.States vector, so it defines how finely the bank can be dispatched. Select the bank with Capacitors.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "New number of switchable steps for the active bank; omit to read the present count.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The number of switchable steps of the active capacitor bank."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Capacitors.Name('C1')\nprint('num steps =', dss.Capacitors.NumSteps())"
+      ]
+    },
+    {
+      "name": "Capacitors_AvailableSteps",
+      "full_path": "opendssdirect.Capacitors.AvailableSteps",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.Capacitors.AvailableSteps() -> int",
+      "description": "Returns the number of capacitor steps not yet switched in on the active bank, i.e. the reactive-power headroom still available for Capacitors.AddStep. It is NumSteps minus the number of currently energised steps, so a value of zero means the bank is fully on and cannot provide further VAr support. This is the check a volt/VAr control loop reads before attempting to add another step. Select the bank with Capacitors.Name/First.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Number of capacitor steps still available to be switched in on the active bank."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Capacitors.Name('C1')\nprint('available steps =', dss.Capacitors.AvailableSteps(), 'of', dss.Capacitors.NumSteps())"
+      ]
+    },
+    {
+      "name": "Capacitors_SubtractStep",
+      "full_path": "opendssdirect.Capacitors.SubtractStep",
+      "category": "control_device",
+      "type": "method",
+      "signature": "opendssdirect.Capacitors.SubtractStep() -> bool",
+      "description": "Switches out one energised step of the active Capacitor bank, reducing its injected reactive power by one increment, and returns True if a step was removed (False if the bank was already fully off). It is the counterpart of Capacitors.AddStep and the manual de-energisation action used in a volt/VAr study — for example to test the voltage response when capacitive support is withdrawn; the circuit must be re-solved afterwards to observe the voltage drop. Select the bank with Capacitors.Name/First.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "bool",
+          "description": "True if an energised step was switched out, False if the bank was already fully off."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Capacitors.Name('C1')\nremoved = dss.Capacitors.SubtractStep()\ndss.Solution.Solve()\nprint('step removed =', removed, '| states =', dss.Capacitors.States())"
+      ]
+    },
+    {
+      "name": "CapControls_Capacitor",
+      "full_path": "opendssdirect.CapControls.Capacitor",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.CapControls.Capacitor() -> str  |  opendssdirect.CapControls.Capacitor(value: str)",
+      "description": "Gets or sets the name of the Capacitor bank that the active CapControl switches. A CapControl is the automatic controller that decides, from a monitored voltage/current/kvar signal, when to energise or de-energise its associated capacitor; this accessor identifies which physical bank it commands. Reading it confirms the controller-to-bank binding, essential when several banks and controls coexist on a feeder. Select the control with CapControls.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "str",
+          "default": "None",
+          "description": "Name of the capacitor bank the active CapControl should switch; omit to read the present binding.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "str",
+          "description": "The name of the capacitor bank controlled by the active CapControl."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.CapControls.Name('CC1')\nprint('controls capacitor =', dss.CapControls.Capacitor())"
+      ]
+    },
+    {
+      "name": "CapControls_ONSetting",
+      "full_path": "opendssdirect.CapControls.ONSetting",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.CapControls.ONSetting() -> float  |  opendssdirect.CapControls.ONSetting(value: float)",
+      "description": "Gets or sets the pickup threshold at which the active CapControl switches its capacitor bank ON, in the units of the control's monitored quantity (volts on the PT secondary for a voltage control, amps for current, kvar for VAr). When the measured signal falls below this value the bank energises to raise voltage or supply VArs. Together with OFFSetting it defines the control deadband, the core tuning of an automatic capacitor-switching scheme. Select the control with CapControls.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New ON (pickup) threshold in the monitored quantity's units; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The ON (pickup) setting of the active CapControl."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.CapControls.Name('CC1')\nprint('cap ON setting =', round(dss.CapControls.ONSetting(), 6))"
+      ]
+    },
+    {
+      "name": "CapControls_OFFSetting",
+      "full_path": "opendssdirect.CapControls.OFFSetting",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.CapControls.OFFSetting() -> float  |  opendssdirect.CapControls.OFFSetting(value: float)",
+      "description": "Gets or sets the dropout threshold at which the active CapControl switches its capacitor bank OFF, in the units of the monitored quantity. When the measured signal rises above this value the bank de-energises to avoid over-voltage or over-compensation. It must sit above ONSetting to form a stable deadband; too narrow a gap causes the bank to hunt (repeated on/off switching). Select the control with CapControls.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New OFF (dropout) threshold in the monitored quantity's units; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The OFF (dropout) setting of the active CapControl."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.CapControls.Name('CC1')\nprint('cap OFF setting =', round(dss.CapControls.OFFSetting(), 6))"
+      ]
+    },
+    {
+      "name": "CapControls_Name",
+      "full_path": "opendssdirect.CapControls.Name",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.CapControls.Name() -> str  |  opendssdirect.CapControls.Name(value: str)",
+      "description": "Gets the name of the active CapControl, or makes a named CapControl active when passed a string. Because every CapControl accessor (Mode, Capacitor, ONSetting, OFFSetting) acts on the currently active control, this is the addressing step that selects a specific capacitor controller by name before inspecting or tuning it, the alternative to iterating with CapControls.First/CapControls.Next.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "str",
+          "default": "None",
+          "description": "Name of the CapControl to make active; omit to read the name of the active control.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "str",
+          "description": "The name of the active CapControl when called as a getter."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Capacitor.C1 bus1=loadbus phases=3 kvar=600 kv=12.47 numsteps=3 states=[1,0,0]')\ndss.Text.Command('New CapControl.CC1 capacitor=C1 element=Line.L1 terminal=1 type=voltage ptratio=60 onsetting=118 offsetting=126')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.CapControls.Name('CC1')\nprint('active capcontrol =', dss.CapControls.Name())"
+      ]
+    },
+    {
+      "name": "RegControls_ForwardVreg",
+      "full_path": "opendssdirect.RegControls.ForwardVreg",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.RegControls.ForwardVreg() -> float  |  opendssdirect.RegControls.ForwardVreg(value: float)",
+      "description": "Gets or sets the target (set-point) voltage the active RegControl regulates to in the forward power-flow direction, expressed on the PT secondary base (typically around 120 V for a 120 V-nominal regulator). The controller moves its transformer taps until the regulated bus voltage, referred through the PT ratio, sits within ForwardBand of this set-point. It is the primary voltage objective of automatic set-point/line-drop regulation. Select the control with RegControls.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New forward regulated-voltage set-point on the PT secondary base (e.g. ~120 V); omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The forward voltage set-point of the active RegControl."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.RegControls.Name('creg1')\nprint('forward Vreg =', round(dss.RegControls.ForwardVreg(), 6))"
+      ]
+    },
+    {
+      "name": "RegControls_ForwardBand",
+      "full_path": "opendssdirect.RegControls.ForwardBand",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.RegControls.ForwardBand() -> float  |  opendssdirect.RegControls.ForwardBand(value: float)",
+      "description": "Gets or sets the voltage bandwidth (deadband, in volts on the PT secondary base) around the ForwardVreg set-point within which the active RegControl takes no tap action. A wider band reduces tap operations and wear but allows larger voltage excursions; a narrow band holds voltage tightly at the cost of more frequent tap changes. It is the hysteresis that prevents the regulator from hunting around its set-point. Select the control with RegControls.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New forward bandwidth (deadband) in volts on the PT secondary base; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The forward voltage bandwidth of the active RegControl."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.RegControls.Name('creg1')\nprint('forward band =', round(dss.RegControls.ForwardBand(), 6))"
+      ]
+    },
+    {
+      "name": "RegControls_MaxTapChange",
+      "full_path": "opendssdirect.RegControls.MaxTapChange",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.RegControls.MaxTapChange() -> int  |  opendssdirect.RegControls.MaxTapChange(value: int)",
+      "description": "Gets or sets the maximum number of tap positions the active RegControl may move in a single control iteration. Limiting it (e.g. to 1) makes the regulator step gradually toward its set-point over successive control iterations, mimicking real time-delayed tap-changer behaviour, whereas a large value lets it jump to the required tap in one step. It shapes how the regulator converges within the control loop. Select the control with RegControls.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "New maximum tap positions per control iteration; omit to read the present limit.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The maximum tap change per control iteration of the active RegControl."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.RegControls.Name('creg1')\ndss.RegControls.MaxTapChange(1)\ndss.Solution.Solve()\nprint('max tap change =', dss.RegControls.MaxTapChange())"
+      ]
+    },
+    {
+      "name": "RegControls_Winding",
+      "full_path": "opendssdirect.RegControls.Winding",
+      "category": "control_device",
+      "type": "accessor",
+      "signature": "opendssdirect.RegControls.Winding() -> int  |  opendssdirect.RegControls.Winding(value: int)",
+      "description": "Gets or sets the transformer winding number (1-based) whose tap the active RegControl adjusts. On a two-winding regulating transformer the controlled winding is normally the secondary (winding 2), the side whose voltage is being held. This binds the controller to the specific tapped winding it actuates and must be consistent with the transformer's winding count. Select the control with RegControls.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "1-based winding number the RegControl actuates; omit to read the present winding.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The controlled winding number of the active RegControl."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Transformer.reg1 phases=3 windings=2 buses=[sourcebus, regbus] conns=[wye, wye] kvs=[12.47, 12.47] kvas=[6000, 6000] xhl=0.01')\ndss.Text.Command('New RegControl.creg1 transformer=reg1 winding=2 vreg=122 band=2 ptratio=60')\ndss.Text.Command('New Line.L1 bus1=regbus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1500 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.RegControls.Name('creg1')\nprint('controlled winding =', dss.RegControls.Winding())"
+      ]
+    },
+    {
+      "name": "Bus_Zsc1",
+      "full_path": "opendssdirect.Bus.Zsc1",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.Zsc1() -> list[float]",
+      "description": "Returns the positive-sequence short-circuit (Thevenin driving-point) impedance at the active bus as a two-element list [R, X] in ohms, computed by the fault-study solution. It is the equivalent source impedance seen looking back into the network from that bus and directly sets the balanced three-phase fault current (I ~ Vln/|Z1|). This is a core quantity for protective-device sizing and fault-level assessment; requires a FaultStudy-mode solve and Circuit.SetActiveBus.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Two-element list [R, X] of the positive-sequence Thevenin impedance in ohms at the active bus."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Text.Command('Set mode=faultstudy')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nr_ohm, x_ohm = dss.Bus.Zsc1()\nprint('|Zsc1| ohm =', round((r_ohm**2 + x_ohm**2) ** 0.5, 6))"
+      ]
+    },
+    {
+      "name": "Bus_Zsc0",
+      "full_path": "opendssdirect.Bus.Zsc0",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.Zsc0() -> list[float]",
+      "description": "Returns the zero-sequence short-circuit (Thevenin) impedance at the active bus as a two-element list [R, X] in ohms from the fault-study solution. Zero-sequence impedance governs the current in unbalanced ground faults (single-line-to-ground), where the return path depends on transformer grounding and neutral connections; together with Zsc1 it is the input to computing line-to-ground fault currents. Requires FaultStudy mode and Circuit.SetActiveBus.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Two-element list [R, X] of the zero-sequence Thevenin impedance in ohms at the active bus."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Text.Command('Set mode=faultstudy')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nr_ohm, x_ohm = dss.Bus.Zsc0()\nprint('|Zsc0| ohm =', round((r_ohm**2 + x_ohm**2) ** 0.5, 6))"
+      ]
+    },
+    {
+      "name": "Bus_ZscMatrix",
+      "full_path": "opendssdirect.Bus.ZscMatrix",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.ZscMatrix() -> list[float]",
+      "description": "Returns the full phase-frame short-circuit impedance matrix at the active bus as a flattened interleaved complex list [re, im, ...], representing the N-by-N (N = number of phases) driving-point impedance in ohms. Unlike the sequence-domain Zsc1/Zsc0 scalars, this phase-coordinate matrix captures inter-phase coupling and is used to compute arbitrary (including multi-phase, unbalanced) fault currents at the bus. Requires FaultStudy mode and Circuit.SetActiveBus.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Flattened interleaved complex entries [re, im, ...] of the N-by-N phase-frame short-circuit impedance matrix in ohms."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Text.Command('Set mode=faultstudy')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nzsc = dss.Bus.ZscMatrix()\nprint('Zsc self-term Z11 (re, im) =', round(zsc[0], 6), round(zsc[1], 6))"
+      ]
+    },
+    {
+      "name": "Bus_Voc",
+      "full_path": "opendssdirect.Bus.Voc",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.Voc() -> list[float]",
+      "description": "Returns the open-circuit (pre-fault) phase voltages at the active bus as an interleaved complex list [re1, im1, ...] in volts, i.e. the Thevenin source voltage of the equivalent seen from that bus. Combined with the short-circuit impedance (Bus.Zsc) it forms the Thevenin equivalent used to compute the fault current for any assumed fault impedance. Requires a FaultStudy-mode solve and Circuit.SetActiveBus.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Interleaved real/imaginary open-circuit (Thevenin) phase voltages in volts at the active bus."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Text.Command('Set mode=faultstudy')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nvoc = dss.Bus.Voc()\nprint('phase-1 |Voc| volts =', round((voc[0]**2 + voc[1]**2) ** 0.5, 6))"
+      ]
+    },
+    {
+      "name": "Bus_SeqVoltages",
+      "full_path": "opendssdirect.Bus.SeqVoltages",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.SeqVoltages() -> list[float]",
+      "description": "Returns the symmetrical-component (sequence) voltage magnitudes at the active bus as a three-element list [V0, V1, V2] in volts — zero-, positive- and negative-sequence respectively. On a balanced feeder V1 dominates while V0 and V2 are near zero; significant negative- or zero-sequence voltage signals unbalance or an asymmetric fault, making this the standard decomposition for unbalance and fault-condition assessment. Requires Circuit.SetActiveBus after a solve.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Three-element list [V0, V1, V2] of zero-, positive- and negative-sequence voltage magnitudes in volts."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nv0, v1, v2 = dss.Bus.SeqVoltages()\nprint('positive-seq |V1| volts =', round(v1, 6))"
+      ]
+    },
+    {
+      "name": "Bus_CplxSeqVoltages",
+      "full_path": "opendssdirect.Bus.CplxSeqVoltages",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.CplxSeqVoltages() -> list[float]",
+      "description": "Returns the complex symmetrical-component voltages at the active bus as an interleaved list [re0, im0, re1, im1, re2, im2] in volts — the zero/positive/negative sequence phasors rather than just their magnitudes (Bus.SeqVoltages). Retaining the phase angles is necessary when the sequence components must be recombined or when relative angles between sequences carry information about the fault type. Requires Circuit.SetActiveBus after a solve.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Interleaved [re0, im0, re1, im1, re2, im2] complex sequence voltages in volts at the active bus."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\ncs = dss.Bus.CplxSeqVoltages()\nprint('positive-seq |V1| volts =', round((cs[2]**2 + cs[3]**2) ** 0.5, 6))"
+      ]
+    },
+    {
+      "name": "Bus_YscMatrix",
+      "full_path": "opendssdirect.Bus.YscMatrix",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Bus.YscMatrix() -> list[float]",
+      "description": "Returns the short-circuit admittance matrix at the active bus as a flattened interleaved complex list [re, im, ...], the N-by-N phase-frame inverse of the driving-point impedance matrix (Bus.ZscMatrix), in siemens. It is the nodal admittance seen looking into the network from the bus and is used in fault and Thevenin-equivalent calculations where an admittance formulation is more convenient than impedance. Requires FaultStudy mode and Circuit.SetActiveBus.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "list[float]",
+          "description": "Flattened interleaved complex entries [re, im, ...] of the N-by-N phase-frame short-circuit admittance matrix in siemens."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Text.Command('Set mode=faultstudy')\ndss.Solution.Solve()\ndss.Circuit.SetActiveBus('loadbus')\nysc = dss.Bus.YscMatrix()\nprint('Ysc self-term Y11 (re, im) =', round(ysc[0], 6), round(ysc[1], 6))"
+      ]
+    },
+    {
+      "name": "Fuses_State",
+      "full_path": "opendssdirect.Fuses.State",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Fuses.State() -> list[str]  |  opendssdirect.Fuses.State(value: list[str])",
+      "description": "Gets or sets the present state of each phase of the active Fuse as a list of strings ('closed' or 'open'), one entry per phase. A fuse is a one-shot overcurrent protective device; 'open' indicates that phase has blown (melted) to interrupt fault current. Reading it after a solve reports which phases have cleared, the observable used in protection-coordination and fault-isolation studies. Select the fuse with Fuses.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "list[str]",
+          "default": "None",
+          "description": "List of per-phase states ('closed'/'open') to force; omit to read the present per-phase state.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "list[str]",
+          "description": "List of per-phase fuse states ('closed' or 'open'), one entry per phase."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Fuse.F1 MonitoredObj=Line.L1 MonitoredTerm=1 RatedCurrent=200')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Fuses.Name('F1')\nprint('fuse state =', dss.Fuses.State())"
+      ]
+    },
+    {
+      "name": "Fuses_IsBlown",
+      "full_path": "opendssdirect.Fuses.IsBlown",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Fuses.IsBlown() -> bool",
+      "description": "Returns True if the active Fuse has blown (any phase melted open to interrupt current), False if it remains intact. A fuse blows when the current through its monitored element exceeds the melting characteristic of its time-current curve, so this boolean is the pass/fail indicator of whether a downstream fault or overload has caused the fuse to isolate the circuit. It is read after a solve; select the fuse with Fuses.Name/First.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "bool",
+          "description": "True if the active fuse has blown (isolated), False if intact."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Fuse.F1 MonitoredObj=Line.L1 MonitoredTerm=1 RatedCurrent=200')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Fuses.Name('F1')\nprint('fuse blown =', dss.Fuses.IsBlown())"
+      ]
+    },
+    {
+      "name": "Fuses_RatedCurrent",
+      "full_path": "opendssdirect.Fuses.RatedCurrent",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Fuses.RatedCurrent() -> float  |  opendssdirect.Fuses.RatedCurrent(value: float)",
+      "description": "Gets or sets the rated (nominal melting-reference) current of the active Fuse in amperes, which scales its time-current curve. Fault and overload currents are judged against this rating to decide whether and how fast the fuse melts, so it is the primary coordination parameter set when sizing a fuse to protect a lateral while riding through normal load. Select the fuse with Fuses.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New rated current in amperes for the active fuse; omit to read the present rating.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The rated current of the active fuse in amperes."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Fuse.F1 MonitoredObj=Line.L1 MonitoredTerm=1 RatedCurrent=200')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Fuses.Name('F1')\nprint('fuse rated current A =', round(dss.Fuses.RatedCurrent(), 6))"
+      ]
+    },
+    {
+      "name": "Reclosers_Shots",
+      "full_path": "opendssdirect.Reclosers.Shots",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Reclosers.Shots() -> int  |  opendssdirect.Reclosers.Shots(value: int)",
+      "description": "Gets or sets the number of trip operations (shots) the active Recloser performs before locking out. A recloser is an automatic overcurrent device that trips and re-closes several times to let a temporary fault self-clear; after this many unsuccessful shots it stays open (lockout). The count defines the device's persistence against transient versus permanent faults and is a key protection-coordination setting. Select the recloser with Reclosers.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "New number of shots before lockout for the active recloser; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "The number of shots (trip operations before lockout) of the active recloser."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Recloser.R1 MonitoredObj=Line.L1 MonitoredTerm=1 NumFast=2 Shots=3 PhaseTrip=800')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Reclosers.Name('R1')\nprint('recloser shots =', dss.Reclosers.Shots())"
+      ]
+    },
+    {
+      "name": "Reclosers_PhaseTrip",
+      "full_path": "opendssdirect.Reclosers.PhaseTrip",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Reclosers.PhaseTrip() -> float  |  opendssdirect.Reclosers.PhaseTrip(value: float)",
+      "description": "Gets or sets the phase overcurrent trip (pickup) current of the active Recloser in amperes — the phase current above which the device initiates a trip. It sets the sensitivity of phase-fault detection and must be coordinated above the maximum load current yet below the minimum expected fault current on the protected section. This is the phase-element threshold of the recloser's protection scheme. Select the recloser with Reclosers.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "float",
+          "default": "None",
+          "description": "New phase trip (pickup) current in amperes for the active recloser; omit to read the present value.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "The phase trip (pickup) current of the active recloser in amperes."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Recloser.R1 MonitoredObj=Line.L1 MonitoredTerm=1 NumFast=2 Shots=3 PhaseTrip=800')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Reclosers.Name('R1')\nprint('recloser phase trip A =', round(dss.Reclosers.PhaseTrip(), 6))"
+      ]
+    },
+    {
+      "name": "Reclosers_State",
+      "full_path": "opendssdirect.Reclosers.State",
+      "category": "fault_analysis",
+      "type": "accessor",
+      "signature": "opendssdirect.Reclosers.State() -> int  |  opendssdirect.Reclosers.State(value: int)",
+      "description": "Gets or sets the present open/closed state of the active Recloser as an integer code (closed vs open/tripped). Reading it after a solve reports whether the recloser has operated to interrupt current on the monitored element, while setting it can force an open or closed state for a what-if isolation scenario. It is the switching-state observable of the recloser in a protection or reconfiguration study. Select the recloser with Reclosers.Name/First.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "int",
+          "default": "None",
+          "description": "New open/closed state code to force on the active recloser; omit to read the present state.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "int",
+          "description": "Integer code of the active recloser's present open/closed state."
+        }
+      ],
+      "examples": [
+        "import opendssdirect as dss\ndss.Text.Command('Clear')\ndss.Text.Command('New Circuit.demo basekv=12.47 phases=3 bus1=sourcebus')\ndss.Text.Command('New Line.L1 bus1=sourcebus bus2=loadbus length=1 units=km phases=3')\ndss.Text.Command('New Load.Load1 bus1=loadbus phases=3 kV=12.47 kW=1000 pf=0.95')\ndss.Text.Command('New Recloser.R1 MonitoredObj=Line.L1 MonitoredTerm=1 NumFast=2 Shots=3 PhaseTrip=800')\ndss.Text.Command('Set voltagebases=[12.47]')\ndss.Text.Command('CalcVoltageBases')\ndss.Solution.Solve()\ndss.Reclosers.Name('R1')\nprint('recloser state code =', int(dss.Reclosers.State()))"
+      ]
+    }
+  ]
+}

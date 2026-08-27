@@ -1,0 +1,67 @@
+{
+ "round": "2b",
+ "note": "Frozen engineer-approved question text is never edited. Each entry records a place where the text admits a second defensible implementation; the primary reading is the one in e4_layer2b_set.json, the alternative ground truth is measured here so a switch is a one-line change if adjudicated.",
+ "n_ambiguities_open": 2,
+ "ambiguities": [
+  {
+   "qid": "A05",
+   "axis": "scope of 'respectively' in the two-scenario scaling clause",
+   "primary": "[every original load, every added PV] pair with [(0.45, 0.90), (0.80, 0.20)] -> scenario 1 = load x0.45 / PV x0.80, scenario 2 = load x0.90 / PV x0.20",
+   "alternative": "the two tuples are the two scenarios, read as (load, PV) -> scenario 1 = load x0.45 / PV x0.90, scenario 2 = load x0.80 / PV x0.20",
+   "why_primary": "'respectively' formally pairs two coordinated lists; the only coordinated list in the sentence is 'every original load and every added PV', so each parenthesised pair belongs to one entity and is indexed by scenario",
+   "impact": "changes the ground truth; both readings are physically sensible",
+   "primary_ground_truth": 1.01469,
+   "alternative_ground_truth": 1.02061,
+   "alternative_exec_error": null,
+   "alt_code": "import pandapower as pp\nimport pandapower.networks as pn\n\ndef scenario(load_scale, pv_scale):\n    net = pn.create_cigre_network_lv()\n    residential = [i for i in net.load.index\n                   if str(net.load.name.at[i]).startswith('Load R')]\n    for li in residential:\n        pp.create_sgen(net, bus=int(net.load.bus.at[li]),\n                       p_mw=float(net.load.p_mw.at[li]) * pv_scale, q_mvar=0.0)\n    net.load['p_mw'] = net.load['p_mw'] * load_scale\n    net.load['q_mvar'] = net.load['q_mvar'] * load_scale\n    pp.runpp(net)\n    mask = (net.bus['vn_kv'] == 0.4) & net.bus['in_service']\n    return float(net.res_bus.vm_pu[mask].max())\n\nprint(round(max(scenario(0.45, 0.90), scenario(0.80, 0.20)), 5))\n",
+   "status": "ADJUDICATED (two power-systems engineers, 2026-07-30): primary upheld",
+   "expert_ruling": "A05: respectively 语法配对功能裁定主读"
+  },
+  {
+   "qid": "B02",
+   "axis": "which built-in 30-bus case 'the built-in IEEE 30-bus case' denotes",
+   "primary": "pandapower.networks.case30",
+   "alternative": "pandapower.networks.case_ieee30",
+   "why_primary": "(i) the same author's six sibling items map 'IEEE N-bus' to pn.caseN for N = 9, 14, 39, 57, 118, so 30 -> case30; (ii) the query lists 'branch limits' among the enforced OPF constraints, and case_ieee30 carries the MATPOWER 'unlimited' sentinel (max_i_ka = 99999 kA) so it has no effective branch limits, whereas case30 has real ones (<= 0.556 kA); (iii) case_ieee30 has gen setpoints above its own bus voltage limits, so pandapower silently rewrites the bus limits during OPF; (iv) pandapower's own docstring for case30 says 'Returns the required ieee network case30'",
+   "impact": "changes the ground truth",
+   "primary_ground_truth": 600.003082,
+   "alternative_ground_truth": 9274.818423,
+   "alternative_exec_error": null,
+   "alt_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case_ieee30()\nmask = net.load['bus'] == 7 - 1\nnet.load.loc[mask, 'p_mw'] = net.load.loc[mask, 'p_mw'] * 1.25\nnet.load.loc[mask, 'q_mvar'] = net.load.loc[mask, 'q_mvar'] * 1.25\npp.runopp(net)\nprint(round(float(net.res_cost), 6))\n",
+   "status": "ADJUDICATED (two power-systems engineers, 2026-07-30): primary upheld",
+   "expert_ruling": "B02: 语料方言一致性 + branch-limit 哨兵矛盾双证裁定 case30"
+  }
+ ],
+ "diagnostic_notes": [
+  {
+   "id": "D1",
+   "qid": "A02",
+   "note": "pandapower 3.4.0 ships no 69-bus feeder, so the canonical Baran-Wu data are pinned in ieee69_network.py and frozen with the set (an artifact-pinning step the engineer README explicitly requires). The frozen tabulation totals 3801.89 kW / 2694.10 kvar; parts of the literature quote 3802.19 kW / 2694.60 kvar for a near-identical variant (+0.30 kW / +0.50 kvar). The implementation reproduces the standard published base-case check values (loss 224.96 kW, min voltage 0.90919 p.u. at bus label 65)."
+  },
+  {
+   "id": "D2",
+   "qid": "A03",
+   "note": "the query pins the equivalent source voltage to 1.025 p.u. to represent a +2.5% tap boost, while pandapower's CIGRE MV external grid defaults to 1.03 p.u.; the explicit 1.025 is therefore slightly BELOW the built-in default. The instruction is explicit, so it is implemented literally and the question is not touched."
+  },
+  {
+   "id": "D3",
+   "qid": "B05",
+   "note": "pandapower's case57 base voltage profile already has 40 buses below 0.95 p.u. (min 0.7199 p.u. at bus index 30), so every contingency at lambda = 1.00 violates the stated 0.95-1.05 window and the answer is the query's own 0.00 sentinel. The item is well defined but does not exercise the loadability search. The query's stated count of 62 non-islanding line outages was verified exactly."
+  },
+  {
+   "id": "D4",
+   "qid": "C02",
+   "note": "pandapower prints 'branch results are in beta mode and might not always be reliable, especially for transformers' when calc_sc is called with branch_results=True. The value is deterministic for the frozen pandapower 3.4.0 and the query explicitly asks for the transformer-side current, so it is used as ground truth."
+  },
+  {
+   "id": "D5",
+   "qid": "B05/B07",
+   "note": "pandapower's case57 and case118 carry very large line current ratings (16-50 kA), so percentage line loadings are small numbers and the '>100%' overload criterion never binds in B05; B07's reported maximum post-redispatch loading is correspondingly low. This is a property of the frozen built-in data, not of the query."
+  },
+  {
+   "id": "D6",
+   "qid": "all",
+   "note": "network_note / expected_quantity from the engineer CSV are kept as record metadata and used when writing reference_code, but are NOT concatenated into natural_language_query: they name the library and version and pin index conventions, which would leak implementation hints into the ranker input (E4 §2.2c). The ranker-visible text is the engineer-approved 'request' column, verbatim."
+  }
+ ]
+}

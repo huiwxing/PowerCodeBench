@@ -1,0 +1,567 @@
+{
+ "meta": {
+  "role": "E1-P T4 power-extension all-pass census",
+  "review_source": "two practising power-systems engineers",
+  "n_target": 35,
+  "n_done": 35,
+  "protocol": "E1_validity_audit.md s2.2/s2.3 frozen 10 cases + N1-N7 + R2/R3/R5 + sP.8 F-A..F-F rulings; D-3 census form (full sweep of all 35 any_flag==false sides of the sP.13 T4 extension round, no sampling)",
+  "inputs": "audit/e1p_ext_auto_results.json any_flag==false sides (aligned with audit/e1p_ext_manifest.json); raw records streamed from probe_eval_results/comparison via audit/records.py pointers",
+  "info_firewall": "e1p_ext_judge1/judge2/adjudication, all main-round per-item judgment bodies (e1p_judge*/adjudication/census judgments), and t4_judge*/pilot NOT read; only E1 doc rubric + sP.8-P.10 summary + ext auto evidence + raw records + manifest + main census meta/oracle-ledger (summary level) used",
+  "index_note": "i = census queue index 0..34 in auto-results order over the any_flag==false subset (C sides i=0..20, A sides i=21..34); pair_id/condition/bench_index/item_id fully identify each side",
+  "counts": {
+   "pair_C_21": {
+    "clean": 17,
+    "equivalent-path": 4,
+    "physical-error": 0,
+    "suspected-item-defect": 0
+   },
+   "pair_A_14": {
+    "clean": 12,
+    "equivalent-path": 1,
+    "physical-error": 1,
+    "suspected-item-defect": 0
+   }
+  },
+  "physical_errors_found": [
+   {
+    "i": 23,
+    "pair_id": "E1P-127",
+    "condition": "A_FX",
+    "bench_index": 598,
+    "channel": "SE noise-seed infidelity (query-pinned seed=9496 made a no-op by post-draw placement) -> nondeterministic scalar -> F-E tolerance-window coincidental hit (2 of 5 observed executions in-window); F-D family",
+    "note": "pair partner E1P-127 C side is any_flag==true (in the judge queue, not census scope); this A-side PE is consistent with the headline direction (A polluted)."
+   }
+  ],
+  "instrument_observations_for_checker_backlog": [
+   "check-5 v2 perturbation cannot distinguish genuine perturbation response from unseeded-RNG nondeterminism: i=23 passed check-5 because its output moves on EVERY run; add a no-perturbation repeat-run reproducibility probe for state_estimation / random-profile families",
+   "auto layer does not compare gen re-exec output against the benchmark's original exec_output: for i=23 they differ (1.0726122228 vs 1.0653635156, and the re-exec value is >1% off GT, i.e. would fail the matcher) yet no flag is raised; a determinism/drift flag on |gen_out - exec_output| would have caught this side automatically",
+   "one more latent F-A dead-branch shunt-sign flip found (i=27, +8 vs -8 Mvar, branch oracle-dead at min_v 0.99544>=0.99) -- same class as the main round's 12 W5 sides; invisible to executed-state checks by design",
+   "setpoint/bound-pinned GTs persist among T4 all-pass sides (GT=0.979 DC setpoint i=2; GT=1.05 vm bound i=15/31; GT=1.01 i=16; GT=0.982 i=18/33) -- F-E/errata-type weak discriminators, though no additional model pollution hid behind them in this batch"
+  ],
+  "oracle_ledger": [
+   {
+    "id": "O-EXT-1",
+    "side": "facts batch (i=19, i=9, i=6/24/34, i=31)",
+    "question": "Library facts: create_cigre_network_hv default length_km_6a_6b; runpp calculate_voltage_angles default; create_shunt signature; case24_ieee_rts ext_grid count",
+    "result": "length_km_6a_6b default = 0.1 (i=19 explicit==default); runpp calculate_voltage_angles default = True in pandapower 3.4.0 (i=9 explicit==default); create_shunt(net, bus, q_mvar, p_mw=0.0,...) -- q_mvar 3rd positional, p_mw defaults 0.0 (i=6/24/34); case24_ieee_rts n_ext_grid=1 (i=31 column write == cell write)",
+    "env": "experiment venv pandapower 3.4.0, subprocess, single-thread"
+   },
+   {
+    "id": "O-EXT-2",
+    "side": "i=7 (E1P-136 C, bi=1417)",
+    "question": "Is the most heavily loaded line of simple_mv_open_ring_net at the current OP line 0 (== ref hardcode)?",
+    "result": "YES: runpp idxmax = 0 with wide margin (24.4719% vs 16.3370% runner-up line 1) -> N1 same-target",
+    "env": "experiment venv pandapower 3.4.0"
+   },
+   {
+    "id": "O-EXT-3",
+    "side": "i=11 (E1P-148 C, bi=1582)",
+    "question": "Is the most heavily loaded line of four_loads_with_branches_out at the current OP line 0 (== ref hardcode)?",
+    "result": "YES: runpp idxmax = 0 (78.0376% vs 58.7008% runner-up) -> N1 same-target",
+    "env": "experiment venv pandapower 3.4.0"
+   },
+   {
+    "id": "O-EXT-4",
+    "side": "i=20 (E1P-165 C, bi=1600)",
+    "question": "Is the online generator with highest p_mw dispatch in case1354pegase gen 161 (== ref hardcode)?",
+    "result": "YES: idxmax over in_service gens = 161 (3424.8 MW vs 2463.6 runner-up gen 196) -> N1 same-target",
+    "env": "experiment venv pandapower 3.4.0"
+   },
+   {
+    "id": "O-EXT-5",
+    "side": "i=27 (E1P-144 A, bi=1166)",
+    "question": "Does the shunt branch (where gen's +8 vs ref's -8 Mvar sign flip lives) execute?",
+    "result": "NO: stage-1 fires (max loading 24.500891% > 17.7%, worst line 9 disconnected -- matches both codes), stage-2 min_v = 0.99543865 >= 0.99 -> shunt branch DEAD on both sides; oracle chain reproduces the recorded output exactly (0.995438645988099). Sign flip is latent-only -> F-A second branch equivalent + W5 note",
+    "env": "experiment venv pandapower 3.4.0"
+   },
+   {
+    "id": "O-EXT-6",
+    "side": "i=23 (E1P-127 A, bi=598)",
+    "question": "Is the generated SE code's output deterministic under the query-pinned seed=9496, and was the benchmark match luck?",
+    "result": "NONDETERMINISTIC: three serial runs of the unmodified generated code -> 1.0760278969422168 / 1.0624600270939775 / 1.0714786878180407 (rel vs GT +1.48%/+0.20%/+1.05%); reference twice -> 1.0603804479068464 == GT (deterministic). Root cause: np.random.seed(9496) is called AFTER all noise draws. Combined with original exec (+0.47%, matched) and auto re-exec (+1.15%), 2/5 observed executions fall inside rtol 1e-2 -> the accepted match was a tolerance-window coin flip. PHYSICAL-ERROR confirmed",
+    "env": "experiment venv pandapower 3.4.0, subprocess, single-thread, 5 serial executions total"
+   }
+  ],
+  "status": "FINAL 35/35",
+  "generated": "2026-08-01"
+ },
+ "judgments": [
+  {
+   "i": 0,
+   "pair_id": "E1P-121",
+   "condition": "C_FDRS",
+   "bench_index": 116,
+   "item_id": "f5b7e9d1e861",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow: same 2 line disconnects (1456/583), runpp, res_line.pl_mw.sum(). Only loader alias (pp.networks vs pn) and .loc-vs-.at idiom. Auto re-exec bit-identical (1591.2211057966692 both)."
+  },
+  {
+   "i": 1,
+   "pair_id": "E1P-122",
+   "condition": "C_FDRS",
+   "bench_index": 384,
+   "item_id": "b9466a4b8211",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow: line 6 out + gen 1 vm_pu=0.954, runopp, res_bus.vm_pu.min(). .loc-vs-.at only; no poly_cost/cost-structure touch (F-E sweep negative). Bit-identical (0.9740706213673713)."
+  },
+  {
+   "i": 2,
+   "pair_id": "E1P-123",
+   "condition": "C_FDRS",
+   "bench_index": 461,
+   "item_id": "c0487aacecac",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow: ext_grid vm=0.979, rundcpp, res_bus.vm_pu.min(). Item note (no model deviation): GT==injected setpoint 0.979 under DC PF -- setpoint-pinned weak discriminator, F-E/errata-type item observation only. Bit-identical (0.979)."
+  },
+  {
+   "i": 3,
+   "pair_id": "E1P-124",
+   "condition": "C_FDRS",
+   "bench_index": 475,
+   "item_id": "1c45d9d4ac36",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical time_series workflow: same mods (line 28 r, load 4 scaling), same seed 6163, same uniform(0.6,1.4,(24,n_load)) draw shape/order, same ConstControl/run_timeseries, same ow.output max().max(). Ref logs an extra res_bus.vm_pu variable (no-op for the extracted quantity). Bit-identical (108.46564633566607)."
+  },
+  {
+   "i": 4,
+   "pair_id": "E1P-128",
+   "condition": "C_FDRS",
+   "bench_index": 614,
+   "item_id": "fd85af169a5c",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case4",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow; only (loading>1.8).any() vs max()>1.8 -- mathematically equivalent predicate on the same series. Both apply line-0 out + bus-6 max_vm_pu (decorative for runpp but query-pinned and applied by BOTH sides). Bit-identical (0.9813119568006955)."
+  },
+  {
+   "i": 5,
+   "pair_id": "E1P-133",
+   "condition": "C_FDRS",
+   "bench_index": 891,
+   "item_id": "3db3a4482a33",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-B",
+    "F-F",
+    "meta-rule(a)(b)",
+    "O-CEN-4-precedent"
+   ],
+   "evidence": "Real deviation: gen omits s_sc_min_mva/rx_min that ref sets, and sets s_sc_max_mva/rx_max unconditionally vs ref conditionally (same values 1000/0.1); gen/sgen deactivation guards differ but both no-op (case33bw has empty gen/sgen). Omitted params are dead under calc_sc(case='max') (reads only s_sc_max/rx_max; main-round O-CEN-4 established this decorative class on the same network). Full-code re-executions bit-identical (45.6042866658472 both) -- physical scenario and extracted ikss max unchanged."
+  },
+  {
+   "i": 6,
+   "pair_id": "E1P-134",
+   "condition": "C_FDRS",
+   "bench_index": 1181,
+   "item_id": "10bb207afc28",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case8",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow; gen omits p_mw arg in create_shunt -- library default p_mw=0.0 equals ref's explicit 0 (O-EXT-1 signature). Predicate .any() equivalent. Bit-identical (0.9650129920588225)."
+  },
+  {
+   "i": 7,
+   "pair_id": "E1P-136",
+   "condition": "C_FDRS",
+   "bench_index": 1417,
+   "item_id": "8593b5256d5e",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1-same-target",
+    "case10",
+    "F-E-checked"
+   ],
+   "evidence": "D3 semantic target: ref hardcodes line 0; gen resolves 'most heavily loaded line at current OP' dynamically (runpp then idxmax) before rundcpp. O-EXT-2: current-OP idxmax==0 with wide margin (24.47% vs 16.34% runner-up) == ref target; c1 in_service out-set diffs=[]; bit-identical outputs (7.999999999992724). Extra AC pre-run = superset analysis (case 10). N1 first branch: dynamic target == reference target -> equivalent."
+  },
+  {
+   "i": 8,
+   "pair_id": "E1P-140",
+   "condition": "C_FDRS",
+   "bench_index": 347,
+   "item_id": "000868a577ec",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical time_series workflow: same seed 7518 (gen seeds before loader -- loader consumes no RNG), same draw shape (24,n_load), same ConstControl/run_timeseries/extraction. log_variables kwarg vs ow.log_variable call is API idiom. Bit-identical (0.9484043963347071)."
+  },
+  {
+   "i": 9,
+   "pair_id": "E1P-141",
+   "condition": "C_FDRS",
+   "bench_index": 374,
+   "item_id": "b0d4d7739432",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case2'-analog",
+    "O-EXT-1"
+   ],
+   "evidence": "Only deviation: explicit runpp(calculate_voltage_angles=True) vs ref default -- pandapower 3.4.0 default IS True (O-EXT-1 signature), so the solver invocation is semantically identical (legit kwarg, not a no-op-swallowed one). Bit-identical (-149.7245665274259)."
+  },
+  {
+   "i": 10,
+   "pair_id": "E1P-142",
+   "condition": "C_FDRS",
+   "bench_index": 812,
+   "item_id": "4b2b98e3f337",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "N7",
+    "case9"
+   ],
+   "evidence": "Identical comparison workflow: same 3 mods, 2x runpp, abs(modified-baseline) with swapped operand order inside abs() -- mathematically identical. Bit-identical (3.9814395089570915)."
+  },
+  {
+   "i": 11,
+   "pair_id": "E1P-148",
+   "condition": "C_FDRS",
+   "bench_index": 1582,
+   "item_id": "1538724186ad",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1-same-target",
+    "F-E-checked"
+   ],
+   "evidence": "D3 semantic target: ref hardcodes line 0; gen runs load flow at current OP, takes idxmax, disconnects, re-runs. O-EXT-3: idxmax==0 (78.04% vs 58.70% runner-up) == ref target; c1 diffs=[]; bit-identical (0.999985600414708). Gen's PF-first ordering is the faithful reading of 'under the current operating point'. N1 first branch -> equivalent."
+  },
+  {
+   "i": 12,
+   "pair_id": "E1P-149",
+   "condition": "C_FDRS",
+   "bench_index": 33,
+   "item_id": "b4d309a6aea8",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow: 3 mods (gen 186 max_p_mw, trafo 321 shift, ext_grid vm), runpp, res_trafo loading max. max_p_mw decorative for runpp but query-pinned and applied by both. Bit-identical (208.96006007288221)."
+  },
+  {
+   "i": 13,
+   "pair_id": "E1P-150",
+   "condition": "C_FDRS",
+   "bench_index": 66,
+   "item_id": "78596b4a503e",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical OPF workflow including the query's double ext_grid vm overwrite (1.016 then 1.007) faithfully applied by both; bus 15 max_vm_pu; runopp; min vm. No cost-structure touch. Bit-identical (1.0032714330231185)."
+  },
+  {
+   "i": 14,
+   "pair_id": "E1P-152",
+   "condition": "C_FDRS",
+   "bench_index": 105,
+   "item_id": "940b6cc994dd",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow: ext_grid vm=1.042, rundcpp, res_trafo loading max. Bit-identical (296.62911788390096)."
+  },
+  {
+   "i": 15,
+   "pair_id": "E1P-154",
+   "condition": "C_FDRS",
+   "bench_index": 563,
+   "item_id": "712a35914b48",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical OPF workflow: ext_grid vm=1.046, create_gen(bus=9,7.1,0.985) same in both (no cost entry for new gen in EITHER side -- same OPF problem), runopp, max vm. Item note: GT=1.05 == vm upper bound (bound-pinned weak discriminator, F-E-type item observation only). Bit-identical (1.0499999997729068)."
+  },
+  {
+   "i": 16,
+   "pair_id": "E1P-155",
+   "condition": "C_FDRS",
+   "bench_index": 657,
+   "item_id": "e908d811a091",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case4",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow; predicate .any() equivalent. Item note: GT=1.01 exact (setpoint-pinned min vm, weak discriminator). Bit-identical (1.01)."
+  },
+  {
+   "i": 17,
+   "pair_id": "E1P-158",
+   "condition": "C_FDRS",
+   "bench_index": 922,
+   "item_id": "573bfad9a101",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow on GBnetwork (parallel=2, shift=-14.9, conditional gen 61 p_mw). Bit-identical (0.7978181079939548)."
+  },
+  {
+   "i": 18,
+   "pair_id": "E1P-160",
+   "condition": "C_FDRS",
+   "bench_index": 1032,
+   "item_id": "f6bb4bcdfdb7",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case4",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow (load 12 q_mvar=2.4, conditional line 21 out); predicate .any() equivalent. Item note: GT=0.982 exact (setpoint-pinned min vm, weak discriminator). Bit-identical (0.982)."
+  },
+  {
+   "i": 19,
+   "pair_id": "E1P-161",
+   "condition": "C_FDRS",
+   "bench_index": 1069,
+   "item_id": "f1e2fbce18b4",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case8",
+    "O-EXT-1"
+   ],
+   "evidence": "Only deviation: gen passes create_cigre_network_hv(length_km_6a_6b=0.1) explicitly -- 0.1 IS the library default (O-EXT-1 signature), so the loaded network is identical. Rest identical (tap_pos=-1, conditional shunt -13.0 with p_mw=0 in both). Bit-identical (0.9581344311069577)."
+  },
+  {
+   "i": 20,
+   "pair_id": "E1P-165",
+   "condition": "C_FDRS",
+   "bench_index": 1600,
+   "item_id": "df8134904403",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "N1-same-target",
+    "F-E-checked"
+   ],
+   "evidence": "D4 compound with semantic target: ref hardcodes gen 161 offline; gen dynamically selects the online generator with highest p_mw dispatch (in_service filter + idxmax). O-EXT-4: idxmax==161 with wide margin (3424.8 MW vs 2463.6 runner-up) == ref target; c1 diffs=[]; conditional line-1066 branch identical predicate both sides; bit-identical (0.9819675167131728). N1 first branch -> equivalent."
+  },
+  {
+   "i": 21,
+   "pair_id": "E1P-121",
+   "condition": "A_FX",
+   "bench_index": 116,
+   "item_id": "f5b7e9d1e861",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow (same as pair C twin i=0): 2 line disconnects, runpp, pl_mw sum via attribute access idiom. Bit-identical (1591.2211057966692)."
+  },
+  {
+   "i": 22,
+   "pair_id": "E1P-122",
+   "condition": "A_FX",
+   "bench_index": 384,
+   "item_id": "b9466a4b8211",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical OPF workflow; gen uses chained-assignment idiom (net.line.in_service[6], net.gen.vm_pu[1]) -- writes persisted (c1 fingerprint diffs=[]; bit-identical 0.9740706213673713 vs ref). np.min(series) == series.min(). Unused plot/numpy imports harmless. No cost-structure touch."
+  },
+  {
+   "i": 23,
+   "pair_id": "E1P-127",
+   "condition": "A_FX",
+   "bench_index": 598,
+   "item_id": "d830ef3a5d59",
+   "label": "physical-error",
+   "cases_cited": [
+    "F-D",
+    "F-E",
+    "meta-rule-violation",
+    "R3-third-branch",
+    "O-EXT-6"
+   ],
+   "evidence": "MISSED POLLUTION (auto layer all-pass). Query pins the measurement-noise realization: '(voltage std_dev=0.01, power std_dev=1.0, seed=9496)'. The generated code calls np.random.seed(9496) only AFTER all noise draws are consumed (draws come from unseeded global RNG state) -- the pinned seed is a no-op, so the SE input measurements and the reported scalar are NONDETERMINISTIC. O-EXT-6: three fresh serial runs of the unmodified generated code give 1.0760278969 / 1.0624600271 / 1.0714786878 (rel vs GT +1.48% / +0.20% / +1.05%); with the benchmark's original exec (1.0653635156, +0.47%, matched) and the auto-layer re-exec (1.0726122228, +1.15%, would NOT match), 2 of 5 observed executions land inside the 1% rtol window -- the accepted match was a tolerance-window coin flip (F-E). Reference is deterministic and reproduces GT (1.0603804479 twice). Additional deviations (noise drawn with std 0.01/1.0 directly vs ref 0.003/0.5/0.3; superset line/trafo measurements; v-measurements on all vs in-service buses) change the estimation problem but are secondary: no legal reading of the query yields a nondeterministic answer, so R2 (all pinned dims faithful) and R3 (faithful legal reading) exemptions are unavailable and the equivalence exception fails at (b). Channel: F-D (query-pinned noise/seed violated) realized as F-E coincidental scalar hit; check-5 v2 passed only because unseeded RNG makes the output move under ANY re-run -- instrument blind spot."
+  },
+  {
+   "i": 24,
+   "pair_id": "E1P-134",
+   "condition": "A_FX",
+   "bench_index": 1181,
+   "item_id": "10bb207afc28",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case8",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow (twin of i=6): create_shunt p_mw default == explicit 0. Bit-identical (0.9650129920588225)."
+  },
+  {
+   "i": 25,
+   "pair_id": "E1P-141",
+   "condition": "A_FX",
+   "bench_index": 374,
+   "item_id": "b0d4d7739432",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow (twin of i=9's item, but WITHOUT any extra kwarg): runpp default, res_bus va_degree at bus 24 via .loc idiom. Bit-identical (-149.7245665274259)."
+  },
+  {
+   "i": 26,
+   "pair_id": "E1P-142",
+   "condition": "A_FX",
+   "bench_index": 812,
+   "item_id": "4b2b98e3f337",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "N7",
+    "case9"
+   ],
+   "evidence": "Identical comparison workflow (twin of i=10): same mods, 2x runpp, abs diff. Bit-identical (3.9814395089570915)."
+  },
+  {
+   "i": 27,
+   "pair_id": "E1P-144",
+   "condition": "A_FX",
+   "bench_index": 1166,
+   "item_id": "204725c20b63",
+   "label": "equivalent-path",
+   "cases_cited": [
+    "F-A-latent",
+    "F-F",
+    "N2-control-flow",
+    "O-EXT-5"
+   ],
+   "evidence": "Two real deviations, both proven outcome-neutral: (1) LATENT F-A SIGN FLIP -- query says 'add a 8 Mvar shunt' (sign unpinned in text); ref uses q_mvar=-8.0 (capacitive), gen uses +8.0 (inductive) -- but the guarding branch is DEAD: O-EXT-5 stage-2 min_v = 0.99543865 >= 0.99, so no shunt is created on either side (oracle chain reproduces gen output exactly; final report 0.9954386459880951 == both sides bit-identical). F-A second branch (unpinned + oracle-invariant) -> equivalent; recorded as W5 latent-fragility material (same class as main round's 12 dead-branch shunt-sign sides). (2) Lazy conditional re-runs (gen re-runs PF only inside fired branches vs ref's unconditional re-runs) -- branch 1 fires on both (24.50% > 17.7%, worst line 9 disconnected in both, c1 diffs=[]), and skipping a re-run after no state change is idempotent. Query's own '8 Mvar' vs ref -8.0 also logged as an item wording note (errata channel, does not affect this side's label)."
+  },
+  {
+   "i": 28,
+   "pair_id": "E1P-149",
+   "condition": "A_FX",
+   "bench_index": 33,
+   "item_id": "b4d309a6aea8",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow (A twin of i=12). Bit-identical (208.96006007288221)."
+  },
+  {
+   "i": 29,
+   "pair_id": "E1P-150",
+   "condition": "A_FX",
+   "bench_index": 66,
+   "item_id": "78596b4a503e",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical OPF workflow (A twin of i=13) incl. faithful double ext_grid vm overwrite; chained-assignment idiom persisted (c1 diffs=[]). Bit-identical (1.0032714330231185)."
+  },
+  {
+   "i": 30,
+   "pair_id": "E1P-152",
+   "condition": "A_FX",
+   "bench_index": 105,
+   "item_id": "940b6cc994dd",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9"
+   ],
+   "evidence": "Identical workflow (A twin of i=14). Bit-identical (296.62911788390096)."
+  },
+  {
+   "i": 31,
+   "pair_id": "E1P-154",
+   "condition": "A_FX",
+   "bench_index": 563,
+   "item_id": "712a35914b48",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case9",
+    "O-EXT-1"
+   ],
+   "evidence": "Near-identical OPF workflow (A twin of i=15); gen's net.ext_grid.vm_pu = 1.046 is a whole-column write, but case24_ieee_rts has exactly 1 ext_grid (O-EXT-1) so it equals ref's cell write; create_gen positional bus arg identical; both sides add the new gen without a cost entry (same OPF problem). Item note: GT=1.05 bound-pinned. Bit-identical (1.0499999997729068)."
+  },
+  {
+   "i": 32,
+   "pair_id": "E1P-158",
+   "condition": "A_FX",
+   "bench_index": 922,
+   "item_id": "573bfad9a101",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case4",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow (A twin of i=17). Bit-identical (0.7978181079939548)."
+  },
+  {
+   "i": 33,
+   "pair_id": "E1P-160",
+   "condition": "A_FX",
+   "bench_index": 1032,
+   "item_id": "f6bb4bcdfdb7",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case4",
+    "case9"
+   ],
+   "evidence": "Identical sequential workflow (A twin of i=18). Item note: GT=0.982 setpoint-pinned. Bit-identical (0.982)."
+  },
+  {
+   "i": 34,
+   "pair_id": "E1P-161",
+   "condition": "A_FX",
+   "bench_index": 1069,
+   "item_id": "f1e2fbce18b4",
+   "label": "clean",
+   "cases_cited": [
+    "case1",
+    "case8",
+    "case9",
+    "O-EXT-1"
+   ],
+   "evidence": "Identical sequential workflow (A twin of i=19, without the explicit loader kwarg); create_shunt(net, 3, -13.0) positional == (bus=3, q_mvar=-13.0, p_mw default 0.0) per O-EXT-1 signature; conditional branch predicate identical. Bit-identical (0.9581344311069577)."
+  }
+ ]
+}

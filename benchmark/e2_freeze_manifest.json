@@ -1,0 +1,313 @@
+{
+  "manifest": "e2_b2_freeze",
+  "schema_version": "1",
+  "created": "2026-07-25",
+  "revision": "B1prime (2026-07-26) — class-1 re-freeze; see b1prime_refreeze below. The per-artifact hashes under backends.* are the ORIGINAL B2 values; the two bench files were re-frozen by B1prime and their current hashes are recorded there.",
+  "experiment": "E2 cross-backend end-to-end transfer (OpenDSS + PyPSA)",
+  "protocol_authority": "E2_backend_transfer.md (freeze discipline \u00a72.7)",
+  "freeze_declaration": "B2 freeze: the artifacts hashed below (two backends' spec / probes / injection snippets / mini-bench+GT / demand export / three per-model knowledge profiles) are FROZEN as of 2026-07-25. After this point they are not modified and downstream bench results are not edited to change conclusions (plan \u00a70.5 guardrail). Both backends reported regardless of signal strength.",
+  "git_committed": false,
+  "environment": {
+    "python": "3.11.15 (miniforge3 base) / experiment venv (compute nodes, backend libs installed 2026-07-24)",
+    "backend_libs": {
+      "opendssdirect": "0.9.4",
+      "pypsa": "1.2.3"
+    },
+    "gt_generation": "reference_code re-run in isolated subprocess; deterministic; no RNG (SEED is a provenance marker only)",
+    "bench_seed": 20260724,
+    "scalar_matcher": {
+      "rtol": 0.01,
+      "atol": 0.001,
+      "gt_round_digits": 6
+    },
+    "eval_models": {
+      "mid": "Qwen/Qwen2.5-Coder-32B-Instruct (local open-weight, TP=2)",
+      "large": "meta-llama/Llama-3.1-70B-Instruct (local open-weight, TP=2)",
+      "api": "deepseek-v4-flash (hosted API)"
+    }
+  },
+  "backends": {
+    "opendss": {
+      "library": "opendssdirect",
+      "artifacts": {
+        "spec": {
+          "path": "dataset/opendss_docs.json",
+          "bytes": 129800,
+          "sha256": "bc765dc450c459d28d9cbaa8fe5679291facb74de8f82dccf473ee1167e53b0b",
+          "n_functions": 76,
+          "library": "opendssdirect",
+          "naming_convention": "Module_Method (underscore name; full_path keeps dotted accessor)"
+        },
+        "probes": {
+          "path": "probe_eval_results/e2_opendss_artifacts/probes.json",
+          "bytes": 685479,
+          "sha256": "38fb01fb2e067b94e1c99a2001b293270a01ef297d74510093f10cbcbd47ccac",
+          "n_total": 503,
+          "by_layer": {
+            "L0_recognition": 152,
+            "L1_recall": 76,
+            "L2_comprehension": 199,
+            "L3_application": 76
+          }
+        },
+        "injection_snippets": {
+          "path": "probe_eval_results/e2_opendss_artifacts/injection_snippets.json",
+          "bytes": 156921,
+          "sha256": "a40f232b531469ad87d4e3d81f0b33df2200985c8538573d7f51fd7287b99945",
+          "n_total": 304,
+          "by_layer": {
+            "L0": 76,
+            "L1": 76,
+            "L2": 76,
+            "L3": 76
+          }
+        },
+        "bench": {
+          "path": "benchmark/e2_opendss/e2_opendss_bench.json",
+          "bytes": 224088,
+          "sha256": "f240c089e868ef55120766255f41e95f749681fb0826a6abbf0680dc178e5945",
+          "n_items": 90,
+          "families": {
+            "control_device": 18,
+            "fault_analysis": 18,
+            "network_modification": 18,
+            "power_flow_3ph": 18,
+            "result_extraction": 18
+          },
+          "difficulty": {
+            "D1_basic": 45,
+            "D3_semantic": 45
+          },
+          "gt_type": "float",
+          "seed": 20260724
+        },
+        "demand_export": {
+          "path": "task_demand/results/suites/e2_opendss/zero_shot_tfidf/exports/opendss_candidates.json",
+          "bytes": 432240,
+          "sha256": "398679d584cb11c58303057ed4927144e3a6b0572a70d38f03958566a9bdefd1",
+          "n_items": 90,
+          "demand_model": "zero_shot_tfidf",
+          "method": "zero-shot TF-IDF over backend docs (task_demand.ZeroShotTfidfDemandRanker); no (query,function) supervision \u2014 zero eval-label leakage",
+          "provenance": {
+            "run_config": {
+              "path": "task_demand/results/suites/e2_opendss/zero_shot_tfidf/run_config.json",
+              "bytes": 689,
+              "sha256": "c53db5690a0e26284792b35ae1a26bf0d479a7281f0a016d574047a49a8cd853"
+            },
+            "manifest": {
+              "path": "task_demand/results/suites/e2_opendss/zero_shot_tfidf/manifest.json",
+              "bytes": 348,
+              "sha256": "d4f115787aab7bff40831628db7562a7bd86e4652478b49540e9b92999901a53"
+            }
+          }
+        },
+        "knowledge_profiles": {
+          "Qwen/Qwen2.5-Coder-32B-Instruct": {
+            "path": "probe_eval_results/e2_opendss_profiles/Qwen_Qwen2.5-Coder-32B-Instruct/knowledge_profile.json",
+            "bytes": 81254,
+            "sha256": "149dc6e9ddc84dd17752f29c089d044804e36ac84f39008a1e52b7cd92b1ed11",
+            "n_functions": 76,
+            "layers": [
+              "L0",
+              "L1",
+              "L2",
+              "L3"
+            ]
+          },
+          "meta-llama/Llama-3.1-70B-Instruct": {
+            "path": "probe_eval_results/e2_opendss_profiles/meta-llama_Llama-3.1-70B-Instruct/knowledge_profile.json",
+            "bytes": 81260,
+            "sha256": "4c8cbe4ac8a2bd39c9e799da68fdc78521033b0b8149597823223efea2f7ab2c",
+            "n_functions": 76,
+            "layers": [
+              "L0",
+              "L1",
+              "L2",
+              "L3"
+            ]
+          },
+          "deepseek-v4-flash": {
+            "path": "probe_eval_results/e2_opendss_profiles/deepseek-v4-flash/knowledge_profile.json",
+            "bytes": 81222,
+            "sha256": "dacca7f48841511635642f8144cf062591db973d7428cfa3fa01ae77c959aafb",
+            "n_functions": 76,
+            "layers": [
+              "L0",
+              "L1",
+              "L2",
+              "L3"
+            ]
+          }
+        }
+      }
+    },
+    "pypsa": {
+      "library": "pypsa",
+      "artifacts": {
+        "spec": {
+          "path": "dataset/pypsa_docs.json",
+          "bytes": 122613,
+          "sha256": "fd8eec7d670a9f38edb7ba6a0c32fad2d98eca6430d77928d5548a5e63996dde",
+          "n_functions": 67,
+          "library": "pypsa",
+          "naming_convention": "Module_Method (underscore name; full_path keeps dotted accessor)"
+        },
+        "probes": {
+          "path": "probe_eval_results/e2_pypsa_artifacts/probes.json",
+          "bytes": 605052,
+          "sha256": "e2fa6203e5027b9de16f36a6fa9e6ac3ef6d8a01cb0fe23074b5dcd989709cf6",
+          "n_total": 446,
+          "by_layer": {
+            "L0_recognition": 134,
+            "L1_recall": 67,
+            "L2_comprehension": 178,
+            "L3_application": 67
+          }
+        },
+        "injection_snippets": {
+          "path": "probe_eval_results/e2_pypsa_artifacts/injection_snippets.json",
+          "bytes": 142453,
+          "sha256": "b2c7cf80633dff136cf539dca6360e96043cf0985efd88142d529c43413edc48",
+          "n_total": 268,
+          "by_layer": {
+            "L0": 67,
+            "L1": 67,
+            "L2": 67,
+            "L3": 67
+          }
+        },
+        "bench": {
+          "path": "benchmark/e2_pypsa/e2_pypsa_bench.json",
+          "bytes": 218773,
+          "sha256": "aaabf1d490d3709fa1a42c17ee2009417dff51357f07a1cc7fab22ae66aa3efe",
+          "n_items": 90,
+          "families": {
+            "linear_power_flow": 18,
+            "network_modification": 18,
+            "opf": 18,
+            "power_flow": 18,
+            "result_extraction": 18
+          },
+          "difficulty": {
+            "D1_basic": 45,
+            "D3_semantic": 45
+          },
+          "gt_type": "float",
+          "seed": 20260724
+        },
+        "demand_export": {
+          "path": "task_demand/results/suites/e2_pypsa/zero_shot_tfidf/exports/pypsa_candidates.json",
+          "bytes": 427996,
+          "sha256": "1cc04ebbb6534b09cc9633511a781d1209a96d40c26b3337f33c0bb5007dc761",
+          "n_items": 90,
+          "demand_model": "zero_shot_tfidf",
+          "method": "zero-shot TF-IDF over backend docs (task_demand.ZeroShotTfidfDemandRanker); no (query,function) supervision \u2014 zero eval-label leakage",
+          "provenance": {
+            "run_config": {
+              "path": "task_demand/results/suites/e2_pypsa/zero_shot_tfidf/run_config.json",
+              "bytes": 677,
+              "sha256": "5f96e4c281c132a0d4fb0557534208134fd4aa58b63f0b2e36ae67794b81c96a"
+            },
+            "manifest": {
+              "path": "task_demand/results/suites/e2_pypsa/zero_shot_tfidf/manifest.json",
+              "bytes": 340,
+              "sha256": "068a7292c498a18d744606abad779613dd3fbd382e31798cadf841f8fd74df88"
+            }
+          }
+        },
+        "knowledge_profiles": {
+          "Qwen/Qwen2.5-Coder-32B-Instruct": {
+            "path": "probe_eval_results/e2_pypsa_profiles/Qwen_Qwen2.5-Coder-32B-Instruct/knowledge_profile.json",
+            "bytes": 69895,
+            "sha256": "693af25d263c439fc184168cc63c8105dfda2f8f469446d0c8da82139506a7e4",
+            "n_functions": 67,
+            "layers": [
+              "L0",
+              "L1",
+              "L2",
+              "L3"
+            ]
+          },
+          "meta-llama/Llama-3.1-70B-Instruct": {
+            "path": "probe_eval_results/e2_pypsa_profiles/meta-llama_Llama-3.1-70B-Instruct/knowledge_profile.json",
+            "bytes": 69882,
+            "sha256": "e1e48fe06287be556511dae5e513d0161ee7bf024c74c9adb66212a23d803829",
+            "n_functions": 67,
+            "layers": [
+              "L0",
+              "L1",
+              "L2",
+              "L3"
+            ]
+          },
+          "deepseek-v4-flash": {
+            "path": "probe_eval_results/e2_pypsa_profiles/deepseek-v4-flash/knowledge_profile.json",
+            "bytes": 69896,
+            "sha256": "22218f7499c73d63ef5bea975c5f2fab0f5c6cbb89b986275dbd8a22cbe86041",
+            "n_functions": 67,
+            "layers": [
+              "L0",
+              "L1",
+              "L2",
+              "L3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "b1prime_refreeze": {
+    "date": "2026-07-26",
+    "change_class": "class-1 (selection-relevant instrument change) — re-freeze + full A/Rsem/C re-run of both backends",
+    "authority": "Review by two practising power-systems engineers recorded in E2_backend_transfer.md §8 (2026-07-26): D1 diagnosis and B1 repair directive",
+    "defect_repaired": "E2 scenarios are self-built networks whose complete build existed ONLY inside reference_code, while the prompt carried only the NL request — which nonetheless referred to internal element names ('ldb'/'cap1'/'l34'). Ground truth was therefore unreachable in principle: 355/360 condition-C generations invented a substitute network and accuracy sat on a 1.1–5.6% floor (D1 diagnosis; matcher-layer correction rescued 0/202, so the defect is in bench construction, not measurement).",
+    "repair": "Each self-built item gained a 'network_setup_code' field: the library import plus the network-construction block lifted VERBATIM out of its own reference_code. The prompt renderer (utils.render_benchmark_task_text) emits '<pointer clause><frozen request>' followed by the fenced setup block, so the task is self-contained — aligning these items with the pandapower main line, whose prompts name a loadable standard case.",
+    "builder": "scripts/build/b1prime_selfcontain_e2_bench.py (idempotent; presentation layer only)",
+    "items_made_self_contained": {
+      "opendss": "90/90",
+      "pypsa": "89/90 (e2pypsa_fb4adf622717 untouched: PyPSA ac-dc-meshed example is a loadable standard network already named in the query)"
+    },
+    "invariants_held": {
+      "natural_language_query": "byte-identical to B2 for 180/180 items — verified against the natural_language_query recorded in the B2-era frozen condA result files, an independent witness",
+      "reference_code": "byte-identical for 180/180 (same witness + hash assertion inside the builder)",
+      "ground_truth": "identical for 180/180 (same witness); GT never regenerated",
+      "_audit_sensitivity": "untouched — the sensitivity gate is a property of scenario+reference_code, both unchanged",
+      "other_artifacts": "spec / probes / injection snippets / demand export / knowledge profiles NOT re-frozen — none of them is a function of the added field",
+      "demand_export_rationale": "The pointer clause is emitted by the renderer rather than stored in the query precisely so the demand export stays valid: storing it shifted the zero-shot TF-IDF top-10 candidate set on ~100% of items (mean Jaccard 0.56 opendss / 0.68 pypsa), which would have steered condition C's injection with boilerplate tokens AND desynchronised C (frozen export) from Rsem (runtime SBERT over the query). With the clause in the renderer, every selector input — demand export, SBERT retrieval, query-derived layer need — is byte-identical to B2."
+    },
+    "verification": {
+      "self_sufficiency": "For every migrated item, network_setup_code + the reference program's post-build tail was executed in an isolated subprocess and had to reproduce ground_truth: opendss 90/90, pypsa 89/89. This is a forward proof that what the prompt now HANDS the model suffices to reach GT.",
+      "prompt_assembly": "5 sampled items per backend (one per task family) built through the production paths (condition A via build_benchmark_prompt(render_benchmark_task_text), condition C via ProactiveInjector.build_messages): setup block present in both arms, backend import present, every element name referenced by the request resolvable in the setup code (the single exception is 'lnew' in e2pypsa_f0dca0731238, the line the task asks to ADD). Corpus-wide: 90/90 and 89/90 rendered prompts carry the block.",
+      "answer_leak": "None — the setup code is the pre-modification network. D3 items keep their un-named semantic targets ('the weakest node'), which the model must still resolve from the given network; GT still requires solving."
+    },
+    "system_prompt_library_slot": {
+      "defect_found_during_verification": "Condition A built its system prompt from a hard-coded 'You are a Power System Python code generator for the pandapower library', while conditions B/C/X/R/Rsem build theirs from the backend's LibrarySpec. On the E2 backends this told the bare baseline to answer in the WRONG library: 360/360 condition-A generations imported pandapower and 0/360 imported the backend under test, versus 0/360 pandapower in the injected arms.",
+      "consequence": "The B2-run A arm is a wrong-library artifact, so the surviving D1 signal 'exec direction C>A in 4/4 cells' is confounded by the system prompt rather than attributable to injection.",
+      "repair": "utils.SYSTEM_PROMPT_BENCHMARK / SYSTEM_PROMPT_FIX are now templates filled from BENCHMARK_LIBRARY (utils.benchmark_library_name()). Unset — every pandapower run — resolves to 'pandapower' and the prompts are byte-identical to before. The E2 submit scripts set BENCHMARK_LIBRARY=opendssdirect / pypsa, which restores parity with the main line, where the baseline IS told its library.",
+      "reversibility": "policy-reversible without code changes: drop the env var from the submit scripts to restore the previous behaviour. Reviewed by two practising power-systems engineers; this is a second instrument change inside the same re-freeze, made because re-running with a knowingly wrong-library baseline would have burned the re-run."
+    },
+    "bench_hashes_after_b1prime": {
+      "opendss": {
+        "path": "benchmark/e2_opendss/e2_opendss_bench.json",
+        "bytes": 312680,
+        "sha256": "fd5e978fde35a5ec8b4bf19edad47e7f66d3d16e3d44c1153ac03675d48f4080",
+        "sha256_b2": "f240c089e868ef55120766255f41e95f749681fb0826a6abbf0680dc178e5945",
+        "n_items": 90,
+        "n_with_network_setup_code": 90
+      },
+      "pypsa": {
+        "path": "benchmark/e2_pypsa/e2_pypsa_bench.json",
+        "bytes": 294835,
+        "sha256": "49d561b5f47742f31ba76f035e9a163dc2350804a17c6d2f684b7eab2c9fb762",
+        "sha256_b2": "aaabf1d490d3709fa1a42c17ee2009417dff51357f07a1cc7fab22ae66aa3efe",
+        "n_items": 90,
+        "n_with_network_setup_code": 89
+      }
+    },
+    "rerun": {
+      "output_isolation": "probe_eval_results/e2_<backend>_bench_v2/<model>/benchmark_results_cond{A,Rsem,C}.json — the B2-run results under e2_<backend>_bench/ are left intact for the record",
+      "local_jobs": "8 (2 models x 2 backends x {A, Rsem+C}) via scripts/submit/submit_e2_bench.sh",
+      "api_tier": "scripts/submit/submit_e2_deepseek_bench.sh retargeted to the v2 output; still behind the E2_DEEPSEEK_CONFIRM=1 spend gate"
+    }
+  }
+}

@@ -1,0 +1,3272 @@
+[
+ {
+  "id": "l2a_001",
+  "natural_language_query": "I've got a small transmission grid where the neighbouring network is represented by an xward. When I run an AC optimal power flow with bus voltage limits enforced, does the xward bus stay inside the band? Give me the lowest bus voltage in per-unit after the OPF.",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110, min_vm_pu=0.95, max_vm_pu=1.05)\nb2 = pp.create_bus(net, vn_kv=110, min_vm_pu=0.95, max_vm_pu=1.05)\npp.create_ext_grid(net, b1, min_p_mw=-100, max_p_mw=100, min_q_mvar=-100, max_q_mvar=100)\npp.create_line_from_parameters(net, b1, b2, length_km=20, r_ohm_per_km=0.05, x_ohm_per_km=0.3, c_nf_per_km=10, max_i_ka=1.0)\ng = pp.create_gen(net, b2, p_mw=30, min_p_mw=0, max_p_mw=80, min_q_mvar=-40, max_q_mvar=40, vm_pu=1.0, controllable=True)\npp.create_load(net, b2, p_mw=60, q_mvar=20)\npp.create_xward(net, b2, ps_mw=0, qs_mvar=0, pz_mw=0, qz_mvar=0, r_ohm=0.5, x_ohm=5.0, vm_pu=1.02)\npp.create_poly_cost(net, g, 'gen', cp1_eur_per_mw=10.0)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=50.0)\npp.runopp(net)\nprint(round(float(net.res_bus.vm_pu.min()), 5))\n",
+  "ground_truth": 1.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus_xward",
+   "task": "opf",
+   "modifications": [
+    {
+     "op": "add_xward"
+    },
+    {
+     "op": "set_vm_limits"
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "min"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/546",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> built minimal 2-bus net with an xward and voltage limits 0.95-1.05"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 546,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_gen",
+    "create_line_from_parameters",
+    "create_load",
+    "create_poly_cost",
+    "create_xward",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_002",
+  "natural_language_query": "Can you run an AC optimal power flow on the IEEE 14-bus system with generator and voltage limits active and give me the total generation cost it settles on?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\nnet.gen['min_p_mw'] = 0.0; net.gen['max_p_mw'] = 100.0\nnet.gen['min_q_mvar'] = -40.0; net.gen['max_q_mvar'] = 50.0\nnet.gen['controllable'] = True\nnet.ext_grid['min_p_mw'] = -100.0; net.ext_grid['max_p_mw'] = 300.0\nnet.ext_grid['min_q_mvar'] = -100.0; net.ext_grid['max_q_mvar'] = 100.0\nnet.bus['min_vm_pu'] = 0.94; net.bus['max_vm_pu'] = 1.06\nnet.line['max_loading_percent'] = 100.0\nnet.poly_cost = net.poly_cost.drop(net.poly_cost.index)\nfor i in net.gen.index:\n    pp.create_poly_cost(net, i, 'gen', cp1_eur_per_mw=20.0)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=40.0)\npp.runopp(net)\nprint(round(float(net.res_cost), 4))\n",
+  "ground_truth": 3222.4836,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "opf",
+   "modifications": [
+    {
+     "op": "add_costs"
+    },
+    {
+     "op": "set_limits"
+    }
+   ],
+   "query_target": {
+    "table": "res_cost",
+    "qtype": "scalar"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1679",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "case14 has no cost data -> added linear poly_cost to gens/ext_grid and generic limits"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1679,
+   "oracle_functions": [
+    "case14",
+    "create_poly_cost",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_003",
+  "natural_language_query": "I have a 24-hour load profile and I want to run an optimal power flow for every hour on the 9-bus case, then report the total generation cost summed over the whole day.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nnet = pn.case9()\nbase = net.load['p_mw'].copy()\nfactors = 0.6 + 0.6 * np.sin(np.linspace(0, np.pi, 24)) ** 2\ntotal = 0.0\nfor f in factors:\n    net.load['p_mw'] = base * f\n    pp.runopp(net)\n    total += float(net.res_cost)\nprint(round(total, 3))\n",
+  "ground_truth": 111512.957,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "opf_timeseries",
+   "modifications": [
+    {
+     "op": "hourly_load_scaling",
+     "n_steps": 24
+    }
+   ],
+   "query_target": {
+    "table": "res_cost",
+    "qtype": "sum_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2130",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "24-step load-scaling profile synthesised on case9; loop runopp over the steps"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 2130,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_004",
+  "natural_language_query": "I'm driving a time-series study where the loads follow controllers, but instead of a plain power flow I want each step solved as an optimal power flow. On the 9-bus case, what's the highest line loading seen across all the time steps?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np, pandas as pd\nnet = pn.case9()\nsteps = 6\nbase = net.load['p_mw'].values.astype(float)\nprof = pd.DataFrame({i: base[k] * (0.8 + 0.1 * np.arange(steps)) for k, i in enumerate(net.load.index)})\nworst = 0.0\nfor s in range(steps):\n    net.load['p_mw'] = prof.iloc[s].values\n    pp.runopp(net)\n    worst = max(worst, float(net.res_line.loading_percent.max()))\nprint(round(worst, 4))\n",
+  "ground_truth": 65.1891,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "opf_timeseries",
+   "modifications": [
+    {
+     "op": "constcontrol_load"
+    }
+   ],
+   "query_target": {
+    "table": "res_line",
+    "column": "loading_percent",
+    "qtype": "max_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1494",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "ConstControl load profile + runopp used as the per-step solver; network=case9 (unspecified in original)"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1494,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_005",
+  "natural_language_query": "After solving the 9-bus case, I'd like to look at the power-flow Jacobian that the Newton-Raphson used. How many rows does that Jacobian matrix have?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.runpp(net)\nJ = net._ppc['internal']['J']\nprint(int(J.shape[0]))\n",
+  "ground_truth": 14,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "case9",
+   "task": "power_flow",
+   "query_target": {
+    "object": "jacobian",
+    "qtype": "n_rows"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/992",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9 (unspecified); Jacobian read from solved internal ppc"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 992,
+   "oracle_functions": [
+    "case9",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_006",
+  "natural_language_query": "During a time-series optimal power flow I want to log the dispatch cost of each individual time step. Using the 9-bus case over a short horizon, give me the mean per-step dispatch cost.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport numpy as np\nnet = pn.case9()\nbase = net.load['p_mw'].copy()\ncosts = []\nfor f in [0.85, 0.95, 1.0, 1.05, 1.15]:\n    net.load['p_mw'] = base * f\n    pp.runopp(net)\n    costs.append(float(net.res_cost))\nprint(round(float(np.mean(costs)), 3))\n",
+  "ground_truth": 5348.509,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "opf_timeseries",
+   "query_target": {
+    "table": "res_cost",
+    "qtype": "mean_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2134",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "OutputWriter logs res_cost per step; per-step OPF via runopp loop on case9"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 2134,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_007",
+  "natural_language_query": "I want to add an extra linear term to a generator's cost function and see how the optimal objective changes. On the 9-bus case, after bumping generator 1's linear cost coefficient, what's the new total cost from the OPF?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\nmask = (net.poly_cost['et'] == 'gen') & (net.poly_cost['element'] == 1)\nnet.poly_cost.loc[mask, 'cp1_eur_per_mw'] = net.poly_cost.loc[mask, 'cp1_eur_per_mw'] + 15.0\npp.runopp(net)\nprint(round(float(net.res_cost), 4))\n",
+  "ground_truth": 6402.9769,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "opf",
+   "modifications": [
+    {
+     "op": "increase_gen1_cost"
+    }
+   ],
+   "query_target": {
+    "table": "res_cost",
+    "qtype": "scalar"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2141",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; modify existing poly_cost linear coefficient of gen 1"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 2141,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_008",
+  "natural_language_query": "Is there a clean way to tell from a script whether an optimal power flow actually converged? Run the OPF on the 9-bus case and just give me back the converged flag.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.runopp(net)\nprint(bool(net['OPF_converged']))\n",
+  "ground_truth": true,
+  "ground_truth_type": "bool",
+  "scenario": {
+   "network": "case9",
+   "task": "opf",
+   "query_target": {
+    "object": "OPF_converged",
+    "qtype": "bool"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1283",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; read net.OPF_converged after runopp"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1283,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_009",
+  "natural_language_query": "I need to call the OPF for a sequence of operating points rather than just once. For the 9-bus case swept across a handful of load levels, how many of those points converge to an optimal solution?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\nbase = net.load['p_mw'].copy()\nn_ok = 0\nfor f in [0.7, 0.85, 1.0, 1.15, 1.3]:\n    net.load['p_mw'] = base * f\n    try:\n        pp.runopp(net)\n        n_ok += int(bool(net['OPF_converged']))\n    except Exception:\n        pass\nprint(int(n_ok))\n",
+  "ground_truth": 5,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "case9",
+   "task": "opf_sweep",
+   "query_target": {
+    "object": "n_converged",
+    "qtype": "count"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/854",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; loop runopp over 5 load levels, count converged"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 854,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_010",
+  "natural_language_query": "I'd like to add a battery to a small grid and let an optimal power flow decide its charge/discharge. After adding a storage unit with power limits and running the OPF, what active power does the storage end up at?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.95, max_vm_pu=1.05)\nb2 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.95, max_vm_pu=1.05)\npp.create_ext_grid(net, b1, min_p_mw=-50, max_p_mw=50, min_q_mvar=-50, max_q_mvar=50)\npp.create_line_from_parameters(net, b1, b2, length_km=5, r_ohm_per_km=0.1, x_ohm_per_km=0.1, c_nf_per_km=0, max_i_ka=1.0)\npp.create_load(net, b2, p_mw=10, q_mvar=2)\ns = pp.create_storage(net, b2, p_mw=0.0, max_e_mwh=5.0, min_p_mw=-5.0, max_p_mw=5.0, min_q_mvar=-5.0, max_q_mvar=5.0, controllable=True)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=60.0)\npp.create_poly_cost(net, s, 'storage', cp1_eur_per_mw=5.0)\npp.runopp(net)\nprint(round(float(net.res_storage.p_mw.at[s]), 4))\n",
+  "ground_truth": -5.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus_storage",
+   "task": "opf",
+   "modifications": [
+    {
+     "op": "add_storage"
+    }
+   ],
+   "query_target": {
+    "table": "res_storage",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/61",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal 2-bus net with gen, load, storage, costs"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 61,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_poly_cost",
+    "create_storage",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_011",
+  "natural_language_query": "I'm modelling a corridor with a controllable DC line and I want the optimal power flow to set its transfer. After running the OPF, how much active power flows into the DC line from the sending end?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110, min_vm_pu=0.95, max_vm_pu=1.05)\nb2 = pp.create_bus(net, vn_kv=110, min_vm_pu=0.95, max_vm_pu=1.05)\npp.create_ext_grid(net, b1, min_p_mw=-200, max_p_mw=200, min_q_mvar=-100, max_q_mvar=100)\ng = pp.create_gen(net, b2, p_mw=20, min_p_mw=0, max_p_mw=100, min_q_mvar=-50, max_q_mvar=50, vm_pu=1.0, controllable=True)\npp.create_load(net, b2, p_mw=80, q_mvar=20)\npp.create_dcline(net, b1, b2, p_mw=30, loss_percent=1.0, loss_mw=0.5, vm_from_pu=1.0, vm_to_pu=1.0, min_p_mw=0, max_p_mw=100)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=20.0)\npp.create_poly_cost(net, g, 'gen', cp1_eur_per_mw=80.0)\npp.runopp(net)\nprint(round(float(net.res_dcline.p_from_mw.at[0]), 4))\n",
+  "ground_truth": 0.5,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_dcline",
+   "task": "opf",
+   "query_target": {
+    "table": "res_dcline",
+    "column": "p_from_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/838",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal net with a dcline between two AC islands, OPF costs"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 838,
+   "oracle_functions": [
+    "create_bus",
+    "create_dcline",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_gen",
+    "create_load",
+    "create_poly_cost",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_012",
+  "natural_language_query": "I've got a couple of static generators (sgens) that I want to make dispatchable in an OPF by giving them a cost. After marking them controllable with a linear cost and running the optimal power flow, what total active power do the sgens provide?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.95, max_vm_pu=1.05)\nb2 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.95, max_vm_pu=1.05)\npp.create_ext_grid(net, b1, min_p_mw=-50, max_p_mw=50, min_q_mvar=-50, max_q_mvar=50)\npp.create_line_from_parameters(net, b1, b2, length_km=3, r_ohm_per_km=0.1, x_ohm_per_km=0.1, c_nf_per_km=0, max_i_ka=1.0)\npp.create_load(net, b2, p_mw=15, q_mvar=3)\ns1 = pp.create_sgen(net, b2, p_mw=5, min_p_mw=0, max_p_mw=10, min_q_mvar=-5, max_q_mvar=5, controllable=True)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=70.0)\npp.create_poly_cost(net, s1, 'sgen', cp1_eur_per_mw=10.0)\npp.runopp(net)\nprint(round(float(net.res_sgen.p_mw.sum()), 4))\n",
+  "ground_truth": 10.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_sgen_opf",
+   "task": "opf",
+   "query_target": {
+    "table": "res_sgen",
+    "column": "p_mw",
+    "qtype": "sum"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1361",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal net; make sgens controllable with poly_cost"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1361,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_poly_cost",
+    "create_sgen",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_013",
+  "natural_language_query": "In an OPF, does the external grid still hold the voltage set-point I gave it, or is it free to move within its limits? On the 9-bus case, what voltage does the ext_grid bus come out at after the optimal power flow?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.runopp(net)\neg_bus = int(net.ext_grid.bus.iloc[0])\nprint(round(float(net.res_bus.vm_pu.at[eg_bus]), 5))\n",
+  "ground_truth": 1.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "opf",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "ext_grid_bus"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1184",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; read ext_grid bus vm_pu after runopp"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1184,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_014",
+  "natural_language_query": "How do I attach a polynomial cost to a generator and have the OPF minimise it? For the 9-bus case, once costs are defined, what active power does generator 1 dispatch at the optimum?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.runopp(net)\nprint(round(float(net.res_gen.p_mw.at[1]), 4))\n",
+  "ground_truth": 94.3266,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "opf",
+   "query_target": {
+    "table": "res_gen",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/211",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9 (already carries poly costs); read gen 1 dispatch after runopp"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 211,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_015",
+  "natural_language_query": "When I run an OPF, how are the active-power limits on the external grid respected versus the generators? On the 9-bus case, give me the external grid's active power at the optimum.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.runopp(net)\nprint(round(float(net.res_ext_grid.p_mw.at[0]), 4))\n",
+  "ground_truth": 90.1203,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "opf",
+   "query_target": {
+    "table": "res_ext_grid",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/511",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; read ext_grid dispatch after runopp"
+   ],
+   "original_theme": "opf",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 511,
+   "oracle_functions": [
+    "case9",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_016",
+  "natural_language_query": "I'm working with the built-in 33-bus distribution case (case33bw) and I want to feed it from a 110 kV source through a transformer instead of the slack sitting directly on bus 0. After adding the HV source and a 110/12.66 kV transformer and running power flow, what loading does that transformer come out at?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case33bw()\nnet.ext_grid.at[net.ext_grid.index[0], 'in_service'] = False\nhv = pp.create_bus(net, vn_kv=110, name='HV source')\npp.create_ext_grid(net, hv, vm_pu=1.0)\nt = pp.create_transformer_from_parameters(net, hv_bus=hv, lv_bus=0, sn_mva=10,\n        vn_hv_kv=110, vn_lv_kv=12.66, vkr_percent=0.5, vk_percent=10, pfe_kw=14, i0_percent=0.1)\npp.runpp(net)\nprint(round(float(net.res_trafo.loading_percent.at[t]), 4))\n",
+  "ground_truth": 47.7388,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case33bw",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "add_transformer"
+    },
+    {
+     "op": "reroute_slack"
+    }
+   ],
+   "query_target": {
+    "table": "res_trafo",
+    "column": "loading_percent",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2531",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "original ext_grid on bus 0 set out of service; added HV bus + ext_grid + transformer_from_parameters"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 2531,
+   "oracle_functions": [
+    "case33bw",
+    "create_bus",
+    "create_ext_grid",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_017",
+  "natural_language_query": "I want to stitch a transmission-level network and a distribution-level network together into a single pandapower model (a DSO/TSO setup). After merging the two, how many buses does the combined network have?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\ntso = pn.case9()\ndso = pn.case30()\ncombined = pp.merge_nets(tso, dso, std_prio_on_net1=True)\nprint(int(len(combined.bus)))\n",
+  "ground_truth": 39,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "merge(case9, case30)",
+   "task": "network_merge",
+   "query_target": {
+    "table": "bus",
+    "qtype": "count"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2352",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "networks unspecified -> case9 (transmission) + case30 (distribution-level) as the two merge inputs; std_prio_on_net1 to keep net1 std types"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 2352,
+   "oracle_functions": [
+    "case30",
+    "case9"
+   ]
+  }
+ },
+ {
+  "id": "l2a_018",
+  "natural_language_query": "Is there an easy way to merge several separate pandapower networks into one? I've got three of them and I'd like the total number of lines in the merged network.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nm = pp.merge_nets(pn.case9(), pn.case9(), std_prio_on_net1=True)\nm = pp.merge_nets(m, pn.case30(), std_prio_on_net1=True)\nprint(int(len(m.line)))\n",
+  "ground_truth": 59,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "merge(case9, case9, case30)",
+   "task": "network_merge",
+   "query_target": {
+    "table": "line",
+    "qtype": "count"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/442",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "networks unspecified -> chained merge of case9 + case9 + case30; std_prio_on_net1 to keep net1 std types"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 442,
+   "oracle_functions": [
+    "case30",
+    "case9"
+   ]
+  }
+ },
+ {
+  "id": "l2a_019",
+  "natural_language_query": "I have a simple grid with a single generator and I want to make sure it never dispatches beyond its rated active-power limit. If I cap the generator and let an optimal power flow decide, what active power does it end up producing?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.95, max_vm_pu=1.05)\nb2 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.95, max_vm_pu=1.05)\npp.create_ext_grid(net, b1, min_p_mw=-50, max_p_mw=50, min_q_mvar=-50, max_q_mvar=50)\npp.create_line_from_parameters(net, b1, b2, length_km=2, r_ohm_per_km=0.1, x_ohm_per_km=0.1, c_nf_per_km=0, max_i_ka=1.0)\ng = pp.create_gen(net, b2, p_mw=30, min_p_mw=0, max_p_mw=5, min_q_mvar=-10, max_q_mvar=10, vm_pu=1.0, controllable=True)\npp.create_load(net, b2, p_mw=20, q_mvar=4)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=80.0)\npp.create_poly_cost(net, g, 'gen', cp1_eur_per_mw=5.0)\npp.runopp(net)\nprint(round(float(net.res_gen.p_mw.at[g]), 4))\n",
+  "ground_truth": 5.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus",
+   "task": "opf",
+   "modifications": [
+    {
+     "op": "cap_gen"
+    }
+   ],
+   "query_target": {
+    "table": "res_gen",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/927",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal 2-bus net; gen capped at max_p_mw and made controllable, ext_grid backs up"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 927,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_gen",
+    "create_line_from_parameters",
+    "create_load",
+    "create_poly_cost",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_020",
+  "natural_language_query": "Is it possible to model part of a grid in DC and tie it back to the AC side? I'd like a DC link built from voltage-source converters and a DC line between two AC areas. After the power flow, what's the lowest DC-bus voltage in per-unit?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 5, 0.1, 0.3, 10, 1)\nbd1 = pp.create_bus_dc(net, vn_kv=110); bd2 = pp.create_bus_dc(net, vn_kv=110)\npp.create_vsc(net, b2, bd1, r_ohm=0.1, x_ohm=5, r_dc_ohm=0.1, control_mode_ac='vm_pu', control_value_ac=1.0, control_mode_dc='vm_pu', control_value_dc=1.0)\npp.create_line_dc_from_parameters(net, bd1, bd2, length_km=50, r_ohm_per_km=0.05, max_i_ka=2)\nb3 = pp.create_bus(net, vn_kv=110)\npp.create_vsc(net, b3, bd2, r_ohm=0.1, x_ohm=5, r_dc_ohm=0.1, control_mode_ac='slack', control_value_ac=1.0, control_mode_dc='p_mw', control_value_dc=10)\npp.create_load(net, b3, p_mw=8)\npp.runpp(net)\nprint(round(float(net.res_bus_dc.vm_pu.min()), 4))\n",
+  "ground_truth": 0.9983,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_ac_dc",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_bus_dc",
+    "column": "vm_pu",
+    "qtype": "min"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/929",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> two AC areas bridged by two VSCs and a DC line"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 929,
+   "oracle_functions": [
+    "create_bus",
+    "create_bus_dc",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_dc_from_parameters",
+    "create_line_from_parameters",
+    "create_load",
+    "create_vsc",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_021",
+  "natural_language_query": "If I split a network into two islands by opening the tie between them, can I run a DC power flow on each island separately? I want the line loading on the first line of each island added together.",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb = [pp.create_bus(net, vn_kv=110) for _ in range(6)]\npp.create_ext_grid(net, b[0]); pp.create_ext_grid(net, b[3])\npp.create_line_from_parameters(net, b[0], b[1], 10, 0.05, 0.2, 0, 1)\npp.create_line_from_parameters(net, b[1], b[2], 10, 0.05, 0.2, 0, 1)\npp.create_line_from_parameters(net, b[3], b[4], 10, 0.05, 0.2, 0, 1)\npp.create_line_from_parameters(net, b[4], b[5], 10, 0.05, 0.2, 0, 1)\npp.create_line_from_parameters(net, b[2], b[3], 10, 0.05, 0.2, 0, 1)  # tie\npp.create_load(net, b[2], p_mw=30); pp.create_load(net, b[5], p_mw=25)\nsub1 = pp.select_subnet(net, buses=[b[0], b[1], b[2]])\nsub2 = pp.select_subnet(net, buses=[b[3], b[4], b[5]])\npp.rundcpp(sub1); pp.rundcpp(sub2)\nprint(round(float(sub1.res_line.loading_percent.iloc[0]) + float(sub2.res_line.loading_percent.iloc[0]), 4))\n",
+  "ground_truth": 28.8675,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_6bus_2island",
+   "task": "dc_power_flow_split",
+   "query_target": {
+    "table": "res_line",
+    "column": "loading_percent",
+    "qtype": "sum_two_islands"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1342",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 6-bus net with two ext_grids and a tie line; tie opened, each island extracted with select_subnet and solved with rundcpp"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1342,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "rundcpp",
+    "select_subnet"
+   ]
+  }
+ },
+ {
+  "id": "l2a_022",
+  "natural_language_query": "My network has two transformers and I only want the tap changer on one of them to regulate voltage during the power flow, leaving the other fixed. After the controlled run, what tap position does the regulated transformer settle on?",
+  "reference_code": "import pandapower as pp\nfrom pandapower.control import ContinuousTapControl\nnet = pp.create_empty_network()\nhv = pp.create_bus(net, vn_kv=110); mv1 = pp.create_bus(net, vn_kv=20); mv2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, hv)\nt1 = pp.create_transformer_from_parameters(net, hv, mv1, sn_mva=25, vn_hv_kv=110, vn_lv_kv=20, vkr_percent=0.5, vk_percent=12, pfe_kw=20, i0_percent=0.1, tap_side='hv', tap_neutral=0, tap_min=-9, tap_max=9, tap_step_percent=1.5, tap_pos=0)\nt2 = pp.create_transformer_from_parameters(net, hv, mv2, sn_mva=25, vn_hv_kv=110, vn_lv_kv=20, vkr_percent=0.5, vk_percent=12, pfe_kw=20, i0_percent=0.1, tap_side='hv', tap_neutral=0, tap_min=-9, tap_max=9, tap_step_percent=1.5, tap_pos=0)\npp.create_load(net, mv1, p_mw=15, q_mvar=4); pp.create_load(net, mv2, p_mw=15, q_mvar=4)\nContinuousTapControl(net, t1, vm_set_pu=1.02, side='lv')\npp.runpp(net, run_control=True)\nprint(round(float(net.trafo.tap_pos.at[t1]), 4))\n",
+  "ground_truth": -9.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_two_trafo",
+   "task": "power_flow_control",
+   "query_target": {
+    "table": "trafo",
+    "column": "tap_pos",
+    "qtype": "controlled_trafo"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1134",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> HV source feeding two parallel 110/20 kV trafos; ContinuousTapControl on one only"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1134,
+   "oracle_functions": [
+    "ContinuousTapControl",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_load",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_023",
+  "natural_language_query": "I'd like the transformer tap changer to hold the voltage on a busbar further down the feeder, not right at the transformer. After letting the tap regulate to a 1.0 pu set-point on the transformer's low side, what voltage does the downstream busbar end up at?",
+  "reference_code": "import pandapower as pp\nfrom pandapower.control import ContinuousTapControl\nnet = pp.create_empty_network()\nb0 = pp.create_bus(net, vn_kv=110); ba = pp.create_bus(net, vn_kv=20); bb = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b0)\nt = pp.create_transformer_from_parameters(net, b0, ba, sn_mva=25, vn_hv_kv=110, vn_lv_kv=20, vkr_percent=0.5, vk_percent=12, pfe_kw=20, i0_percent=0.1, tap_side='hv', tap_neutral=0, tap_min=-9, tap_max=9, tap_step_percent=1.5, tap_pos=0)\npp.create_line_from_parameters(net, ba, bb, 6, 0.3, 0.4, 0, 0.4)\npp.create_load(net, bb, p_mw=8, q_mvar=2)\nContinuousTapControl(net, t, vm_set_pu=1.0, side='lv')\npp.runpp(net, run_control=True)\nprint(round(float(net.res_bus.vm_pu.at[bb]), 4))\n",
+  "ground_truth": 0.9331,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder",
+   "task": "power_flow_control",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "far_bus"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/993",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> HV->trafo->busA->line->busB feeder; ContinuousTapControl regulates trafo lv, downstream busB read out"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 993,
+   "oracle_functions": [
+    "ContinuousTapControl",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_024",
+  "natural_language_query": "I've got voltage-drop problems along a loaded feeder and want to use the transformer's tap changer to bring the voltages back up. After the tap regulates, what's the lowest bus voltage anywhere on the feeder?",
+  "reference_code": "import pandapower as pp\nfrom pandapower.control import ContinuousTapControl\nnet = pp.create_empty_network()\nb0 = pp.create_bus(net, vn_kv=110)\nbuses = [pp.create_bus(net, vn_kv=20) for _ in range(4)]\npp.create_ext_grid(net, b0)\nt = pp.create_transformer_from_parameters(net, b0, buses[0], sn_mva=25, vn_hv_kv=110, vn_lv_kv=20, vkr_percent=0.5, vk_percent=12, pfe_kw=20, i0_percent=0.1, tap_side='hv', tap_neutral=0, tap_min=-9, tap_max=9, tap_step_percent=1.5, tap_pos=0)\nfor k in range(3):\n    pp.create_line_from_parameters(net, buses[k], buses[k+1], 4, 0.32, 0.4, 0, 0.35)\n    pp.create_load(net, buses[k+1], p_mw=5, q_mvar=1.5)\nContinuousTapControl(net, t, vm_set_pu=1.02, side='lv')\npp.runpp(net, run_control=True)\nprint(round(float(net.res_bus.vm_pu.min()), 4))\n",
+  "ground_truth": 0.7923,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_long_feeder",
+   "task": "power_flow_control",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "min"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/973",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> HV->trafo->3-hop loaded feeder; ContinuousTapControl on trafo; report min feeder vm"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 973,
+   "oracle_functions": [
+    "ContinuousTapControl",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_025",
+  "natural_language_query": "How do I hook a generator up to a bus that already exists in my network? After connecting it and running the power flow, what's the voltage at that generator's bus?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 3, 0.2, 0.2, 0, 0.4)\npp.create_load(net, b2, p_mw=6, q_mvar=2)\ng = pp.create_gen(net, b2, p_mw=3, vm_pu=1.02)\npp.runpp(net)\nprint(round(float(net.res_bus.vm_pu.at[b2]), 4))\n",
+  "ground_truth": 1.02,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "add_gen"
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "gen_bus"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/868",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal 2-bus net; create_gen on the existing second bus"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 868,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_gen",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_026",
+  "natural_language_query": "I'm modelling the French extra-high-voltage transmission grid and need to trim it down by removing a set of buses. Starting from the 1354-bus PEGASE case, if I drop buses 100 through 109, how many buses are left?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case1354pegase()\ntargets = [b for b in range(100, 110) if b in net.bus.index]\npp.drop_buses(net, targets)\nprint(int(len(net.bus)))\n",
+  "ground_truth": 1344,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "case1354pegase",
+   "task": "network_modify",
+   "modifications": [
+    {
+     "op": "drop_buses",
+     "range": [
+      100,
+      109
+     ]
+    }
+   ],
+   "query_target": {
+    "table": "bus",
+    "qtype": "count"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/567",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "'French EHV grid' mapped to built-in case1354pegase (PEGASE, France region); drop_buses on a fixed range"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 567,
+   "oracle_functions": [
+    "case1354pegase",
+    "drop_buses"
+   ]
+  }
+ },
+ {
+  "id": "l2a_027",
+  "natural_language_query": "How do I create a transformer from its explicit resistance, reactance and susceptance data rather than a standard type? After building one from parameters and running the power flow, what's its loading?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nhv = pp.create_bus(net, vn_kv=110); lv = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, hv)\nt = pp.create_transformer_from_parameters(net, hv, lv, sn_mva=25, vn_hv_kv=110, vn_lv_kv=20, vkr_percent=0.41, vk_percent=12.0, pfe_kw=14.0, i0_percent=0.07)\npp.create_load(net, lv, p_mw=18, q_mvar=6)\npp.runpp(net)\nprint(round(float(net.res_trafo.loading_percent.at[t]), 4))\n",
+  "ground_truth": 78.8697,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_hv_mv",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_trafo",
+    "column": "loading_percent",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/946",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal HV/MV net; transformer_from_parameters encodes R (vkr), Z (vk), magnetising (i0/pfe)"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 946,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_load",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_028",
+  "natural_language_query": "When I create a transformer I want to account for its ohmic (copper and iron) losses. After building a transformer with those losses set and running the power flow, how much active power does it lose?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nhv = pp.create_bus(net, vn_kv=110); lv = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, hv)\nt = pp.create_transformer_from_parameters(net, hv, lv, sn_mva=25, vn_hv_kv=110, vn_lv_kv=20, vkr_percent=0.6, vk_percent=12.0, pfe_kw=30.0, i0_percent=0.1)\npp.create_load(net, lv, p_mw=20, q_mvar=6)\npp.runpp(net)\nprint(round(float(net.res_trafo.pl_mw.at[t]), 5))\n",
+  "ground_truth": 0.14239,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_hv_mv",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_trafo",
+    "column": "pl_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/965",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal HV/MV net; losses via vkr_percent (copper) and pfe_kw (iron)"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 965,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_load",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_029",
+  "natural_language_query": "I have two busbars joined by a closed bus-bus switch and I'd like the load-flow current through that switch. With a small impedance on the switch so a current is defined, what current does the power flow report through it?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb = [pp.create_bus(net, vn_kv=20) for _ in range(3)]\npp.create_ext_grid(net, b[0])\npp.create_line_from_parameters(net, b[0], b[1], 1, 0.1, 0.1, 0, 1)\npp.create_switch(net, b[1], b[2], et='b', closed=True, z_ohm=0.01)\npp.create_load(net, b[2], p_mw=5, q_mvar=1)\npp.runpp(net)\nprint(round(float(net.res_switch.i_ka.iloc[0]), 5))\n",
+  "ground_truth": 0.14744,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_3bus_switch",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_switch",
+    "column": "i_ka",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/2538",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus net, closed bus-bus switch with z_ohm so res_switch current is defined"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_discussion",
+   "source_number": 2538,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_switch",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_030",
+  "natural_language_query": "I'm struggling to specify the parameters for a DC line. Once I set it up between two buses with a given loss percentage and fixed loss, and run the power flow, how much active power actually arrives at the receiving end?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_ext_grid(net, b2)\npp.create_load(net, b2, p_mw=40, q_mvar=10)\npp.create_dcline(net, b1, b2, p_mw=30, loss_percent=2.0, loss_mw=0.5, vm_from_pu=1.0, vm_to_pu=1.0)\npp.runpp(net)\nprint(round(float(net.res_dcline.p_to_mw.at[0]), 4))\n",
+  "ground_truth": -28.9,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2island_dcline",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_dcline",
+    "column": "p_to_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2287",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> two AC islands (each with a slack) tied only by a dcline; loss_percent + loss_mw; report delivered p_to_mw"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 2287,
+   "oracle_functions": [
+    "create_bus",
+    "create_dcline",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_031",
+  "natural_language_query": "I want to set the voltage angle at the external grid slack and have the power flow honour it. If I give the ext_grid a 5-degree angle and solve with voltage angles enabled, what angle does the neighbouring load bus come out at?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1, va_degree=5.0)\npp.create_line_from_parameters(net, b1, b2, 15, 0.06, 0.2, 10, 1)\npp.create_load(net, b2, p_mw=25, q_mvar=8)\npp.runpp(net, calculate_voltage_angles=True)\nprint(round(float(net.res_bus.va_degree.at[b2]), 4))\n",
+  "ground_truth": 4.6765,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "set_extgrid_angle",
+     "value": 5.0
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "va_degree",
+    "qtype": "load_bus"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1590",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 2-bus net; ext_grid va_degree set, calculate_voltage_angles=True"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1590,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_032",
+  "natural_language_query": "I'm modelling a substation with multiple busbars connected by switches and I need those switches to carry a small impedance (z_ohm) rather than being ideal. After the power flow, what's the voltage difference across the impedant coupler switch?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nbbar1 = pp.create_bus(net, vn_kv=110); bbar2 = pp.create_bus(net, vn_kv=110)\nfeed = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, feed)\npp.create_line_from_parameters(net, feed, bbar1, 8, 0.05, 0.2, 10, 1)\npp.create_switch(net, bbar1, bbar2, et='b', closed=True, z_ohm=0.05)\npp.create_load(net, bbar2, p_mw=40, q_mvar=10)\npp.runpp(net)\ndv = abs(float(net.res_bus.vm_pu.at[bbar1]) - float(net.res_bus.vm_pu.at[bbar2]))\nprint(round(dv, 6))\n",
+  "ground_truth": 0.000167,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_substation",
+   "task": "power_flow",
+   "query_target": {
+    "object": "voltage_diff_across_switch",
+    "qtype": "abs_diff"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/259",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> double-busbar substation; coupler bus-bus switch with z_ohm; report |dV| across it"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 259,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_switch",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_033",
+  "natural_language_query": "Can I remove buses from an already-built network? Taking the 30-bus case and deleting a leaf bus together with whatever hangs off it, how many lines remain afterwards?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case30()\npp.drop_buses(net, [29])\nprint(int(len(net.line)))\n",
+  "ground_truth": 39,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "case30",
+   "task": "network_modify",
+   "modifications": [
+    {
+     "op": "drop_buses",
+     "buses": [
+      29
+     ]
+    }
+   ],
+   "query_target": {
+    "table": "line",
+    "qtype": "count"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/721",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case30; drop a leaf bus (29) and its incident elements via drop_buses"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 721,
+   "oracle_functions": [
+    "case30",
+    "drop_buses"
+   ]
+  }
+ },
+ {
+  "id": "l2a_034",
+  "natural_language_query": "How do I put a phase-shifting transformer into a simple network? I want a transformer with a 30-degree phase shift in a small loop. After the power flow, how much active power flows through the phase shifter on its HV side?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110); b3 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 30, 0.1, 0.4, 10, 1)\npp.create_transformer_from_parameters(net, b2, b3, sn_mva=100, vn_hv_kv=110, vn_lv_kv=110, vkr_percent=0.3, vk_percent=12, pfe_kw=20, i0_percent=0.1, shift_degree=15)\npp.create_line_from_parameters(net, b1, b3, 30, 0.1, 0.4, 10, 1)\npp.create_load(net, b3, p_mw=20, q_mvar=5)\npp.runpp(net)\nprint(round(float(net.res_trafo.p_hv_mw.iloc[0]), 4))\n",
+  "ground_truth": -72.2807,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_loop_pst",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_trafo",
+    "column": "p_hv_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/2503",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus loop where one branch is a 30-degree phase-shifting transformer"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_discussion",
+   "source_number": 2503,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_035",
+  "natural_language_query": "What does the scaling factor on a generator actually do to the power flow? If I create a generator at 10 MW but give it a scaling of 0.5, what active power does it end up injecting?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 2, 0.1, 0.1, 0, 1)\npp.create_load(net, b2, p_mw=12, q_mvar=3)\ng = pp.create_gen(net, b2, p_mw=10, vm_pu=1.0, scaling=0.5)\npp.runpp(net)\nprint(round(float(net.res_gen.p_mw.at[g]), 4))\n",
+  "ground_truth": 5.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "gen_scaling",
+     "value": 0.5
+    }
+   ],
+   "query_target": {
+    "table": "res_gen",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/257",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal 2-bus net; create_gen with scaling=0.5"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 257,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_gen",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_036",
+  "natural_language_query": "Instead of an external grid, I want a generator to act as the slack for my network. If I mark a generator as the slack and run the power flow, what active power does it supply?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\ng = pp.create_gen(net, b1, p_mw=0, vm_pu=1.02, slack=True)\npp.create_line_from_parameters(net, b1, b2, 2, 0.1, 0.1, 0, 1)\npp.create_load(net, b2, p_mw=10, q_mvar=3)\npp.runpp(net)\nprint(round(float(net.res_gen.p_mw.at[g]), 4))\n",
+  "ground_truth": 10.053,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_gen",
+    "column": "p_mw",
+    "qtype": "slack_gen"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/1684",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal 2-bus net; single gen with slack=True, no ext_grid"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_discussion",
+   "source_number": 1684,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_gen",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_037",
+  "natural_language_query": "How does slack_weight distribute the slack among generators? With two generators carrying slack weights of 1 and 2 and a distributed-slack power flow, what active power does the first generator end up supplying?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110); b3 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 10, 0.05, 0.2, 10, 1)\npp.create_line_from_parameters(net, b2, b3, 10, 0.05, 0.2, 10, 1)\ng1 = pp.create_gen(net, b2, p_mw=20, vm_pu=1.0, slack_weight=1.0)\ng2 = pp.create_gen(net, b3, p_mw=20, vm_pu=1.0, slack_weight=2.0)\npp.create_load(net, b3, p_mw=60, q_mvar=10)\npp.runpp(net, distributed_slack=True)\nprint(round(float(net.res_gen.p_mw.at[g1]), 4))\n",
+  "ground_truth": 25.0102,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_3bus",
+   "task": "power_flow_distributed_slack",
+   "query_target": {
+    "table": "res_gen",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1523",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus net; two gens with slack_weight 1 and 2; runpp(distributed_slack=True)"
+   ],
+   "original_theme": "network_build_modify",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1523,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_gen",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_038",
+  "natural_language_query": "On the IEEE European low-voltage test feeder I want to tighten the voltage band and then see how low the bus voltages actually get from an unbalanced power flow. What's the minimum per-phase bus voltage?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.ieee_european_lv_asymmetric()\nnet.bus['min_vm_pu'] = 0.95; net.bus['max_vm_pu'] = 1.05\npp.runpp_3ph(net)\nmn = min(float(net.res_bus_3ph.vm_a_pu.min()), float(net.res_bus_3ph.vm_b_pu.min()), float(net.res_bus_3ph.vm_c_pu.min()))\nprint(round(mn, 4))\n",
+  "ground_truth": 0.9962,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "ieee_european_lv_asymmetric",
+   "task": "three_phase_power_flow",
+   "modifications": [
+    {
+     "op": "set_vm_limits"
+    }
+   ],
+   "query_target": {
+    "table": "res_bus_3ph",
+    "column": "vm_pu",
+    "qtype": "min_over_phases"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1612",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=ieee_european_lv_asymmetric (built-in); vm limits tightened; solved with runpp_3ph"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1612,
+   "oracle_functions": [
+    "ieee_european_lv_asymmetric",
+    "runpp_3ph"
+   ]
+  }
+ },
+ {
+  "id": "l2a_039",
+  "natural_language_query": "In a network with a handful of buses, how do I pull the result for just one specific bus after the power flow? Give me the voltage at bus 5 of the 14-bus case.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\npp.runpp(net)\nprint(round(float(net.res_bus.vm_pu.at[5]), 5))\n",
+  "ground_truth": 1.07,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1133",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "'network with ten buses' generalised to case14; read a single bus result"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1133,
+   "oracle_functions": [
+    "case14",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_040",
+  "natural_language_query": "How do I find the maximum power flowing through any branch in my network? On the 14-bus case after the power flow, what's the largest active power on any line (sending end)?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\npp.runpp(net)\nprint(round(float(net.res_line.p_from_mw.abs().max()), 4))\n",
+  "ground_truth": 156.8829,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_line",
+    "column": "p_from_mw",
+    "qtype": "max_abs"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/2475",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; max over line p_from_mw magnitudes"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_discussion",
+   "source_number": 2475,
+   "oracle_functions": [
+    "case14",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_041",
+  "natural_language_query": "How can I tell which way the current is flowing on a line after the power flow? For line 0 of the 9-bus case, give me the signed active power at the from-end so I can read off the direction.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.runpp(net)\nprint(round(float(net.res_line.p_from_mw.at[0]), 4))\n",
+  "ground_truth": 71.9547,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_line",
+    "column": "p_from_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/1407",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; sign of res_line.p_from_mw encodes flow direction"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_discussion",
+   "source_number": 1407,
+   "oracle_functions": [
+    "case9",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_042",
+  "natural_language_query": "Can pandapower handle a network with more than one slack bus? If I put two external grids on separate buses and run the power flow, what active power does the first external grid supply?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110); b3 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1, vm_pu=1.02); pp.create_ext_grid(net, b3, vm_pu=1.0)\npp.create_line_from_parameters(net, b1, b2, 10, 0.05, 0.2, 10, 1)\npp.create_line_from_parameters(net, b2, b3, 10, 0.05, 0.2, 10, 1)\npp.create_load(net, b2, p_mw=40, q_mvar=10)\npp.runpp(net)\nprint(round(float(net.res_ext_grid.p_mw.at[0]), 4))\n",
+  "ground_truth": 34.7354,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_3bus_2slack",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_ext_grid",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1531",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus net with two ext_grids (two slacks)"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1531,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_043",
+  "natural_language_query": "I want the slack to be shared across several generators rather than pinned to one bus. With a distributed-slack power flow over three generators, what total active power do the generators supply together?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb = [pp.create_bus(net, vn_kv=110) for _ in range(4)]\npp.create_ext_grid(net, b[0])\npp.create_line_from_parameters(net, b[0], b[1], 8, 0.05, 0.2, 10, 1)\npp.create_line_from_parameters(net, b[1], b[2], 8, 0.05, 0.2, 10, 1)\npp.create_line_from_parameters(net, b[2], b[3], 8, 0.05, 0.2, 10, 1)\nfor k in [1, 2, 3]:\n    pp.create_gen(net, b[k], p_mw=20, vm_pu=1.0, slack_weight=1.0)\npp.create_load(net, b[3], p_mw=90, q_mvar=15)\npp.runpp(net, distributed_slack=True)\nprint(round(float(net.res_gen.p_mw.sum()), 4))\n",
+  "ground_truth": 82.6369,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_4bus",
+   "task": "power_flow_distributed_slack",
+   "query_target": {
+    "table": "res_gen",
+    "column": "p_mw",
+    "qtype": "sum"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/771",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 4-bus net, three gens with equal slack_weight; runpp(distributed_slack=True)"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 771,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_gen",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_044",
+  "natural_language_query": "I'd like to take a medium-voltage benchmark distribution network, bump one of the loads, and re-run the power flow. On the CIGRE MV network after increasing load 0 by 50%, what's the lowest bus voltage?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.create_cigre_network_mv()\nnet.load.at[0, 'scaling'] = 1.5\npp.runpp(net)\nprint(round(float(net.res_bus.vm_pu.min()), 5))\n",
+  "ground_truth": 0.9081,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "cigre_network_mv",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "scale_load",
+     "idx": 0,
+     "value": 1.5
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "min"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1167",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "'a benchmark MV network' -> create_cigre_network_mv; load 0 scaled 1.5x"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1167,
+   "oracle_functions": [
+    "create_cigre_network_mv",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_045",
+  "natural_language_query": "I just want the results for one particular bus printed out. After the power flow on the 9-bus case, what is the voltage angle at bus 4?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.runpp(net)\nprint(round(float(net.res_bus.va_degree.at[4]), 4))\n",
+  "ground_truth": -4.0173,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_bus",
+    "column": "va_degree",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/856",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; read va_degree of a single bus"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 856,
+   "oracle_functions": [
+    "case9",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_046",
+  "natural_language_query": "I'm seeing surprisingly high voltages on a lightly loaded cable feeder. On a long, almost unloaded line, what's the highest bus voltage the power flow reports (the Ferranti-type rise)?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1, vm_pu=1.0)\npp.create_line_from_parameters(net, b1, b2, length_km=120, r_ohm_per_km=0.03, x_ohm_per_km=0.1, c_nf_per_km=300, max_i_ka=1.0)\npp.create_load(net, b2, p_mw=0.5, q_mvar=0.1)\npp.runpp(net)\nprint(round(float(net.res_bus.vm_pu.max()), 5))\n",
+  "ground_truth": 1.07228,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_long_cable",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "max"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1124",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> long high-capacitance line with a tiny end load; report max vm"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1124,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_047",
+  "natural_language_query": "Is the built-in 33-bus distribution case actually radial, or does it have loops in it? Tell me how many independent loops the case33bw topology contains.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.topology import create_nxgraph\nimport networkx as nx\nnet = pn.case33bw()\ng = create_nxgraph(net)\nloops = g.number_of_edges() - g.number_of_nodes() + nx.number_connected_components(g)\nprint(int(loops))\n",
+  "ground_truth": 0,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "case33bw",
+   "task": "topology_analysis",
+   "query_target": {
+    "object": "independent_loops",
+    "qtype": "count"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1268",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case33bw; independent loops = edges - nodes + connected_components on the nx graph"
+   ],
+   "original_theme": "power_flow",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1268,
+   "oracle_functions": [
+    "case33bw",
+    "create_nxgraph"
+   ]
+  }
+ },
+ {
+  "id": "l2a_048",
+  "natural_language_query": "I'd like a switched shunt (capacitor bank) whose step gets adjusted over a time series depending on the bus voltage. Running a short horizon on a small feeder, what's the highest shunt step that ends up being selected?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, vm_pu=1.0)\npp.create_line_from_parameters(net, b1, b2, 8, 0.3, 0.4, 0, 0.4)\nsh = pp.create_shunt(net, b2, q_mvar=-1.0, step=1, max_step=5)\nloads = [3, 5, 8, 10]\nmax_step = 0\nfor p in loads:\n    pp.create_load(net, b2, p_mw=p, q_mvar=p * 0.4)\n    pp.runpp(net)\n    v = float(net.res_bus.vm_pu.at[b2])\n    step = min(5, max(1, int(round((1.0 - v) / 0.01))))\n    net.shunt.at[sh, 'step'] = step\n    max_step = max(max_step, step)\n    net.load = net.load.drop(net.load.index[-1])\nprint(int(max_step))\n",
+  "ground_truth": 5,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "custom_feeder_shunt",
+   "task": "timeseries_control",
+   "query_target": {
+    "table": "shunt",
+    "column": "step",
+    "qtype": "max_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2288",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> feeder with a stepped shunt; per-step step chosen from voltage via a loop; report max step used"
+   ],
+   "original_theme": "timeseries",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 2288,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_shunt",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_049",
+  "natural_language_query": "I want to drive the scaling of all my loads from an input dataframe and run a time-series power flow. On the 9-bus case with a load-scaling profile, what's the peak line loading seen across the whole series?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandas as pd, numpy as np\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\nnet = pn.case9()\nn = 8\nprof = pd.DataFrame({i: 0.7 + 0.05 * np.arange(n) for i in net.load.index})\nds = DFData(prof)\nConstControl(net, 'load', 'scaling', element_index=net.load.index, data_source=ds, profile_name=list(net.load.index))\now = OutputWriter(net, time_steps=range(n))\now.log_variable('res_line', 'loading_percent')\nrun_timeseries(net, time_steps=range(n), verbose=False)\nprint(round(float(ow.output['res_line.loading_percent'].max().max()), 4))\n",
+  "ground_truth": 65.5602,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "timeseries_power_flow",
+   "query_target": {
+    "table": "res_line",
+    "column": "loading_percent",
+    "qtype": "max_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/850",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; ConstControl feeds a scaling profile to all loads; OutputWriter logs line loading"
+   ],
+   "original_theme": "timeseries",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 850,
+   "oracle_functions": [
+    "ConstControl",
+    "DFData",
+    "OutputWriter",
+    "case9",
+    "run_timeseries"
+   ]
+  }
+ },
+ {
+  "id": "l2a_050",
+  "natural_language_query": "I want to handle the results of a time-series run directly in memory instead of writing them to disk. After a short series on the 9-bus case, give me the mean active power at the slack over all steps, read straight from the in-memory output.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandas as pd, numpy as np\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\nnet = pn.case9()\nn = 5\nprof = pd.DataFrame({i: 0.9 + 0.05 * np.arange(n) for i in net.load.index})\nds = DFData(prof)\nConstControl(net, 'load', 'scaling', element_index=net.load.index, data_source=ds, profile_name=list(net.load.index))\now = OutputWriter(net, time_steps=range(n), output_path=None)\now.log_variable('res_ext_grid', 'p_mw')\nrun_timeseries(net, time_steps=range(n), verbose=False)\nprint(round(float(ow.output['res_ext_grid.p_mw'].mean().mean()), 4))\n",
+  "ground_truth": 72.0054,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "timeseries_power_flow",
+   "query_target": {
+    "table": "res_ext_grid",
+    "column": "p_mw",
+    "qtype": "mean_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1584",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; OutputWriter with output_path=None keeps results in memory; log res_ext_grid.p_mw"
+   ],
+   "original_theme": "timeseries",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1584,
+   "oracle_functions": [
+    "ConstControl",
+    "DFData",
+    "OutputWriter",
+    "case9",
+    "run_timeseries"
+   ]
+  }
+ },
+ {
+  "id": "l2a_051",
+  "natural_language_query": "For a time-series study I need to set both active and reactive power per bus at each time step from profiles. On a small feeder driven this way, what's the minimum bus voltage over the whole series?",
+  "reference_code": "import pandapower as pp\nimport pandas as pd, numpy as np\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, vm_pu=1.0)\npp.create_line_from_parameters(net, b1, b2, 6, 0.3, 0.4, 0, 0.4)\nld = pp.create_load(net, b2, p_mw=5, q_mvar=2)\nn = 6\npp_prof = pd.DataFrame({ld: 4 + np.arange(n)})\nqq_prof = pd.DataFrame({ld: 1.5 + 0.4 * np.arange(n)})\nConstControl(net, 'load', 'p_mw', element_index=[ld], data_source=DFData(pp_prof), profile_name=[ld])\nConstControl(net, 'load', 'q_mvar', element_index=[ld], data_source=DFData(qq_prof), profile_name=[ld])\now = OutputWriter(net, time_steps=range(n), output_path=None)\now.log_variable('res_bus', 'vm_pu')\nrun_timeseries(net, time_steps=range(n), verbose=False)\nprint(round(float(ow.output['res_bus.vm_pu'].min().min()), 5))\n",
+  "ground_truth": 0.93326,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder",
+   "task": "timeseries_power_flow",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "min_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/789",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus feeder; two ConstControls feed p_mw and q_mvar profiles to the load"
+   ],
+   "original_theme": "timeseries",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 789,
+   "oracle_functions": [
+    "ConstControl",
+    "DFData",
+    "OutputWriter",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "run_timeseries"
+   ]
+  }
+ },
+ {
+  "id": "l2a_052",
+  "natural_language_query": "How do I apply a ConstControl to several load buses at once for a time-series run? With three loads following the same profile, what's the peak total load across the series?",
+  "reference_code": "import pandapower as pp\nimport pandas as pd, numpy as np\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\nnet = pp.create_empty_network()\nb = [pp.create_bus(net, vn_kv=20) for _ in range(4)]\npp.create_ext_grid(net, b[0], vm_pu=1.0)\nlds = []\nfor k in [1, 2, 3]:\n    pp.create_line_from_parameters(net, b[0], b[k], 4, 0.3, 0.4, 0, 0.4)\n    lds.append(pp.create_load(net, b[k], p_mw=3, q_mvar=1))\nn = 5\nprof = pd.DataFrame({j: 0.8 + 0.1 * np.arange(n) for j in lds})\nConstControl(net, 'load', 'scaling', element_index=lds, data_source=DFData(prof), profile_name=lds)\now = OutputWriter(net, time_steps=range(n), output_path=None)\now.log_variable('res_load', 'p_mw')\nrun_timeseries(net, time_steps=range(n), verbose=False)\nprint(round(float(ow.output['res_load.p_mw'].sum(axis=1).max()), 4))\n",
+  "ground_truth": 10.8,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_4bus_3load",
+   "task": "timeseries_power_flow",
+   "query_target": {
+    "table": "res_load",
+    "column": "p_mw",
+    "qtype": "peak_total"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/560",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 4-bus feeder with 3 loads; single ConstControl over all three; report peak summed load"
+   ],
+   "original_theme": "timeseries",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 560,
+   "oracle_functions": [
+    "ConstControl",
+    "DFData",
+    "OutputWriter",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "run_timeseries"
+   ]
+  }
+ },
+ {
+  "id": "l2a_053",
+  "natural_language_query": "When running a time-series load flow, how do I pass power-flow options (like enabling voltage-angle calculation) through to each step? On the 9-bus case run that way, what's the maximum bus voltage angle seen?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandas as pd, numpy as np\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\nnet = pn.case9()\nn = 4\nprof = pd.DataFrame({i: 0.9 + 0.05 * np.arange(n) for i in net.load.index})\nConstControl(net, 'load', 'scaling', element_index=net.load.index, data_source=DFData(prof), profile_name=list(net.load.index))\now = OutputWriter(net, time_steps=range(n), output_path=None)\now.log_variable('res_bus', 'va_degree')\nrun_timeseries(net, time_steps=range(n), verbose=False, calculate_voltage_angles=True)\nprint(round(float(ow.output['res_bus.va_degree'].abs().max().max()), 4))\n",
+  "ground_truth": 12.0423,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "timeseries_power_flow",
+   "query_target": {
+    "table": "res_bus",
+    "column": "va_degree",
+    "qtype": "max_over_steps"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1026",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; run_timeseries with calculate_voltage_angles via run kwargs; log res_bus.va_degree"
+   ],
+   "original_theme": "timeseries",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1026,
+   "oracle_functions": [
+    "ConstControl",
+    "DFData",
+    "OutputWriter",
+    "case9",
+    "run_timeseries"
+   ]
+  }
+ },
+ {
+  "id": "l2a_054",
+  "natural_language_query": "How can I create dispatchable loads that an optimal power flow is allowed to shed for cost? After making a load controllable with a reward for served demand and running the OPF, how much of it is served?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.9, max_vm_pu=1.1)\nb2 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.9, max_vm_pu=1.1)\npp.create_ext_grid(net, b1, min_p_mw=-50, max_p_mw=50, min_q_mvar=-50, max_q_mvar=50)\npp.create_line_from_parameters(net, b1, b2, 2, 0.1, 0.1, 0, 1)\nld = pp.create_load(net, b2, p_mw=10, q_mvar=2, min_p_mw=0, max_p_mw=10, min_q_mvar=0, max_q_mvar=2, controllable=True)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=20.0)\npp.create_poly_cost(net, ld, 'load', cp1_eur_per_mw=-100.0)\npp.runopp(net)\nprint(round(float(net.res_load.p_mw.at[ld]), 4))\n",
+  "ground_truth": 10.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus",
+   "task": "opf",
+   "query_target": {
+    "table": "res_load",
+    "column": "p_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1697",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal net; controllable load with min/max p, negative cost (reward) so OPF maximises served demand"
+   ],
+   "original_theme": "other",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1697,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_poly_cost",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_055",
+  "natural_language_query": "How do I read a specific value out of the network result tables after a power flow? On the 14-bus case, give me the reactive power the external grid injects.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\npp.runpp(net)\nprint(round(float(net.res_ext_grid.q_mvar.at[0]), 4))\n",
+  "ground_truth": -16.5493,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_ext_grid",
+    "column": "q_mvar",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/898",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; access a single result-table scalar"
+   ],
+   "original_theme": "other",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 898,
+   "oracle_functions": [
+    "case14",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_056",
+  "natural_language_query": "I want to run the European low-voltage test feeder with its three-phase asymmetric loads across a few load levels. What's the lowest per-phase voltage anywhere over that sweep?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.ieee_european_lv_asymmetric()\nbase_a = net.asymmetric_load[['p_a_mw', 'p_b_mw', 'p_c_mw']].copy()\nmn = 2.0\nfor f in [0.9, 1.0, 1.1]:\n    net.asymmetric_load[['p_a_mw', 'p_b_mw', 'p_c_mw']] = base_a * f\n    pp.runpp_3ph(net)\n    mn = min(mn, float(net.res_bus_3ph.vm_a_pu.min()), float(net.res_bus_3ph.vm_b_pu.min()), float(net.res_bus_3ph.vm_c_pu.min()))\nprint(round(mn, 4))\n",
+  "ground_truth": 0.9909,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "ieee_european_lv_asymmetric",
+   "task": "three_phase_timeseries",
+   "query_target": {
+    "table": "res_bus_3ph",
+    "column": "vm_pu",
+    "qtype": "min_over_steps_phases"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1599",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=ieee_european_lv_asymmetric; asymmetric loads scaled over a few steps; runpp_3ph each step"
+   ],
+   "original_theme": "three_phase",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1599,
+   "oracle_functions": [
+    "ieee_european_lv_asymmetric",
+    "runpp_3ph"
+   ]
+  }
+ },
+ {
+  "id": "l2a_057",
+  "natural_language_query": "Is it possible to get the short-circuit current in a branch for a single-line-to-ground fault? On a small feeder, what fault current shows up at the far bus for a 1-phase fault?",
+  "reference_code": "import pandapower as pp\nimport pandapower.shortcircuit as sc\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, s_sc_max_mva=500, rx_max=0.1, x0x_max=1.0, r0x0_max=0.1)\npp.create_line_from_parameters(net, b1, b2, 2, 0.2, 0.1, 0, 0.5, r0_ohm_per_km=0.6, x0_ohm_per_km=0.3, c0_nf_per_km=0, endtemp_degree=20)\nsc.calc_sc(net, fault='1ph', case='max', branch_results=True)\nprint(round(float(net.res_bus_sc.ikss_ka.at[b2]), 4))\n",
+  "ground_truth": 8.9138,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder_sc",
+   "task": "short_circuit",
+   "query_target": {
+    "table": "res_bus_sc",
+    "column": "ikss_ka",
+    "qtype": "far_bus"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1341",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> small feeder with zero-sequence line data + ext_grid SC params; calc_sc fault='1ph'"
+   ],
+   "original_theme": "three_phase",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1341,
+   "oracle_functions": [
+    "calc_sc",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters"
+   ]
+  }
+ },
+ {
+  "id": "l2a_058",
+  "natural_language_query": "I want to model an unbalanced load and run an asymmetric power flow. With different active powers on each phase at a bus, what's the voltage spread (phase A minus phase C) at that bus?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=0.4); b2 = pp.create_bus(net, vn_kv=0.4)\npp.create_ext_grid(net, b1, s_sc_max_mva=10, rx_max=0.1, x0x_max=1.0, r0x0_max=0.1)\npp.create_line_from_parameters(net, b1, b2, 0.1, 0.2, 0.07, 0, 0.3, r0_ohm_per_km=0.8, x0_ohm_per_km=0.3, c0_nf_per_km=0)\npp.create_asymmetric_load(net, b2, p_a_mw=0.02, p_b_mw=0.01, p_c_mw=0.005)\npp.runpp_3ph(net)\nspread = float(net.res_bus_3ph.vm_a_pu.at[b2]) - float(net.res_bus_3ph.vm_c_pu.at[b2])\nprint(round(spread, 5))\n",
+  "ground_truth": -0.01426,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_lv_asym",
+   "task": "three_phase_power_flow",
+   "query_target": {
+    "object": "vm_a_minus_vm_c",
+    "qtype": "phase_spread"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/836",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> LV feeder with a create_asymmetric_load; runpp_3ph; report phase A-C voltage spread"
+   ],
+   "original_theme": "three_phase",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 836,
+   "oracle_functions": [
+    "create_asymmetric_load",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "runpp_3ph"
+   ]
+  }
+ },
+ {
+  "id": "l2a_059",
+  "natural_language_query": "During a single-phase-to-ground fault, what phase-to-ground voltages do the buses see? On a small MV feeder, give me the maximum bus short-circuit current for a 1-phase fault as the severity indicator.",
+  "reference_code": "import pandapower as pp\nimport pandapower.shortcircuit as sc\nnet = pp.create_empty_network()\nb = [pp.create_bus(net, vn_kv=20) for _ in range(3)]\npp.create_ext_grid(net, b[0], s_sc_max_mva=600, rx_max=0.1, x0x_max=1.0, r0x0_max=0.1)\npp.create_line_from_parameters(net, b[0], b[1], 3, 0.2, 0.12, 0, 0.5, r0_ohm_per_km=0.6, x0_ohm_per_km=0.35, c0_nf_per_km=0, endtemp_degree=20)\npp.create_line_from_parameters(net, b[1], b[2], 3, 0.2, 0.12, 0, 0.5, r0_ohm_per_km=0.6, x0_ohm_per_km=0.35, c0_nf_per_km=0, endtemp_degree=20)\nsc.calc_sc(net, fault='1ph', case='max')\nprint(round(float(net.res_bus_sc.ikss_ka.max()), 4))\n",
+  "ground_truth": 17.3205,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_mv_sc",
+   "task": "short_circuit",
+   "query_target": {
+    "table": "res_bus_sc",
+    "column": "ikss_ka",
+    "qtype": "max"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/2645",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> MV feeder with zero-sequence data; calc_sc fault='1ph'; report max bus ikss"
+   ],
+   "original_theme": "three_phase",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_discussion",
+   "source_number": 2645,
+   "oracle_functions": [
+    "calc_sc",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters"
+   ]
+  }
+ },
+ {
+  "id": "l2a_060",
+  "natural_language_query": "I'd like to do a voltage sensitivity analysis on a distribution network: how much does a bus voltage move per MW of extra load there? On the CIGRE MV network, give me dV/dP at load bus 0 in pu per MW.",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.create_cigre_network_mv()\nbus0 = int(net.load.bus.at[0])\npp.runpp(net); v0 = float(net.res_bus.vm_pu.at[bus0])\nnet.load.at[0, 'p_mw'] = float(net.load.at[0, 'p_mw']) + 1.0\npp.runpp(net); v1 = float(net.res_bus.vm_pu.at[bus0])\nprint(round(v1 - v0, 6))\n",
+  "ground_truth": -0.000668,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "cigre_network_mv",
+   "task": "sensitivity",
+   "query_target": {
+    "object": "dVm_dP",
+    "qtype": "finite_difference"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/847",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=cigre_mv; finite-difference dVm/dP by perturbing the load 1 MW"
+   ],
+   "original_theme": "topology_matrix",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 847,
+   "oracle_functions": [
+    "create_cigre_network_mv",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_061",
+  "natural_language_query": "How do I get a PTDF-style sensitivity of a line's flow to an injection at a bus? On the 9-bus case, by how much (MW/MW) does the flow on line 0 change when I inject at bus 4, computed on the DC power flow?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case9()\npp.rundcpp(net); f0 = float(net.res_line.p_from_mw.at[0])\ns = pp.create_sgen(net, 4, p_mw=1.0)\npp.rundcpp(net); f1 = float(net.res_line.p_from_mw.at[0])\nprint(round(f1 - f0, 6))\n",
+  "ground_truth": -1.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case9",
+   "task": "ptdf",
+   "query_target": {
+    "object": "dFlow_dInj",
+    "qtype": "finite_difference_dc"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1622",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case9; DC PTDF entry via finite difference (inject 1 MW at bus 4 as sgen, rundcpp)"
+   ],
+   "original_theme": "topology_matrix",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1622,
+   "oracle_functions": [
+    "case9",
+    "create_sgen",
+    "rundcpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_062",
+  "natural_language_query": "How can I get the R/X ratio at a given bus? On a small feeder, compute the short-circuit R/X ratio seen at the far bus.",
+  "reference_code": "import pandapower as pp\nimport pandapower.shortcircuit as sc\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, s_sc_max_mva=500, rx_max=0.1)\npp.create_line_from_parameters(net, b1, b2, 4, 0.25, 0.12, 0, 0.5, endtemp_degree=20)\nsc.calc_sc(net, case='max')\nrk = float(net.res_bus_sc.rk_ohm.at[b2]); xk = float(net.res_bus_sc.xk_ohm.at[b2])\nprint(round(rk / xk, 5))\n",
+  "ground_truth": 0.80226,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder_sc",
+   "task": "short_circuit",
+   "query_target": {
+    "object": "rx_ratio",
+    "qtype": "ratio"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/440",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> small feeder with ext_grid SC params; R/X from res_bus_sc rk_ohm/xk_ohm"
+   ],
+   "original_theme": "topology_matrix",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 440,
+   "oracle_functions": [
+    "calc_sc",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters"
+   ]
+  }
+ },
+ {
+  "id": "l2a_063",
+  "natural_language_query": "How sensitive is a bus voltage to the transformer tap position? Nudging the tap by one step, what's the change in the low-side bus voltage per tap step?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nhv = pp.create_bus(net, vn_kv=110); lv = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, hv, vm_pu=1.0)\nt = pp.create_transformer_from_parameters(net, hv, lv, sn_mva=25, vn_hv_kv=110, vn_lv_kv=20, vkr_percent=0.5, vk_percent=12, pfe_kw=20, i0_percent=0.1, tap_side='hv', tap_neutral=0, tap_min=-9, tap_max=9, tap_step_percent=1.5, tap_pos=0)\npp.create_load(net, lv, p_mw=10, q_mvar=3)\npp.runpp(net); v0 = float(net.res_bus.vm_pu.at[lv])\nnet.trafo.at[t, 'tap_pos'] = 1\npp.runpp(net); v1 = float(net.res_bus.vm_pu.at[lv])\nprint(round(v1 - v0, 6))\n",
+  "ground_truth": 0.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_hv_mv",
+   "task": "sensitivity",
+   "query_target": {
+    "object": "dVm_dtap",
+    "qtype": "finite_difference"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/837",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> HV/MV trafo feeder; finite-difference dVm/dtap over one step"
+   ],
+   "original_theme": "topology_matrix",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 837,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_load",
+    "create_transformer_from_parameters",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_064",
+  "natural_language_query": "I want the reactive-power voltage sensitivity dV/dQ at a bus for a voltage-control study. On the 14-bus case, how much does the voltage at bus 5 move per extra Mvar of load there?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\nli = int(net.load.index[net.load.bus == 5][0])\npp.runpp(net); v0 = float(net.res_bus.vm_pu.at[5])\nnet.load.at[li, 'q_mvar'] = float(net.load.at[li, 'q_mvar']) + 1.0\npp.runpp(net); v1 = float(net.res_bus.vm_pu.at[5])\nprint(round(v1 - v0, 6))\n",
+  "ground_truth": 0.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "sensitivity",
+   "query_target": {
+    "object": "dVm_dQ",
+    "qtype": "finite_difference"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/381",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; finite-difference dVm/dQ by perturbing load reactive power 1 Mvar"
+   ],
+   "original_theme": "topology_matrix",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 381,
+   "oracle_functions": [
+    "case14",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_065",
+  "natural_language_query": "I want a PTDF-style sensitivity of a line's flow but only for a chosen subset of buses, excluding the rest. On the 14-bus case, over buses 2, 3 and 4 only, what's the largest DC flow sensitivity on line 5?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\npp.rundcpp(net); f0 = float(net.res_line.p_from_mw.at[5])\nbest = 0.0\nfor bus in [2, 3, 4]:\n    s = pp.create_sgen(net, bus, p_mw=1.0)\n    pp.rundcpp(net); f1 = float(net.res_line.p_from_mw.at[5])\n    best = max(best, abs(f1 - f0))\n    net.sgen = net.sgen.drop(s)\nprint(round(best, 6))\n",
+  "ground_truth": 0.467992,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "ptdf_subset",
+   "query_target": {
+    "object": "max_ptdf_subset",
+    "qtype": "finite_difference_dc"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1533",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; DC finite-difference flow sensitivity of line 5 restricted to buses {2,3,4}; report max |sensitivity|"
+   ],
+   "original_theme": "topology_matrix",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1533,
+   "oracle_functions": [
+    "case14",
+    "create_sgen",
+    "rundcpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_066",
+  "natural_language_query": "The rows in res_bus come back in a scrambled order for me. After the power flow on the 14-bus case, if I sort the bus results back into ascending index order, what's the voltage of the 8th bus in that ordering?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\npp.runpp(net)\nordered = net.res_bus.sort_index()\nprint(round(float(ordered.vm_pu.iloc[7]), 5))\n",
+  "ground_truth": 1.09,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "case14",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "sorted_positional"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/641",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; sort res_bus by index and read a positional entry"
+   ],
+   "original_theme": "topology_matrix",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 641,
+   "oracle_functions": [
+    "case14",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_067",
+  "natural_language_query": "I'm adding an SVC for voltage support and want to know the reactive power it ends up absorbing or injecting. After the power flow with the SVC controlling voltage, what's its reactive power?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 10, 0.1, 0.3, 10, 1)\npp.create_load(net, b2, p_mw=20, q_mvar=5)\npp.create_svc(net, b2, x_l_ohm=1, x_cvar_ohm=-10, set_vm_pu=1.0, thyristor_firing_angle_degree=90, controllable=True)\npp.runpp(net)\nprint(round(float(net.res_svc.q_mvar.iloc[0]), 4))\n",
+  "ground_truth": -11.5379,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus_svc",
+   "task": "power_flow_facts",
+   "query_target": {
+    "table": "res_svc",
+    "column": "q_mvar",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2402",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 2-bus net with a voltage-controlling SVC; report res_svc.q_mvar"
+   ],
+   "original_theme": "der_control",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 2402,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_svc",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_068",
+  "natural_language_query": "I want a storage unit that only charges/discharges during particular time steps of a series. Driving its power from a profile that's zero outside the active window, what's the total energy it moves over the series?",
+  "reference_code": "import pandapower as pp\nimport pandas as pd\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, vm_pu=1.0)\npp.create_line_from_parameters(net, b1, b2, 4, 0.2, 0.3, 0, 0.4)\npp.create_load(net, b2, p_mw=3, q_mvar=1)\nst = pp.create_storage(net, b2, p_mw=0.0, max_e_mwh=10.0)\nschedule = [0.0, 4.0, 4.0, 0.0, -3.0, 0.0]\nprof = pd.DataFrame({st: schedule})\nConstControl(net, 'storage', 'p_mw', element_index=[st], data_source=DFData(prof), profile_name=[st])\now = OutputWriter(net, time_steps=range(len(schedule)), output_path=None)\now.log_variable('res_storage', 'p_mw')\nrun_timeseries(net, time_steps=range(len(schedule)), verbose=False)\nprint(round(float(ow.output['res_storage.p_mw'].abs().sum().sum()), 4))\n",
+  "ground_truth": 11.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder_storage",
+   "task": "timeseries_control",
+   "query_target": {
+    "object": "storage_energy_throughput",
+    "qtype": "sum_abs_energy"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1613",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> feeder with storage; ConstControl feeds a p_mw profile active only in some steps; sum |p|*1h"
+   ],
+   "original_theme": "der_control",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1613,
+   "oracle_functions": [
+    "ConstControl",
+    "DFData",
+    "OutputWriter",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_storage",
+    "run_timeseries"
+   ]
+  }
+ },
+ {
+  "id": "l2a_069",
+  "natural_language_query": "I want to put a TCSC (series compensation) into a two-corridor network and have it hold a set active-power transfer. After the power flow, how much active power flows into the TCSC at its from-side?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110); b3 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 100, 0.05, 0.3, 10, 1)\npp.create_line_from_parameters(net, b1, b3, 100, 0.05, 0.3, 10, 1)\npp.create_tcsc(net, b2, b3, x_l_ohm=1.0, x_cvar_ohm=-15.0, set_p_to_mw=5.0, thyristor_firing_angle_degree=140, controllable=True, min_angle_degree=90, max_angle_degree=180)\npp.create_load(net, b3, p_mw=30, q_mvar=5)\npp.runpp(net)\nprint(round(float(net.res_tcsc.p_from_mw.iloc[0]), 4))\n",
+  "ground_truth": -5.0,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_tcsc",
+   "task": "power_flow_facts",
+   "query_target": {
+    "table": "res_tcsc",
+    "column": "p_from_mw",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1160",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> two parallel corridors, one carrying a controllable TCSC with a power set-point"
+   ],
+   "original_theme": "der_control",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1160,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_tcsc",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_070",
+  "natural_language_query": "I want to include a cost on reactive power in the optimal power flow and see the total objective. With linear active and reactive cost terms on a controllable sgen and the slack, what total cost does the OPF report?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.9, max_vm_pu=1.1)\nb2 = pp.create_bus(net, vn_kv=20, min_vm_pu=0.9, max_vm_pu=1.1)\npp.create_ext_grid(net, b1, min_p_mw=-50, max_p_mw=50, min_q_mvar=-50, max_q_mvar=50)\npp.create_line_from_parameters(net, b1, b2, 3, 0.1, 0.1, 0, 1)\npp.create_load(net, b2, p_mw=10, q_mvar=5)\ng = pp.create_sgen(net, b2, p_mw=5, min_p_mw=0, max_p_mw=10, min_q_mvar=-8, max_q_mvar=8, controllable=True)\npp.create_poly_cost(net, 0, 'ext_grid', cp1_eur_per_mw=50, cq1_eur_per_mvar=5)\npp.create_poly_cost(net, g, 'sgen', cp1_eur_per_mw=10, cq1_eur_per_mvar=2)\npp.runopp(net)\nprint(round(float(net.res_cost), 4))\n",
+  "ground_truth": 101.3697,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_2bus_qcost",
+   "task": "opf",
+   "query_target": {
+    "table": "res_cost",
+    "qtype": "scalar"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2465",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> minimal net; poly_cost with cp1 and cq1 terms; runopp"
+   ],
+   "original_theme": "der_control",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 2465,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_poly_cost",
+    "create_sgen",
+    "runopp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_071",
+  "natural_language_query": "I've modelled a battery energy storage system and set it to charge. After the power flow, what active power does the storage draw and how does the feeder react? Give me the storage bus voltage.",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, vm_pu=1.0)\npp.create_line_from_parameters(net, b1, b2, 5, 0.25, 0.3, 0, 0.4)\npp.create_load(net, b2, p_mw=4, q_mvar=1)\npp.create_storage(net, b2, p_mw=3.0, max_e_mwh=6.0)\npp.runpp(net)\nprint(round(float(net.res_bus.vm_pu.at[b2]), 5))\n",
+  "ground_truth": 0.97339,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder_bess",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "storage_bus"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/2627",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> feeder with a charging storage (positive p_mw = charging); report storage bus vm"
+   ],
+   "original_theme": "der_control",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 2627,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_storage",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_072",
+  "natural_language_query": "I want to connect an offshore wind park to shore through an HVDC link built from converters and a DC cable. After the power flow, how much active power is delivered into the onshore converter?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nshore = pp.create_bus(net, vn_kv=220); off = pp.create_bus(net, vn_kv=220)\npp.create_ext_grid(net, shore)\ndc1 = pp.create_bus_dc(net, vn_kv=320); dc2 = pp.create_bus_dc(net, vn_kv=320)\npp.create_vsc(net, shore, dc1, r_ohm=0.1, x_ohm=5, r_dc_ohm=0.1, control_mode_ac='vm_pu', control_value_ac=1.0, control_mode_dc='vm_pu', control_value_dc=1.0)\npp.create_line_dc_from_parameters(net, dc1, dc2, length_km=80, r_ohm_per_km=0.02, max_i_ka=3)\npp.create_vsc(net, off, dc2, r_ohm=0.1, x_ohm=5, r_dc_ohm=0.1, control_mode_ac='slack', control_value_ac=1.0, control_mode_dc='p_mw', control_value_dc=-100)\npp.create_sgen(net, off, p_mw=100, q_mvar=0)\npp.runpp(net)\nprint(round(float(net.res_vsc.p_mw.min()), 3))\n",
+  "ground_truth": -99.761,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_offshore_hvdc",
+   "task": "power_flow",
+   "query_target": {
+    "table": "res_vsc",
+    "column": "p_mw",
+    "qtype": "onshore_converter"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/2119",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> offshore sgen (wind) + two VSCs and a DC line to an onshore slack"
+   ],
+   "original_theme": "der_control",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_discussion",
+   "source_number": 2119,
+   "oracle_functions": [
+    "create_bus",
+    "create_bus_dc",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_dc_from_parameters",
+    "create_sgen",
+    "create_vsc",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_073",
+  "natural_language_query": "After I build a small network and run the algorithms on it, how do I get a quick visualisation of the grid? Produce a simple plot of the 14-bus case.",
+  "reference_code": "import matplotlib\nmatplotlib.use('Agg')\nimport pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.plotting import simple_plot\nnet = pn.case14()\nsimple_plot(net, show_plot=False)\nprint('PLOT_OK')\n",
+  "ground_truth": null,
+  "ground_truth_type": "none",
+  "scenario": {
+   "network": "case14",
+   "task": "plotting",
+   "query_target": {
+    "object": "figure",
+    "qtype": "nonscalar"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/882",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; headless matplotlib (Agg); non-scalar plotting task"
+   ],
+   "original_theme": "plotting",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 882,
+   "oracle_functions": [
+    "case14",
+    "simple_plot"
+   ]
+  }
+ },
+ {
+  "id": "l2a_074",
+  "natural_language_query": "I want to colour the lines of my grid by loading using a logarithmic colormap rather than a linear one. Build a logarithmic colormap and draw the 14-bus lines coloured by their loading.",
+  "reference_code": "import matplotlib\nmatplotlib.use('Agg')\nimport pandapower as pp\nimport pandapower.networks as pn\nfrom pandapower.plotting import cmap_logarithmic, create_line_collection, draw_collections, create_generic_coordinates\nnet = pn.case14()\ncreate_generic_coordinates(net, overwrite=True)\npp.runpp(net)\ncmap, norm = cmap_logarithmic(20, 100, ['green', 'yellow', 'red'])\nlc = create_line_collection(net, cmap=cmap, norm=norm, z=net.res_line.loading_percent)\ndraw_collections([lc])\nprint('PLOT_OK')\n",
+  "ground_truth": null,
+  "ground_truth_type": "none",
+  "scenario": {
+   "network": "case14",
+   "task": "plotting",
+   "query_target": {
+    "object": "figure",
+    "qtype": "nonscalar"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/360",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; generic coordinates + logarithmic colormap line collection; headless (Agg); non-scalar plotting task"
+   ],
+   "original_theme": "plotting",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 360,
+   "oracle_functions": [
+    "case14",
+    "cmap_logarithmic",
+    "create_generic_coordinates",
+    "create_line_collection",
+    "draw_collections",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_075",
+  "natural_language_query": "Is it possible to get the short-circuit current in a branch, not just at the buses? On a small feeder, what's the branch short-circuit current on line 0 for a three-phase fault?",
+  "reference_code": "import pandapower as pp\nimport pandapower.shortcircuit as sc\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, s_sc_max_mva=500, rx_max=0.1)\npp.create_line_from_parameters(net, b1, b2, 3, 0.2, 0.1, 0, 0.5, endtemp_degree=20)\nsc.calc_sc(net, case='max', branch_results=True)\nprint(round(float(net.res_line_sc.ikss_ka.at[0]), 4))\n",
+  "ground_truth": 9.3262,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder_sc",
+   "task": "short_circuit",
+   "query_target": {
+    "table": "res_line_sc",
+    "column": "ikss_ka",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/399",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> feeder with ext_grid SC params; calc_sc branch_results; report res_line_sc line 0"
+   ],
+   "original_theme": "short_circuit",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 399,
+   "oracle_functions": [
+    "calc_sc",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters"
+   ]
+  }
+ },
+ {
+  "id": "l2a_076",
+  "natural_language_query": "I need all the branch short-circuit currents exposed, not only the aggregate bus values. Across every line of a small meshed feeder, what's the highest branch short-circuit current for a max three-phase fault?",
+  "reference_code": "import pandapower as pp\nimport pandapower.shortcircuit as sc\nnet = pp.create_empty_network()\nb = [pp.create_bus(net, vn_kv=20) for _ in range(3)]\npp.create_ext_grid(net, b[0], s_sc_max_mva=500, rx_max=0.1)\npp.create_line_from_parameters(net, b[0], b[1], 3, 0.2, 0.1, 0, 0.5, endtemp_degree=20)\npp.create_line_from_parameters(net, b[1], b[2], 3, 0.2, 0.1, 0, 0.5, endtemp_degree=20)\npp.create_line_from_parameters(net, b[0], b[2], 5, 0.2, 0.1, 0, 0.5, endtemp_degree=20)\nsc.calc_sc(net, case='max', branch_results=True)\nprint(round(float(net.res_line_sc.ikss_ka.max()), 4))\n",
+  "ground_truth": 7.6166,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_mesh_sc",
+   "task": "short_circuit",
+   "query_target": {
+    "table": "res_line_sc",
+    "column": "ikss_ka",
+    "qtype": "max"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/862",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus meshed feeder with SC params; calc_sc branch_results; max over res_line_sc"
+   ],
+   "original_theme": "short_circuit",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 862,
+   "oracle_functions": [
+    "calc_sc",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters"
+   ]
+  }
+ },
+ {
+  "id": "l2a_077",
+  "natural_language_query": "I'd like the short-circuit currents for faults placed at every bus in one go. On a small network, what's the largest bus short-circuit current across all fault locations?",
+  "reference_code": "import pandapower as pp\nimport pandapower.shortcircuit as sc\nnet = pp.create_empty_network()\nb = [pp.create_bus(net, vn_kv=20) for _ in range(4)]\npp.create_ext_grid(net, b[0], s_sc_max_mva=500, rx_max=0.1)\nfor k in range(3):\n    pp.create_line_from_parameters(net, b[k], b[k+1], 2, 0.2, 0.1, 0, 0.5, endtemp_degree=20)\nsc.calc_sc(net, case='max')\nprint(round(float(net.res_bus_sc.ikss_ka.max()), 4))\n",
+  "ground_truth": 14.4338,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder_sc",
+   "task": "short_circuit",
+   "query_target": {
+    "table": "res_bus_sc",
+    "column": "ikss_ka",
+    "qtype": "max"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1243",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> feeder with SC params; calc_sc (default 3ph) computes all buses; report max ikss"
+   ],
+   "original_theme": "short_circuit",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1243,
+   "oracle_functions": [
+    "calc_sc",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters"
+   ]
+  }
+ },
+ {
+  "id": "l2a_078",
+  "natural_language_query": "I'm setting up a weighted-least-squares state estimation and want to provide voltage and power measurements. On a small network, after the estimation runs, what voltage does it estimate at the far bus?",
+  "reference_code": "import pandapower as pp\nfrom pandapower.estimation import estimate\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110); b3 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 10, 0.05, 0.2, 0, 1)\npp.create_line_from_parameters(net, b2, b3, 10, 0.05, 0.2, 0, 1)\npp.create_load(net, b3, p_mw=20, q_mvar=5)\npp.runpp(net)\nfor b in [b1, b2, b3]:\n    pp.create_measurement(net, 'v', 'bus', float(net.res_bus.vm_pu.at[b]), 0.01, element=b)\nfor ln in [0, 1]:\n    pp.create_measurement(net, 'p', 'line', float(net.res_line.p_from_mw.at[ln]), 0.02, element=ln, side='from')\n    pp.create_measurement(net, 'q', 'line', float(net.res_line.q_from_mvar.at[ln]), 0.02, element=ln, side='from')\nestimate(net, init='flat')\nprint(round(float(net.res_bus_est.vm_pu.at[b3]), 5))\n",
+  "ground_truth": 0.99666,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_3bus_se",
+   "task": "state_estimation",
+   "query_target": {
+    "table": "res_bus_est",
+    "column": "vm_pu",
+    "qtype": "far_bus"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1224",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus net; v/p/q measurements from a ground-truth pf; estimate(init='flat')"
+   ],
+   "original_theme": "state_estimation",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1224,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_measurement",
+    "estimate",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_079",
+  "natural_language_query": "How do I add zero-injection constraints to a state estimation for buses that have no load or generation? With a zero-injection bus enforced by tight pseudo-measurements, what voltage is estimated at the load bus?",
+  "reference_code": "import pandapower as pp\nfrom pandapower.estimation import estimate\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110); b3 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 10, 0.05, 0.2, 0, 1)\npp.create_line_from_parameters(net, b2, b3, 10, 0.05, 0.2, 0, 1)\npp.create_load(net, b3, p_mw=20, q_mvar=5)\npp.runpp(net)\nfor b in [b1, b2, b3]:\n    pp.create_measurement(net, 'v', 'bus', float(net.res_bus.vm_pu.at[b]), 0.01, element=b)\npp.create_measurement(net, 'p', 'line', float(net.res_line.p_from_mw.at[0]), 0.02, element=0, side='from')\npp.create_measurement(net, 'q', 'line', float(net.res_line.q_from_mvar.at[0]), 0.02, element=0, side='from')\npp.create_measurement(net, 'p', 'bus', 0.0, 0.001, element=b2)\npp.create_measurement(net, 'q', 'bus', 0.0, 0.001, element=b2)\nestimate(net, init='flat')\nprint(round(float(net.res_bus_est.vm_pu.at[b3]), 5))\n",
+  "ground_truth": 0.99666,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_3bus_zeroinj",
+   "task": "state_estimation",
+   "query_target": {
+    "table": "res_bus_est",
+    "column": "vm_pu",
+    "qtype": "load_bus"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/243",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 3-bus net where the middle bus is zero-injection (tight p/q=0 measurements); estimate"
+   ],
+   "original_theme": "state_estimation",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 243,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_measurement",
+    "estimate",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_080",
+  "natural_language_query": "How do I define measurement elements and check they were registered before running a state estimation? On a 2-bus network with voltage and line-power measurements, how many measurements are in the table?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=110); b2 = pp.create_bus(net, vn_kv=110)\npp.create_ext_grid(net, b1)\npp.create_line_from_parameters(net, b1, b2, 10, 0.05, 0.2, 0, 1)\npp.create_load(net, b2, p_mw=15, q_mvar=4)\npp.runpp(net)\npp.create_measurement(net, 'v', 'bus', float(net.res_bus.vm_pu.at[b1]), 0.01, element=b1)\npp.create_measurement(net, 'v', 'bus', float(net.res_bus.vm_pu.at[b2]), 0.01, element=b2)\npp.create_measurement(net, 'p', 'line', float(net.res_line.p_from_mw.at[0]), 0.02, element=0, side='from')\npp.create_measurement(net, 'q', 'line', float(net.res_line.q_from_mvar.at[0]), 0.02, element=0, side='from')\nprint(int(len(net.measurement)))\n",
+  "ground_truth": 4,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "custom_2bus_meas",
+   "task": "state_estimation",
+   "query_target": {
+    "table": "measurement",
+    "qtype": "count"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/572",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> 2-bus net; create_measurement calls; report measurement count"
+   ],
+   "original_theme": "state_estimation",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 572,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_measurement",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_081",
+  "natural_language_query": "How do I save a network I built so I can load it in another script later? After serialising the 14-bus case to JSON and reading it back, how many buses does the reloaded network have?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nnet = pn.case14()\ns = pp.to_json(net)\nnet2 = pp.from_json_string(s)\nprint(int(len(net2.bus)))\n",
+  "ground_truth": 14,
+  "ground_truth_type": "int",
+  "scenario": {
+   "network": "case14",
+   "task": "io_serialization",
+   "query_target": {
+    "table": "bus",
+    "qtype": "count_after_roundtrip"
+   }
+  },
+  "difficulty_level": "D1",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1360",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=case14; to_json + from_json_string roundtrip; report bus count after reload"
+   ],
+   "original_theme": "io_serialization",
+   "original_screening_decision": "INCLUDE",
+   "source_type": "github_issue",
+   "source_number": 1360,
+   "oracle_functions": [
+    "case14",
+    "to_json"
+   ]
+  }
+ },
+ {
+  "id": "l2a_082",
+  "natural_language_query": "For a voltage-control study I want to add shunt compensation (a capacitor bank) at a weak bus and see how much it lifts the voltage. After adding the capacitor and running the power flow, what's the bus voltage at that node?",
+  "reference_code": "import pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, vm_pu=1.0)\npp.create_line_from_parameters(net, b1, b2, 8, 0.3, 0.4, 0, 0.4)\npp.create_load(net, b2, p_mw=8, q_mvar=4)\npp.create_shunt_as_capacitor(net, b2, q_mvar=2.0, loss_factor=0)\npp.runpp(net)\nprint(round(float(net.res_bus.vm_pu.at[b2]), 5))\n",
+  "ground_truth": 0.92707,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder",
+   "task": "power_flow",
+   "modifications": [
+    {
+     "op": "add_capacitor"
+    }
+   ],
+   "query_target": {
+    "table": "res_bus",
+    "column": "vm_pu",
+    "qtype": "point_value"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/146",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> weak feeder end; create_shunt_as_capacitor for voltage support; report bus vm"
+   ],
+   "original_theme": "der_control",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 146,
+   "oracle_functions": [
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters",
+    "create_load",
+    "create_shunt_as_capacitor",
+    "runpp"
+   ]
+  }
+ },
+ {
+  "id": "l2a_083",
+  "natural_language_query": "I'd like to run a basic short-circuit calculation with pandapower and read off the fault level at a bus. On a small feeder, what's the short-circuit power (in MVA) at the far bus for a max three-phase fault?",
+  "reference_code": "import pandapower as pp\nimport pandapower.shortcircuit as sc\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20); b2 = pp.create_bus(net, vn_kv=20)\npp.create_ext_grid(net, b1, s_sc_max_mva=500, rx_max=0.1)\npp.create_line_from_parameters(net, b1, b2, 4, 0.25, 0.12, 0, 0.5, endtemp_degree=20)\nsc.calc_sc(net, case='max')\nprint(round(float(net.res_bus_sc.skss_mw.at[b2]), 4))\n",
+  "ground_truth": 253.1692,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "custom_feeder_sc",
+   "task": "short_circuit",
+   "query_target": {
+    "table": "res_bus_sc",
+    "column": "skss_mw",
+    "qtype": "far_bus"
+   }
+  },
+  "difficulty_level": "D2",
+  "source_url": "https://github.com/e2nIEE/pandapower/discussions/1058",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network unspecified -> feeder with ext_grid SC params; calc_sc; report res_bus_sc.skss_mw at far bus"
+   ],
+   "original_theme": "other",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_discussion",
+   "source_number": 1058,
+   "oracle_functions": [
+    "calc_sc",
+    "create_bus",
+    "create_empty_network",
+    "create_ext_grid",
+    "create_line_from_parameters"
+   ]
+  }
+ },
+ {
+  "id": "l2a_084",
+  "natural_language_query": "I'm running time-series simulations on the CIGRE low-voltage benchmark network and want to watch the MV/LV transformer loading. Over a short load sweep, what's the peak transformer loading?",
+  "reference_code": "import pandapower as pp\nimport pandapower.networks as pn\nimport pandas as pd, numpy as np\nfrom pandapower.timeseries import DFData, OutputWriter, run_timeseries\nfrom pandapower.control import ConstControl\nnet = pn.create_cigre_network_lv()\nn = 5\nprof = pd.DataFrame({i: 0.8 + 0.1 * np.arange(n) for i in net.load.index})\nConstControl(net, 'load', 'scaling', element_index=net.load.index, data_source=DFData(prof), profile_name=list(net.load.index))\now = OutputWriter(net, time_steps=range(n), output_path=None)\now.log_variable('res_trafo', 'loading_percent')\nrun_timeseries(net, time_steps=range(n), verbose=False)\nprint(round(float(ow.output['res_trafo.loading_percent'].max().max()), 4))\n",
+  "ground_truth": 103.6475,
+  "ground_truth_type": "float",
+  "scenario": {
+   "network": "cigre_network_lv",
+   "task": "timeseries_power_flow",
+   "query_target": {
+    "table": "res_trafo",
+    "column": "loading_percent",
+    "qtype": "max_over_steps"
+   }
+  },
+  "difficulty_level": "D3",
+  "source_url": "https://github.com/e2nIEE/pandapower/issues/1200",
+  "license": "Rewritten from public GitHub issue/discussion titles under GitHub Terms of Service; original text NOT redistributed, only the anonymised rewrite + source URL are published.",
+  "rewrite_meta": {
+   "rules_version": "E4-2.2c-v1",
+   "rewriter_id": "power-systems engineer 1 (E4 Layer-2a rewriter, frozen; semantic preservation independently verified by engineer 2)",
+   "deidentified": true,
+   "added_context": [
+    "network=create_cigre_network_lv; ConstControl scales loads over a few steps; log res_trafo.loading_percent"
+   ],
+   "original_theme": "timeseries",
+   "original_screening_decision": "BORDERLINE",
+   "source_type": "github_issue",
+   "source_number": 1200,
+   "oracle_functions": [
+    "ConstControl",
+    "DFData",
+    "OutputWriter",
+    "create_cigre_network_lv",
+    "run_timeseries"
+   ]
+  }
+ }
+]

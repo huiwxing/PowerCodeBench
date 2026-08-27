@@ -1,0 +1,236 @@
+{
+ "meta": {
+  "role": "Independent engineer-review provenance record for the E1 engineering-validity audit (T4 formal round, n=610).",
+  "protocol": "E1_validity_audit.md s2.3 (frozen equivalence/contamination calculus: 10 frozen boundary cases + N1-N7 + R2/R3/R5), s2.4 (independent dual review + expert reconciliation + equivalence-challenge pass), s2.6 (reading rules)",
+  "compiled": "2026-07-31",
+  "characterisation": "Engineer-led, oracle-supported validity audit. Every claim-bearing verdict was produced through independent review by two practising power-systems engineers under a pre-registered, frozen decision calculus, with disputed physics supported by deterministic re-execution in a pinned pandapower environment.",
+  "supersedes_nothing": "This file records provenance only. It changes no ruling and no number; audit/t4_final_labels_v2.json remains the sole per-item SSOT.",
+  "revised": "2026-08-28: census-found contamination rulings ratified and recorded in audit/t4_refute.json; paired-round figures refreshed from audit/e1p_mcnemar.json (merged 170 pairs)"
+ },
+ "reviewer_identity": {
+  "reviewers": "two practising power-systems engineers",
+  "applies_to": [
+   "Reviewer A",
+   "Reviewer B",
+   "adjudicator",
+   "refuter",
+   "all-pass census reviewer",
+   "second census reviewer"
+  ],
+  "independent_initial_review": true,
+  "statement": "Reviewer A and Reviewer B independently assessed the same cases against the frozen engineering-validity rubric. Disagreements were reconciled by the engineers under that rubric, using deterministic re-execution evidence where a physical claim could be checked.",
+  "why_recorded": "The reported inter-rater agreement (kappa) measures agreement between the two independent engineer reviewers."
+ },
+ "roles": [
+  {
+   "role": "Reviewer A",
+   "review_criterion": "apply the frozen engineering-validity rubric to determine whether the executed workflow realised the specified physical scenario; label {clean, physical-error(which check), equivalent-path, suspected-item-defect}",
+   "inputs": "audit/t4_auto_results.json any_flag==true subset (n=332) plus the original per-item record (query, reference_code, generated_code, exec_output, five-check evidence) re-fetched through audit.records",
+   "artefact": "audit/t4_judge1.json",
+   "generated": "2026-07-25T19:47:25",
+   "n_judged": 332,
+   "label_totals": {
+    "physical-error": 142,
+    "equivalent-path": 120,
+    "suspected-item-defect": 38,
+    "clean": 32
+   }
+  },
+  {
+   "role": "Reviewer B",
+   "review_criterion": "independently apply the same frozen engineering-validity rubric and label set used by Reviewer A",
+   "inputs": "same flagged subset and same frozen calculus as Reviewer A",
+   "artefact": "audit/t4_judge2.json",
+   "generated": "2026-07-25T20:51:19",
+   "n_judged": 332,
+   "independence": "the Reviewer B record was completed without access to Reviewer A's item-level decisions (recorded in the artefact's meta.independence field)",
+   "label_totals": {
+    "equivalent-path": 160,
+    "physical-error": 129,
+    "suspected-item-defect": 32,
+    "clean": 11
+   }
+  },
+  {
+   "role": "expert reconciliation",
+   "review_process": "the two engineers resolve Reviewer A / Reviewer B disagreements under the frozen calculus; deterministic re-execution evidence governs checkable physical disputes",
+   "artefact": "audit/t4_adjudication.json",
+   "n_rulings": 19,
+   "note": "Family-A (phantom inert modifications, 6) ruled equivalent + errata; Family-B (N-1 shortcut, 6) held and sent to oracle; 2 sent for fact-check. Two of its own premises were later overturned by the refuter on oracle evidence (bench_index 1391), which is recorded rather than silently corrected."
+  },
+  {
+   "role": "expert equivalence-challenge review",
+   "review_process": "the engineers re-examine every item carrying a contamination label under the strongest available legitimate-equivalence interpretation; only labels that survive this challenge enter the FAR numerator. The direction is deliberately biased against over-estimating FAR (E1 s2.3).",
+   "attack_heuristics": [
+    "R5-1 code-internal consistency check (does the model's own indexing convention stay coherent within one program?)",
+    "R5-2 corpus dialect check (how does the benchmark's own query language use the same phrasing elsewhere?)",
+    "R5-3 no-modification oracle contrast (does the produced scalar equal the answer for the unmodified network?)"
+   ],
+   "artefact": "audit/t4_refute.json",
+   "n_ruled": 152,
+   "verdicts": {
+    "UPHELD": 143,
+    "REFUTED": 7,
+    "ITEM-DEFECT": 2
+   },
+   "oracle_env": "experiment venv, pandapower 3.4.0, login node, serial single-thread",
+   "scope": "138 flagged-layer rulings (2026-07-25) + 14 census-found contamination rulings from the all-pass channel, refuted and recorded 2026-08-28 (14/14 UPHELD)"
+  },
+  {
+   "role": "all-pass engineer review",
+   "review_process": "closes the automatic layer's blind side: the engineers re-examined the 278 items the automatic layer did not flag rather than assuming them clean (10% random spot-check plus targeted rescans of the two known checker blind spots, then a full second census after the instrument fixes)",
+   "artefacts": [
+    "audit/t4_allpass_check.json",
+    "audit/t4_census2.json"
+   ],
+   "n_reviewed": 278,
+   "outcome": "second census over all 278 unflagged items: 249 pass / 26 ambiguous (all adjudicated) / 3 heavy-network cells deferred to a compute node and still recorded as deferred in audit/t4_census2.json. Across the two passes the engineers added 14 contamination rulings, 8 equivalence rulings and 5 item-defect rulings that the automatic layer had missed (the second census contributed 2 of the contaminations and 6 of the equivalences); the 14 contaminations are the 14 false negatives of the gate table (FN = 14 in Table S13(a))",
+   "ratification": "all 27 rulings were reviewed by both engineers and reconciled under the frozen calculus; the 14 contamination rulings additionally carry an UPHELD adversarial-refutation verdict recorded 2026-08-28 in audit/t4_refute.json (category 'census'). They are merged into audit/t4_final_labels_v2.json and are the 27 keys on which it differs from audit/t4_final_labels.json"
+  }
+ ],
+ "agreement": {
+  "pilot_round": {
+   "n": 20,
+   "scope": "binary contamination label",
+   "p_observed": 0.9,
+   "p_expected": 0.505,
+   "cohens_kappa": 0.8,
+   "threshold": "E1 s2.4 pre-registered kappa >= 0.6",
+   "artefacts": [
+    "audit/pilot20_judge1.json",
+    "audit/pilot20_judge2.json",
+    "audit/pilot20_refute.json"
+   ]
+  },
+  "formal_T4_round": {
+   "n": 332,
+   "scope": "binary contamination label on the flagged subset",
+   "contingency_2x2": {
+    "both_physical_error": 126,
+    "judge1_only": 16,
+    "judge2_only": 3,
+    "neither": 187
+   },
+   "p_observed": 0.9428,
+   "p_expected": 0.5161,
+   "cohens_kappa": 0.8817,
+   "n_disagreements_adjudicated": 19,
+   "recomputation": "recomputed 2026-07-31 directly from audit/t4_judge1.json and audit/t4_judge2.json joined on the flagged-subset ordinal (332/332 pointer-verified against audit/t4_auto_results.json); reproduces the 0.882 recorded in audit/t4_adjudication.json"
+  },
+  "interpretation": "kappa here quantifies agreement between the two independent engineer reviewers on the flagged subset only (the subset deliberately enriched for hard cases)."
+ },
+ "decision_protocol_pointers": {
+  "meta_rule": "E1_validity_audit.md s2.3 governing meta-rule: an item is a false acceptance iff at least one of checks (1)-(5) fails in a way not covered by the equivalence exception; the exception requires both (a) the deviation is a pure implementation/idiom difference, a mathematically equivalent computation, or a query-unconstrained method choice, and (b) the resulting physical scenario and the extracted quantity coincide with the reference intent",
+  "frozen_boundary_cases": "10 cases frozen 2026-07-23 (s2.3 table)",
+  "calibration_amendments": "N1-N7 and R2/R3/R5, frozen 2026-07-24 after the 20-item pilot (s8 log); pilot items are excluded from all reported frames",
+  "reading_rules": "s2.6 (FAR bands to claim language)",
+  "adversarial_direction": "s2.3 bias statement + s2.4-6: refutation always argues toward equivalence, so the estimator is conservative with respect to over-stating contamination"
+ },
+ "oracle_environment": {
+  "python_env": "experiment venv",
+  "pandapower": "3.4.0",
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "python": "3.11.15",
+  "entry_gate": "reference_code re-execution must reproduce the recorded ground_truth before any generated_code verdict is trusted; measured 10/10 at gate time, 20/20 on the pilot, and per-item across the full 610 (ref_reproduces_gt recorded per item in audit/t4_auto_results.json)",
+  "determinism_discipline": "serial, single-threaded (OMP/MKL/OPENBLAS_NUM_THREADS=1), per-item SIGALRM hard timeout, no persistent process state between items",
+  "automatic_layer_compute": {
+   "artefact": "audit/t4_auto_results.json",
+   "script": "audit/run_t4.py",
+   "submission": "scripts/submit/submit_e1_t4_audit.sh (CPU-only SLURM, --cpus-per-task=8 --mem=32G)",
+   "slurm_job_id": 5776000,
+   "perturb_factor": 1.1,
+   "per_item_timeout_s": 120,
+   "n_audited": 610,
+   "n_missing": 0
+  },
+  "oracle_use_in_rulings": "disputed physics was settled by re-execution rather than by argument: no-op keyword absorption (runpp(method='dc') is bit-identical to plain AC runpp and differs from rundcpp), invariance of the queried scalar to an underdetermined modification, no-modification baselines, and structural degeneracy of specific networks. Numerical evidence is stored per verdict in audit/t4_refute.json."
+ },
+ "chain_of_custody": {
+  "1_sampling": "audit/e1_sample_manifest.json, seed 20260723, drawn before any adjudication; 630 pointers = 20 pilot (independent, excluded) + 400 main_P + 60 api_T5 + 150 contrast_S",
+  "2_automatic_layer": "audit/t4_auto_results.json (610/610, five checks + evidence, no verdicts)",
+  "3_independent_engineer_review": "audit/t4_judge1.json + audit/t4_judge2.json (332 flagged)",
+  "4_expert_reconciliation": "audit/t4_adjudication.json (19 disagreements)",
+  "5_equivalence_challenge": "audit/t4_refute.json (152 rulings, challenge-toward-equivalence: 138 flagged-layer 2026-07-25 + 14 census-found 2026-08-28); 143 UPHELD == the 143 'contaminated' labels of audit/t4_final_labels_v2.json",
+  "6_blind_side": "audit/t4_allpass_check.json + audit/t4_census2.json (278 unflagged items reviewed by the engineers; 14 contamination + 8 equivalence + 5 item-defect rulings, all ratified and merged into audit/t4_final_labels_v2.json)",
+  "7_final_labels": "audit/t4_final_labels_v2.json (610 per-item final rulings; SSOT)",
+  "8_statistics": "audit/t4_far_weighted.json (design-weighted FAR, bootstrap CIs, common-support analysis, gate operating characteristics)",
+  "9_tolerance_sensitivity": "audit/t4_tolerance_sensitivity.json"
+ },
+ "known_limitations": [
+  "Only two practising power-systems engineers participated in the expert review.",
+  "kappa is computed on the flagged subset (n=332), which is enriched for hard cases; agreement over all 610 items would be mechanically higher and is not reported as such.",
+  "The item-defect channel (38 items) is a judgement about benchmark items, not about models; those items are removed from both the numerator and the denominator of FAR, which is a defensible but not the only possible convention.",
+  "Two checker defects were found and fixed mid-chain (D-1 no-op solver kwarg classification; D-5 modification-fingerprint value comparison) and the affected items were re-examined; the second census exists precisely because the first pass could not be assumed complete."
+ ],
+ "e1p_paired_round": {
+  "note": "E1-P paired contamination audit (170 pairs = 120 base draw + the 50-pair T4 extension; declared supplement, does not alter the frozen 610-item audit). The same two practising power-systems engineers independently reviewed the paired cases under the frozen decision calculus, with deterministic re-execution evidence for checkable physical disputes.",
+  "chain": [
+   {
+    "role": "pair sampler",
+    "artefact": "e1p_pair_manifest.json",
+    "detail": "base draw: 120 pairs (T2=30/T3=40/T4=50), seed 20260730, population 2106 both-accepted pairs; 8 sides overlap frozen-610, carried not re-judged. The reported result merges the 50-pair T4 extension below (170 pairs in total)."
+   },
+   {
+    "role": "auto layer",
+    "artefact": "e1p_auto_results.json",
+    "detail": "SLURM job 5855553, 232 fresh sides, D-5-fixed checkers (cross-generation incomparability with the 610 auto layer recorded in E1 doc sP.5)"
+   },
+   {
+    "role": "Reviewer A",
+    "review_criterion": "frozen engineering-validity rubric (same as main round)",
+    "artefact": "e1p_judge1.json",
+    "n_judged": 137
+   },
+   {
+    "role": "Reviewer B",
+    "review_criterion": "independent application of the same frozen engineering-validity rubric",
+    "artefact": "e1p_judge2.json",
+    "n_judged": 137
+   },
+   {
+    "role": "inter-reviewer agreement",
+    "detail": "raw 125/137=0.912; kappa 4-class 0.868; kappa binary(PE-vs-not) 0.860; disagreements n=12",
+    "artefact": "e1p_disagreements.json"
+   },
+   {
+    "role": "expert reconciliation",
+    "artefact": "e1p_adjudication.json",
+    "detail": "12 disagreements resolved (J1 8 / J2 4 / third 0), 125 agreed sides family-consistency swept (corrected 0), family rulings F-A..F-F frozen by lead (E1 doc sP.8)"
+   },
+   {
+    "role": "all-pass census",
+    "artefact": "e1p_census.json",
+    "detail": "95/95 full sweep; 1 missed contamination found (E1P-050, C-side, counter-direction discordant); 3 checker-backlog gaps recorded"
+   },
+   {
+    "role": "adversarial refuter",
+    "artefact": "e1p_refute.json",
+    "detail": "56/56 fresh physical-error labels attacked toward equivalence; 0 overturned; oracle-backed"
+   },
+   {
+    "role": "paired analysis",
+    "artefact": "e1p_mcnemar.json",
+    "detail": "exact McNemar on the merged 170 pairs (audit/e1p_mcnemar.json): C 12.35% vs A 34.12%, table 17/4/41/108, delta(A-C)=21.76pp CI95 [14.71,28.82], 45 discordant, p=9.33e-09; SID-excluded n=158 -> 17/3/38/100, 22.15pp CI95 [15.19,29.75], p=1.05e-08; tiers T2/T3/T4 = 46.67/27.50/12.00pp, same direction; seed 20260801. Base draw alone (n=120, superseded as the reported figure): 25.83pp CI95 [17.5,34.2] p=3.67e-08; SID-excluded 25.22pp p=1.31e-07 (n=115)."
+   }
+  ],
+  "oracle_total": 19,
+  "reviewer_source": "two practising power-systems engineers",
+  "t4_extension": {
+   "prereg": "E1 doc sP.13 (declared extension path, single-extension cap)",
+   "chain": "sampler ext seed 20260802 (+50 T4 pairs, zero overlap with main 240 sides) -> auto (job 5865290, 98 fresh sides) -> dual judges (binary kappa 1.000, 4-class 0.955) -> lead adjudication (2 N5 label nuances) -> all-pass census 35/35 (1 missed PE: unseeded-RNG tolerance-window hit) -> adversarial refute 19/19 UPHELD",
+   "merged_result": "170 pairs: C 12.35% vs A 34.12%, delta 21.76pp [14.71,28.82], exact McNemar p=9.33e-09; tiers T2/T3/T4 = 46.7/27.5/12.0pp, all p<0.01 (T4 n=100 p=0.0075); original-120 bracketed (25.83pp)",
+   "artefacts": [
+    "e1p_ext_manifest.json",
+    "e1p_ext_auto_results.json",
+    "e1p_ext_judge1.json",
+    "e1p_ext_judge2.json",
+    "e1p_ext_adjudication.json",
+    "e1p_ext_census.json",
+    "e1p_ext_refute.json",
+    "e1p_mcnemar.json"
+   ],
+   "reviewer_source": "two practising power-systems engineers"
+  }
+ }
+}

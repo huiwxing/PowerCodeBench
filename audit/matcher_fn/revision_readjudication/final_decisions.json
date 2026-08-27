@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "adjudication_version": "matcher-fn-revision-v2",
+  "adjudicator_type": "joint expert reconciliation by the two practising power-systems engineers",
+  "decision_rule": "Resolve inter-review disagreement or an adversarial challenge from the frozen source record under engineering-equivalence: an output is sufficient when it directly states, or unambiguously establishes, the requested answer without changing its engineering meaning.",
+  "decisions": [
+    {
+      "sample_id": "fn023",
+      "final_label": "ambiguous",
+      "rationale": "The natural-language query asks for the new post-outage maximum, which the program correctly reports as 18.6792603%, while the frozen reference silently scores the absolute before/after change 12.17746. The specification and target conflict, so this record cannot establish a matcher error or a genuine program error."
+    },
+    {
+      "sample_id": "fn034",
+      "final_label": "genuine_error",
+      "rationale": "The requested quantity is the absolute change in maximum loading (about 0.495 percentage points), but the program explicitly reports a signed relative percentage (-0.01%). Rounded endpoint values from which a reader could derive another quantity do not repair the wrong final transformation."
+    },
+    {
+      "sample_id": "fn059",
+      "final_label": "ambiguous",
+      "rationale": "The program correctly returns the new post-outage maximum requested in prose, but the frozen reference and scalar target instead encode an absolute change. This item-level specification conflict makes the validity ruling indeterminate."
+    },
+    {
+      "sample_id": "fn063",
+      "final_label": "false_negative",
+      "rationale": "The output maximum loading is 150.644%, which unambiguously answers that at least one line exceeds the stated 120% threshold. Requiring a Boolean literal rather than accepting the quantitative proof is a parser-extraction miss under the engineering-equivalence rubric."
+    },
+    {
+      "sample_id": "fn076",
+      "final_label": "ambiguous",
+      "rationale": "The generated output answers the prose request for the new maximum after the outage, whereas the hidden reference scores the absolute difference. The contradictory task evidence is an item-level ambiguity rather than a parser false negative."
+    },
+    {
+      "sample_id": "fn084",
+      "final_label": "false_negative",
+      "rationale": "The natural-language request specifies only a higher dispatch level, not the reference's hidden 211.9 MW choice. The generated 20 MW increase is semantically compliant and the explicitly printed cost change matches the frozen target to floating-point precision; rejection is therefore a labelled-output extraction miss."
+    }
+  ]
+}

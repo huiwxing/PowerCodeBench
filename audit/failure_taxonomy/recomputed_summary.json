@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "status": "ok",
+  "scope": "Historical provenance only: rebuilds the match-false frame count and every archived classification cross-tab. It does not replay sampling or re-adjudicate labels and is superseded for current claims by the formal expert ledgers under human_review/.",
+  "checks": {
+    "summary_matches_archived": true,
+    "total_matches_archived": true,
+    "tier_table_matches_archived": true,
+    "condition_table_matches_archived": true,
+    "task_table_matches_archived": true,
+    "model_tier_mapping_matches_frozen_design": true,
+    "ledger_release_hash_matches_manifest": true,
+    "compact_hash_matches_export": true,
+    "pool_count_matches_historical_report": true,
+    "historical_reported_claims_match": true
+  },
+  "sampling_design": {
+    "cell_counts": {
+      "tier1|condA_FD": 5,
+      "tier1|condA_FDR": 5,
+      "tier1|condA_FDRS": 5,
+      "tier1|condA_FX": 5,
+      "tier1|condC_FDRS": 5,
+      "tier2|condA_FD": 5,
+      "tier2|condA_FDR": 5,
+      "tier2|condA_FDRS": 5,
+      "tier2|condA_FX": 5,
+      "tier2|condC_FDRS": 5,
+      "tier3|condA_FD": 5,
+      "tier3|condA_FDR": 5,
+      "tier3|condA_FDRS": 5,
+      "tier3|condA_FX": 5,
+      "tier3|condC_FDRS": 5,
+      "tier4|condA_FD": 5,
+      "tier4|condA_FDR": 5,
+      "tier4|condA_FDRS": 5,
+      "tier4|condA_FX": 5,
+      "tier4|condC_FDRS": 5
+    }
+  },
+  "category_tally": {
+    "C1_api_contract": 53,
+    "C2_param_misuse": 21,
+    "C3_workflow_logic": 19,
+    "C4_numerical_extraction": 1,
+    "C5_format_env": 6
+  },
+  "tier_x_category": {
+    "tier1": {
+      "C1_api_contract": 21,
+      "C2_param_misuse": 1,
+      "C3_workflow_logic": 3,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "tier2": {
+      "C1_api_contract": 13,
+      "C2_param_misuse": 6,
+      "C3_workflow_logic": 6,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "tier3": {
+      "C1_api_contract": 9,
+      "C2_param_misuse": 10,
+      "C3_workflow_logic": 6,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "tier4": {
+      "C1_api_contract": 10,
+      "C2_param_misuse": 4,
+      "C3_workflow_logic": 4,
+      "C4_numerical_extraction": 1,
+      "C5_format_env": 6
+    }
+  },
+  "condition_x_category": {
+    "condA_FD": {
+      "C1_api_contract": 11,
+      "C2_param_misuse": 4,
+      "C3_workflow_logic": 2,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 3
+    },
+    "condA_FDR": {
+      "C1_api_contract": 12,
+      "C2_param_misuse": 4,
+      "C3_workflow_logic": 3,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 1
+    },
+    "condA_FDRS": {
+      "C1_api_contract": 12,
+      "C2_param_misuse": 3,
+      "C3_workflow_logic": 3,
+      "C4_numerical_extraction": 1,
+      "C5_format_env": 1
+    },
+    "condA_FX": {
+      "C1_api_contract": 15,
+      "C2_param_misuse": 4,
+      "C3_workflow_logic": 1,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "condC_FDRS": {
+      "C1_api_contract": 3,
+      "C2_param_misuse": 6,
+      "C3_workflow_logic": 10,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 1
+    }
+  },
+  "task_x_category": {
+    "comparison": {
+      "C1_api_contract": 12,
+      "C2_param_misuse": 0,
+      "C3_workflow_logic": 0,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 1
+    },
+    "comparison_opf": {
+      "C1_api_contract": 0,
+      "C2_param_misuse": 0,
+      "C3_workflow_logic": 1,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "contingency": {
+      "C1_api_contract": 1,
+      "C2_param_misuse": 0,
+      "C3_workflow_logic": 0,
+      "C4_numerical_extraction": 1,
+      "C5_format_env": 0
+    },
+    "dc_power_flow": {
+      "C1_api_contract": 0,
+      "C2_param_misuse": 2,
+      "C3_workflow_logic": 0,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "parallel": {
+      "C1_api_contract": 6,
+      "C2_param_misuse": 1,
+      "C3_workflow_logic": 3,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "pf_then_sc": {
+      "C1_api_contract": 4,
+      "C2_param_misuse": 1,
+      "C3_workflow_logic": 2,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 1
+    },
+    "power_flow": {
+      "C1_api_contract": 2,
+      "C2_param_misuse": 0,
+      "C3_workflow_logic": 1,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "sequential": {
+      "C1_api_contract": 1,
+      "C2_param_misuse": 0,
+      "C3_workflow_logic": 0,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "short_circuit_2ph": {
+      "C1_api_contract": 0,
+      "C2_param_misuse": 2,
+      "C3_workflow_logic": 1,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "short_circuit_3ph": {
+      "C1_api_contract": 3,
+      "C2_param_misuse": 2,
+      "C3_workflow_logic": 2,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 0
+    },
+    "state_estimation": {
+      "C1_api_contract": 4,
+      "C2_param_misuse": 1,
+      "C3_workflow_logic": 2,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 3
+    },
+    "time_series": {
+      "C1_api_contract": 20,
+      "C2_param_misuse": 12,
+      "C3_workflow_logic": 7,
+      "C4_numerical_extraction": 0,
+      "C5_format_env": 1
+    }
+  },
+  "historical_reported_claims": {
+    "n_classified": 100,
+    "sampling_frame_match_false": 89420,
+    "sampling_frame_total_outcomes": 110000,
+    "sampling_frame_models": 11,
+    "n_tiers": 4,
+    "n_conditions": 5,
+    "n_task_families": 12,
+    "C1_plus_C2": 74,
+    "tier1_C1_count": 21,
+    "tier1_total": 25,
+    "tier1_C1_pct": 84.0,
+    "tier3_C2_plus_C3": 16,
+    "tier3_total": 25,
+    "tier3_C2_plus_C3_pct": 64.0,
+    "condA_FDRS_C1": 12,
+    "condC_FDRS_C1": 3,
+    "condC_FDRS_C3": 10,
+    "C4_C5_nonzero_tiers": [
+      "tier4"
+    ]
+  }
+}

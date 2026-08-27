@@ -1,0 +1,713 @@
+{
+  "reviewer_type": "Practising power-systems engineer B; independent, rubric-constrained preliminary taxonomy review",
+  "rubric": {
+    "C1_api_contract": "hallucinated, missing, or wrong callable or API contract",
+    "C2_param_misuse": "wrong parameter, index, table, column, or result access",
+    "C3_workflow_logic": "wrong domain sequence, missing analysis, wrong network, intervention, or logic",
+    "C4_numerical_extraction": "correct workflow but wrong numeric transformation or scalar extraction",
+    "C5_format_env": "syntax, truncation, import environment, timeout, or output-format execution failure",
+    "ambiguous_item_defect": "evidence is insufficient or the query and reference conflict"
+  },
+  "records": [
+    {
+      "sample_id": "tier1_A_FD_01",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "Execution stops at a hallucinated pandapower network-import callable.",
+      "primary_evidence": "AttributeError: module 'pandapower' has no attribute 'import_network'."
+    },
+    {
+      "sample_id": "tier1_A_FD_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The code uses a nonexistent loader instead of the case300 network factory.",
+      "primary_evidence": "pp.read_power_system raises AttributeError."
+    },
+    {
+      "sample_id": "tier1_A_FD_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The first blocking defect is a hallucinated pandapower loader.",
+      "primary_evidence": "pp.read_power_system raises AttributeError before any requested analysis."
+    },
+    {
+      "sample_id": "tier1_A_FD_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The network is loaded through a nonexistent API.",
+      "primary_evidence": "AttributeError on pp.read_power_system."
+    },
+    {
+      "sample_id": "tier1_A_FD_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The DC power-flow callable is hallucinated.",
+      "primary_evidence": "AttributeError: pandapower has no attribute run_dc; reference uses rundcpp."
+    },
+    {
+      "sample_id": "tier1_A_FDR_01",
+      "label": "C5_format_env",
+      "confidence": 1.0,
+      "rationale": "The generated program is syntactically truncated and cannot execute.",
+      "primary_evidence": "SyntaxError: unterminated string literal at line 18."
+    },
+    {
+      "sample_id": "tier1_A_FDR_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "A nonexistent loader is the first blocking failure.",
+      "primary_evidence": "pp.read_power_system raises AttributeError."
+    },
+    {
+      "sample_id": "tier1_A_FDR_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response calls a nonexistent pandapower JSON reader.",
+      "primary_evidence": "AttributeError on pp.read_pandapower."
+    },
+    {
+      "sample_id": "tier1_A_FDR_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The IEEE case factory is called from the wrong API namespace.",
+      "primary_evidence": "AttributeError: module 'pandapower' has no attribute 'case57'."
+    },
+    {
+      "sample_id": "tier1_A_FDR_05",
+      "label": "C5_format_env",
+      "confidence": 0.94,
+      "rationale": "The response depends on an unavailable external JSON file rather than the bundled case.",
+      "primary_evidence": "pp.from_json('WSCC9.json') fails to load the named file."
+    },
+    {
+      "sample_id": "tier1_A_FDRS_01",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The code fails immediately on a hallucinated power-system loader.",
+      "primary_evidence": "AttributeError on pp.read_power_system."
+    },
+    {
+      "sample_id": "tier1_A_FDRS_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The first call uses a nonexistent pandapower loader.",
+      "primary_evidence": "pp.read_power_system raises AttributeError."
+    },
+    {
+      "sample_id": "tier1_A_FDRS_03",
+      "label": "C5_format_env",
+      "confidence": 0.95,
+      "rationale": "Execution depends on a placeholder JSON path that is not a valid network file.",
+      "primary_evidence": "pp.from_json('path_to_your_network.json') fails while loading."
+    },
+    {
+      "sample_id": "tier1_A_FDRS_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "A hallucinated network reader prevents the requested workflow.",
+      "primary_evidence": "AttributeError on pp.read_sysid2848."
+    },
+    {
+      "sample_id": "tier1_A_FDRS_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The network factory is called through an API that does not exist.",
+      "primary_evidence": "AttributeError: pandapower has no attribute case30."
+    },
+    {
+      "sample_id": "tier1_A_FX_01",
+      "label": "C5_format_env",
+      "confidence": 1.0,
+      "rationale": "The response is truncated inside a string/index expression and is invalid Python.",
+      "primary_evidence": "SyntaxError: unterminated string literal at line 13."
+    },
+    {
+      "sample_id": "tier1_A_FX_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response invents a data-loading callable.",
+      "primary_evidence": "AttributeError on pp.read_pandas_data."
+    },
+    {
+      "sample_id": "tier1_A_FX_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The first blocking operation is a nonexistent network loader.",
+      "primary_evidence": "AttributeError on pp.read_power_system."
+    },
+    {
+      "sample_id": "tier1_A_FX_04",
+      "label": "C5_format_env",
+      "confidence": 0.94,
+      "rationale": "The code relies on an unavailable malformed local JSON asset.",
+      "primary_evidence": "pp.from_json('145-bus.json') fails with a JSON parse UserWarning."
+    },
+    {
+      "sample_id": "tier1_A_FX_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The IEEE-39 network factory is hallucinated.",
+      "primary_evidence": "AttributeError on pp.create_ieee_39_bus_network."
+    },
+    {
+      "sample_id": "tier1_C_FDRS_01",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "The response explicitly omits the load modification, power flow, measurement creation, and short-circuit calculation.",
+      "primary_evidence": "Comments say no modification or computation is needed, then it reads empty result tables."
+    },
+    {
+      "sample_id": "tier1_C_FDRS_02",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "None of the requested staged interventions or power-flow runs is performed.",
+      "primary_evidence": "The generated code only constructs the network and prints an empty res_bus series."
+    },
+    {
+      "sample_id": "tier1_C_FDRS_03",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "The required pre-fault power flow and short-circuit study are entirely omitted.",
+      "primary_evidence": "It directly reads ikss_ka from res_bus, producing KeyError."
+    },
+    {
+      "sample_id": "tier1_C_FDRS_04",
+      "label": "C3_workflow_logic",
+      "confidence": 0.97,
+      "rationale": "The response loads a different LV network, so the requested Kerber workflow cannot be evaluated.",
+      "primary_evidence": "Generated network is ieee_european_lv_asymmetric; reference uses the Kerber rural overhead network."
+    },
+    {
+      "sample_id": "tier1_C_FDRS_05",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "The code accesses the transformer table through a nonexistent attribute and nonexistent result fields.",
+      "primary_evidence": "AttributeError: pandapowerNet has no attribute transformers; reference uses net.trafo."
+    },
+    {
+      "sample_id": "tier2_A_FD_01",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "The OPF runs, but generator 0 is retrieved via an invalid nullable name mask.",
+      "primary_evidence": "ValueError: cannot mask with non-boolean array containing NA/NaN; reference uses res_gen.at[0, 'p_mw']."
+    },
+    {
+      "sample_id": "tier2_A_FD_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The PEGASE network factory name is incorrect.",
+      "primary_evidence": "AttributeError on pn.pegase9241; reference uses case9241pegase."
+    },
+    {
+      "sample_id": "tier2_A_FD_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response calls a nonexistent generic PEGASE factory.",
+      "primary_evidence": "AttributeError on pn.pegase."
+    },
+    {
+      "sample_id": "tier2_A_FD_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The generated network factory is not part of pandapower.",
+      "primary_evidence": "AttributeError on pn.create_pegase."
+    },
+    {
+      "sample_id": "tier2_A_FD_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The Kerber factory name is hallucinated.",
+      "primary_evidence": "AttributeError on pn.create_kerber."
+    },
+    {
+      "sample_id": "tier2_A_FDR_01",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "The code tries to infer loading from transformer row fields that do not exist.",
+      "primary_evidence": "AttributeError on transformer.pf_out; transformer results belong in a result table after power flow."
+    },
+    {
+      "sample_id": "tier2_A_FDR_02",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "It substitutes the MV Oberrhein network for the requested synthetic voltage-control LV network.",
+      "primary_evidence": "Generated loader is mv_oberrhein(); diagnostics mark correct_network false."
+    },
+    {
+      "sample_id": "tier2_A_FDR_03",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "The analysis is performed on the CIGRE MV network instead of the 5-bus PJM case.",
+      "primary_evidence": "Generated code calls create_cigre_network_mv and returns a value from that network."
+    },
+    {
+      "sample_id": "tier2_A_FDR_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response uses a nonexistent PEGASE-89 factory.",
+      "primary_evidence": "AttributeError on pn.create_pegase_89bus."
+    },
+    {
+      "sample_id": "tier2_A_FDR_05",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "The response substitutes CIGRE MV and treats runpp as if it returned contingency results.",
+      "primary_evidence": "contingency_results is None and indexing it raises TypeError."
+    },
+    {
+      "sample_id": "tier2_A_FDRS_01",
+      "label": "C5_format_env",
+      "confidence": 1.0,
+      "rationale": "A huge generated list is truncated before its closing bracket.",
+      "primary_evidence": "SyntaxError: '[' was never closed."
+    },
+    {
+      "sample_id": "tier2_A_FDRS_02",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "The response creates an empty network instead of the Baran-Wu case and runs AC rather than DC power flow.",
+      "primary_evidence": "create_empty_network followed by runpp fails with max() arg is an empty sequence."
+    },
+    {
+      "sample_id": "tier2_A_FDRS_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The short-circuit callable does not exist.",
+      "primary_evidence": "AttributeError on pp.run3ph_isc."
+    },
+    {
+      "sample_id": "tier2_A_FDRS_04",
+      "label": "C1_api_contract",
+      "confidence": 0.96,
+      "rationale": "The short-circuit API's required external-grid data contract is not satisfied.",
+      "primary_evidence": "calc_sc raises ValueError requiring s_sc_max_mva."
+    },
+    {
+      "sample_id": "tier2_A_FDRS_05",
+      "label": "ambiguous_item_defect",
+      "confidence": 0.92,
+      "rationale": "The query does not define the numerical low-demand level, while the reference silently chooses scaling 0.67.",
+      "primary_evidence": "Generated 10% curtailment is not disambiguated by the frozen query; reference uses 0.67."
+    },
+    {
+      "sample_id": "tier2_A_FX_01",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response invokes a nonexistent case138 network factory.",
+      "primary_evidence": "AttributeError on pn.case138."
+    },
+    {
+      "sample_id": "tier2_A_FX_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The IEEE-30 network symbol is imported under a nonexistent name.",
+      "primary_evidence": "ImportError: cannot import name ieee30 from pandapower.networks."
+    },
+    {
+      "sample_id": "tier2_A_FX_03",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "No measurement rows are created before the code tries to mutate measurement types and run estimation.",
+      "primary_evidence": "KeyError 'type' on the empty measurement table; reference explicitly creates voltage, p, and q measurements."
+    },
+    {
+      "sample_id": "tier2_A_FX_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The Iceland network is requested through a nonexistent factory.",
+      "primary_evidence": "AttributeError on pn.case_ieee_rts_189."
+    },
+    {
+      "sample_id": "tier2_A_FX_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response uses a nonexistent IEEE-30 constructor.",
+      "primary_evidence": "AttributeError on pp.create_case_ieee30."
+    },
+    {
+      "sample_id": "tier2_C_FDRS_01",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "It runs AC power flow instead of the requested DC power flow and also zeroes active load power without instruction.",
+      "primary_evidence": "Generated code calls runpp and returns 0.328977; reference calls rundcpp and expects -8.257381."
+    },
+    {
+      "sample_id": "tier2_C_FDRS_02",
+      "label": "C3_workflow_logic",
+      "confidence": 0.98,
+      "rationale": "The code unconditionally disables generators whose modeled contribution the reference retains.",
+      "primary_evidence": "Generated result 2.202956 differs from 2.252933 after net.gen['in_service']=False."
+    },
+    {
+      "sample_id": "tier2_C_FDRS_03",
+      "label": "C5_format_env",
+      "confidence": 0.99,
+      "rationale": "The numeric result is essentially correct but is emitted with labels and multiple numeric lines that the evaluator cannot parse.",
+      "primary_evidence": "Output contains 'Maximum short circuit current (ikss): 28.87 kA'; match_detail reports cannot_parse_float."
+    },
+    {
+      "sample_id": "tier2_C_FDRS_04",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "The response evaluates only outage line 10 and reports a loading number instead of the requested all-line N-1 boolean.",
+      "primary_evidence": "Output is 88.913994, while reference checks all remaining lines and returns a bool."
+    },
+    {
+      "sample_id": "tier2_C_FDRS_05",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "An unrequested power flow is inserted before the standalone short-circuit study and fails to converge.",
+      "primary_evidence": "LoadflowNotConverged occurs at pp.runpp; the reference directly calls calc_sc."
+    },
+    {
+      "sample_id": "tier3_A_FD_01",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The synthetic voltage-control network factory name is wrong.",
+      "primary_evidence": "AttributeError on pn.case_synthetic_voltage_control."
+    },
+    {
+      "sample_id": "tier3_A_FD_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response imports an estimation helper that is not provided by the API.",
+      "primary_evidence": "ImportError on add_virtual_measurements_from_load_flow."
+    },
+    {
+      "sample_id": "tier3_A_FD_03",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "idxmax is applied to the entire load DataFrame rather than the active-power column.",
+      "primary_evidence": "max_load_idx becomes a Series, causing an ambiguous truth-value ValueError."
+    },
+    {
+      "sample_id": "tier3_A_FD_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The four-bus case factory is named incorrectly.",
+      "primary_evidence": "AttributeError on pn.case4; reference uses case4gs."
+    },
+    {
+      "sample_id": "tier3_A_FD_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The imported Kerber factory does not exist.",
+      "primary_evidence": "ImportError: cannot import name kerber."
+    },
+    {
+      "sample_id": "tier3_A_FDR_01",
+      "label": "ambiguous_item_defect",
+      "confidence": 0.98,
+      "rationale": "The query asks for the new minimum voltage, but the reference target is the absolute before/after difference.",
+      "primary_evidence": "Generated after-value is about 0.943, whereas reference computes abs(baseline-modified) with ground truth 0."
+    },
+    {
+      "sample_id": "tier3_A_FDR_02",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "The analysis is performed on IEEE case14 instead of the requested Kerber rural overhead network.",
+      "primary_evidence": "Generated loader is pn.case14; diagnostics mark correct_network false."
+    },
+    {
+      "sample_id": "tier3_A_FDR_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The contingency API is accessed through a nonexistent top-level attribute.",
+      "primary_evidence": "AttributeError: pandapower has no attribute contingency."
+    },
+    {
+      "sample_id": "tier3_A_FDR_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The contingency callable is referenced through an unavailable API path.",
+      "primary_evidence": "AttributeError on pp.contingency.run_contingency."
+    },
+    {
+      "sample_id": "tier3_A_FDR_05",
+      "label": "C3_workflow_logic",
+      "confidence": 0.98,
+      "rationale": "An unrequested preliminary power flow prevents the required standalone short-circuit analysis.",
+      "primary_evidence": "LoadflowNotConverged occurs before calc_sc; the reference performs no power flow."
+    },
+    {
+      "sample_id": "tier3_A_FDRS_01",
+      "label": "C1_api_contract",
+      "confidence": 0.98,
+      "rationale": "The short-circuit call violates required external-grid parameters and selects the wrong case.",
+      "primary_evidence": "ValueError requires rx_min after generated code sets only s_sc_min_mva and case='min'."
+    },
+    {
+      "sample_id": "tier3_A_FDRS_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response calls a nonexistent state-estimation entry point.",
+      "primary_evidence": "AttributeError on pp.run_se."
+    },
+    {
+      "sample_id": "tier3_A_FDRS_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The simple MV open-ring network factory is hallucinated.",
+      "primary_evidence": "AttributeError on pn.mv_open_ring_network."
+    },
+    {
+      "sample_id": "tier3_A_FDRS_04",
+      "label": "C2_param_misuse",
+      "confidence": 0.98,
+      "rationale": "The contingency result is accessed through a key not returned by the API.",
+      "primary_evidence": "KeyError 'worst_line_loading' after run_contingency."
+    },
+    {
+      "sample_id": "tier3_A_FDRS_05",
+      "label": "C5_format_env",
+      "confidence": 1.0,
+      "rationale": "The generated response is truncated mid-call and is invalid Python.",
+      "primary_evidence": "SyntaxError: '(' was never closed at line 60."
+    },
+    {
+      "sample_id": "tier3_A_FX_01",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "It substitutes case4gs for the simple four-bus system and runs an AC BFSW flow instead of DC power flow.",
+      "primary_evidence": "Generated runpp(... algorithm='bfsw') fails to converge; reference uses simple_four_bus_system and rundcpp."
+    },
+    {
+      "sample_id": "tier3_A_FX_02",
+      "label": "C1_api_contract",
+      "confidence": 0.98,
+      "rationale": "The short-circuit call omits a required external-grid R/X parameter.",
+      "primary_evidence": "calc_sc raises ValueError requiring rx_max."
+    },
+    {
+      "sample_id": "tier3_A_FX_03",
+      "label": "C1_api_contract",
+      "confidence": 1.0,
+      "rationale": "A module is incorrectly called as though it were the short-circuit function.",
+      "primary_evidence": "TypeError: 'module' object is not callable at pp.shortcircuit(...)."
+    },
+    {
+      "sample_id": "tier3_A_FX_04",
+      "label": "C2_param_misuse",
+      "confidence": 1.0,
+      "rationale": "The explicit line index 7 is incorrectly converted to index 6.",
+      "primary_evidence": "Generated res_line.at[6] returns 33.463475; reference res_line.at[7] is 45.975138."
+    },
+    {
+      "sample_id": "tier3_A_FX_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The PEGASE-89 network factory is misspelled.",
+      "primary_evidence": "AttributeError on pn.case89_pegase."
+    },
+    {
+      "sample_id": "tier3_C_FDRS_01",
+      "label": "C2_param_misuse",
+      "confidence": 1.0,
+      "rationale": "The response shifts explicit line index 8 to 7 and gives the shunt the opposite sign.",
+      "primary_evidence": "Generated uses line.loc[7] and q_mvar=18; reference uses line.at[8] and q_mvar=-18."
+    },
+    {
+      "sample_id": "tier3_C_FDRS_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The requested Kerber network is imported under a nonexistent symbol.",
+      "primary_evidence": "ImportError on kerber_dorf."
+    },
+    {
+      "sample_id": "tier3_C_FDRS_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The code imports a network module that does not exist.",
+      "primary_evidence": "ModuleNotFoundError for pandapower.networks.kerber_grid."
+    },
+    {
+      "sample_id": "tier3_C_FDRS_04",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "The explicit bus indices are incorrectly treated as string names or one-based positions.",
+      "primary_evidence": "Code raises KeyError because no bus name '13' exists; reference directly uses bus index 13."
+    },
+    {
+      "sample_id": "tier3_C_FDRS_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The custom-controller base class is imported from an invalid API location.",
+      "primary_evidence": "ImportError: cannot import name Controller from pandapower.control.controller."
+    },
+    {
+      "sample_id": "tier4_A_FD_01",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The RTE grid factory is hallucinated.",
+      "primary_evidence": "AttributeError on networks.rte_case5_ext."
+    },
+    {
+      "sample_id": "tier4_A_FD_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The Illinois-200 network is requested with a nonexistent factory.",
+      "primary_evidence": "AttributeError on pn.il200."
+    },
+    {
+      "sample_id": "tier4_A_FD_03",
+      "label": "C1_api_contract",
+      "confidence": 0.97,
+      "rationale": "The short-circuit network-data contract is incomplete because an incompatible generator remains active.",
+      "primary_evidence": "calc_sc raises AttributeError that the generator DataFrame has no vn_kv; reference disables gens lacking vn_kv."
+    },
+    {
+      "sample_id": "tier4_A_FD_04",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "The response never runs N-1 analysis and instead disconnects the base-case most-loaded line.",
+      "primary_evidence": "Generated code has only ordinary runpp calls and no contingency calculation."
+    },
+    {
+      "sample_id": "tier4_A_FD_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The Kerber rural cable factory name is nonexistent.",
+      "primary_evidence": "AttributeError on nw.create_kerber_network."
+    },
+    {
+      "sample_id": "tier4_A_FDR_01",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "Load scaling is cumulative and scalar across steps instead of independently sampled absolute profiles per load and time step.",
+      "primary_evidence": "Each loop multiplies existing p_mw and q_mvar by one scalar, leading to LoadflowNotConverged."
+    },
+    {
+      "sample_id": "tier4_A_FDR_02",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "It adds a separate line instead of increasing the selected line's parallel field and changes load index 14 instead of 15.",
+      "primary_evidence": "Generated create_line(... parallel=1) and net.load.loc[14]; reference uses line.at[21, 'parallel']=2 and load.at[15]."
+    },
+    {
+      "sample_id": "tier4_A_FDR_03",
+      "label": "C4_numerical_extraction",
+      "confidence": 0.94,
+      "rationale": "The response computes a change variable but ultimately prints the modified maximum rather than that change.",
+      "primary_evidence": "Final print is new_max_line_loading (4.475087), while reference prints abs(baseline-modified), ground truth 0."
+    },
+    {
+      "sample_id": "tier4_A_FDR_04",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "It analyzes example_simple rather than the synthetic voltage-control LV network and uses repeated while-loop interventions not requested.",
+      "primary_evidence": "Generated loader nw.example_simple; diagnostics mark correct_network false."
+    },
+    {
+      "sample_id": "tier4_A_FDR_05",
+      "label": "C3_workflow_logic",
+      "confidence": 1.0,
+      "rationale": "The response fabricates a different five-bus network that lacks a reference bus rather than loading the PJM case.",
+      "primary_evidence": "create_empty_network construction fails runpp with 'No reference bus is available'."
+    },
+    {
+      "sample_id": "tier4_A_FDRS_01",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The six-bus network factory/attribute does not exist.",
+      "primary_evidence": "AttributeError on pp.networks.case6_ww_6bus."
+    },
+    {
+      "sample_id": "tier4_A_FDRS_02",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The response calls a nonexistent measurement-construction helper.",
+      "primary_evidence": "AttributeError on pp_est.create_measurements."
+    },
+    {
+      "sample_id": "tier4_A_FDRS_03",
+      "label": "C3_workflow_logic",
+      "confidence": 0.98,
+      "rationale": "It manually constructs a different network instead of loading example_simple and fails on an unavailable standard type.",
+      "primary_evidence": "UserWarning: unknown standard line type during custom network construction."
+    },
+    {
+      "sample_id": "tier4_A_FDRS_04",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The GB reduced network factory is named incorrectly.",
+      "primary_evidence": "AttributeError on nw.gb_reduced_29bus."
+    },
+    {
+      "sample_id": "tier4_A_FDRS_05",
+      "label": "C1_api_contract",
+      "confidence": 0.97,
+      "rationale": "The short-circuit data contract is incomplete because generators lacking vn_kv remain active.",
+      "primary_evidence": "calc_sc raises AttributeError that the generator DataFrame has no vn_kv; reference conditionally disables such generators."
+    },
+    {
+      "sample_id": "tier4_A_FX_01",
+      "label": "C1_api_contract",
+      "confidence": 0.97,
+      "rationale": "The short-circuit API's required R/X input is omitted.",
+      "primary_evidence": "calc_sc raises ValueError requiring rx_max before result extraction."
+    },
+    {
+      "sample_id": "tier4_A_FX_02",
+      "label": "C5_format_env",
+      "confidence": 1.0,
+      "rationale": "An editing artifact is embedded in the assignment, making the response invalid Python.",
+      "primary_evidence": "SyntaxError at 'net = pp.networks.case6_ww changed to ...'."
+    },
+    {
+      "sample_id": "tier4_A_FX_03",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The RTE-6470 network factory does not exist under the generated name.",
+      "primary_evidence": "AttributeError on pn.rte_6470_grid."
+    },
+    {
+      "sample_id": "tier4_A_FX_04",
+      "label": "ambiguous_item_defect",
+      "confidence": 0.92,
+      "rationale": "The query does not define how much to raise the generator, while the reference silently fixes it at 243.0 MW.",
+      "primary_evidence": "Generated 20% increase is plausible from the query but produces 143.780716 versus reference 112.228427."
+    },
+    {
+      "sample_id": "tier4_A_FX_05",
+      "label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The PEGASE-9241 factory name is hallucinated.",
+      "primary_evidence": "AttributeError on nw.pegase_9241."
+    },
+    {
+      "sample_id": "tier4_C_FDRS_01",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "Explicit line index 1 is incorrectly changed to index 0, and the response returns the post-change maximum instead of the reference delta.",
+      "primary_evidence": "Generated uses net.line.loc[0] and prints max_line_loading_after; reference uses line.at[1] and abs difference."
+    },
+    {
+      "sample_id": "tier4_C_FDRS_02",
+      "label": "C3_workflow_logic",
+      "confidence": 0.99,
+      "rationale": "The required semantic curtailment is applied only after the first OPF, then reset before the second, so neither compared state matches the reference.",
+      "primary_evidence": "Generated baseline OPF precedes curtailment and final output is total cost 6619.909 rather than cost change 1229.373."
+    },
+    {
+      "sample_id": "tier4_C_FDRS_03",
+      "label": "C5_format_env",
+      "confidence": 1.0,
+      "rationale": "The requested computation exceeds the hard execution limit.",
+      "primary_evidence": "TimeoutError: hard execution timeout after 75 seconds."
+    },
+    {
+      "sample_id": "tier4_C_FDRS_04",
+      "label": "C4_numerical_extraction",
+      "confidence": 1.0,
+      "rationale": "The workflow and inputs are correct, but the signed difference is returned instead of its absolute magnitude.",
+      "primary_evidence": "Generated output is -1.133234884; reference applies abs and ground truth is +1.133235."
+    },
+    {
+      "sample_id": "tier4_C_FDRS_05",
+      "label": "C2_param_misuse",
+      "confidence": 0.99,
+      "rationale": "The contingency-case object has the wrong nested schema and is rejected by run_contingency.",
+      "primary_evidence": "Generated uses {'line': [...], 'trafo': [...]}; TypeError says list indices must be integers or slices, not str."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "panel_n_models": 10,
+  "panel_mean_A_acc": 0.05785,
+  "panel_mean_R_acc": 0.10984999999999999,
+  "panel_mean_C_adapted_acc": 0.36735,
+  "panel_mean_C_unadapted_acc": 0.33575000000000005,
+  "panel_mean_delta_adapted_minus_unadapted_pp": 3.1599999999999997,
+  "panel_mean_delta_unadapted_minus_a_pp": 27.79,
+  "panel_mean_delta_unadapted_minus_r_pp": 22.590000000000003,
+  "rows": [
+    {
+      "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+      "A_acc": 0.0,
+      "R_acc": 0.002,
+      "C_adapted": 0.081,
+      "C_unadapted": 0.0635,
+      "delta_adapted_minus_unadapted": 1.7500000000000002,
+      "delta_unadapted_minus_a": 6.35,
+      "delta_unadapted_minus_r": 6.15
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "A_acc": 0.004,
+      "R_acc": 0.0375,
+      "C_adapted": 0.2315,
+      "C_unadapted": 0.2225,
+      "delta_adapted_minus_unadapted": 0.9000000000000008,
+      "delta_unadapted_minus_a": 21.85,
+      "delta_unadapted_minus_r": 18.5
+    },
+    {
+      "model": "meta-llama_Llama-3.1-8B-Instruct",
+      "A_acc": 0.005,
+      "R_acc": 0.012,
+      "C_adapted": 0.201,
+      "C_unadapted": 0.093,
+      "delta_adapted_minus_unadapted": 10.8,
+      "delta_unadapted_minus_a": 8.799999999999999,
+      "delta_unadapted_minus_r": 8.1
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "A_acc": 0.016,
+      "R_acc": 0.0685,
+      "C_adapted": 0.342,
+      "C_unadapted": 0.2755,
+      "delta_adapted_minus_unadapted": 6.65,
+      "delta_unadapted_minus_a": 25.95,
+      "delta_unadapted_minus_r": 20.700000000000003
+    },
+    {
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "A_acc": 0.038,
+      "R_acc": 0.111,
+      "C_adapted": 0.427,
+      "C_unadapted": 0.427,
+      "delta_adapted_minus_unadapted": 0.0,
+      "delta_unadapted_minus_a": 38.9,
+      "delta_unadapted_minus_r": 31.6
+    },
+    {
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "A_acc": 0.05,
+      "R_acc": 0.1045,
+      "C_adapted": 0.3815,
+      "C_unadapted": 0.3985,
+      "delta_adapted_minus_unadapted": -1.7000000000000015,
+      "delta_unadapted_minus_a": 34.85,
+      "delta_unadapted_minus_r": 29.400000000000006
+    },
+    {
+      "model": "openai_gpt-oss-120b",
+      "A_acc": 0.1405,
+      "R_acc": 0.212,
+      "C_adapted": 0.4565,
+      "C_unadapted": 0.4295,
+      "delta_adapted_minus_unadapted": 2.7000000000000024,
+      "delta_unadapted_minus_a": 28.9,
+      "delta_unadapted_minus_r": 21.75
+    },
+    {
+      "model": "Qwen_Qwen3-Coder-Next",
+      "A_acc": 0.04,
+      "R_acc": 0.1115,
+      "C_adapted": 0.472,
+      "C_unadapted": 0.4575,
+      "delta_adapted_minus_unadapted": 1.4499999999999957,
+      "delta_unadapted_minus_a": 41.75000000000001,
+      "delta_unadapted_minus_r": 34.6
+    },
+    {
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "A_acc": 0.1345,
+      "R_acc": 0.2085,
+      "C_adapted": 0.5145,
+      "C_unadapted": 0.467,
+      "delta_adapted_minus_unadapted": 4.749999999999993,
+      "delta_unadapted_minus_a": 33.25,
+      "delta_unadapted_minus_r": 25.850000000000005
+    },
+    {
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "A_acc": 0.1505,
+      "R_acc": 0.231,
+      "C_adapted": 0.5665,
+      "C_unadapted": 0.5235,
+      "delta_adapted_minus_unadapted": 4.300000000000004,
+      "delta_unadapted_minus_a": 37.3,
+      "delta_unadapted_minus_r": 29.25
+    }
+  ]
+}

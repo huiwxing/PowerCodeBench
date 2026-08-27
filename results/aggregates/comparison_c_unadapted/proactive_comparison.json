@@ -1,0 +1,93 @@
+{
+  "conditions": [
+    "A",
+    "C"
+  ],
+  "models": [
+    {
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "A": null,
+      "C": 0.467
+    }
+  ],
+  "delta_pairs": [
+    "C-A"
+  ],
+  "per_task_exec_rate": [
+    {
+      "task": "comparison",
+      "A": null,
+      "C": 0.9345
+    },
+    {
+      "task": "comparison_opf",
+      "A": null,
+      "C": 0.8762
+    },
+    {
+      "task": "contingency",
+      "A": null,
+      "C": 0.6636
+    },
+    {
+      "task": "contingency_fix",
+      "A": null,
+      "C": 0.1864
+    },
+    {
+      "task": "dc_power_flow",
+      "A": null,
+      "C": 0.8321
+    },
+    {
+      "task": "diagnose_and_fix",
+      "A": null,
+      "C": 0.8538
+    },
+    {
+      "task": "opf",
+      "A": null,
+      "C": 0.8641
+    },
+    {
+      "task": "parallel",
+      "A": null,
+      "C": 0.5894
+    },
+    {
+      "task": "pf_then_sc",
+      "A": null,
+      "C": 0.3312
+    },
+    {
+      "task": "power_flow",
+      "A": null,
+      "C": 0.7929
+    },
+    {
+      "task": "sequential",
+      "A": null,
+      "C": 0.8772
+    },
+    {
+      "task": "short_circuit_2ph",
+      "A": null,
+      "C": 0.5323
+    },
+    {
+      "task": "short_circuit_3ph",
+      "A": null,
+      "C": 0.4959
+    },
+    {
+      "task": "state_estimation",
+      "A": null,
+      "C": 0.4706
+    },
+    {
+      "task": "time_series",
+      "A": null,
+      "C": 0.6142
+    }
+  ]
+}

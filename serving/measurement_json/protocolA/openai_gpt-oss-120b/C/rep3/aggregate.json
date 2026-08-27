@@ -1,0 +1,39 @@
+{
+  "cluster_avg_power_w": 1596.3323762154785,
+  "completion_tokens": 304651,
+  "duration_s_by_node": {
+    "nid010289": 105.54062519199215
+  },
+  "energy_methods": [
+    "nvml_total_energy_counter"
+  ],
+  "energy_scope": [
+    "gross_device_energy"
+  ],
+  "hostnames": [
+    "nid010289"
+  ],
+  "j_per_completion_token": 0.5530194123767853,
+  "j_per_request": 561.5930566666667,
+  "j_per_successful_request": 1203.413692857143,
+  "j_per_total_token": 0.22363889862321268,
+  "n_gpus": 4,
+  "n_nodes": 1,
+  "peak_memory_used_bytes_max_device": 96447168512,
+  "peak_memory_used_bytes_sum": 385719468032,
+  "prompt_tokens": 448697,
+  "representative_window_s": 105.54062519199215,
+  "requests": 300,
+  "requests_per_s": 2.8425073231683147,
+  "schema_version": 1,
+  "source_files": [
+    "probe_eval_results/e3_protocolA/openai_gpt-oss-120b/C/rep3/energy_5786608_nid010289.json"
+  ],
+  "start_skew_s": 0.0,
+  "stop_skew_s": 0.0,
+  "successful_requests": 140,
+  "total_energy_j": 168477.91700000002,
+  "total_tokens": 753348.0,
+  "total_tokens_per_s": 7137.990689647345,
+  "wall_span_s": 105.5406243801117
+}

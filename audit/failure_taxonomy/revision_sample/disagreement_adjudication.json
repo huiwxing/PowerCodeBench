@@ -1,0 +1,188 @@
+{
+  "reviewer_type": "Consensus adjudication by the two practising power-systems engineers; frozen-sample and rubric-constrained",
+  "rubric": {
+    "C1_api_contract": "hallucinated, missing, or wrong callable or API contract",
+    "C2_param_misuse": "wrong parameter, index, table, column, or result access",
+    "C3_workflow_logic": "wrong domain sequence, missing analysis, wrong network, intervention, or logic",
+    "C4_numerical_extraction": "correct workflow but wrong numeric transformation or scalar extraction",
+    "C5_format_env": "syntax, truncation, import, environment, timeout, or output-format execution failure",
+    "ambiguous_item_defect": "evidence is insufficient or the query and reference conflict"
+  },
+  "scope": {
+    "description": "Only records whose labels differ between judge_a.json and judge_b.json",
+    "disagreement_count": 15,
+    "sample_ids": [
+      "tier1_A_FDR_05",
+      "tier1_A_FDRS_03",
+      "tier1_A_FX_04",
+      "tier2_A_FDRS_04",
+      "tier2_A_FDRS_05",
+      "tier2_C_FDRS_03",
+      "tier3_A_FDR_01",
+      "tier3_A_FDRS_01",
+      "tier3_A_FX_02",
+      "tier4_A_FD_03",
+      "tier4_A_FDR_02",
+      "tier4_A_FDR_03",
+      "tier4_A_FDRS_05",
+      "tier4_A_FX_01",
+      "tier4_A_FX_04"
+    ]
+  },
+  "records": [
+    {
+      "sample_id": "tier1_A_FDR_05",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C5_format_env",
+      "final_label": "C5_format_env",
+      "confidence": 0.99,
+      "rationale": "The first observed failure is loading an invented external JSON asset, so execution stops before the later OPF and cost-workflow errors can become decisive. This is an environment/input-asset execution failure under C5.",
+      "primary_evidence": "The generated first network operation is pp.from_json('WSCC9.json'), which raises UserWarning: Failed to load as json or file; the reference instead constructs the bundled network with pn.case9()."
+    },
+    {
+      "sample_id": "tier1_A_FDRS_03",
+      "judge_a_label": "C1_api_contract",
+      "judge_b_label": "C5_format_env",
+      "final_label": "C5_format_env",
+      "confidence": 0.99,
+      "rationale": "The placeholder network path is the first and stopping failure. Although unreachable calls later violate API contracts, the observed execution failure is the unavailable external asset and therefore C5.",
+      "primary_evidence": "pp.from_json('path_to_your_network.json') raises UserWarning: Failed to load as json or file before pp.disconnect or pp.short_circuit is reached."
+    },
+    {
+      "sample_id": "tier1_A_FX_04",
+      "judge_a_label": "C1_api_contract",
+      "judge_b_label": "C5_format_env",
+      "final_label": "C5_format_env",
+      "confidence": 0.99,
+      "rationale": "Execution first fails on an invented local JSON asset, before the nonexistent contingency method can run. The primary realized failure is thus C5 rather than the later API-contract error.",
+      "primary_evidence": "pp.from_json('145-bus.json') raises UserWarning with a JSON parse failure; the reference uses pn.case145(), and net.analyze_n1() is never reached."
+    },
+    {
+      "sample_id": "tier2_A_FDRS_04",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C1_api_contract",
+      "final_label": "C1_api_contract",
+      "confidence": 0.98,
+      "rationale": "The decisive stopping mechanism is an unsatisfied calc_sc network-data contract: the required external-grid short-circuit strength is absent. That contract failure prevents any result, independently of the questionable curtailment choice.",
+      "primary_evidence": "calc_sc(net, bus=104, fault='2ph') raises ValueError requiring net.ext_grid['s_sc_max_mva']; the reference initializes the required external-grid short-circuit fields before calc_sc."
+    },
+    {
+      "sample_id": "tier2_A_FDRS_05",
+      "judge_a_label": "C2_param_misuse",
+      "judge_b_label": "ambiguous_item_defect",
+      "final_label": "ambiguous_item_defect",
+      "confidence": 0.99,
+      "rationale": "The query never specifies a numerical low-demand level, yet that level affects the power-flow result and conditional redispatch. The reference silently chooses scaling 0.67, while the generated 10% p_mw value is another possible interpretation, so the target is underdetermined.",
+      "primary_evidence": "The query says only 'curtail ... to a low-demand operating level'; the reference sets net.load.at[4, 'scaling'] = 0.67, whereas the generated code multiplies that load's p_mw by 0.1."
+    },
+    {
+      "sample_id": "tier2_C_FDRS_03",
+      "judge_a_label": "C4_numerical_extraction",
+      "judge_b_label": "C5_format_env",
+      "final_label": "C5_format_env",
+      "confidence": 0.99,
+      "rationale": "The substantive analysis reaches the expected maximum current, but the response emits multiple labeled, unit-bearing lines, causing the evaluator's output parser to fail. The decisive recorded failure is output format, explicitly covered by C5.",
+      "primary_evidence": "Execution prints 'Maximum line loading: 24.52%' and 'Maximum short circuit current (ikss): 28.87 kA'; match_detail reports cannot_parse_float for the latter instead of a parsed scalar."
+    },
+    {
+      "sample_id": "tier3_A_FDR_01",
+      "judge_a_label": "C2_param_misuse",
+      "judge_b_label": "ambiguous_item_defect",
+      "final_label": "ambiguous_item_defect",
+      "confidence": 0.99,
+      "rationale": "The frozen query requests the new post-change minimum voltage, but the reference and ground truth target the absolute before/after difference. This direct query-reference target conflict makes a unique correctness judgment impossible, even though the generated line index is also wrong.",
+      "primary_evidence": "The query asks 'What is the new value of minimum bus voltage'; the reference prints abs(baseline - modified), whose ground truth is 0, while the generated code prints the post-change value near 0.943."
+    },
+    {
+      "sample_id": "tier3_A_FDRS_01",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C1_api_contract",
+      "final_label": "C1_api_contract",
+      "confidence": 0.98,
+      "rationale": "The calculation stops because the external-grid data required by the selected calc_sc case are incomplete. This is a missing API/data contract, before any short-circuit result or extraction is produced.",
+      "primary_evidence": "The generated code supplies s_sc_min_mva but not rx_min and calls calc_sc(... case='min'); execution raises ValueError requiring rx_min, while the reference supplies both strength and R/X fields."
+    },
+    {
+      "sample_id": "tier3_A_FX_02",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C1_api_contract",
+      "final_label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "The short-circuit call violates its required external-grid data contract and terminates before result access. The later use of a wrong result table is unreachable and not the primary failure.",
+      "primary_evidence": "After setting only s_sc_max_mva, sc.calc_sc(net, fault='3ph') raises ValueError requiring rx_max; the reference sets rx_max before calling calc_sc."
+    },
+    {
+      "sample_id": "tier4_A_FD_03",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C1_api_contract",
+      "final_label": "C1_api_contract",
+      "confidence": 0.98,
+      "rationale": "The added generator remains incompatible with the short-circuit input schema, so calc_sc fails on missing generator voltage data. This is the decisive unsatisfied network-data contract for the API.",
+      "primary_evidence": "sc.calc_sc raises AttributeError that the generator DataFrame has no vn_kv; the reference conditionally disables generators when vn_kv is absent."
+    },
+    {
+      "sample_id": "tier4_A_FDR_02",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C2_param_misuse",
+      "final_label": "C2_param_misuse",
+      "confidence": 0.98,
+      "rationale": "The overall identify-reinforce-two-OPF sequence is present, but the implementation uses the wrong representation for the selected line and the wrong load index. These concrete row/field/index mistakes fit C2 more specifically than a missing or reordered workflow.",
+      "primary_evidence": "The generated code creates a separate line with a fixed std_type instead of setting the selected line's parallel field, and uses net.load.loc[14, 'scaling']; the reference uses net.line.at[21, 'parallel'] = 2 and net.load.at[15, 'scaling'] = 1.59."
+    },
+    {
+      "sample_id": "tier4_A_FDR_03",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C4_numerical_extraction",
+      "final_label": "C3_workflow_logic",
+      "confidence": 0.98,
+      "rationale": "The two-stage intervention is not preserved: the first support is created with the wrong sign and then all shunts are deleted before the second stage. Because the workflow is substantively wrong, C4's prerequisite of a correct workflow is not met, even though the final print also selects the wrong scalar.",
+      "primary_evidence": "The generated code creates q_mvar=10, drops net.shunt in full, then adds -14 Mvar; the query calls for installed capacitive support followed by an added shunt, and the reference retains the first -18 Mvar shunt during the second run."
+    },
+    {
+      "sample_id": "tier4_A_FDRS_05",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C1_api_contract",
+      "final_label": "C1_api_contract",
+      "confidence": 0.99,
+      "rationale": "calc_sc receives a network containing generators that do not satisfy its expected voltage-data schema, so it stops before producing short-circuit results. This is a missing network-data/API contract.",
+      "primary_evidence": "sc.calc_sc raises AttributeError that the generator DataFrame has no vn_kv; the reference disables generators lacking vn_kv before the call."
+    },
+    {
+      "sample_id": "tier4_A_FX_01",
+      "judge_a_label": "C3_workflow_logic",
+      "judge_b_label": "C1_api_contract",
+      "final_label": "C1_api_contract",
+      "confidence": 0.97,
+      "rationale": "Although the load index is also incorrect, the decisive realized failure is that calc_sc is invoked without the required external-grid R/X value, terminating execution before any result extraction. The stopping mechanism is therefore C1.",
+      "primary_evidence": "calc_sc(... case='max', use_pre_fault_voltage=True) raises ValueError requiring rx_max after only s_sc_max_mva was set; the reference initializes rx_max before the call."
+    },
+    {
+      "sample_id": "tier4_A_FX_04",
+      "judge_a_label": "C2_param_misuse",
+      "judge_b_label": "ambiguous_item_defect",
+      "final_label": "ambiguous_item_defect",
+      "confidence": 0.99,
+      "rationale": "The query specifies only a higher dispatch level, not its numeric value, and that choice changes the contingency ranking and final loading. The reference silently fixes 243.0 MW while the generated 20% increase is a plausible different interpretation, so the target is underdetermined.",
+      "primary_evidence": "The query says 'raise that unit to a higher dispatch level'; the reference assigns 243.0 MW, while the generated code multiplies the original dispatch by 1.2 and produces 143.780716 instead of 112.228427."
+    }
+  ],
+  "validation": {
+    "expected_disagreement_count": 15,
+    "adjudicated_record_count": 15,
+    "scope_ids_present_exactly_once": true,
+    "no_out_of_scope_records": true,
+    "judge_labels_match_source_ledgers": true,
+    "all_final_labels_legal": true,
+    "all_frozen_sample_records_found": true,
+    "legal_labels": [
+      "C1_api_contract",
+      "C2_param_misuse",
+      "C3_workflow_logic",
+      "C4_numerical_extraction",
+      "C5_format_env",
+      "ambiguous_item_defect"
+    ],
+    "rubric_keysets_match_between_ledgers": true,
+    "rubric_text_note": "The ledgers have the same six labels and descriptions except that judge_b omits the comma between 'import' and 'environment' in C5; this output uses judge_a's grammatical punctuation without changing the category meaning."
+  }
+}

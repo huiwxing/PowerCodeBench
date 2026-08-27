@@ -1,0 +1,898 @@
+{
+  "deepseek-v4-flash": {
+    "execution_rate": 0.2889,
+    "result_accuracy": 0.0667,
+    "result_acc_of_exec": 0.2308,
+    "n_total": 90,
+    "n_executed": 26,
+    "n_matched": 6,
+    "per_task": {
+      "power_flow_3ph": {
+        "total": 18,
+        "executed": 4,
+        "matched": 0,
+        "exec_rate": 0.2222,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0.0
+      },
+      "network_modification": {
+        "total": 18,
+        "executed": 5,
+        "matched": 0,
+        "exec_rate": 0.2778,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0.0
+      },
+      "result_extraction": {
+        "total": 18,
+        "executed": 10,
+        "matched": 4,
+        "exec_rate": 0.5556,
+        "accuracy": 0.2222,
+        "accuracy_of_executed": 0.4
+      },
+      "control_device": {
+        "total": 18,
+        "executed": 5,
+        "matched": 1,
+        "exec_rate": 0.2778,
+        "accuracy": 0.0556,
+        "accuracy_of_executed": 0.2
+      },
+      "fault_analysis": {
+        "total": 18,
+        "executed": 2,
+        "matched": 1,
+        "exec_rate": 0.1111,
+        "accuracy": 0.0556,
+        "accuracy_of_executed": 0.5
+      }
+    },
+    "per_gt_type": {
+      "float": {
+        "total": 90,
+        "executed": 26,
+        "matched": 6,
+        "exec_rate": 0.2889,
+        "accuracy": 0.0667
+      }
+    },
+    "per_query_type": {
+      "bus_v": {
+        "total": 12,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.0833,
+        "accuracy": 0.0833
+      },
+      "min_node_v": {
+        "total": 25,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.04,
+        "accuracy": 0.0
+      },
+      "supplied_p": {
+        "total": 4,
+        "executed": 4,
+        "matched": 0,
+        "exec_rate": 1.0,
+        "accuracy": 0.0
+      },
+      "line_i": {
+        "total": 5,
+        "executed": 4,
+        "matched": 0,
+        "exec_rate": 0.8,
+        "accuracy": 0.0
+      },
+      "max_line_i": {
+        "total": 9,
+        "executed": 4,
+        "matched": 2,
+        "exec_rate": 0.4444,
+        "accuracy": 0.2222
+      },
+      "elem_p": {
+        "total": 4,
+        "executed": 4,
+        "matched": 2,
+        "exec_rate": 1.0,
+        "accuracy": 0.5
+      },
+      "losses_p": {
+        "total": 2,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.5,
+        "accuracy": 0.0
+      },
+      "supplied_q": {
+        "total": 7,
+        "executed": 5,
+        "matched": 0,
+        "exec_rate": 0.7143,
+        "accuracy": 0.0
+      },
+      "tap": {
+        "total": 4,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "isc": {
+        "total": 13,
+        "executed": 2,
+        "matched": 1,
+        "exec_rate": 0.1538,
+        "accuracy": 0.0769
+      },
+      "zsc1": {
+        "total": 5,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_n_modifications": {
+      "1": {
+        "total": 90,
+        "executed": 26,
+        "matched": 6,
+        "exec_rate": 0.2889,
+        "accuracy": 0.0667
+      }
+    },
+    "per_network": {
+      "self-built 3-bus 12.47 kV three-phase radial feeder (source + 2 loads, 2 line sections)": {
+        "total": 7,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.1429,
+        "accuracy": 0.0
+      },
+      "self-built 4-bus 12.47 kV three-phase radial feeder (source + 3 loads, 3 line sections)": {
+        "total": 14,
+        "executed": 5,
+        "matched": 2,
+        "exec_rate": 0.3571,
+        "accuracy": 0.1429
+      },
+      "self-built 5-bus 12.47 kV three-phase radial feeder (source + 4 loads, 4 line sections)": {
+        "total": 12,
+        "executed": 4,
+        "matched": 1,
+        "exec_rate": 0.3333,
+        "accuracy": 0.0833
+      },
+      "self-built 12.47 kV three-phase feeder with unbalanced single-phase laterals (one load per phase, 400/800/1200 kW), yielding per-phase voltage asymmetry": {
+        "total": 5,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase looped feeder (source -> a -> b -> c with an a-c tie line, 2 loads) so line flows redistribute around the loop": {
+        "total": 13,
+        "executed": 7,
+        "matched": 1,
+        "exec_rate": 0.5385,
+        "accuracy": 0.0769
+      },
+      "self-built two-voltage-level feeder (12.47 kV source, step-down 12.47/4.16 kV transformer, 4.16 kV load line, 2 loads)": {
+        "total": 3,
+        "executed": 2,
+        "matched": 0,
+        "exec_rate": 0.6667,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with a 3-step shunt capacitor bank and a voltage-mode CapControl at the remote bus (2 loads)": {
+        "total": 6,
+        "executed": 3,
+        "matched": 0,
+        "exec_rate": 0.5,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl on a 12.47/12.47 kV regulator transformer, vreg=122) feeding 2 downstream loads": {
+        "total": 5,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.2,
+        "accuracy": 0.2
+      },
+      "self-built 12.47 kV three-phase radial feeder with a 3-step shunt capacitor bank and a kvar-mode CapControl at the feeder end (3 loads)": {
+        "total": 4,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.25,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl, vreg=120, band=3) feeding a 3-load radial": {
+        "total": 3,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder for fault study (source with defined short-circuit MVA, main line src->b1->b2->b3 plus a b1->lat lateral, 3 loads)": {
+        "total": 9,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase radial feeder for fault study (source with defined short-circuit MVA, three series line sections of increasing length, 3 loads)": {
+        "total": 9,
+        "executed": 2,
+        "matched": 1,
+        "exec_rate": 0.2222,
+        "accuracy": 0.1111
+      }
+    },
+    "per_difficulty": {
+      "D1_basic": {
+        "total": 45,
+        "executed": 17,
+        "matched": 4,
+        "exec_rate": 0.3778,
+        "accuracy": 0.0889,
+        "accuracy_of_executed": 0.2353
+      },
+      "D3_semantic": {
+        "total": 45,
+        "executed": 9,
+        "matched": 2,
+        "exec_rate": 0.2,
+        "accuracy": 0.0444,
+        "accuracy_of_executed": 0.2222
+      }
+    },
+    "error_distribution": {
+      "AttributeError": 44,
+      "DSSException": 6,
+      "TypeError": 5,
+      "TimeoutError": 5,
+      "SyntaxError": 2,
+      "ValueError": 1,
+      "code_extraction_failed": 1
+    },
+    "match_failure_reasons": {
+      "value_outside_tolerance": 20
+    },
+    "float_error_stats": {
+      "mean_rel_error": 0.000121,
+      "median_rel_error": 0.0,
+      "max_rel_error": 0.000727,
+      "p95_rel_error": 0.000545
+    },
+    "semantic_rewrite_summary": {
+      "total": 45,
+      "semantic_phrase_rate": 0.0,
+      "explicit_leak_rate": 0.0,
+      "avg_phrase_hits": 0.0,
+      "phrase_hit_distribution": {
+        "0": 45
+      },
+      "semantic_sources": {
+        "null": 45
+      },
+      "top_semantic_rules": {},
+      "top_leaked_tokens": {},
+      "per_difficulty": {
+        "D3_semantic": {
+          "total": 45,
+          "has_semantic_phrase": 0,
+          "leaks_explicit_params": 0,
+          "max_phrase_hits": 0,
+          "semantic_phrase_rate": 0.0,
+          "explicit_leak_rate": 0.0,
+          "avg_phrase_hits": 0.0
+        }
+      }
+    },
+    "code_stats": {
+      "avg_lines": 29.7,
+      "min_lines": 7,
+      "max_lines": 69
+    },
+    "round_snapshots": []
+  },
+  "Qwen_Qwen2.5-Coder-32B-Instruct": {
+    "execution_rate": 0.3333,
+    "result_accuracy": 0.1778,
+    "result_acc_of_exec": 0.5333,
+    "n_total": 90,
+    "n_executed": 30,
+    "n_matched": 16,
+    "per_task": {
+      "power_flow_3ph": {
+        "total": 18,
+        "executed": 11,
+        "matched": 7,
+        "exec_rate": 0.6111,
+        "accuracy": 0.3889,
+        "accuracy_of_executed": 0.6364
+      },
+      "network_modification": {
+        "total": 18,
+        "executed": 5,
+        "matched": 3,
+        "exec_rate": 0.2778,
+        "accuracy": 0.1667,
+        "accuracy_of_executed": 0.6
+      },
+      "result_extraction": {
+        "total": 18,
+        "executed": 11,
+        "matched": 6,
+        "exec_rate": 0.6111,
+        "accuracy": 0.3333,
+        "accuracy_of_executed": 0.5455
+      },
+      "control_device": {
+        "total": 18,
+        "executed": 3,
+        "matched": 0,
+        "exec_rate": 0.1667,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0.0
+      },
+      "fault_analysis": {
+        "total": 18,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0
+      }
+    },
+    "per_gt_type": {
+      "float": {
+        "total": 90,
+        "executed": 30,
+        "matched": 16,
+        "exec_rate": 0.3333,
+        "accuracy": 0.1778
+      }
+    },
+    "per_query_type": {
+      "bus_v": {
+        "total": 12,
+        "executed": 6,
+        "matched": 3,
+        "exec_rate": 0.5,
+        "accuracy": 0.25
+      },
+      "min_node_v": {
+        "total": 25,
+        "executed": 4,
+        "matched": 4,
+        "exec_rate": 0.16,
+        "accuracy": 0.16
+      },
+      "supplied_p": {
+        "total": 4,
+        "executed": 4,
+        "matched": 0,
+        "exec_rate": 1.0,
+        "accuracy": 0.0
+      },
+      "line_i": {
+        "total": 5,
+        "executed": 5,
+        "matched": 5,
+        "exec_rate": 1.0,
+        "accuracy": 1.0
+      },
+      "max_line_i": {
+        "total": 9,
+        "executed": 5,
+        "matched": 4,
+        "exec_rate": 0.5556,
+        "accuracy": 0.4444
+      },
+      "elem_p": {
+        "total": 4,
+        "executed": 2,
+        "matched": 0,
+        "exec_rate": 0.5,
+        "accuracy": 0.0
+      },
+      "losses_p": {
+        "total": 2,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.5,
+        "accuracy": 0.0
+      },
+      "supplied_q": {
+        "total": 7,
+        "executed": 3,
+        "matched": 0,
+        "exec_rate": 0.4286,
+        "accuracy": 0.0
+      },
+      "tap": {
+        "total": 4,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "isc": {
+        "total": 13,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "zsc1": {
+        "total": 5,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_n_modifications": {
+      "1": {
+        "total": 90,
+        "executed": 30,
+        "matched": 16,
+        "exec_rate": 0.3333,
+        "accuracy": 0.1778
+      }
+    },
+    "per_network": {
+      "self-built 3-bus 12.47 kV three-phase radial feeder (source + 2 loads, 2 line sections)": {
+        "total": 7,
+        "executed": 4,
+        "matched": 2,
+        "exec_rate": 0.5714,
+        "accuracy": 0.2857
+      },
+      "self-built 4-bus 12.47 kV three-phase radial feeder (source + 3 loads, 3 line sections)": {
+        "total": 14,
+        "executed": 6,
+        "matched": 2,
+        "exec_rate": 0.4286,
+        "accuracy": 0.1429
+      },
+      "self-built 5-bus 12.47 kV three-phase radial feeder (source + 4 loads, 4 line sections)": {
+        "total": 12,
+        "executed": 5,
+        "matched": 3,
+        "exec_rate": 0.4167,
+        "accuracy": 0.25
+      },
+      "self-built 12.47 kV three-phase feeder with unbalanced single-phase laterals (one load per phase, 400/800/1200 kW), yielding per-phase voltage asymmetry": {
+        "total": 5,
+        "executed": 2,
+        "matched": 1,
+        "exec_rate": 0.4,
+        "accuracy": 0.2
+      },
+      "self-built 12.47 kV three-phase looped feeder (source -> a -> b -> c with an a-c tie line, 2 loads) so line flows redistribute around the loop": {
+        "total": 13,
+        "executed": 9,
+        "matched": 7,
+        "exec_rate": 0.6923,
+        "accuracy": 0.5385
+      },
+      "self-built two-voltage-level feeder (12.47 kV source, step-down 12.47/4.16 kV transformer, 4.16 kV load line, 2 loads)": {
+        "total": 3,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.3333,
+        "accuracy": 0.3333
+      },
+      "self-built 12.47 kV three-phase feeder with a 3-step shunt capacitor bank and a voltage-mode CapControl at the remote bus (2 loads)": {
+        "total": 6,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.1667,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl on a 12.47/12.47 kV regulator transformer, vreg=122) feeding 2 downstream loads": {
+        "total": 5,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.2,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase radial feeder with a 3-step shunt capacitor bank and a kvar-mode CapControl at the feeder end (3 loads)": {
+        "total": 4,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.25,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl, vreg=120, band=3) feeding a 3-load radial": {
+        "total": 3,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder for fault study (source with defined short-circuit MVA, main line src->b1->b2->b3 plus a b1->lat lateral, 3 loads)": {
+        "total": 9,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase radial feeder for fault study (source with defined short-circuit MVA, three series line sections of increasing length, 3 loads)": {
+        "total": 9,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_difficulty": {
+      "D1_basic": {
+        "total": 45,
+        "executed": 19,
+        "matched": 8,
+        "exec_rate": 0.4222,
+        "accuracy": 0.1778,
+        "accuracy_of_executed": 0.4211
+      },
+      "D3_semantic": {
+        "total": 45,
+        "executed": 11,
+        "matched": 8,
+        "exec_rate": 0.2444,
+        "accuracy": 0.1778,
+        "accuracy_of_executed": 0.7273
+      }
+    },
+    "error_distribution": {
+      "AttributeError": 35,
+      "DSSException": 19,
+      "TypeError": 5,
+      "IndexError": 1
+    },
+    "match_failure_reasons": {
+      "value_outside_tolerance": 14
+    },
+    "float_error_stats": {
+      "mean_rel_error": 0.0,
+      "median_rel_error": 0.0,
+      "max_rel_error": 0.0,
+      "p95_rel_error": 0.0
+    },
+    "semantic_rewrite_summary": {
+      "total": 45,
+      "semantic_phrase_rate": 0.0,
+      "explicit_leak_rate": 0.0,
+      "avg_phrase_hits": 0.0,
+      "phrase_hit_distribution": {
+        "0": 45
+      },
+      "semantic_sources": {
+        "null": 45
+      },
+      "top_semantic_rules": {},
+      "top_leaked_tokens": {},
+      "per_difficulty": {
+        "D3_semantic": {
+          "total": 45,
+          "has_semantic_phrase": 0,
+          "leaks_explicit_params": 0,
+          "max_phrase_hits": 0,
+          "semantic_phrase_rate": 0.0,
+          "explicit_leak_rate": 0.0,
+          "avg_phrase_hits": 0.0
+        }
+      }
+    },
+    "code_stats": {
+      "avg_lines": 29.7,
+      "min_lines": 21,
+      "max_lines": 48
+    },
+    "round_snapshots": []
+  },
+  "meta-llama_Llama-3.1-70B-Instruct": {
+    "execution_rate": 0.1333,
+    "result_accuracy": 0.0333,
+    "result_acc_of_exec": 0.25,
+    "n_total": 90,
+    "n_executed": 12,
+    "n_matched": 3,
+    "per_task": {
+      "power_flow_3ph": {
+        "total": 18,
+        "executed": 2,
+        "matched": 0,
+        "exec_rate": 0.1111,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0.0
+      },
+      "network_modification": {
+        "total": 18,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.0556,
+        "accuracy": 0.0556,
+        "accuracy_of_executed": 1.0
+      },
+      "result_extraction": {
+        "total": 18,
+        "executed": 4,
+        "matched": 1,
+        "exec_rate": 0.2222,
+        "accuracy": 0.0556,
+        "accuracy_of_executed": 0.25
+      },
+      "control_device": {
+        "total": 18,
+        "executed": 5,
+        "matched": 1,
+        "exec_rate": 0.2778,
+        "accuracy": 0.0556,
+        "accuracy_of_executed": 0.2
+      },
+      "fault_analysis": {
+        "total": 18,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0,
+        "accuracy_of_executed": 0
+      }
+    },
+    "per_gt_type": {
+      "float": {
+        "total": 90,
+        "executed": 12,
+        "matched": 3,
+        "exec_rate": 0.1333,
+        "accuracy": 0.0333
+      }
+    },
+    "per_query_type": {
+      "bus_v": {
+        "total": 12,
+        "executed": 2,
+        "matched": 1,
+        "exec_rate": 0.1667,
+        "accuracy": 0.0833
+      },
+      "min_node_v": {
+        "total": 25,
+        "executed": 2,
+        "matched": 0,
+        "exec_rate": 0.08,
+        "accuracy": 0.0
+      },
+      "supplied_p": {
+        "total": 4,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "line_i": {
+        "total": 5,
+        "executed": 2,
+        "matched": 0,
+        "exec_rate": 0.4,
+        "accuracy": 0.0
+      },
+      "max_line_i": {
+        "total": 9,
+        "executed": 2,
+        "matched": 1,
+        "exec_rate": 0.2222,
+        "accuracy": 0.1111
+      },
+      "elem_p": {
+        "total": 4,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "losses_p": {
+        "total": 2,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "supplied_q": {
+        "total": 7,
+        "executed": 3,
+        "matched": 0,
+        "exec_rate": 0.4286,
+        "accuracy": 0.0
+      },
+      "tap": {
+        "total": 4,
+        "executed": 1,
+        "matched": 1,
+        "exec_rate": 0.25,
+        "accuracy": 0.25
+      },
+      "isc": {
+        "total": 13,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "zsc1": {
+        "total": 5,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_n_modifications": {
+      "1": {
+        "total": 90,
+        "executed": 12,
+        "matched": 3,
+        "exec_rate": 0.1333,
+        "accuracy": 0.0333
+      }
+    },
+    "per_network": {
+      "self-built 3-bus 12.47 kV three-phase radial feeder (source + 2 loads, 2 line sections)": {
+        "total": 7,
+        "executed": 2,
+        "matched": 0,
+        "exec_rate": 0.2857,
+        "accuracy": 0.0
+      },
+      "self-built 4-bus 12.47 kV three-phase radial feeder (source + 3 loads, 3 line sections)": {
+        "total": 14,
+        "executed": 2,
+        "matched": 2,
+        "exec_rate": 0.1429,
+        "accuracy": 0.1429
+      },
+      "self-built 5-bus 12.47 kV three-phase radial feeder (source + 4 loads, 4 line sections)": {
+        "total": 12,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.0833,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with unbalanced single-phase laterals (one load per phase, 400/800/1200 kW), yielding per-phase voltage asymmetry": {
+        "total": 5,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.2,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase looped feeder (source -> a -> b -> c with an a-c tie line, 2 loads) so line flows redistribute around the loop": {
+        "total": 13,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.0769,
+        "accuracy": 0.0
+      },
+      "self-built two-voltage-level feeder (12.47 kV source, step-down 12.47/4.16 kV transformer, 4.16 kV load line, 2 loads)": {
+        "total": 3,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with a 3-step shunt capacitor bank and a voltage-mode CapControl at the remote bus (2 loads)": {
+        "total": 6,
+        "executed": 2,
+        "matched": 0,
+        "exec_rate": 0.3333,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl on a 12.47/12.47 kV regulator transformer, vreg=122) feeding 2 downstream loads": {
+        "total": 5,
+        "executed": 2,
+        "matched": 1,
+        "exec_rate": 0.4,
+        "accuracy": 0.2
+      },
+      "self-built 12.47 kV three-phase radial feeder with a 3-step shunt capacitor bank and a kvar-mode CapControl at the feeder end (3 loads)": {
+        "total": 4,
+        "executed": 1,
+        "matched": 0,
+        "exec_rate": 0.25,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl, vreg=120, band=3) feeding a 3-load radial": {
+        "total": 3,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase feeder for fault study (source with defined short-circuit MVA, main line src->b1->b2->b3 plus a b1->lat lateral, 3 loads)": {
+        "total": 9,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      },
+      "self-built 12.47 kV three-phase radial feeder for fault study (source with defined short-circuit MVA, three series line sections of increasing length, 3 loads)": {
+        "total": 9,
+        "executed": 0,
+        "matched": 0,
+        "exec_rate": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "per_difficulty": {
+      "D1_basic": {
+        "total": 45,
+        "executed": 5,
+        "matched": 1,
+        "exec_rate": 0.1111,
+        "accuracy": 0.0222,
+        "accuracy_of_executed": 0.2
+      },
+      "D3_semantic": {
+        "total": 45,
+        "executed": 7,
+        "matched": 2,
+        "exec_rate": 0.1556,
+        "accuracy": 0.0444,
+        "accuracy_of_executed": 0.2857
+      }
+    },
+    "error_distribution": {
+      "AttributeError": 39,
+      "DSSException": 27,
+      "TypeError": 8,
+      "SyntaxError": 2,
+      "IndexError": 1,
+      "TimeoutError": 1
+    },
+    "match_failure_reasons": {
+      "value_outside_tolerance": 9
+    },
+    "float_error_stats": {
+      "mean_rel_error": 0.0,
+      "median_rel_error": 0.0,
+      "max_rel_error": 0.0,
+      "p95_rel_error": 0.0
+    },
+    "semantic_rewrite_summary": {
+      "total": 45,
+      "semantic_phrase_rate": 0.0,
+      "explicit_leak_rate": 0.0,
+      "avg_phrase_hits": 0.0,
+      "phrase_hit_distribution": {
+        "0": 45
+      },
+      "semantic_sources": {
+        "null": 45
+      },
+      "top_semantic_rules": {},
+      "top_leaked_tokens": {},
+      "per_difficulty": {
+        "D3_semantic": {
+          "total": 45,
+          "has_semantic_phrase": 0,
+          "leaks_explicit_params": 0,
+          "max_phrase_hits": 0,
+          "semantic_phrase_rate": 0.0,
+          "explicit_leak_rate": 0.0,
+          "avg_phrase_hits": 0.0
+        }
+      }
+    },
+    "code_stats": {
+      "avg_lines": 27.4,
+      "min_lines": 14,
+      "max_lines": 214
+    },
+    "round_snapshots": []
+  }
+}

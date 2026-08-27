@@ -1,0 +1,5884 @@
+{
+  "meta": {
+    "protocol": "E1_validity_audit.md s2.2/s2.5 (T2 automatic layer)",
+    "generated": "2026-07-24T02:57:16",
+    "pandapower": "3.4.0",
+    "perturb_factor": 1.1,
+    "timeout_s": 120,
+    "n_pilot": 20,
+    "note": "Automatic layer only: per-check {pass/fail/ambiguous} + evidence. NOT a final clean/pollution ruling; no FAR. Feeds dual-judge + refute (E1 doc s2.4)."
+  },
+  "distribution": {
+    "check1_network_mods": {
+      "pass": 13,
+      "fail": 0,
+      "ambiguous": 7
+    },
+    "check2_solver_identity": {
+      "pass": 15,
+      "fail": 1,
+      "ambiguous": 4
+    },
+    "check3_physical_sanity": {
+      "pass": 20,
+      "fail": 0,
+      "ambiguous": 0
+    },
+    "check4_extraction": {
+      "pass": 11,
+      "fail": 0,
+      "ambiguous": 9
+    },
+    "check5_provenance": {
+      "pass": 19,
+      "fail": 0,
+      "ambiguous": 1
+    }
+  },
+  "degradation": {
+    "n": 20,
+    "gen_net_recovered": 20,
+    "ast_fallback": 0,
+    "perturb_constructible": 11,
+    "perturb_skipped": 9,
+    "ref_reproduces_gt": 20,
+    "gen_exec_failed": 0,
+    "rates": {
+      "net_recovery_rate": 1.0,
+      "ast_fallback_rate": 0.0,
+      "perturb_unconstructible_rate": 0.45,
+      "ref_reproduces_gt_rate": 1.0,
+      "gen_exec_fail_rate": 0.0
+    }
+  },
+  "items": [
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 9,
+              "n_line": 9,
+              "n_trafo": 0,
+              "n_gen": 2,
+              "n_load": 3,
+              "n_sgen": 1,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 9,
+              "n_line": 9,
+              "n_trafo": 0,
+              "n_gen": 2,
+              "n_load": 3,
+              "n_sgen": 1,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "family_expected": [
+              "ac_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 319.1098,
+                "load": 315.0,
+                "loss": 4.1098,
+                "residual": -0.0,
+                "tol": 1.575
+              },
+              "voltage": {
+                "vm_min": 0.9604468397101047,
+                "vm_max": 1.003891497955451
+              },
+              "loading_line_max": 57.405924
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "point",
+              "index": "vm_pu",
+              "derived": true,
+              "raw_expr": "net.res_bus.loc[net.res_bus['vm_pu'].idxmin(), 'vm_pu']"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "min",
+              "index": "vm_pu",
+              "derived": false,
+              "raw_expr": "net.res_bus['vm_pu'].min()"
+            },
+            "query_type": "sequential",
+            "query_type_consistent": null,
+            "gen_normalized": {
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "min",
+              "pattern": "argfn_index_is_minmax"
+            },
+            "ref_normalized": {
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "min",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "equiv_pattern": [
+              "argfn_index_is_minmax",
+              "direct"
+            ],
+            "note": "extractions equivalent via N5 pattern argfn_index_is_minmax/direct"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 0.9604468397101047,
+              "perturbed_output": 0.9524346942483188,
+              "perturbed_success": true,
+              "delta": 0.008012145461785858,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": false,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 0.9604468397101047,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 0.9604468397101047,
+        "gen_net_recovered": true,
+        "gen_n_bus": 9,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T1",
+        "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 760,
+        "item_id": "2dac5df92b49",
+        "task": "sequential",
+        "difficulty_level": "D2_multi_step",
+        "network": "case9",
+        "query_type": "sequential",
+        "n_modifications": 3,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 760,
+        "item_id": "2dac5df92b49",
+        "task": "sequential",
+        "network": "case9",
+        "query_type": "sequential",
+        "n_modifications": 3,
+        "difficulty_level": "D2_multi_step",
+        "ground_truth": 0.960447,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 57,
+              "n_line": 63,
+              "n_trafo": 17,
+              "n_gen": 6,
+              "n_load": 42,
+              "n_sgen": 0,
+              "n_shunt": 3,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 57,
+              "n_line": 63,
+              "n_trafo": 17,
+              "n_gen": 6,
+              "n_load": 42,
+              "n_sgen": 0,
+              "n_shunt": 3,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "ac_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 1314.5697,
+                "load": 1282.3,
+                "loss": 32.2697,
+                "residual": -0.0,
+                "tol": 6.4115
+              },
+              "voltage": {
+                "vm_min": 0.7196866050447946,
+                "vm_max": 1.04,
+                "outside_nominal": true
+              },
+              "loading_line_max": 1.630302
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_trafo",
+              "column": "loading_percent",
+              "aggregation": "point",
+              "index": 2,
+              "derived": false,
+              "raw_expr": "net.res_trafo.loc[2, 'loading_percent']"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_trafo",
+              "column": "loading_percent",
+              "aggregation": "point",
+              "index": 2,
+              "derived": false,
+              "raw_expr": "net.res_trafo.at[2, 'loading_percent']"
+            },
+            "query_type": "point_value",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_trafo",
+              "column": "loading_percent",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_trafo",
+              "column": "loading_percent",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 0.00883961437065267,
+              "perturbed_output": 0.009163909522012735,
+              "perturbed_success": true,
+              "delta": 0.00032429515136006386,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": false,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 0.00883961437065267,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 0.00883961437065267,
+        "gen_net_recovered": true,
+        "gen_n_bus": 57,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T1",
+        "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 341,
+        "item_id": "f45b443294e0",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case57",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 341,
+        "item_id": "f45b443294e0",
+        "task": "power_flow",
+        "network": "case57",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 0.00884,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 4,
+              "n_line": 2,
+              "n_trafo": 1,
+              "n_gen": 0,
+              "n_load": 2,
+              "n_sgen": 3,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 4,
+              "n_line": 2,
+              "n_trafo": 1,
+              "n_gen": 0,
+              "n_load": 2,
+              "n_sgen": 3,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "ac_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 0.0309,
+                "load": 0.03,
+                "loss": 0.0009,
+                "residual": 0.0,
+                "tol": 0.5
+              },
+              "voltage": {
+                "vm_min": 0.9768285653042142,
+                "vm_max": 1.0
+              },
+              "loading_line_max": 11.633963
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "max",
+              "index": "loading_percent",
+              "derived": false,
+              "raw_expr": "net.res_line['loading_percent'].max()"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "max",
+              "index": "loading_percent",
+              "derived": false,
+              "raw_expr": "net.res_line['loading_percent'].max()"
+            },
+            "query_type": "max_value",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "max",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "max",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 11.633963375481116,
+              "perturbed_output": 15.005516764454308,
+              "perturbed_success": true,
+              "delta": 3.371553388973192,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": false,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 11.633963375481116,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 11.633963375481116,
+        "gen_net_recovered": true,
+        "gen_n_bus": 4,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T2",
+        "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 333,
+        "item_id": "7739c7adf277",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "simple_four_bus",
+        "query_type": "max_value",
+        "n_modifications": 3,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 333,
+        "item_id": "7739c7adf277",
+        "task": "power_flow",
+        "network": "simple_four_bus",
+        "query_type": "max_value",
+        "n_modifications": 3,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 11.633963,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "ambiguous",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 15,
+              "n_line": 15,
+              "n_trafo": 2,
+              "n_gen": 0,
+              "n_load": 18,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 15,
+              "n_line": 15,
+              "n_trafo": 2,
+              "n_gen": 0,
+              "n_load": 18,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [
+              "line.parallel"
+            ],
+            "fingerprint_detail": {
+              "line.parallel": {
+                "gen": {
+                  "kind": "nondefault",
+                  "n": 15,
+                  "default": 1,
+                  "values": {
+                    "0": 2.0
+                  }
+                },
+                "ref": {
+                  "kind": "nondefault",
+                  "n": 15,
+                  "default": 1,
+                  "values": {
+                    "1": 2.0
+                  }
+                }
+              }
+            },
+            "n1_mod_target": {
+              "columns": {
+                "line.parallel": {
+                  "gen_targets": [
+                    0
+                  ],
+                  "ref_targets": [
+                    1
+                  ],
+                  "same_target": false
+                }
+              },
+              "same_target_all": false,
+              "conclusion": "gen and ref modify different element targets (dynamic-computed vs hard-coded target possible; N1) -> judge"
+            },
+            "note": "base network matches; modification state diverges on ['line.parallel']"
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "dc_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "ref_identities": {
+              "dc_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "dc_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 44.7422,
+                "load": 44.7422,
+                "loss": 0.0,
+                "residual": 0.0,
+                "tol": 0.5
+              },
+              "loading_line_max": 85.987364
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "index": 11,
+              "derived": false,
+              "raw_expr": "net.res_bus.at[11, 'va_degree']"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "index": 11,
+              "derived": false,
+              "raw_expr": "net.res_bus.at[11, 'va_degree']"
+            },
+            "query_type": "point_value",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": -39.63538209306969,
+              "perturbed_output": -40.59892030237668,
+              "perturbed_success": true,
+              "delta": 0.9635382093069964,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "ambiguous",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": -39.28101049281521,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": -39.63538209306969,
+        "gen_net_recovered": true,
+        "gen_n_bus": 15,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T2",
+        "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1279,
+        "item_id": "7c4b295e4f04",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "cigre_mv",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 1279,
+        "item_id": "7c4b295e4f04",
+        "task": "dc_power_flow",
+        "network": "cigre_mv",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "difficulty_level": "D3_semantic",
+        "ground_truth": -39.28101,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 6470,
+              "n_line": 7426,
+              "n_trafo": 1579,
+              "n_gen": 452,
+              "n_load": 3422,
+              "n_sgen": 1125,
+              "n_shunt": 73,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 6470,
+              "n_line": 7426,
+              "n_trafo": 1579,
+              "n_gen": 452,
+              "n_load": 3422,
+              "n_sgen": 1125,
+              "n_shunt": 73,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "pre_solve_first_snapshot",
+            "net_selection": {
+              "basis": "first pre-solve snapshot (compound family)",
+              "gen_snaps": 2,
+              "ref_snaps": 2
+            },
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "family_expected": [
+              "ac_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 110892.6106,
+                "load": 108578.1,
+                "loss": 2314.5106,
+                "residual": 0.0,
+                "tol": 542.8905
+              },
+              "voltage": {
+                "vm_min": 0.5574273644199311,
+                "vm_max": 1.182677172464807,
+                "outside_nominal": true
+              },
+              "loading_line_max": 244.857408
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": true,
+              "raw_expr": "min_vm_pu_first_run - min_vm_pu_second_run"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": true,
+              "raw_expr": "abs(baseline - modified)"
+            },
+            "query_type": "comparison",
+            "query_type_consistent": null,
+            "gen_normalized": null,
+            "ref_normalized": {
+              "table": "absdiff[('res_bus', 'vm_pu', 'min')|('res_bus', 'vm_pu', 'min')]",
+              "column": null,
+              "aggregation": "abs_symmetric_diff",
+              "pattern": "abs_diff_symmetry"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "note": "non-trivial derived extraction expression; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": -7.2495662420069e-05,
+              "skip_reason": "large network (n_bus=6470) skipped for OOM discipline"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 7.2495662420069e-05,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": -7.2495662420069e-05,
+        "gen_net_recovered": true,
+        "gen_n_bus": 6470,
+        "perturb_run": false,
+        "perturb_skip_reason": "large network (n_bus=6470) skipped for OOM discipline"
+      },
+      "pointer": {
+        "tier": "T2",
+        "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1085,
+        "item_id": "126afbee960e",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "case6470rte",
+        "query_type": "comparison",
+        "n_modifications": 3,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 1085,
+        "item_id": "126afbee960e",
+        "task": "comparison",
+        "network": "case6470rte",
+        "query_type": "comparison",
+        "n_modifications": 3,
+        "difficulty_level": "D2_multi_step",
+        "ground_truth": 7.2e-05,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 145,
+              "n_line": 378,
+              "n_trafo": 75,
+              "n_gen": 49,
+              "n_load": 55,
+              "n_sgen": 9,
+              "n_shunt": 97,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 145,
+              "n_line": 378,
+              "n_trafo": 75,
+              "n_gen": 49,
+              "n_load": 55,
+              "n_sgen": 9,
+              "n_shunt": 97,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "ac_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 360883.8307,
+                "load": 286079.65,
+                "loss": 74804.1807,
+                "residual": -0.0,
+                "tol": 1430.3983
+              },
+              "voltage": {
+                "vm_min": 0.9150000000000004,
+                "vm_max": 1.2113359446781304,
+                "outside_nominal": true
+              },
+              "loading_line_max": 21.351629
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "p_from_mw",
+              "aggregation": null,
+              "index": "p_to_mw",
+              "derived": true,
+              "raw_expr": "net.res_line['p_from_mw'].sum() + net.res_line['p_to_mw'].sum()"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "pl_mw",
+              "aggregation": "sum",
+              "index": "pl_mw",
+              "derived": false,
+              "raw_expr": "net.res_line['pl_mw'].sum()"
+            },
+            "query_type": "total",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_line",
+              "column": "pl_mw",
+              "aggregation": "sum",
+              "pattern": "from_plus_to_is_ploss"
+            },
+            "ref_normalized": {
+              "table": "res_line",
+              "column": "pl_mw",
+              "aggregation": "sum",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "pl_mw",
+              "gen_target": "p_to_mw",
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "equiv_pattern": [
+              "from_plus_to_is_ploss",
+              "direct"
+            ],
+            "note": "extractions equivalent via N5 pattern from_plus_to_is_ploss/direct"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": -1844.2949136233233,
+              "perturbed_output": null,
+              "perturbed_success": false,
+              "skip_reason": "perturbed re-exec produced no comparable output"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": false,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": -1844.294913623324,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": -1844.2949136233233,
+        "gen_net_recovered": true,
+        "gen_n_bus": 145,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T3",
+        "model": "meta-llama_Llama-3.1-70B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 427,
+        "item_id": "66e88cbeb2af",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case145",
+        "query_type": "total",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 427,
+        "item_id": "66e88cbeb2af",
+        "task": "power_flow",
+        "network": "case145",
+        "query_type": "total",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": -1844.294914,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 189,
+              "n_line": 91,
+              "n_trafo": 115,
+              "n_gen": 34,
+              "n_load": 51,
+              "n_sgen": 0,
+              "n_shunt": 4,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 189,
+              "n_line": 91,
+              "n_trafo": 115,
+              "n_gen": 34,
+              "n_load": 51,
+              "n_sgen": 0,
+              "n_shunt": 4,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              },
+              "sc_3ph": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              },
+              "sc_3ph": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": "reference_derived=['ac_pf', 'sc_3ph']",
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 1412.7569,
+                "load": 1367.83,
+                "loss": 44.9269,
+                "residual": -0.0,
+                "tol": 6.8392
+              },
+              "voltage": {
+                "vm_min": 0.881092516815721,
+                "vm_max": 1.0600000000000003,
+                "outside_nominal": true
+              },
+              "loading_line_max": 2.771565
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "max",
+              "index": "ikss_ka",
+              "derived": false,
+              "raw_expr": "net.res_bus_sc['ikss_ka'].max()"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "max",
+              "index": "ikss_ka",
+              "derived": false,
+              "raw_expr": "net.res_bus_sc['ikss_ka'].max()"
+            },
+            "query_type": "parallel",
+            "query_type_consistent": null,
+            "gen_normalized": {
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "max",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "max",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 583.1939052132992,
+              "perturbed_output": 583.1939052132992,
+              "perturbed_success": true,
+              "delta": 0.0,
+              "sensitive": false
+            },
+            "stiff_exempt": true,
+            "note": "perturbation-invariant output but expected solver converged (check 2) and sanity passed (check 3) -> stiff/insensitive quantity (N4 stiff-exempt)"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": false,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 583.1939052132992,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 583.1939052132992,
+        "gen_net_recovered": true,
+        "gen_n_bus": 189,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T3",
+        "model": "meta-llama_Llama-3.1-70B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 641,
+        "item_id": "799a89dba10b",
+        "task": "parallel",
+        "difficulty_level": "D2_multi_step",
+        "network": "iceland",
+        "query_type": "parallel",
+        "n_modifications": 0,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 641,
+        "item_id": "799a89dba10b",
+        "task": "parallel",
+        "network": "iceland",
+        "query_type": "parallel",
+        "n_modifications": 0,
+        "difficulty_level": "D2_multi_step",
+        "ground_truth": 583.193905,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 1888,
+              "n_line": 1976,
+              "n_trafo": 555,
+              "n_gen": 271,
+              "n_load": 943,
+              "n_sgen": 82,
+              "n_shunt": 45,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 1888,
+              "n_line": 1976,
+              "n_trafo": 555,
+              "n_gen": 271,
+              "n_load": 943,
+              "n_sgen": 82,
+              "n_shunt": 45,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "pre_solve_first_snapshot",
+            "net_selection": {
+              "basis": "first pre-solve snapshot (compound family)",
+              "gen_snaps": 2,
+              "ref_snaps": 2
+            },
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "family_expected": [
+              "ac_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 60459.669,
+                "load": 59464.9,
+                "loss": 994.769,
+                "residual": -0.0,
+                "tol": 297.3245
+              },
+              "voltage": {
+                "vm_min": 0.8480000000000002,
+                "vm_max": 1.3012486424234084,
+                "outside_nominal": true
+              },
+              "loading_line_max": 80.776981
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": true,
+              "raw_expr": "min_vm_pu_2 - min_vm_pu_1"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": true,
+              "raw_expr": "abs(baseline - modified)"
+            },
+            "query_type": "comparison",
+            "query_type_consistent": null,
+            "gen_normalized": null,
+            "ref_normalized": {
+              "table": "absdiff[('res_bus', 'vm_pu', 'min')|('res_bus', 'vm_pu', 'min')]",
+              "column": null,
+              "aggregation": "abs_symmetric_diff",
+              "pattern": "abs_diff_symmetry"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "note": "non-trivial derived extraction expression; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": 3.3306690738754696e-16,
+              "perturbed_output": null,
+              "perturbed_success": false,
+              "skip_reason": "perturbed re-exec produced no comparable output"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 3.3306690738754696e-16,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 3.3306690738754696e-16,
+        "gen_net_recovered": true,
+        "gen_n_bus": 1888,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T3",
+        "model": "meta-llama_Llama-3.1-70B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1064,
+        "item_id": "55f8b98975de",
+        "task": "comparison",
+        "difficulty_level": "D2_multi_step",
+        "network": "case1888rte",
+        "query_type": "comparison",
+        "n_modifications": 2,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 1064,
+        "item_id": "55f8b98975de",
+        "task": "comparison",
+        "network": "case1888rte",
+        "query_type": "comparison",
+        "n_modifications": 2,
+        "difficulty_level": "D2_multi_step",
+        "ground_truth": 0.0,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 4,
+              "n_line": 2,
+              "n_trafo": 1,
+              "n_gen": 0,
+              "n_load": 2,
+              "n_sgen": 2,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 4,
+              "n_line": 2,
+              "n_trafo": 1,
+              "n_gen": 0,
+              "n_load": 2,
+              "n_sgen": 2,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "ac_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 0.0638,
+                "load": 0.06,
+                "loss": 0.0038,
+                "residual": 0.0,
+                "tol": 0.5
+              },
+              "voltage": {
+                "vm_min": 0.903890058549487,
+                "vm_max": 1.0
+              },
+              "loading_line_max": 31.209636
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "point",
+              "index": 0,
+              "derived": false,
+              "raw_expr": "net.res_bus.vm_pu.loc[0]"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "point",
+              "index": 0,
+              "derived": false,
+              "raw_expr": "net.res_bus.at[0, 'vm_pu']"
+            },
+            "query_type": "point_value",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 1.0,
+              "perturbed_output": 1.0,
+              "perturbed_success": true,
+              "delta": 0.0,
+              "sensitive": false
+            },
+            "stiff_exempt": true,
+            "note": "perturbation-invariant output but expected solver converged (check 2) and sanity passed (check 3) -> stiff/insensitive quantity (N4 stiff-exempt)"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": false,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 1.0,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 1.0,
+        "gen_net_recovered": true,
+        "gen_n_bus": 4,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-Next",
+        "condition": "C_FDRS",
+        "bench_index": 390,
+        "item_id": "21b7868f2a83",
+        "task": "power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "simple_four_bus",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 390,
+        "item_id": "21b7868f2a83",
+        "task": "power_flow",
+        "network": "simple_four_bus",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 1.0,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "ambiguous",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 1888,
+              "n_line": 1976,
+              "n_trafo": 555,
+              "n_gen": 271,
+              "n_load": 943,
+              "n_sgen": 82,
+              "n_shunt": 45,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 1888,
+              "n_line": 1976,
+              "n_trafo": 555,
+              "n_gen": 271,
+              "n_load": 943,
+              "n_sgen": 82,
+              "n_shunt": 45,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [
+              "trafo.tap_pos"
+            ],
+            "fingerprint_detail": {
+              "trafo.tap_pos": {
+                "gen": {
+                  "kind": "nondefault",
+                  "n": 555,
+                  "default": 0,
+                  "values": {
+                    "0": -1.0,
+                    "1": -1.0,
+                    "2": -1.0,
+                    "3": 1.0,
+                    "4": 1.0,
+                    "7": -1.0,
+                    "8": -1.0,
+                    "12": -1.0,
+                    "13": -1.0,
+                    "14": -1.0,
+                    "15": -1.0,
+                    "16": -1.0,
+                    "17": -1.0,
+                    "18": 1.0,
+                    "19": 1.0,
+                    "23": -1.0,
+                    "24": -1.0,
+                    "26": 1.0,
+                    "27": 1.0,
+                    "28": 1.0,
+                    "30": 1.0,
+                    "35": 1.0,
+                    "36": 1.0,
+                    "38": -1.0,
+                    "41": 1.0,
+                    "42": 1.0,
+                    "43": 1.0,
+                    "44": -1.0,
+                    "45": -1.0,
+                    "46": -1.0,
+                    "47": 1.0,
+                    "48": 1.0,
+                    "49": 1.0,
+                    "50": 1.0,
+                    "57": -1.0,
+                    "58": -1.0,
+                    "60": -1.0,
+                    "61": -1.0,
+                    "62": 1.0,
+                    "63": -1.0,
+                    "66": 1.0,
+                    "68": -1.0,
+                    "69": -1.0,
+                    "71": -1.0,
+                    "72": -1.0,
+                    "73": -1.0,
+                    "74": -1.0,
+                    "75": -1.0,
+                    "77": 1.0,
+                    "78": -1.0,
+                    "80": 1.0,
+                    "81": 1.0,
+                    "82": -1.0,
+                    "83": -1.0,
+                    "84": -1.0,
+                    "86": -1.0,
+                    "91": 1.0,
+                    "92": -1.0,
+                    "93": -1.0,
+                    "95": 1.0,
+                    "96": -1.0,
+                    "97": -1.0,
+                    "99": 1.0,
+                    "100": 1.0,
+                    "102": -1.0,
+                    "103": -1.0,
+                    "107": 1.0,
+                    "108": 1.0,
+                    "113": 1.0,
+                    "114": -1.0,
+                    "115": -1.0,
+                    "118": -1.0,
+                    "119": -1.0,
+                    "121": 1.0,
+                    "122": -1.0,
+                    "123": -1.0,
+                    "128": -1.0,
+                    "129": 1.0,
+                    "130": 1.0,
+                    "131": 1.0,
+                    "132": -1.0,
+                    "133": 1.0,
+                    "134": 1.0,
+                    "135": -1.0,
+                    "136": -1.0,
+                    "137": -1.0,
+                    "140": 1.0,
+                    "141": 1.0,
+                    "143": -1.0,
+                    "144": -1.0,
+                    "145": 1.0,
+                    "146": 1.0,
+                    "147": 1.0,
+                    "149": -1.0,
+                    "150": -1.0,
+                    "151": -1.0,
+                    "152": -1.0,
+                    "153": -1.0,
+                    "154": 1.0,
+                    "161": 1.0,
+                    "162": 1.0,
+                    "164": 1.0,
+                    "165": -1.0,
+                    "167": -1.0,
+                    "168": -1.0,
+                    "170": -1.0,
+                    "171": -1.0,
+                    "172": -1.0,
+                    "179": 1.0,
+                    "180": 1.0,
+                    "188": 1.0,
+                    "189": -1.0,
+                    "190": -1.0,
+                    "192": -1.0,
+                    "193": -1.0,
+                    "208": 1.0,
+                    "209": -1.0,
+                    "213": 1.0,
+                    "214": 1.0,
+                    "215": -1.0,
+                    "216": -1.0,
+                    "217": 1.0,
+                    "218": 1.0,
+                    "221": 1.0,
+                    "222": 1.0,
+                    "229": 1.0,
+                    "232": -1.0,
+                    "233": 1.0,
+                    "234": 1.0,
+                    "235": -1.0,
+                    "236": -1.0,
+                    "237": 1.0,
+                    "238": 1.0,
+                    "239": 1.0,
+                    "244": 1.0,
+                    "245": 1.0,
+                    "248": -1.0,
+                    "249": -1.0,
+                    "255": -1.0,
+                    "256": -1.0,
+                    "257": -1.0,
+                    "258": -1.0,
+                    "259": -1.0,
+                    "260": -1.0,
+                    "261": -1.0,
+                    "262": -1.0,
+                    "264": -1.0,
+                    "265": -1.0,
+                    "270": 1.0,
+                    "271": 1.0,
+                    "274": -1.0,
+                    "275": 1.0,
+                    "276": -1.0,
+                    "277": 1.0,
+                    "278": -1.0,
+                    "279": 1.0,
+                    "280": 1.0,
+                    "285": 1.0,
+                    "286": 1.0,
+                    "288": 1.0,
+                    "289": 1.0,
+                    "290": -1.0,
+                    "291": -1.0,
+                    "295": 1.0,
+                    "297": 1.0,
+                    "298": 1.0,
+                    "299": 1.0,
+                    "307": 1.0,
+                    "308": 1.0,
+                    "309": 1.0,
+                    "310": 1.0,
+                    "311": 1.0,
+                    "316": 1.0,
+                    "317": 1.0,
+                    "318": 1.0,
+                    "319": 1.0,
+                    "320": 1.0,
+                    "321": 1.0,
+                    "322": 1.0,
+                    "323": 1.0,
+                    "324": 1.0,
+                    "325": 1.0,
+                    "326": 1.0,
+                    "327": 1.0,
+                    "328": 1.0,
+                    "329": 1.0,
+                    "330": 1.0,
+                    "331": 1.0,
+                    "332": 1.0,
+                    "334": 1.0,
+                    "335": 1.0,
+                    "336": 1.0,
+                    "337": 1.0,
+                    "338": 1.0,
+                    "339": 1.0,
+                    "340": 1.0,
+                    "341": 1.0,
+                    "342": 1.0,
+                    "343": 1.0,
+                    "344": 1.0,
+                    "345": 1.0,
+                    "346": 1.0,
+                    "347": 1.0,
+                    "348": 1.0,
+                    "349": 1.0,
+                    "350": 1.0,
+                    "351": 1.0,
+                    "352": 1.0,
+                    "353": 1.0,
+                    "354": 1.0,
+                    "355": 1.0,
+                    "356": 1.0,
+                    "357": 1.0,
+                    "358": 1.0,
+                    "359": 1.0,
+                    "360": 1.0,
+                    "361": 1.0,
+                    "362": 1.0,
+                    "363": 1.0,
+                    "364": 1.0,
+                    "365": 1.0,
+                    "366": 1.0,
+                    "367": 1.0,
+                    "368": 1.0,
+                    "369": 1.0,
+                    "370": 1.0,
+                    "371": 1.0,
+                    "372": 1.0,
+                    "373": 1.0,
+                    "374": 1.0,
+                    "375": 1.0,
+                    "376": 1.0,
+                    "377": 1.0,
+                    "378": 1.0,
+                    "379": 1.0,
+                    "380": 1.0,
+                    "381": 1.0,
+                    "382": 1.0,
+                    "383": 1.0,
+                    "384": 1.0,
+                    "385": 1.0,
+                    "386": 1.0,
+                    "387": 1.0,
+                    "388": 1.0,
+                    "389": 1.0,
+                    "390": 1.0,
+                    "391": 1.0,
+                    "392": 1.0,
+                    "393": 1.0,
+                    "394": 1.0,
+                    "395": 1.0,
+                    "396": 1.0,
+                    "397": 1.0,
+                    "398": 1.0,
+                    "399": 1.0,
+                    "400": 1.0,
+                    "401": 1.0,
+                    "402": 1.0,
+                    "403": 1.0,
+                    "404": 2.0,
+                    "405": 1.0,
+                    "406": 1.0,
+                    "407": 1.0,
+                    "408": 1.0,
+                    "409": 1.0,
+                    "410": 1.0,
+                    "411": 1.0,
+                    "412": 1.0,
+                    "413": 1.0,
+                    "414": 1.0,
+                    "415": 1.0,
+                    "416": 1.0,
+                    "417": 1.0,
+                    "418": 1.0,
+                    "419": 1.0,
+                    "420": 1.0,
+                    "421": 1.0,
+                    "422": 1.0,
+                    "423": 1.0,
+                    "424": 1.0,
+                    "425": 1.0,
+                    "426": 1.0,
+                    "427": 1.0,
+                    "428": 1.0,
+                    "429": 1.0,
+                    "430": 1.0,
+                    "431": 1.0,
+                    "432": 1.0,
+                    "433": 1.0,
+                    "434": 1.0,
+                    "435": 1.0,
+                    "436": 1.0,
+                    "437": 1.0,
+                    "438": 1.0,
+                    "439": 1.0,
+                    "440": 1.0,
+                    "441": 1.0,
+                    "442": 1.0,
+                    "443": 1.0,
+                    "444": 1.0,
+                    "445": 1.0,
+                    "446": 1.0,
+                    "447": 1.0,
+                    "448": 1.0,
+                    "449": 1.0,
+                    "450": 1.0,
+                    "451": 1.0,
+                    "452": 1.0,
+                    "453": 1.0,
+                    "454": 1.0,
+                    "455": 1.0,
+                    "456": 1.0,
+                    "457": 1.0,
+                    "458": 1.0,
+                    "459": 1.0,
+                    "460": 1.0,
+                    "461": 1.0,
+                    "462": 1.0,
+                    "463": 1.0,
+                    "464": 1.0,
+                    "465": 1.0,
+                    "466": 1.0,
+                    "467": 1.0,
+                    "468": 1.0,
+                    "469": 1.0,
+                    "470": 1.0,
+                    "471": 1.0,
+                    "472": 1.0,
+                    "473": 1.0,
+                    "474": 1.0,
+                    "475": 1.0,
+                    "476": 1.0,
+                    "477": 1.0,
+                    "478": 1.0,
+                    "479": 1.0,
+                    "480": 1.0,
+                    "481": 1.0,
+                    "482": 1.0,
+                    "483": 1.0,
+                    "484": 1.0,
+                    "485": 1.0,
+                    "486": 1.0,
+                    "487": 1.0,
+                    "488": 1.0,
+                    "489": 1.0,
+                    "490": 1.0,
+                    "491": 1.0,
+                    "492": 1.0,
+                    "493": 1.0,
+                    "494": 1.0,
+                    "495": 1.0,
+                    "496": 1.0,
+                    "497": 1.0,
+                    "498": 1.0,
+                    "499": 1.0,
+                    "503": 1.0,
+                    "504": 1.0,
+                    "505": 1.0,
+                    "506": 1.0,
+                    "507": 1.0,
+                    "508": 1.0,
+                    "509": 1.0,
+                    "510": 1.0,
+                    "511": 1.0,
+                    "512": 1.0,
+                    "513": 1.0,
+                    "516": 1.0,
+                    "517": 1.0,
+                    "518": 1.0,
+                    "519": 1.0,
+                    "520": 1.0,
+                    "521": 1.0,
+                    "522": 1.0,
+                    "523": 1.0,
+                    "524": 1.0,
+                    "525": 1.0,
+                    "526": 1.0,
+                    "527": 1.0,
+                    "528": 1.0,
+                    "529": 1.0,
+                    "530": 1.0,
+                    "531": 1.0,
+                    "532": 1.0,
+                    "533": -1.0,
+                    "534": -1.0,
+                    "535": -1.0,
+                    "536": -1.0,
+                    "537": 1.0,
+                    "538": 1.0,
+                    "539": 1.0,
+                    "540": 1.0,
+                    "541": 1.0,
+                    "542": 1.0,
+                    "543": 1.0,
+                    "544": 1.0,
+                    "545": 1.0,
+                    "546": 1.0,
+                    "547": 1.0,
+                    "548": 1.0,
+                    "549": 1.0,
+                    "550": 1.0,
+                    "551": 1.0,
+                    "552": 1.0,
+                    "553": 1.0,
+                    "554": 1.0
+                  }
+                },
+                "ref": {
+                  "kind": "nondefault",
+                  "n": 555,
+                  "default": 0,
+                  "values": {
+                    "0": -1.0,
+                    "1": -1.0,
+                    "2": -1.0,
+                    "3": 1.0,
+                    "4": 1.0,
+                    "7": -1.0,
+                    "8": -1.0,
+                    "12": -1.0,
+                    "13": -1.0,
+                    "14": -1.0,
+                    "15": -1.0,
+                    "16": -1.0,
+                    "17": -1.0,
+                    "18": 1.0,
+                    "19": 1.0,
+                    "23": -1.0,
+                    "24": -1.0,
+                    "26": 1.0,
+                    "27": 1.0,
+                    "28": 1.0,
+                    "30": 1.0,
+                    "35": 1.0,
+                    "36": 1.0,
+                    "38": -1.0,
+                    "41": 1.0,
+                    "42": 1.0,
+                    "43": 1.0,
+                    "44": -1.0,
+                    "45": -1.0,
+                    "46": -1.0,
+                    "47": 1.0,
+                    "48": 1.0,
+                    "49": 1.0,
+                    "50": 1.0,
+                    "57": -1.0,
+                    "58": -1.0,
+                    "60": -1.0,
+                    "61": -1.0,
+                    "62": 1.0,
+                    "63": -1.0,
+                    "66": 1.0,
+                    "68": -1.0,
+                    "69": -1.0,
+                    "71": -1.0,
+                    "72": -1.0,
+                    "73": -1.0,
+                    "74": -1.0,
+                    "75": -1.0,
+                    "77": 1.0,
+                    "78": -1.0,
+                    "80": 1.0,
+                    "81": 1.0,
+                    "82": -1.0,
+                    "83": -1.0,
+                    "84": -1.0,
+                    "86": -1.0,
+                    "91": 1.0,
+                    "92": -1.0,
+                    "93": -1.0,
+                    "95": 1.0,
+                    "96": -1.0,
+                    "97": -1.0,
+                    "99": 1.0,
+                    "100": 1.0,
+                    "102": -1.0,
+                    "103": -1.0,
+                    "107": 1.0,
+                    "108": 1.0,
+                    "113": 1.0,
+                    "114": -1.0,
+                    "115": -1.0,
+                    "118": -1.0,
+                    "119": -1.0,
+                    "121": 1.0,
+                    "122": -1.0,
+                    "123": -1.0,
+                    "128": -1.0,
+                    "129": 1.0,
+                    "130": 1.0,
+                    "131": 1.0,
+                    "132": -1.0,
+                    "133": 1.0,
+                    "134": 1.0,
+                    "135": -1.0,
+                    "136": -1.0,
+                    "137": -1.0,
+                    "140": 1.0,
+                    "141": 1.0,
+                    "143": -1.0,
+                    "144": -1.0,
+                    "145": 1.0,
+                    "146": 1.0,
+                    "147": 1.0,
+                    "149": -1.0,
+                    "150": -1.0,
+                    "151": -1.0,
+                    "152": -1.0,
+                    "153": -1.0,
+                    "154": 1.0,
+                    "161": 1.0,
+                    "162": 1.0,
+                    "164": 1.0,
+                    "165": -1.0,
+                    "167": -1.0,
+                    "168": -1.0,
+                    "170": -1.0,
+                    "171": -1.0,
+                    "172": -1.0,
+                    "179": 1.0,
+                    "180": 1.0,
+                    "188": 1.0,
+                    "189": -1.0,
+                    "190": -1.0,
+                    "192": -1.0,
+                    "193": -1.0,
+                    "208": 1.0,
+                    "209": -1.0,
+                    "213": 1.0,
+                    "214": 1.0,
+                    "215": -1.0,
+                    "216": -1.0,
+                    "217": 1.0,
+                    "218": 1.0,
+                    "221": 1.0,
+                    "222": 1.0,
+                    "229": 1.0,
+                    "232": -1.0,
+                    "233": 1.0,
+                    "234": 1.0,
+                    "235": -1.0,
+                    "236": -1.0,
+                    "237": 1.0,
+                    "238": 1.0,
+                    "239": 1.0,
+                    "244": 1.0,
+                    "245": 1.0,
+                    "248": -1.0,
+                    "249": -1.0,
+                    "255": -1.0,
+                    "256": -1.0,
+                    "257": -1.0,
+                    "258": -1.0,
+                    "259": -1.0,
+                    "260": -1.0,
+                    "261": -1.0,
+                    "262": -1.0,
+                    "264": -1.0,
+                    "265": -1.0,
+                    "270": 1.0,
+                    "271": 1.0,
+                    "274": -1.0,
+                    "275": 1.0,
+                    "276": -1.0,
+                    "277": 1.0,
+                    "278": -1.0,
+                    "279": 1.0,
+                    "280": 1.0,
+                    "285": 1.0,
+                    "286": 1.0,
+                    "288": 1.0,
+                    "289": 1.0,
+                    "290": -1.0,
+                    "291": -1.0,
+                    "295": 1.0,
+                    "297": 1.0,
+                    "298": 1.0,
+                    "299": 1.0,
+                    "307": 1.0,
+                    "308": 1.0,
+                    "309": 1.0,
+                    "310": 1.0,
+                    "311": 1.0,
+                    "316": 1.0,
+                    "317": 1.0,
+                    "318": 1.0,
+                    "319": 1.0,
+                    "320": 1.0,
+                    "321": 1.0,
+                    "322": 1.0,
+                    "323": 1.0,
+                    "324": 1.0,
+                    "325": 1.0,
+                    "326": 1.0,
+                    "327": 1.0,
+                    "328": 1.0,
+                    "329": 1.0,
+                    "330": 1.0,
+                    "331": 1.0,
+                    "332": 1.0,
+                    "334": 1.0,
+                    "335": 1.0,
+                    "336": 1.0,
+                    "337": 1.0,
+                    "338": 1.0,
+                    "339": 1.0,
+                    "340": 1.0,
+                    "341": 1.0,
+                    "342": 1.0,
+                    "343": 1.0,
+                    "344": 1.0,
+                    "345": 1.0,
+                    "346": 1.0,
+                    "347": 1.0,
+                    "348": 1.0,
+                    "349": 1.0,
+                    "350": 1.0,
+                    "351": 1.0,
+                    "352": 1.0,
+                    "353": 1.0,
+                    "354": 1.0,
+                    "355": 1.0,
+                    "356": 1.0,
+                    "357": 1.0,
+                    "358": 1.0,
+                    "359": 1.0,
+                    "360": 1.0,
+                    "361": 1.0,
+                    "362": 1.0,
+                    "363": 1.0,
+                    "364": 1.0,
+                    "365": 1.0,
+                    "366": 1.0,
+                    "367": 1.0,
+                    "368": 1.0,
+                    "369": 1.0,
+                    "370": 1.0,
+                    "371": 1.0,
+                    "372": 1.0,
+                    "373": 1.0,
+                    "374": 1.0,
+                    "375": 1.0,
+                    "376": 1.0,
+                    "377": 1.0,
+                    "378": 1.0,
+                    "379": 1.0,
+                    "380": 1.0,
+                    "381": 1.0,
+                    "382": 1.0,
+                    "383": 1.0,
+                    "384": 1.0,
+                    "385": 1.0,
+                    "386": 1.0,
+                    "387": 1.0,
+                    "388": 1.0,
+                    "389": 1.0,
+                    "390": 1.0,
+                    "391": 1.0,
+                    "392": 1.0,
+                    "393": 1.0,
+                    "394": 1.0,
+                    "395": 1.0,
+                    "396": 1.0,
+                    "397": 1.0,
+                    "398": 1.0,
+                    "399": 1.0,
+                    "400": 1.0,
+                    "401": 1.0,
+                    "402": 1.0,
+                    "403": 1.0,
+                    "405": 1.0,
+                    "406": 1.0,
+                    "407": 1.0,
+                    "408": 1.0,
+                    "409": 1.0,
+                    "410": 1.0,
+                    "411": 1.0,
+                    "412": 1.0,
+                    "413": 1.0,
+                    "414": 1.0,
+                    "415": 1.0,
+                    "416": 1.0,
+                    "417": 1.0,
+                    "418": 1.0,
+                    "419": 1.0,
+                    "420": 1.0,
+                    "421": 1.0,
+                    "422": 1.0,
+                    "423": 1.0,
+                    "424": 1.0,
+                    "425": 1.0,
+                    "426": 1.0,
+                    "427": 1.0,
+                    "428": 1.0,
+                    "429": 1.0,
+                    "430": 1.0,
+                    "431": 1.0,
+                    "432": 1.0,
+                    "433": 1.0,
+                    "434": 1.0,
+                    "435": 1.0,
+                    "436": 1.0,
+                    "437": 1.0,
+                    "438": 1.0,
+                    "439": 1.0,
+                    "440": 1.0,
+                    "441": 1.0,
+                    "442": 1.0,
+                    "443": 1.0,
+                    "444": 1.0,
+                    "445": 1.0,
+                    "446": 1.0,
+                    "447": 1.0,
+                    "448": 1.0,
+                    "449": 1.0,
+                    "450": 1.0,
+                    "451": 1.0,
+                    "452": 1.0,
+                    "453": 1.0,
+                    "454": 1.0,
+                    "455": 1.0,
+                    "456": 1.0,
+                    "457": 1.0,
+                    "458": 1.0,
+                    "459": 1.0,
+                    "460": 1.0,
+                    "461": 1.0,
+                    "462": 1.0,
+                    "463": 1.0,
+                    "464": 1.0,
+                    "465": 1.0,
+                    "466": 1.0,
+                    "467": 1.0,
+                    "468": 1.0,
+                    "469": 1.0,
+                    "470": 1.0,
+                    "471": 1.0,
+                    "472": 1.0,
+                    "473": 1.0,
+                    "474": 1.0,
+                    "475": 1.0,
+                    "476": 1.0,
+                    "477": 1.0,
+                    "478": 1.0,
+                    "479": 1.0,
+                    "480": 1.0,
+                    "481": 1.0,
+                    "482": 1.0,
+                    "483": 1.0,
+                    "484": 1.0,
+                    "485": 1.0,
+                    "486": 1.0,
+                    "487": 1.0,
+                    "488": 1.0,
+                    "489": 1.0,
+                    "490": 1.0,
+                    "491": 1.0,
+                    "492": 1.0,
+                    "493": 1.0,
+                    "494": 1.0,
+                    "495": 1.0,
+                    "496": 1.0,
+                    "497": 1.0,
+                    "498": 1.0,
+                    "499": 1.0,
+                    "503": 1.0,
+                    "504": 1.0,
+                    "505": 1.0,
+                    "506": 1.0,
+                    "507": 1.0,
+                    "508": 1.0,
+                    "509": 1.0,
+                    "510": 1.0,
+                    "511": 1.0,
+                    "512": 1.0,
+                    "513": 1.0,
+                    "516": 1.0,
+                    "517": 1.0,
+                    "518": 1.0,
+                    "519": 1.0,
+                    "520": 1.0,
+                    "521": 1.0,
+                    "522": 1.0,
+                    "523": 1.0,
+                    "524": 1.0,
+                    "525": 1.0,
+                    "526": 1.0,
+                    "527": 1.0,
+                    "528": 1.0,
+                    "529": 1.0,
+                    "530": 1.0,
+                    "531": 1.0,
+                    "532": 1.0,
+                    "533": -1.0,
+                    "534": -1.0,
+                    "535": -1.0,
+                    "536": -1.0,
+                    "537": 1.0,
+                    "538": 1.0,
+                    "539": 1.0,
+                    "540": 1.0,
+                    "541": 1.0,
+                    "542": 1.0,
+                    "543": 1.0,
+                    "544": 1.0,
+                    "545": 1.0,
+                    "546": 1.0,
+                    "547": 1.0,
+                    "548": 1.0,
+                    "549": 1.0,
+                    "550": 1.0,
+                    "551": 1.0,
+                    "552": 1.0,
+                    "553": 1.0,
+                    "554": 1.0
+                  }
+                }
+              }
+            },
+            "n1_mod_target": {
+              "columns": {
+                "trafo.tap_pos": {
+                  "gen_targets": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    7,
+                    8,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    23,
+                    24,
+                    26,
+                    27,
+                    28,
+                    30,
+                    35,
+                    36,
+                    38,
+                    41,
+                    42,
+                    43,
+                    44,
+                    45,
+                    46,
+                    47,
+                    48,
+                    49,
+                    50,
+                    57,
+                    58,
+                    60,
+                    61,
+                    62,
+                    63,
+                    66,
+                    68,
+                    69,
+                    71,
+                    72,
+                    73,
+                    74,
+                    75,
+                    77,
+                    78,
+                    80,
+                    81,
+                    82,
+                    83,
+                    84,
+                    86,
+                    91,
+                    92,
+                    93,
+                    95,
+                    96,
+                    97,
+                    99,
+                    100,
+                    102,
+                    103,
+                    107,
+                    108,
+                    113,
+                    114,
+                    115,
+                    118,
+                    119,
+                    121,
+                    122,
+                    123,
+                    128,
+                    129,
+                    130,
+                    131,
+                    132,
+                    133,
+                    134,
+                    135,
+                    136,
+                    137,
+                    140,
+                    141,
+                    143,
+                    144,
+                    145,
+                    146,
+                    147,
+                    149,
+                    150,
+                    151,
+                    152,
+                    153,
+                    154,
+                    161,
+                    162,
+                    164,
+                    165,
+                    167,
+                    168,
+                    170,
+                    171,
+                    172,
+                    179,
+                    180,
+                    188,
+                    189,
+                    190,
+                    192,
+                    193,
+                    208,
+                    209,
+                    213,
+                    214,
+                    215,
+                    216,
+                    217,
+                    218,
+                    221,
+                    222,
+                    229,
+                    232,
+                    233,
+                    234,
+                    235,
+                    236,
+                    237,
+                    238,
+                    239,
+                    244,
+                    245,
+                    248,
+                    249,
+                    255,
+                    256,
+                    257,
+                    258,
+                    259,
+                    260,
+                    261,
+                    262,
+                    264,
+                    265,
+                    270,
+                    271,
+                    274,
+                    275,
+                    276,
+                    277,
+                    278,
+                    279,
+                    280,
+                    285,
+                    286,
+                    288,
+                    289,
+                    290,
+                    291,
+                    295,
+                    297,
+                    298,
+                    299,
+                    307,
+                    308,
+                    309,
+                    310,
+                    311,
+                    316,
+                    317,
+                    318,
+                    319,
+                    320,
+                    321,
+                    322,
+                    323,
+                    324,
+                    325,
+                    326,
+                    327,
+                    328,
+                    329,
+                    330,
+                    331,
+                    332,
+                    334,
+                    335,
+                    336,
+                    337,
+                    338,
+                    339,
+                    340,
+                    341,
+                    342,
+                    343,
+                    344,
+                    345,
+                    346,
+                    347,
+                    348,
+                    349,
+                    350,
+                    351,
+                    352,
+                    353,
+                    354,
+                    355,
+                    356,
+                    357,
+                    358,
+                    359,
+                    360,
+                    361,
+                    362,
+                    363,
+                    364,
+                    365,
+                    366,
+                    367,
+                    368,
+                    369,
+                    370,
+                    371,
+                    372,
+                    373,
+                    374,
+                    375,
+                    376,
+                    377,
+                    378,
+                    379,
+                    380,
+                    381,
+                    382,
+                    383,
+                    384,
+                    385,
+                    386,
+                    387,
+                    388,
+                    389,
+                    390,
+                    391,
+                    392,
+                    393,
+                    394,
+                    395,
+                    396,
+                    397,
+                    398,
+                    399,
+                    400,
+                    401,
+                    402,
+                    403,
+                    404,
+                    405,
+                    406,
+                    407,
+                    408,
+                    409,
+                    410,
+                    411,
+                    412,
+                    413,
+                    414,
+                    415,
+                    416,
+                    417,
+                    418,
+                    419,
+                    420,
+                    421,
+                    422,
+                    423,
+                    424,
+                    425,
+                    426,
+                    427,
+                    428,
+                    429,
+                    430,
+                    431,
+                    432,
+                    433,
+                    434,
+                    435,
+                    436,
+                    437,
+                    438,
+                    439,
+                    440,
+                    441,
+                    442,
+                    443,
+                    444,
+                    445,
+                    446,
+                    447,
+                    448,
+                    449,
+                    450,
+                    451,
+                    452,
+                    453,
+                    454,
+                    455,
+                    456,
+                    457,
+                    458,
+                    459,
+                    460,
+                    461,
+                    462,
+                    463,
+                    464,
+                    465,
+                    466,
+                    467,
+                    468,
+                    469,
+                    470,
+                    471,
+                    472,
+                    473,
+                    474,
+                    475,
+                    476,
+                    477,
+                    478,
+                    479,
+                    480,
+                    481,
+                    482,
+                    483,
+                    484,
+                    485,
+                    486,
+                    487,
+                    488,
+                    489,
+                    490,
+                    491,
+                    492,
+                    493,
+                    494,
+                    495,
+                    496,
+                    497,
+                    498,
+                    499,
+                    503,
+                    504,
+                    505,
+                    506,
+                    507,
+                    508,
+                    509,
+                    510,
+                    511,
+                    512,
+                    513,
+                    516,
+                    517,
+                    518,
+                    519,
+                    520,
+                    521,
+                    522,
+                    523,
+                    524,
+                    525,
+                    526,
+                    527,
+                    528,
+                    529,
+                    530,
+                    531,
+                    532,
+                    533,
+                    534,
+                    535,
+                    536,
+                    537,
+                    538,
+                    539,
+                    540,
+                    541,
+                    542,
+                    543,
+                    544,
+                    545,
+                    546,
+                    547,
+                    548,
+                    549,
+                    550,
+                    551,
+                    552,
+                    553,
+                    554
+                  ],
+                  "ref_targets": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    7,
+                    8,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    23,
+                    24,
+                    26,
+                    27,
+                    28,
+                    30,
+                    35,
+                    36,
+                    38,
+                    41,
+                    42,
+                    43,
+                    44,
+                    45,
+                    46,
+                    47,
+                    48,
+                    49,
+                    50,
+                    57,
+                    58,
+                    60,
+                    61,
+                    62,
+                    63,
+                    66,
+                    68,
+                    69,
+                    71,
+                    72,
+                    73,
+                    74,
+                    75,
+                    77,
+                    78,
+                    80,
+                    81,
+                    82,
+                    83,
+                    84,
+                    86,
+                    91,
+                    92,
+                    93,
+                    95,
+                    96,
+                    97,
+                    99,
+                    100,
+                    102,
+                    103,
+                    107,
+                    108,
+                    113,
+                    114,
+                    115,
+                    118,
+                    119,
+                    121,
+                    122,
+                    123,
+                    128,
+                    129,
+                    130,
+                    131,
+                    132,
+                    133,
+                    134,
+                    135,
+                    136,
+                    137,
+                    140,
+                    141,
+                    143,
+                    144,
+                    145,
+                    146,
+                    147,
+                    149,
+                    150,
+                    151,
+                    152,
+                    153,
+                    154,
+                    161,
+                    162,
+                    164,
+                    165,
+                    167,
+                    168,
+                    170,
+                    171,
+                    172,
+                    179,
+                    180,
+                    188,
+                    189,
+                    190,
+                    192,
+                    193,
+                    208,
+                    209,
+                    213,
+                    214,
+                    215,
+                    216,
+                    217,
+                    218,
+                    221,
+                    222,
+                    229,
+                    232,
+                    233,
+                    234,
+                    235,
+                    236,
+                    237,
+                    238,
+                    239,
+                    244,
+                    245,
+                    248,
+                    249,
+                    255,
+                    256,
+                    257,
+                    258,
+                    259,
+                    260,
+                    261,
+                    262,
+                    264,
+                    265,
+                    270,
+                    271,
+                    274,
+                    275,
+                    276,
+                    277,
+                    278,
+                    279,
+                    280,
+                    285,
+                    286,
+                    288,
+                    289,
+                    290,
+                    291,
+                    295,
+                    297,
+                    298,
+                    299,
+                    307,
+                    308,
+                    309,
+                    310,
+                    311,
+                    316,
+                    317,
+                    318,
+                    319,
+                    320,
+                    321,
+                    322,
+                    323,
+                    324,
+                    325,
+                    326,
+                    327,
+                    328,
+                    329,
+                    330,
+                    331,
+                    332,
+                    334,
+                    335,
+                    336,
+                    337,
+                    338,
+                    339,
+                    340,
+                    341,
+                    342,
+                    343,
+                    344,
+                    345,
+                    346,
+                    347,
+                    348,
+                    349,
+                    350,
+                    351,
+                    352,
+                    353,
+                    354,
+                    355,
+                    356,
+                    357,
+                    358,
+                    359,
+                    360,
+                    361,
+                    362,
+                    363,
+                    364,
+                    365,
+                    366,
+                    367,
+                    368,
+                    369,
+                    370,
+                    371,
+                    372,
+                    373,
+                    374,
+                    375,
+                    376,
+                    377,
+                    378,
+                    379,
+                    380,
+                    381,
+                    382,
+                    383,
+                    384,
+                    385,
+                    386,
+                    387,
+                    388,
+                    389,
+                    390,
+                    391,
+                    392,
+                    393,
+                    394,
+                    395,
+                    396,
+                    397,
+                    398,
+                    399,
+                    400,
+                    401,
+                    402,
+                    403,
+                    405,
+                    406,
+                    407,
+                    408,
+                    409,
+                    410,
+                    411,
+                    412,
+                    413,
+                    414,
+                    415,
+                    416,
+                    417,
+                    418,
+                    419,
+                    420,
+                    421,
+                    422,
+                    423,
+                    424,
+                    425,
+                    426,
+                    427,
+                    428,
+                    429,
+                    430,
+                    431,
+                    432,
+                    433,
+                    434,
+                    435,
+                    436,
+                    437,
+                    438,
+                    439,
+                    440,
+                    441,
+                    442,
+                    443,
+                    444,
+                    445,
+                    446,
+                    447,
+                    448,
+                    449,
+                    450,
+                    451,
+                    452,
+                    453,
+                    454,
+                    455,
+                    456,
+                    457,
+                    458,
+                    459,
+                    460,
+                    461,
+                    462,
+                    463,
+                    464,
+                    465,
+                    466,
+                    467,
+                    468,
+                    469,
+                    470,
+                    471,
+                    472,
+                    473,
+                    474,
+                    475,
+                    476,
+                    477,
+                    478,
+                    479,
+                    480,
+                    481,
+                    482,
+                    483,
+                    484,
+                    485,
+                    486,
+                    487,
+                    488,
+                    489,
+                    490,
+                    491,
+                    492,
+                    493,
+                    494,
+                    495,
+                    496,
+                    497,
+                    498,
+                    499,
+                    503,
+                    504,
+                    505,
+                    506,
+                    507,
+                    508,
+                    509,
+                    510,
+                    511,
+                    512,
+                    513,
+                    516,
+                    517,
+                    518,
+                    519,
+                    520,
+                    521,
+                    522,
+                    523,
+                    524,
+                    525,
+                    526,
+                    527,
+                    528,
+                    529,
+                    530,
+                    531,
+                    532,
+                    533,
+                    534,
+                    535,
+                    536,
+                    537,
+                    538,
+                    539,
+                    540,
+                    541,
+                    542,
+                    543,
+                    544,
+                    545,
+                    546,
+                    547,
+                    548,
+                    549,
+                    550,
+                    551,
+                    552,
+                    553,
+                    554
+                  ],
+                  "same_target": false
+                }
+              },
+              "same_target_all": false,
+              "conclusion": "gen and ref modify different element targets (dynamic-computed vs hard-coded target possible; N1) -> judge"
+            },
+            "note": "base network matches; modification state diverges on ['trafo.tap_pos']"
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              },
+              "sc_3ph": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "ac_pf": {
+                "total": 1,
+                "ok": 1
+              },
+              "sc_3ph": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "ac_pf",
+              "sc_3ph"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "res_bus_sc_present": true,
+              "ikss_max": 204.789974
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "point",
+              "index": 1313,
+              "derived": false,
+              "raw_expr": "net.res_bus_sc.at[1313, 'ikss_ka']"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "point",
+              "index": 1313,
+              "derived": false,
+              "raw_expr": "net.res_bus_sc.at[1313, 'ikss_ka']"
+            },
+            "query_type": "pf_then_sc",
+            "query_type_consistent": null,
+            "gen_normalized": {
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": 12.68038786277136,
+              "perturbed_output": null,
+              "perturbed_success": false,
+              "skip_reason": "perturbed re-exec produced no comparable output"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "ambiguous",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 12.669006005987766,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 12.68038786277136,
+        "gen_net_recovered": true,
+        "gen_n_bus": 1888,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 1943,
+        "item_id": "32164dcf5ba2",
+        "task": "pf_then_sc",
+        "difficulty_level": "D4_compound",
+        "network": "case1888rte",
+        "query_type": "pf_then_sc",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 1943,
+        "item_id": "32164dcf5ba2",
+        "task": "pf_then_sc",
+        "network": "case1888rte",
+        "query_type": "pf_then_sc",
+        "n_modifications": 1,
+        "difficulty_level": "D4_compound",
+        "ground_truth": 12.669006,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 7,
+              "n_line": 6,
+              "n_trafo": 1,
+              "n_gen": 1,
+              "n_load": 5,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 7,
+              "n_line": 6,
+              "n_trafo": 1,
+              "n_gen": 1,
+              "n_load": 5,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "pre_solve_first_snapshot",
+            "net_selection": {
+              "basis": "first pre-solve snapshot (compound family)",
+              "gen_snaps": 1,
+              "ref_snaps": 1
+            },
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "timeseries": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "timeseries": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "timeseries"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {}
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": "max",
+              "index": null,
+              "derived": false,
+              "raw_expr": "line_loading.max().max()"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "max",
+              "index": "res_line.loading_percent",
+              "derived": false,
+              "raw_expr": "ow.output['res_line.loading_percent'].max().max()"
+            },
+            "query_type": "ts_max_value",
+            "query_type_consistent": true,
+            "gen_normalized": null,
+            "ref_normalized": {
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "max",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "res_line.loading_percent",
+              "gen_target": "dynamic(max)",
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "note": "extraction not reducible to a result table on one side; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": 50.08993145849945,
+              "skip_reason": "time-series controller overrides load perturbation"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 49.71239563467192,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 50.08993145849945,
+        "gen_net_recovered": true,
+        "gen_n_bus": 7,
+        "perturb_run": false,
+        "perturb_skip_reason": "time-series controller overrides load perturbation"
+      },
+      "pointer": {
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "C_FDRS",
+        "bench_index": 64,
+        "item_id": "b2e9dbbe9a1b",
+        "task": "time_series",
+        "difficulty_level": "D1_basic",
+        "network": "simple_mv_open_ring",
+        "query_type": "ts_max_value",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 64,
+        "item_id": "b2e9dbbe9a1b",
+        "task": "time_series",
+        "network": "simple_mv_open_ring",
+        "query_type": "ts_max_value",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 49.712396,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 9,
+              "n_line": 9,
+              "n_trafo": 0,
+              "n_gen": 2,
+              "n_load": 3,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 9,
+              "n_line": 9,
+              "n_trafo": 0,
+              "n_gen": 2,
+              "n_load": 3,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "fail",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "ref_identities": {
+              "dc_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "dc_pf"
+            ],
+            "noop_kwargs": [
+              {
+                "solver": "runpp",
+                "kwarg": "method",
+                "value": "dc",
+                "note": "runpp has no 'method' parameter; silently absorbed into **kwargs and solved AC (no-op)"
+              },
+              {
+                "solver": "runpp",
+                "kwarg": "method",
+                "value": "dc",
+                "note": "runpp has no 'method' parameter; silently absorbed into **kwargs and solved AC (no-op)"
+              }
+            ],
+            "reference_supports_expected": true,
+            "reasons": [
+              "expected DC power flow but AC runpp used (physics model changed)"
+            ]
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 319.9346,
+                "load": 315.0,
+                "loss": 4.9346,
+                "residual": 0.0,
+                "tol": 1.575
+              },
+              "loading_line_max": 42.085906
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "argmax",
+              "index": null,
+              "derived": false,
+              "raw_expr": "net.res_line.loading_percent.idxmax()"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "argmax",
+              "index": "loading_percent",
+              "derived": false,
+              "raw_expr": "net.res_line['loading_percent'].idxmax()"
+            },
+            "query_type": "argmax",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "argmax",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_line",
+              "column": "loading_percent",
+              "aggregation": "argmax",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "dynamic(argmax)",
+              "gen_target": "dynamic(argmax)",
+              "both_dynamic": true,
+              "conclusion": "both sides compute the target dynamically by the same rule (equivalent iff the rule matches; N1)"
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 2.0,
+              "perturbed_output": 0.0,
+              "perturbed_success": true,
+              "delta": 2.0,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "fail",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": true,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 2.0,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 2.0,
+        "gen_net_recovered": true,
+        "gen_n_bus": 9,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T2",
+        "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1263,
+        "item_id": "0e1f9402d787",
+        "task": "dc_power_flow",
+        "difficulty_level": "D3_semantic",
+        "network": "case9",
+        "query_type": "argmax",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 1263,
+        "item_id": "0e1f9402d787",
+        "task": "dc_power_flow",
+        "network": "case9",
+        "query_type": "argmax",
+        "n_modifications": 1,
+        "difficulty_level": "D3_semantic",
+        "ground_truth": 2,
+        "ground_truth_type": "int"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "ambiguous",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 15,
+              "n_line": 15,
+              "n_trafo": 5,
+              "n_gen": 4,
+              "n_load": 11,
+              "n_sgen": 0,
+              "n_shunt": 1,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 14,
+              "n_line": 15,
+              "n_trafo": 5,
+              "n_gen": 4,
+              "n_load": 11,
+              "n_sgen": 0,
+              "n_shunt": 1,
+              "n_storage": 0
+            },
+            "bus_index_match": false,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [
+              "bus.max_vm_pu",
+              "bus.min_vm_pu"
+            ],
+            "fingerprint_detail": {
+              "bus.max_vm_pu": {
+                "gen": {
+                  "kind": "digest",
+                  "n": 15,
+                  "sum": 15.94,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 1.06,
+                    "1": 1.06,
+                    "2": 1.06,
+                    "3": 1.06,
+                    "4": 1.06,
+                    "5": 1.06,
+                    "6": 1.06,
+                    "7": 1.06,
+                    "8": 1.06,
+                    "9": 1.06,
+                    "10": 1.06,
+                    "11": 1.06,
+                    "12": 1.06,
+                    "13": 1.06,
+                    "14": 1.1
+                  }
+                },
+                "ref": {
+                  "kind": "digest",
+                  "n": 14,
+                  "sum": 14.84,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 1.06,
+                    "1": 1.06,
+                    "2": 1.06,
+                    "3": 1.06,
+                    "4": 1.06,
+                    "5": 1.06,
+                    "6": 1.06,
+                    "7": 1.06,
+                    "8": 1.06,
+                    "9": 1.06,
+                    "10": 1.06,
+                    "11": 1.06,
+                    "12": 1.06,
+                    "13": 1.06
+                  }
+                }
+              },
+              "bus.min_vm_pu": {
+                "gen": {
+                  "kind": "digest",
+                  "n": 15,
+                  "sum": 14.069,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 0.94,
+                    "1": 0.94,
+                    "2": 0.94,
+                    "3": 0.94,
+                    "4": 0.94,
+                    "5": 0.94,
+                    "6": 0.94,
+                    "7": 0.94,
+                    "8": 0.94,
+                    "9": 0.94,
+                    "10": 0.94,
+                    "11": 0.94,
+                    "12": 0.94,
+                    "13": 0.94,
+                    "14": 0.909
+                  }
+                },
+                "ref": {
+                  "kind": "digest",
+                  "n": 14,
+                  "sum": 13.129,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 0.94,
+                    "1": 0.94,
+                    "2": 0.94,
+                    "3": 0.94,
+                    "4": 0.94,
+                    "5": 0.94,
+                    "6": 0.94,
+                    "7": 0.94,
+                    "8": 0.94,
+                    "9": 0.94,
+                    "10": 0.94,
+                    "11": 0.94,
+                    "12": 0.909,
+                    "13": 0.94
+                  }
+                }
+              }
+            },
+            "n1_mod_target": {
+              "columns": {
+                "bus.max_vm_pu": {
+                  "gen_targets": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14
+                  ],
+                  "ref_targets": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13
+                  ],
+                  "same_target": false
+                },
+                "bus.min_vm_pu": {
+                  "gen_targets": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14
+                  ],
+                  "ref_targets": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13
+                  ],
+                  "same_target": false
+                }
+              },
+              "same_target_all": false,
+              "conclusion": "gen and ref modify different element targets (dynamic-computed vs hard-coded target possible; N1) -> judge"
+            },
+            "note": "structural counts differ by an added/omitted element (subset-like); judge"
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_opf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "ac_opf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "ac_opf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 268.2872,
+                "load": 259.0,
+                "loss": 9.2872,
+                "residual": -0.0,
+                "tol": 1.295
+              },
+              "voltage": {
+                "vm_min": 1.0144605402883615,
+                "vm_max": 1.0600000000373637
+              },
+              "opf_converged": true,
+              "res_cost": 8081.526613828861
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_gen",
+              "column": "p_mw",
+              "aggregation": "sum",
+              "index": null,
+              "derived": false,
+              "raw_expr": "net.res_gen.p_mw.sum()"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_gen",
+              "column": "p_mw",
+              "aggregation": "sum",
+              "index": "p_mw",
+              "derived": false,
+              "raw_expr": "net.res_gen['p_mw'].sum()"
+            },
+            "query_type": "total",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_gen",
+              "column": "p_mw",
+              "aggregation": "sum",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_gen",
+              "column": "p_mw",
+              "aggregation": "sum",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "p_mw",
+              "gen_target": "dynamic(sum)",
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 73.9572201160553,
+              "perturbed_output": 97.74996501221484,
+              "perturbed_success": true,
+              "delta": 23.792744896159547,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "ambiguous",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 73.95721889283409,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 73.9572201160553,
+        "gen_net_recovered": true,
+        "gen_n_bus": 15,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T2",
+        "model": "meta-llama_Llama-3.1-8B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 292,
+        "item_id": "2e2f18d90228",
+        "task": "opf",
+        "difficulty_level": "D1_basic",
+        "network": "case14",
+        "query_type": "total",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 292,
+        "item_id": "2e2f18d90228",
+        "task": "opf",
+        "network": "case14",
+        "query_type": "total",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 73.957219,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "ambiguous",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 33,
+              "n_line": 37,
+              "n_trafo": 0,
+              "n_gen": 0,
+              "n_load": 32,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 33,
+              "n_line": 37,
+              "n_trafo": 0,
+              "n_gen": 0,
+              "n_load": 32,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [
+              "line.in_service"
+            ],
+            "fingerprint_detail": {
+              "line.in_service": {
+                "gen": {
+                  "kind": "outset",
+                  "n": 37,
+                  "out": [
+                    4,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36
+                  ]
+                },
+                "ref": {
+                  "kind": "outset",
+                  "n": 37,
+                  "out": [
+                    5,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36
+                  ]
+                }
+              }
+            },
+            "n1_mod_target": {
+              "columns": {
+                "line.in_service": {
+                  "gen_targets": [
+                    4,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36
+                  ],
+                  "ref_targets": [
+                    5,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36
+                  ],
+                  "same_target": false
+                }
+              },
+              "same_target_all": false,
+              "conclusion": "gen and ref modify different element targets (dynamic-computed vs hard-coded target possible; N1) -> judge"
+            },
+            "note": "base network matches; modification state diverges on ['line.in_service']"
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "sc_3ph": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "sc_3ph": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "sc_3ph"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "res_bus_sc_present": true,
+              "ikss_max": 45.604287
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "pass",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "argmax",
+              "index": null,
+              "derived": false,
+              "raw_expr": "net.res_bus_sc.ikss_ka.idxmax()"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "argmax",
+              "index": "ikss_ka",
+              "derived": false,
+              "raw_expr": "net.res_bus_sc['ikss_ka'].idxmax()"
+            },
+            "query_type": "argmax",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "argmax",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_bus_sc",
+              "column": "ikss_ka",
+              "aggregation": "argmax",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "dynamic(argmax)",
+              "gen_target": "dynamic(argmax)",
+              "both_dynamic": true,
+              "conclusion": "both sides compute the target dynamically by the same rule (equivalent iff the rule matches; N1)"
+            },
+            "reasons": []
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 0.0,
+              "perturbed_output": 0.0,
+              "perturbed_success": true,
+              "delta": 0.0,
+              "sensitive": false
+            },
+            "stiff_exempt": true,
+            "note": "perturbation-invariant output but expected solver converged (check 2) and sanity passed (check 3) -> stiff/insensitive quantity (N4 stiff-exempt)"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "ambiguous",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "pass",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 0.0,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 0.0,
+        "gen_net_recovered": true,
+        "gen_n_bus": 33,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T2",
+        "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 487,
+        "item_id": "e73d38064f83",
+        "task": "short_circuit_3ph",
+        "difficulty_level": "D1_basic",
+        "network": "case33bw",
+        "query_type": "argmax",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 487,
+        "item_id": "e73d38064f83",
+        "task": "short_circuit_3ph",
+        "network": "case33bw",
+        "query_type": "argmax",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 0,
+        "ground_truth_type": "int"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 145,
+              "n_line": 378,
+              "n_trafo": 75,
+              "n_gen": 49,
+              "n_load": 55,
+              "n_sgen": 9,
+              "n_shunt": 97,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 145,
+              "n_line": 378,
+              "n_trafo": 75,
+              "n_gen": 49,
+              "n_load": 55,
+              "n_sgen": 9,
+              "n_shunt": 97,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 379,
+                "ok": 373
+              }
+            },
+            "ref_identities": {
+              "contingency": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "contingency"
+            ],
+            "reference_supports_expected": true,
+            "reasons": [
+              "canonical contingency engine replaced by manual runpp loop (possible equivalent-path)"
+            ],
+            "n2_equivalence": {
+              "parse_ok": true,
+              "has_manual_solver_loop": true,
+              "criteria": {
+                "c1_per_step_solver_identity": {
+                  "gen_step_solver": "ac_pf (runpp)",
+                  "verifiable": true,
+                  "note": "per-step physics is AC power flow; must match the reference engine's per-step physics"
+                },
+                "c2_scenario_set": {
+                  "early_break": false,
+                  "in_loop_element_toggle": true,
+                  "in_loop_profile_assignment": false,
+                  "satisfied": true,
+                  "note": "no early break; full enumeration plausible -- profile/scenario application method still to verify (N2 (2))"
+                },
+                "c3_nonconvergence_handling": {
+                  "explicit_handling": true,
+                  "note": "whether non-convergent steps are handled without changing the queried quantity (N2 (3))"
+                },
+                "c4_aggregation_semantics": {
+                  "aggregation": null,
+                  "note": "aggregation over steps must match the reference (N2 (4))"
+                }
+              }
+            }
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "voltage": {
+                "vm_min": 0.9149999999999999,
+                "vm_max": 1.2113372340898316,
+                "outside_nominal": true
+              },
+              "contingency": {
+                "max_loading_line_max": null,
+                "min_vm_bus_min": null
+              }
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": false,
+              "raw_expr": "violation_count"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_line",
+              "column": "max_loading_percent",
+              "aggregation": "any",
+              "index": "max_loading_percent",
+              "derived": false,
+              "raw_expr": "(net.res_line['max_loading_percent'] > 120).any()"
+            },
+            "query_type": "bool_check",
+            "query_type_consistent": true,
+            "gen_normalized": null,
+            "ref_normalized": {
+              "table": "res_line",
+              "column": "max_loading_percent",
+              "aggregation": "any",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "max_loading_percent",
+              "gen_target": "dynamic(None)",
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "note": "extraction not reducible to a result table on one side; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "ambiguous",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": true
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": 0.0,
+              "perturbed_output": null,
+              "perturbed_success": false,
+              "skip_reason": "perturbed re-exec produced no comparable output"
+            },
+            "note": "a code literal equals GT and perturbation inconclusive; judge"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "ambiguous",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "ambiguous"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 0.0,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 0.0,
+        "gen_net_recovered": true,
+        "gen_n_bus": 145,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T3",
+        "model": "openai_gpt-oss-120b",
+        "condition": "A_FX",
+        "bench_index": 480,
+        "item_id": "c718403b658e",
+        "task": "contingency",
+        "difficulty_level": "D1_basic",
+        "network": "case145",
+        "query_type": "bool_check",
+        "n_modifications": 0,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 480,
+        "item_id": "c718403b658e",
+        "task": "contingency",
+        "network": "case145",
+        "query_type": "bool_check",
+        "n_modifications": 0,
+        "difficulty_level": "D1_basic",
+        "ground_truth": false,
+        "ground_truth_type": "bool"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 24,
+              "n_line": 33,
+              "n_trafo": 5,
+              "n_gen": 10,
+              "n_load": 17,
+              "n_sgen": 22,
+              "n_shunt": 1,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 24,
+              "n_line": 33,
+              "n_trafo": 5,
+              "n_gen": 10,
+              "n_load": 17,
+              "n_sgen": 22,
+              "n_shunt": 1,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "dc_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "ref_identities": {
+              "dc_pf": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "dc_pf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 2850.0,
+                "load": 2850.0,
+                "loss": 0.0,
+                "residual": 0.0,
+                "tol": 14.25
+              },
+              "loading_line_max": 76.271279
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "index": null,
+              "derived": false,
+              "raw_expr": "net.res_bus.at[bus_idx, 'va_degree']"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "index": 1,
+              "derived": false,
+              "raw_expr": "net.res_bus.at[1, 'va_degree']"
+            },
+            "query_type": "point_value",
+            "query_type_consistent": true,
+            "gen_normalized": {
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "ref_normalized": {
+              "table": "res_bus",
+              "column": "va_degree",
+              "aggregation": "point",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": 1,
+              "gen_target": "dynamic(point)",
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "reasons": [],
+            "note": "same table/column/agg but model computes the index dynamically vs reference hard-coded index 1 (N1); judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": -3.7527216564564996,
+              "perturbed_output": -9.27806072537899,
+              "perturbed_success": true,
+              "delta": 5.5253390689224915,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": -3.77755982020662,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": -3.7527216564564996,
+        "gen_net_recovered": true,
+        "gen_n_bus": 24,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T3",
+        "model": "openai_gpt-oss-120b",
+        "condition": "A_FX",
+        "bench_index": 2,
+        "item_id": "4caf2191792c",
+        "task": "dc_power_flow",
+        "difficulty_level": "D1_basic",
+        "network": "case24_ieee_rts",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 2,
+        "item_id": "4caf2191792c",
+        "task": "dc_power_flow",
+        "network": "case24_ieee_rts",
+        "query_type": "point_value",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": -3.77756,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "ambiguous",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 7,
+              "n_line": 4,
+              "n_trafo": 1,
+              "n_gen": 1,
+              "n_load": 1,
+              "n_sgen": 1,
+              "n_shunt": 1,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 7,
+              "n_line": 4,
+              "n_trafo": 1,
+              "n_gen": 1,
+              "n_load": 1,
+              "n_sgen": 1,
+              "n_shunt": 1,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "pre_solve_first_snapshot",
+            "net_selection": {
+              "basis": "first pre-solve snapshot (compound family)",
+              "gen_snaps": 6,
+              "ref_snaps": 1
+            },
+            "fingerprint_diffs": [
+              "load.p_mw",
+              "load.q_mvar"
+            ],
+            "fingerprint_detail": {
+              "load.p_mw": {
+                "gen": {
+                  "kind": "digest",
+                  "n": 1,
+                  "sum": 1.323883,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 1.323883
+                  }
+                },
+                "ref": {
+                  "kind": "digest",
+                  "n": 1,
+                  "sum": 2.0,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 2.0
+                  }
+                }
+              },
+              "load.q_mvar": {
+                "gen": {
+                  "kind": "digest",
+                  "n": 1,
+                  "sum": 2.647765,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 2.647765
+                  }
+                },
+                "ref": {
+                  "kind": "digest",
+                  "n": 1,
+                  "sum": 4.0,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 4.0
+                  }
+                }
+              }
+            },
+            "n1_mod_target": {
+              "columns": {
+                "load.p_mw": {
+                  "gen_targets": [
+                    0
+                  ],
+                  "ref_targets": [
+                    0
+                  ],
+                  "same_target": true
+                },
+                "load.q_mvar": {
+                  "gen_targets": [
+                    0
+                  ],
+                  "ref_targets": [
+                    0
+                  ],
+                  "same_target": true
+                }
+              },
+              "same_target_all": true,
+              "conclusion": "gen and ref target the same element(s) but the fingerprint still diverges -> modification value/magnitude differs on the same target; judge"
+            },
+            "note": "base network matches; modification state diverges on ['load.p_mw', 'load.q_mvar'] (pre-solve fingerprint)"
+          }
+        },
+        "check2_solver_identity": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 24,
+                "ok": 24
+              }
+            },
+            "ref_identities": {
+              "timeseries": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "timeseries"
+            ],
+            "reference_supports_expected": true,
+            "reasons": [
+              "canonical timeseries engine replaced by manual runpp loop (possible equivalent-path)"
+            ],
+            "n2_equivalence": {
+              "parse_ok": true,
+              "has_manual_solver_loop": true,
+              "criteria": {
+                "c1_per_step_solver_identity": {
+                  "gen_step_solver": "ac_pf (runpp)",
+                  "verifiable": true,
+                  "note": "per-step physics is AC power flow; must match the reference engine's per-step physics"
+                },
+                "c2_scenario_set": {
+                  "early_break": false,
+                  "in_loop_element_toggle": false,
+                  "in_loop_profile_assignment": true,
+                  "satisfied": true,
+                  "note": "no early break; full enumeration plausible -- profile/scenario application method still to verify (N2 (2))"
+                },
+                "c3_nonconvergence_handling": {
+                  "explicit_handling": false,
+                  "note": "whether non-convergent steps are handled without changing the queried quantity (N2 (3))"
+                },
+                "c4_aggregation_semantics": {
+                  "aggregation": "point",
+                  "note": "aggregation over steps must match the reference (N2 (4))"
+                }
+              }
+            }
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {}
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": "point",
+              "index": 14,
+              "derived": false,
+              "raw_expr": "bus6_vm[14]"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "point_positional",
+              "index": "res_bus.vm_pu",
+              "derived": true,
+              "raw_expr": "ow.output['res_bus.vm_pu'].iloc[14, 6]"
+            },
+            "query_type": "ts_point_at_step",
+            "query_type_consistent": true,
+            "gen_normalized": null,
+            "ref_normalized": null,
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "res_bus.vm_pu",
+              "gen_target": 14,
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "note": "non-trivial derived extraction expression; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": 1.03,
+              "skip_reason": "time-series controller overrides load perturbation"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "ambiguous",
+        "check2_solver_identity": "ambiguous",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 1.0206532612291024,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 1.03,
+        "gen_net_recovered": true,
+        "gen_n_bus": 7,
+        "perturb_run": false,
+        "perturb_skip_reason": "time-series controller overrides load perturbation"
+      },
+      "pointer": {
+        "tier": "T3",
+        "model": "openai_gpt-oss-120b",
+        "condition": "A_FX",
+        "bench_index": 202,
+        "item_id": "71b4b7648767",
+        "task": "time_series",
+        "difficulty_level": "D1_basic",
+        "network": "example_simple",
+        "query_type": "ts_point_at_step",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 202,
+        "item_id": "71b4b7648767",
+        "task": "time_series",
+        "network": "example_simple",
+        "query_type": "ts_point_at_step",
+        "n_modifications": 1,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 1.020653,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "ambiguous",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 7,
+              "n_line": 6,
+              "n_trafo": 1,
+              "n_gen": 0,
+              "n_load": 5,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 7,
+              "n_line": 6,
+              "n_trafo": 1,
+              "n_gen": 0,
+              "n_load": 5,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "pre_solve_first_snapshot",
+            "net_selection": {
+              "basis": "first pre-solve snapshot (compound family)",
+              "gen_snaps": 6,
+              "ref_snaps": 1
+            },
+            "fingerprint_diffs": [
+              "load.scaling"
+            ],
+            "fingerprint_detail": {
+              "load.scaling": {
+                "gen": {
+                  "kind": "nondefault",
+                  "n": 5,
+                  "default": 1.0,
+                  "values": {
+                    "0": 0.606368,
+                    "1": 0.606368,
+                    "2": 0.606368,
+                    "3": 0.606368,
+                    "4": 0.606368
+                  }
+                },
+                "ref": {
+                  "kind": "nondefault",
+                  "n": 5,
+                  "default": 1.0,
+                  "values": {}
+                }
+              }
+            },
+            "n1_mod_target": {
+              "columns": {
+                "load.scaling": {
+                  "gen_targets": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  "ref_targets": [],
+                  "same_target": false
+                }
+              },
+              "same_target_all": false,
+              "conclusion": "gen and ref modify different element targets (dynamic-computed vs hard-coded target possible; N1) -> judge"
+            },
+            "note": "base network matches; modification state diverges on ['load.scaling'] (pre-solve fingerprint)"
+          }
+        },
+        "check2_solver_identity": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 7,
+                "ok": 7
+              }
+            },
+            "ref_identities": {
+              "timeseries": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "timeseries"
+            ],
+            "reference_supports_expected": true,
+            "reasons": [
+              "canonical timeseries engine replaced by manual runpp loop (possible equivalent-path)"
+            ],
+            "n2_equivalence": {
+              "parse_ok": true,
+              "has_manual_solver_loop": true,
+              "criteria": {
+                "c1_per_step_solver_identity": {
+                  "gen_step_solver": "ac_pf (runpp)",
+                  "verifiable": true,
+                  "note": "per-step physics is AC power flow; must match the reference engine's per-step physics"
+                },
+                "c2_scenario_set": {
+                  "early_break": true,
+                  "in_loop_element_toggle": false,
+                  "in_loop_profile_assignment": true,
+                  "satisfied": false,
+                  "note": "early break truncates the scenario/step set -> criterion NOT satisfied (N2 (2))"
+                },
+                "c3_nonconvergence_handling": {
+                  "explicit_handling": false,
+                  "note": "whether non-convergent steps are handled without changing the queried quantity (N2 (3))"
+                },
+                "c4_aggregation_semantics": {
+                  "aggregation": null,
+                  "note": "aggregation over steps must match the reference (N2 (4))"
+                }
+              }
+            }
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {}
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": false,
+              "raw_expr": "voltage_at_bus_2"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "vm_pu",
+              "aggregation": "point_positional",
+              "index": "res_bus.vm_pu",
+              "derived": true,
+              "raw_expr": "ow.output['res_bus.vm_pu'].iloc[7, 2]"
+            },
+            "query_type": "ts_point_at_step",
+            "query_type_consistent": true,
+            "gen_normalized": null,
+            "ref_normalized": null,
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "res_bus.vm_pu",
+              "gen_target": "dynamic(None)",
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "note": "non-trivial derived extraction expression; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": 0.9788077827572169,
+              "skip_reason": "time-series controller overrides load perturbation"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "ambiguous",
+        "check2_solver_identity": "ambiguous",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 0.9795221352180581,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 0.9788077827572169,
+        "gen_net_recovered": true,
+        "gen_n_bus": 7,
+        "perturb_run": false,
+        "perturb_skip_reason": "time-series controller overrides load perturbation"
+      },
+      "pointer": {
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 207,
+        "item_id": "f36eacc25413",
+        "task": "time_series",
+        "difficulty_level": "D1_basic",
+        "network": "simple_mv_open_ring",
+        "query_type": "ts_point_at_step",
+        "n_modifications": 2,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 207,
+        "item_id": "f36eacc25413",
+        "task": "time_series",
+        "network": "simple_mv_open_ring",
+        "query_type": "ts_point_at_step",
+        "n_modifications": 2,
+        "difficulty_level": "D1_basic",
+        "ground_truth": 0.979522,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "ambiguous",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 4,
+              "n_line": 4,
+              "n_trafo": 0,
+              "n_gen": 1,
+              "n_load": 4,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 4,
+              "n_line": 4,
+              "n_trafo": 0,
+              "n_gen": 1,
+              "n_load": 4,
+              "n_sgen": 0,
+              "n_shunt": 0,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "post_exec_net",
+            "fingerprint_diffs": [
+              "gen.p_mw"
+            ],
+            "fingerprint_detail": {
+              "gen.p_mw": {
+                "gen": {
+                  "kind": "digest",
+                  "n": 1,
+                  "sum": 159.0,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 159.0
+                  }
+                },
+                "ref": {
+                  "kind": "digest",
+                  "n": 1,
+                  "sum": 262.9,
+                  "n_nan": 0,
+                  "values": {
+                    "0": 262.9
+                  }
+                }
+              }
+            },
+            "n1_mod_target": {
+              "columns": {
+                "gen.p_mw": {
+                  "gen_targets": [
+                    0
+                  ],
+                  "ref_targets": [
+                    0
+                  ],
+                  "same_target": true
+                }
+              },
+              "same_target_all": true,
+              "conclusion": "gen and ref target the same element(s) but the fingerprint still diverges -> modification value/magnitude differs on the same target; judge"
+            },
+            "note": "base network matches; modification state diverges on ['gen.p_mw']"
+          }
+        },
+        "check2_solver_identity": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen_identities": {
+              "ac_pf": {
+                "total": 4,
+                "ok": 4
+              }
+            },
+            "ref_identities": {
+              "contingency": {
+                "total": 1,
+                "ok": 1
+              }
+            },
+            "family_expected": [
+              "contingency"
+            ],
+            "reference_supports_expected": true,
+            "reasons": [
+              "canonical contingency engine replaced by manual runpp loop (possible equivalent-path)"
+            ],
+            "n2_equivalence": {
+              "parse_ok": true,
+              "has_manual_solver_loop": true,
+              "criteria": {
+                "c1_per_step_solver_identity": {
+                  "gen_step_solver": "ac_pf (runpp)",
+                  "verifiable": true,
+                  "note": "per-step physics is AC power flow; must match the reference engine's per-step physics"
+                },
+                "c2_scenario_set": {
+                  "early_break": false,
+                  "in_loop_element_toggle": true,
+                  "in_loop_profile_assignment": false,
+                  "satisfied": true,
+                  "note": "no early break; full enumeration plausible -- profile/scenario application method still to verify (N2 (2))"
+                },
+                "c3_nonconvergence_handling": {
+                  "explicit_handling": false,
+                  "note": "whether non-convergent steps are handled without changing the queried quantity (N2 (3))"
+                },
+                "c4_aggregation_semantics": {
+                  "aggregation": null,
+                  "note": "aggregation over steps must match the reference (N2 (4))"
+                }
+              }
+            }
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "voltage": {
+                "vm_min": null,
+                "vm_max": null
+              },
+              "contingency": {
+                "max_loading_line_max": null,
+                "min_vm_bus_min": null
+              }
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": false,
+              "raw_expr": "min_voltage"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": "res_bus",
+              "column": "min_vm_pu",
+              "aggregation": "min",
+              "index": "min_vm_pu",
+              "derived": false,
+              "raw_expr": "net.res_bus['min_vm_pu'].min()"
+            },
+            "query_type": "min_value",
+            "query_type_consistent": true,
+            "gen_normalized": null,
+            "ref_normalized": {
+              "table": "res_bus",
+              "column": "min_vm_pu",
+              "aggregation": "min",
+              "pattern": "direct"
+            },
+            "n1_target": {
+              "applicable": true,
+              "ref_target": "min_vm_pu",
+              "gen_target": "dynamic(None)",
+              "both_dynamic": false,
+              "conclusion": "model computes the target dynamically while the reference hard-codes it (or vice versa); the runtime index is not captured here -> judge (N1)"
+            },
+            "note": "extraction not reducible to a result table on one side; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": true,
+              "orig_output": 0.9001948993587802,
+              "perturbed_output": 0.8843307850490143,
+              "perturbed_success": true,
+              "delta": 0.015864114309765864,
+              "sensitive": true
+            }
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "ambiguous",
+        "check2_solver_identity": "ambiguous",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 0.9001948993587795,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 0.9001948993587802,
+        "gen_net_recovered": true,
+        "gen_n_bus": 4,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T4",
+        "model": "meta-llama_Llama-3.1-405B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 1229,
+        "item_id": "835934ac3661",
+        "task": "contingency",
+        "difficulty_level": "D3_semantic",
+        "network": "case4gs",
+        "query_type": "min_value",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 1229,
+        "item_id": "835934ac3661",
+        "task": "contingency",
+        "network": "case4gs",
+        "query_type": "min_value",
+        "n_modifications": 1,
+        "difficulty_level": "D3_semantic",
+        "ground_truth": 0.900195,
+        "ground_truth_type": "float"
+      }
+    },
+    {
+      "checks": {
+        "check1_network_mods": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "ref_net_recovered": true,
+            "degraded": false,
+            "gen_counts": {
+              "n_bus": 30,
+              "n_line": 41,
+              "n_trafo": 0,
+              "n_gen": 5,
+              "n_load": 20,
+              "n_sgen": 0,
+              "n_shunt": 2,
+              "n_storage": 0
+            },
+            "ref_counts": {
+              "n_bus": 30,
+              "n_line": 41,
+              "n_trafo": 0,
+              "n_gen": 5,
+              "n_load": 20,
+              "n_sgen": 0,
+              "n_shunt": 2,
+              "n_storage": 0
+            },
+            "bus_index_match": true,
+            "line_index_match": true,
+            "mod_fp_source": "pre_solve_first_snapshot",
+            "net_selection": {
+              "basis": "first pre-solve snapshot (compound family)",
+              "gen_snaps": 2,
+              "ref_snaps": 2
+            },
+            "fingerprint_diffs": [],
+            "fingerprint_detail": {}
+          }
+        },
+        "check2_solver_identity": {
+          "status": "pass",
+          "evidence": {
+            "gen_identities": {
+              "ac_opf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "ref_identities": {
+              "ac_opf": {
+                "total": 2,
+                "ok": 2
+              }
+            },
+            "family_expected": [
+              "ac_opf"
+            ],
+            "reference_supports_expected": true,
+            "reasons": []
+          }
+        },
+        "check3_physical_sanity": {
+          "status": "pass",
+          "evidence": {
+            "net_recovered": true,
+            "subchecks": {
+              "power_balance": {
+                "injection": 198.6054,
+                "load": 195.696,
+                "loss": 2.9095,
+                "residual": -0.0,
+                "tol": 0.9785
+              },
+              "voltage": {
+                "vm_min": 0.9829528778992797,
+                "vm_max": 1.096475454211508
+              },
+              "opf_converged": true,
+              "res_cost": 603.1304328407019
+            }
+          }
+        },
+        "check4_extraction": {
+          "status": "ambiguous",
+          "evidence": {
+            "gen": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": true,
+              "raw_expr": "new_cost - initial_cost"
+            },
+            "ref": {
+              "parse_ok": true,
+              "table": null,
+              "column": null,
+              "aggregation": null,
+              "index": null,
+              "derived": true,
+              "raw_expr": "abs(cost_before - cost_after)"
+            },
+            "query_type": "comparison_opf",
+            "query_type_consistent": null,
+            "gen_normalized": null,
+            "ref_normalized": {
+              "table": "absdiff[('res_cost', None, None)|('res_cost', None, None)]",
+              "column": null,
+              "aggregation": "abs_symmetric_diff",
+              "pattern": "abs_diff_symmetry"
+            },
+            "n1_target": {
+              "applicable": false
+            },
+            "note": "non-trivial derived extraction expression; judge"
+          }
+        },
+        "check5_provenance": {
+          "status": "pass",
+          "evidence": {
+            "v1": {
+              "bare_literal": false,
+              "literal_near_gt": false
+            },
+            "solver_called": true,
+            "v2": {
+              "constructible": false,
+              "orig_output": 24.64418213844249,
+              "perturbed_output": null,
+              "perturbed_success": false,
+              "skip_reason": "perturbed re-exec produced no comparable output"
+            },
+            "note": "perturbation not constructible; solver ran and output not a GT literal"
+          }
+        }
+      },
+      "check_status": {
+        "check1_network_mods": "pass",
+        "check2_solver_identity": "pass",
+        "check3_physical_sanity": "pass",
+        "check4_extraction": "ambiguous",
+        "check5_provenance": "pass"
+      },
+      "any_fail": false,
+      "any_flag": true,
+      "exec": {
+        "ref_success": true,
+        "ref_reproduces_gt": true,
+        "ref_output": 24.64418213844249,
+        "gen_success": true,
+        "gen_error_type": null,
+        "gen_output": 24.64418213844249,
+        "gen_net_recovered": true,
+        "gen_n_bus": 30,
+        "perturb_run": true,
+        "perturb_skip_reason": null
+      },
+      "pointer": {
+        "tier": "T4",
+        "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+        "condition": "A_FX",
+        "bench_index": 749,
+        "item_id": "4a345add25b2",
+        "task": "comparison_opf",
+        "difficulty_level": "D2_multi_step",
+        "network": "case30",
+        "query_type": "comparison_opf",
+        "n_modifications": 1,
+        "frame": "pilot"
+      },
+      "meta": {
+        "bench_index": 749,
+        "item_id": "4a345add25b2",
+        "task": "comparison_opf",
+        "network": "case30",
+        "query_type": "comparison_opf",
+        "n_modifications": 1,
+        "difficulty_level": "D2_multi_step",
+        "ground_truth": 24.644182,
+        "ground_truth_type": "float"
+      }
+    }
+  ]
+}

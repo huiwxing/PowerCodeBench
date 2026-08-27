@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "unit": "(model, function)",
+    "headline_weights": "uniform_0.25x4",
+    "robustness_weights": "mild_l3_0.20_0.25_0.20_0.35",
+    "min_support_K": 3,
+    "label": "condA function-level attributed failure (E6 doc S2.2)",
+    "feature_note": "rho = 1 - weighted mastery; per-layer AUROC uses per-layer risk 1 - s^(l)",
+    "unattributable_note": "trace_unattributable = failure names no corpus function (S2.2 bucket); fully_unattributable = neither cond (i) nor (ii)"
+  },
+  "summary": {
+    "within_model_auroc_uniform": {
+      "mean": 0.5687,
+      "min": 0.3699,
+      "max": 0.8525,
+      "n_models": 10
+    },
+    "within_model_auroc_mild_l3": {
+      "mean": 0.5822,
+      "min": 0.3708,
+      "max": 0.905,
+      "n_models": 10
+    },
+    "pooled_auroc_uniform": 0.5744,
+    "pooled_auroc_mild_l3": 0.5884,
+    "pooled_n": 500,
+    "pooled_n_pos": 147,
+    "ece_uniform": 0.1683,
+    "pooled_per_layer_auroc": {
+      "L0": 0.4755,
+      "L1": 0.5413,
+      "L2": 0.4867,
+      "L3": 0.6132
+    }
+  },
+  "per_model": {
+    "Qwen_Qwen2.5-Coder-1.5B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 18,
+      "n_neg": 32,
+      "within_auroc_uniform": 0.5972,
+      "within_auroc_mild_l3": 0.599,
+      "per_layer_auroc": {
+        "L0": 0.605,
+        "L1": 0.5729,
+        "L2": 0.4818,
+        "L3": 0.5035
+      },
+      "n_failures": 2000,
+      "trace_unattributable_pct": 40.2,
+      "fully_unattributable_pct": 29.2
+    },
+    "Qwen_Qwen2.5-Coder-7B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 11,
+      "n_neg": 39,
+      "within_auroc_uniform": 0.4301,
+      "within_auroc_mild_l3": 0.4289,
+      "per_layer_auroc": {
+        "L0": 0.507,
+        "L1": 0.4662,
+        "L2": 0.5047,
+        "L3": 0.4021
+      },
+      "n_failures": 1992,
+      "trace_unattributable_pct": 90.26,
+      "fully_unattributable_pct": 64.96
+    },
+    "meta-llama_Llama-3.1-8B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 16,
+      "n_neg": 34,
+      "within_auroc_uniform": 0.5597,
+      "within_auroc_mild_l3": 0.5579,
+      "per_layer_auroc": {
+        "L0": 0.5965,
+        "L1": 0.5689,
+        "L2": 0.4136,
+        "L3": 0.5331
+      },
+      "n_failures": 1990,
+      "trace_unattributable_pct": 93.32,
+      "fully_unattributable_pct": 65.08
+    },
+    "Qwen_Qwen2.5-Coder-14B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 10,
+      "n_neg": 40,
+      "within_auroc_uniform": 0.8525,
+      "within_auroc_mild_l3": 0.905,
+      "per_layer_auroc": {
+        "L0": 0.4213,
+        "L1": 0.7025,
+        "L2": 0.5088,
+        "L3": 0.9125
+      },
+      "n_failures": 1968,
+      "trace_unattributable_pct": 93.9,
+      "fully_unattributable_pct": 66.72
+    },
+    "Qwen_Qwen2.5-Coder-32B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 11,
+      "n_neg": 39,
+      "within_auroc_uniform": 0.6399,
+      "within_auroc_mild_l3": 0.6888,
+      "per_layer_auroc": {
+        "L0": 0.3636,
+        "L1": 0.5897,
+        "L2": 0.4359,
+        "L3": 0.7471
+      },
+      "n_failures": 1924,
+      "trace_unattributable_pct": 84.1,
+      "fully_unattributable_pct": 60.86
+    },
+    "meta-llama_Llama-3.1-70B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 26,
+      "n_neg": 24,
+      "within_auroc_uniform": 0.5232,
+      "within_auroc_mild_l3": 0.52,
+      "per_layer_auroc": {
+        "L0": 0.4832,
+        "L1": 0.4679,
+        "L2": 0.5008,
+        "L3": 0.5625
+      },
+      "n_failures": 1900,
+      "trace_unattributable_pct": 79.16,
+      "fully_unattributable_pct": 60.37
+    },
+    "openai_gpt-oss-120b": {
+      "n_Mf": 50,
+      "n_pos": 17,
+      "n_neg": 33,
+      "within_auroc_uniform": 0.6551,
+      "within_auroc_mild_l3": 0.6836,
+      "per_layer_auroc": {
+        "L0": 0.4572,
+        "L1": 0.6007,
+        "L2": 0.4545,
+        "L3": 0.7041
+      },
+      "n_failures": 1719,
+      "trace_unattributable_pct": 79.52,
+      "fully_unattributable_pct": 55.9
+    },
+    "Qwen_Qwen3-Coder-Next": {
+      "n_Mf": 50,
+      "n_pos": 12,
+      "n_neg": 38,
+      "within_auroc_uniform": 0.4145,
+      "within_auroc_mild_l3": 0.4232,
+      "per_layer_auroc": {
+        "L0": 0.3816,
+        "L1": 0.6086,
+        "L2": 0.4298,
+        "L3": 0.4825
+      },
+      "n_failures": 1920,
+      "trace_unattributable_pct": 96.41,
+      "fully_unattributable_pct": 68.65
+    },
+    "meta-llama_Llama-3.1-405B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 17,
+      "n_neg": 33,
+      "within_auroc_uniform": 0.3699,
+      "within_auroc_mild_l3": 0.3708,
+      "per_layer_auroc": {
+        "L0": 0.4857,
+        "L1": 0.4706,
+        "L2": 0.4545,
+        "L3": 0.3574
+      },
+      "n_failures": 1731,
+      "trace_unattributable_pct": 82.55,
+      "fully_unattributable_pct": 59.1
+    },
+    "Qwen_Qwen3-Coder-480B-A35B-Instruct": {
+      "n_Mf": 50,
+      "n_pos": 9,
+      "n_neg": 41,
+      "within_auroc_uniform": 0.645,
+      "within_auroc_mild_l3": 0.645,
+      "per_layer_auroc": {
+        "L0": 0.4743,
+        "L1": 0.6314,
+        "L2": 0.439,
+        "L3": 0.6978
+      },
+      "n_failures": 1699,
+      "trace_unattributable_pct": 79.75,
+      "fully_unattributable_pct": 55.97
+    }
+  },
+  "pooled": {
+    "auroc_uniform": 0.5744,
+    "auroc_mild_l3": 0.5884,
+    "n": 500,
+    "n_pos": 147,
+    "ece_uniform": 0.1683,
+    "calibration_bins_uniform": [
+      {
+        "bin": [
+          0.0,
+          0.1
+        ],
+        "n": 49,
+        "mean_pred_rho": 0.0124,
+        "empirical_fail_rate": 0.2653
+      },
+      {
+        "bin": [
+          0.1,
+          0.2
+        ],
+        "n": 70,
+        "mean_pred_rho": 0.1284,
+        "empirical_fail_rate": 0.2143
+      },
+      {
+        "bin": [
+          0.2,
+          0.3
+        ],
+        "n": 89,
+        "mean_pred_rho": 0.2504,
+        "empirical_fail_rate": 0.1685
+      },
+      {
+        "bin": [
+          0.3,
+          0.4
+        ],
+        "n": 88,
+        "mean_pred_rho": 0.3679,
+        "empirical_fail_rate": 0.3409
+      },
+      {
+        "bin": [
+          0.4,
+          0.5
+        ],
+        "n": 32,
+        "mean_pred_rho": 0.4481,
+        "empirical_fail_rate": 0.5625
+      },
+      {
+        "bin": [
+          0.5,
+          0.6
+        ],
+        "n": 75,
+        "mean_pred_rho": 0.5081,
+        "empirical_fail_rate": 0.2933
+      },
+      {
+        "bin": [
+          0.6,
+          0.7
+        ],
+        "n": 43,
+        "mean_pred_rho": 0.6277,
+        "empirical_fail_rate": 0.3721
+      },
+      {
+        "bin": [
+          0.7,
+          0.8
+        ],
+        "n": 34,
+        "mean_pred_rho": 0.7505,
+        "empirical_fail_rate": 0.3529
+      },
+      {
+        "bin": [
+          0.8,
+          0.9
+        ],
+        "n": 16,
+        "mean_pred_rho": 0.865,
+        "empirical_fail_rate": 0.25
+      },
+      {
+        "bin": [
+          0.9,
+          1.0
+        ],
+        "n": 4,
+        "mean_pred_rho": 0.9911,
+        "empirical_fail_rate": 0.5
+      }
+    ],
+    "per_layer_auroc": {
+      "L0": 0.4755,
+      "L1": 0.5413,
+      "L2": 0.4867,
+      "L3": 0.6132
+    }
+  }
+}

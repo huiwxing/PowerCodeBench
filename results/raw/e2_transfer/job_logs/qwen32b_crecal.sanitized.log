@@ -1,0 +1,338 @@
+==========================================
+Job ID:     5865036
+Job Name:   e2bCR_open_Qwen_Qwen2.5-Coder-3
+Node:       <COMPUTE_NODE>
+Start Time: Sat Aug  1 06:45:51 PM UTC 2026
+Work Dir:   <SOURCE_REPO>
+==========================================
+--- GPU Info ---
+Sat Aug  1 18:45:56 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000009:01:00.0 Off |                    0 |
+| N/A   34C    P0             81W /  900W |       3MiB /  97871MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA GH200 120GB             On  |   00000029:01:00.0 Off |                    0 |
+| N/A   33C    P0             91W /  900W |       3MiB /  97871MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+--- Python & GPU Info ---
+<EXPERIMENT_VENV>/bin/python
+CUDA: True
+GPU: NVIDIA GH200 120GB
+-------------------------
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+  [env override] proactive_conditions = ['C']
+  [env override] proactive_demand_suite = task_demand/results/suites/e2_opendss
+  [env override] proactive_demand_model = zero_shot_tfidf
+  [env override] proactive_docs_path = dataset/opendss_docs.json
+  [env override] benchmark_path = benchmark/e2_opendss/e2_opendss_bench.json
+  [env override] output_dir = probe_eval_results/e2_opendss_bench_v2_crecal
+  [env override] profile_source_dir = probe_eval_results/e2_opendss_profiles
+  [env override] api_spec_path = dataset/opendss_docs.json
+  [env override] sbert_docs_path = dataset/opendss_docs.json
+  [env override] benchmark_library = opendssdirect
+  [env override] recal_name_layer_floor = 0.4
+  [env override] proactive_token_budget_C = 2000
+  [env override] proactive_token_budget_RsemB = 250
+CUDA available: True
+  GPU 0: NVIDIA GH200 120GB (102.0 GB)
+  GPU 1: NVIDIA GH200 120GB (102.0 GB)
+
+============================================================
+📊 Running Evaluation Pipeline
+============================================================
+
+🔧 LLMBackend: backend='vllm'
+  ✅ Registered: Qwen_Qwen2.5-Coder-32B-Instruct  (backend=vllm, gpus=2)
+
+############################################################
+# Proactive rerun: Qwen_Qwen2.5-Coder-32B-Instruct  conditions=['C']
+############################################################
+  📦 Loading vLLM engine: Qwen/Qwen2.5-Coder-32B-Instruct
+     Local GPU count       = 2
+     tensor_parallel_size   = 2
+     pipeline_parallel_size = 1
+     max_model_len          = 16000
+     quantization           = None
+     enable_expert_parallel  = False
+INFO 08-01 18:46:55 [utils.py:261] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 16000, 'tensor_parallel_size': 2, 'enable_prefix_caching': True, 'max_num_seqs': 256, 'disable_log_stats': True, 'allow_deprecated_quantization': True, 'model': 'Qwen/Qwen2.5-Coder-32B-Instruct'}
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+INFO 08-01 18:46:57 [model.py:541] Resolved architecture: Qwen2ForCausalLM
+INFO 08-01 18:46:57 [model.py:1561] Using max model len 16000
+INFO 08-01 18:46:59 [scheduler.py:226] Chunked prefill is enabled with max_num_batched_tokens=16384.
+INFO 08-01 18:46:59 [vllm.py:624] Asynchronous scheduling is enabled.
+WARNING 08-01 18:47:00 [system_utils.py:140] We must use the `spawn` multiprocessing start method. Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See https://docs.vllm.ai/en/latest/usage/troubleshooting.html#python-multiprocessing for more information. Reasons: CUDA is initialized
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:47:13 [core.py:96] Initializing a V1 LLM engine (v0.15.1) with config: model='Qwen/Qwen2.5-Coder-32B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-Coder-32B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=16000, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen2.5-Coder-32B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'eliminate_noops': True, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': True}, 'local_cache_dir': None, 'static_all_moe_layers': []}
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+<EXPERIMENT_VENV>/lib/python3.11/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 08-01 18:47:33 [parallel_state.py:1212] world_size=2 rank=1 local_rank=1 distributed_init_method=tcp://<LOOPBACK>:<PORT> backend=nccl
+INFO 08-01 18:47:33 [parallel_state.py:1212] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://<LOOPBACK>:<PORT> backend=nccl
+INFO 08-01 18:47:34 [pynccl.py:111] vLLM is using nccl==2.27.5
+WARNING 08-01 18:47:34 [symm_mem.py:107] SymmMemCommunicator: symmetric memory multicast operations are not supported.
+WARNING 08-01 18:47:34 [symm_mem.py:107] SymmMemCommunicator: symmetric memory multicast operations are not supported.
+INFO 08-01 18:47:34 [parallel_state.py:1423] rank 1 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 1, EP rank N/A
+INFO 08-01 18:47:34 [parallel_state.py:1423] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:47:37 [gpu_model_runner.py:4033] Starting to load model Qwen/Qwen2.5-Coder-32B-Instruct...
+[0;36m(Worker_TP0 pid=<PID>)[0;0m <EXPERIMENT_VENV>/lib/python3.11/site-packages/tvm_ffi/_optional_torch_c_dlpack.py:181: UserWarning: Failed to JIT torch c dlpack extension, EnvTensorAllocator will not be enabled.
+[0;36m(Worker_TP0 pid=<PID>)[0;0m We recommend installing via `pip install torch-c-dlpack-ext`
+[0;36m(Worker_TP0 pid=<PID>)[0;0m   warnings.warn(
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:48:46 [cuda.py:364] Using FLASH_ATTN attention backend out of potential backends: ('FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION')
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/14 [00:00<?, ?it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:   7% Completed | 1/14 [00:00<00:08,  1.46it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  14% Completed | 2/14 [00:01<00:08,  1.47it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  21% Completed | 3/14 [00:02<00:07,  1.43it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  29% Completed | 4/14 [00:02<00:06,  1.44it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  36% Completed | 5/14 [00:03<00:07,  1.14it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  43% Completed | 6/14 [00:04<00:06,  1.19it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  50% Completed | 7/14 [00:06<00:08,  1.14s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  57% Completed | 8/14 [00:07<00:06,  1.00s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  64% Completed | 9/14 [00:08<00:05,  1.17s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  71% Completed | 10/14 [00:10<00:04,  1.22s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  79% Completed | 11/14 [00:10<00:02,  1.02it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  86% Completed | 12/14 [00:11<00:01,  1.11it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards:  93% Completed | 13/14 [00:11<00:00,  1.21it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards: 100% Completed | 14/14 [00:13<00:00,  1.09s/it]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Loading safetensors checkpoint shards: 100% Completed | 14/14 [00:13<00:00,  1.03it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m 
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:01 [default_loader.py:291] Loading weights took 13.61 seconds
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:01 [gpu_model_runner.py:4130] Model loading took 30.71 GiB memory and 83.236429 seconds
+[0;36m(Worker_TP1 pid=<PID>)[0;0m <EXPERIMENT_VENV>/lib/python3.11/site-packages/tvm_ffi/_optional_torch_c_dlpack.py:181: UserWarning: Failed to JIT torch c dlpack extension, EnvTensorAllocator will not be enabled.
+[0;36m(Worker_TP1 pid=<PID>)[0;0m We recommend installing via `pip install torch-c-dlpack-ext`
+[0;36m(Worker_TP1 pid=<PID>)[0;0m   warnings.warn(
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:45 [backends.py:812] Using cache directory: <VLLM_CACHE>/torch_compile_cache/c1ad04eb65/rank_0_0/backbone for vLLM's torch.compile
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:45 [backends.py:872] Dynamo bytecode transform time: 24.43 s
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:52 [backends.py:267] Directly load the compiled graph(s) for compile range (1, 16384) from the cache, took 3.408 s
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:52 [monitor.py:34] torch.compile takes 27.84 s in total
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 18:49:52 [backends.py:267] Directly load the compiled graph(s) for compile range (1, 16384) from the cache, took 3.355 s
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:49:53 [gpu_worker.py:356] Available KV cache memory: 52.89 GiB
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:49:53 [kv_cache_utils.py:1307] GPU KV cache size: 433,248 tokens
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:49:53 [kv_cache_utils.py:1312] Maximum concurrency for 16,000 tokens per request: 27.08x
+[0;36m(Worker_TP0 pid=<PID>)[0;0m 2026-08-01 18:49:53,769 - INFO - autotuner.py:256 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+[0;36m(Worker_TP1 pid=<PID>)[0;0m 2026-08-01 18:49:53,771 - INFO - autotuner.py:256 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+[0;36m(Worker_TP0 pid=<PID>)[0;0m 2026-08-01 18:49:53,828 - INFO - autotuner.py:262 - flashinfer.jit: [Autotuner]: Autotuning process ends
+[0;36m(Worker_TP1 pid=<PID>)[0;0m 2026-08-01 18:49:53,829 - INFO - autotuner.py:262 - flashinfer.jit: [Autotuner]: Autotuning process ends
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   2%|▏         | 1/51 [00:00<00:39,  1.27it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/51 [00:00<00:13,  3.68it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:01<00:08,  5.65it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  14%|█▎        | 7/51 [00:01<00:06,  7.10it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 9/51 [00:01<00:05,  8.19it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:01<00:04,  9.06it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  25%|██▌       | 13/51 [00:01<00:03,  9.62it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:02<00:03,  9.95it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:02<00:03, 10.19it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 19/51 [00:02<00:03, 10.40it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:02<00:02, 10.55it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 23/51 [00:02<00:02, 10.60it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:02<00:02, 10.60it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:03<00:02, 10.57it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:03<00:02, 10.17it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 31/51 [00:03<00:01, 10.17it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  65%|██████▍   | 33/51 [00:03<00:01, 10.11it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  69%|██████▊   | 35/51 [00:03<00:01, 10.16it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  73%|███████▎  | 37/51 [00:04<00:01,  9.00it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:04<00:01,  9.29it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  80%|████████  | 41/51 [00:04<00:01,  9.48it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:04<00:00,  9.67it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  88%|████████▊ | 45/51 [00:05<00:00,  9.82it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:05<00:00,  9.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  94%|█████████▍| 48/51 [00:05<00:00,  9.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  98%|█████████▊| 50/51 [00:05<00:00, 10.05it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:05<00:00,  9.02it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m Capturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):   6%|▌         | 2/35 [00:00<00:03, 10.99it/s]Capturing CUDA graphs (decode, FULL):  11%|█▏        | 4/35 [00:00<00:02, 11.49it/s]Capturing CUDA graphs (decode, FULL):  17%|█▋        | 6/35 [00:00<00:02, 11.54it/s]Capturing CUDA graphs (decode, FULL):  23%|██▎       | 8/35 [00:00<00:02, 11.44it/s]Capturing CUDA graphs (decode, FULL):  29%|██▊       | 10/35 [00:00<00:02, 11.34it/s]Capturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:01<00:02, 11.29it/s]Capturing CUDA graphs (decode, FULL):  40%|████      | 14/35 [00:01<00:01, 11.22it/s]Capturing CUDA graphs (decode, FULL):  46%|████▌     | 16/35 [00:01<00:01, 11.34it/s]Capturing CUDA graphs (decode, FULL):  51%|█████▏    | 18/35 [00:01<00:01, 11.32it/s]Capturing CUDA graphs (decode, FULL):  57%|█████▋    | 20/35 [00:01<00:01, 11.31it/s]Capturing CUDA graphs (decode, FULL):  63%|██████▎   | 22/35 [00:01<00:01, 11.27it/s]Capturing CUDA graphs (decode, FULL):  69%|██████▊   | 24/35 [00:02<00:00, 11.20it/s]Capturing CUDA graphs (decode, FULL):  74%|███████▍  | 26/35 [00:02<00:00, 11.20it/s]Capturing CUDA graphs (decode, FULL):  80%|████████  | 28/35 [00:02<00:00, 11.24it/s]Capturing CUDA graphs (decode, FULL):  86%|████████▌ | 30/35 [00:02<00:00, 11.24it/s]Capturing CUDA graphs (decode, FULL):  91%|█████████▏| 32/35 [00:02<00:00, 11.18it/s]Capturing CUDA graphs (decode, FULL):  97%|█████████▋| 34/35 [00:03<00:00, 11.16it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:03<00:00, 11.26it/s]
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:50:02 [custom_all_reduce.py:216] Registering 11094 cuda graph addresses
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 18:50:03 [custom_all_reduce.py:216] Registering 11094 cuda graph addresses
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 18:50:03 [gpu_model_runner.py:5063] Graph capturing finished in 10 secs, took -1.13 GiB
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:50:03 [core.py:272] init engine (profile, create kv cache, warmup model) took 43.15 seconds
+[0;36m(EngineCore_DP0 pid=<PID>)[0;0m INFO 08-01 18:50:06 [vllm.py:624] Asynchronous scheduling is enabled.
+INFO 08-01 18:50:06 [llm.py:343] Supported tasks: ['generate']
+[2026-08-01 18:50:08] INFO SentenceTransformer.py:227: Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+     max_num_seqs           = 256
+  ✓ vLLM engine ready (tp=2, pp=1)
+  [ProactiveInjector] Loading demand export: task_demand/results/suites/e2_opendss/zero_shot_tfidf/exports/opendss_candidates.json
+  [ProactiveInjector] Loading knowledge profile: probe_eval_results/e2_opendss_profiles/Qwen_Qwen2.5-Coder-32B-Instruct/knowledge_profile.json
+  [ProactiveInjector] Generating doc snippets: dataset/opendss_docs.json
+  [ProactiveInjector] Loading SBERT dense-RAG baseline corpus: dataset/opendss_docs.json
+    📊 Benchmark: 90 items  rtol=0.01 atol=0.001 fix_rounds=0 resume=False exec_timeout=60s hard_timeout=75s temp=0/0
+
+    ── Round 0: Generate (90 items) [condition=C] ──
+    🧩 Given network setup code attached to 90/90 prompts
+    📊 Prompt tokens: avg=1243, total=111907
+
+  🚀 vLLM generating 90 prompts...
+INFO 08-01 18:50:13 [hf.py:310] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+  ⏳ vLLM generation: 9/90 (10%) elapsed=10.7s eta=96.2s
+  ⏳ vLLM generation: 18/90 (20%) elapsed=20.9s eta=83.7s
+  ⏳ vLLM generation: 27/90 (30%) elapsed=30.3s eta=70.8s
+  ⏳ vLLM generation: 36/90 (40%) elapsed=44.1s eta=66.1s
+  ⏳ vLLM generation: 45/90 (50%) elapsed=53.5s eta=53.5s
+  ⏳ vLLM generation: 54/90 (60%) elapsed=63.8s eta=42.5s
+  ⏳ vLLM generation: 63/90 (70%) elapsed=72.8s eta=31.2s
+  ⏳ vLLM generation: 72/90 (80%) elapsed=82.3s eta=20.6s
+  ⏳ vLLM generation: 81/90 (90%) elapsed=92.7s eta=10.3s
+  ⏳ vLLM generation: 90/90 (100%) elapsed=104.4s eta=0.0s
+  ✓ 104.4s | 531 tok/s | 0.9 samples/s
+    ⏱  Inference: 104.4s
+    📊 Prompt tokens (actual backend count): avg=1243, total=111907
+    ▶ round-0 code execution: executing 90 item(s) with 16 worker(s)
+    ⏳ round-0 code execution: 1/90 (1.1%) elapsed=4.8s eta=426.0s
+    ⏳ round-0 code execution: 10/90 (11.1%) elapsed=5.8s eta=46.7s
+    ⏳ round-0 code execution: 20/90 (22.2%) elapsed=5.8s eta=20.4s
+    ⏳ round-0 code execution: 30/90 (33.3%) elapsed=5.8s eta=11.7s
+    ⏳ round-0 code execution: 40/90 (44.4%) elapsed=5.8s eta=7.3s
+    ⏳ round-0 code execution: 50/90 (55.6%) elapsed=5.8s eta=4.7s
+    ⏳ round-0 code execution: 60/90 (66.7%) elapsed=5.8s eta=2.9s
+    ⏳ round-0 code execution: 70/90 (77.8%) elapsed=5.8s eta=1.7s
+    ⚠️  Hard timeout during round-0 code execution: item 74/90 exceeded 75s; restarting execution workers
+    ⏳ round-0 code execution: 74/90 (82.2%) elapsed=80.8s eta=17.5s
+    ⚠️  Hard timeout during round-0 code execution: item 77/90 exceeded 75s; restarting execution workers
+    ⏳ round-0 code execution: 77/90 (85.6%) elapsed=158.3s eta=26.7s
+    ⚠️  Hard timeout during round-0 code execution: item 79/90 exceeded 75s; restarting execution workers
+    ⏳ round-0 code execution: 79/90 (87.8%) elapsed=235.2s eta=32.8s
+    ⚠️  Hard timeout during round-0 code execution: item 80/90 exceeded 75s; restarting execution workers
+    ⏳ round-0 code execution: 80/90 (88.9%) elapsed=310.3s eta=38.8s
+    ⚠️  Hard timeout during round-0 code execution: item 83/90 exceeded 75s; restarting execution workers
+    ⏳ round-0 code execution: 83/90 (92.2%) elapsed=386.8s eta=32.6s
+    ⚠️  Hard timeout during round-0 code execution: item 86/90 exceeded 75s; restarting execution workers
+    ⏳ round-0 code execution: 86/90 (95.6%) elapsed=462.8s eta=21.5s
+    ⚠️  Hard timeout during round-0 code execution: item 89/90 exceeded 75s; restarting execution workers
+    ⏳ round-0 code execution: 89/90 (98.9%) elapsed=541.0s eta=6.1s
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 19:00:58 [multiproc_executor.py:730] Parent process exited, terminating worker
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 19:00:58 [multiproc_executor.py:730] Parent process exited, terminating worker
+[0;36m(Worker_TP0 pid=<PID>)[0;0m INFO 08-01 19:00:58 [multiproc_executor.py:774] WorkerProc shutting down.
+[0;36m(Worker_TP1 pid=<PID>)[0;0m INFO 08-01 19:00:58 [multiproc_executor.py:774] WorkerProc shutting down.
+    ⏳ round-0 code execution: 90/90 (100.0%) elapsed=541.5s eta=0.0s
+    ⏱  Code execution: 541.5s (16 worker(s))
+    📊 After round 0: exec=63/90 (70.0%)  match=37/90 (41.1%)
+
+    ============================================================
+    📐 BENCHMARK RESULTS (90 items)
+    ============================================================
+      Execution rate:        70.0%  (63/90)
+      Result accuracy:       41.1%  (37/90)
+      Accuracy | executed:   58.7%  (37/63)
+
+      Difficulty Levels:
+        D1_basic          :  n=  45  exec=66.7%  acc=35.6%  acc|ex=53.3%  ███████░░░░░░░░░░░░░
+        D3_semantic       :  n=  45  exec=73.3%  acc=46.7%  acc|ex=63.6%  █████████░░░░░░░░░░░
+
+      GT Types:
+        float   :  n=  90  exec=70.0%  acc=41.1%  (37/90)
+
+      Tasks (5 types):
+        power_flow_3ph           :  n= 18  exec=66.7%  acc=44.4%  acc|ex=66.7%  █████████░░░░░░░░░░░
+        network_modification     :  n= 18  exec=88.9%  acc=61.1%  acc|ex=68.8%  ████████████░░░░░░░░
+        result_extraction        :  n= 18  exec=77.8%  acc=50.0%  acc|ex=64.3%  ██████████░░░░░░░░░░
+        control_device           :  n= 18  exec=100.0%  acc=50.0%  acc|ex=50.0%  ██████████░░░░░░░░░░
+        fault_analysis           :  n= 18  exec=16.7%  acc= 0.0%  acc|ex= 0.0%  █░░░░░░░░░░░░░░░░░░░
+
+      Query Types (11):
+        min_node_v               :  n= 25  exec=92.0%  acc=68.0%
+        isc                      :  n= 13  exec=23.1%  acc= 0.0%
+        bus_v                    :  n= 12  exec=83.3%  acc=75.0%
+        max_line_i               :  n=  9  exec=44.4%  acc=33.3%
+        supplied_q               :  n=  7  exec=100.0%  acc= 0.0%
+        line_i                   :  n=  5  exec=40.0%  acc=20.0%
+        zsc1                     :  n=  5  exec= 0.0%  acc= 0.0%
+        supplied_p               :  n=  4  exec=100.0%  acc= 0.0%
+        elem_p                   :  n=  4  exec=100.0%  acc=25.0%
+        tap                      :  n=  4  exec=100.0%  acc=100.0%
+        losses_p                 :  n=  2  exec=100.0%  acc=100.0%
+
+      # Modifications → accuracy:
+        1 mods:  n=  90  exec=70.0%  acc=41.1%
+
+      Networks (12 unique):
+        self-built 4-bus 12.47 kV three-phase radial feeder (source + 3 loads, 3 line sections):  n= 14  exec=100.0%  acc=71.4%
+        self-built 12.47 kV three-phase looped feeder (source -> a -> b -> c with an a-c tie line, 2 loads) so line flows redistribute around the loop:  n= 13  exec=61.5%  acc=30.8%
+        self-built 5-bus 12.47 kV three-phase radial feeder (source + 4 loads, 4 line sections):  n= 12  exec=75.0%  acc=50.0%
+        self-built 12.47 kV three-phase feeder for fault study (source with defined short-circuit MVA, main line src->b1->b2->b3 plus a b1->lat lateral, 3 loads):  n=  9  exec=22.2%  acc= 0.0%
+        self-built 12.47 kV three-phase radial feeder for fault study (source with defined short-circuit MVA, three series line sections of increasing length, 3 loads):  n=  9  exec=11.1%  acc= 0.0%
+        self-built 3-bus 12.47 kV three-phase radial feeder (source + 2 loads, 2 line sections):  n=  7  exec=71.4%  acc=57.1%
+        self-built 12.47 kV three-phase feeder with a 3-step shunt capacitor bank and a voltage-mode CapControl at the remote bus (2 loads):  n=  6  exec=100.0%  acc=16.7%
+        self-built 12.47 kV three-phase feeder with unbalanced single-phase laterals (one load per phase, 400/800/1200 kW), yielding per-phase voltage asymmetry:  n=  5  exec=60.0%  acc=40.0%
+        self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl on a 12.47/12.47 kV regulator transformer, vreg=122) feeding 2 downstream loads:  n=  5  exec=100.0%  acc=100.0%
+        self-built 12.47 kV three-phase radial feeder with a 3-step shunt capacitor bank and a kvar-mode CapControl at the feeder end (3 loads):  n=  4  exec=100.0%  acc= 0.0%
+        self-built two-voltage-level feeder (12.47 kV source, step-down 12.47/4.16 kV transformer, 4.16 kV load line, 2 loads):  n=  3  exec=100.0%  acc=66.7%
+        self-built 12.47 kV three-phase feeder with an in-line voltage regulator (RegControl, vreg=120, band=3) feeding a 3-load radial:  n=  3  exec=100.0%  acc=100.0%
+
+      Execution Errors (27 total):
+        AttributeError                :   14  (15.6%)
+        TimeoutError                  :    7  ( 7.8%)
+        DSSException                  :    5  ( 5.6%)
+        IndexError                    :    1  ( 1.1%)
+
+      Match Failures (26 executed but wrong):
+        value_outside_tolerance                 :   26
+
+      Generated code: avg=30 lines  min=18  max=50
+
+      Prompt tokens:
+        round0 : avg= 1243  total=  111907
+        total  :   111907  avg/item=1243.4  fix/round0=0.0
+
+      Semantic rewrite quality (42 D3/D4 items):
+        phrase_present=0.0%  explicit_leak=0.0%  avg_phrase_hits=0.00
+        D3_semantic   :  n= 42  phrase=0.0%  leak=0.0%  avg_hits=0.00
+      Float error (matched): mean_rel=0.000045  median=0.000000  p95=0.000001  max=0.001669
+    ============================================================
+  🧹 Releasing GPU memory for Qwen_Qwen2.5-Coder-32B-Instruct...
+  ✅ vLLM engine released
+
+==============================================================================================================
+  1. EXECUTION RATE  (code ran without runtime error)
+  ⚠ Cond A = round_0 (no fix rounds) — same evaluation setup as B/C/X
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Qwen2.5-Coder-32         —     0.700         —
+  Llama-3.1-70B            —     0.833         —
+==============================================================================================================
+
+==============================================================================================================
+  2. RESULT ACCURACY  (matched / total, A = round_0 — no fix rounds)
+  ⚠ After system-prompt fix, format-bug parse failures should be eliminated
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Qwen2.5-Coder-32         —    0.4111         —
+  Llama-3.1-70B            —    0.4444         —
+==============================================================================================================
+
+==============================================================================================================
+  3. ACCURACY-OF-EXECUTED  (matched / executed — isolates parser format failures)
+  ⚠ Low values here mean the model computed correctly but output format was wrong
+  Model                CondA     CondC      ΔC-A
+  ──────────────────────────────────────────────
+  Qwen2.5-Coder-32         —    0.5873         —
+  Llama-3.1-70B            —    0.5333         —
+==============================================================================================================
+
+==============================================================================================================
+  4. FORMAT PARSE FAILURE RATE  (cannot_parse_float — computed correctly, wrong output format)
+  ⚠ Caused by missing 'print ONLY numeric value' instruction (fixed in SYSTEM_PROMPT)
+  Note: % of *executed* items that failed due to output format, not logic errors
+  Model              CondC pfail
+  ──────────────────────────────
+  Qwen2.5-Coder-32  0/63 (0%)      0/63(0%)
+  Llama-3.1-70B     0/75 (0%)      0/75(0%)
+==============================================================================================================
+
+==============================================================================================================
+  5. PROMPT TOKEN USAGE (approx, 4 chars/token) — cost comparison across conditions
+  Note: Cond A uses standard benchmark prompt; B/C/X add function hints/docs
+  Model             CondA avg_tok  CondC avg_tok   ratio C/A   ratio X/A
+  ──────────────────────────────────────────────────────────────────
+  Qwen2.5-Coder-32            —         1243           —           —
+  Llama-3.1-70B               —         1220           —           —
+==============================================================================================================
+
+==============================================================================================================
+  6. PER-TASK EXECUTION RATE  (avg across all models with data)
+  Sorted by ΔC-A descending — shows where Cond C injection helps most
+  Task                       CondA     CondC      ΔC-A      ΔC-X
+  ──────────────────────────────────────────────────────────────────────────────────
+  control_device                 —     0.917         —         —
+  fault_analysis                 —     0.500         —         —
+  network_modification           —     0.833         —         —
+  power_flow_3ph                 —     0.750         —         —
+  result_extraction              —     0.833         —         —
+==============================================================================================================
+
+  💾 Proactive comparison saved to probe_eval_results/e2_opendss_bench_v2_crecal/proactive_comparison.json
+==========================================
+Job finished at: Sat Aug  1 07:01:11 PM UTC 2026
+==========================================

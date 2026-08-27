@@ -1,0 +1,10 @@
+{
+  "run_name": "e4_layer2a_ext_eval_unadapted_v2",
+  "artifacts": {
+    "metrics": "task_demand/results/e4_layer2a_ext_eval/unadapted_v2/metrics.json",
+    "run_config": "task_demand/results/e4_layer2a_ext_eval/unadapted_v2/run_config.json",
+    "summary": "task_demand/results/e4_layer2a_ext_eval/unadapted_v2/summary.json",
+    "saved_model": null,
+    "prediction_export": null
+  }
+}

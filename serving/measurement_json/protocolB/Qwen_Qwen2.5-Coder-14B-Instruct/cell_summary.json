@@ -1,0 +1,119 @@
+{
+  "levels": [
+    {
+      "concurrency": 1,
+      "energy": {
+        "cluster_avg_power_w": 792.7905713485408,
+        "energy_methods": [
+          "nvml_total_energy_counter"
+        ],
+        "j_per_completion_token": 5.179221181640625,
+        "j_per_request": 2651.761245,
+        "n_gpus": 2,
+        "peak_memory_used_bytes_max_device": 94981259264,
+        "peak_memory_used_bytes_sum": 189962518528,
+        "representative_window_s": 668.9689158359542,
+        "total_energy_j": 530352.2490000001
+      },
+      "latency": {
+        "completed": 200,
+        "duration": 650.9552177828737,
+        "mean_e2el_ms": 3254.7210081550293,
+        "mean_itl_ms": 6.335492709265664,
+        "mean_tpot_ms": 6.335492442820382,
+        "mean_ttft_ms": 17.284369873814285,
+        "median_e2el_ms": 3254.589712480083,
+        "median_itl_ms": 6.333072553388774,
+        "median_tpot_ms": 6.335190278860702,
+        "median_ttft_ms": 17.22549251280725,
+        "output_throughput": 157.30728812462726,
+        "p95_e2el_ms": 3261.8796399328858,
+        "p95_itl_ms": 6.485351175069809,
+        "p95_tpot_ms": 6.346226854586096,
+        "p95_ttft_ms": 18.70359361637383,
+        "request_throughput": 0.3072407971184126,
+        "total_input_tokens": 295810,
+        "total_output_tokens": 102400,
+        "total_token_throughput": 611.7317891026155
+      }
+    },
+    {
+      "concurrency": 4,
+      "energy": {
+        "cluster_avg_power_w": 765.097587702754,
+        "energy_methods": [
+          "nvml_total_energy_counter"
+        ],
+        "j_per_completion_token": 1.414502353515625,
+        "j_per_request": 724.225205,
+        "n_gpus": 2,
+        "peak_memory_used_bytes_max_device": 94983356416,
+        "peak_memory_used_bytes_sum": 189966712832,
+        "representative_window_s": 189.3157726910431,
+        "total_energy_j": 144845.041
+      },
+      "latency": {
+        "completed": 200,
+        "duration": 169.705073709134,
+        "mean_e2el_ms": 3393.554918325972,
+        "mean_itl_ms": 6.586882668240233,
+        "mean_tpot_ms": 6.586882488830781,
+        "mean_ttft_ms": 27.65796653344296,
+        "median_e2el_ms": 3390.204258961603,
+        "median_itl_ms": 6.578314118087292,
+        "median_tpot_ms": 6.582738151600668,
+        "median_ttft_ms": 26.16077254060656,
+        "output_throughput": 603.3997555989897,
+        "p95_e2el_ms": 3416.4296333212405,
+        "p95_itl_ms": 6.752934504766016,
+        "p95_tpot_ms": 6.633569289603928,
+        "p95_ttft_ms": 32.27394069544971,
+        "request_throughput": 1.1785151476542768,
+        "total_input_tokens": 295810,
+        "total_output_tokens": 102400,
+        "total_token_throughput": 2346.482584737048
+      }
+    },
+    {
+      "concurrency": 16,
+      "energy": {
+        "cluster_avg_power_w": 705.6848976496623,
+        "energy_methods": [
+          "nvml_total_energy_counter"
+        ],
+        "j_per_completion_token": 0.4843305859375,
+        "j_per_request": 247.97726,
+        "n_gpus": 2,
+        "peak_memory_used_bytes_max_device": 94983356416,
+        "peak_memory_used_bytes_sum": 189966712832,
+        "representative_window_s": 70.27988294092938,
+        "total_energy_j": 49595.452
+      },
+      "latency": {
+        "completed": 200,
+        "duration": 51.003734750906006,
+        "mean_e2el_ms": 3937.2108961606864,
+        "mean_itl_ms": 7.629439487940323,
+        "mean_tpot_ms": 7.629439327321353,
+        "mean_ttft_ms": 38.56739989947528,
+        "median_e2el_ms": 3965.221537509933,
+        "median_itl_ms": 7.673196028918028,
+        "median_tpot_ms": 7.65257899001525,
+        "median_ttft_ms": 30.746301054023206,
+        "output_throughput": 2007.69611284556,
+        "p95_e2el_ms": 4019.227347068954,
+        "p95_itl_ms": 7.932421052828431,
+        "p95_tpot_ms": 7.7901414230578885,
+        "p95_ttft_ms": 73.72012783307581,
+        "request_throughput": 3.9212814704014844,
+        "total_input_tokens": 295810,
+        "total_output_tokens": 102400,
+        "total_token_throughput": 7807.467471642876
+      }
+    }
+  ],
+  "model": "Qwen/Qwen2.5-Coder-14B-Instruct",
+  "protocol": "E3 protocol B",
+  "schema_version": 1,
+  "tp_size": 2
+}

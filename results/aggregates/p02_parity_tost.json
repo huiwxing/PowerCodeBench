@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "method": {
+    "condition": "condC_FDRS",
+    "pairing_key": "item_id",
+    "n_common_items": 2000,
+    "item_order": "lexicographic item_id",
+    "n_bootstrap": 10000,
+    "seed": 20260617,
+    "rng": "Python random.Random; seed reset independently per contrast",
+    "resampling": "paired items with replacement",
+    "percentile_interpolation": "linear at (B-1)*p",
+    "ci95": "two-sided percentile interval",
+    "tost": "alpha=0.05, equivalence margin +/-5pp; equivalent iff the two-sided 90% percentile interval lies strictly inside the margin"
+  },
+  "source": {
+    "compact_artifact": "audit/p02_parity_item_outcomes.json",
+    "compact_artifact_sha256": "1557e460d31fc6c437c50a78454298284390a8e70313ec920641acaa220a3e25",
+    "source_repository_commit": "0ca5647c6a6ef3376763e907f12b245316613d97",
+    "legacy_p02_summary": {
+      "repository": "authors' pre-submission working records (not distributed)",
+      "path": "P02_parity_tost.json",
+      "sha256": "cf33c7feaa15d95f540e8c4e949868e3fd50f67a096365e6b5a06d8e86d2d959"
+    }
+  },
+  "models": {
+    "Llama-3.1-70B": {
+      "n": 2000,
+      "n_match": 1149,
+      "accuracy_pct": 57.45
+    },
+    "GPT-OSS-120B": {
+      "n": 2000,
+      "n_match": 1205,
+      "accuracy_pct": 60.25
+    },
+    "DeepSeek-V4-Flash": {
+      "n": 2000,
+      "n_match": 1118,
+      "accuracy_pct": 55.9
+    },
+    "GPT-5.4-mini": {
+      "n": 2000,
+      "n_match": 1243,
+      "accuracy_pct": 62.15
+    },
+    "Claude-Haiku-4-5": {
+      "n": 2000,
+      "n_match": 1275,
+      "accuracy_pct": 63.75
+    }
+  },
+  "comparisons": {
+    "llama70_vs_nearest_deepseek": {
+      "treatment": "Llama-3.1-70B",
+      "reference": "DeepSeek-V4-Flash",
+      "reference_role": "nearest API",
+      "n_pairs": 2000,
+      "point_pp": 1.55,
+      "discordant_treatment_only": 268,
+      "discordant_reference_only": 237,
+      "ci90_pp": [
+        -0.3,
+        3.4
+      ],
+      "ci95_pp": [
+        -0.6,
+        3.75
+      ],
+      "ci95_includes_zero": true,
+      "tost_margin_pp": 5.0,
+      "tost_equivalent_alpha_0_05": true
+    },
+    "llama70_vs_strongest_claude": {
+      "treatment": "Llama-3.1-70B",
+      "reference": "Claude-Haiku-4-5",
+      "reference_role": "strongest API",
+      "n_pairs": 2000,
+      "point_pp": -6.3,
+      "discordant_treatment_only": 185,
+      "discordant_reference_only": 311,
+      "ci90_pp": [
+        -8.1,
+        -4.5
+      ],
+      "ci95_pp": [
+        -8.45,
+        -4.15
+      ],
+      "ci95_includes_zero": false,
+      "tost_margin_pp": 5.0,
+      "tost_equivalent_alpha_0_05": false
+    },
+    "gptoss120_vs_nearest_gpt54mini": {
+      "treatment": "GPT-OSS-120B",
+      "reference": "GPT-5.4-mini",
+      "reference_role": "nearest API",
+      "n_pairs": 2000,
+      "point_pp": -1.9,
+      "discordant_treatment_only": 198,
+      "discordant_reference_only": 236,
+      "ci90_pp": [
+        -3.6,
+        -0.2
+      ],
+      "ci95_pp": [
+        -3.9,
+        0.15
+      ],
+      "ci95_includes_zero": true,
+      "tost_margin_pp": 5.0,
+      "tost_equivalent_alpha_0_05": true
+    },
+    "gptoss120_vs_strongest_claude": {
+      "treatment": "GPT-OSS-120B",
+      "reference": "Claude-Haiku-4-5",
+      "reference_role": "strongest API",
+      "n_pairs": 2000,
+      "point_pp": -3.5,
+      "discordant_treatment_only": 183,
+      "discordant_reference_only": 253,
+      "ci90_pp": [
+        -5.2,
+        -1.8
+      ],
+      "ci95_pp": [
+        -5.55,
+        -1.45
+      ],
+      "ci95_includes_zero": false,
+      "tost_margin_pp": 5.0,
+      "tost_equivalent_alpha_0_05": false
+    }
+  }
+}

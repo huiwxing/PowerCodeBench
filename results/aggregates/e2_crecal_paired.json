@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.0",
+  "source_manifest": "results/raw/e2_transfer/manifest.json",
+  "method": {
+    "n_boot": 10000,
+    "seed": 20260727,
+    "rng": "Python random.Random (MT19937), reset for each contrast",
+    "pair_order": "C-recal item_results order",
+    "ci": "percentile order statistics at sorted indices 250 and 9749",
+    "mcnemar": "two-sided exact binomial test on discordant pairs",
+    "token_ratio": "C-recal total prompt tokens / Rsem total prompt tokens"
+  },
+  "recal_name_layer_floor": 0.4,
+  "models": {
+    "Qwen_Qwen2.5-Coder-32B-Instruct": {
+      "n": 90,
+      "accuracy": {
+        "C": 0.1556,
+        "Rsem": 0.6667,
+        "C-recal": 0.4111
+      },
+      "paired": {
+        "C-recal-C": {
+          "n_pairs": 90,
+          "delta": 0.2556,
+          "delta_pp": 25.56,
+          "ci95": [
+            0.1444,
+            0.3667
+          ],
+          "ci95_pp": [
+            14.44,
+            36.67
+          ],
+          "discordant_treatment_only": 29,
+          "discordant_reference_only": 6,
+          "mcnemar_exact_p": 0.0001168418675661087
+        },
+        "C-recal-Rsem": {
+          "n_pairs": 90,
+          "delta": -0.2556,
+          "delta_pp": -25.56,
+          "ci95": [
+            -0.3889,
+            -0.1222
+          ],
+          "ci95_pp": [
+            -38.89,
+            -12.22
+          ],
+          "discordant_treatment_only": 9,
+          "discordant_reference_only": 32,
+          "mcnemar_exact_p": 0.000430857042374555
+        }
+      },
+      "prompt_tokens": {
+        "C": {
+          "total": 92550,
+          "mean": 1028.3333
+        },
+        "Rsem": {
+          "total": 414378,
+          "mean": 4604.2
+        },
+        "C-recal": {
+          "total": 111907,
+          "mean": 1243.4111
+        }
+      },
+      "crecal_over_rsem_total_prompt_ratio": 0.270060186593,
+      "control_device": {
+        "C": {
+          "n": 18,
+          "executed": 1,
+          "non_executable": 17,
+          "matched": 0,
+          "non_executable_error_types": {
+            "AttributeError": 17
+          }
+        },
+        "Rsem": {
+          "n": 18,
+          "executed": 12,
+          "non_executable": 6,
+          "matched": 7,
+          "non_executable_error_types": {
+            "AttributeError": 6
+          }
+        },
+        "C-recal": {
+          "n": 18,
+          "executed": 18,
+          "non_executable": 0,
+          "matched": 9,
+          "non_executable_error_types": {}
+        }
+      }
+    },
+    "meta-llama_Llama-3.1-70B-Instruct": {
+      "n": 90,
+      "accuracy": {
+        "C": 0.3667,
+        "Rsem": 0.6333,
+        "C-recal": 0.4444
+      },
+      "paired": {
+        "C-recal-C": {
+          "n_pairs": 90,
+          "delta": 0.0778,
+          "delta_pp": 7.78,
+          "ci95": [
+            -0.0111,
+            0.1667
+          ],
+          "ci95_pp": [
+            -1.11,
+            16.67
+          ],
+          "discordant_treatment_only": 12,
+          "discordant_reference_only": 5,
+          "mcnemar_exact_p": 0.143463134765625
+        },
+        "C-recal-Rsem": {
+          "n_pairs": 90,
+          "delta": -0.1889,
+          "delta_pp": -18.89,
+          "ci95": [
+            -0.3111,
+            -0.0667
+          ],
+          "ci95_pp": [
+            -31.11,
+            -6.67
+          ],
+          "discordant_treatment_only": 10,
+          "discordant_reference_only": 27,
+          "mcnemar_exact_p": 0.007632078602910042
+        }
+      },
+      "prompt_tokens": {
+        "C": {
+          "total": 104551,
+          "mean": 1161.6778
+        },
+        "Rsem": {
+          "total": 404074,
+          "mean": 4489.7111
+        },
+        "C-recal": {
+          "total": 109844,
+          "mean": 1220.4889
+        }
+      },
+      "crecal_over_rsem_total_prompt_ratio": 0.271841296396,
+      "control_device": {
+        "C": {
+          "n": 18,
+          "executed": 16,
+          "non_executable": 2,
+          "matched": 9,
+          "non_executable_error_types": {
+            "AttributeError": 1,
+            "TypeError": 1
+          }
+        },
+        "Rsem": {
+          "n": 18,
+          "executed": 17,
+          "non_executable": 1,
+          "matched": 7,
+          "non_executable_error_types": {
+            "AttributeError": 1
+          }
+        },
+        "C-recal": {
+          "n": 18,
+          "executed": 15,
+          "non_executable": 3,
+          "matched": 11,
+          "non_executable_error_types": {
+            "AttributeError": 3
+          }
+        }
+      }
+    },
+    "deepseek-v4-flash": {
+      "n": 90,
+      "accuracy": {
+        "C": 0.3778,
+        "Rsem": 0.7556,
+        "C-recal": 0.6889
+      },
+      "paired": {
+        "C-recal-C": {
+          "n_pairs": 90,
+          "delta": 0.3111,
+          "delta_pp": 31.11,
+          "ci95": [
+            0.1778,
+            0.4444
+          ],
+          "ci95_pp": [
+            17.78,
+            44.44
+          ],
+          "discordant_treatment_only": 36,
+          "discordant_reference_only": 8,
+          "mcnemar_exact_p": 2.5448598648836196e-05
+        },
+        "C-recal-Rsem": {
+          "n_pairs": 90,
+          "delta": -0.0667,
+          "delta_pp": -6.67,
+          "ci95": [
+            -0.1556,
+            0.0222
+          ],
+          "ci95_pp": [
+            -15.56,
+            2.22
+          ],
+          "discordant_treatment_only": 5,
+          "discordant_reference_only": 11,
+          "mcnemar_exact_p": 0.210113525390625
+        }
+      },
+      "prompt_tokens": {
+        "C": {
+          "total": 83510,
+          "mean": 927.8889
+        },
+        "Rsem": {
+          "total": 412231,
+          "mean": 4580.3444
+        },
+        "C-recal": {
+          "total": 118380,
+          "mean": 1315.3333
+        }
+      },
+      "crecal_over_rsem_total_prompt_ratio": 0.287169087235,
+      "control_device": {
+        "C": {
+          "n": 18,
+          "executed": 12,
+          "non_executable": 6,
+          "matched": 9,
+          "non_executable_error_types": {
+            "AttributeError": 5,
+            "DSSException": 1
+          }
+        },
+        "Rsem": {
+          "n": 18,
+          "executed": 14,
+          "non_executable": 4,
+          "matched": 9,
+          "non_executable_error_types": {
+            "AttributeError": 1,
+            "DSSException": 3
+          }
+        },
+        "C-recal": {
+          "n": 18,
+          "executed": 11,
+          "non_executable": 7,
+          "matched": 10,
+          "non_executable_error_types": {
+            "DSSException": 1,
+            "code_extraction_failed": 6
+          }
+        }
+      }
+    }
+  }
+}

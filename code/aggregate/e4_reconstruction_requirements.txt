@@ -1,0 +1,8 @@
+# Exact CPU environment used for the deterministic E4 five-seed reconstruction.
+# The release-side aggregate_e4_multiseed.py recomputer uses only the Python
+# standard library and does not require these packages.
+numpy==2.2.6
+scipy==1.16.3
+scikit-learn==1.6.0
+joblib==1.5.3
+threadpoolctl==3.6.0

@@ -1,0 +1,1727 @@
+{
+  "library": "pypsa",
+  "library_name": "pypsa",
+  "functions": [
+    {
+      "name": "pf",
+      "full_path": "pypsa.Network.pf",
+      "category": "power_flow",
+      "type": "method",
+      "signature": "pypsa.Network.pf(snapshots=None, skip_pre=False, x_tol=1e-06, use_seed=False, distribute_slack=False, slack_weights='p_set')",
+      "description": "Runs the full non-linear AC power flow on every sub-network of the model, solving the coupled active/reactive balance with a Newton-Raphson iteration for each snapshot. It fills the time-dependent result tables in place (bus voltage magnitudes and angles, branch active and reactive flows, slack-generator dispatch) and returns a dict of per-sub-network convergence diagnostics. By default only the slack generator absorbs the power mismatch, but distribute_slack spreads it across generators according to slack_weights.",
+      "parameters": [
+        {
+          "name": "snapshots",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Subset of n.snapshots to solve; defaults to all snapshots.",
+          "required": false
+        },
+        {
+          "name": "skip_pre",
+          "type": "bool",
+          "default": "False",
+          "description": "Skip the preliminary topology / dependent-value / bus-control computation (only safe if already done).",
+          "required": false
+        },
+        {
+          "name": "x_tol",
+          "type": "float",
+          "default": "1e-06",
+          "description": "Convergence tolerance for the Newton-Raphson iteration.",
+          "required": false
+        },
+        {
+          "name": "use_seed",
+          "type": "bool",
+          "default": "False",
+          "description": "Warm-start the Newton-Raphson from the existing voltage guess instead of a flat start.",
+          "required": false
+        },
+        {
+          "name": "distribute_slack",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, distribute the slack power across generators instead of assigning it all to the slack bus.",
+          "required": false
+        },
+        {
+          "name": "slack_weights",
+          "type": "str | dict",
+          "default": "'p_set'",
+          "description": "Scheme for splitting distributed slack: 'p_set', 'p_nom', 'p_nom_opt' or an explicit per-sub-network dict.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "dict",
+          "description": "Dict with keys 'converged', 'error', 'n_iter', each a DataFrame indexed by snapshot x sub_network giving the Newton-Raphson outcome."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('v_mag_pu b1 =', round(float(n.buses_t.v_mag_pu.loc[n.snapshots[0], 'b1']), 6))\n"
+      ]
+    },
+    {
+      "name": "pf_converged",
+      "full_path": "pypsa.Network.pf.converged",
+      "category": "power_flow",
+      "type": "attribute",
+      "signature": "n.pf()['converged']  # DataFrame (snapshots x sub_networks) of bool",
+      "description": "The boolean convergence table returned by n.pf(), indexed by snapshot against sub-network. Each entry states whether the Newton-Raphson iteration for that sub-network and snapshot settled within x_tol before the iteration cap. This is the canonical admission / feasibility check for a non-linear power-flow task: a False entry means the reported voltages and flows for that snapshot are not trustworthy.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Boolean DataFrame, rows = snapshots, columns = sub-network indices; True where the AC power flow converged."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nres = n.pf()\nprint('all converged =', bool(res['converged'].to_numpy().all()))\n"
+      ]
+    },
+    {
+      "name": "pf_n_iter",
+      "full_path": "pypsa.Network.pf.n_iter",
+      "category": "power_flow",
+      "type": "attribute",
+      "signature": "n.pf()['n_iter']  # DataFrame (snapshots x sub_networks) of int",
+      "description": "The iteration-count table returned by n.pf(), giving how many Newton-Raphson steps each sub-network needed to converge at each snapshot. It is the runtime/robustness diagnostic of the non-linear solve: a well-conditioned radial case converges in a couple of iterations, while a stressed or near-singular case approaches the internal iteration limit. Reading it lets a study flag snapshots that were numerically hard even when they ultimately converged.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Integer DataFrame, rows = snapshots, columns = sub-network indices; number of Newton-Raphson iterations taken."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nres = n.pf()\nprint('iterations b0 subnet =', int(res['n_iter'].iloc[0, 0]))\n"
+      ]
+    },
+    {
+      "name": "pf_error",
+      "full_path": "pypsa.Network.pf.error",
+      "category": "power_flow",
+      "type": "attribute",
+      "signature": "n.pf()['error']  # DataFrame (snapshots x sub_networks) of float",
+      "description": "The residual-error table returned by n.pf(): the final power-mismatch norm of the Newton-Raphson iteration for each sub-network and snapshot. A converged solve leaves this at or below the x_tol tolerance, so the value quantifies how tightly the AC balance was satisfied. It complements the boolean 'converged' flag with a continuous measure of solution accuracy.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = sub-network indices; final Newton-Raphson mismatch norm."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nres = n.pf()\nprint('final mismatch <= 1e-5 =', bool((res['error'].to_numpy() <= 1e-5).all()))\n"
+      ]
+    },
+    {
+      "name": "generators_control",
+      "full_path": "pypsa.Network.generators.control",
+      "category": "power_flow",
+      "type": "attribute",
+      "signature": "n.generators.control  # Series indexed by generator name; values 'Slack'/'PV'/'PQ'",
+      "description": "The control column of the static generators table, setting each generator's bus-control role for the AC power flow: 'Slack' (angle/voltage reference that absorbs the mismatch), 'PV' (holds a voltage-magnitude setpoint by supplying reactive power) or 'PQ' (fixed active and reactive injection). PyPSA propagates these to the buses to decide which quantities are fixed versus solved in the Newton-Raphson step. Every AC sub-network needs exactly one slack, so editing this column is how a power-flow task designates the reference machine.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Object Series indexed by generator name giving the bus-control type ('Slack', 'PV' or 'PQ') used by n.pf()."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('slack control =', n.generators.at['slack', 'control'])\n"
+      ]
+    },
+    {
+      "name": "buses_control",
+      "full_path": "pypsa.Network.buses.control",
+      "category": "power_flow",
+      "type": "attribute",
+      "signature": "n.buses.control  # Series indexed by bus name; values 'Slack'/'PV'/'PQ'",
+      "description": "The control column of the static buses table, giving the bus type used by the non-linear power flow. It is derived from the generators attached to each bus (a bus with a slack generator becomes 'Slack', one with a voltage-controlling generator becomes 'PV', otherwise 'PQ') during the preliminary step of n.pf(). Inspecting it after a solve confirms which bus acts as the voltage/angle reference and which buses had their voltage held versus solved.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Object Series indexed by bus name giving each bus's power-flow control type ('Slack', 'PV' or 'PQ')."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('b0 control =', n.buses.at['b0', 'control'])\n"
+      ]
+    },
+    {
+      "name": "lpf",
+      "full_path": "pypsa.Network.lpf",
+      "category": "linear_power_flow",
+      "type": "method",
+      "signature": "pypsa.Network.lpf(snapshots=None, skip_pre=False)",
+      "description": "Runs the linearised (DC-type) power flow on every sub-network, holding voltage magnitudes at their nominal per-unit value and solving only for bus voltage angles from the reactance-weighted network. Active branch flows are then obtained linearly from the angle differences, ignoring resistive losses and reactive power. Being a single linear solve it always 'converges', which makes it the fast transmission-planning analogue of a DC power flow; results populate the same p0/p1 and v_ang result tables in place.",
+      "parameters": [
+        {
+          "name": "snapshots",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Subset of n.snapshots to solve; defaults to all snapshots.",
+          "required": false
+        },
+        {
+          "name": "skip_pre",
+          "type": "bool",
+          "default": "False",
+          "description": "Skip the preliminary topology / dependent-value / bus-control computation.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; fills n.buses_t.v_ang and the linear active branch flows (n.lines_t.p0, etc.) in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.lpf()\nprint('linear line flow p0 =', round(float(n.lines_t.p0.iloc[0, 0]), 6))\n"
+      ]
+    },
+    {
+      "name": "lpf_contingency",
+      "full_path": "pypsa.Network.lpf_contingency",
+      "category": "linear_power_flow",
+      "type": "method",
+      "signature": "pypsa.Network.lpf_contingency(snapshots=None, branch_outages=None)",
+      "description": "Performs a linear N-1 contingency screening: for a single snapshot it first solves the base-case linear flow, then uses branch outage distribution factors (BODF) to recompute all branch flows under each single passive-branch (line/transformer) outage without re-solving. The result is a table whose columns are the outaged branches and whose rows are the resulting flows, the standard security-analysis output for checking post-contingency overloads. Note this version operates on one snapshot at a time.",
+      "parameters": [
+        {
+          "name": "snapshots",
+          "type": "Sequence | str | pd.Timestamp | None",
+          "default": "None",
+          "description": "Single snapshot to analyse; if a list is passed only its first element is used.",
+          "required": false
+        },
+        {
+          "name": "branch_outages",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Passive branches to test as outages; defaults to all lines and transformers.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "num_passive_branch x (1 + num_outages) DataFrame: a 'base' column plus one column per outaged branch giving the new linear flows."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.set_snapshots(pd.date_range('2024-01-01', periods=1, freq='h'))\nfor b in ['b0', 'b1', 'b2']:\n    n.add('Bus', b, v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=90.0)\nn.add('Load', 'load', bus='b2', p_set=90.0)\nn.add('Line', 'l01', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nn.add('Line', 'l12', bus0='b1', bus1='b2', x=0.1, r=0.01, s_nom=200.0)\nn.add('Line', 'l02', bus0='b0', bus1='b2', x=0.1, r=0.01, s_nom=200.0)\nlodf = n.lpf_contingency(snapshots=n.snapshots[0])\nprint('flow on l01 when l02 is out =', round(float(lodf[('Line', 'l02')].loc[('Line', 'l01')]), 6))\n"
+      ]
+    },
+    {
+      "name": "passive_branches",
+      "full_path": "pypsa.Network.passive_branches",
+      "category": "linear_power_flow",
+      "type": "method",
+      "signature": "pypsa.Network.passive_branches()",
+      "description": "Returns a merged, read-only copy of all passive branches in the network, i.e. the Lines and Transformers whose flows are set by physics (impedance and angle differences) rather than by a controllable setpoint. These are exactly the elements the linear power flow and the N-1 contingency routine act on, and n.passive_branches_i() supplies the default outage list for lpf_contingency. The returned frame is indexed by (component, name) with the union of line and transformer attributes.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "MultiIndex (component, name) DataFrame of all Lines and Transformers with their combined static attributes (a copy, not a live view)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.add('Bus', 'b2', v_nom=20.0)\nn.add('Transformer', 'tr', bus0='b1', bus1='b2', x=0.1, r=0.01, s_nom=100.0)\npb = n.passive_branches()\nprint('num passive branches =', len(pb))\n"
+      ]
+    },
+    {
+      "name": "sub_networks",
+      "full_path": "pypsa.Network.sub_networks",
+      "category": "linear_power_flow",
+      "type": "attribute",
+      "signature": "n.sub_networks  # DataFrame indexed by sub-network id; carrier, slack_bus, obj",
+      "description": "The table of electrically connected sub-networks, built by determine_network_topology (and implicitly by pf/lpf). Passive branches (lines, transformers) tie buses into a common AC or DC sub-network, while controllable Links decouple them, so each sub-network is solved independently and carries its own slack bus and carrier. Both the linear power flow and the contingency BODF calculation iterate over these sub-network objects, making this the topological backbone of any flow analysis.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "DataFrame indexed by sub-network id with columns 'carrier', 'slack_bus' and 'obj' (the SubNetwork object)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.determine_network_topology()\nprint('num sub_networks =', len(n.sub_networks), '| slack bus =', n.sub_networks.at['0', 'slack_bus'])\n"
+      ]
+    },
+    {
+      "name": "lines_x_pu",
+      "full_path": "pypsa.Network.lines.x_pu",
+      "category": "linear_power_flow",
+      "type": "attribute",
+      "signature": "n.lines.x_pu  # Series indexed by line name; per-unit series reactance",
+      "description": "The per-unit series reactance of each line, computed by calculate_dependent_values from the physical reactance x and the bus voltage base. In the linearised power flow this is the sole impedance that matters: active flow divides across parallel paths inversely to x_pu, exactly as branch susceptance governs a DC power flow. Because resistance is ignored in the linear model, x_pu is the defining electrical parameter for how the network shares linear flows.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Float Series indexed by line name giving the per-unit series reactance used by the linear power flow."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.calculate_dependent_values()\nprint('line x_pu =', round(float(n.lines.at['ln', 'x_pu']), 6))\n"
+      ]
+    },
+    {
+      "name": "lines_s_nom",
+      "full_path": "pypsa.Network.lines.s_nom",
+      "category": "linear_power_flow",
+      "type": "attribute",
+      "signature": "n.lines.s_nom  # Series indexed by line name; apparent-power rating in MVA",
+      "description": "The nominal apparent-power rating (MVA) of each line, i.e. the thermal limit against which computed flows are judged. In a linear power flow or N-1 contingency study it is the reference the base-case and post-outage active flows are compared to in order to detect overloads (loading = |p0| / s_nom). It is a static, editable attribute, so a planning task raises it to model reconductoring or a line upgrade.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Float Series indexed by line name giving the apparent-power rating (MVA) used as the loading limit."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.lpf()\nloading = abs(float(n.lines_t.p0.iloc[0, 0])) / float(n.lines.at['ln', 's_nom'])\nprint('line loading fraction =', round(loading, 6))\n"
+      ]
+    },
+    {
+      "name": "optimize",
+      "full_path": "pypsa.Network.optimize",
+      "category": "opf",
+      "type": "method",
+      "signature": "pypsa.Network.optimize(snapshots=None, multi_investment_periods=False, transmission_losses=False, linearized_unit_commitment=False, solver_name=None, assign_all_duals=False, **kwargs)",
+      "description": "Builds and solves the linear optimal power flow / capacity-expansion problem for the network using linopy, minimising total system cost (marginal generation cost plus annualised capital cost of extendable assets) subject to nodal balance, branch linear-flow limits, storage dynamics and any global constraints. On success it writes the optimal dispatch, extendable capacities (p_nom_opt / s_nom_opt), nodal marginal prices and the objective value back onto the network. transmission_losses adds a piecewise-linear loss approximation, and linearized_unit_commitment enables the relaxed on/off formulation.",
+      "parameters": [
+        {
+          "name": "snapshots",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Subset of n.snapshots to optimise over; defaults to all snapshots.",
+          "required": false
+        },
+        {
+          "name": "multi_investment_periods",
+          "type": "bool",
+          "default": "False",
+          "description": "Optimise across multiple investment periods (requires a MultiIndex of snapshots).",
+          "required": false
+        },
+        {
+          "name": "transmission_losses",
+          "type": "bool | int | dict",
+          "default": "False",
+          "description": "Include a piecewise-linear approximation of transmission losses on passive branches.",
+          "required": false
+        },
+        {
+          "name": "linearized_unit_commitment",
+          "type": "bool",
+          "default": "False",
+          "description": "Use the linearised unit-commitment formulation for committable units.",
+          "required": false
+        },
+        {
+          "name": "solver_name",
+          "type": "str | None",
+          "default": "None",
+          "description": "Solver backend, e.g. 'highs', 'gurobi', 'glpk'; None uses the linopy default.",
+          "required": false
+        },
+        {
+          "name": "assign_all_duals",
+          "type": "bool",
+          "default": "False",
+          "description": "Store the dual variables (shadow prices) of all constraints, not just the standard ones.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "tuple[str, str]",
+          "description": "A (status, termination_condition) pair such as ('ok', 'optimal'); results are written onto the network (n.objective, dispatch tables, *_opt capacities)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('objective =', round(float(n.objective), 6))\n"
+      ]
+    },
+    {
+      "name": "objective",
+      "full_path": "pypsa.Network.objective",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.objective  # float; optimal operational + variable objective value",
+      "description": "The optimal value of the linopy objective after n.optimize(), i.e. the minimised system cost covering marginal (variable) generation cost and the annualised capital cost of any extendable capacity over the optimised snapshots (weighted by snapshot weightings). It is the headline scalar of an OPF or capacity-expansion run. The full economic total is n.objective plus n.objective_constant, which captures fixed costs of already-installed capacity.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "Scalar optimal objective value (system cost) of the solved optimisation, in the model's cost units."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('objective =', round(float(n.objective), 6))\n"
+      ]
+    },
+    {
+      "name": "objective_constant",
+      "full_path": "pypsa.Network.objective_constant",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.objective_constant  # float; fixed-cost constant added to n.objective",
+      "description": "The constant term of the optimisation objective, holding the fixed capital cost of pre-existing (non-extendable) capacity that does not depend on the decision variables. PyPSA reports it separately from n.objective so that the solver objective reflects only the optimised costs; the true total system cost is n.objective + n.objective_constant. It is zero when there is no already-installed capital cost in the model.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "float",
+          "description": "Scalar fixed-cost constant (cost of pre-installed capacity) to be added to n.objective for the full system cost."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('total cost =', round(float(n.objective) + float(n.objective_constant), 6))\n"
+      ]
+    },
+    {
+      "name": "generators_p_nom_opt",
+      "full_path": "pypsa.Network.generators.p_nom_opt",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.generators.p_nom_opt  # Series indexed by generator name; optimal MW capacity",
+      "description": "The optimised nominal power capacity of each generator after a capacity-expansion optimize run. For generators with p_nom_extendable=True this is the newly chosen build size chosen between p_nom_min and p_nom_max; for fixed generators it simply echoes p_nom. It is the primary investment-decision output of a PyPSA expansion problem, distinct from the time-varying dispatch n.generators_t.p.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Float Series indexed by generator name giving the optimal installed capacity (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom_extendable=True, capital_cost=50.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('optimal capacity of cheap =', round(float(n.generators.at['cheap', 'p_nom_opt']), 6))\n"
+      ]
+    },
+    {
+      "name": "lines_s_nom_opt",
+      "full_path": "pypsa.Network.lines.s_nom_opt",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.lines.s_nom_opt  # Series indexed by line name; optimal MVA rating",
+      "description": "The optimised apparent-power rating of each line after a transmission-expansion optimize run. For lines with s_nom_extendable=True this is the reinforced capacity the optimiser selected to relieve congestion, traded off against the line's capital_cost; for fixed lines it equals s_nom. It is the transmission-investment counterpart of generators.p_nom_opt and reveals where the optimiser chose to add network capacity.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Float Series indexed by line name giving the optimal line rating (MVA)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom_extendable=True, capital_cost=10.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('optimal line rating =', round(float(n.lines.at['ln', 's_nom_opt']), 6))\n"
+      ]
+    },
+    {
+      "name": "links_p_nom_opt",
+      "full_path": "pypsa.Network.links.p_nom_opt",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.links.p_nom_opt  # Series indexed by link name; optimal MW capacity",
+      "description": "The optimised nominal power capacity of each controllable Link after optimize. Links model dispatchable point-to-point transfers (HVDC lines, converters, power-to-X conversion) with an efficiency, and when p_nom_extendable=True the optimiser sizes them against their capital_cost. Reading it gives the chosen HVDC/converter build size, the Link analogue of a generator's or line's optimal capacity.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Float Series indexed by link name giving the optimal link power capacity (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Link', 'lk', bus0='b0', bus1='b1', p_nom_extendable=True, capital_cost=8.0, efficiency=0.95)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('optimal link capacity =', round(float(n.links.at['lk', 'p_nom_opt']), 6))\n"
+      ]
+    },
+    {
+      "name": "storage_units_p_nom_opt",
+      "full_path": "pypsa.Network.storage_units.p_nom_opt",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.storage_units.p_nom_opt  # Series indexed by storage-unit name; optimal MW power",
+      "description": "The optimised nominal power rating of each storage unit after optimize. When p_nom_extendable=True the optimiser sizes the charge/discharge power against capital_cost, and the paired energy capacity follows as p_nom_opt * max_hours. It is the storage-investment output of an expansion problem and, together with the state-of-charge trajectory, characterises how much flexible capacity the solution built.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Float Series indexed by storage-unit name giving the optimal power rating (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('StorageUnit', 'su', bus='b1', p_nom_extendable=True, max_hours=4.0, capital_cost=20.0, marginal_cost=1.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('storage_units has p_nom_opt =', 'p_nom_opt' in n.storage_units.columns, '| value =', round(float(n.storage_units.at['su', 'p_nom_opt']), 6))\n"
+      ]
+    },
+    {
+      "name": "buses_t_marginal_price",
+      "full_path": "pypsa.Network.buses_t.marginal_price",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.buses_t.marginal_price  # DataFrame (snapshots x buses); nodal price / LMP",
+      "description": "The nodal marginal prices produced by optimize: for each snapshot and bus, the shadow price (dual variable) of that bus's power-balance constraint, i.e. the locational marginal cost of supplying one more unit of demand there. Price differences between buses reveal binding transmission congestion, while a uniform price indicates an unconstrained network. This is the central economic result of an OPF and is only populated after optimization, not after pf/lpf.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = bus names, giving locational marginal prices (cost per unit energy)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('marginal price at b1 =', round(float(n.buses_t.marginal_price.loc[n.snapshots[0], 'b1']), 6))\n"
+      ]
+    },
+    {
+      "name": "storage_units_t_state_of_charge",
+      "full_path": "pypsa.Network.storage_units_t.state_of_charge",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.storage_units_t.state_of_charge  # DataFrame (snapshots x storage units); stored energy MWh",
+      "description": "The state-of-charge trajectory of each storage unit over the optimised snapshots, i.e. the energy (MWh) held in the reservoir at the end of each snapshot as determined by the OPF. It obeys the storage balance linking charging, discharging (with efficiencies), standing losses and inflow, and is bounded by the energy capacity p_nom * max_hours. Inspecting it shows how the optimiser time-shifted energy to exploit price or renewable variation.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = storage-unit names, giving the stored energy (MWh) after each snapshot."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.set_snapshots(range(3))\nn.add('Bus', 'b', v_nom=20.0)\nn.add('Generator', 'g', bus='b', p_nom=100.0, marginal_cost=[50.0, 10.0, 50.0])\nn.add('Load', 'load', bus='b', p_set=[30.0, 30.0, 30.0])\nn.add('StorageUnit', 'su', bus='b', p_nom=20.0, max_hours=4.0, marginal_cost=1.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('SOC at snapshot 1 =', round(float(n.storage_units_t.state_of_charge.iloc[1, 0]), 6))\n"
+      ]
+    },
+    {
+      "name": "global_constraints_mu",
+      "full_path": "pypsa.Network.global_constraints.mu",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.global_constraints.mu  # Series indexed by constraint name; shadow price",
+      "description": "The shadow price (dual value) of each global constraint after optimize. Global constraints impose system-wide limits such as a CO2 emission cap (carrier_attribute='co2_emissions'), and their mu is the marginal system-cost change per unit relaxation of the cap, i.e. the implied carbon price. A non-zero mu means the constraint is binding and materially reshapes the dispatch; zero means it is slack. It is populated only after a solved optimization.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.Series",
+          "description": "Float Series indexed by global-constraint name giving the constraint's shadow price (e.g. CO2 price)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b', v_nom=20.0)\nn.add('Carrier', 'coal', co2_emissions=1.0)\nn.add('Carrier', 'wind', co2_emissions=0.0)\nn.add('Generator', 'coal', bus='b', p_nom=100.0, marginal_cost=10.0, carrier='coal')\nn.add('Generator', 'wind', bus='b', p_nom=100.0, marginal_cost=40.0, carrier='wind')\nn.add('Load', 'load', bus='b', p_set=80.0)\nn.add('GlobalConstraint', 'co2', sense='<=', constant=30.0, carrier_attribute='co2_emissions')\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('CO2 shadow price =', round(float(n.global_constraints.at['co2', 'mu']), 6))\n"
+      ]
+    },
+    {
+      "name": "stores_t_e",
+      "full_path": "pypsa.Network.stores_t.e",
+      "category": "opf",
+      "type": "attribute",
+      "signature": "n.stores_t.e  # DataFrame (snapshots x stores); energy content MWh",
+      "description": "The energy-content trajectory of each Store over the optimised snapshots. A Store is a pure energy reservoir (no separate power rating, unlike a StorageUnit) whose level e evolves by the net charge/discharge each snapshot and can be forced to cycle with e_cyclic. After optimize this table shows how much energy is held at each step, the Store analogue of a storage unit's state of charge, and is a key output for seasonal or hydrogen-storage studies.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = store names, giving stored energy (MWh) at each snapshot."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.set_snapshots(range(2))\nn.add('Bus', 'b', v_nom=20.0)\nn.add('Generator', 'g', bus='b', p_nom=100.0, marginal_cost=[10.0, 60.0])\nn.add('Load', 'load', bus='b', p_set=[30.0, 50.0])\nn.add('Store', 'st', bus='b', e_nom=100.0, e_cyclic=True, marginal_cost=1.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('store energy at snapshot 0 =', round(float(n.stores_t.e.iloc[0, 0]), 6))\n"
+      ]
+    },
+    {
+      "name": "add",
+      "full_path": "pypsa.Network.add",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.add(class_name, name, suffix='', overwrite=False, **kwargs)",
+      "description": "The universal constructor for network elements: it appends one or many components of a given class ('Bus', 'Generator', 'Load', 'Line', 'Transformer', 'Link', 'StorageUnit', 'Store', ...) to the model, taking their attributes as keyword arguments and filling any unspecified attribute with the component's default. Passing a list of names creates many components at once (scalar kwargs broadcast to all), while a single name treats non-scalar kwargs as snapshot-indexed time series. This is the primary way a task builds or extends a network before solving.",
+      "parameters": [
+        {
+          "name": "class_name",
+          "type": "str",
+          "default": null,
+          "description": "Component class to add, e.g. 'Bus', 'Generator', 'Line', 'Load', 'Link', 'StorageUnit'.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "str | int | Sequence",
+          "default": null,
+          "description": "Name or list of names for the new component(s).",
+          "required": true
+        },
+        {
+          "name": "suffix",
+          "type": "str",
+          "default": "''",
+          "description": "String appended to every name (handy when adding a batch).",
+          "required": false
+        },
+        {
+          "name": "overwrite",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, replace existing components that share a name instead of skipping them.",
+          "required": false
+        },
+        {
+          "name": "kwargs",
+          "type": "Any",
+          "default": null,
+          "description": "Component attributes (e.g. bus, p_nom, marginal_cost, x, s_nom); unspecified ones take defaults.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "pandas.Index | None",
+          "description": "Index of the names actually added (or None), for chaining or inspection."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=110.0)\nn.add('Generator', 'g', bus='b0', p_nom=250.0, marginal_cost=25.0)\nprint('num generators =', len(n.generators), '| p_nom =', float(n.generators.at['g', 'p_nom']))\n"
+      ]
+    },
+    {
+      "name": "remove",
+      "full_path": "pypsa.Network.remove",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.remove(class_name, name, suffix='')",
+      "description": "Deletes one or more components of a given class from the network, dropping both their static rows and any associated time-varying data from the component DataFrames. It is the inverse of add and the tool for contingency, decommissioning or what-if studies that take an element out of service before re-solving. Cross-references are not automatically repaired, so removing a bus can leave elements dangling until they too are removed.",
+      "parameters": [
+        {
+          "name": "class_name",
+          "type": "str",
+          "default": null,
+          "description": "Component class to remove from, e.g. 'Line', 'Generator'.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "str | int | Sequence",
+          "default": null,
+          "description": "Name or list of names of the component(s) to delete.",
+          "required": true
+        },
+        {
+          "name": "suffix",
+          "type": "str",
+          "default": "''",
+          "description": "Suffix appended to each supplied name before matching.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; the named components are dropped from the network in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.remove('Line', 'ln')\nprint('num lines after removal =', len(n.lines))\n"
+      ]
+    },
+    {
+      "name": "set_snapshots",
+      "full_path": "pypsa.Network.set_snapshots",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.set_snapshots(snapshots, default_snapshot_weightings=1.0, weightings_from_timedelta=False)",
+      "description": "Defines the model's time index (the snapshots at which the network is evaluated) and reindexes every time-dependent component DataFrame onto it, filling new steps with default attribute values. Each snapshot receives a weighting (its representative duration in hours) used to scale energy, cost and storage balances; the weight defaults to 1.0 or, if requested, is inferred from a DatetimeIndex spacing. Setting snapshots is the first step in turning a static network into a multi-period optimisation or time series.",
+      "parameters": [
+        {
+          "name": "snapshots",
+          "type": "Sequence | pd.Index",
+          "default": null,
+          "description": "The full set of time steps (a list, range, DatetimeIndex or MultiIndex).",
+          "required": true
+        },
+        {
+          "name": "default_snapshot_weightings",
+          "type": "float",
+          "default": "1.0",
+          "description": "Default weight (representative hours) assigned to every snapshot.",
+          "required": false
+        },
+        {
+          "name": "weightings_from_timedelta",
+          "type": "bool",
+          "default": "False",
+          "description": "If True and snapshots is a DatetimeIndex, derive weightings from the time spacing.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; sets n.snapshots, n.snapshot_weightings and reindexes all time-varying data in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.set_snapshots(pd.date_range('2024-01-01', periods=24, freq='h'))\nprint('num snapshots =', len(n.snapshots))\n"
+      ]
+    },
+    {
+      "name": "calculate_dependent_values",
+      "full_path": "pypsa.Network.calculate_dependent_values",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.calculate_dependent_values()",
+      "description": "Recomputes the derived electrical quantities that the solvers need but that are not entered directly: chiefly the per-unit series impedances and shunt admittances of lines and transformers (x_pu, r_pu, b_pu) from their physical values and the bus voltage bases, plus standard-type expansions. It is normally called automatically inside pf/lpf/optimize, but a task that edits impedance or voltage-base attributes by hand and then reads x_pu without solving must call it explicitly to refresh the dependent columns.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; refreshes derived per-unit impedance/admittance columns (e.g. lines.x_pu) in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.calculate_dependent_values()\nprint('line x_pu =', round(float(n.lines.at['ln', 'x_pu']), 6))\n"
+      ]
+    },
+    {
+      "name": "determine_network_topology",
+      "full_path": "pypsa.Network.determine_network_topology",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.determine_network_topology(investment_period=None, skip_isolated_buses=False)",
+      "description": "Analyses how buses are wired together through passive branches (lines and transformers) and groups them into electrically connected sub-networks, populating n.sub_networks and tagging each bus and branch with its sub-network id and carrier. Controllable Links act as boundaries that separate sub-networks. This graph decomposition is a prerequisite for the power-flow and contingency routines, which solve each sub-network independently; it is run implicitly by pf/lpf but can be invoked directly to inspect connectivity.",
+      "parameters": [
+        {
+          "name": "investment_period",
+          "type": "int | str | None",
+          "default": "None",
+          "description": "If given, build topology from only the branches active in that investment period.",
+          "required": false
+        },
+        {
+          "name": "skip_isolated_buses",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, exclude buses that are not connected to any branch from the sub-networks.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "Network",
+          "description": "Returns the network (for chaining); populates n.sub_networks and per-bus/per-branch sub_network labels."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.determine_network_topology()\nprint('num sub_networks =', len(n.sub_networks))\n"
+      ]
+    },
+    {
+      "name": "copy",
+      "full_path": "pypsa.Network.copy",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.copy(snapshots=None, investment_periods=None, ignore_standard_types=False)",
+      "description": "Returns an independent deep copy of the network, duplicating all components and their static and time-varying data so that edits to the copy do not affect the original. With default arguments it uses copy.deepcopy for speed; passing a snapshot or investment-period subset instead produces a smaller copy restricted to those periods, useful for scenario branching on very large networks. It is the standard way to fork a base case before applying what-if modifications.",
+      "parameters": [
+        {
+          "name": "snapshots",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Snapshots to keep in the copy; None keeps all.",
+          "required": false
+        },
+        {
+          "name": "investment_periods",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Investment periods to keep in the copy; None keeps all.",
+          "required": false
+        },
+        {
+          "name": "ignore_standard_types",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, drop the standard line/transformer type tables from the copy.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "Network",
+          "description": "A new, fully independent pypsa.Network with the selected components and snapshots."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nm = n.copy()\nm.remove('Line', 'ln')\nprint('original lines =', len(n.lines), '| copy lines =', len(m.lines))\n"
+      ]
+    },
+    {
+      "name": "merge",
+      "full_path": "pypsa.Network.merge",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.merge(other, components_to_skip=None, inplace=False, with_time=True)",
+      "description": "Combines the components of another network into this one, requiring the two to have disjoint component names and, if time data is merged, identical snapshots. Attributes present in one network but not the other are filled with defaults, and unknown attributes are dropped. It is used to assemble a larger system from independently built sub-models (for example stitching regional networks together) either in place or as a returned copy.",
+      "parameters": [
+        {
+          "name": "other",
+          "type": "Network",
+          "default": null,
+          "description": "The network whose components are added into this one.",
+          "required": true
+        },
+        {
+          "name": "components_to_skip",
+          "type": "Collection[str] | None",
+          "default": "None",
+          "description": "Component classes to leave out of the merge, e.g. ['Bus'].",
+          "required": false
+        },
+        {
+          "name": "inplace",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, merge into this network directly; otherwise return a merged copy.",
+          "required": false
+        },
+        {
+          "name": "with_time",
+          "type": "bool",
+          "default": "True",
+          "description": "If False, merge only static data and ignore time-varying series.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "Network | None",
+          "description": "The merged network, or None when inplace=True."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nna = pypsa.Network(); na.add('Bus', 'a'); na.add('Generator', 'ga', bus='a', p_nom=10.0)\nnb = pypsa.Network(); nb.add('Bus', 'b'); nb.add('Load', 'lb', bus='b', p_set=5.0)\nmerged = na.merge(nb, inplace=False)\nprint('merged buses =', len(merged.buses))\n"
+      ]
+    },
+    {
+      "name": "sanitize",
+      "full_path": "pypsa.Network.sanitize",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.sanitize()",
+      "description": "Heals a network's data integrity by running a set of clean-up operations, notably adding any buses that components reference but that are missing, registering carriers that components declare but that are absent from the Carrier table, and assigning default plot colours to carriers. It is a convenience step after programmatic or imported model construction to ensure that every cross-reference resolves and that consistency checks and plotting behave. It mutates the network in place and returns nothing.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; repairs missing buses/carriers and related integrity issues in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0')\nn.add('Generator', 'g', bus='b0', carrier='wind', p_nom=10.0)\nn.sanitize()\nprint('wind carrier registered =', 'wind' in n.carriers.index)\n"
+      ]
+    },
+    {
+      "name": "consistency_check",
+      "full_path": "pypsa.Network.consistency_check",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.consistency_check(check_dtypes=False, strict=None)",
+      "description": "Runs a battery of validation checks on the network and warns (or, in strict mode, raises) about structural or data problems: components attached to non-existent buses, singular or zero impedances, out-of-range per-unit limits, inconsistent time series, and similar. It is the pre-flight step that a task runs after building or modifying a network to catch modelling errors before they surface as opaque solver failures. By default problems are logged as warnings; passing a list of check names to strict turns those into errors.",
+      "parameters": [
+        {
+          "name": "check_dtypes",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, also verify that component attribute columns have their expected data types.",
+          "required": false
+        },
+        {
+          "name": "strict",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Names of checks that should raise a ConsistencyError instead of only warning ('all' makes every check strict).",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; logs warnings (or raises ConsistencyError in strict mode) for any inconsistency found."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.consistency_check()\nprint('consistency check completed for', len(n.buses), 'buses')\n"
+      ]
+    },
+    {
+      "name": "rename_component_names",
+      "full_path": "pypsa.Network.rename_component_names",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.rename_component_names(component, **kwargs)",
+      "description": "Renames components of a given class and updates every cross-reference to them elsewhere in the network, so that renaming a bus also rewrites the bus0/bus1/bus fields of the lines, generators and loads attached to it. The new names are supplied as old=new keyword pairs. This keeps the model internally consistent in a way that manually reassigning the DataFrame index would not, and is used to harmonise naming when integrating externally sourced data.",
+      "parameters": [
+        {
+          "name": "component",
+          "type": "str | Components",
+          "default": null,
+          "description": "Component class whose members are renamed, e.g. 'Bus'.",
+          "required": true
+        },
+        {
+          "name": "kwargs",
+          "type": "str",
+          "default": null,
+          "description": "Mapping of old name to new name, e.g. b0='bus_north'.",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; renames the components and rewrites all references to them in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.rename_component_names('Bus', b0='north', b1='south')\nprint('generator now sits at bus', n.generators.at['slack', 'bus'])\n"
+      ]
+    },
+    {
+      "name": "slice_network",
+      "full_path": "pypsa.Network.slice_network",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.slice_network(buses=None, snapshots=None)",
+      "description": "Returns a copy of the network reduced to a chosen set of buses (and optionally a subset of snapshots), keeping only those buses and the components attached to them. Any pandas .loc-style indexer works for the bus selection. It is the tool for carving a regional or study-area subsystem out of a larger model, or for shortening the time horizon, without disturbing the original network.",
+      "parameters": [
+        {
+          "name": "buses",
+          "type": "str | Sequence | slice | None",
+          "default": "None",
+          "description": "Buses to retain (name, list, boolean mask or slice); None keeps all buses.",
+          "required": false
+        },
+        {
+          "name": "snapshots",
+          "type": "int | Sequence | slice | None",
+          "default": "None",
+          "description": "Snapshots to retain; None keeps all snapshots.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "Network",
+          "description": "A new network containing only the selected buses (with their attached components) and snapshots."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', ['b0', 'b1'])\nn.add('Load', 'l0', bus='b0', p_set=5.0)\nn.add('Load', 'l1', bus='b1', p_set=7.0)\nsub = n.slice_network(buses=['b0'])\nprint('sliced buses =', list(sub.buses.index))\n"
+      ]
+    },
+    {
+      "name": "import_from_pandapower_net",
+      "full_path": "pypsa.Network.import_from_pandapower_net",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.import_from_pandapower_net(net, extra_line_data=False, use_pandapower_index=False)",
+      "description": "Converts a pandapower network object into PyPSA components, mapping pandapower buses, lines, transformers, loads, generators and external grids onto their PyPSA equivalents. It is the cross-library bridge that lets a model built in pandapower's distribution-oriented API be analysed with PyPSA's power-flow and optimisation tools. Conversion is still in beta: three-winding transformers, switches, in-service flags and tap positions are not carried over.",
+      "parameters": [
+        {
+          "name": "net",
+          "type": "pandapowerNet",
+          "default": null,
+          "description": "The pandapower network object to import.",
+          "required": true
+        },
+        {
+          "name": "extra_line_data",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, import full per-parameter line data rather than only the standard type.",
+          "required": false
+        },
+        {
+          "name": "use_pandapower_index",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, keep pandapower's integer indices as component names instead of the net.name labels.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; populates the PyPSA network in place with the converted pandapower components."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nimport pandapower as pp\nnet = pp.create_empty_network()\nb1 = pp.create_bus(net, vn_kv=20.0, name='b1')\nb2 = pp.create_bus(net, vn_kv=20.0, name='b2')\npp.create_ext_grid(net, bus=b1, name='slack')\npp.create_load(net, bus=b2, p_mw=1.0, name='ld')\npp.create_line(net, from_bus=b1, to_bus=b2, length_km=1.0, std_type='NAYY 4x50 SE', name='ln')\nn = pypsa.Network()\nn.import_from_pandapower_net(net)\nprint('imported buses =', len(n.buses))\n"
+      ]
+    },
+    {
+      "name": "import_from_csv_folder",
+      "full_path": "pypsa.Network.import_from_csv_folder",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.import_from_csv_folder(path, encoding=None, quotechar='\"', skip_time=False)",
+      "description": "Loads a complete network from a folder of CSV files in PyPSA's standard on-disk layout, where each component class has one static CSV (e.g. generators.csv) and each time-varying attribute its own CSV (e.g. generators-p_set.csv). It reconstructs all components, their attributes and snapshots, making it the canonical way to read a saved case for analysis. skip_time loads only the static data when the time series are not needed.",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "str | Path",
+          "default": null,
+          "description": "Folder containing the component CSV files in PyPSA standard form.",
+          "required": true
+        },
+        {
+          "name": "encoding",
+          "type": "str | None",
+          "default": "None",
+          "description": "Text encoding for reading the CSVs (e.g. 'utf-8').",
+          "required": false
+        },
+        {
+          "name": "quotechar",
+          "type": "str",
+          "default": "'\"'",
+          "description": "Character delimiting quoted fields in the CSVs.",
+          "required": false
+        },
+        {
+          "name": "skip_time",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, skip reading the time-dependent attribute files.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; builds the network in place from the CSV folder."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nimport tempfile, os\nsrc = pypsa.Network()\nsrc.add('Bus', 'b0', v_nom=20.0)\nsrc.add('Load', 'ld', bus='b0', p_set=12.0)\nd = tempfile.mkdtemp()\nsrc.export_to_csv_folder(d)\nn = pypsa.Network()\nn.import_from_csv_folder(d)\nprint('reimported buses =', len(n.buses))\n"
+      ]
+    },
+    {
+      "name": "export_to_csv_folder",
+      "full_path": "pypsa.Network.export_to_csv_folder",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.export_to_csv_folder(path, encoding=None, quotechar='\"', export_standard_types=False)",
+      "description": "Writes the whole network to a folder of CSV files in PyPSA's standard layout: one static CSV per component class and one CSV per time-varying attribute, storing only non-default values to keep the output compact. It is the persistence counterpart of import_from_csv_folder and the recommended way to checkpoint or share a case, including any solved results present on the network. The folder is created if it does not exist.",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "Path | str",
+          "default": null,
+          "description": "Destination folder to which the CSVs are written (created if absent).",
+          "required": true
+        },
+        {
+          "name": "encoding",
+          "type": "str | None",
+          "default": "None",
+          "description": "Text encoding for writing the CSVs.",
+          "required": false
+        },
+        {
+          "name": "quotechar",
+          "type": "str",
+          "default": "'\"'",
+          "description": "Character used to quote fields in the CSVs.",
+          "required": false
+        },
+        {
+          "name": "export_standard_types",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, also export the standard line/transformer type tables.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; writes the component and time-series CSVs into the target folder."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nimport tempfile, os\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Generator', 'g', bus='b0', p_nom=5.0)\nd = tempfile.mkdtemp()\nn.export_to_csv_folder(d)\nprint('buses.csv written =', os.path.exists(os.path.join(d, 'buses.csv')))\n"
+      ]
+    },
+    {
+      "name": "set_investment_periods",
+      "full_path": "pypsa.Network.set_investment_periods",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.set_investment_periods(periods)",
+      "description": "Sets up multi-horizon capacity-expansion planning by declaring the investment periods (e.g. milestone years) of the network. It turns the snapshots into a MultiIndex whose first level is the period and second level the within-period time steps, repeating the time series across periods as needed. Combined with optimize(multi_investment_periods=True) this lets assets be built, aged out and dispatched across several planning stages in one problem.",
+      "parameters": [
+        {
+          "name": "periods",
+          "type": "Sequence",
+          "default": null,
+          "description": "The investment periods to initialise, e.g. [2030, 2040, 2050].",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "None",
+          "description": "Returns None; sets n.investment_periods and rebuilds n.snapshots as a (period, snapshot) MultiIndex in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.set_snapshots(pd.date_range('2030-01-01', periods=2, freq='h'))\nn.add('Bus', 'b')\nn.set_investment_periods([2030, 2040])\nprint('investment periods =', list(n.investment_periods))\n"
+      ]
+    },
+    {
+      "name": "get_switchable_as_dense",
+      "full_path": "pypsa.Network.get_switchable_as_dense",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.get_switchable_as_dense(component, attr, snapshots=None, inds=None)",
+      "description": "Materialises a component attribute that may be either static or time-varying into a full dense snapshots-by-components DataFrame, filling the columns of components that hold a single static value with that value repeated over time. This resolves PyPSA's mixed static/series storage into one uniform table, which is exactly how the solvers read attributes such as a generator's p_max_pu availability or p_set. It is handy for uniformly inspecting or post-processing an attribute regardless of how it was entered.",
+      "parameters": [
+        {
+          "name": "component",
+          "type": "str",
+          "default": null,
+          "description": "Component class name, e.g. 'Generator', 'Load', 'Link'.",
+          "required": true
+        },
+        {
+          "name": "attr",
+          "type": "str",
+          "default": null,
+          "description": "Attribute to densify, e.g. 'p_max_pu', 'p_set'.",
+          "required": true
+        },
+        {
+          "name": "snapshots",
+          "type": "Sequence | None",
+          "default": "None",
+          "description": "Restrict to these snapshots instead of all of n.snapshots.",
+          "required": false
+        },
+        {
+          "name": "inds",
+          "type": "pd.Index | None",
+          "default": "None",
+          "description": "Restrict to these component names instead of all of them.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Dense DataFrame, rows = snapshots, columns = component names, with static values broadcast across time."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.set_snapshots(range(3))\nn.add('Bus', 'b')\nn.add('Generator', 'g', bus='b', p_nom=10.0, p_max_pu=0.8)\ndense = n.get_switchable_as_dense('Generator', 'p_max_pu')\nprint('dense shape =', dense.shape, '| value =', round(float(dense.iloc[0, 0]), 6))\n"
+      ]
+    },
+    {
+      "name": "iterate_components",
+      "full_path": "pypsa.Network.iterate_components",
+      "category": "network_modification",
+      "type": "method",
+      "signature": "pypsa.Network.iterate_components(components=None, skip_empty=True)",
+      "description": "Iterates over the network's component groups, yielding a Component object for each class (Bus, Generator, Line, ...) that bundles its name, its static DataFrame and its dictionary of time-varying DataFrames. It is the generic way to loop over every component type when writing model-wide operations such as a bulk rename, audit or export, rather than hard-coding each class. (In recent PyPSA this is superseded by iterating n.components directly.)",
+      "parameters": [
+        {
+          "name": "components",
+          "type": "Collection[str] | None",
+          "default": "None",
+          "description": "Restrict iteration to these component classes; None iterates all.",
+          "required": false
+        },
+        {
+          "name": "skip_empty",
+          "type": "bool",
+          "default": "True",
+          "description": "If True, skip component classes that currently have no members.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "Iterator[Component]",
+          "description": "An iterator of Component objects, each exposing .name, .static and .dynamic for one component class."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nnames = [c.name for c in n.iterate_components()]\nprint('Bus among components =', 'Bus' in names)\n"
+      ]
+    },
+    {
+      "name": "buses",
+      "full_path": "pypsa.Network.buses",
+      "category": "network_modification",
+      "type": "attribute",
+      "signature": "n.buses.at['b0', 'v_nom']  # static component DataFrame, indexed by bus name",
+      "description": "The static component DataFrame holding the electrical nodes of the network, one row per bus and one column per input attribute (v_nom (nominal voltage in kV), x/y coordinates, carrier, control type and the per-unit voltage limits). It is a live, editable pandas table: assigning to a cell (n.buses.at[name, attr] = value) changes the model, which makes it the direct target for network-modification tasks that tune ratings, costs, limits or connectivity before re-solving. Time-varying attributes live in the parallel n.buses_t tables rather than here.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute table for the Bus components, indexed by component name; editable in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=110.0)\nprint('buses attribute =', round(float(n.buses.at['b0', 'v_nom']), 6))\n"
+      ]
+    },
+    {
+      "name": "generators",
+      "full_path": "pypsa.Network.generators",
+      "category": "network_modification",
+      "type": "attribute",
+      "signature": "n.generators.at['g', 'p_nom']  # static component DataFrame, indexed by generator name",
+      "description": "The static component DataFrame holding the dispatchable and variable generators, one row per generator and one column per input attribute (bus, p_nom (rated power), marginal_cost, carrier, p_min_pu/p_max_pu availability and the p_nom_extendable expansion flag). It is a live, editable pandas table: assigning to a cell (n.generators.at[name, attr] = value) changes the model, which makes it the direct target for network-modification tasks that tune ratings, costs, limits or connectivity before re-solving. Time-varying attributes live in the parallel n.generators_t tables rather than here.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute table for the Generator components, indexed by component name; editable in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0')\nn.add('Generator', 'g', bus='b0', p_nom=100.0, marginal_cost=30.0)\nprint('generators attribute =', round(float(n.generators.at['g', 'p_nom']), 6))\n"
+      ]
+    },
+    {
+      "name": "lines",
+      "full_path": "pypsa.Network.lines",
+      "category": "network_modification",
+      "type": "attribute",
+      "signature": "n.lines.at['ln', 's_nom']  # static component DataFrame, indexed by line name",
+      "description": "The static component DataFrame holding the AC transmission lines, one row per line and one column per input attribute (bus0, bus1, the series resistance r and reactance x, the shunt susceptance b and the apparent-power rating s_nom). It is a live, editable pandas table: assigning to a cell (n.lines.at[name, attr] = value) changes the model, which makes it the direct target for network-modification tasks that tune ratings, costs, limits or connectivity before re-solving. Time-varying attributes live in the parallel n.lines_t tables rather than here.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute table for the Line components, indexed by component name; editable in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0')\nn.add('Bus', 'b1')\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nprint('lines attribute =', round(float(n.lines.at['ln', 's_nom']), 6))\n"
+      ]
+    },
+    {
+      "name": "loads",
+      "full_path": "pypsa.Network.loads",
+      "category": "network_modification",
+      "type": "attribute",
+      "signature": "n.loads.at['load', 'p_set']  # static component DataFrame, indexed by load name",
+      "description": "The static component DataFrame holding the electrical demands, one row per load and one column per input attribute (bus and the active/reactive setpoints p_set and q_set (either scalar or snapshot-indexed)). It is a live, editable pandas table: assigning to a cell (n.loads.at[name, attr] = value) changes the model, which makes it the direct target for network-modification tasks that tune ratings, costs, limits or connectivity before re-solving. Time-varying attributes live in the parallel n.loads_t tables rather than here.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute table for the Load components, indexed by component name; editable in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0')\nn.add('Load', 'load', bus='b0', p_set=50.0, q_set=10.0)\nprint('loads attribute =', round(float(n.loads.at['load', 'p_set']), 6))\n"
+      ]
+    },
+    {
+      "name": "transformers",
+      "full_path": "pypsa.Network.transformers",
+      "category": "network_modification",
+      "type": "attribute",
+      "signature": "n.transformers.at['tr', 's_nom']  # static component DataFrame, indexed by transformer name",
+      "description": "The static component DataFrame holding the two-winding transformers, one row per transformer and one column per input attribute (bus0, bus1, the per-unit impedance (x, r), the tap_ratio and the apparent-power rating s_nom). It is a live, editable pandas table: assigning to a cell (n.transformers.at[name, attr] = value) changes the model, which makes it the direct target for network-modification tasks that tune ratings, costs, limits or connectivity before re-solving. Time-varying attributes live in the parallel n.transformers_t tables rather than here.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute table for the Transformer components, indexed by component name; editable in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'hv', v_nom=110.0)\nn.add('Bus', 'lv', v_nom=20.0)\nn.add('Transformer', 'tr', bus0='hv', bus1='lv', x=0.1, r=0.01, s_nom=100.0)\nprint('transformers attribute =', round(float(n.transformers.at['tr', 's_nom']), 6))\n"
+      ]
+    },
+    {
+      "name": "links",
+      "full_path": "pypsa.Network.links",
+      "category": "network_modification",
+      "type": "attribute",
+      "signature": "n.links.at['lk', 'p_nom']  # static component DataFrame, indexed by link name",
+      "description": "The static component DataFrame holding the controllable point-to-point links (HVDC, converters, conversion processes), one row per link and one column per input attribute (bus0, bus1, the rated power p_nom, the conversion efficiency and the dispatch limits p_min_pu/p_max_pu). It is a live, editable pandas table: assigning to a cell (n.links.at[name, attr] = value) changes the model, which makes it the direct target for network-modification tasks that tune ratings, costs, limits or connectivity before re-solving. Time-varying attributes live in the parallel n.links_t tables rather than here.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute table for the Link components, indexed by component name; editable in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0')\nn.add('Bus', 'b1')\nn.add('Link', 'lk', bus0='b0', bus1='b1', p_nom=50.0, efficiency=0.95)\nprint('links attribute =', round(float(n.links.at['lk', 'p_nom']), 6))\n"
+      ]
+    },
+    {
+      "name": "storage_units",
+      "full_path": "pypsa.Network.storage_units",
+      "category": "network_modification",
+      "type": "attribute",
+      "signature": "n.storage_units.at['su', 'p_nom']  # static component DataFrame, indexed by storageunit name",
+      "description": "The static component DataFrame holding the power-and-energy storage units (batteries, pumped hydro), one row per storageunit and one column per input attribute (bus, the power rating p_nom, max_hours (energy-to-power ratio), the round-trip efficiencies and marginal_cost). It is a live, editable pandas table: assigning to a cell (n.storage_units.at[name, attr] = value) changes the model, which makes it the direct target for network-modification tasks that tune ratings, costs, limits or connectivity before re-solving. Time-varying attributes live in the parallel n.storage_units_t tables rather than here.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute table for the StorageUnit components, indexed by component name; editable in place."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0')\nn.add('StorageUnit', 'su', bus='b0', p_nom=20.0, max_hours=4.0)\nprint('storage_units attribute =', round(float(n.storage_units.at['su', 'p_nom']), 6))\n"
+      ]
+    },
+    {
+      "name": "statistics",
+      "full_path": "pypsa.Network.statistics",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "pypsa.Network.statistics(comps=None, groupby='carrier', aggregate_across_components=False, nice_names=None)",
+      "description": "Computes a consolidated table of aggregate network metrics in one call, deriving quantities such as installed and optimal capacity, energy supply and withdrawal, capacity factor, curtailment, capital and operational expenditure, revenue and market value. Rows are grouped by component and, by default, by carrier, giving a compact techno-economic summary of a solved network. It is the high-level result-extraction entry point that replaces manually assembling these figures from the individual result tables.",
+      "parameters": [
+        {
+          "name": "comps",
+          "type": "str | Sequence[str] | None",
+          "default": "None",
+          "description": "Components to include (e.g. 'Generator'); None includes all one-port and branch components.",
+          "required": false
+        },
+        {
+          "name": "groupby",
+          "type": "str | Sequence | Callable",
+          "default": "'carrier'",
+          "description": "How to group the rows (e.g. 'carrier', a column list, or False for no grouping).",
+          "required": false
+        },
+        {
+          "name": "aggregate_across_components",
+          "type": "bool",
+          "default": "False",
+          "description": "If True, aggregate rows that share an index across different component types.",
+          "required": false
+        },
+        {
+          "name": "nice_names",
+          "type": "bool | None",
+          "default": "None",
+          "description": "Use human-readable carrier names in the index when available.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "DataFrame indexed by (component, carrier) with one column per metric (Optimal Capacity, Supply, Capital Expenditure, ...)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nstats = n.statistics()\nprint('metrics available =', 'Capital Expenditure' in stats.columns)\n"
+      ]
+    },
+    {
+      "name": "stats",
+      "full_path": "pypsa.Network.stats",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "pypsa.Network.stats(comps=None, groupby='carrier')",
+      "description": "A short alias for n.statistics, exposing the same StatisticsAccessor that computes the consolidated table of aggregate network metrics (capacity, supply, curtailment, expenditure, revenue, market value) grouped by component and carrier. The accessor is also callable at sub-metric granularity via attributes like n.stats.capex() or n.stats.energy_balance() when only a single quantity is wanted. Use it as the terse entry point to a solved network's techno-economic summary.",
+      "parameters": [
+        {
+          "name": "comps",
+          "type": "str | Sequence[str] | None",
+          "default": "None",
+          "description": "Components to include; None includes all one-port and branch components.",
+          "required": false
+        },
+        {
+          "name": "groupby",
+          "type": "str | Sequence | Callable",
+          "default": "'carrier'",
+          "description": "How to group the rows of the summary table.",
+          "required": false
+        }
+      ],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Same consolidated metrics table as n.statistics(); or a per-metric Series via sub-methods such as n.stats.capex()."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\ncapex = n.stats.capex()\nprint('capex entries =', int(len(capex)))\n"
+      ]
+    },
+    {
+      "name": "static",
+      "full_path": "pypsa.Network.static",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "pypsa.Network.static(component_name)",
+      "description": "Returns the static (time-invariant) attribute DataFrame for a named component class, e.g. n.static('Generator') gives the generators table with one row per generator and one column per input attribute. It is the programmatic accessor equivalent to n.generators, useful when the component class is chosen at runtime by string. (In recent PyPSA it is superseded by n.components[name].static.)",
+      "parameters": [
+        {
+          "name": "component_name",
+          "type": "str",
+          "default": null,
+          "description": "Component class name, e.g. 'Bus', 'Generator', 'Line'.",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute DataFrame for the requested component class, indexed by component name."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\ngens = n.static('Generator')\nprint('num generators =', len(gens), '| p_set =', float(gens.at['slack', 'p_set']))\n"
+      ]
+    },
+    {
+      "name": "df",
+      "full_path": "pypsa.Network.df",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "pypsa.Network.df(component_name)",
+      "description": "An alias for n.static: it returns the static attribute DataFrame of a named component class selected by string. The two names are interchangeable, with df being the terser historical spelling used in much PyPSA example code. It gives the same one-row-per-component table (e.g. n.df('Line') for the lines) and is superseded in recent versions by n.components[name].static.",
+      "parameters": [
+        {
+          "name": "component_name",
+          "type": "str",
+          "default": null,
+          "description": "Component class name, e.g. 'Bus', 'Line', 'Load'.",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Static attribute DataFrame for the requested component class (identical to n.static)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nlines = n.df('Line')\nprint('line reactance x =', round(float(lines.at['ln', 'x']), 6))\n"
+      ]
+    },
+    {
+      "name": "dynamic",
+      "full_path": "pypsa.Network.dynamic",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "pypsa.Network.dynamic(component_name)",
+      "description": "Returns the dictionary of time-varying DataFrames for a named component class, keyed by attribute name; e.g. n.dynamic('Generator')['p'] is the generator dispatch table (snapshots x generators). This is the accessor that reaches every snapshot-indexed input or result of a component when the class is given as a string, and is the counterpart of static for time series. (In recent PyPSA it is superseded by n.components[name].dynamic.)",
+      "parameters": [
+        {
+          "name": "component_name",
+          "type": "str",
+          "default": null,
+          "description": "Component class name, e.g. 'Generator', 'Line', 'Load'.",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "dict",
+          "description": "Dict of pandas DataFrames keyed by attribute (e.g. 'p', 'p0', 'q'), each indexed by snapshot x component."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\ngen_dyn = n.dynamic('Generator')\nprint('slack dispatch p =', round(float(gen_dyn['p'].iloc[0, 0]), 6))\n"
+      ]
+    },
+    {
+      "name": "pnl",
+      "full_path": "pypsa.Network.pnl",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "pypsa.Network.pnl(component_name)",
+      "description": "An alias for n.dynamic (the name stands for 'panel'): it returns the dictionary of snapshot-indexed DataFrames for a component class selected by string, keyed by attribute. n.pnl('Line')['p0'] gives the sending-end line flows over time, exactly as n.dynamic('Line')['p0'] would. It is the terse historical spelling common in PyPSA scripts, superseded in recent versions by n.components[name].dynamic.",
+      "parameters": [
+        {
+          "name": "component_name",
+          "type": "str",
+          "default": null,
+          "description": "Component class name, e.g. 'Line', 'Generator', 'StorageUnit'.",
+          "required": true
+        }
+      ],
+      "return_info": [
+        {
+          "type": "dict",
+          "description": "Dict of time-varying DataFrames keyed by attribute (identical to n.dynamic)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nline_pnl = n.pnl('Line')\nprint('line flow p0 =', round(float(line_pnl['p0'].iloc[0, 0]), 6))\n"
+      ]
+    },
+    {
+      "name": "branches",
+      "full_path": "pypsa.Network.branches",
+      "category": "result_extraction",
+      "type": "method",
+      "signature": "pypsa.Network.branches()",
+      "description": "Returns a merged, read-only copy of every branch in the network, i.e. all Lines, Transformers and Links combined into a single DataFrame indexed by (component, name) with the union of their attributes. It gives a one-shot view of the full set of connecting elements for reporting or graph analysis, spanning both the impedance-governed passive branches and the controllable links. Because it is a copy, edits to it do not propagate back to the network.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "MultiIndex (component, name) DataFrame of all Lines, Transformers and Links with combined attributes (a copy)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.add('Bus', 'b2', v_nom=20.0)\nn.add('Link', 'lk', bus0='b1', bus1='b2', p_nom=50.0)\nbr = n.branches()\nprint('num branches =', len(br))\n"
+      ]
+    },
+    {
+      "name": "buses_t_v_mag_pu",
+      "full_path": "pypsa.Network.buses_t.v_mag_pu",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.buses_t.v_mag_pu  # DataFrame (snapshots x buses); per-unit voltage magnitude",
+      "description": "The per-unit voltage-magnitude table filled by the non-linear power flow: for each snapshot and bus, the solved voltage magnitude divided by the bus nominal voltage. It is the primary voltage-quality result of an AC power flow, scanned to detect under- or over-voltage buses (e.g. outside 0.95-1.05 pu). After a purely linear power flow these values stay pinned at their setpoint, since lpf solves only angles.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = bus names, giving per-unit voltage magnitude after n.pf()."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('v_mag_pu at b1 =', round(float(n.buses_t.v_mag_pu.loc[n.snapshots[0], 'b1']), 6))\n"
+      ]
+    },
+    {
+      "name": "buses_t_v_ang",
+      "full_path": "pypsa.Network.buses_t.v_ang",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.buses_t.v_ang  # DataFrame (snapshots x buses); voltage angle in radians",
+      "description": "The bus voltage-angle table (in radians) produced by both the non-linear and the linear power flow. Angle differences across a branch drive its active-power flow, so this table underlies power-transfer and congestion analysis; the slack bus is the angle reference at zero. In the linearised power flow the angles are the sole solved state, whereas the AC flow computes them jointly with voltage magnitudes.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = bus names, giving voltage angles in radians."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('v_ang at b1 (rad) =', round(float(n.buses_t.v_ang.loc[n.snapshots[0], 'b1']), 6))\n"
+      ]
+    },
+    {
+      "name": "buses_t_p",
+      "full_path": "pypsa.Network.buses_t.p",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.buses_t.p  # DataFrame (snapshots x buses); net active power injection MW",
+      "description": "The net active-power injection at each bus for each snapshot, i.e. the algebraic sum of all generation, load and branch flows at that node (positive when the bus injects power into the network). It is the nodal active-power balance result of a power flow or optimization, useful for verifying that supply meets demand at each node and for identifying import/export buses.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = bus names, giving net active-power injection (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('net injection at b0 =', round(float(n.buses_t.p.loc[n.snapshots[0], 'b0']), 6))\n"
+      ]
+    },
+    {
+      "name": "generators_t_p",
+      "full_path": "pypsa.Network.generators_t.p",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.generators_t.p  # DataFrame (snapshots x generators); active dispatch MW",
+      "description": "The active-power dispatch of every generator at every snapshot, filled by the power flow (where the slack generator absorbs the balance) or by the optimization (where dispatch minimises cost within capacity and availability limits). It is the central generation result: reading it shows how much each unit produced, and summing across generators gives total supply. Costs, emissions and revenues all derive from this table.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = generator names, giving active-power output (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'cheap', bus='b0', p_nom=100.0, marginal_cost=10.0)\nn.add('Generator', 'peak', bus='b1', p_nom=100.0, marginal_cost=80.0)\nn.add('Load', 'load', bus='b1', p_set=90.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.01, s_nom=200.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('cheap generator dispatch =', round(float(n.generators_t.p.loc[n.snapshots[0], 'cheap']), 6))\n"
+      ]
+    },
+    {
+      "name": "generators_t_q",
+      "full_path": "pypsa.Network.generators_t.q",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.generators_t.q  # DataFrame (snapshots x generators); reactive power MVar",
+      "description": "The reactive-power output of each generator at each snapshot, computed by the non-linear AC power flow so that voltage-controlling (PV) and slack generators supply or absorb the reactive power needed to hold their voltage setpoints. It is meaningful only after n.pf(); the linear power flow and the linear OPF do not model reactive power and leave it unset. Reading it supports reactive-dispatch and voltage-support analysis.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = generator names, giving reactive-power output (MVar) after n.pf()."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('slack reactive output =', round(float(n.generators_t.q.loc[n.snapshots[0], 'slack']), 6))\n"
+      ]
+    },
+    {
+      "name": "loads_t_p",
+      "full_path": "pypsa.Network.loads_t.p",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.loads_t.p  # DataFrame (snapshots x loads); active power consumed MW",
+      "description": "The active power actually consumed by each load at each snapshot. For standard fixed loads this equals the p_set demand input, so the table confirms the demand realised in the solution; it is materialised as a result so that load-shedding or price-elastic formulations, where served demand can differ from nominal, are represented uniformly. Summing it gives total system demand for a balance check against generation.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = load names, giving active power consumed (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('load consumption =', round(float(n.loads_t.p.loc[n.snapshots[0], 'load']), 6))\n"
+      ]
+    },
+    {
+      "name": "lines_t_p0",
+      "full_path": "pypsa.Network.lines_t.p0",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.lines_t.p0  # DataFrame (snapshots x lines); sending-end active flow MW",
+      "description": "The active-power flow into each line at its bus0 (sending) end, for each snapshot. It is the primary branch-flow result used to check line loading against the s_nom rating and to trace power transfer through the network. The sign gives the flow direction (positive means power enters at bus0), and the small difference between p0 and -p1 in the non-linear flow reflects the line's resistive losses.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = line names, giving bus0-end active flow (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('line p0 =', round(float(n.lines_t.p0.loc[n.snapshots[0], 'ln']), 6))\n"
+      ]
+    },
+    {
+      "name": "lines_t_p1",
+      "full_path": "pypsa.Network.lines_t.p1",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.lines_t.p1  # DataFrame (snapshots x lines); receiving-end active flow MW",
+      "description": "The active-power flow into each line at its bus1 (receiving) end, for each snapshot. Together with p0 it captures both terminals of the branch, and their sum p0 + p1 equals the active power dissipated as resistive loss in the non-linear power flow (it is zero in the lossless linear flow). Reading it supports per-line loss accounting and confirms the direction of delivered power.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = line names, giving bus1-end active flow (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('line p1 =', round(float(n.lines_t.p1.loc[n.snapshots[0], 'ln']), 6))\n"
+      ]
+    },
+    {
+      "name": "lines_t_q0",
+      "full_path": "pypsa.Network.lines_t.q0",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.lines_t.q0  # DataFrame (snapshots x lines); sending-end reactive flow MVar",
+      "description": "The reactive-power flow into each line at its bus0 (sending) end, populated by the non-linear AC power flow. It quantifies the reactive transport and, with q1, the reactive losses and charging of the line, which are central to voltage-profile and reactive-compensation studies. Being an AC quantity it is only set after n.pf() and remains unset under the linear power flow and linear OPF.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = line names, giving bus0-end reactive flow (MVar) after n.pf()."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('line q0 =', round(float(n.lines_t.q0.loc[n.snapshots[0], 'ln']), 6))\n"
+      ]
+    },
+    {
+      "name": "lines_t_q1",
+      "full_path": "pypsa.Network.lines_t.q1",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.lines_t.q1  # DataFrame (snapshots x lines); receiving-end reactive flow MVar",
+      "description": "The reactive-power flow into each line at its bus1 (receiving) end, computed by the non-linear AC power flow. Paired with q0 it closes the reactive balance of the branch and reveals the reactive absorbed or generated along the line (through its series reactance and shunt susceptance). Like the other AC reactive results it is meaningful only after n.pf().",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = line names, giving bus1-end reactive flow (MVar) after n.pf()."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'slack', bus='b0', control='Slack', p_set=100.0)\nn.add('Load', 'load', bus='b1', p_set=100.0, q_set=20.0)\nn.add('Line', 'ln', bus0='b0', bus1='b1', x=0.1, r=0.03, s_nom=200.0)\nn.pf()\nprint('line q1 =', round(float(n.lines_t.q1.loc[n.snapshots[0], 'ln']), 6))\n"
+      ]
+    },
+    {
+      "name": "transformers_t_p0",
+      "full_path": "pypsa.Network.transformers_t.p0",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.transformers_t.p0  # DataFrame (snapshots x transformers); primary-side active flow MW",
+      "description": "The active-power flow into each transformer at its bus0 (primary) side, for each snapshot after a power flow. Transformers are passive branches like lines, so this is the through-power crossing the transformer between voltage levels, checked against its s_nom rating for loading. It is the transformer counterpart of lines_t.p0 and, with p1, allows transformer loss and utilisation accounting.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = transformer names, giving bus0-side active flow (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'hv', v_nom=110.0)\nn.add('Bus', 'mv', v_nom=20.0)\nn.add('Generator', 'slack', bus='hv', control='Slack', p_set=30.0)\nn.add('Load', 'load', bus='mv', p_set=30.0, q_set=10.0)\nn.add('Transformer', 'tr', bus0='hv', bus1='mv', x=0.1, r=0.01, s_nom=100.0)\nn.pf()\nprint('transformer p0 =', round(float(n.transformers_t.p0.loc[n.snapshots[0], 'tr']), 6))\n"
+      ]
+    },
+    {
+      "name": "links_t_p0",
+      "full_path": "pypsa.Network.links_t.p0",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.links_t.p0  # DataFrame (snapshots x links); bus0-side active flow MW",
+      "description": "The active-power flow into each Link at its bus0 end for each snapshot. Unlike lines, links are controllable, so this equals their dispatched setpoint in a power flow or the optimiser's chosen transfer in an OPF; the power delivered at bus1 is p0 scaled by the link efficiency. Reading it gives the HVDC / converter / conversion throughput, the key result for point-to-point transfer and sector-coupling elements.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = link names, giving bus0-side active flow (MW)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.add('Bus', 'b0', v_nom=20.0)\nn.add('Bus', 'b1', v_nom=20.0)\nn.add('Generator', 'g0', bus='b0', control='Slack', p_set=40.0)\nn.add('Generator', 'g1', bus='b1', control='Slack', p_set=0.0)\nn.add('Load', 'l0', bus='b0', p_set=10.0)\nn.add('Load', 'l1', bus='b1', p_set=20.0)\nn.add('Link', 'lk', bus0='b0', bus1='b1', p_nom=50.0, p_set=15.0)\nn.pf()\nprint('link p0 =', round(float(n.links_t.p0.loc[n.snapshots[0], 'lk']), 6))\n"
+      ]
+    },
+    {
+      "name": "storage_units_t_p",
+      "full_path": "pypsa.Network.storage_units_t.p",
+      "category": "result_extraction",
+      "type": "attribute",
+      "signature": "n.storage_units_t.p  # DataFrame (snapshots x storage units); net power MW",
+      "description": "The net active power of each storage unit at each snapshot, with the sign convention that positive means discharging (injecting into the bus) and negative means charging (absorbing). Produced by the optimization, it shows the dispatch schedule the storage followed to shift energy across time, and integrates (with efficiencies) into the state-of-charge trajectory. It is the storage analogue of a generator's dispatch table.",
+      "parameters": [],
+      "return_info": [
+        {
+          "type": "pandas.DataFrame",
+          "description": "Float DataFrame, rows = snapshots, columns = storage-unit names, giving net power (MW; positive = discharge)."
+        }
+      ],
+      "examples": [
+        "import warnings; warnings.filterwarnings('ignore')\nimport logging; logging.disable(logging.WARNING)\nimport pandas as pd\npd.set_option('future.infer_string', False)\nimport pypsa\nn = pypsa.Network()\nn.set_snapshots(range(3))\nn.add('Bus', 'b', v_nom=20.0)\nn.add('Generator', 'g', bus='b', p_nom=100.0, marginal_cost=[50.0, 10.0, 50.0])\nn.add('Load', 'load', bus='b', p_set=[30.0, 30.0, 30.0])\nn.add('StorageUnit', 'su', bus='b', p_nom=20.0, max_hours=4.0, marginal_cost=1.0)\nimport contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    n.optimize(solver_name='highs')\nprint('storage power at snapshot 2 =', round(float(n.storage_units_t.p.iloc[2, 0]), 6))\n"
+      ]
+    }
+  ]
+}

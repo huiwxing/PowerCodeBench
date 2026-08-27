@@ -1,0 +1,58 @@
+# environment.yaml — conda environment for the PowerCodeBench experiment pipeline.
+#
+# Version pins reflect the frozen experiment environment
+# (experiment-venv pip-freeze snapshot 2026-08-01) that produced
+# every result in the paper and its revision experiments.  The complete
+# 281-package freeze is in requirements.lock.txt (authoritative); this
+# file pins the packages that matter for reproduction.
+#
+# vLLM is NOT installed by this file.  Install it after the env is
+# created with:
+#
+#     pip install vllm==0.15.1
+#
+# (the experiment env ran vllm 0.15.1 with torch 2.9.1+cu129).  Doing it
+# in this file via the pip subsection can overwrite the conda-installed
+# CUDA-enabled torch with a CPU-only build.
+name: powercodebench
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  # conda-forge ships CUDA-enabled torch builds (including aarch64);
+  # keep torch on the conda side so vLLM does not later replace it.
+  - python=3.11
+  - pytorch
+  - pip
+
+  - pip:
+    # LLM / training stack
+    - transformers==4.57.6
+    - accelerate==1.13.0
+    - huggingface_hub==0.36.2
+    - hf_transfer==0.1.9
+    - bitsandbytes==0.49.2
+    - sentence-transformers==5.2.3
+    - tiktoken==0.12.0   # OpenAI token counting (llm_backend.py)
+
+    # Retrieval baselines
+    - rank-bm25==0.2.2
+    - scikit-learn==1.6.0
+
+    # Power-system simulators: pandapower is the benchmark target;
+    # OpenDSS + PyPSA are the E2 transfer backends.
+    - pandapower[all]==3.4.0
+    - opendssdirect.py==0.9.4
+    - pypsa==1.2.3
+
+    # Numerics + I/O
+    - numpy==2.2.6
+    - pandas==2.3.3
+    - matplotlib==3.10.8
+    - tqdm==4.67.3
+    - nvidia-ml-py==13.590.48  # NVML GPU energy/power/memory measurements (E3)
+
+    # OpenAI Python client (also used as the OpenAI-compatible client
+    # for DeepSeek; Anthropic / Gemini are called via stdlib urllib,
+    # so no extra SDK dependency is needed).
+    - openai==2.26.0

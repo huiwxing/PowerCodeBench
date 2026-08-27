@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "description": "Frozen item-level label ledger and representative excerpts for the 100-item stratified failure-taxonomy diagnostic.",
+  "source_repository": "the authors' pre-submission working records",
+  "source_repository_commit": "e185e0125fece1f2fbd6249c9bf3b14513ebeebc",
+  "source_paths_clean_at_export": true,
+  "files": [
+    {
+      "path": "audit/failure_taxonomy/taxonomy_results.json",
+      "role": "complete 100-item classification ledger plus archived cross-tabulations",
+      "source_path": "cl2_taxonomy_out/taxonomy_results.json",
+      "source_git_blob": "579dfbdbdb2816f46b6781143636b471913488b5",
+      "source_sha256": "74b765d2c25982afc8c321ab854ea5992dd9a9968912d2671893f789c24a8de5",
+      "source_size_bytes": 42945,
+      "release_sha256": "22fb1731257a1c407fc47c0a4f2ca8ea25c83afd4d9e7d820503976cb2e677b4",
+      "release_size_bytes": 42946,
+      "normalization": "one terminal LF appended; parsed JSON content unchanged"
+    },
+    {
+      "path": "audit/failure_taxonomy/taxonomy_exemplars.md",
+      "role": "representative code excerpts and category rationales",
+      "source_path": "cl2_taxonomy_out/taxonomy_exemplars.md",
+      "source_git_blob": "964a69987e37014f20b91db9080487a3ff115c75",
+      "source_sha256": "17a19921562b7c9a7e6ff0247b4c45c0b27f28bdf1dec3a87adc153b63bd9a3b",
+      "source_size_bytes": 7086,
+      "release_sha256": "555369420776ec5df9e4466babe02e76bc1d02bf03e1e70485d88b2db17c8de8",
+      "release_size_bytes": 7184,
+      "normalization": "title and introductory sentence rewritten for the public release; the per-category exemplar sections are unchanged"
+    }
+  ],
+  "pool_reconstruction": {
+    "path": "results/raw/main_experiment/primary_outcomes_compact.json",
+    "sha256_at_export_before_path_normalization": "f38ef207b35407a4aa89133f0bab665fda819515f1affee7e75b6cc83b97c7da",
+    "sha256_after_path_normalization": "9c1a817106c21e101d94b6193b1083d124f34428478dbd8ebc366ec4a908dc9e",
+    "normalization_audit": "audit/primary_diagnostic_path_normalization.json",
+    "definition": "match==false across all 11 open-weight models and conditions A_FX, A_FD, A_FDR, A_FDRS, and C_FDRS",
+    "expected_count": 89420
+  },
+  "scope_note": "The release independently rebuilds the sampling-frame count and every category/tier/condition/task tally. The historical ledger identifies samples by audit sample_id rather than original benchmark item_id, so it does not independently replay the deterministic sampler or re-adjudicate the labels."
+}

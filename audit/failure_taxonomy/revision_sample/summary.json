@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "status": "ok",
+  "n_records": 100,
+  "n_source_files_verified": 55,
+  "n_sampling_frame_match_false": 89420,
+  "tier_counts": {
+    "tier1": 25,
+    "tier2": 25,
+    "tier3": 25,
+    "tier4": 25
+  },
+  "condition_counts": {
+    "condA_FD": 20,
+    "condA_FDR": 20,
+    "condA_FDRS": 20,
+    "condA_FX": 20,
+    "condC_FDRS": 20
+  },
+  "cell_counts": {
+    "tier1|condA_FD": 5,
+    "tier1|condA_FDR": 5,
+    "tier1|condA_FDRS": 5,
+    "tier1|condA_FX": 5,
+    "tier1|condC_FDRS": 5,
+    "tier2|condA_FD": 5,
+    "tier2|condA_FDR": 5,
+    "tier2|condA_FDRS": 5,
+    "tier2|condA_FX": 5,
+    "tier2|condC_FDRS": 5,
+    "tier3|condA_FD": 5,
+    "tier3|condA_FDR": 5,
+    "tier3|condA_FDRS": 5,
+    "tier3|condA_FX": 5,
+    "tier3|condC_FDRS": 5,
+    "tier4|condA_FD": 5,
+    "tier4|condA_FDR": 5,
+    "tier4|condA_FDRS": 5,
+    "tier4|condA_FX": 5,
+    "tier4|condC_FDRS": 5
+  },
+  "model_counts": {
+    "Llama-3.1-405B": 10,
+    "Llama-3.1-70B": 15,
+    "Llama-3.1-8B": 8,
+    "Qwen2.5-Coder-0.5B": 14,
+    "Qwen2.5-Coder-1.5B": 11,
+    "Qwen2.5-Coder-14B": 7,
+    "Qwen2.5-Coder-32B": 5,
+    "Qwen2.5-Coder-7B": 5,
+    "Qwen3-Coder-480B": 9,
+    "Qwen3-Coder-Next": 6,
+    "gpt-oss-120b": 10
+  },
+  "task_counts": {
+    "comparison": 8,
+    "comparison_opf": 4,
+    "contingency": 5,
+    "contingency_fix": 6,
+    "dc_power_flow": 5,
+    "diagnose_and_fix": 6,
+    "opf": 3,
+    "parallel": 11,
+    "pf_then_sc": 13,
+    "power_flow": 10,
+    "sequential": 6,
+    "short_circuit_2ph": 6,
+    "short_circuit_3ph": 5,
+    "state_estimation": 8,
+    "time_series": 4
+  },
+  "checks": {
+    "all_55_source_hashes_verified": true,
+    "sampling_frame_matches_frozen_count": true,
+    "balanced_4_x_5_x_5": true,
+    "all_sampled_records_are_match_false": true,
+    "no_classification_fields_exported": true,
+    "public_sampling_frame_keys_exported": true
+  }
+}

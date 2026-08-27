@@ -1,0 +1,255 @@
+{
+ "meta": {
+  "purpose": "Post-fix (v2, B1-prime re-freeze) verification that defect D-6 is fully reversed: zero pandapower imports, target-library imports in every non-empty generation.",
+  "method": "same regex scan as transfer/import_scan_prefix_B2.json, read-only over the frozen v2 result files.",
+  "derived_from_frozen_data": true
+ },
+ "frozen_scope_13_files": {
+  "description": "The 13 v2 result files that existed at the 2026-07-27 frozen full-corpus scan (local models A/C/Rsem on both backends + DeepSeek OpenDSS condA); this is the scope quoted in SM S10.",
+  "total": {
+   "n_generations": 1170,
+   "pandapower_imports": 0,
+   "target_lib_imports": 1169
+  },
+  "opendss": {
+   "n_generations": 630,
+   "pandapower_imports": 0,
+   "target_lib_imports": 629
+  },
+  "pypsa": {
+   "n_generations": 540,
+   "pandapower_imports": 0,
+   "target_lib_imports": 540
+  },
+  "non_target_items": [
+   {
+    "file": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condA.json",
+    "items": [
+     {
+      "id": null,
+      "empty": true
+     }
+    ]
+   }
+  ],
+  "note": "SM S10 quotes: zero pp imports; 629/630 (OpenDSS) / 540/540 (PyPSA) target imports; the single OpenDSS miss is a DeepSeek empty generation (code_extraction_failed), not a wrong-library generation."
+ },
+ "full_corpus_24_files": {
+  "description": "Superset scan over all 24 v2 result files including the later-finishing DeepSeek cells and the budget-matched RsemB arms.",
+  "total": {
+   "n_generations": 2160,
+   "pandapower_imports": 0,
+   "target_lib_imports": 2158
+  },
+  "opendss": {
+   "n_generations": 1080,
+   "pandapower_imports": 0,
+   "target_lib_imports": 1079
+  },
+  "pypsa": {
+   "n_generations": 1080,
+   "pandapower_imports": 0,
+   "target_lib_imports": 1079
+  },
+  "non_target_items": [
+   {
+    "file": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condA.json",
+    "items": [
+     {
+      "id": null,
+      "empty": true
+     }
+    ]
+   },
+   {
+    "file": "probe_eval_results/e2_pypsa_bench_v2/deepseek-v4-flash/benchmark_results_condC.json",
+    "items": [
+     {
+      "id": null,
+      "empty": false
+     }
+    ]
+   }
+  ]
+ },
+ "per_file": [
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsemB.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 89,
+   "non_target_items": [
+    {
+     "id": null,
+     "empty": true
+    }
+   ]
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/deepseek-v4-flash/benchmark_results_condRsemB.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_opendss_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsemB.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condRsemB.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/deepseek-v4-flash/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/deepseek-v4-flash/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 89,
+   "non_target_items": [
+    {
+     "id": null,
+     "empty": false
+    }
+   ]
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/deepseek-v4-flash/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/deepseek-v4-flash/benchmark_results_condRsemB.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsem.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  },
+  {
+   "file": "probe_eval_results/e2_pypsa_bench_v2/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condRsemB.json",
+   "n_generations": 90,
+   "pandapower_imports": 0,
+   "target_lib_imports": 90,
+   "non_target_items": []
+  }
+ ]
+}

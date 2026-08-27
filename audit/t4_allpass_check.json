@@ -1,0 +1,1927 @@
+{
+ "meta": {
+  "protocol": "E1 doc s2.4-2 closeout: 10% all-pass spot-check + targeted rescans of the two known checker blind spots (D-3 shunt fingerprint gap, D-4 no-op solver kwargs)",
+  "generated": "2026-07-25",
+  "population_source": "audit/t4_auto_results.json items[] with any_flag==false (n=278)",
+  "oracle_env": "experiment venv (pandapower 3.4.0), login node, serial single-thread (OMP/MKL/OPENBLAS=1), per-item SIGALRM timeout",
+  "adjudication": "manual rulings under the frozen calculus (s2.3 meta-rule, cases 1-10, N1-N7, R2/R3, refute-toward-equivalence with R5 heuristics: internal-consistency, corpus-dialect, no-mod/invariance oracles). RATIFIED: every ruling in this file was reviewed independently by both practising power-systems engineers and reconciled under the same frozen calculus as the flagged-layer rulings; the 12 pollution rulings additionally carry an adversarial refutation verdict (audit/t4_refute.json, census addendum 2026-08-28, 12/12 UPHELD). All rulings are merged into audit/t4_final_labels_v2.json; audit/t4_final_labels.json is the pre-census snapshot and does not carry them.",
+  "random_seed": 20260725,
+  "random_procedure": "per frame in order [main_P, api_T5, contrast_S], candidates sorted by 'model|condition|bench_index', random.Random(20260725).sample(cands, n) with n = {main_P:19, api_T5:3, contrast_S:6}; single generator, sequential draws; overlap with blind-spot candidates kept in-sample and adjudicated once (dedup)",
+  "ratification": {
+   "status": "ratified",
+   "date": "2026-08-28",
+   "reviewers": "two practising power-systems engineers (Reviewer A / Reviewer B), same pair as the flagged-layer round",
+   "refutation_artefact": "audit/t4_refute.json (category 'census'; 12 keys from this file, 12/12 UPHELD)",
+   "merged_into": "audit/t4_final_labels_v2.json"
+  }
+ },
+ "blind_spot_rescan": {
+  "d3_shunt": {
+   "scan_rule": "regex over generated_code of all 278 items for create_shunt/create_shunt_as_capacitor/shunt table writes; every hit oracled: gen and ref code executed in experiment venv, ADDED shunt rows (final table minus base-network shunts) compared as the executed end state",
+   "n_candidates": 49,
+   "verdict_counts": {
+    "clean": 32,
+    "pollution": 11,
+    "equivalent": 2,
+    "item_defect": 4
+   },
+   "items": [
+    {
+     "key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1014",
+     "item_id": "5561ca64e5d3",
+     "frame": "main_P",
+     "tier": "T2",
+     "task": "diagnose_and_fix",
+     "network": "case9",
+     "ground_truth": 1.0,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1633",
+     "item_id": "7121c4fa0141",
+     "frame": "main_P",
+     "tier": "T2",
+     "task": "parallel",
+     "network": "case6ww",
+     "ground_truth": 2.510219,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 4,
+        "q_mvar": 0.1,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 4,
+        "q_mvar": -14.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "executed +0.1 Mvar (inductive reactor) where query pins 'capacitive shunt support'; same bus 4 as ref (-14); scalar (max ikss, gens disabled for SC) insensitive (rel 1.7e-07) = 1943-type luck; refute failed: pandapower shunt sign convention is fixed (q>0 absorbs), corpus dialect uses negative q for capacitive throughout, and the model's own comment claims capacitive while executing inductive; case-3 strict line: insensitivity is not exemption",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1196",
+     "item_id": "71d91eabbdeb",
+     "frame": "contrast_S",
+     "tier": "T2",
+     "task": "sequential",
+     "network": "case9",
+     "ground_truth": 0.976808,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": -17.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": -17.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1339",
+     "item_id": "b2227276613c",
+     "frame": "contrast_S",
+     "tier": "T2",
+     "task": "opf",
+     "network": "case24_ieee_rts",
+     "ground_truth": 1.05,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": -0.1,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": -20.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "equivalent",
+     "rationale": "capacitive direction + bus target both correct (dynamic->bus2 == ref); magnitude query-unconstrained; queried scalar (OPF max vm) clamp-invariant at 1.05 (gen-vs-GT rel 3.8e-08) -> R3 invariance branch, 1229 template"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1569",
+     "item_id": "e27cabcbc881",
+     "frame": "contrast_S",
+     "tier": "T2",
+     "task": "opf",
+     "network": "case9",
+     "ground_truth": 134.466068,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": -0.1,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": -11.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "item_defect",
+     "rationale": "all pinned dims faithful (capacitive, bus8==ref via dynamic argmin); magnitude is the sole query-underdetermined dim; scalar varies across legal readings (rel 1.2e-04) but both in 1% tolerance -> R2/R3 item-defect channel (query cannot pin answer from own text)"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1684",
+     "item_id": "434cec37dce3",
+     "frame": "contrast_S",
+     "tier": "T2",
+     "task": "diagnose_and_fix",
+     "network": "case30",
+     "ground_truth": 0.945264,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1727",
+     "item_id": "58fbd6203caa",
+     "frame": "contrast_S",
+     "tier": "T2",
+     "task": "diagnose_and_fix",
+     "network": "synth_volt_ctrl_lv",
+     "ground_truth": 0.992729,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; dead-branch shunt code has correct sign"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|672",
+     "item_id": "354b81c3f802",
+     "frame": "contrast_S",
+     "tier": "T2",
+     "task": "diagnose_and_fix",
+     "network": "case5",
+     "ground_truth": 0.988801,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|877",
+     "item_id": "cf84351ab3a1",
+     "frame": "contrast_S",
+     "tier": "T2",
+     "task": "diagnose_and_fix",
+     "network": "case14",
+     "ground_truth": 0.989672,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; dead-branch shunt code has correct sign"
+    },
+    {
+     "key": "Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|799",
+     "item_id": "3d108f91533c",
+     "frame": "main_P",
+     "tier": "T2",
+     "task": "diagnose_and_fix",
+     "network": "case14",
+     "ground_truth": 0.993484,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1339",
+     "item_id": "b2227276613c",
+     "frame": "contrast_S",
+     "tier": "T4",
+     "task": "opf",
+     "network": "case24_ieee_rts",
+     "ground_truth": 1.05,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": 50.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": -20.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "executed +50 Mvar inductive at bus 2 where query pins capacitive (ref -20); scalar clamp-invariant (rel 1.8e-11) -> match is vacuous; direction violation executed -> pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1939",
+     "item_id": "e2f46a029031",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "case6470rte",
+     "ground_truth": 0.559056,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 73,
+        "bus": 2670,
+        "q_mvar": -100.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 73,
+        "bus": 2670,
+        "q_mvar": -6.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "item_defect",
+     "rationale": "capacitive -100 vs ref -6, same bus 2670 (dynamic==ref); magnitude underdetermined, scalar varies (rel 1.5e-03) within tolerance -> item-defect channel"
+    },
+    {
+     "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|613",
+     "item_id": "17d2c269524b",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "case4gs",
+     "ground_truth": 0.973466,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|932",
+     "item_id": "39ecbd5ac17c",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "diagnose_and_fix",
+     "network": "four_loads_branches",
+     "ground_truth": 0.999986,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "Qwen_Qwen3-Coder-Next|C_FDRS|613",
+     "item_id": "17d2c269524b",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "case4gs",
+     "ground_truth": 0.973466,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "Qwen_Qwen3-Coder-Next|C_FDRS|679",
+     "item_id": "0b735804a4c9",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "diagnose_and_fix",
+     "network": "four_loads_branches",
+     "ground_truth": 1.026985,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "Qwen_Qwen3-Coder-Next|C_FDRS|862",
+     "item_id": "129d42c63ddb",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "case14",
+     "ground_truth": 1.01,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 1,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "query pins 'add a shunt at bus 2 (-19.0 Mvar)'; executed at bus 1 (comment: 'Bus 2 in pandapower is index 1 (0-indexed)' -- a 1-based misread; internally consistent 1-based reading also mis-targets pinned 'generator 2' -> gen.loc[1] vs ref gen 2), but corpus dialect is 0-based (refs use bus=2670/62/108 verbatim; pilot bi=487/2 precedent kills the 1-based defense); oracle: case14 min vm = 1.01 (PV setpoint) under no-mod / shunt@1 / shunt@2 -> scalar fully insensitive, 1943-type item weakness (errata note); pollution; NOTE gen.max_p_mw divergence was ALSO invisible to check1 (column not fingerprinted -- same D-3 class)",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "claude-haiku-4-5|C_FDRS|236",
+     "item_id": "9bb09e0efa67",
+     "frame": "api_T5",
+     "tier": "API",
+     "task": "diagnose_and_fix",
+     "network": "case39",
+     "ground_truth": 0.9841,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "claude-haiku-4-5|C_FDRS|373",
+     "item_id": "037e4f20a841",
+     "frame": "api_T5",
+     "tier": "API",
+     "task": "opf",
+     "network": "case39",
+     "ground_truth": 1.06,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 30,
+        "q_mvar": -100.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 30,
+        "q_mvar": -8.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "equivalent",
+     "rationale": "capacitive -100 at bus 30 (dynamic == ref target, oracle: case39 argmin=30); magnitude query-unconstrained; OPF max vm clamp-invariant at 1.06 (rel 1.5e-07) -> R3 invariance; the runpp(suppress_warnings=True) no-op kwarg on the same item is cosmetic (see d4)"
+    },
+    {
+     "key": "deepseek-v4-flash|C_FDRS|1763",
+     "item_id": "434cec37dce3",
+     "frame": "api_T5",
+     "tier": "API",
+     "task": "diagnose_and_fix",
+     "network": "case30",
+     "ground_truth": 0.945264,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "gemini-2.5-flash|C_FDRS|1533",
+     "item_id": "b60398530d04",
+     "frame": "api_T5",
+     "tier": "API",
+     "task": "power_flow",
+     "network": "iceland",
+     "ground_truth": 2.767864,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 4,
+        "bus": 62,
+        "q_mvar": -10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 4,
+        "bus": 62,
+        "q_mvar": -16.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "item_defect",
+     "rationale": "capacitive -10 vs ref -16, same bus 62 (dynamic==ref); magnitude underdetermined, scalar varies (rel 5.0e-04) within tolerance -> item-defect channel"
+    },
+    {
+     "key": "gemini-2.5-flash|C_FDRS|1756",
+     "item_id": "01d61703d46b",
+     "frame": "api_T5",
+     "tier": "API",
+     "task": "diagnose_and_fix",
+     "network": "case14",
+     "ground_truth": 0.993484,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": 10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": -12.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "first (unconditional) shunt executed +10 Mvar inductive at bus 2 where query pins capacitive (ref -12); model comment 'Assuming 10 Mvar capacitive shunt' contradicts executed physics; second conditional shunt dead in both (min vm 0.9935 > 0.96); rel 5.7e-08 insensitive-luck",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "gemini-2.5-flash|C_FDRS|1944",
+     "item_id": "754a286fafe4",
+     "frame": "api_T5",
+     "tier": "API",
+     "task": "sequential",
+     "network": "case6470rte",
+     "ground_truth": 0.559284,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 73,
+        "bus": 2670,
+        "q_mvar": -12.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 73,
+        "bus": 2670,
+        "q_mvar": -12.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "gpt-5.4-mini|C_FDRS|1951",
+     "item_id": "f0b2f3045498",
+     "frame": "api_T5",
+     "tier": "API",
+     "task": "diagnose_and_fix",
+     "network": "case6ww",
+     "ground_truth": 0.921299,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 3,
+        "q_mvar": -15.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 3,
+        "q_mvar": -15.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|1569",
+     "item_id": "e27cabcbc881",
+     "frame": "contrast_S",
+     "tier": "T4",
+     "task": "opf",
+     "network": "case9",
+     "ground_truth": 134.466068,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": 10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": -11.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "executed +10 Mvar inductive at bus 8 where query pins capacitive (ref -11); scalar rel 2.9e-04 -> real physical deviation absorbed by 1% tolerance; pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|613",
+     "item_id": "17d2c269524b",
+     "frame": "contrast_S",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "case4gs",
+     "ground_truth": 0.973466,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|942",
+     "item_id": "1d3789c5c8c1",
+     "frame": "contrast_S",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "iceland",
+     "ground_truth": 0.924531,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 4,
+        "bus": 62,
+        "q_mvar": -6.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 4,
+        "bus": 62,
+        "q_mvar": -6.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|955",
+     "item_id": "a128d87c0241",
+     "frame": "contrast_S",
+     "tier": "T4",
+     "task": "diagnose_and_fix",
+     "network": "simple_mv_open_ring",
+     "ground_truth": 0.997734,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1142",
+     "item_id": "5632099a8555",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "diagnose_and_fix",
+     "network": "case39",
+     "ground_truth": 0.982,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1250",
+     "item_id": "6eab749cf362",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "contingency",
+     "network": "case89pegase",
+     "ground_truth": 0.867684,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 44,
+        "bus": 61,
+        "q_mvar": 10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 44,
+        "bus": 61,
+        "q_mvar": -13.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "executed +10 Mvar inductive at bus 61 where query pins capacitive (ref -13); scalar rel 3.8e-03 -> real deviation absorbed by tolerance; pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1339",
+     "item_id": "b2227276613c",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "opf",
+     "network": "case24_ieee_rts",
+     "ground_truth": 1.05,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": 10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": -20.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "executed +10 Mvar inductive at bus 2 where query pins capacitive (ref -20); OPF max vm clamp-invariant (rel 3.7e-08) -> vacuous match; pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1990",
+     "item_id": "f98b3441477f",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "parallel",
+     "network": "case145",
+     "ground_truth": 20.630792,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 97,
+        "bus": 67,
+        "q_mvar": -10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 97,
+        "bus": 67,
+        "q_mvar": 5.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "query pins 'inductive shunt absorption' at highest-voltage bus; executed -10 Mvar CAPACITIVE at bus 67 (ref +5) -> direction inverted; scalar (max ikss) insensitive (rel 2.4e-08); pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|649",
+     "item_id": "4ab3812f03f8",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "case145",
+     "ground_truth": 0.915,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 97,
+        "bus": 108,
+        "q_mvar": -10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 97,
+        "bus": 108,
+        "q_mvar": -10.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|720",
+     "item_id": "ca4a5888a7d7",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "sequential",
+     "network": "case145",
+     "ground_truth": 0.915,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 97,
+        "bus": 108,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 97,
+        "bus": 108,
+        "q_mvar": -19.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|840",
+     "item_id": "878b1de0cb23",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "diagnose_and_fix",
+     "network": "simple_mv_open_ring",
+     "ground_truth": 0.996814,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|992",
+     "item_id": "88f906bf9dd9",
+     "frame": "main_P",
+     "tier": "T4",
+     "task": "diagnose_and_fix",
+     "network": "synth_volt_ctrl_lv",
+     "ground_truth": 0.995439,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1422",
+     "item_id": "18c7c24a5088",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "opf",
+     "network": "case118",
+     "ground_truth": 3868.245162,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 14,
+        "bus": 80,
+        "q_mvar": 0.1,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 14,
+        "bus": 75,
+        "q_mvar": -11.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "double violation: (a) target mis-resolved -- query pins 'lowest-voltage bus from the current operating point'; oracle: case118 base-OP argmin = bus 75 (= ref), gen ran runopp first and took argmin of the OPF solution -> bus 80 (wrong state); (b) executed +0.1 Mvar inductive vs pinned capacitive; scalar rel 3.7e-05; N1 exception channel not applicable (ref resolution correct); pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1767",
+     "item_id": "c469b2771d96",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "sequential",
+     "network": "case4gs",
+     "ground_truth": 0.970272,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": 0.1,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 2,
+        "q_mvar": -5.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "executed +0.1 Mvar inductive at bus 2 where query pins capacitive (ref -5); scalar rel 1.2e-03 absorbed by tolerance; pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1889",
+     "item_id": "fb168bd26812",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "case39",
+     "ground_truth": 0.982,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|608",
+     "item_id": "c730d01fa902",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "four_loads_branches",
+     "ground_truth": 0.999986,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-8B-Instruct|C_FDRS|1928",
+     "item_id": "754a286fafe4",
+     "frame": "main_P",
+     "tier": "T2",
+     "task": "sequential",
+     "network": "case6470rte",
+     "ground_truth": 0.559284,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 73,
+        "bus": 2670,
+        "q_mvar": -12.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 73,
+        "bus": 2670,
+        "q_mvar": -12.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "meta-llama_Llama-3.1-8B-Instruct|C_FDRS|601",
+     "item_id": "31b05ccb4fb1",
+     "frame": "main_P",
+     "tier": "T2",
+     "task": "diagnose_and_fix",
+     "network": "case9",
+     "ground_truth": 0.954359,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": -6.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 0,
+        "bus": 8,
+        "q_mvar": -6.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "openai_gpt-oss-120b|A_FX|877",
+     "item_id": "cf84351ab3a1",
+     "frame": "contrast_S",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "case14",
+     "ground_truth": 0.989672,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "openai_gpt-oss-120b|C_FDRS|1005",
+     "item_id": "d2c219f7b3fa",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "case30",
+     "ground_truth": 0.894782,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 2,
+        "bus": 7,
+        "q_mvar": -9.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 2,
+        "bus": 7,
+        "q_mvar": -9.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "clean",
+     "rationale": "executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)"
+    },
+    {
+     "key": "openai_gpt-oss-120b|C_FDRS|1049",
+     "item_id": "671a4240a85f",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "four_loads_branches",
+     "ground_truth": 0.999986,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "openai_gpt-oss-120b|C_FDRS|1377",
+     "item_id": "b60398530d04",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "power_flow",
+     "network": "iceland",
+     "ground_truth": 2.767864,
+     "query_pins": "direction (capacitive/inductive), magnitude unpinned",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 4,
+        "bus": 62,
+        "q_mvar": -0.1,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 4,
+        "bus": 62,
+        "q_mvar": -16.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "item_defect",
+     "rationale": "capacitive -0.1 vs ref -16, same bus 62; magnitude underdetermined, scalar varies (rel 1.3e-03) within tolerance -> item-defect channel"
+    },
+    {
+     "key": "openai_gpt-oss-120b|C_FDRS|1675",
+     "item_id": "01d61703d46b",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "case14",
+     "ground_truth": 0.993484,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": 5.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "ref_added_shunts": [
+      [
+       {
+        "idx": 1,
+        "bus": 2,
+        "q_mvar": -12.0,
+        "p_mw": 0.0,
+        "in_service": true
+       }
+      ]
+     ],
+     "verdict": "pollution",
+     "rationale": "first (unconditional) shunt executed +5 Mvar inductive at bus 2 where query pins capacitive (ref -12); second conditional shunt dead in both; rel 5.7e-08 insensitive-luck; pollution",
+     "final_label": "contaminated",
+     "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+    },
+    {
+     "key": "openai_gpt-oss-120b|C_FDRS|706",
+     "item_id": "80670ae54896",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "case6ww",
+     "ground_truth": 0.959022,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    },
+    {
+     "key": "openai_gpt-oss-120b|C_FDRS|725",
+     "item_id": "c99e0b9335b1",
+     "frame": "main_P",
+     "tier": "T3",
+     "task": "diagnose_and_fix",
+     "network": "case39",
+     "ground_truth": 0.982,
+     "query_pins": "direction+value",
+     "gen_added_shunts": [
+      []
+     ],
+     "ref_added_shunts": [
+      []
+     ],
+     "verdict": "clean",
+     "rationale": "conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution"
+    }
+   ]
+  },
+  "d4_noop_kwargs": {
+   "scan_rule": "AST parse of generated_code over all 278 all-pass items; every call to runpp/rundcpp/runopp/rundcopp/calc_sc/estimate/run_timeseries/run_contingency; keyword args compared against the pandapower 3.4.0 inspect.signature named parameters (experiment venv); any kwarg not in the signature = candidate (all these solvers except calc_sc take **kwargs, so unknown kwargs are silently absorbed)",
+   "n_candidates": 1,
+   "census_note": "zero occurrences of semantic no-op kwargs (dc=/method=/contingency_analysis=/seed= or similar physics-implying non-signature kwargs) among the 278 all-pass items; the known runpp(method='dc') channel is already flagged by the D-1-fixed check2 upstream (those items carry any_flag=true and are outside this population)",
+   "hits": [
+    {
+     "key": "claude-haiku-4-5|C_FDRS|373",
+     "item_id": "037e4f20a841",
+     "frame": "api_T5",
+     "task": "opf",
+     "detail": "runpp(net, suppress_warnings=True): suppress_warnings is a runopp parameter, not a runpp one; silently absorbed into **kwargs; cosmetic intent only",
+     "verdict": "benign_noop",
+     "rationale": "the absorbed kwarg carries no physical semantics and the query pins nothing corresponding to it (task definition requires the query to pin the kwarg's implied semantics for a D-4 hit); the item's physics ruling comes from the D-3 lane (verdict: equivalent); the companion runopp(suppress_warnings=True) call is a valid signature parameter"
+    }
+   ],
+   "n_pollution": 0
+  }
+ },
+ "random_sample": {
+  "allocation": {
+   "main_P": 19,
+   "api_T5": 3,
+   "contrast_S": 6
+  },
+  "verdict_counts": {
+   "clean": 25,
+   "item_defect": 2,
+   "pollution": 1
+  },
+  "items": [
+   {
+    "key": "openai_gpt-oss-120b|C_FDRS|1827",
+    "item_id": "1e2edcae0603",
+    "frame": "main_P",
+    "tier": "T3",
+    "task": "sequential",
+    "network": "case6ww",
+    "difficulty": "D4_compound",
+    "verdict": "clean",
+    "rationale": "'raise to a higher dispatch level' magnitude unpinned: gen +10% (66MW) vs ref 79.5MW; oracle: loading condition fires on BOTH paths -> final state pinned gen1=95.4 identical in both -> R3 invariance of the queried scalar; 14-digit match",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1557",
+    "item_id": "8640ed1455fd",
+    "frame": "main_P",
+    "tier": "T4",
+    "task": "dc_power_flow",
+    "network": "synth_volt_ctrl_lv",
+    "difficulty": "D3_semantic",
+    "verdict": "clean",
+    "rationale": "N1: dynamic idxmax line == ref line 9 (oracle, unique max 24.5%); parallel += 1 == ref =2 (base 1)",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "meta-llama_Llama-3.1-8B-Instruct|C_FDRS|63",
+    "item_id": "5c1089fdc142",
+    "frame": "main_P",
+    "tier": "T2",
+    "task": "power_flow",
+    "network": "case89pegase",
+    "difficulty": "D1_basic",
+    "verdict": "clean",
+    "rationale": "identical workflow",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|625",
+    "item_id": "f092c423fc4a",
+    "frame": "main_P",
+    "tier": "T2",
+    "task": "sequential",
+    "network": "case57",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "identical conditional workflow; (s>1.4).any() == max>1.4",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|11",
+    "item_id": "a7599346cfa8",
+    "frame": "main_P",
+    "tier": "T1",
+    "task": "opf",
+    "network": "iceland",
+    "difficulty": "D1_basic",
+    "verdict": "clean",
+    "rationale": "identical mods/solver; extraction .loc[idxmin] == .min() (N5)",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|425",
+    "item_id": "5907321bff4c",
+    "frame": "main_P",
+    "tier": "T3",
+    "task": "opf",
+    "network": "case_ieee30",
+    "difficulty": "D1_basic",
+    "verdict": "clean",
+    "rationale": "identical workflow (trafo 5 parallel=2, runopp, res_gen[3])",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|613",
+    "item_id": "17d2c269524b",
+    "frame": "main_P",
+    "tier": "T4",
+    "task": "sequential",
+    "network": "case4gs",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "== blind-spot D-3 verdict (dedup): executed added-shunt end state identical to reference (bus/q_mvar/p_mw/in_service all equal)",
+    "blindspot_overlap": true
+   },
+   {
+    "key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|992",
+    "item_id": "88f906bf9dd9",
+    "frame": "main_P",
+    "tier": "T4",
+    "task": "diagnose_and_fix",
+    "network": "synth_volt_ctrl_lv",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "== blind-spot D-3 verdict (dedup): conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution",
+    "blindspot_overlap": true
+   },
+   {
+    "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1490",
+    "item_id": "84fee94c8af4",
+    "frame": "main_P",
+    "tier": "T4",
+    "task": "dc_power_flow",
+    "network": "case33bw",
+    "difficulty": "D3_semantic",
+    "verdict": "clean",
+    "rationale": "N1: dynamic idxmax line == ref line 0 (oracle; NOTE degenerate tie -- all loadings ~0 -> idxmax=first index; both sides same convention; item-weakness note)",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1791",
+    "item_id": "31f6b9322cb0",
+    "frame": "main_P",
+    "tier": "T2",
+    "task": "parallel",
+    "network": "case6ww",
+    "difficulty": "D4_compound",
+    "verdict": "clean",
+    "rationale": "N1: dynamic argmax dispatch gen == ref hardcoded gen 1 (oracle: case6ww p_mw {0:50,1:60}); s_sc_min differs but case=max consumes only max params; calc_sc fault default 3ph == pinned",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|456",
+    "item_id": "182803a6df4a",
+    "frame": "main_P",
+    "tier": "T2",
+    "task": "power_flow",
+    "network": "synth_volt_ctrl_lv",
+    "difficulty": "D1_basic",
+    "verdict": "clean",
+    "rationale": "identical 3 mods + runpp + extraction; unused import only",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-1.5B-Instruct|C_FDRS|668",
+    "item_id": "fdf67c9b5a7b",
+    "frame": "main_P",
+    "tier": "T1",
+    "task": "pf_then_sc",
+    "network": "case33bw",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "min_vm_pu set after runpp instead of before -- datum unused by PF/SC, physical scenario identical; SC prep params equal where consumed (case=max); output equal to 12 digits",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|932",
+    "item_id": "39ecbd5ac17c",
+    "frame": "main_P",
+    "tier": "T4",
+    "task": "diagnose_and_fix",
+    "network": "four_loads_branches",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "== blind-spot D-3 verdict (dedup): conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution",
+    "blindspot_overlap": true
+   },
+   {
+    "key": "openai_gpt-oss-120b|C_FDRS|1377",
+    "item_id": "b60398530d04",
+    "frame": "main_P",
+    "tier": "T3",
+    "task": "power_flow",
+    "network": "iceland",
+    "difficulty": "D3_semantic",
+    "verdict": "item_defect",
+    "rationale": "== blind-spot D-3 verdict (dedup): capacitive -0.1 vs ref -16, same bus 62; magnitude underdetermined, scalar varies (rel 1.3e-03) within tolerance -> item-defect channel",
+    "blindspot_overlap": true
+   },
+   {
+    "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|564",
+    "item_id": "9aab598c51d0",
+    "frame": "main_P",
+    "tier": "T3",
+    "task": "dc_power_flow",
+    "network": "case9241pegase",
+    "difficulty": "D1_basic",
+    "verdict": "clean",
+    "rationale": "nmod=0, identical dcpp + extraction",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1188",
+    "item_id": "f62f1b75830c",
+    "frame": "main_P",
+    "tier": "T2",
+    "task": "sequential",
+    "network": "case9241pegase",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "identical workflow; create_sgen q_mvar default 0 == ref explicit 0",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|611",
+    "item_id": "f9aa69f97b05",
+    "frame": "main_P",
+    "tier": "T3",
+    "task": "sequential",
+    "network": "GBnetwork",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "identical conditional workflow",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1237",
+    "item_id": "a73cd57dbe9e",
+    "frame": "main_P",
+    "tier": "T3",
+    "task": "short_circuit_2ph",
+    "network": "simple_mv_open_ring",
+    "difficulty": "D3_semantic",
+    "verdict": "clean",
+    "rationale": "N1: dynamic idxmax line == ref line 0 (oracle, unique max); s_sc_min 500 vs 800 unused under case=max; extra interim runpp harmless",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|708",
+    "item_id": "0fd09b781dd5",
+    "frame": "main_P",
+    "tier": "T2",
+    "task": "pf_then_sc",
+    "network": "four_loads_branches",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "calc_sc(bus=0) restriction == reading full-table at bus 0 (same quantity); case default max; omitted min-side params unused; 12-digit match",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "deepseek-v4-flash|C_FDRS|37",
+    "item_id": "a36d0455179f",
+    "frame": "api_T5",
+    "tier": "API",
+    "task": "short_circuit_3ph",
+    "network": "case_ieee30",
+    "difficulty": "D1_basic",
+    "verdict": "clean",
+    "rationale": "SC-prep params (missing in case_ieee30) instantiated 10000/5000 vs ref 1000/800 -- query-unconstrained missing-data dim; queried scalar is argmax bus index, agrees (=8) across both readings -> equivalent",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "claude-haiku-4-5|C_FDRS|1163",
+    "item_id": "2446686441ef",
+    "frame": "api_T5",
+    "tier": "API",
+    "task": "contingency_fix",
+    "network": "case6ww",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "same worst-line selection rule (idxmax over max_loading_percent envelope, positional==index for case6ww), same corrective gen (create_gen vm_pu default 1.0 == ref explicit), order swap irrelevant; 12-digit match",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "gpt-5.4-mini|C_FDRS|461",
+    "item_id": "5c0b10c5e262",
+    "frame": "api_T5",
+    "tier": "API",
+    "task": "pf_then_sc",
+    "network": "case145",
+    "difficulty": "D4_compound",
+    "verdict": "item_defect",
+    "rationale": "line idxmax == ref 47 (oracle) and all pinned dims faithful; SC source params missing in case145, gen 10000/10000 vs ref 1000/800 -> continuous scalar ikss varies across legal instantiations (101.311 vs GT 101.326, rel 1.4e-04) but both within 1% tolerance -> R2/R3 item-defect channel",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "openai_gpt-oss-120b|A_FX|292",
+    "item_id": "2e2f18d90228",
+    "frame": "contrast_S",
+    "tier": "T3",
+    "task": "opf",
+    "network": "case14",
+    "difficulty": "D1_basic",
+    "verdict": "pollution",
+    "rationale": "query pins 'set bus 12 minimum voltage limit to 0.909'; gen executed at bus 11 ('Bus 12 ... corresponds to index 11' 1-based misread; corpus dialect 0-based -- pilot bi=487/2 precedent); constraint slack in OPF optimum -> scalar insensitive (rel 2e-09) = 1943-type luck; case-3 strict line -> pollution. ROOT CAUSE in auto layer: check1 digest comparison uses column sum+count only (checkers.py _fp_diff digest branch) -- same value at a different index leaves the sum unchanged -> new checker defect D-5",
+    "blindspot_overlap": false,
+    "final_label": "contaminated",
+    "ratification": "two-reviewer consensus; adversarial refutation UPHELD (audit/t4_refute.json, 2026-08-28); merged into audit/t4_final_labels_v2.json"
+   },
+   {
+    "key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|995",
+    "item_id": "6e292a261a4b",
+    "frame": "contrast_S",
+    "tier": "T2",
+    "task": "sequential",
+    "network": "case1888rte",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "identical conditional workflow",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "meta-llama_Llama-3.1-405B-Instruct|A_FX|955",
+    "item_id": "a128d87c0241",
+    "frame": "contrast_S",
+    "tier": "T4",
+    "task": "diagnose_and_fix",
+    "network": "simple_mv_open_ring",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "== blind-spot D-3 verdict (dedup): conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution",
+    "blindspot_overlap": true
+   },
+   {
+    "key": "openai_gpt-oss-120b|A_FX|1059",
+    "item_id": "f5e337ebb4a0",
+    "frame": "contrast_S",
+    "tier": "T3",
+    "task": "sequential",
+    "network": "case3120sp",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "identical workflow (guards + same mods)",
+    "blindspot_overlap": false
+   },
+   {
+    "key": "openai_gpt-oss-120b|A_FX|877",
+    "item_id": "cf84351ab3a1",
+    "frame": "contrast_S",
+    "tier": "T3",
+    "task": "diagnose_and_fix",
+    "network": "case14",
+    "difficulty": "D2_multi_step",
+    "verdict": "clean",
+    "rationale": "== blind-spot D-3 verdict (dedup): conditional fix branch not triggered in either gen or ref (oracle: no shunt added on either side); executed physical scenario identical; NOTE latent wrong-sign (+q inductive) shunt code in the untaken branch -- W5 material, not pollution",
+    "blindspot_overlap": true
+   },
+   {
+    "key": "meta-llama_Llama-3.1-70B-Instruct|A_FX|1594",
+    "item_id": "c812b74ca800",
+    "frame": "contrast_S",
+    "tier": "T3",
+    "task": "opf",
+    "network": "case14",
+    "difficulty": "D3_semantic",
+    "verdict": "clean",
+    "rationale": "N1: dynamic idxmax trafo == ref trafo 2 (oracle, unique max); tap -1 +1 -> 0 == ref hardcoded 0; NaN tap_max clamp is no-op; chained assignment does apply under pandas 2.3.3 (oracle); printed value == ref value exactly",
+    "blindspot_overlap": false
+   }
+  ]
+ },
+ "summary": {
+  "population": "278 any_flag==false items of audit/t4_auto_results.json (610-item T4 frame)",
+  "blind_spot_d3": {
+   "n_candidates": 49,
+   "verdict_counts": {
+    "clean": 32,
+    "pollution": 11,
+    "equivalent": 2,
+    "item_defect": 4
+   },
+   "pollution_keys": [
+    "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1633",
+    "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1339",
+    "Qwen_Qwen3-Coder-Next|C_FDRS|862",
+    "gemini-2.5-flash|C_FDRS|1756",
+    "meta-llama_Llama-3.1-405B-Instruct|A_FX|1569",
+    "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1250",
+    "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1339",
+    "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1990",
+    "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1422",
+    "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1767",
+    "openai_gpt-oss-120b|C_FDRS|1675"
+   ],
+   "pollution_by_frame": {
+    "main_P": 8,
+    "contrast_S": 2,
+    "api_T5": 1
+   },
+   "item_defect_keys": [
+    "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1569",
+    "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1939",
+    "gemini-2.5-flash|C_FDRS|1533",
+    "openai_gpt-oss-120b|C_FDRS|1377"
+   ],
+   "mechanism": "sandbox._MOD_COLUMNS has no shunt.* entries, so check1 never fingerprints shunt creations/values; a wrong-sign or wrong-bus shunt is invisible to the auto layer whenever counts still match; checks 2/3/5 pass because the solver, physics sanity and perturbation-provenance are genuinely fine"
+  },
+  "blind_spot_d4": {
+   "n_candidates": 1,
+   "n_pollution": 0,
+   "note": "no semantic no-op kwarg found in the population; channel empty"
+  },
+  "random_28": {
+   "verdict_counts": {
+    "clean": 25,
+    "item_defect": 2,
+    "pollution": 1
+   },
+   "n_overlap_with_blindspot": 6,
+   "overlap_keys": [
+    "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|613",
+    "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|932",
+    "meta-llama_Llama-3.1-405B-Instruct|A_FX|955",
+    "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|992",
+    "openai_gpt-oss-120b|A_FX|877",
+    "openai_gpt-oss-120b|C_FDRS|1377"
+   ],
+   "pollution_keys": [
+    "openai_gpt-oss-120b|A_FX|292"
+   ],
+   "item_defect_keys": [
+    "openai_gpt-oss-120b|C_FDRS|1377",
+    "gpt-5.4-mini|C_FDRS|461"
+   ]
+  },
+  "auto_layer_false_negative_rate": {
+   "naive_random_sample_estimate": {
+    "point": 0.0357,
+    "lo": 0.0063,
+    "hi": 0.1771,
+    "k": 1,
+    "n": 28
+   },
+   "channel_decomposed": {
+    "d3_census_over_allpass": {
+     "k": 11,
+     "n": 278,
+     "point": 0.0396,
+     "note": "deterministic full enumeration of the shunt channel, not a sample"
+    },
+    "residual_outside_scanned_channels": {
+     "wilson_on_fresh_random": {
+      "point": 0.0455,
+      "lo": 0.0081,
+      "hi": 0.218,
+      "k": 1,
+      "n": 22
+     },
+     "extrapolated_items_over_non_candidates": 10.4,
+     "n_non_candidates": 229
+    },
+    "combined_point_estimate_over_278": 0.077,
+    "combined_note": "11 census pollution + ~10 extrapolated residual (1/22 fresh-random, CI wide) => ~7.7% of all-pass items; confirmed floor = 12/278 = 4.3%"
+   }
+  },
+  "new_checker_defects_found": {
+   "D-5_digest_sum_only": "checkers.py _fp_diff digest branch compares only sum+n, never the per-index values dict captured for tables <=64 rows -> same-value-different-index modifications (bus 11 vs 12 min_vm_pu, item A_FX|292) are invisible; full fingerprints are NOT persisted in t4_auto_results evidence, so enumerating this channel requires re-running check1 with a fixed comparator (CPU job, no judge cost for non-hits)",
+   "D-3b_unfingerprinted_columns_observed": "gen.max_p_mw (item C_FDRS|862) modified divergently and invisible -- same class as shunt.*: _MOD_COLUMNS coverage gap"
+  },
+  "far_net_effect_recommendation": {
+   "errata_channel_additions": [
+    "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1569",
+    "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1939",
+    "gemini-2.5-flash|C_FDRS|1533",
+    "openai_gpt-oss-120b|C_FDRS|1377",
+    "gpt-5.4-mini|C_FDRS|461"
+   ],
+   "errata_item_weakness_notes": [
+    "C_FDRS|862 item: queried scalar (case14 min vm) provably insensitive to the pinned shunt modification (PV-setpoint floor 1.01) -- 1943-type weak-discrimination item",
+    "A_FX|292 item: pinned min_vm_pu constraint slack at OPF optimum -- modification-insensitive query",
+    "C_FDRS|1490 item: 'most heavily loaded line' argmax degenerate (all-zero loadings tie)"
+   ],
+   "recommendation": "1) DONE (2026-08-28): the 12 confirmed pollution items were ratified by the two engineers and merged into the FAR numerators via audit/t4_final_labels_v2.json; each carries an UPHELD refutation verdict in audit/t4_refute.json. 2) The D-3 channel is now census-complete: no sampling uncertainty on those 11. 3) DONE: the residual estimate for the modification-state channel was superseded by the second census (audit/t4_census2.json), which re-ran the fixed check (1) over all 278 all-pass items and added 2 further contamination rulings (14 in total, also ratified). 4) The all-pass false-negative figure reported from the completed census is 14/278 = 5.0% [3.0, 8.3].",
+   "ratified_additions": {
+    "main_P": {
+     "add_pollution": 8,
+     "delta_far_pp": 2.0,
+     "keys": [
+      "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1633",
+      "Qwen_Qwen3-Coder-Next|C_FDRS|862",
+      "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1250",
+      "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1339",
+      "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1990",
+      "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1422",
+      "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1767",
+      "openai_gpt-oss-120b|C_FDRS|1675"
+     ],
+     "ratified": "2026-08-28"
+    },
+    "api_T5": {
+     "add_pollution": 1,
+     "delta_far_pp": 1.67,
+     "keys": [
+      "gemini-2.5-flash|C_FDRS|1756"
+     ],
+     "ratified": "2026-08-28"
+    },
+    "contrast_S": {
+     "add_pollution": 3,
+     "delta_far_pp": 2.0,
+     "keys": [
+      "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|1339",
+      "meta-llama_Llama-3.1-405B-Instruct|A_FX|1569",
+      "openai_gpt-oss-120b|A_FX|292"
+     ],
+     "ratified": "2026-08-28"
+    },
+    "status": "ratified 2026-08-28: all 12 keys carry two-reviewer consensus and an UPHELD refutation verdict (audit/t4_refute.json), and are labelled 'contaminated' in audit/t4_final_labels_v2.json"
+   }
+  },
+  "frozen_files_untouched": [
+   "audit/t4_final_labels.json",
+   "E1_validity_audit.md"
+  ]
+ },
+ "frozen_files_untouched": [
+  "audit/t4_final_labels.json (pre-census snapshot; the census rulings live in audit/t4_final_labels_v2.json)",
+  "E1_validity_audit.md"
+ ]
+}

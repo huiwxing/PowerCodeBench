@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "description": "Frozen provenance for the Failure Anatomy revision sample.",
+  "inputs": {
+    "compact_path": "results/raw/main_experiment/primary_outcomes_compact.json",
+    "compact_sha256": "9c1a817106c21e101d94b6193b1083d124f34428478dbd8ebc366ec4a908dc9e",
+    "source_files": [
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-0.5B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "59da912cd4fbbd8c1dedf9597301584ce26c7ef27ee1794f9772b0613a851cf6",
+        "size_bytes": 37093349,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "78f11f7c28d6c0f69ecbb07ce3c92e0521b4838b346b11da4670b2355f364463",
+        "size_bytes": 24396631,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-0.5B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "a5aeabd8adc28311d08f5c18f7c54ab2bea80b0ab8ae0e09f448a9d6d1a639df",
+        "size_bytes": 37409201,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "cce577f3d25c4d92797a9de6bbc4ac552b0a1fad85be11de03cc00c1cc48e028",
+        "size_bytes": 24574065,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-0.5B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "de9357134502547ed04581300e08f491caaeb7e8ce1da94a63d35d9af7116926",
+        "size_bytes": 37441729,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "a822fa6dc09017fcffc25d2f23cfa61263a802295937a57f997230434deb109f",
+        "size_bytes": 24584483,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-0.5B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "e5f124de453b37df590579e3f18270e42fbff2befd792426a99440e188138220",
+        "size_bytes": 36962467,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "5a3cf9774be0717867254794986b82f48d5f33183b11680d27dab37794209454",
+        "size_bytes": 23572889,
+        "n_item_results": 2000,
+        "n_match_false": 2000
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-0.5B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "adb0ad437c8633c2ded91fd0a25559fba8b30143e0d3d774da419c805d4afe9b",
+        "size_bytes": 24697019,
+        "n_item_results": 2000,
+        "n_match_false": 1994
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-1.5B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "7d945fac7670f3d454ba8fa3198bcc10a2a1272bd3fa6bd019c06779495f214d",
+        "size_bytes": 25524312,
+        "n_item_results": 2000,
+        "n_match_false": 1808
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "aa9949723a1e530c030b38f2072103a9fced0e9aa3d895d1631914439b5dfb89",
+        "size_bytes": 30050486,
+        "n_item_results": 2000,
+        "n_match_false": 1980
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "3bdcd00e5c562e187050dbcd6a5b27b59f0dce27e649786f72b50f8f606ad0c8",
+        "size_bytes": 27431100,
+        "n_item_results": 2000,
+        "n_match_false": 1931
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "477e7825545b76e7e4e2d2706954bbeb6b88e913b6f64ba6e58a04ee2ddc2741",
+        "size_bytes": 26938803,
+        "n_item_results": 2000,
+        "n_match_false": 1757
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "084bdbc585a07db208deda0441733cafb925b5a65da76856f79347256471ec91",
+        "size_bytes": 26531602,
+        "n_item_results": 2000,
+        "n_match_false": 1990
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "adef312fd550a2443bd0656f5b664a68aa92a50edf2a2a041a5b10b214af15ed",
+        "size_bytes": 29990075,
+        "n_item_results": 2000,
+        "n_match_false": 1948
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "28ceb5966bb0c804481e6b9334659720a0f4954e2a5f6ca90bc18648e2f2e069",
+        "size_bytes": 27348883,
+        "n_item_results": 2000,
+        "n_match_false": 1875
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "9ea11da7b04c34812d008e2451e88d0268d085ceaf95b3d1de94284e007eac02",
+        "size_bytes": 26784983,
+        "n_item_results": 2000,
+        "n_match_false": 1692
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "86ea35d561cd026d2b72d4ae5dc9da2525aa4031e15d7aef77af582bd9295d68",
+        "size_bytes": 26584675,
+        "n_item_results": 2000,
+        "n_match_false": 1988
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "5de3c31a389a16f3ad7c64c335000c99530cd8fd918cda1311e479551e74b2b2",
+        "size_bytes": 30218060,
+        "n_item_results": 2000,
+        "n_match_false": 1943
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "fa497403b83b6461d2b429daf8fee127ff9e56fdb9e5a186fddbfe014123705f",
+        "size_bytes": 28587458,
+        "n_item_results": 2000,
+        "n_match_false": 1861
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "ed7822cfa1352cff484da6a872a0606124080c455fae28d53f0e55312dbfbfa6",
+        "size_bytes": 28245695,
+        "n_item_results": 2000,
+        "n_match_false": 1683
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "3132270ec3ba5de8efe9ba7986465f90bea8dde746350f92b1eb86e6b04731bf",
+        "size_bytes": 27302020,
+        "n_item_results": 2000,
+        "n_match_false": 1987
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "7c32bcfe68c251d36a116414026c310dc2f67c146601205e25767af51d26e355",
+        "size_bytes": 29043759,
+        "n_item_results": 2000,
+        "n_match_false": 1975
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "e3e8c927e2457c734f4fe1a75eb429d63f00ef09a197939a32e40616e8e631af",
+        "size_bytes": 26562547,
+        "n_item_results": 2000,
+        "n_match_false": 1923
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "d157923d10b34c16ba79142711faa82eca56ea334e8fe55d1e96f162a6177e26",
+        "size_bytes": 26033985,
+        "n_item_results": 2000,
+        "n_match_false": 1777
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "f1935472832caf947dd2ccb93c731d4fa5c86d9282dd3f50a825d4253d2fe664",
+        "size_bytes": 25518922,
+        "n_item_results": 2000,
+        "n_match_false": 1989
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-8B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "2b03efc78f4dd1525ebd202b0f715a5811d76c1f697ce39957aa44b0e766e424",
+        "size_bytes": 24774634,
+        "n_item_results": 2000,
+        "n_match_false": 1274
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-14B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "7854c6063dee2ccf295ccd56e7e50ab8691eaa1bb9cdfcf1fcae96e0cb014641",
+        "size_bytes": 22645201,
+        "n_item_results": 2000,
+        "n_match_false": 1028
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-32B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "4b6acc2161245d6bba4d02530b61a68e8b6d05ced4aff4522e4e0d0213b9cc52",
+        "size_bytes": 21893260,
+        "n_item_results": 2000,
+        "n_match_false": 945
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen2.5-Coder-7B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "96b8df16da354063fc7bfc8a19e653c3885b3d50de8eea0bcbb7787a2a221203",
+        "size_bytes": 23926874,
+        "n_item_results": 2000,
+        "n_match_false": 1344
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "117a5c2cfe7efcd07310c7e9b15f777aa9b27443d7bd88c5d730a8e4cc5b75e2",
+        "size_bytes": 24344633,
+        "n_item_results": 2000,
+        "n_match_false": 1644
+      },
+      {
+        "path": "probe_eval_results/comparison/openai_gpt-oss-120b/benchmark_results_condA_FD.json",
+        "sha256": "efe95f832445609f6653ba3cf33230518a9f59dcacb46848efad8a72fe4ffb56",
+        "size_bytes": 26476842,
+        "n_item_results": 2000,
+        "n_match_false": 1523
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "5fcb445c1b75f2d42527e0698a6be85feb6606a1d37f08104f4f283caf493b72",
+        "size_bytes": 23837586,
+        "n_item_results": 2000,
+        "n_match_false": 1582
+      },
+      {
+        "path": "probe_eval_results/comparison/openai_gpt-oss-120b/benchmark_results_condA_FDR.json",
+        "sha256": "cf389550afd89fa22f393b5d7e29b2e8eee4a6791563a2dac7a2f28932a932e7",
+        "size_bytes": 26176948,
+        "n_item_results": 2000,
+        "n_match_false": 1495
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "0f2a6a2af27996533a3cb2f812fc46bcf8aeb6ce4ab4c05328217d9b81c61fc0",
+        "size_bytes": 24990067,
+        "n_item_results": 2000,
+        "n_match_false": 1537
+      },
+      {
+        "path": "probe_eval_results/comparison/openai_gpt-oss-120b/benchmark_results_condA_FDRS.json",
+        "sha256": "7c436b3bf3a77055bb034d633c3a03e214697bba1d9539a4e317811d4ee65384",
+        "size_bytes": 28608075,
+        "n_item_results": 2000,
+        "n_match_false": 1467
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "ba0f547b31d367a53b76f06ee6231291eb362f0a351d0f36cca83ff3f999273b",
+        "size_bytes": 23402917,
+        "n_item_results": 2000,
+        "n_match_false": 1700
+      },
+      {
+        "path": "probe_eval_results/comparison/openai_gpt-oss-120b/benchmark_results_condA_FX.json",
+        "sha256": "3ea61f7811ccaaf19657554b358d3a9730fe814b4b094daf62f6beab9d9e47a6",
+        "size_bytes": 25386560,
+        "n_item_results": 2000,
+        "n_match_false": 1542
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-70B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "0e72dc3eed203529a00126c917801102fb4cf439549b8d94a2ad15c9b182c52e",
+        "size_bytes": 20924817,
+        "n_item_results": 2000,
+        "n_match_false": 851
+      },
+      {
+        "path": "probe_eval_results/comparison/openai_gpt-oss-120b/benchmark_results_condC_FDRS.json",
+        "sha256": "c2dd175ae081ff998abdb48cde26abf1c383221963fa67241e31141681731005",
+        "size_bytes": 22592081,
+        "n_item_results": 2000,
+        "n_match_false": 795
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "f3f3eea66898804990d72c43bacc6c8f7f3136b0d8b96aa3e0d9392546f637d0",
+        "size_bytes": 23211042,
+        "n_item_results": 2000,
+        "n_match_false": 1415
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condA_FD.json",
+        "sha256": "8d6e01b22946dd4b3f48d2e1cfd97d8c25152d145cbf4b4b05cf496a11e46d6b",
+        "size_bytes": 25125602,
+        "n_item_results": 2000,
+        "n_match_false": 1457
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-Next/benchmark_results_condA_FD.json",
+        "sha256": "ebbd8bd028d9173701441e3bb616aef74ebc7a9020e34804d6e9f72f1b3a339b",
+        "size_bytes": 38638987,
+        "n_item_results": 2000,
+        "n_match_false": 1841
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "d4b23cd3c5485e76ddaded2e87a01a270e5f553d9cac38da6e895e1029d551cb",
+        "size_bytes": 23004565,
+        "n_item_results": 2000,
+        "n_match_false": 1341
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condA_FDR.json",
+        "sha256": "23f6e34018a4f39809964a357ecae0ab0ba71b999c0148cb5d4fd03855ba5e54",
+        "size_bytes": 25040726,
+        "n_item_results": 2000,
+        "n_match_false": 1430
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-Next/benchmark_results_condA_FDR.json",
+        "sha256": "b4d33d0a416a2fd813c6482fb83cebf96399895cc1039b562ec9938d91569d36",
+        "size_bytes": 37453151,
+        "n_item_results": 2000,
+        "n_match_false": 1793
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "de0a16a8f5a2c2b9a35931569cc86b3a836affdcdff6a89af34825e35b8061e6",
+        "size_bytes": 25373576,
+        "n_item_results": 2000,
+        "n_match_false": 1269
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condA_FDRS.json",
+        "sha256": "be9dccafe0e918e1690034d745a25e20bd1f688e9516dd9405dbbd88dfd411d4",
+        "size_bytes": 27451695,
+        "n_item_results": 2000,
+        "n_match_false": 1379
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-Next/benchmark_results_condA_FDRS.json",
+        "sha256": "63b7afb0223918f0be02be63a568bc084fdceeabf901a77df44cd9c3d0ff5df3",
+        "size_bytes": 37809265,
+        "n_item_results": 2000,
+        "n_match_false": 1790
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "a05e4a9f7dbcc911f0d51de970dc322d92f9bde434698fe70ebbda8bd8b10cad",
+        "size_bytes": 22159073,
+        "n_item_results": 2000,
+        "n_match_false": 1429
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condA_FX.json",
+        "sha256": "cca9b2455d74dc658a043d9156ed4876453a9d61da70f92e8775e21e29deb19d",
+        "size_bytes": 24342198,
+        "n_item_results": 2000,
+        "n_match_false": 1470
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-Next/benchmark_results_condA_FX.json",
+        "sha256": "aa9a2dfeba381a4102f9b39086d0b416cce8c8f7fa9598c7808aa019614f94c2",
+        "size_bytes": 36911683,
+        "n_item_results": 2000,
+        "n_match_false": 1861
+      },
+      {
+        "path": "probe_eval_results/comparison/meta-llama_Llama-3.1-405B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "16014bf347bdf8bfb9bc87f212d52fa9c89a9072f102005710272ad007d1db9a",
+        "size_bytes": 18161564,
+        "n_item_results": 2000,
+        "n_match_false": 626
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-480B-A35B-Instruct/benchmark_results_condC_FDRS.json",
+        "sha256": "8d2f95aa0b0328dff4163835d70bc52d8cc817e77a7a9b6d43f85b84d2e4eb30",
+        "size_bytes": 19940537,
+        "n_item_results": 2000,
+        "n_match_false": 682
+      },
+      {
+        "path": "probe_eval_results/comparison/Qwen_Qwen3-Coder-Next/benchmark_results_condC_FDRS.json",
+        "sha256": "6c72161559aeb3e03e221dd046d37454ec83ec3179bb5da5f296d661f1c4f94f",
+        "size_bytes": 23379434,
+        "n_item_results": 2000,
+        "n_match_false": 809
+      }
+    ]
+  },
+  "generator": {
+    "path": "code/audit/export_failure_taxonomy_revision_sample.py",
+    "sha256": "e9306633c63398c84496eb388032c175871e539477b8c16c8e334b6684193e69",
+    "execution": "single process, sequential streaming JSON, no code execution or model loading"
+  },
+  "outputs": {
+    "sampling_frame_keys.json": {
+      "sha256": "254a59637da87772503929e61916b955c0e47873a0ac21074a8dc2a372e6cae5",
+      "size_bytes": 5521976
+    },
+    "sample_records.json": {
+      "sha256": "cdb1184bf84e5e8de094a34f2b04235053e6694bd48bdc8656fd96a53d24ecf8",
+      "size_bytes": 378371
+    },
+    "summary.json": {
+      "sha256": "c54f86568dab2a987142d3f8224263723311c46cb5fd817a2468d92afa55dd04",
+      "size_bytes": 1883
+    }
+  }
+}
