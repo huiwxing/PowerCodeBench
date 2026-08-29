@@ -63,9 +63,10 @@ python3 reproduce.py --group 15
 The full run takes several minutes because it retains the frozen
 10,000-resample paired bootstrap. Most individual groups finish in seconds.
 
-Here, **reproduce** means recomputing the paper's numerical tables, figures,
-contrasts, and audit summaries from the frozen public records. It does not
-repeat paid API calls or GPU inference and serving measurements; those runs
+Here, **reproduce** means recomputing the numerical values underlying the
+paper's tables, figures, contrasts, and audit summaries from the frozen public
+records. It does not repeat paid API calls or GPU inference and serving
+measurements; those runs
 are archived, and the released item-, transcript-, event-, judgement-, and
 measurement-level records are what the CPU-only verifier reads. A few evidence
 families ship in reduced form, with a sampling frame or a labelled
@@ -74,10 +75,15 @@ deterministic rerun in place of bulk historical logs;
 families and what each one retains, and `ARTIFACT_INDEX.md` marks the affected
 rows.
 
+For the shortest reviewer path, environment/version checks, method-module
+smokes, and the boundary between claim verification and fresh GPU/API runs,
+see [`RUNBOOK.md`](RUNBOOK.md).
+
 ## Repository structure
 
 ```
 ARTIFACT_INDEX.md          claim → artifact → script → SHA-256 map
+RUNBOOK.md                 reviewer verification, environment, and rerun boundary
 checksums.sha256           SHA-256 manifest of every tracked file (sha256sum -c)
 reproduce.py               one-command headline-number verification
 benchmark.json             the frozen 2,000-task benchmark (this release)
@@ -101,20 +107,16 @@ environment/               frozen software environment (conda YAML + full pip fr
 assets/                    publicly regenerated README and manuscript figures
 ```
 
-The code under `code/` covers the paper's full method pipeline: the
-parameterised benchmark generator with its construction-time
-admission/feasibility filtering, the L0–L3 knowledge-boundary probing
-framework, the task-demand model, the knowledge-injection intervention
-package, and the serving backend/orchestrator. It also holds the
-analysis/aggregation scripts behind the frozen aggregates, and
-[`code/README.md`](code/README.md) maps paper components to files. The
-CPU-side modules run here against the archived corpus and compact evidence
-files. The serving side needs a GPU stack (vLLM/torch) or provider API keys,
-and is archived to document the frozen runs. The compact archives hold the
-item-level outcomes, token totals, raw probe responses and scores, router
-events, and provenance hashes that the public numerical rebuild needs, in
-place of the multi-gigabyte generated-code trees. The frozen software
-environment used for all GPU runs is pinned in `environment/`.
+The public code under `code/` contains the analysis/reaggregation code and
+reusable method modules for the parameterised benchmark generator, L0–L3
+knowledge-boundary probing, task-demand modelling, knowledge injection, and
+the serving backend/orchestrator; [`code/README.md`](code/README.md) maps paper
+components to files. Released item-, transcript-, event-, judgement-, and
+measurement-level records support the CPU-only numerical rebuild and method
+inspection. Fresh open-weight or provider-API experiments additionally require
+the relevant model access, hardware or service credentials, and the recorded
+runtime environment. [`RUNBOOK.md`](RUNBOOK.md) gives both verification paths,
+and `environment/` records the frozen software snapshot.
 
 ---
 
@@ -200,6 +202,10 @@ items (`.github/scripts/check_text_normalization.py`).
 
 ## Quickstart
 
+> **Trusted input only.** The example below uses unrestricted Python `exec()`.
+> Run `reference_code` only from a trusted, checksum-verified PowerCodeBench
+> release; do not use this pattern for untrusted or model-generated code.
+
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -256,7 +262,8 @@ external-query construction (GitHub issue/discussion threads, Stack
 Exchange posts, openmod forum threads), and the upstream pandapower
 docstrings reproduced in `dataset/pandapower_docs.json` (BSD 3-Clause,
 © University of Kassel and Fraunhofer IEE Kassel and contributors). See
-[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and the in-repository
+[`pandapower BSD 3-Clause licence text`](licenses/pandapower-BSD-3-Clause.txt).
 
 ## Citation
 

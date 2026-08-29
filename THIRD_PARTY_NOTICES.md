@@ -42,7 +42,9 @@ terms for anything you trace back through the recorded URLs. The
 anonymised rewrites and screening annotations authored for this project
 are covered by this repository's CC BY 4.0. If you reuse
 `dataset/pandapower_docs.json`, keep pandapower's BSD 3-Clause notice
-with the docstring-derived fields.
+with the docstring-derived fields. The complete notice and disclaimer from
+the pinned `pandapower==3.4.0` distribution are included at
+[`licenses/pandapower-BSD-3-Clause.txt`](licenses/pandapower-BSD-3-Clause.txt).
 
 The two other backend API-spec corpora do **not** reproduce upstream
 text: the 76 entries of `dataset/opendss_docs.json` and the 67 of
