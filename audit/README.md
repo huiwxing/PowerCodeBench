@@ -87,11 +87,25 @@ The false-acceptance denominator is therefore 610 − 38 = **572**, and
 18.51% headline is this quantity restricted to the deployed open-weight frame
 and reweighted by the sampling design.
 
+`item_defect_errata.json` makes those 38 rulings checkable. It lists each
+audit record with its frame and resolves it to the canonical benchmark item
+behind it — the `bench_index` inside a record key numbers positions within the
+sampling frame, not within the benchmark, so the join runs through
+`e1_sample_manifest.json` — which leaves 31 distinct items, each given with the
+first 80 characters of its query. The file then recomputes every archived
+accuracy cell on the 2,000-item suite with those 31 items dropped (denominator
+1,969) and re-runs the Table 3(b) equivalence contrasts under both
+denominators. Across all 226 cells the largest movement is -0.531 pp
+(GPT-OSS-120B, C+FD), and every TOST decision is unchanged. The accuracy
+tables are reported on the full 2,000 items and are not restated; the errata
+exists so a reader can confirm that the defect rulings do not carry them.
+
 ## Recompute
 
 ```bash
 PYTHONPATH=code python3 code/audit/pair_mcnemar.py   # writes e1p_mcnemar.recomputed.json
 python3 code/audit/recompute_validity_tables.py      # all 610-case tables and bootstraps
+python3 code/audit/item_defect_errata.py             # rebuilds item_defect_errata.json
 python3 reproduce.py                                 # audit groups 3, 8, 11, 17, 18
 ```
 

@@ -1,0 +1,2210 @@
+{
+  "created": "2026-08-29",
+  "description": "Errata record for the 38 audit cases ruled item-defect in audit/t4_final_labels_v2.json. Lists the affected audit records, resolves them to the 31 distinct benchmark items behind them, and recomputes every archived full-suite accuracy cell and the Table 3(b) equivalence contrasts with those 31 items excluded. The rulings are already excluded from every false-acceptance denominator; the frozen accuracy tables are unchanged and this file quantifies what excluding the items would do to them.",
+  "generated_by": "code/audit/item_defect_errata.py",
+  "generated_from": {
+    "audit/e1_sample_manifest.json": "277c29a7c5b6112aa3fe628f5963366d6034183f8623e6f31e7b171d3abf6744",
+    "audit/p02_parity_item_outcomes.json": "1557e460d31fc6c437c50a78454298284390a8e70313ec920641acaa220a3e25",
+    "audit/t4_final_labels_v2.json": "2daebc2c97ae9a3ac34019819906cc6c4210b338ea5bf1f44644a1211338e46d",
+    "benchmark.json": "dfcea3b3408d58ca676f01112b7ae61ef1bf077e14b440e0126a745bcad7130d",
+    "results/raw/main_experiment/primary_outcomes_compact.json": "9c1a817106c21e101d94b6193b1083d124f34428478dbd8ebc366ec4a908dc9e"
+  },
+  "join": {
+    "audit_record_to_item_id": "e1_sample_manifest.json samples[frame][*] on (frame, model, condition, bench_index); the bench_index in an audit record key is frame-local, not a benchmark position",
+    "item_id_to_match_bits": "character i of match_bits is the outcome for datasets.powercodebench_2000.item_ids[i] (lexicographic item_id)"
+  },
+  "n_records": 38,
+  "n_unique_items": 31,
+  "records": [
+    {
+      "bench_index": 1274,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "aecbd1286088",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "record_key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|1274"
+    },
+    {
+      "bench_index": 395,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "aea3d1d8e1d2",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "record_key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|395"
+    },
+    {
+      "bench_index": 587,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "d1f7675f6a48",
+      "model": "Qwen_Qwen2.5-Coder-14B-Instruct",
+      "record_key": "Qwen_Qwen2.5-Coder-14B-Instruct|C_FDRS|587"
+    },
+    {
+      "bench_index": 1569,
+      "condition": "A_FX",
+      "frame": "contrast_S",
+      "item_id": "e27cabcbc881",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "record_key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1569"
+    },
+    {
+      "bench_index": 1741,
+      "condition": "A_FX",
+      "frame": "contrast_S",
+      "item_id": "3a1abed07a8f",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "record_key": "Qwen_Qwen2.5-Coder-32B-Instruct|A_FX|1741"
+    },
+    {
+      "bench_index": 1208,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "e610d7ee68cb",
+      "model": "Qwen_Qwen2.5-Coder-32B-Instruct",
+      "record_key": "Qwen_Qwen2.5-Coder-32B-Instruct|C_FDRS|1208"
+    },
+    {
+      "bench_index": 1269,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "680b596f39d8",
+      "model": "Qwen_Qwen2.5-Coder-7B-Instruct",
+      "record_key": "Qwen_Qwen2.5-Coder-7B-Instruct|C_FDRS|1269"
+    },
+    {
+      "bench_index": 94,
+      "condition": "A_FX",
+      "frame": "contrast_S",
+      "item_id": "f0e607d15d2d",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "record_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|A_FX|94"
+    },
+    {
+      "bench_index": 1391,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "5a7b3716afae",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "record_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1391"
+    },
+    {
+      "bench_index": 1939,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "e2f46a029031",
+      "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct",
+      "record_key": "Qwen_Qwen3-Coder-480B-A35B-Instruct|C_FDRS|1939"
+    },
+    {
+      "bench_index": 1447,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "ea9769343413",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "record_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1447"
+    },
+    {
+      "bench_index": 1528,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "ca3410bfaf6a",
+      "model": "Qwen_Qwen3-Coder-Next",
+      "record_key": "Qwen_Qwen3-Coder-Next|C_FDRS|1528"
+    },
+    {
+      "bench_index": 1853,
+      "condition": "C_FDRS",
+      "frame": "api_T5",
+      "item_id": "99dac6b0d8f4",
+      "model": "deepseek-v4-flash",
+      "record_key": "deepseek-v4-flash|C_FDRS|1853"
+    },
+    {
+      "bench_index": 361,
+      "condition": "C_FDRS",
+      "frame": "api_T5",
+      "item_id": "5c5897d17e0f",
+      "model": "deepseek-v4-flash",
+      "record_key": "deepseek-v4-flash|C_FDRS|361"
+    },
+    {
+      "bench_index": 1533,
+      "condition": "C_FDRS",
+      "frame": "api_T5",
+      "item_id": "b60398530d04",
+      "model": "gemini-2.5-flash",
+      "record_key": "gemini-2.5-flash|C_FDRS|1533"
+    },
+    {
+      "bench_index": 302,
+      "condition": "C_FDRS",
+      "frame": "api_T5",
+      "item_id": "e610d7ee68cb",
+      "model": "gemini-2.5-flash",
+      "record_key": "gemini-2.5-flash|C_FDRS|302"
+    },
+    {
+      "bench_index": 1576,
+      "condition": "C_FDRS",
+      "frame": "api_T5",
+      "item_id": "b61a5746b84b",
+      "model": "gpt-5.4-mini",
+      "record_key": "gpt-5.4-mini|C_FDRS|1576"
+    },
+    {
+      "bench_index": 461,
+      "condition": "C_FDRS",
+      "frame": "api_T5",
+      "item_id": "5c0b10c5e262",
+      "model": "gpt-5.4-mini",
+      "record_key": "gpt-5.4-mini|C_FDRS|461"
+    },
+    {
+      "bench_index": 810,
+      "condition": "C_FDRS",
+      "frame": "api_T5",
+      "item_id": "1c2da44b434e",
+      "model": "gpt-5.4-mini",
+      "record_key": "gpt-5.4-mini|C_FDRS|810"
+    },
+    {
+      "bench_index": 1526,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "0c061504f85d",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1526"
+    },
+    {
+      "bench_index": 1615,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "9bd19fffbaaf",
+      "model": "meta-llama_Llama-3.1-405B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-405B-Instruct|C_FDRS|1615"
+    },
+    {
+      "bench_index": 1800,
+      "condition": "A_FX",
+      "frame": "contrast_S",
+      "item_id": "a61d1b8221ea",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|A_FX|1800"
+    },
+    {
+      "bench_index": 1814,
+      "condition": "A_FX",
+      "frame": "contrast_S",
+      "item_id": "99dac6b0d8f4",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|A_FX|1814"
+    },
+    {
+      "bench_index": 1326,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "b9daaebe8aa9",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1326"
+    },
+    {
+      "bench_index": 1369,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "116984ae698d",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1369"
+    },
+    {
+      "bench_index": 1425,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "2a751c4374a3",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1425"
+    },
+    {
+      "bench_index": 1639,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "a7e49f9e839d",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1639"
+    },
+    {
+      "bench_index": 1671,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "608de71b5305",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|1671"
+    },
+    {
+      "bench_index": 467,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "99be7fea2f67",
+      "model": "meta-llama_Llama-3.1-70B-Instruct",
+      "record_key": "meta-llama_Llama-3.1-70B-Instruct|C_FDRS|467"
+    },
+    {
+      "bench_index": 1425,
+      "condition": "A_FX",
+      "frame": "contrast_S",
+      "item_id": "2a751c4374a3",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|A_FX|1425"
+    },
+    {
+      "bench_index": 1377,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "b60398530d04",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|1377"
+    },
+    {
+      "bench_index": 1391,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "5a7b3716afae",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|1391"
+    },
+    {
+      "bench_index": 1447,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "ea9769343413",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|1447"
+    },
+    {
+      "bench_index": 1526,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "0c061504f85d",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|1526"
+    },
+    {
+      "bench_index": 182,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "2577528d6781",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|182"
+    },
+    {
+      "bench_index": 1943,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "32164dcf5ba2",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|1943"
+    },
+    {
+      "bench_index": 347,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "000868a577ec",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|347"
+    },
+    {
+      "bench_index": 907,
+      "condition": "C_FDRS",
+      "frame": "main_P",
+      "item_id": "fd02177c2da6",
+      "model": "openai_gpt-oss-120b",
+      "record_key": "openai_gpt-oss-120b|C_FDRS|907"
+    }
+  ],
+  "sensitivity": {
+    "accuracy_cells": {
+      "cells": [
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 1.574,
+          "acc_full": 1.6,
+          "condition": "A",
+          "delta_pp": -0.026,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 3.758,
+          "acc_full": 3.8,
+          "condition": "A",
+          "delta_pp": -0.042,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 0.406,
+          "acc_full": 0.4,
+          "condition": "A",
+          "delta_pp": 0.006,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 14.931,
+          "acc_full": 15.05,
+          "condition": "A",
+          "delta_pp": -0.119,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 3.911,
+          "acc_full": 4.0,
+          "condition": "A",
+          "delta_pp": -0.089,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 10.157,
+          "acc_full": 10.35,
+          "condition": "A",
+          "delta_pp": -0.193,
+          "model": "claude-haiku-4-5"
+        },
+        {
+          "acc_excl": 10.97,
+          "acc_full": 11.05,
+          "condition": "A",
+          "delta_pp": -0.08,
+          "model": "deepseek-v4-flash"
+        },
+        {
+          "acc_excl": 4.165,
+          "acc_full": 4.1,
+          "condition": "A",
+          "delta_pp": 0.065,
+          "model": "gemini-2.5-flash"
+        },
+        {
+          "acc_excl": 24.073,
+          "acc_full": 24.25,
+          "condition": "A",
+          "delta_pp": -0.177,
+          "model": "gpt-5.4-mini"
+        },
+        {
+          "acc_excl": 13.357,
+          "acc_full": 13.45,
+          "condition": "A",
+          "delta_pp": -0.093,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 4.926,
+          "acc_full": 5.0,
+          "condition": "A",
+          "delta_pp": -0.074,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 0.508,
+          "acc_full": 0.5,
+          "condition": "A",
+          "delta_pp": 0.008,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 13.814,
+          "acc_full": 14.05,
+          "condition": "A",
+          "delta_pp": -0.236,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FD",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FD",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 3.454,
+          "acc_full": 3.45,
+          "condition": "A_FD",
+          "delta_pp": 0.004,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 11.986,
+          "acc_full": 12.15,
+          "condition": "A_FD",
+          "delta_pp": -0.164,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 0.508,
+          "acc_full": 0.5,
+          "condition": "A_FD",
+          "delta_pp": 0.008,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 26.816,
+          "acc_full": 27.15,
+          "condition": "A_FD",
+          "delta_pp": -0.334,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 7.923,
+          "acc_full": 7.95,
+          "condition": "A_FD",
+          "delta_pp": -0.027,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 28.949,
+          "acc_full": 29.25,
+          "condition": "A_FD",
+          "delta_pp": -0.301,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 17.674,
+          "acc_full": 17.8,
+          "condition": "A_FD",
+          "delta_pp": -0.126,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 1.016,
+          "acc_full": 1.0,
+          "condition": "A_FD",
+          "delta_pp": 0.016,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 23.514,
+          "acc_full": 23.85,
+          "condition": "A_FD",
+          "delta_pp": -0.336,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FDR",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FDR",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 6.247,
+          "acc_full": 6.25,
+          "condition": "A_FDR",
+          "delta_pp": -0.003,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 15.236,
+          "acc_full": 15.4,
+          "condition": "A_FDR",
+          "delta_pp": -0.164,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 0.609,
+          "acc_full": 0.6,
+          "condition": "A_FDR",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 28.238,
+          "acc_full": 28.5,
+          "condition": "A_FDR",
+          "delta_pp": -0.262,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 10.361,
+          "acc_full": 10.35,
+          "condition": "A_FDR",
+          "delta_pp": 0.011,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 32.656,
+          "acc_full": 32.95,
+          "condition": "A_FDR",
+          "delta_pp": -0.294,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 20.721,
+          "acc_full": 20.9,
+          "condition": "A_FDR",
+          "delta_pp": -0.179,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 2.641,
+          "acc_full": 2.6,
+          "condition": "A_FDR",
+          "delta_pp": 0.041,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 24.937,
+          "acc_full": 25.25,
+          "condition": "A_FDR",
+          "delta_pp": -0.313,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FDRS",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FDRS",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 6.958,
+          "acc_full": 6.95,
+          "condition": "A_FDRS",
+          "delta_pp": 0.008,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 15.693,
+          "acc_full": 15.85,
+          "condition": "A_FDRS",
+          "delta_pp": -0.157,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 0.66,
+          "acc_full": 0.65,
+          "condition": "A_FDRS",
+          "delta_pp": 0.01,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 30.777,
+          "acc_full": 31.05,
+          "condition": "A_FDRS",
+          "delta_pp": -0.273,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 10.462,
+          "acc_full": 10.5,
+          "condition": "A_FDRS",
+          "delta_pp": -0.038,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 36.364,
+          "acc_full": 36.55,
+          "condition": "A_FDRS",
+          "delta_pp": -0.186,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 22.956,
+          "acc_full": 23.15,
+          "condition": "A_FDRS",
+          "delta_pp": -0.194,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 2.844,
+          "acc_full": 2.85,
+          "condition": "A_FDRS",
+          "delta_pp": -0.006,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 26.359,
+          "acc_full": 26.65,
+          "condition": "A_FDRS",
+          "delta_pp": -0.291,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FX",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "A_FX",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 3.809,
+          "acc_full": 3.85,
+          "condition": "A_FX",
+          "delta_pp": -0.041,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 11.122,
+          "acc_full": 11.15,
+          "condition": "A_FX",
+          "delta_pp": -0.028,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 0.559,
+          "acc_full": 0.55,
+          "condition": "A_FX",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 26.206,
+          "acc_full": 26.5,
+          "condition": "A_FX",
+          "delta_pp": -0.294,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 6.907,
+          "acc_full": 6.95,
+          "condition": "A_FX",
+          "delta_pp": -0.043,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 28.339,
+          "acc_full": 28.55,
+          "condition": "A_FX",
+          "delta_pp": -0.211,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 14.83,
+          "acc_full": 15.0,
+          "condition": "A_FX",
+          "delta_pp": -0.17,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 1.27,
+          "acc_full": 1.25,
+          "condition": "A_FX",
+          "delta_pp": 0.02,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 22.6,
+          "acc_full": 22.9,
+          "condition": "A_FX",
+          "delta_pp": -0.3,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "B",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 0.0,
+          "acc_full": 0.0,
+          "condition": "B",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 15.693,
+          "acc_full": 15.6,
+          "condition": "B",
+          "delta_pp": 0.093,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 14.881,
+          "acc_full": 14.9,
+          "condition": "B",
+          "delta_pp": -0.019,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 1.727,
+          "acc_full": 1.7,
+          "condition": "B",
+          "delta_pp": 0.027,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 21.534,
+          "acc_full": 21.55,
+          "condition": "B",
+          "delta_pp": -0.016,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 15.744,
+          "acc_full": 15.6,
+          "condition": "B",
+          "delta_pp": 0.144,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 4.215,
+          "acc_full": 4.2,
+          "condition": "B",
+          "delta_pp": 0.015,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 5.13,
+          "acc_full": 5.2,
+          "condition": "B",
+          "delta_pp": -0.07,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 1.32,
+          "acc_full": 1.3,
+          "condition": "B",
+          "delta_pp": 0.02,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 9.7,
+          "acc_full": 9.65,
+          "condition": "B",
+          "delta_pp": 0.05,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.203,
+          "acc_full": 0.2,
+          "condition": "C",
+          "delta_pp": 0.003,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 8.075,
+          "acc_full": 8.1,
+          "condition": "C",
+          "delta_pp": -0.025,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 34.281,
+          "acc_full": 34.2,
+          "condition": "C",
+          "delta_pp": 0.081,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 42.61,
+          "acc_full": 42.7,
+          "condition": "C",
+          "delta_pp": -0.09,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 23.21,
+          "acc_full": 23.15,
+          "condition": "C",
+          "delta_pp": 0.06,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 56.526,
+          "acc_full": 56.65,
+          "condition": "C",
+          "delta_pp": -0.124,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 47.181,
+          "acc_full": 47.2,
+          "condition": "C",
+          "delta_pp": -0.019,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 36.567,
+          "acc_full": 36.9,
+          "condition": "C",
+          "delta_pp": -0.333,
+          "model": "claude-haiku-4-5"
+        },
+        {
+          "acc_excl": 40.274,
+          "acc_full": 40.65,
+          "condition": "C",
+          "delta_pp": -0.376,
+          "model": "deepseek-v4-flash"
+        },
+        {
+          "acc_excl": 39.716,
+          "acc_full": 40.0,
+          "condition": "C",
+          "delta_pp": -0.284,
+          "model": "gemini-2.5-flash"
+        },
+        {
+          "acc_excl": 50.432,
+          "acc_full": 50.45,
+          "condition": "C",
+          "delta_pp": -0.018,
+          "model": "gpt-5.4-mini"
+        },
+        {
+          "acc_excl": 51.295,
+          "acc_full": 51.45,
+          "condition": "C",
+          "delta_pp": -0.155,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 38.243,
+          "acc_full": 38.15,
+          "condition": "C",
+          "delta_pp": 0.093,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 20.264,
+          "acc_full": 20.1,
+          "condition": "C",
+          "delta_pp": 0.164,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 45.353,
+          "acc_full": 45.65,
+          "condition": "C",
+          "delta_pp": -0.297,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.254,
+          "acc_full": 0.25,
+          "condition": "C_FD",
+          "delta_pp": 0.004,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 9.396,
+          "acc_full": 9.4,
+          "condition": "C_FD",
+          "delta_pp": -0.004,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 46.318,
+          "acc_full": 46.45,
+          "condition": "C_FD",
+          "delta_pp": -0.132,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 51.955,
+          "acc_full": 52.2,
+          "condition": "C_FD",
+          "delta_pp": -0.245,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 31.336,
+          "acc_full": 31.3,
+          "condition": "C_FD",
+          "delta_pp": 0.036,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 65.312,
+          "acc_full": 65.45,
+          "condition": "C_FD",
+          "delta_pp": -0.138,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 57.897,
+          "acc_full": 57.85,
+          "condition": "C_FD",
+          "delta_pp": 0.047,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 66.074,
+          "acc_full": 66.45,
+          "condition": "C_FD",
+          "delta_pp": -0.376,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 50.635,
+          "acc_full": 51.0,
+          "condition": "C_FD",
+          "delta_pp": -0.365,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 31.234,
+          "acc_full": 31.05,
+          "condition": "C_FD",
+          "delta_pp": 0.184,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 59.269,
+          "acc_full": 59.8,
+          "condition": "C_FD",
+          "delta_pp": -0.531,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.254,
+          "acc_full": 0.25,
+          "condition": "C_FDR",
+          "delta_pp": 0.004,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 9.497,
+          "acc_full": 9.55,
+          "condition": "C_FDR",
+          "delta_pp": -0.053,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 46.013,
+          "acc_full": 46.1,
+          "condition": "C_FDR",
+          "delta_pp": -0.087,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 52.463,
+          "acc_full": 52.75,
+          "condition": "C_FDR",
+          "delta_pp": -0.287,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 31.285,
+          "acc_full": 31.25,
+          "condition": "C_FDR",
+          "delta_pp": 0.035,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 63.687,
+          "acc_full": 63.75,
+          "condition": "C_FDR",
+          "delta_pp": -0.063,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 57.745,
+          "acc_full": 57.95,
+          "condition": "C_FDR",
+          "delta_pp": -0.205,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 60.792,
+          "acc_full": 61.1,
+          "condition": "C_FDR",
+          "delta_pp": -0.308,
+          "model": "claude-haiku-4-5"
+        },
+        {
+          "acc_excl": 47.029,
+          "acc_full": 47.3,
+          "condition": "C_FDR",
+          "delta_pp": -0.271,
+          "model": "deepseek-v4-flash"
+        },
+        {
+          "acc_excl": 49.06,
+          "acc_full": 49.35,
+          "condition": "C_FDR",
+          "delta_pp": -0.29,
+          "model": "gemini-2.5-flash"
+        },
+        {
+          "acc_excl": 60.843,
+          "acc_full": 61.15,
+          "condition": "C_FDR",
+          "delta_pp": -0.307,
+          "model": "gpt-5.4-mini"
+        },
+        {
+          "acc_excl": 64.551,
+          "acc_full": 64.75,
+          "condition": "C_FDR",
+          "delta_pp": -0.199,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 51.244,
+          "acc_full": 51.45,
+          "condition": "C_FDR",
+          "delta_pp": -0.206,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 34.485,
+          "acc_full": 34.4,
+          "condition": "C_FDR",
+          "delta_pp": 0.085,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 57.948,
+          "acc_full": 58.35,
+          "condition": "C_FDR",
+          "delta_pp": -0.402,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.305,
+          "acc_full": 0.3,
+          "condition": "C_FDRS",
+          "delta_pp": 0.005,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 9.548,
+          "acc_full": 9.6,
+          "condition": "C_FDRS",
+          "delta_pp": -0.052,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 48.451,
+          "acc_full": 48.6,
+          "condition": "C_FDRS",
+          "delta_pp": -0.149,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 52.463,
+          "acc_full": 52.75,
+          "condition": "C_FDRS",
+          "delta_pp": -0.287,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 32.809,
+          "acc_full": 32.8,
+          "condition": "C_FDRS",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 65.769,
+          "acc_full": 65.9,
+          "condition": "C_FDRS",
+          "delta_pp": -0.131,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 59.319,
+          "acc_full": 59.55,
+          "condition": "C_FDRS",
+          "delta_pp": -0.231,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 63.332,
+          "acc_full": 63.75,
+          "condition": "C_FDRS",
+          "delta_pp": -0.418,
+          "model": "claude-haiku-4-5"
+        },
+        {
+          "acc_excl": 55.561,
+          "acc_full": 55.9,
+          "condition": "C_FDRS",
+          "delta_pp": -0.339,
+          "model": "deepseek-v4-flash"
+        },
+        {
+          "acc_excl": 51.701,
+          "acc_full": 52.05,
+          "condition": "C_FDRS",
+          "delta_pp": -0.349,
+          "model": "gemini-2.5-flash"
+        },
+        {
+          "acc_excl": 61.706,
+          "acc_full": 62.15,
+          "condition": "C_FDRS",
+          "delta_pp": -0.444,
+          "model": "gpt-5.4-mini"
+        },
+        {
+          "acc_excl": 68.512,
+          "acc_full": 68.7,
+          "condition": "C_FDRS",
+          "delta_pp": -0.188,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 57.085,
+          "acc_full": 57.45,
+          "condition": "C_FDRS",
+          "delta_pp": -0.365,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 36.313,
+          "acc_full": 36.3,
+          "condition": "C_FDRS",
+          "delta_pp": 0.013,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 59.827,
+          "acc_full": 60.25,
+          "condition": "C_FDRS",
+          "delta_pp": -0.423,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.254,
+          "acc_full": 0.25,
+          "condition": "C_FX",
+          "delta_pp": 0.004,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 9.853,
+          "acc_full": 9.9,
+          "condition": "C_FX",
+          "delta_pp": -0.047,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 42.712,
+          "acc_full": 42.55,
+          "condition": "C_FX",
+          "delta_pp": 0.162,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 50.482,
+          "acc_full": 50.75,
+          "condition": "C_FX",
+          "delta_pp": -0.268,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 29.609,
+          "acc_full": 29.55,
+          "condition": "C_FX",
+          "delta_pp": 0.059,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 63.789,
+          "acc_full": 63.8,
+          "condition": "C_FX",
+          "delta_pp": -0.011,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 54.901,
+          "acc_full": 55.0,
+          "condition": "C_FX",
+          "delta_pp": -0.099,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 60.792,
+          "acc_full": 61.1,
+          "condition": "C_FX",
+          "delta_pp": -0.308,
+          "model": "claude-haiku-4-5"
+        },
+        {
+          "acc_excl": 47.029,
+          "acc_full": 47.3,
+          "condition": "C_FX",
+          "delta_pp": -0.271,
+          "model": "deepseek-v4-flash"
+        },
+        {
+          "acc_excl": 48.451,
+          "acc_full": 48.65,
+          "condition": "C_FX",
+          "delta_pp": -0.199,
+          "model": "gemini-2.5-flash"
+        },
+        {
+          "acc_excl": 60.945,
+          "acc_full": 61.25,
+          "condition": "C_FX",
+          "delta_pp": -0.305,
+          "model": "gpt-5.4-mini"
+        },
+        {
+          "acc_excl": 64.551,
+          "acc_full": 64.75,
+          "condition": "C_FX",
+          "delta_pp": -0.199,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 48.857,
+          "acc_full": 49.0,
+          "condition": "C_FX",
+          "delta_pp": -0.143,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 29.203,
+          "acc_full": 28.95,
+          "condition": "C_FX",
+          "delta_pp": 0.253,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 57.999,
+          "acc_full": 58.4,
+          "condition": "C_FX",
+          "delta_pp": -0.401,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.203,
+          "acc_full": 0.2,
+          "condition": "R",
+          "delta_pp": 0.003,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 6.704,
+          "acc_full": 6.85,
+          "condition": "R",
+          "delta_pp": -0.146,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 10.919,
+          "acc_full": 11.1,
+          "condition": "R",
+          "delta_pp": -0.181,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 3.758,
+          "acc_full": 3.75,
+          "condition": "R",
+          "delta_pp": 0.008,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 22.702,
+          "acc_full": 23.1,
+          "condition": "R",
+          "delta_pp": -0.398,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 10.97,
+          "acc_full": 11.15,
+          "condition": "R",
+          "delta_pp": -0.18,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 20.823,
+          "acc_full": 20.85,
+          "condition": "R",
+          "delta_pp": -0.027,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 10.361,
+          "acc_full": 10.45,
+          "condition": "R",
+          "delta_pp": -0.089,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 1.219,
+          "acc_full": 1.2,
+          "condition": "R",
+          "delta_pp": 0.019,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 20.975,
+          "acc_full": 21.2,
+          "condition": "R",
+          "delta_pp": -0.225,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.102,
+          "acc_full": 0.1,
+          "condition": "Rsem",
+          "delta_pp": 0.002,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 9.091,
+          "acc_full": 9.3,
+          "condition": "Rsem",
+          "delta_pp": -0.209,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 10.411,
+          "acc_full": 10.5,
+          "condition": "Rsem",
+          "delta_pp": -0.089,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 5.993,
+          "acc_full": 6.0,
+          "condition": "Rsem",
+          "delta_pp": -0.007,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 22.6,
+          "acc_full": 22.75,
+          "condition": "Rsem",
+          "delta_pp": -0.15,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 14.017,
+          "acc_full": 14.2,
+          "condition": "Rsem",
+          "delta_pp": -0.183,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 22.854,
+          "acc_full": 23.05,
+          "condition": "Rsem",
+          "delta_pp": -0.196,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 10.919,
+          "acc_full": 11.1,
+          "condition": "Rsem",
+          "delta_pp": -0.181,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 1.32,
+          "acc_full": 1.3,
+          "condition": "Rsem",
+          "delta_pp": 0.02,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 21.991,
+          "acc_full": 22.2,
+          "condition": "Rsem",
+          "delta_pp": -0.209,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.457,
+          "acc_full": 0.45,
+          "condition": "RsemB",
+          "delta_pp": 0.007,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 8.989,
+          "acc_full": 9.1,
+          "condition": "RsemB",
+          "delta_pp": -0.111,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 9.7,
+          "acc_full": 9.7,
+          "condition": "RsemB",
+          "delta_pp": 0.0,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 6.044,
+          "acc_full": 6.1,
+          "condition": "RsemB",
+          "delta_pp": -0.056,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 20.62,
+          "acc_full": 20.7,
+          "condition": "RsemB",
+          "delta_pp": -0.08,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 13.205,
+          "acc_full": 13.25,
+          "condition": "RsemB",
+          "delta_pp": -0.045,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 21.178,
+          "acc_full": 21.35,
+          "condition": "RsemB",
+          "delta_pp": -0.172,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 9.446,
+          "acc_full": 9.6,
+          "condition": "RsemB",
+          "delta_pp": -0.154,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 1.574,
+          "acc_full": 1.7,
+          "condition": "RsemB",
+          "delta_pp": -0.126,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 20.112,
+          "acc_full": 20.3,
+          "condition": "RsemB",
+          "delta_pp": -0.188,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.559,
+          "acc_full": 0.55,
+          "condition": "X",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 1.778,
+          "acc_full": 1.75,
+          "condition": "X",
+          "delta_pp": 0.028,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 39.36,
+          "acc_full": 39.35,
+          "condition": "X",
+          "delta_pp": 0.01,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 45.81,
+          "acc_full": 46.05,
+          "condition": "X",
+          "delta_pp": -0.24,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 24.327,
+          "acc_full": 24.15,
+          "condition": "X",
+          "delta_pp": 0.177,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 59.167,
+          "acc_full": 59.45,
+          "condition": "X",
+          "delta_pp": -0.283,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 52.057,
+          "acc_full": 52.15,
+          "condition": "X",
+          "delta_pp": -0.093,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 47.181,
+          "acc_full": 47.45,
+          "condition": "X",
+          "delta_pp": -0.269,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 41.595,
+          "acc_full": 41.6,
+          "condition": "X",
+          "delta_pp": -0.005,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 20.366,
+          "acc_full": 20.4,
+          "condition": "X",
+          "delta_pp": -0.034,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 48.553,
+          "acc_full": 48.95,
+          "condition": "X",
+          "delta_pp": -0.397,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.609,
+          "acc_full": 0.6,
+          "condition": "X_FD",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 1.828,
+          "acc_full": 1.8,
+          "condition": "X_FD",
+          "delta_pp": 0.028,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 47.638,
+          "acc_full": 47.95,
+          "condition": "X_FD",
+          "delta_pp": -0.312,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 53.987,
+          "acc_full": 54.3,
+          "condition": "X_FD",
+          "delta_pp": -0.313,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 30.929,
+          "acc_full": 31.05,
+          "condition": "X_FD",
+          "delta_pp": -0.121,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 65.211,
+          "acc_full": 65.55,
+          "condition": "X_FD",
+          "delta_pp": -0.339,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 60.081,
+          "acc_full": 60.25,
+          "condition": "X_FD",
+          "delta_pp": -0.169,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 60.081,
+          "acc_full": 60.3,
+          "condition": "X_FD",
+          "delta_pp": -0.219,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 51.854,
+          "acc_full": 52.2,
+          "condition": "X_FD",
+          "delta_pp": -0.346,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 30.675,
+          "acc_full": 30.6,
+          "condition": "X_FD",
+          "delta_pp": 0.075,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 56.323,
+          "acc_full": 56.8,
+          "condition": "X_FD",
+          "delta_pp": -0.477,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.609,
+          "acc_full": 0.6,
+          "condition": "X_FDR",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 1.879,
+          "acc_full": 1.85,
+          "condition": "X_FDR",
+          "delta_pp": 0.029,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 49.771,
+          "acc_full": 50.1,
+          "condition": "X_FDR",
+          "delta_pp": -0.329,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 53.834,
+          "acc_full": 54.3,
+          "condition": "X_FDR",
+          "delta_pp": -0.466,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 31.082,
+          "acc_full": 31.15,
+          "condition": "X_FDR",
+          "delta_pp": -0.068,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 66.379,
+          "acc_full": 66.6,
+          "condition": "X_FDR",
+          "delta_pp": -0.221,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 60.488,
+          "acc_full": 60.6,
+          "condition": "X_FDR",
+          "delta_pp": -0.112,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 60.335,
+          "acc_full": 60.65,
+          "condition": "X_FDR",
+          "delta_pp": -0.315,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 52.362,
+          "acc_full": 52.75,
+          "condition": "X_FDR",
+          "delta_pp": -0.388,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 34.281,
+          "acc_full": 34.2,
+          "condition": "X_FDR",
+          "delta_pp": 0.081,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 56.018,
+          "acc_full": 56.5,
+          "condition": "X_FDR",
+          "delta_pp": -0.482,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.609,
+          "acc_full": 0.6,
+          "condition": "X_FDRS",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 1.879,
+          "acc_full": 1.85,
+          "condition": "X_FDRS",
+          "delta_pp": 0.029,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 50.787,
+          "acc_full": 51.1,
+          "condition": "X_FDRS",
+          "delta_pp": -0.313,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 53.682,
+          "acc_full": 54.1,
+          "condition": "X_FDRS",
+          "delta_pp": -0.418,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 31.742,
+          "acc_full": 31.75,
+          "condition": "X_FDRS",
+          "delta_pp": -0.008,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 66.938,
+          "acc_full": 67.25,
+          "condition": "X_FDRS",
+          "delta_pp": -0.312,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 60.691,
+          "acc_full": 60.9,
+          "condition": "X_FDRS",
+          "delta_pp": -0.209,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 64.957,
+          "acc_full": 65.3,
+          "condition": "X_FDRS",
+          "delta_pp": -0.343,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 56.679,
+          "acc_full": 57.0,
+          "condition": "X_FDRS",
+          "delta_pp": -0.321,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 36.668,
+          "acc_full": 36.55,
+          "condition": "X_FDRS",
+          "delta_pp": 0.118,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 56.272,
+          "acc_full": 56.7,
+          "condition": "X_FDRS",
+          "delta_pp": -0.428,
+          "model": "openai_gpt-oss-120b"
+        },
+        {
+          "acc_excl": 0.609,
+          "acc_full": 0.6,
+          "condition": "X_FX",
+          "delta_pp": 0.009,
+          "model": "Qwen_Qwen2.5-Coder-0.5B-Instruct"
+        },
+        {
+          "acc_excl": 1.93,
+          "acc_full": 1.9,
+          "condition": "X_FX",
+          "delta_pp": 0.03,
+          "model": "Qwen_Qwen2.5-Coder-1.5B-Instruct"
+        },
+        {
+          "acc_excl": 46.47,
+          "acc_full": 46.5,
+          "condition": "X_FX",
+          "delta_pp": -0.03,
+          "model": "Qwen_Qwen2.5-Coder-14B-Instruct"
+        },
+        {
+          "acc_excl": 51.041,
+          "acc_full": 51.3,
+          "condition": "X_FX",
+          "delta_pp": -0.259,
+          "model": "Qwen_Qwen2.5-Coder-32B-Instruct"
+        },
+        {
+          "acc_excl": 29.711,
+          "acc_full": 29.75,
+          "condition": "X_FX",
+          "delta_pp": -0.039,
+          "model": "Qwen_Qwen2.5-Coder-7B-Instruct"
+        },
+        {
+          "acc_excl": 65.973,
+          "acc_full": 66.3,
+          "condition": "X_FX",
+          "delta_pp": -0.327,
+          "model": "Qwen_Qwen3-Coder-480B-A35B-Instruct"
+        },
+        {
+          "acc_excl": 58.659,
+          "acc_full": 58.8,
+          "condition": "X_FX",
+          "delta_pp": -0.141,
+          "model": "Qwen_Qwen3-Coder-Next"
+        },
+        {
+          "acc_excl": 59.015,
+          "acc_full": 59.3,
+          "condition": "X_FX",
+          "delta_pp": -0.285,
+          "model": "meta-llama_Llama-3.1-405B-Instruct"
+        },
+        {
+          "acc_excl": 51.346,
+          "acc_full": 51.75,
+          "condition": "X_FX",
+          "delta_pp": -0.404,
+          "model": "meta-llama_Llama-3.1-70B-Instruct"
+        },
+        {
+          "acc_excl": 28.644,
+          "acc_full": 28.5,
+          "condition": "X_FX",
+          "delta_pp": 0.144,
+          "model": "meta-llama_Llama-3.1-8B-Instruct"
+        },
+        {
+          "acc_excl": 55.967,
+          "acc_full": 56.45,
+          "condition": "X_FX",
+          "delta_pp": -0.483,
+          "model": "openai_gpt-oss-120b"
+        }
+      ],
+      "denominator_excl": 1969,
+      "denominator_full": 2000,
+      "largest_absolute_shift": {
+        "acc_excl": 59.269,
+        "acc_full": 59.8,
+        "cell": {
+          "condition": "C_FD",
+          "model": "openai_gpt-oss-120b"
+        },
+        "delta_pp": -0.531,
+        "max_abs_delta_pp": 0.531
+      },
+      "n_cells": 226,
+      "n_conditions": 19,
+      "n_models": 15,
+      "note": "Every archived accuracy cell on the 2,000-item suite. The 44 naturalistic-holdout runs are on an 80-item frame and carry no item-defect items, so they are not listed.",
+      "scope": "results/raw/main_experiment/primary_outcomes_compact.json runs on dataset powercodebench_2000",
+      "units": "percentage points"
+    },
+    "table3b_equivalence": {
+      "all_tost_decisions_unchanged": true,
+      "contrasts": {
+        "gptoss120_vs_nearest_gpt54mini": {
+          "decision_unchanged": true,
+          "excluding_item_defects": {
+            "ci90_pp": [
+              -3.66,
+              -0.15
+            ],
+            "ci95_includes_zero": true,
+            "ci95_pp": [
+              -3.96,
+              0.15
+            ],
+            "n_pairs": 1969,
+            "point_pp": -1.88,
+            "tost_equivalent_alpha_0_05": true
+          },
+          "full_suite": {
+            "ci90_pp": [
+              -3.6,
+              -0.2
+            ],
+            "ci95_includes_zero": true,
+            "ci95_pp": [
+              -3.9,
+              0.15
+            ],
+            "n_pairs": 2000,
+            "point_pp": -1.9,
+            "tost_equivalent_alpha_0_05": true
+          },
+          "reference": "GPT-5.4-mini",
+          "reference_role": "nearest API",
+          "treatment": "GPT-OSS-120B"
+        },
+        "gptoss120_vs_strongest_claude": {
+          "decision_unchanged": true,
+          "excluding_item_defects": {
+            "ci90_pp": [
+              -5.28,
+              -1.78
+            ],
+            "ci95_includes_zero": false,
+            "ci95_pp": [
+              -5.59,
+              -1.42
+            ],
+            "n_pairs": 1969,
+            "point_pp": -3.5,
+            "tost_equivalent_alpha_0_05": false
+          },
+          "full_suite": {
+            "ci90_pp": [
+              -5.2,
+              -1.8
+            ],
+            "ci95_includes_zero": false,
+            "ci95_pp": [
+              -5.55,
+              -1.45
+            ],
+            "n_pairs": 2000,
+            "point_pp": -3.5,
+            "tost_equivalent_alpha_0_05": false
+          },
+          "reference": "Claude-Haiku-4-5",
+          "reference_role": "strongest API",
+          "treatment": "GPT-OSS-120B"
+        },
+        "llama70_vs_nearest_deepseek": {
+          "decision_unchanged": true,
+          "excluding_item_defects": {
+            "ci90_pp": [
+              -0.36,
+              3.4
+            ],
+            "ci95_includes_zero": true,
+            "ci95_pp": [
+              -0.71,
+              3.71
+            ],
+            "n_pairs": 1969,
+            "point_pp": 1.52,
+            "tost_equivalent_alpha_0_05": true
+          },
+          "full_suite": {
+            "ci90_pp": [
+              -0.3,
+              3.4
+            ],
+            "ci95_includes_zero": true,
+            "ci95_pp": [
+              -0.6,
+              3.75
+            ],
+            "n_pairs": 2000,
+            "point_pp": 1.55,
+            "tost_equivalent_alpha_0_05": true
+          },
+          "reference": "DeepSeek-V4-Flash",
+          "reference_role": "nearest API",
+          "treatment": "Llama-3.1-70B"
+        },
+        "llama70_vs_strongest_claude": {
+          "decision_unchanged": true,
+          "excluding_item_defects": {
+            "ci90_pp": [
+              -8.13,
+              -4.42
+            ],
+            "ci95_includes_zero": false,
+            "ci95_pp": [
+              -8.38,
+              -4.06
+            ],
+            "n_pairs": 1969,
+            "point_pp": -6.25,
+            "tost_equivalent_alpha_0_05": false
+          },
+          "full_suite": {
+            "ci90_pp": [
+              -8.1,
+              -4.5
+            ],
+            "ci95_includes_zero": false,
+            "ci95_pp": [
+              -8.45,
+              -4.15
+            ],
+            "n_pairs": 2000,
+            "point_pp": -6.3,
+            "tost_equivalent_alpha_0_05": false
+          },
+          "reference": "Claude-Haiku-4-5",
+          "reference_role": "strongest API",
+          "treatment": "Llama-3.1-70B"
+        }
+      },
+      "method": {
+        "condition": "condC_FDRS",
+        "item_order": "lexicographic item_id",
+        "n_bootstrap": 10000,
+        "pairing_key": "item_id",
+        "percentile_interpolation": "linear at (B-1)*p",
+        "resampling": "paired items with replacement",
+        "rng": "Python random.Random; seed reset independently per contrast",
+        "seed": 20260617,
+        "settings_from": "code/aggregate/aggregate_p02_parity.py",
+        "tost": "alpha=0.05, equivalence margin +/-5pp; equivalent iff the two-sided 90% percentile interval lies strictly inside the margin",
+        "tost_margin_pp": 5.0
+      }
+    }
+  },
+  "unique_items": [
+    {
+      "item_id": "000868a577ec",
+      "natural_language_query_prefix": "Disconnect line 1 (take it out of service). Can you perform a 24-step time serie"
+    },
+    {
+      "item_id": "0c061504f85d",
+      "natural_language_query_prefix": "What loading percentage does line 20 have? Please use the 30-bus test case for t"
+    },
+    {
+      "item_id": "116984ae698d",
+      "natural_language_query_prefix": "Find the online generator with the highest active power dispatch and reduce that"
+    },
+    {
+      "item_id": "1c2da44b434e",
+      "natural_language_query_prefix": "Run a 24-step simulation on the synthetic voltage control LV network focusing on"
+    },
+    {
+      "item_id": "2577528d6781",
+      "natural_language_query_prefix": "What voltage (p.u.) do you predict at bus 63 at time step 13 if we run a 24-step"
+    },
+    {
+      "item_id": "2a751c4374a3",
+      "natural_language_query_prefix": "For the 9-bus WSCC case, Identify the most heavily loaded line under the current"
+    },
+    {
+      "item_id": "32164dcf5ba2",
+      "natural_language_query_prefix": "Find the most heavily loaded transformer and move its tap position by one step. "
+    },
+    {
+      "item_id": "3a1abed07a8f",
+      "natural_language_query_prefix": "Find the online generator with the highest active power dispatch and raise that "
+    },
+    {
+      "item_id": "5a7b3716afae",
+      "natural_language_query_prefix": "On the GB reduced 29-bus network, find the online generator with the highest act"
+    },
+    {
+      "item_id": "5c0b10c5e262",
+      "natural_language_query_prefix": "Identify the most heavily loaded line under the current operating point and rein"
+    },
+    {
+      "item_id": "5c5897d17e0f",
+      "natural_language_query_prefix": "Identify the currently largest load and curtail only that demand point to a low-"
+    },
+    {
+      "item_id": "608de71b5305",
+      "natural_language_query_prefix": "Find the most heavily loaded transformer and move its tap position by one step. "
+    },
+    {
+      "item_id": "680b596f39d8",
+      "natural_language_query_prefix": "Identify the currently largest load and curtail only that demand point to a low-"
+    },
+    {
+      "item_id": "99be7fea2f67",
+      "natural_language_query_prefix": "What voltage (p.u.) do you predict at bus 15 at time step 18 if we run a 24-step"
+    },
+    {
+      "item_id": "99dac6b0d8f4",
+      "natural_language_query_prefix": "Identify the currently largest load and raise only that demand point to a peak-d"
+    },
+    {
+      "item_id": "9bd19fffbaaf",
+      "natural_language_query_prefix": "Could you conduct a N-1 contingency analysis on the IEEE 30-bus case while focus"
+    },
+    {
+      "item_id": "a61d1b8221ea",
+      "natural_language_query_prefix": "On the IEEE 118-bus case, identify the currently largest load and raise only tha"
+    },
+    {
+      "item_id": "a7e49f9e839d",
+      "natural_language_query_prefix": "Find the online generator with the highest active power dispatch and reduce that"
+    },
+    {
+      "item_id": "aea3d1d8e1d2",
+      "natural_language_query_prefix": "How about running a 24-step time series simulation on the CIGRE LV benchmark usi"
+    },
+    {
+      "item_id": "aecbd1286088",
+      "natural_language_query_prefix": "Identify the currently largest load and curtail only that demand point to a low-"
+    },
+    {
+      "item_id": "b60398530d04",
+      "natural_language_query_prefix": "Run the power flow analysis on the Iceland 189-bus grid. Locate the lowest-volta"
+    },
+    {
+      "item_id": "b61a5746b84b",
+      "natural_language_query_prefix": "Find the online generator with the highest active power dispatch and raise that "
+    },
+    {
+      "item_id": "b9daaebe8aa9",
+      "natural_language_query_prefix": "What would the peak line loading (%) be if you ran a 24-step time series simulat"
+    },
+    {
+      "item_id": "ca3410bfaf6a",
+      "natural_language_query_prefix": "Can you execute an optimal power flow on the IEEE 14-bus case? What is the activ"
+    },
+    {
+      "item_id": "d1f7675f6a48",
+      "natural_language_query_prefix": "On the 9-bus WSCC case, set the active power of load 1 to 59.4 MW, set the activ"
+    },
+    {
+      "item_id": "e27cabcbc881",
+      "natural_language_query_prefix": "Can you run an optimal power flow on 9-bus WSCC case while considering Locate th"
+    },
+    {
+      "item_id": "e2f46a029031",
+      "natural_language_query_prefix": "Locate the lowest-voltage bus from the current operating point and install capac"
+    },
+    {
+      "item_id": "e610d7ee68cb",
+      "natural_language_query_prefix": "Please run the OPF on IEEE 118-bus case. I'd like to know the optimal active pow"
+    },
+    {
+      "item_id": "ea9769343413",
+      "natural_language_query_prefix": "On the 33-bus Baran-Wu case, locate the lowest-voltage bus that has load connect"
+    },
+    {
+      "item_id": "f0e607d15d2d",
+      "natural_language_query_prefix": "While conducting the N-1 contingency analysis on 4-bus test case, what is the le"
+    },
+    {
+      "item_id": "fd02177c2da6",
+      "natural_language_query_prefix": "Could you conduct a N-1 contingency analysis on the IEEE 30-bus case while focus"
+    }
+  ]
+}
