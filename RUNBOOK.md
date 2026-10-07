@@ -1,4 +1,4 @@
-# PowerCodeBench reviewer runbook
+# PowerCodeBench reproduction runbook
 
 This runbook separates the repository's supported claim-verification path
 from fresh model execution. Run commands from the repository root.
@@ -11,11 +11,10 @@ the reported numerical values underlying tables, figures, contrasts, and
 audits from those records; it does not call a model provider, load model
 weights, or execute generated benchmark answers.
 
-Requirements are a clean checkout, `sha256sum`, and Python 3.11. No Python
+Requirements are a clean checkout and Python 3.11. No Python
 packages or network access are needed.
 
 ```bash
-sha256sum --quiet -c checksums.sha256
 python3 reproduce.py
 ```
 
@@ -62,7 +61,7 @@ python -c "import sys, numpy, pandas, pandapower; print(sys.version.split()[0], 
 The expected package versions are `numpy 2.2.6`, `pandas 2.3.3`, and
 `pandapower 3.4.0`, on Python 3.11. Treat a mismatch as a failed version gate.
 Reference programs are ordinary unrestricted Python: execute only records
-from a trusted checkout after the checksum check above. The helper in
+from a trusted checkout. The helper in
 `code/backend/utils.py` limits time and redirects common display side effects,
 but it is an evaluation harness, not a security boundary for hostile code.
 
@@ -137,5 +136,5 @@ Credential variables recognized by the published backends (names only) are:
 - `DEEPSEEK_API_KEY`
 - `HF_TOKEN` or `HUGGINGFACEHUB_API_TOKEN` for gated model downloads
 
-No credential variable is needed for checksum validation, `reproduce.py`, or
+No credential variable is needed for `reproduce.py` or
 CPU-side inspection of the frozen evidence.

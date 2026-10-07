@@ -10,7 +10,7 @@ it, and what the original runs kept no record of.
   the rows of the index.  They have no independent numeric artifact, so nothing
   is recomputed for them.
 
-- **Supplementary rebuilds.**  **S2/S3**, **S4**, and **S11** rebuild from the
+- **Supplementary rebuilds.**  **Tables S2–S3**, **S4**, and **S11** rebuild from the
   compact per-function, per-query, frozen-suite, and route-event evidence under
   `results/supplementary_evidence/`, `results/demand_suites/`, and
   `results/raw/probe_transcripts/`, through `reproduce.py --group 14`,

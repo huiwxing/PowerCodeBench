@@ -7,9 +7,8 @@ version: "1.0.0"
 # Version 1.0.0 is the frozen 2,000-task release; benchmark.json has not
 # changed since the task freeze. The version number tracks the benchmark
 # release, while date-released tracks the artifact snapshot, which also
-# carries the later audit, transfer and serving evidence. checksums.sha256
-# and the per-claim SHA-256 table in ARTIFACT_INDEX.md pin the file
-# snapshot, and CI verifies both on every push.
+# carries the later audit, transfer and serving evidence. ARTIFACT_INDEX.md
+# maps the reported claims to the frozen evidence and generating scripts.
 date-released: "2026-08-28"
 license: CC-BY-4.0
 repository-code: "https://github.com/huiwxing/PowerCodeBench"
@@ -26,8 +25,12 @@ authors:
     affiliation: "Department of Engineering, University of Exeter"
 preferred-citation:
   type: article
-  title: "Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation"
-  year: 2026
+  title: "Knowledge boundary probing and demand-guided intervention for LLM-based power system code generation"
+  year: 2027
+  journal: "Advanced Engineering Informatics"
+  volume: "77"
+  number: "105328"
+  start: "105328"
   authors:
     - given-names: Hui
       family-names: Wu
@@ -35,6 +38,6 @@ preferred-citation:
       family-names: Wang
     - given-names: Zhong
       family-names: Fan
-  doi: "10.48550/arXiv.2605.31478"
-  url: "https://arxiv.org/abs/2605.31478"
-  notes: "arXiv preprint arXiv:2605.31478"
+  doi: "10.1016/j.aei.2026.105328"
+  url: "https://doi.org/10.1016/j.aei.2026.105328"
+  notes: "Volume 77, Part 2 (January 2027); first published online 3 October 2026."

@@ -1,5 +1,6 @@
 # PowerCodeBench
 
+[![Paper DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.aei.2026.105328-blue)](https://doi.org/10.1016/j.aei.2026.105328)
 [![arXiv](https://img.shields.io/badge/arXiv-2605.31478-b31b1b.svg)](https://arxiv.org/abs/2605.31478)
 [![Data license: CC BY 4.0](https://img.shields.io/badge/Data%20License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 [![Code license: Apache 2.0](https://img.shields.io/badge/Code%20License-Apache%202.0-blue.svg)](code/LICENSE)
@@ -17,22 +18,19 @@ analysis code; [the benchmark section](#the-benchmark) describes the tasks and
 This repository is the benchmark's official distribution and also the code
 and frozen-data artifact for
 [*"Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based
-Power System Code Generation"*](https://arxiv.org/abs/2605.31478)
-(Wu, Wang, Fan — Advanced Engineering Informatics). Every manuscript table
+Power System Code Generation"*](https://doi.org/10.1016/j.aei.2026.105328)
+by Hui Wu, Xiaoyang Wang, and Zhong Fan, published in *Advanced Engineering
+Informatics*, volume 77, Part 2, article 105328 (January 2027). The article
+was first published online on 3 October 2026. Every manuscript table
 maps to a public evidence path here, and the headline claims are rebuilt from
 the underlying item-, probe-, judgement-, and measurement-level records.
 
-[`ARTIFACT_INDEX.md`](ARTIFACT_INDEX.md) is the master map. Its main table
-covers main-text Tables T2–T12, Supplementary Tables S1–S19 and Figures
-S1–S5, and the headline prose numbers; each row gives the frozen artifact
-file, the script that generated it, and the artifact's SHA-256. Alongside it,
-the machine-readable [`checksums.sha256`](checksums.sha256) pins every tracked
-file in the repository. CI re-verifies both on every push, and offline you can
-run `sha256sum -c checksums.sha256`. The manifest is regenerated with
-
-```bash
-git ls-files -z | grep -zvx checksums.sha256 | LC_ALL=C sort -z | xargs -0 sha256sum > checksums.sha256
-```
+[`ARTIFACT_INDEX.md`](ARTIFACT_INDEX.md) is the master map from reported
+claims to frozen evidence files and their generating scripts. It covers
+main-text Tables T2–T12, Supplementary Tables S1–S19, and the evidence behind
+the published figures and headline numbers. The published Supplementary
+Material contains Figures S1–S2; additional repository plots are labelled
+separately in the index.
 
 One command recomputes the paper's numerical results (CPU-only, standard
 library only, no network). Run it on Python 3.11, the interpreter of the
@@ -75,23 +73,22 @@ deterministic rerun in place of bulk historical logs;
 families and what each one retains, and `ARTIFACT_INDEX.md` marks the affected
 rows.
 
-For the shortest reviewer path, environment/version checks, method-module
+For the shortest verification path, environment/version checks, method-module
 smokes, and the boundary between claim verification and fresh GPU/API runs,
 see [`RUNBOOK.md`](RUNBOOK.md).
 
 ## Repository structure
 
 ```
-ARTIFACT_INDEX.md          claim → artifact → script → SHA-256 map
-RUNBOOK.md                 reviewer verification, environment, and rerun boundary
-checksums.sha256           SHA-256 manifest of every tracked file (sha256sum -c)
+ARTIFACT_INDEX.md          claim → artifact → script map
+RUNBOOK.md                 verification, environment, and rerun boundary
 reproduce.py               one-command headline-number verification
 benchmark.json             the frozen 2,000-task benchmark (this release)
 audit/                     engineering-validity, matcher-FN, and parity audit artifacts
 external_queries/          E4 external query sets, construction ledgers, frozen evals
 transfer/                  E2 backend-transfer defect ledger + import scans
 serving/measurement_json/  E3 serving measurements (protocol A/B, per-rep energy/meta)
-results/full_matrices/     per-difficulty / per-task / trajectory matrices (SM S7/S9)
+results/full_matrices/     per-difficulty / per-task / trajectory matrices (SM Tables S7–S9)
 results/aggregates/        frozen aggregate JSONs (the CPU-only number-rebuild set)
 results/raw/               compact item-level runs for primary, transfer,
                            robustness, ablations, and 29,120 raw probe records
@@ -203,8 +200,7 @@ items (`.github/scripts/check_text_normalization.py`).
 ## Quickstart
 
 > **Trusted input only.** The example below uses unrestricted Python `exec()`.
-> Run `reference_code` only from a trusted, checksum-verified PowerCodeBench
-> release; do not use this pattern for untrusted or model-generated code.
+> Run `reference_code` only from a trusted PowerCodeBench release; do not use this pattern for untrusted or model-generated code.
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
@@ -265,19 +261,31 @@ docstrings reproduced in `dataset/pandapower_docs.json` (BSD 3-Clause,
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and the in-repository
 [`pandapower BSD 3-Clause licence text`](licenses/pandapower-BSD-3-Clause.txt).
 
+## Acknowledgements
+
+This paper is partially supported by the SAINTES project funded by the ARIA
+Safeguarded AI programme, as well as the Innovate UK funded TRIAGE project.
+
+The authors acknowledge the use of resources provided by the Isambard-AI
+National AI Research Resource (AIRR). Isambard-AI is operated by the University
+of Bristol and is funded by the UK Government’s Department for Science,
+Innovation and Technology (DSIT) via UK Research and Innovation; and the
+Science and Technology Facilities Council [ST/AIRR/I-A-I/1023].
+
 ## Citation
 
 If you use PowerCodeBench, please cite:
 
 ```bibtex
-@article{wu2026powercodebench,
-  title         = {Knowledge Boundary Probing and Demand-Guided Intervention
-                   for LLM-Based Power System Code Generation},
-  author        = {Wu, Hui and Wang, Xiaoyang and Fan, Zhong},
-  year          = {2026},
-  eprint        = {2605.31478},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.SE},
-  doi           = {10.48550/arXiv.2605.31478}
+@article{wu2027powercodebench,
+  title   = {Knowledge boundary probing and demand-guided intervention
+             for {LLM}-based power system code generation},
+  author  = {Wu, Hui and Wang, Xiaoyang and Fan, Zhong},
+  journal = {Advanced Engineering Informatics},
+  volume  = {77},
+  pages   = {105328},
+  year    = {2027},
+  doi     = {10.1016/j.aei.2026.105328},
+  url     = {https://doi.org/10.1016/j.aei.2026.105328}
 }
 ```
